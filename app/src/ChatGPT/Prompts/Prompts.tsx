@@ -10,6 +10,7 @@ import { StyledPromptButton } from "../../styles/lazyStyles";
 // import { DiscordButton } from "./DiscordButton/DiscordButton";
 
 export const Prompts = ({
+  globalScholarshipCounter,
   currentPath,
   //roxana
   loadingMessage,
@@ -28,6 +29,7 @@ export const Prompts = ({
   userAuthObject,
   isRaidActive,
   globalReserve,
+  isDemo,
 }) => {
   if (!isEmpty(patreonObject)) {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -223,16 +225,20 @@ export const Prompts = ({
           💗 Roxana
         </Button>
         <br />
-        <ProofOfWork
-          userAuthObject={userAuthObject}
-          displayName={displayName}
-          databaseUserDocument={databaseUserDocument}
-          computePercentage={computePercentage}
-          globalImpactCounter={globalImpactCounter}
-          usersModulesCollectionReference={usersModulesCollectionReference}
-          usersModulesFromDB={usersModulesFromDB}
-          globalReserve={globalReserve}
-        />
+        {isDemo ? (
+          <ProofOfWork
+            userAuthObject={userAuthObject}
+            displayName={displayName}
+            databaseUserDocument={databaseUserDocument}
+            computePercentage={computePercentage}
+            globalImpactCounter={globalImpactCounter}
+            usersModulesCollectionReference={usersModulesCollectionReference}
+            usersModulesFromDB={usersModulesFromDB}
+            globalReserve={globalReserve}
+            globalScholarshipCounter={globalScholarshipCounter}
+            isDemo={isDemo}
+          />
+        ) : null}
         {/* <DiscordButton /> */}
         <br />
         <br />

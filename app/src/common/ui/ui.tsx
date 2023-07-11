@@ -72,6 +72,11 @@ export let ultimateEffeciencyJutsu = (key) => {
 
     ["Lesson 2 Frontend Event-Driven Programming"]:
       "the fundamentals of event-driven programming with React JS",
+
+    ["Lesson 3 Understanding Backend Engineering"]:
+      "the foundations of backend engineering",
+
+    ["Lesson 4 Building Apps"]: "the basics of building apps using APIs",
     ["SEO: Search Engine Optimization"]:
       "understanding search engine optimization",
   };
