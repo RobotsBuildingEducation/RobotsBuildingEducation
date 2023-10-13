@@ -1,16 +1,7 @@
-# The Original AI Tutor & Mentor In Your Pocket
+Legal Voice AI is set to introduce a groundbreaking legal intake platform tailored for public defenders and legal aid organizations. Using state-of-the-art AI, the platform will commence with general inquiries and then dynamically refine its questions based on the user's narrative, staying attuned to jurisdiction-specific statutes and case law for the charges the AI anticipates will be filed.
 
-## Contact
+Our AI platform meticulously identifies pivotal facts crucial in shaping the trajectory of legal defenses. It discerns nuances intrinsically linked to distinct statutes, case precedents, and potential constitutional infractions.
 
-- Please join this Discord community for more casual & information conversation about this app: [Discord](https://discord.gg/9kguaaDRmt)
+Conscious of the protracted delays many who cannot afford a private attorney face post-arrest — often stretching over weeks — our platform provides immediate access, enabling individuals to swiftly document and safeguard their recollection of the incident. Through this innovation, Legal Voice AI aims to rectify prevalent systemic inefficiencies, drastically cutting down waiting periods, and ensuring that individuals receive timely and insightful legal assistance.
 
-# 1. Welcome To RO.B.E
-Robots Building Education is a research project centered 
-around building universal basic income technology.
-
-In 2023, it takes the form of a mentor generating scholarships through "work" with a primarily Latino community.
-
-Please considering supporting my work here, where I offer personal services.
-https://www.patreon.com/RobotsBuildingEducation
-
-
+Additionally, Legal Voice AI is gearing up to unveil a centralized collaborative hub, tailored specifically for criminal defense attorneys. This transformative platform seeks to streamline the scattered landscape of legal forums and listservs, offering a unified space where attorneys can exchange questions, insights, and access sample motions. At the heart of this hub is the "AI Motion Generator," a feature equipped to aid in crafting essential legal motions using a language model finely-tuned for criminal defense. What truly sets our platform apart is its collaborative training model. Attorneys are empowered to actively train the AI, contributing their top-tier work product, redacted of client-specific details. This ensures the AI remains current, enriched with the most recent and effective legal strategies and arguments. In sum, Legal Voice AI is creating a symbiotic relationship between cutting-edge technology and the legal community, envisioning a future where criminal defense is both more efficient and interconnected.
