@@ -24,6 +24,7 @@ import { RobotDialogue } from "../Displays/RobotDialogue/RobotDialogue";
 import RandomCharacter from "../Displays/RandomCharacter/RandomCharacter";
 import { SchedulerBlock } from "../Displays/SchedulerBlock/SchedulerBlock";
 import { ArtBlock } from "../Displays/ArtBlock/ArtBlock";
+import { StyledListItem } from "../../../styles/lazyStyles";
 
 export const Engineer = {
   "Coding Crash Course Version 3": {
@@ -88,7 +89,7 @@ export const Engineer = {
           completed: false,
           impact: 1000,
           action: `generate`,
-          icon: `►`, //`✍️`
+          icon: `✨`, //`✍️`
           request: `rox, can you please generate material to introduce me to ${ultimateEffeciencyJutsu(
             `Learn Coding`
           )}?`,
@@ -101,11 +102,12 @@ export const Engineer = {
               business building? No worries, that's perfectly normal. It's just
               a sign you're ready to grow and challenge yourself. Forget the
               myths – programming isn't just for math wizards. It's for anyone
-              willing to learn and create. Remember, computer science isn't just
-              about code; it's about solving real-world problems in any field,
-              from art to climate tech. So, take a deep breath, and let's start
-              this journey of learning and impact together. You're more capable
-              than you think. Vamos!🚀💻🌟
+              willing to learn and create.
+              <br />
+              <br /> Computer science isn't just about code; it's about solving
+              real-world problems in any field, from art to climate tech. So,
+              take a deep breath, and let's start this journey of learning and
+              impact together. You're more capable than you think. Vamos!🚀💻🌟
               <br />
               <br />
               Would you like to know more about breaking into coding, the
@@ -129,12 +131,12 @@ export const Engineer = {
             // <ArtBlock>
             <div>
               Meet Kismet, a robot developed by Cynthia Breazeal at the MIT
-              Media Lab back in the late 1990s 🤖. Kismet wasn't just any robot;
-              it was designed to engage in social interaction with humans. The
+              Media Lab back in the late 1990s. Kismet wasn't just any robot; it
+              was designed to engage in social interaction with humans. The
               fascinating thing about Kismet is it could recognize and respond
               to human emotions through facial and voice cues, mimicking the
-              interactions of a human baby 👶. This was an extraordinary
-              milestone in human-computer interaction and affective computing!
+              interactions of a human baby. This was an extraordinary milestone
+              in human-computer interaction and affective computing!
               <br />
               <br />
               Fast forward to today, and machine learning algorithms play an
@@ -171,11 +173,11 @@ export const Engineer = {
           )}?`,
           response: (
             <div>
-              <h2>
+              <div>
                 Let's read into the dynamic relationship between computer
                 science, its interdisciplinary applications, and human-computer
                 interaction (HCI).
-              </h2>
+              </div>
               <br />
               <br />
               Computer science is not a siloed field; rather, it's a
@@ -237,11 +239,11 @@ export const Engineer = {
           response: (
             <div>
               <div>
-                <h3>
+                <div>
                   Embarking on a journey to learn computer science can bring up
                   some intriguing and challenging questions. Here are three
                   common ones, spruced up with a friendly touch. 🌟
-                </h3>
+                </div>
               </div>
               <br />
               <br />
@@ -268,7 +270,10 @@ export const Engineer = {
               While not every aspect of computer science requires advanced
               mathematics, certain areas like algorithms and machine learning do
               use mathematical concepts. Many learners question how deeply they
-              need to understand math and how to improve their skills in it.
+              need to understand math and how to improve their skills in it and
+              it ultimately requires a commitment and determination to improve
+              on. Math can be as important as you need it to be when it comes to
+              programming.
               <br />
               <br />
               <br />
@@ -282,7 +287,10 @@ export const Engineer = {
               Computer science is a dynamic field, with new languages,
               technologies, and concepts emerging regularly. Learners often
               wonder how they can keep up with the pace of change, stay
-              relevant, and continue learning throughout their careers.
+              relevant, and continue learning throughout their careers. Learning
+              good fundamentals will keep you stable across the changes but
+              knowing how to make the right bet will help you excel!
+              Fortunately, we teach that in principle here :)
               <br />
               <br />
               <br />
@@ -298,142 +306,147 @@ export const Engineer = {
           completed: false,
           impact: 100,
           action: `guide`,
-          icon: `🤝`,
+          icon: `🧚`,
           request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
             `Learn Coding`
           )}?`,
           response: (
             <SchedulerBlock>
-              <h3>
+              <div>
                 Let's break down this process into five stages, taking you from
                 the basics to professional expertise in intersectional research,
                 human-computer interaction (HCI), and computer science.
-              </h3>
-              <br />
-              <br />
+              </div>
               <br />
               <br />
               🌱Beginner: Introduction to the foundations.
               <br />
-              <br />
               <ol>
-                <li>
+                <li style={{ padding: 6 }}>
                   Start with the basics of computer science. Familiarize
-                  yourself with a programming language like Python.
+                  yourself with a programming language like Python or
+                  Javascript. Think about what machines you want to work with
+                  and why and study the popular technologies in those
+                  professional communities.
                 </li>
-                <li>
-                  Read introductory books on HCI, such as "Designing the User
-                  Interface" by Ben Shneiderman and Catherine Plaisant.{" "}
+                <li style={{ padding: 6 }}>
+                  Read introductory books on HCI, such as "The Design Of
+                  Everyday Things" by Don Norman.{" "}
                 </li>
-                <li>
-                  Learn about intersectionality theory from foundational texts
-                  like Kimberlé Crenshaw's papers.
+                <li style={{ padding: 6 }}>
+                  Learn about intersectionality theory from foundational authors
+                  like Kimberlé Crenshaw or bell hooks.
                 </li>
               </ol>
               <br />
               <br />
               🌿Intermediate: Building on the basics.
               <br />
-              <br />
               <ol>
-                <li>
-                  Develop your skills in another programming language, such as
-                  Java or JavaScript.
+                <li style={{ padding: 6 }}>
+                  Learn how to use the power tools in the programming languages
+                  you're learning so you can build new ideas. Study popular ways
+                  to start projects and out-of-the-box networks you can tap into
+                  like Stripe for payments or OpenAI for AI.
                 </li>
-                <li>
-                  Start with some basic UX/UI design courses to understand
-                  principles of HCI.
+                <li style={{ padding: 6 }}>
+                  Start with some UI/UX design courses to understand principles
+                  of HCI. Use nngroup.com as a starter resource.
                 </li>
-                <li>
+                <li style={{ padding: 6 }}>
                   Explore the intersectionality in depth, focusing on the
                   overlapping social categories that contribute to systemic
-                  injustice and social inequality.
+                  injustice and social inequality. Study the deep history of
+                  Abraham Lincoln and Martin Luther King Jr.
                 </li>
               </ol>{" "}
               <br />
               <br />
               🌴Advanced: Deepening your knowledge and specialization.
               <br />
-              <br />
               <ol>
-                <li>
+                <li style={{ padding: 6 }}>
                   Familiarize yourself with advanced HCI concepts like
                   user-centered design and heuristic evaluation.
                 </li>
-                <li>
-                  Delve into intersectional research literature. Look at case
-                  studies that apply intersectionality to technology.
+                <li style={{ padding: 6 }}>
+                  Delve into literature written after the rise of the internet
+                  by authors like Ruha Benjamin
                 </li>
-                <li>
+                <li style={{ padding: 6 }}>
                   Learn about data structures and algorithms to enhance your
-                  computer science foundation.
+                  computer science foundation or prepare for technical
+                  interviews.
                 </li>
               </ol>{" "}
               <br />
               <br />
-              🌳Professional: Practice and real-world experience. <br />
+              🌳Professional: Practice and real-world experience.
               <br />
               <ol>
-                <li>
+                <li style={{ padding: 6 }}>
                   Begin to work on projects that incorporate all three areas.
-                  Perhaps a software project that requires user-centered design
-                  and considers intersectionality.
+                  Consider a software project that requires user-centered design
+                  and considers intersectionality. Robots Building Education
+                  works on projects like job network applications that serve the
+                  unique needs of undocumented as an example.
                 </li>
-                <li>Contribute to open source projects related to HCI.</li>
-                <li>
-                  Attend webinars and seminars related to intersectional tech
-                  research.
+                <li style={{ padding: 6 }}>
+                  Contribute to open source projects related to HCI. Many new
+                  technologies often need usability research, like
+                  https://bitcoin.design
+                </li>
+                <li style={{ padding: 6 }}>
+                  Follow conversations, communities and academics related to
+                  intersectional tech research. Build your network!
                 </li>
               </ol>{" "}
               <br />
               <br />
               🎓Continued Learning: Staying up-to-date and never stop learning.{" "}
               <br />
-              <br />
               <ol>
-                <li>
+                <li style={{ padding: 6 }}>
                   Participate in ongoing discussions and debates about
                   intersectionality in tech. This could be in online forums or
-                  academic conferences.
+                  academic conferences. Consider what you find important to
+                  progress And commit to honest work in that direction.
                 </li>
-                <li>
+                <li style={{ padding: 6 }}>
                   Regularly read recent HCI research papers to keep up with the
-                  latest developments.
+                  latest developments. How can new technologies be used in
+                  meaningful ways?
                 </li>
-                <li>
+                <li style={{ padding: 6 }}>
                   Continuously refine your programming skills with new languages
-                  and technologies.
+                  and technologies. Cultivate a love for learning by defining
+                  exciting futures to work on!
                 </li>
               </ol>
               <br />
               <br />
               🔥 Leading: Conducting Original research and advancing the field{" "}
               <br />
-              <br />
               <ol>
-                <li>
+                <li style={{ padding: 6 }}>
                   Identify research questions or challenges in the
                   intersectionality of computer science and your chosen domain.
+                  Consider your academic and entrepreneurial ambitions.
                 </li>
-                <li>
+                <li style={{ padding: 6 }}>
                   Develop and execute research projects, collaborating with
                   experts from different disciplines when necessary.
                 </li>
-                <li>
+                <li style={{ padding: 6 }}>
                   Publish your research findings in peer-reviewed journals,
-                  conference proceedings, and other relevant outlets.
+                  startup conferences, and other relevant outlets.
                 </li>
-                <li>
+                <li style={{ padding: 6 }}>
                   Share your expertise by mentoring, teaching, or consulting in
                   your area of specialization.
                 </li>
               </ol>
               <br />
-              <br />
-              Remember, growth and learning are processes that happen step by
-              step. Keep going, stay curious, and embrace the journey. Every
-              expert was once a beginner, and you have the capacity to reach
-              your goals. 😊👩‍💻🌟
             </SchedulerBlock>
           ),
           spanish: ``,
@@ -449,9 +462,11 @@ export const Engineer = {
           )} in javascript?`,
           response: `
 
-// This is ultimately all you need to understand in order to build an app with OpenAI or ChatGPT in Javascript. 
-// You might be surprised how simple it seems. That's a sign of great engineering. 
-// If this makes no sense to you, try your best to make some sense out of it. I believe in you :)
+// This demo exposes you to the software the handles OpenAI web apps.
+
+// Try out the practice prompt in lesson 1 to write some lines of code related to it.
+
+// If you don't understand this, that's okay! Take your time Try to make sense of pieces at a time :)
 
 const functions = require("firebase-functions");
 const express = require("express");
@@ -459,7 +474,9 @@ const { Configuration, OpenAIApi } = require("openai");
 
 
 
-const configuration = new Configuration({ apiKey: OPENAI_API_KEY });
+const configuration = new Configuration({ 
+  apiKey: OPENAI_API_KEY 
+});
 
 const openai = new OpenAIApi(configuration);
 
@@ -475,8 +492,14 @@ app.post("/task", async (request, response) => {
     const answer = await openai.createChatCompletion({
       model: "gpt-4",
       messages: [
-        { role: "system", content: "You are a helpful assistant teaching beginners as Steve Jobs."},
-        { role: "user", content: task }
+        { 
+          role: "system", 
+          content: "You are a helpful assistant teaching beginners as Steve Jobs."
+        },
+        { 
+          role: "user", 
+          content: task 
+        }
       ],
     });
 
@@ -485,7 +508,7 @@ app.post("/task", async (request, response) => {
     });
 
   } catch (error) {
-
+    //do nothing when there's an error in the network.
   }
 
 });
@@ -586,11 +609,51 @@ exports.app = functions.https.onRequest(app);
               <br />
               These questions encourage the exploration of the
               multi-disciplinary applications of computer science, sparking
-              creativity and stimulating critical thinking. 💡🚀
+              creativity and stimulating critical thinking. 💡
             </ChatBlock>
           ),
           spanish: ``,
           tooltip: ``,
+        },
+        practice: {
+          completed: false,
+          impact: 750,
+          action: `practice`,
+          icon: `🥋`,
+          request: `Let's practice!`,
+          context: `We're going to practice defining a class and create an object.`,
+          steps: [
+            {
+              code: `console.log("Hello world!");`,
+              guidance: (
+                <RobotDialogue text="Your first line of code tells the application managing your software to say hello!" />
+              ),
+              knowledge: (
+                <RobotDialogue
+                  text={
+                    <p>
+                      🎛️ If you right click this page and inspect element you'll
+                      open up your browser's control panel for this website.
+                      Select the console at the top to see the data being
+                      displayed by the console. Many developers use this code to
+                      test logic they're working on.
+                      <br />
+                      <br />
+                      Professionally, it's used to communicate data between
+                      systems like errors or other important messages.
+                    </p>
+                  }
+                  background="lightyellow"
+                />
+              ),
+            },
+          ],
+          displayCode: `console.log("Hello world!");`,
+          input: `console.log("Hello world!");`,
+          response: <div>good job grasshopper!</div>,
+          spanish: ``,
+          tooltip: ``,
+          reward: <div>Hello world!</div>,
         },
         shop: {
           completed: false,
@@ -722,7 +785,7 @@ exports.app = functions.https.onRequest(app);
           completed: false,
           impact: 1000,
           action: `generate`,
-          icon: `►`, //`✍️`
+          icon: `✨`, //`✍️`
           request: `rox, can you please generate material to introduce me to ${ultimateEffeciencyJutsu(
             `Lesson 1 Coding Fundamentals`
           )}?`,
@@ -1102,7 +1165,7 @@ juan.study();  // Outputs: Juan is studying.
           completed: false,
           impact: 100,
           action: `guide`,
-          icon: `🤝`,
+          icon: `🧚`,
           request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
             `Lesson 1 Coding Fundamentals`
           )}?`,
@@ -1848,7 +1911,7 @@ throw new Error(
           completed: false,
           impact: 1000,
           action: `generate`,
-          icon: `►`, //`✍️`
+          icon: `✨`, //`✍️`
           request: `rox, can you please generate material to introduce me to ${ultimateEffeciencyJutsu(
             `Lesson 2 Frontend Event-Driven Programming`
           )}?`,
@@ -2050,7 +2113,7 @@ throw new Error(
           completed: false,
           impact: 100,
           action: `guide`,
-          icon: `🤝`,
+          icon: `🧚`,
           request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
             `Lesson 1 Coding Fundamentals`
           )}?`,
@@ -2727,7 +2790,7 @@ return <div style={gradientStyle}>
           completed: false,
           impact: 1000,
           action: `generate`,
-          icon: `►`, //`✍️`
+          icon: `✨`, //`✍️`
           request: `rox, can you please generate material to introduce me to ${ultimateEffeciencyJutsu(
             `Lesson 3 Understanding Backend Engineering`
           )}?`,
@@ -2973,7 +3036,7 @@ return <div style={gradientStyle}>
           completed: false,
           impact: 100,
           action: `guide`,
-          icon: `🤝`,
+          icon: `🧚`,
           request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
             `Lesson 3 Understanding Backend Engineering`
           )}?`,
@@ -3720,7 +3783,7 @@ exports.app = functions
           completed: false,
           impact: 1000,
           action: `generate`,
-          icon: `►`, //`✍️`
+          icon: `✨`, //`✍️`
           request: `rox, can you please generate material to introduce me to ${ultimateEffeciencyJutsu(
             `Lesson 4 Building Apps`
           )}?`,
@@ -3985,7 +4048,7 @@ exports.app = functions
           completed: false,
           impact: 100,
           action: `guide`,
-          icon: `🤝`,
+          icon: `🧚`,
           request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
             `Lesson 4 Building Apps`
           )}?`,
@@ -4826,7 +4889,7 @@ export default OpenAIComponent;`,
           completed: false,
           impact: 1000,
           action: `generate`,
-          icon: `►`, //`✍️`
+          icon: `✨`, //`✍️`
           request: `rox, can you please generate material to introduce me to ${ultimateEffeciencyJutsu(
             `Lesson 5 Computer Science`
           )}?`,
@@ -4990,7 +5053,7 @@ export default OpenAIComponent;`,
           completed: false,
           impact: 100,
           action: `guide`,
-          icon: `🤝`,
+          icon: `🧚`,
           request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
             `Lesson 5 Computer Science`
           )}?`,

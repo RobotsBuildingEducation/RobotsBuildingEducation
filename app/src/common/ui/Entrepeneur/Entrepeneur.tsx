@@ -62,7 +62,7 @@ export const Entrepeneur = {
           completed: false,
           impact: 1000,
           action: `generate`,
-          icon: `►`, //`✍️`
+          icon: `✨`, //`✍️`
           request: `rox, can you please generate material to introduce me to ${ultimateEffeciencyJutsu(
             `Creating Competitive Entry Level Resumes`
           )}?`,
@@ -257,7 +257,7 @@ export const Entrepeneur = {
           completed: false,
           impact: 100,
           action: `guide`,
-          icon: `🤝`,
+          icon: `🧚`,
           request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
             `Creating Competitive Entry Level Resumes`
           )}?`,
@@ -631,7 +631,7 @@ export const Entrepeneur = {
           completed: false,
           impact: 1000,
           action: `generate`,
-          icon: `►`, //`✍️`
+          icon: `✨`, //`✍️`
           request: `rox, can you please generate material to introduce me to ${ultimateEffeciencyJutsu(
             `Focus Investing`
           )}?`,
@@ -913,7 +913,7 @@ export const Entrepeneur = {
           completed: false,
           impact: 100,
           action: `guide`,
-          icon: `🤝`,
+          icon: `🧚`,
           request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
             `Focus Investing`
           )}?`,
@@ -1313,7 +1313,7 @@ export const Entrepeneur = {
           completed: false,
           impact: 100,
           action: `guide`,
-          icon: `🤝`,
+          icon: `🧚`,
           request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
             `Wealth Management`
           )}?`,

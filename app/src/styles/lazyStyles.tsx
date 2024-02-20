@@ -520,3 +520,7 @@ export let textBlock2 = (
     boxShadow: boxShadow,
   };
 };
+
+export const StyledListItem = {
+  padding: 6,
+};

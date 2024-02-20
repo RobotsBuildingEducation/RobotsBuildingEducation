@@ -50,7 +50,7 @@ export const Creator = {
           completed: false,
           impact: 1000,
           action: `generate`,
-          icon: `►`, //`✍️`
+          icon: `✨`, //`✍️`
           request: `rox, can you please generate material to introduce me to ${ultimateEffeciencyJutsu(
             `Philosophy`
           )}?`,
@@ -309,7 +309,7 @@ export const Creator = {
           completed: false,
           impact: 100,
           action: `guide`,
-          icon: `🤝`,
+          icon: `�`,
           request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
             `Philosophy`
           )}?`,
@@ -687,7 +687,7 @@ export const Creator = {
           completed: false,
           impact: 1000,
           action: `generate`,
-          icon: `►`, //`✍️`
+          icon: `✨`, //`✍️`
           request: `rox, can you please generate material to introduce me to ${ultimateEffeciencyJutsu(
             `Human-Computer Interaction`
           )}?`,
@@ -923,7 +923,7 @@ export const Creator = {
           completed: false,
           impact: 100,
           action: `guide`,
-          icon: `🤝`,
+          icon: `�`,
           request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
             `Human-Computer Interaction`
           )}?`,
@@ -1263,7 +1263,7 @@ export const Creator = {
           completed: false,
           impact: 1000,
           action: `generate`,
-          icon: `►`, //`✍️`
+          icon: `✨`, //`✍️`
           request: `rox, can you please generate material to introduce me to ${ultimateEffeciencyJutsu(
             `The Psychology Of Self-esteem`
           )}?`,
@@ -1455,7 +1455,7 @@ export const Creator = {
           completed: false,
           impact: 100,
           action: `guide`,
-          icon: `🤝`,
+          icon: `�`,
           request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
             `The Psychology Of Self-esteem`
           )}?`,
@@ -1720,7 +1720,7 @@ export const Creator = {
       //       completed: false,
       //       impact: 1000,
       //       action: `generate`,
-      //       icon: `►`, //`✍️`
+      //       icon: `✨`, //`✍️`
       //       request: `rox, can you please show me how to ${ultimateEffeciencyJutsu(
       //         `Memes`
       //       )}?`,
@@ -1768,7 +1768,7 @@ export const Creator = {
       //       completed: false,
       //       impact: 100,
       //       action: `guide`,
-      //       icon: `🤝`,
+      //       icon: `�`,
       //       request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
       //         `Memes`
       //       )}?`,
@@ -1852,7 +1852,7 @@ export const Creator = {
     //       completed: false,
     //       impact: 1000,
     //       action: `generate`,
-    //       icon: `►`, //`✍️`
+    //       icon: `✨`, //`✍️`
     //       request: `Hey Rox! Tell us about your genius plan with the robots! 😂`,
     //       response: `null`,
     //       spanish: ``,
@@ -2051,7 +2051,7 @@ export const Creator = {
     //       completed: false,
     //       impact: 100,
     //       action: `guide`,
-    //       icon: `🤝`,
+    //       icon: `�`,
     //       request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
     //         `The Psychology Of Self-esteem`
     //       )}?`,
@@ -2316,7 +2316,7 @@ export const Creator = {
     //   //       completed: false,
     //   //       impact: 1000,
     //   //       action: `generate`,
-    //   //       icon: `►`, //`✍️`
+    //   //       icon: `✨`, //`✍️`
     //   //       request: `rox, can you please show me how to ${ultimateEffeciencyJutsu(
     //   //         `Memes`
     //   //       )}?`,
@@ -2364,7 +2364,7 @@ export const Creator = {
     //   //       completed: false,
     //   //       impact: 100,
     //   //       action: `guide`,
-    //   //       icon: `🤝`,
+    //   //       icon: `�`,
     //   //       request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
     //   //         `Memes`
     //   //       )}?`,
