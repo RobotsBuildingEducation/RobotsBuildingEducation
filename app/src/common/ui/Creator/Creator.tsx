@@ -309,7 +309,7 @@ export const Creator = {
           completed: false,
           impact: 100,
           action: `guide`,
-          icon: `�`,
+          icon: `🧚`,
           request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
             `Philosophy`
           )}?`,
@@ -923,7 +923,7 @@ export const Creator = {
           completed: false,
           impact: 100,
           action: `guide`,
-          icon: `�`,
+          icon: `🧚`,
           request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
             `Human-Computer Interaction`
           )}?`,
@@ -1455,7 +1455,7 @@ export const Creator = {
           completed: false,
           impact: 100,
           action: `guide`,
-          icon: `�`,
+          icon: `🧚`,
           request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
             `The Psychology Of Self-esteem`
           )}?`,

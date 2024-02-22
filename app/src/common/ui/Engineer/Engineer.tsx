@@ -113,7 +113,7 @@ export const Engineer = {
               Would you like to know more about breaking into coding, the
               versatility of computer science in different fields, or how to
               stay motivated while learning new tech skills? Let's explore!
-              🤔🌐💡"
+              🤔🌐💡
             </div>
           ),
         },
@@ -761,15 +761,21 @@ exports.app = functions.https.onRequest(app);
               ¡Hola, estudiantes! 🌸
               <br />
               <br />
-              I'm rox, your guide through the enchanting garden of
-              Object-Oriented Programming (OOP). In this garden, we plant
-              'objects', each a unique flower with its own color and fragrance,
-              or in programming terms, attributes and methods. 🌹 Navigating
-              this garden might feel challenging initially, but remember, every
-              bloom takes time and patience, and I'm here to support you through
-              it all. 🌱 We'll explore vibrant concepts like classes, objects,
-              inheritance, and much more. Ready to blossom into brilliant
-              programmers? Let's start this magical journey together! 🦋
+              Lets guide you through the enchanting garden of Object-Oriented
+              Programming (OOP). In this garden, we plant 'objects', each a
+              unique flower with its own color and fragrance, or in programming
+              terms, attributes and methods. 🌹
+              <br /> <br />
+              Navigating this garden might feel challenging initially, but
+              remember, every bloom takes time and patience, and I'm here to
+              support you through it all. 🌱 We'll explore vibrant concepts like
+              classes, objects, inheritance, and much more.
+              <br /> <br />
+              And as we journey on, we'll take the time to appreciate the fun of
+              the challenge. This is what creates long term learning!
+              <br /> <br />
+              Ready to blossom into brilliant programmers? Let's start this
+              magical journey! 🦋
               <br />
               <br />
               With all my warmth and support,
@@ -794,19 +800,23 @@ exports.app = functions.https.onRequest(app);
           tooltip: ``,
           summaryContent: (
             <div>
-              In this engaging coding tutorial, we're embracing the challenge of
-              learning to code, starting with the more complex topics like
-              creating objects with code. We explore how coding models the
-              digital world through data and logic, using classes and functions
-              to define and manage information. A hands-on approach with
-              examples like coding a Robot class or a Tweet component helps
-              demystify coding concepts. Emphasis is placed on understanding
-              coding as an organization of information, not just mathematics,
-              and exploring both synchronous and asynchronous functions. We also
-              learn looping with practical examples, highlighting the importance
-              of documentation in programming. The lesson reinforces the idea
-              that coding is about converting data into logic, a fundamental
-              truth of computer science. 🚀💻🧠
+              In this lecture, we're embracing the challenge of learning to
+              code, starting with the more complex topics like creating objects
+              with code. We explore how coding models the digital world through
+              data and logic, using classes and functions to define and manage
+              information.
+              <br />
+              <br />A hands-on approach with examples like coding a Robot class
+              or a Tweet component helps demystify coding concepts. Emphasis is
+              placed on understanding coding as an organization of information,
+              not just mathematics, and exploring both synchronous and
+              asynchronous functions.
+              <br />
+              <br />
+              We also learn looping with practical examples, highlighting the
+              importance of documentation in programming. The lesson reinforces
+              the idea that coding is about converting data into logic, a
+              fundamental truth of computer science. 💻
               <br />
               <br />
               Ready to dive deeper into the world of object-oriented
@@ -828,7 +838,7 @@ exports.app = functions.https.onRequest(app);
           )}?`,
           response: (
             <div>
-              Queridos estudiantes! 🌟
+              ¡Hola estudiantes! 🌞
               <br />
               <br />
               Object-oriented programming (OOP) is a very special type of
@@ -836,14 +846,16 @@ exports.app = functions.https.onRequest(app);
               facts about it:
               <br />
               <br />
-              <b> You're in good company! 🌍: </b>
+              <b> You're in good company! 🌍 </b>
+              <br />
               OOP is one of the most widely-used programming paradigms in the
               world. It's used by tech giants like Google, Facebook, and Amazon.
               Even if you're just starting, remember that every great developer
               started where you are right now.
               <br />
               <br />
-              <b> Building blocks for the digital world! 🏗️: </b>
+              <b> Building blocks for the digital world! 🏗️ </b>
+              <br />
               Think of OOP like building with blocks. Each object you create is
               like a building block with its own properties and behaviors. You
               can reuse these blocks as much as you want! The real world is full
@@ -852,23 +864,25 @@ exports.app = functions.https.onRequest(app);
               making it more intuitive and relatable.
               <br />
               <br />
-              <b> Teamwork makes the dream work! 🤝: </b>
+              <b> Teamwork makes the dream work! 🤝 </b>
+              <br />
               OOP is perfect for team projects. You can work on one class or
               object while your teammate works on another. It's all about
               collaboration and working together, just like in real life.
               <br />
               <br />
-              <b>Forever learning, forever growing! 🌱:</b>
+              <b>Forever learning, forever growing! 🌱</b>
+              <br />
               One of the beautiful aspects of OOP is that there is always more
               to learn. As you grow as a programmer, so too will your
               understanding and application of OOP. It's like a journey that
               never ends, and it's all part of the adventure of learning!
               <br />
               <br />
-              Remember, it's not about being the best from the start, it's about
-              growth, determination, and resilience. I believe in your abilities
-              and potential. Keep pushing forward, and you'll be amazed at what
-              you can achieve! 💖💪🏽🚀
+              It's not about being the best from the start, it's about growth,
+              determination, and resilience. I believe in your abilities and
+              potential. Keep pushing forward, and you'll be amazed at what you
+              can achieve! 💖💪🏽
               <br />
               <br />
               Remember that your heritage, your struggles, and your dreams give
@@ -889,20 +903,15 @@ exports.app = functions.https.onRequest(app);
           )}?`,
           response: (
             <div>
-              ¡Hola estudiantes! 🌞
-              <br /> <br />
-              It's rox here again, ready to deepen our understanding of
-              Object-Oriented Programming (OOP) with you! 🚀🎓
-              <br /> <br />
-              Remember, it's completely okay if things seem challenging at
-              first. We're here to learn, and every learning journey has its
-              hills to climb. Let's dive a bit deeper into OOP today and
-              understand it better with some JavaScript code examples. We will
-              also discuss two additional concepts: encapsulation and
-              abstraction. 💡🌈
+              It's completely okay if things seem challenging at first. We're
+              here to learn, and every learning journey has its hills to climb.
+              Let's dive a bit deeper into OOP today and understand it better
+              with some JavaScript code examples. We will also discuss two
+              additional concepts: encapsulation and abstraction. 💡🌈
               <br />
               <br />
-              <b> Objects and Classes 🍏🏫:</b>
+              <b> Objects and Classes 🍏🏫</b>
+              <br />
               In OOP, objects and classes are two sides of the same coin. A
               class is like a blueprint, defining what an object of that class
               should have and what it can do. In JavaScript, we can define a
@@ -912,138 +921,190 @@ exports.app = functions.https.onRequest(app);
               object named "Maria" from the "Student" class, Maria would have
               her own specific name, age, and grade and could perform actions
               like studying or taking an exam.
+              <br /> <br />
               <CodeBlock
                 code={`
 class Student {
   constructor(name, age, grade) {
-      this.name = name;
-      this.age = age;
-      this.grade = grade;
+    this.name = name;
+    this.age = age;
+    this.grade = grade;
   }
 
   study() {
-      console.log("$\{this.name} is studying.");
+    console.log(
+      "$\{this.name} is studying."
+    );
   }
 }
 
-// An object is an individual instance created from that class.
-let maria = new Student("Maria", 12, "7th Grade");
-maria.study();  // Outputs: "Maria is studying."`}
+let maria = new Student(
+  "Maria", 
+  12, 
+  "7th Grade"
+);
+
+//what is the result?
+maria.study();`}
               />
               <br />
               <br />
-              <b> Inheritance 🌳: </b>
+              <b> Inheritance 🌳 </b>
+              <br />
               This allows one class (the child, or subclass) to inherit features
               from another class (the parent, or superclass). This is great for
               reusing code.
+              <br /> <br />
               <CodeBlock
                 code={`
 class Athlete extends Student {
   constructor(name, age, grade, sport) {
-      super(name, age, grade);
-      this.sport = sport;
+    //extend Athlete with Student data
+    super(name, age, grade);
+    this.sport = sport;
   }
 
   play() {
-      console.log("$\{this.name} is playing $\{this.sport}.");
+    console.log(
+      "$\{this.name} is playing $\{this.sport}."
+    );
   }
 }
 
-let juan = new Athlete("Juan", 15, "10th Grade", "Soccer");
-juan.study();  // Outputs: "Juan is studying."
-juan.play();   // Outputs: "Juan is playing Soccer."`}
+let juan = new Athlete(
+  "Juan", 
+  15, 
+  "10th Grade",
+  "Soccer"
+);
+
+//what are the outputs?
+juan.study();
+juan.play();`}
               />
               <br />
               <br />
-              <b> Polymorphism 🐾: </b>
+              <b> Polymorphism 🐾 </b>
+              <br />
               This term means "many shapes". It allows one object to take on
               many forms. In code, it allows a child class to behave uniquely,
-              even when using attributes inherited from a parent class.
+              even when using attributes inherited from a parent class. <br />{" "}
+              <br />
               <CodeBlock
                 code={`
 class Artist extends Student {
   constructor(name, age, grade, artForm) {
-      super(name, age, grade);
-      this.artForm = artForm;
+    super(name, age, grade);
+    this.artForm = artForm;
   }
-
+  
+  // both Artist and Student has study() 🤔
   study() {
-      console.log("$\{this.name} is studying $\{this.artForm}.");
+    console.log("
+      $\{this.name} is studying $\{this.artForm}."
+    );
   }
 }
 
-let sofia = new Artist("Sofia", 17, "12th Grade", "painting");
-sofia.study();  // Outputs: "Sofia is studying painting."
+let sofia = new Artist(
+  "Sofia", 
+  17, 
+  "12th Grade", 
+  "painting"
+);
+
+// what is the output?
+sofia.study(); 
 `}
               />
               <br />
               <br />
-              <b> Encapsulation 📦: </b>
+              <b> Encapsulation 📦 </b>
+              <br />
               Think of encapsulation like a protective bubble that wraps around
               our data (attributes) and code (behaviors) to keep them safe. It
               controls access to an object's internal state, meaning we can
               limit how and when its data is modified. This way, we keep our
-              code neat and prevent bugs.
+              code neat and prevent bugs. <br /> <br />
               <CodeBlock
                 code={`
 class Student {
   constructor(name, age, grade) {
-      this._name = name; // "_" indicates it should not be accessed directly
-      this._age = age;
-      this._grade = grade;
+    this.name = name;
+    this.age = age;
+    this.grade = grade;
   }
 
-  // getter
-  get name() {
-      return this._name;
+  getNname() {
+    return this.name;
   }
 
-  // setter
-  set name(newName) {
-      this._name = newName;
+  setName(newName) {
+    this.name = newName;
   }
 }
 
-let luis = new Student("Luis", 14, "9th Grade");
-luis.name = "Luis Miguel";  // We can safely change the name
-console.log(luis.name);  // Outputs: "Luis Miguel"
+let luis = new Student(
+  "Luis", 
+  14, 
+  "9th Grade"
+);
+
+//🚫 don't do this: access object data directly
+luis.name = "Luis Miguel"; 
+
+//✅ do this: 
+luis.setName("Luis Miguel")
+
+//what is the output?
+console.log(luis.getName()); 
 `}
               />
               <br />
               <br />
-              <b> Abstraction 🖼️: </b>
+              <b> Abstraction 🖼️ </b>
+              <br />
               Abstraction is like an artist's impression of a landscape. They
               don't need to include every little detail—only what's important.
               Similarly, abstraction in OOP allows us to hide complex details
               and show only essential features. This helps make our code easier
-              to understand and work with.
+              to understand and work with. <br /> <br />
               <CodeBlock
                 code={`
 class Student {
   constructor(name, age, grade) {
-      this.name = name;
-      this.age = age;
-      this.grade = grade;
-      this._attendance = [];  // Private attribute not directly accessible
+    this.name = name;
+    this.age = age;
+    this.grade = grade;
+    this._attendance = [];
+    this.full = true;
   }
 
-  // Public method that abstracts away the complexity
   markAttendance(status) {
-      this._attendance.push(status);
+    this._attendance.push(status);
+
+    if(status === "absent)
+      this.full = false
   }
 }
 
-let ana = new Student("Ana", 16, "11th Grade");
-ana.markAttendance("Present");  // We don't deal with the _attendance array directly
+let ana = new Student(
+  "Ana", 
+  16, 
+  "11th Grade"
+);
+
+// we don't deal with attendance logic
+ana.markAttendance("Present");  
         
           `}
               />
               <br />
               <br />
-              You're doing amazing! 💖 Remember, every step you take, even if it
-              feels small, is progress. You are capable of understanding and
-              mastering these concepts. So, let's keep going, keep questioning,
-              and keep growing together! 🌱💫
+              You're doing amazing! 💖 Every step you take, even if it feels
+              small, is progress. You are capable of understanding and mastering
+              these concepts. So, let's keep going, keep questioning, and keep
+              growing together! 🌱💫
               <br />
               <br />
               You got this! I believe in you! 🔥🌟
@@ -1062,7 +1123,7 @@ ana.markAttendance("Present");  // We don't deal with the _attendance array dire
           )} with one sentence answers?`,
           response: (
             <div>
-              What exactly is an 'object' in OOP? 🤔
+              <b>What exactly is an 'object' in OOP? 🤔</b>
               <br />
               <br />
               Objects are fundamental components in OOP. You can think of an
@@ -1071,6 +1132,7 @@ ana.markAttendance("Present");  // We don't deal with the _attendance array dire
               of data or any item that the program has to handle. Importantly,
               an object packages both data and the procedures that manipulate
               that data.
+              <br /> <br />
               <CodeBlock
                 code={`
 let student = {
@@ -1083,7 +1145,8 @@ let student = {
 
 student.greet();  // Outputs: Hello, my name is Juan!`}
               />
-              How do 'classes' and 'objects' relate to each other? 🧐
+              <br />
+              <b> How do 'classes' and 'objects' relate to each other? 🧐</b>
               <br />
               <br />
               Think of a class as a blueprint or a mold, and objects are the
@@ -1094,6 +1157,7 @@ student.greet();  // Outputs: Hello, my name is Juan!`}
               sleep. Then, each 'Dog' object we create from this class can have
               different breeds, colors, and ages, but all will be capable of
               barking, eating, and sleeping.
+              <br /> <br />
               <CodeBlock
                 code={`
 class Student {
@@ -1111,7 +1175,8 @@ let juan = new Student('Juan', 18);
 juan.greet();  // Outputs: Hello, my name is Juan!       
                 `}
               />
-              What is 'inheritance' and why is it useful? 💰
+              <br />
+              <b>What is 'inheritance' and why is it useful? 💰</b>
               <br />
               <br />
               Inheritance is a mechanism where you can to derive a class from
@@ -1120,6 +1185,7 @@ juan.greet();  // Outputs: Hello, my name is Juan!
               state and behavior from other classes. In OOP, this helps to
               promote code re-usability and makes your code more organized and
               easier to manage.
+              <br /> <br />
               <CodeBlock
                 code={`
 class Person {
@@ -1148,9 +1214,9 @@ juan.greet();  // Outputs: Hello, my name is Juan!
 juan.study();  // Outputs: Juan is studying.  
                 `}
               />
-              Remember, it's perfectly okay if you don't understand these
-              concepts right away. Keep practicing and asking questions, and it
-              will all start making sense. You've got this! 💪
+              <br />
+              Keep practicing and asking questions, and it will all start making
+              sense. You've got this! 💪
               <br />
               <br />
               With all my support,
@@ -1172,13 +1238,11 @@ juan.study();  // Outputs: Juan is studying.
           response: (
             <SchedulerBlock>
               Dear students! 😊 Here is a roadmap to help you navigate your
-              journey from beginner to pro in Object-Oriented Programming (OOP):{" "}
+              journey from beginner to pro in Object-Oriented Programming.{" "}
               <br />
               <br />
               <br />
-              <br />
-              <b>Understanding the Basics of Programming 🌱</b>
-              <br />
+              <b>🌱 Understanding the Basics of Programming </b>
               <br />
               <ol>
                 <li>
@@ -1192,8 +1256,7 @@ juan.study();  // Outputs: Juan is studying.
               </ol>
               <br />
               <br />
-              <b>Introduction to OOP 📘</b>
-              <br />
+              <b>📘Introduction to OOP </b>
               <br />
               <ol>
                 <li>
@@ -1204,8 +1267,7 @@ juan.study();  // Outputs: Juan is studying.
               </ol>{" "}
               <br />
               <br />
-              <b>Diving Deeper into OOP 🌊</b>
-              <br />
+              <b>🌊 Diving Deeper into OOP </b>
               <br />
               <ol>
                 <li>
@@ -1218,8 +1280,7 @@ juan.study();  // Outputs: Juan is studying.
               </ol>{" "}
               <br />
               <br />
-              <b>Advanced OOP Concepts 🚀</b>
-              <br />
+              <b>📜 Advanced OOP Concepts</b>
               <br />
               <ol>
                 <li>
@@ -1233,8 +1294,7 @@ juan.study();  // Outputs: Juan is studying.
               </ol>{" "}
               <br />
               <br />
-              <b>Design Patterns in OOP 💡</b>
-              <br />
+              <b>💡 Design Patterns in OOP </b>
               <br />
               <ol>
                 <li>
@@ -1246,8 +1306,7 @@ juan.study();  // Outputs: Juan is studying.
               </ol>{" "}
               <br />
               <br />
-              <b>Real-world Projects 🏗️</b>
-              <br />
+              <b>🏗️ Real-world Projects</b>
               <br />
               <ol>
                 <li>
@@ -1262,8 +1321,7 @@ juan.study();  // Outputs: Juan is studying.
               </ol>{" "}
               <br />
               <br />
-              <b>Reading and Understanding Others' Code 🧩</b>
-              <br />
+              <b>🧩 Reading and Understanding Others' Code </b>
               <br />
               <ol>
                 <li>
@@ -1278,8 +1336,7 @@ juan.study();  // Outputs: Juan is studying.
               </ol>{" "}
               <br />
               <br />
-              <b>Continuous Learning and Practice 🎯</b>
-              <br />
+              <b>🎯 Continuous Learning and Practice </b>
               <br />
               <ol>
                 <li>
@@ -1290,7 +1347,6 @@ juan.study();  // Outputs: Juan is studying.
                   projects.
                 </li>
               </ol>{" "}
-              <br />
               <br />
               This is a journey, and every programmer learns at their own pace.
               It's perfectly fine if some concepts take a while to sink in. The
@@ -1315,19 +1371,25 @@ juan.study();  // Outputs: Juan is studying.
 '''
 
 In Python, we can use classes and objects to model real-world entities. Let's model a simple Rihanna class. 
-For this example, we'll assume that Rihanna has attributes like name, profession, and nationality, 
-and methods such as sing and perform.
+
+For this example, we'll assume that Rihanna has attributes like name, profession, and nationality, and methods such as sing and perform.
 
 In the Rihanna class above, __init__ is a special method that's called 
 when an object is created from the class. This is also known as a constructor. 
-The self keyword represents the instance state (or object) of the class and is used to 
-access the class attributes.
+
+The self keyword represents the instance of the object's state and is used to 
+access the class attributes. Many programming languages say "this" but python uses "self"
 
 '''
 
 
 class Rihanna:
-    def __init__(self, name, profession, nationality):
+    def __init__(
+      self, 
+      name, 
+      profession, 
+      nationality
+    ):
         self.name = name
         self.profession = profession
         self.nationality = nationality
@@ -1339,7 +1401,11 @@ class Rihanna:
         return f"{self.name} is performing {performance}."
 
 
-rihanna = Rihanna("Rihanna", "Singer", "Barbadian")
+rihanna = Rihanna(
+  "Rihanna", 
+  "Singer", 
+  "Barbadian"
+)
 print(rihanna.sing("Love On The Brain"))
 print(rihanna.perform("at the Grammy Awards"))
           `,
@@ -1411,10 +1477,7 @@ print(rihanna.perform("at the Grammy Awards"))
           )}?`,
           response: (
             <ChatBlock type={"quiz"}>
-              Object Oriented Programming is a beautiful world filled with
-              abstract concepts and logical relationships. Let's dive in and
-              explore this together, there's no need to worry - remember, there
-              are no wrong answers, only learning experiences! 😊
+              Let's increase the difficulty 😊
               <br />
               <br />
               Imagine you're explaining it to a friend who's never heard of it:
@@ -1446,10 +1509,10 @@ print(rihanna.perform("at the Grammy Awards"))
               situation without code duplication? 🐝
               <br />
               <br />
-              Remember, each question is an opportunity to explore, learn, and
-              understand better. Take your time, dig deep into your creativity,
-              and most importantly, have fun with it! You're all capable of
-              brilliant things, I have faith in you! ✨
+              Each question is an opportunity to explore, learn, and understand
+              better. Take your time, dig deep into your creativity, and most
+              importantly, have fun with it! You're all capable of brilliant
+              things, I have faith in you! ✨
             </ChatBlock>
           ),
           spanish: ``,
@@ -1877,11 +1940,14 @@ throw new Error(
               <br />
               I extend a warm welcome to you as you embark on the exciting
               journey of learning event-driven programming and user-centered
-              design. 🚀🎉 Event-driven programming is like a captivating dance
-              where your users or system events set the rhythm. It offers a
-              unique approach to crafting software that is truly responsive and
-              interactive, providing an enriching experience for your users and
-              making your applications feel alive! 💃💻
+              design. This is your introduction to real software engineering! 🌞
+              <br />
+              <br />
+              Event-driven programming is like a captivating dance where your
+              users or system events set the rhythm. It offers a unique approach
+              to crafting software that is truly responsive and interactive,
+              providing an enriching experience for your users and making your
+              applications feel alive! 💃💻
               <br />
               <br />
               On the other hand, user-centered design places the users at the
@@ -1922,17 +1988,19 @@ throw new Error(
             <div>
               In Lesson 2, we discover frontend development using React,
               focusing on event-driven programming. We review concepts like
-              components, state, and hooks. A Tweet component example
-              illustrates React's approach to building user interfaces. We
-              explore component properties, states, and the logic behind
-              updates, emphasizing the data flow in React. The lesson
-              underscores the value of learning React for modern web
+              components, state, and hooks. <br />
+              <br />A Tweet component example illustrates React's approach to
+              building user interfaces. We explore component properties, states,
+              and the logic behind updates, emphasizing the data flow in React.
+              The lesson underscores the value of learning React for modern web
               development, providing insights into how programming languages
-              evolve and their impact on software development. By breaking down
-              the components of a React application, the lesson aims to
-              introduce frontend development and empower learners to experiment
-              and understand the underlying mechanics of web applications.
-              🚀💻🖥️
+              evolve and their impact on software development.
+              <br />
+              <br />
+              By breaking down the components of a React application, the lesson
+              aims to introduce frontend development and empower learners to
+              experiment and understand the underlying mechanics of web
+              applications. 🚀💻🖥️
               <br />
               <br />
               Interested in further exploring the intricacies of React
@@ -1955,7 +2023,7 @@ throw new Error(
           )}?`,
           response: (
             <div>
-              My dear students! 🌟 Let's dive right in!
+              🌟 Let's dive right in!
               <br />
               <br />
               Event-driven programming is truly a magical realm. Picture
@@ -1966,8 +2034,7 @@ throw new Error(
               you, and that's the heart of event-driven programming. You're not
               just a passenger, you're the captain, steering your program in the
               direction you choose! So, in each line of code you write,
-              remember: you are the captain, full of power and ability. 💪🌟{" "}
-              <br />
+              remember: you are the captain now. 👀💪🌟 <br />
               <br />
               Now, let's talk about user-centered design. Imagine you are a
               sculptor 🗿, but instead of chiseling away at marble without any
@@ -1979,23 +2046,23 @@ throw new Error(
               creator of joy and utility. And that's something truly special. ✨
               <br />
               <br />
-              Lastly, the metaverse. Close your eyes and imagine being able to
-              step into any world you can think of, being anyone you wish to be
-              🌌. That's the promise of the metaverse. It's not just a new
-              technology; it's a new universe, a digital home where the rules of
-              reality can be bent. The metaverse is like the ultimate sandbox.
-              You're not just a player; you're also a creator. It's a place
-              where everyone can create, share, and experience together. It's
-              full of potential for education, creativity, and connection. It’s
-              like a dream that we all can share and explore together. So
-              exciting, right? 😃
+              Lastly, the metaverse. Wait what? Yes! Close your eyes and imagine
+              being able to step into any world you can think of, being anyone
+              you wish to be 🌌. That's the promise of the metaverse. It's not
+              just a new technology; it's a new universe, a digital home where
+              the rules of reality can be bent. The metaverse is like the
+              ultimate sandbox. You're not just a player; you're also a creator.
+              It's a place where everyone can create, share, and experience
+              together. It's full of potential for education, creativity, and
+              connection. It’s like a dream that we all can share and explore
+              together. So exciting, right? 😃😃 ... 😃
               <br />
               <br />
-              Remember, the beauty of these concepts lies not just in their
-              technology, but also in their power to create, to connect, and to
-              transform. You have the power to change the world with your ideas
-              and innovations. Always remember that, and let it guide you in
-              your journey. Let's conquer this together! 🚀💖
+              The beauty of these concepts lies not just in their technology,
+              but also in their power to create, to connect, and to transform.
+              You have the power to change the world with your ideas and
+              innovations. Always remember that, and let it guide you in your
+              journey. Let's conquer this planet together! 🚀💖
             </div>
           ),
           spanish: ``,
@@ -2020,7 +2087,20 @@ throw new Error(
               applications interactive and dynamic.
               <br />
               <br />
-              Next up, <b>user-centered design</b>is like being an attentive
+              <CodeBlock
+                code={`
+document
+.getElementById('myButton')
+.addEventListener(
+  'click', 
+  function() {
+    alert('Button clicked!');
+  }
+);`}
+              />
+              <br />
+              <br />
+              Next up, <b>user-centered design</b> is like being an attentive
               architect 🏡. Instead of creating based solely on your own ideas,
               you take into account the needs, habits, and desires of the people
               who will use the product, making it not just functional but
@@ -2033,6 +2113,30 @@ throw new Error(
               development and making our code more efficient, maintainable, and
               reusable.
               <br />
+              <br />
+              <CodeBlock
+                code={`
+export let ClickButton = () => {
+  const [
+    message, 
+    setMessage
+  ] = useState('Click to see!');
+
+  const handleClick = () => {
+    setMessage('Button clicked!');
+  };
+
+  return (
+    <div>
+      <button onClick={handleClick}>
+        Click
+      </button>
+
+      <p>{message}</p>
+    </div>
+  );
+}`}
+              />
               <br />
               Combined, these concepts enable us to create applications that are
               responsive, user-friendly, and efficient. They are our trusty
@@ -2056,42 +2160,40 @@ throw new Error(
               Let's explore these interesting questions together.
               <br />
               <br />
-              <b>1️⃣ Event-Driven Programming</b>
+              <b>Event-Driven Programming</b>
               <br />
-              Question: How does event-driven programming make a difference in
-              application development?
-              <br />
-              <br />
-              Answer: Event-driven programming makes your application more
-              responsive and user-friendly. It allows your program to react to
-              user inputs or system events, creating an interactive experience.
-              Instead of the program controlling the user, the user controls the
-              program, which leads to a more intuitive and engaging user
-              experience. 🎮💡
+              How does event-driven programming make a difference in application
+              development?
               <br />
               <br />
-              <b>2️⃣ User-Centered Design</b>
-              <br />
-              Question: Why is user-centered design important?
-              <br />
-              <br />
-              Answer: User-centered design ensures that the product you're
-              creating truly meets the needs and preferences of your users. By
-              involving users throughout the design process, you can create a
-              product that is not just functional, but also intuitive,
-              enjoyable, and tailored to your users' needs. This not only
-              enhances user satisfaction, but can also lead to increased usage
-              and success of your product. 🎯🌈
+              Event-driven programming makes your application more responsive
+              and user-friendly. It allows your program to react to user inputs
+              or system events, creating an interactive experience. Instead of
+              the program controlling the user, the user controls the program,
+              which leads to a more intuitive and engaging user experience. 🎮
               <br />
               <br />
-              <b>3️⃣ Component Architecture</b>
+              <b>User-Centered Design</b>
               <br />
-              Question: How does component architecture benefit our coding
-              process?
+              Why is user-centered design important?
               <br />
               <br />
-              Answer: Component architecture, like what we see in React, allows
-              for modularity in your code. Each component is self-contained,
+              User-centered design ensures that the product you're creating
+              truly meets the needs and preferences of your users. By involving
+              users throughout the design process, you can create a product that
+              is not just functional, but also intuitive, enjoyable, and
+              tailored to your users' needs. This not only enhances user
+              satisfaction, but can also lead to increased usage and success of
+              your product. 🎯🌈
+              <br />
+              <br />
+              <b>Component Architecture</b>
+              <br />
+              How does component architecture benefit our coding process?
+              <br />
+              <br />
+              Component architecture, like what we see in React, allows for
+              modularity in your code. Each component is self-contained,
               managing its own state and properties, which makes your code more
               organized and easier to maintain. Components can be reused across
               your application, saving you time and effort. Also, by breaking
@@ -2101,9 +2203,9 @@ throw new Error(
               efficient and enjoyable! 🔧💫
               <br />
               <br />
-              Remember, there's no such thing as a silly question. Each question
-              takes you one step further on your journey of learning. Keep
-              exploring, keep asking, and keep growing! 🚀💖
+              There's no such thing as a silly question! Each question takes you
+              one step further on your journey of learning. Keep exploring, keep
+              asking, and keep growing! 🚀💖
             </div>
           ),
           spanish: ``,
@@ -2119,13 +2221,16 @@ throw new Error(
           )}?`,
           response: (
             <SchedulerBlock>
-              Hola, brilliant stars of the future! 🌟 I'm here to guide you on
-              your journey to become professional frontend software engineers.
-              Remember, every single one of you can shine brightly in the world
-              of tech, even if it seems challenging at first. Just like learning
-              a new language or a musical instrument, mastering a skill like
-              React will take time and practice. Don't worry, you'll get there
-              step by step, just like climbing a mountain. 🏔️
+              🌟 I'm here to guide you on your journey to become professional
+              frontend software engineers. Remember, every single one of you can
+              shine brightly in the world of tech, even if it seems challenging
+              at first.
+              <br />
+              <br />
+              Just like learning a new language or a musical instrument,
+              mastering a skill like React will take time and practice. Don't
+              worry, you'll get there step by step, just like climbing a
+              mountain. 🏔️
               <br /> <br />
               Here's a roadmap to help you navigate through your learning
               journey:
@@ -2151,9 +2256,8 @@ throw new Error(
                   <b>JavaScript (Advanced) 💡</b>
                   <div>
                     Dive deeper into JavaScript to understand concepts such as
-                    promises, async/await, ES6 features like arrow functions,
-                    and so on. This will help you truly harness the power of
-                    React later on.
+                    promises, async/await, APIs, and so on. This will help you
+                    truly harness the power of React later on.
                   </div>
                 </li>
                 <br />
@@ -2163,7 +2267,7 @@ throw new Error(
                     Git helps you manage different versions of your code, and
                     it's essential in any developer's toolkit. Spend some time
                     learning about repositories, commits, branches, and the
-                    like.
+                    like. Git allows you to collaborate with other engineers!
                   </div>
                 </li>
                 <br />
@@ -2186,24 +2290,25 @@ throw new Error(
                 </li>
                 <br />
                 <li>
-                  <b>React Advanced Concepts ⚛️💡</b>
+                  <b>📈 React Advanced Concepts</b>
                   <div>
                     Now that you're comfortable with the basics, explore more
-                    advanced topics like hooks and routing with React Router.{" "}
+                    advanced topics like hooks, routing and ways to build with
+                    react software develoment kits like Remix by Shopify.
                   </div>
                 </li>
                 <br />
                 <li>
-                  <b>State Management 🗄️</b>
+                  <b>🗄️ State Management</b>
                   <div>
-                    Learn about managing complex state with tools like Redux
-                    although hooks and context can be enough for many
+                    Learn about managing complex state with tools like Redux or
+                    Zustand, although hooks and context can be enough for many
                     applications.
                   </div>
                 </li>
                 <br />
                 <li>
-                  <b>Testing 🧪</b>
+                  <b>🧪 Testing</b>
                   <div>
                     Learn how to write tests for your React applications to
                     ensure they work as expected. Tools like Jest and React
@@ -2238,7 +2343,7 @@ throw new Error(
               proud of your progress, no matter how small, and don't forget to
               help and support each other on this journey. Your future as tech
               wizards is bright and promising. Let's embrace this adventure
-              together! 🚀
+              together!
             </SchedulerBlock>
           ),
           spanish: ``,
@@ -2255,13 +2360,11 @@ throw new Error(
           response: `
 /*
 
- In order to log in a user with Firebase in a React application, you'd have to install Firebase in your project first. If you haven't done this, you can add Firebase by running npm install firebase or yarn add firebase in your terminal.
+This example shows you software the wires up a login with Google.
 
-In this example, we have a LoginForm component that maintains its own local state for the user's email and password, as well as any error messages. The handleChange function updates this state when the user types into the form inputs, and the handleSubmit function is called when the user submits the form.
+You can explore this more deeply in lesson 4, where you go through the process of creating a light app with real users :)
 
-In the handleSubmit function, we call Firebase's signInWithEmailAndPassword method, passing the email and password the user entered. If there's an error - for instance, if the user entered an incorrect password - we catch it and update our component's state with the error message.
 
-This is a very basic example and a real-world application would likely involve more complexities such as form validation, handling loading states, and more. But it should serve as a good starting point. Remember, you should have already initialized Firebase in your project for this to work, and the email-password authentication method should be enabled on your Firebase project's authentication settings.
 */
 
 
@@ -2270,51 +2373,58 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 
 const LoginForm = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        if (name === 'email') {
-            setEmail(value);
-        } else if (name === 'password') {
-            setPassword(value);
-        }
-    };
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    if (name === 'email') {
+      setEmail(value);
+    } else if (name === 'password') {
+      setPassword(value);
+    }
+  };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-        try {
-            await firebase.auth().signInWithEmailAndPassword(email, password);
-        } catch (error) {
-            setError(error.message);
-        }
-    };
+    try {
+      await firebase
+      .auth()
+      .signInWithEmailAndPassword(
+        email, 
+        password
+      );
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type='email'
-                name='email'
-                placeholder='Email'
-                value={email}
-                onChange={handleChange}
-                required
-            />
-            <input
-                type='password'
-                name='password'
-                placeholder='Password'
-                value={password}
-                onChange={handleChange}
-                required
-            />
-            {error && <p>{error}</p>}
-            <button type='submit'>Log in</button>
-        </form>
-    );
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type='email'
+        name='email'
+        placeholder='Email'
+        value={email}
+        onChange={handleChange}
+        required
+      />
+      <input
+        type='password'
+        name='password'
+        placeholder='Password'
+        value={password}
+        onChange={handleChange}
+        required
+      />
+
+      {error && <p>{error}</p>}
+
+      <button type='submit'>Log in</button>
+    </form>
+  );
 };
 
 export default LoginForm;
@@ -2388,40 +2498,51 @@ export default LoginForm;
           )}?`,
           response: (
             <ChatBlock type={"quiz"}>
-              Dear explorers of the digital universe! 🌌 The best way to learn
-              is by questioning and digging deeper. Let's see how you engage
-              with these challenging open-ended questions. Remember, there are
-              no wrong answers here. This is all about your understanding and
-              perspective! 🧠🎈
+              Explorers of the digital universe! 🌌 The best way to learn is by
+              questioning and digging deeper. Let's see how you engage with
+              these challenging open-ended questions.This is all about your
+              understanding and perspective! 🎈
               <br />
               <br />
-              Event-Driven Programming: ✨
-              <br />
-              <br />
+              ✨ Event-Driven Programming
+              <br /> <br />
               Describe a real-world situation or system that functions similarly
               to an event-driven programming model. How does this system react
               to different "events"? How might understanding this real-world
               example help someone new to event-driven programming grasp the
               concept?
               <br />
-              User-Centered Design: 🎨 If you were tasked with designing an
-              educational app for your fellow students, what would be some key
-              considerations you'd keep in mind? How would you ensure the design
-              is truly user-centered?
               <br />
-              Component Architecture: 🏗️ Imagine you are explaining the concept
-              of component architecture to a child. How would you describe what
-              it is and why it is important in software development?
+              🎨 User-Centered Design
               <br />
-              Synthesizing Concepts: 🌟 How can concepts from event-driven
-              programming and component architecture be used to improve the user
-              experience in a web application? Can you think of an example?
               <br />
-              Looking Ahead: 🚀 As you learn about these different aspects of
-              programming and design, how do you see them influencing the future
-              of how we interact with digital spaces, especially with the
-              emergence of technologies like virtual reality (VR) and augmented
-              reality (AR)?
+              If you were tasked with designing an educational app for your
+              fellow students, what would be some key considerations you'd keep
+              in mind? How would you ensure the design is truly user-centered?
+              <br />
+              <br />
+              🏗️ Component Architecture
+              <br />
+              <br />
+              Imagine you are explaining the concept of component architecture
+              to a child. How would you describe what it is and why it is
+              important in software development?
+              <br />
+              <br />
+              🌟 Synthesizing Concepts <br />
+              <br />
+              How can concepts from event-driven programming and component
+              architecture be used to improve the user experience in a web
+              application? Can you think of an example?
+              <br />
+              <br />
+              🚀 Looking Ahead
+              <br />
+              <br />
+              As you learn about these different aspects of programming and
+              design, how do you see them influencing the future of how we
+              interact with digital spaces, especially with the emergence of
+              technologies like virtual reality (VR) and augmented reality (AR)?
               <br />
               <br />
               These questions are meant to stretch your thinking and enhance
@@ -2431,10 +2552,6 @@ export default LoginForm;
               exciting and rewarding. Stay curious, keep questioning, and above
               all, believe in your incredible potential. 🎈💡🌈
               <br />
-              <br />
-              Warmly,
-              <br />
-              rox
             </ChatBlock>
           ),
           spanish: ``,
@@ -2756,23 +2873,25 @@ return <div style={gradientStyle}>
         welcome: {
           response: (
             <div>
-              Hello my wonderful students! 😊
+              Hello!!!! 😊
               <br />
               <br />
               Welcome to our thrilling exploration of backend engineering, cloud
               computing, and big data! Just like a forest relies on its unseen
               roots, our digital world relies on backend engineering to keep
-              things running smoothly. And much like a cloud can drift anywhere
-              across the sky, our data can be accessed anytime, anywhere thanks
-              to cloud computing. Big data? It's like the leaves of a forest
-              whispering stories, sharing knowledge, and predicting the future.
-              🌳☁️🍃
+              things running smoothly. Haha, ya feel me?
+              <br /> <br />
+              And much like a cloud can drift anywhere across the sky, our data
+              can be accessed anytime, anywhere thanks to cloud computing. Big
+              data? It's like the leaves of a forest whispering stories, sharing
+              knowledge, and predicting the future. 🌳☁️🍃 .... you following
+              me?
               <br />
               <br />
               So let's embark on this adventure together. Remember, every
               question is a step forward, and every mistake, a lesson learned.
-              Si se puede! Let's dive into the wonderful world of technology
-              together. 🚀💖🌈
+              Si se puede! Let's dive into the mysterious world of backend
+              engineering! 🚀🌈
               <br />
               <br />
               <br />
@@ -2802,19 +2921,21 @@ return <div style={gradientStyle}>
               This lesson introduces backend software engineering, starting with
               operating systems, which are the heart of computing. We explore
               how operating systems function like a restaurant kitchen, managing
-              various tasks to deliver a final product. The lesson then dives
-              into the command line interface, a critical tool for backend
-              development. We look at databases, focusing on data organization
-              and management. The creation of user experiences is highlighted,
-              showing how user accounts facilitate interactions within software.
-              The lesson aims to make backend concepts more approachable,
-              encouraging exploration and creativity in software development.
-              🚀💡👩‍💻
+              various tasks to deliver a final product.
+              <br /> <br />
+              The lesson then dives into the command line interface, a critical
+              tool for backend development. We look at databases, focusing on
+              data organization and management. The creation of user experiences
+              is highlighted, showing how user accounts facilitate interactions
+              within software.
+              <br /> <br />
+              This lecture aims to make backend concepts more approachable,
+              encouraging exploration and creativity in software development. 👩‍💻
               <br />
               <br />
               Eager to learn more about operating systems, database management,
               or the intricacies of user experience in software development?
-              Let's explore these areas further! 🌐🔍👨‍💻
+              Let's us commence! 🎬
             </div>
           ),
         },
@@ -2830,7 +2951,7 @@ return <div style={gradientStyle}>
           )}?`,
           response: (
             <div>
-              Hola queridos estudiantes, 😊
+              😊
               <br /> <br />
               I'm delighted to share some inspiring facts about cloud
               engineering and big data! These are fields that can open up
@@ -2838,61 +2959,69 @@ return <div style={gradientStyle}>
               important than ever in our increasingly digital world.
               <br />
               <br />
-              <ol>
-                <li>
-                  <b>Cloud is Everywhere:</b>
-                  ☁️ You know how you can access your photos, files, and even
-                  some of your favorite games from any device? That's the magic
-                  of cloud engineering! The cloud is transforming how we store
-                  information and how we access it.
-                </li>
+              <div>
+                <b>☁️ Cloud is Everywhere </b>
                 <br />
-                <li>
-                  <b>Empowering Innovation:</b>
-                  🚀 Cloud engineering allows companies, small and large alike,
-                  to innovate faster. It allows you to launch new applications,
+                You know how you can access your photos, files, and even some of
+                your favorite games from any device? That's the magic of cloud
+                engineering! The cloud is transforming how we store information
+                and how we access it.
+                <br />
+                <br />
+                <br />
+                <div>
+                  <b>🚀 Empowering Innovation</b>
+                  <br />
+                  Cloud engineering allows companies, small and large alike, to
+                  innovate faster. It allows you to launch new applications,
                   improve existing ones, and deliver software faster than ever
                   before. Think about how quickly we see new features on apps
                   like Instagram or TikTok - that's the power of the cloud.
-                </li>
+                </div>
                 <br />
-                <li>
-                  <b>Big Data is Big Business:</b>
-                  💼 Companies all over the world are using big data to make
-                  better decisions. From figuring out what products to sell, to
+                <br />
+                <div>
+                  <b>💼 Big Data is Big Business</b>
+                  <br />
+                  Companies all over the world are using big data to make better
+                  decisions. From figuring out what products to sell, to
                   predicting the hottest new music hits, big data plays a
-                  crucial role. In fact, the big data market is expected to
-                  reach $274.3 billion by 2022!
-                </li>
-                <br />
-                <li>
-                  <b>Predicting the Future: </b>
-                  🔮 Big data can be used to predict trends and make decisions.
-                  This can be anything from predicting the outcome of an
-                  election, to determining what product a company should launch
-                  next. It's like having a crystal ball!
-                </li>
-                <br />
-                <li>
-                  <b>Solving Real Problems:</b>
-                  🌍 With cloud engineering and big data, we can tackle some of
-                  the world's most pressing problems. For example, scientists
-                  are using big data to track and predict climate change, and
-                  cloud computing is helping to provide digital education to
-                  students around the world.
-                </li>
-                <br />
-              </ol>
-              <div>
-                Even if these fields seem challenging or distant, don't let that
-                discourage you. You are capable of amazing things and your
-                unique perspective is valuable and needed. Don't forget the
-                importance of your dreams and aspirations, as they are your
-                guiding star towards success. 🌟
+                  crucial role. In fact, the big data market drives trillions!
+                  <br />
+                  <br />
+                  <div>
+                    <b>🔮 Predicting the Future</b>
+                    <br />
+                    Big data can be used to predict trends and make decisions.
+                    This can be anything from predicting the outcome of an
+                    election, to determining what product a company should
+                    launch next. It's like having a crystal ball!
+                  </div>
+                  <br />
+                  <br />
+                  <div>
+                    <b>🌍 Solving Real Problems</b>
+                    <br />
+                    With cloud engineering and big data, we can tackle some of
+                    the world's most pressing problems. For example, scientists
+                    are using big data to track and predict climate change, and
+                    cloud computing is helping to provide digital education to
+                    students around the world.
+                  </div>
+                </div>
                 <br />
                 <br />
-                Learning is a journey, and every step, no matter how small,
-                brings you closer to your goals. Si se puede! 💪💖
+                <div>
+                  Even if these fields seem challenging or distant, don't let
+                  that discourage you. You are capable of amazing things and
+                  your unique perspective is valuable and needed. Don't forget
+                  the importance of your dreams and aspirations, as they are
+                  your guiding star towards success. 🌟
+                  <br />
+                  <br />
+                  Learning is a journey, and every step, no matter how small,
+                  brings you closer to your goals. Si se puede! 💖
+                </div>
               </div>
             </div>
           ),
@@ -2909,17 +3038,11 @@ return <div style={gradientStyle}>
           )}?`,
           response: (
             <div>
-              <h3>
-                The Trio Powering Our Digital Age: Backend Engineering, Cloud
-                Computing, and Big Data 🚀🌐🔮
-              </h3>
-              <br />
-              <br />
               In the grand canvas of our digital age, three unseen forces are
               artistically at work, quietly painting the picture of our lives:
               backend engineering, cloud computing, and big data. 🎨 These
               aren't just technical terms, they're magic keys 🔑 that open doors
-              to a world where technology dances with imagination. 💃🌟
+              to a world where technology dances with imagination.
               <br />
               <br />
               The first key is backend engineering. Like a puppet master pulling
@@ -2936,7 +3059,7 @@ return <div style={gradientStyle}>
               birds, once confined to a single tree, but now free to fly across
               the sky, landing where you need them. That's the freedom cloud
               computing has given us – data that's as free as a bird, accessible
-              from any device, anytime, anywhere. 🐦💼
+              from any device, anytime, anywhere. 🐦😃
               <br />
               <br />
               Finally, let's dive into the vast ocean of big data. 🌊 It's about
@@ -2980,52 +3103,51 @@ return <div style={gradientStyle}>
                 <li>
                   <b>What exactly is backend engineering? 🤔</b>
                   <div>
-                    Expert Answer: "Backend engineering, my dear students, is
-                    like the backstage crew at a concert. 🎬🎸 While you might
-                    not see them, they ensure everything runs smoothly. In
-                    digital terms, they develop and maintain the technology
-                    needed to power the components which enable the user-facing
-                    side of websites to exist. Their work includes server-side
-                    programming, database creation and management, and even data
-                    analysis." 🖥️🌐
+                    Backend engineering is like the backstage crew at a concert.
+                    🎬🎸 While you might not see them, they ensure everything
+                    runs smoothly. In digital terms, they develop and maintain
+                    the technology needed to power the components which enable
+                    the user-facing side of websites to exist. Their work
+                    includes server-side programming, database creation and
+                    management, and even data analysis. 🖥️🌐
                   </div>
                 </li>
                 <br />
                 <li>
                   <b>How does cloud computing work? ☁️</b>
                   <div>
-                    Expert Answer: "Imagine having a superpower where you can
-                    store anything you want in a magical box and access it
-                    anytime, anywhere. 🎁✨ That's cloud computing in a
-                    nutshell. Instead of storing data on your own computer or
-                    server, it's stored on a network of servers on the internet.
-                    Not only can you store data, but you can also use the cloud
-                    to run applications, similar to how you would run them on
-                    your own computer. It's like having a powerful computer
-                    right at your fingertips, no matter where you are!" 💻🌍
+                    Imagine having a superpower where you can store anything you
+                    want in a magical box and access it anytime, anywhere. 🎁✨
+                    That's cloud computing in a nutshell. Instead of storing
+                    data on your own computer or server, it's stored on a
+                    network of servers on the internet. Not only can you store
+                    data, but you can also use the cloud to run applications,
+                    similar to how you would run them on your own computer. It's
+                    like having a powerful computer right at your fingertips, no
+                    matter where you are! 💻🌍
                   </div>
                 </li>
                 <br />
                 <li>
                   <b>Why is big data important? 📊</b>
                   <div>
-                    Expert Answer: "Big data is like a treasure trove of secrets
-                    waiting to be unlocked. 🔐💎 It refers to the enormous
-                    volume of data that is collected every day from various
-                    digital sources. But the real value of big data isn't just
-                    in the quantity, but in what we can learn from it. By
-                    analyzing big data, we can uncover patterns and trends that
-                    can help businesses make better decisions, scientists make
-                    discoveries, and even predict future trends. It's like
-                    having a digital crystal ball." 🔮🌠
+                    Big data is like a treasure trove of secrets waiting to be
+                    unlocked. 🔐💎 It refers to the enormous volume of data that
+                    is collected every day from various digital sources. But the
+                    real value of big data isn't just in the quantity, but in
+                    what we can learn from it. By analyzing big data, we can
+                    uncover patterns and trends that can help businesses make
+                    better decisions, scientists make discoveries, and even
+                    predict future trends. It's like having a digital crystal
+                    ball. 🔮🌠
                   </div>
                 </li>
                 <br />
               </ol>
               <div>
                 Every question you ask is a step forward in your learning
-                journey. Keep being curious and never stop learning, my dear
-                students. Si se puede! 🦐💖🌈
+                journey. Keep being curious and never stop learning! Si se
+                puede!🌈
               </div>
             </div>
           ),
@@ -3042,44 +3164,51 @@ return <div style={gradientStyle}>
           )}?`,
           response: (
             <SchedulerBlock>
-              Dear students! 😊 Here's a roadmap to guide your journey from
-              beginner to professional in backend engineering, cloud computing,
-              and big data. Remember, everyone's path may look a bit different,
-              and that's perfectly okay. Your journey is unique to you! 🗺️🌟
+              😊!
+              <br />
+              Here's a roadmap to guide your journey from beginner to
+              professional in backend engineering, cloud computing, and big
+              data. Everyone's path may look a bit different. Your journey is
+              unique to you! 🗺️
               <br />
               <br />
-              <h4>Backend Engineering:</h4>
+              <h4>Backend Engineering</h4>
               <br />
               <ol>
                 <li>
-                  <b>Start with the Basics: </b>
+                  <b>Start with the Basics</b>
+                  <br />
                   Learn a general-purpose programming language like Python or
                   JavaScript. Understand basic concepts like variables, loops,
                   functions, and data structures. 👨‍💻📘
                 </li>
                 <br />
                 <li>
-                  <b>Learn about Databases:</b>
+                  <b>Learn about Databases</b>
+                  <br />
                   Familiarize yourself with SQL for relational databases and
                   NoSQL for non-relational databases. Practice how to create,
                   read, update, and delete data. 💽🔍
                 </li>
                 <br />
                 <li>
-                  <b>Understand Web Fundamentals: </b>
+                  <b>Understand Web Fundamentals</b>
+                  <br />
                   Learn about HTTP protocols, request/response cycle, and
                   RESTful APIs. 🌐💬
                 </li>
                 <br />
                 <li>
-                  <b>Explore Frameworks:</b>
+                  <b>Explore Frameworks</b>
+                  <br />
                   Pick a backend framework like Node.js (if you chose
                   JavaScript) or Django (if you chose Python), and understand
                   how to build and structure a backend application. 🏗️🔧
                 </li>
                 <br />
                 <li>
-                  <b>Work on Projects:</b>
+                  <b>Work on Projects</b>
+                  <br />
                   Apply your skills to build simple applications. As you grow,
                   so should the complexity of your projects. Building actual
                   projects is one of the best ways to learn and showcase your
@@ -3087,18 +3216,20 @@ return <div style={gradientStyle}>
                 </li>
                 <br />
               </ol>
-              <h4>Cloud Computing:</h4>
+              <h4>Cloud Computing</h4>
               <br />
               <ol>
                 <li>
-                  <b>Understand the Basics:</b>
+                  <b>Understand the Basics</b>
+                  <br />
                   Learn the fundamentals of networking and web servers. You
                   should also get comfortable with Linux as it's commonly used
                   in cloud environments. 🌐💻
                 </li>
                 <br />
                 <li>
-                  <b>Learn a Cloud Platform: </b>
+                  <b>Learn a Cloud Platform</b>
+                  <br />
                   Start with one of the big providers like Amazon Web Services
                   (AWS), Google Cloud Platform (GCP), or Microsoft Azure. Most
                   offer free tier services that you can use to learn and
@@ -3106,7 +3237,8 @@ return <div style={gradientStyle}>
                 </li>
                 <br />
                 <li>
-                  <b>Get Hands-On Experience:</b>
+                  <b>Get Hands-On Experience</b>
+                  <br />
                   The best way to learn cloud computing is by doing. Set up
                   virtual servers, deploy applications, or even create a network
                   of virtual machines. The more hands-on experience you get, the
@@ -3114,7 +3246,8 @@ return <div style={gradientStyle}>
                 </li>
                 <br />
                 <li>
-                  <b>Study for a Certification:</b>
+                  <b>Study for a Certification</b>
+                  <br />
                   Cloud providers offer certifications that can validate your
                   skills and make you more attractive to employers. Start with a
                   foundational certification like AWS Certified Cloud
@@ -3123,38 +3256,43 @@ return <div style={gradientStyle}>
                 </li>
                 <br />
               </ol>
-              <h4>Big Data:</h4>
+              <h4>Big Data</h4>
               <br />
               <ol>
                 <li>
-                  <b>Start with the Basics: </b>
+                  <b>Start with the Basics</b>
+                  <br />
                   Learn a programming language like Python or R, which are often
                   used for data analysis. Understand data structures and
                   algorithms. 🧮📘
                 </li>
                 <br />
                 <li>
-                  <b>Learn About Databases:</b>
+                  <b>Learn About Databases</b>
+                  <br />
                   You should understand how to work with large datasets. Learn
                   SQL and also big data technologies like Hadoop or Apache
                   Spark. 💽⚡
                 </li>
                 <br />
                 <li>
-                  <b>Understand Data Processing:</b>
+                  <b>Understand Data Processing</b>
+                  <br />
                   Learn how to clean, process, and analyze large datasets. Also
                   learn about data warehousing and ETL (Extract, Transform,
                   Load) processes. 📊🔍
                 </li>
                 <br />
                 <li>
-                  <b>Statistics and Machine Learning: </b>
+                  <b>Statistics and Machine Learning</b>
+                  <br />
                   Understand statistical analysis and predictive modeling.
                   Machine learning is a common application of big data. 🧪🤖
                 </li>
                 <br />
                 <li>
-                  <b>Projects and Real-World Experience: </b>
+                  <b>Projects and Real-World Experience</b>
+                  <br />
                   Apply what you've learned to real-world datasets. There are
                   many open datasets available that you can use to practice your
                   skills and build your portfolio. 🎯💼
@@ -3162,9 +3300,7 @@ return <div style={gradientStyle}>
                 <br />
                 <div>
                   Stay curious, stay persistent, and remember that the best
-                  learning comes from doing. You've got this, and remember, si
-                  se puede! Let's embrace this exciting journey into the tech
-                  world together. 🚀💖🌈
+                  learning comes from doing. 🚀
                 </div>
               </ol>
             </SchedulerBlock>
@@ -3182,58 +3318,85 @@ return <div style={gradientStyle}>
           )} in javascript?`,
           response: `
 /*
+'''
+This software uses python to demonstrate a common structure you'll deal with known as APIs. Think of APIs as large sheets of functionality in the backend similar to how CSS is a large sheet of styling for the frontend
 
-Let's consider a simple example where we create a basic RESTful API using Flask, a popular microframework for Python. This API will have endpoints for basic CRUD (Create, Read, Update, Delete) operations on a list of tasks.
+The key thing to pay attention to are the routes which are often referred to as "endpoints". These routes connect your functions to the cloud.
 
-Please note that this is a simple in-memory example, in a real-world scenario you would typically use a database to persist the data.
+'''
 */
-
 
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-# In-memory list of tasks
+// # In-memory list of tasks
 tasks = [
-    {'id': 1, 'title': 'Learn Python', 'done': False},
-    {'id': 2, 'title': 'Learn Flask', 'done': False},
+    {
+      'id': 1, 
+      'title': 'Learn Python', 
+      'done': False
+    },
+    {
+      'id': 2, 
+      'title': 'Learn Flask', 
+      'done': False
+    }
 ]
 
-# Route to retrieve all tasks
+def get_next_task(task):
+  return task for task in tasks if task['id'] == task_id
+
+// # Route to retrieve all tasks
 @app.route('/tasks', methods=['GET'])
 def get_tasks():
     return jsonify({'tasks': tasks})
 
 # Route to retrieve a task by id
-@app.route('/tasks/<int:task_id>', methods=['GET'])
+@app.route(
+  '/tasks/<int:task_id>', 
+  methods=['GET']
+)
 def get_task(task_id):
-    task = next((task for task in tasks if task['id'] == task_id), None)
+    task = next(get_next_task(task), None)
+
     if task is None:
-        return jsonify({'error': 'Task not found'}), 404
+        return jsonify(
+          {'error': 'Task not found'}
+        ), 
+
     return jsonify({'task': task})
 
-# Route to create a new task
+// # Route to create a new task
 @app.route('/tasks', methods=['POST'])
 def create_task():
     new_task = request.get_json()
     tasks.append(new_task)
-    return jsonify(new_task), 201
+    return jsonify(new_task)
 
 # Route to update an existing task
-@app.route('/tasks/<int:task_id>', methods=['PUT'])
+@app.route(
+  '/tasks/<int:task_id>', 
+  methods=['PUT']
+)
 def update_task(task_id):
-    task = next((task for task in tasks if task['id'] == task_id), None)
+    task = next(get_next_task(task), None)
     if task is None:
-        return jsonify({'error': 'Task not found'}), 404
+        return jsonify(
+          {'error': 'Task not found'}
+        )
     updated_task = request.get_json()
     task.update(updated_task)
     return jsonify(task)
 
-# Route to delete a task
+// # Route to delete a task
 @app.route('/tasks/<int:task_id>', methods=['DELETE'])
 def delete_task(task_id):
     global tasks
-    tasks = [task for task in tasks if task['id'] != task_id]
+    tasks = [
+      task for task in tasks 
+      if task['id'] != task_id
+    ]
     return jsonify({'result': True})
 
 if __name__ == '__main__':
@@ -3323,39 +3486,45 @@ if __name__ == '__main__':
               thoughtful analysis and understanding. 😊🎓🔍
               <br />
               <br />
-              Backend Engineering: Consider an online shopping website. Can you
-              describe how a backend engineer would design a system to handle
-              and process an order? Consider factors like product availability,
-              payment processing, and order tracking. 🛒🔧
+              Backend Engineering
               <br />
-              Cloud Computing: Cloud computing has become a key player in the
-              growth of many businesses. Can you identify and explain an example
-              of a real-world application that heavily relies on cloud
-              computing? Describe how this application uses cloud computing to
-              its advantage. ☁️💼
+              Consider an online shopping website. Can you describe how a
+              backend engineer would design a system to handle and process an
+              order? Consider factors like product availability, payment
+              processing, and order tracking. 🛒🔧
               <br />
-              Big Data: Imagine you're working with a large dataset that
+              <br />
+              Cloud Computing
+              <br />
+              Cloud computing has become a key player in the growth of many
+              businesses. Can you identify and explain an example of a
+              real-world application that heavily relies on cloud computing?
+              Describe how this application uses cloud computing to its
+              advantage. ☁️💼
+              <br />
+              <br />
+              Big Data <br /> Imagine you're working with a large dataset that
               contains millions of rows of user data for a popular mobile app.
               How would you use big data analysis techniques to extract
               meaningful insights about user behavior from this dataset? 📊📲
-              <br />
-              Cloud Computing & Computer Ethics: Cloud services allow for
+              <br /> <br />
+              Cloud Computing & Computer Ethics <br /> Cloud services allow for
               unprecedented access to data and resources. However, this
               convenience can also lead to ethical challenges. Can you think of
               a potential ethical issue that could arise from widespread use of
               cloud computing and how it could be mitigated? ☁️⚖️
-              <br />
-              Big Data, Cloud Computing & Critical Race Theory: Consider a
+              <br /> <br />
+              Big Data, Cloud Computing & Critical Race Theory <br /> Consider a
               hypothetical scenario where a cloud-based big data project is
               being used to guide city planning. How might critical race theory
               inform the use and analysis of this data to ensure that the
               development benefits marginalized communities equitably and
               doesn't reinforce existing inequities? ☁️🌆🤝
-              <br />
+              <br /> <br />
               These questions allow us to reflect on how technology intertwines
-              with societal and ethical concerns. Remember, it's not just about
-              how we build, but why we build and who we build for. Stay curious,
-              empathetic, and mindful in your tech journey. Si se puede! 🚀🌈💖
+              with societal and ethical concerns. It's not just about how we
+              build, but why we build and who we build for. Stay curious,
+              empathetic, and mindful in your tech journey. 💖
             </ChatBlock>
           ),
           spanish: ``,
@@ -3746,7 +3915,7 @@ exports.app = functions
           response: (
             // <ChatBlock type={"quiz"}>
             <div>
-              Hello my brave students! 🌟
+              Brave students! 🌟
               <br /> <br />
               Welcome to your incredible journey as future startup founders and
               app developers! 🚀 This path is paved with creativity, innovation,
@@ -3759,14 +3928,14 @@ exports.app = functions
               (BaaS) platforms empowers you to create engaging, scalable, and
               secure apps efficiently. These tools enable you to focus on
               crafting an exceptional experience for your users and bringing
-              your unique vision to life. 💻✨
+              your unique vision to life.✨
               <br /> <br />
-              Embrace this journey with openness and eagerness. Remember, every
-              challenge is a chance to grow, and every stumble a lesson to
-              learn. Stay curious, be resilient, and always be supportive of
-              yourselves and each other. Your ideas, energy, and passion are
-              ready to make a mark in the world. So, buckle up, my dear
-              students, and let your brilliance illuminate the path ahead! 🎉💖
+              Embrace this journey with openness and eagerness. Every challenge
+              is a chance to grow, and every stumble a lesson to learn. Stay
+              curious, be resilient, and always be supportive of yourselves and
+              each other. Your ideas, energy, and passion are ready to make a
+              mark in the world. So, buckle up and let your brilliance
+              illuminate the path ahead! 🎉💖
               <br />
               <br />
               <RandomCharacter
@@ -3795,18 +3964,22 @@ exports.app = functions
               In this session, we've taken a big leap in our coding journey! We
               started by setting up our development environment with tools like
               VSCode and Node.js. Next, we dived into creating a project
-              directory and getting our React project up and running. But it's
-              not just about the frontend; we also explored setting up our
-              database with Firebase, giving us the power to manage user data
-              and authenticate users seamlessly. The lesson is like building a
-              bridge between your creative ideas and the real digital world.
-              We're not just learning to code; we're learning to bring our
-              visions to life! 🌉💻🚀
+              directory and getting our React project up and running.
+              <br />
+              <br />
+              But it's not just about the frontend; we also explored setting up
+              our database with Firebase, giving us the power to manage user
+              data and authenticate users seamlessly.
+              <br />
+              <br />
+              The lesson is like building a bridge between your creative ideas
+              and the real digital world. We're not just learning to code; we're
+              learning to bring our visions to life! 🌉💻🚀
               <br />
               <br />
               Ready to explore more about user authentication, database
               management, or expand your project with additional features? Let's
-              keep this momentum going! 🌟👩‍💻🔍
+              keep this momentum going! 👩‍💻
             </div>
           ),
         },
@@ -3823,12 +3996,11 @@ exports.app = functions
           response: (
             <div>
               <div>
-                Hello again, my creative students! 🌟 This is rox, and today
-                we're going to dive into an exciting topic that shows just how
-                possible it is for you to turn your incredible ideas into
-                reality. Let's talk about raising money from venture capitalists
-                using SAFE documents with the help of organizations like Y
-                Combinator. 🚀💰
+                Creative students! 🌟 We're going to dive into an exciting topic
+                that shows just how possible it is for you to turn your
+                incredible ideas into reality. Let's talk about raising money
+                from venture capitalists using SAFE documents with the help of
+                organizations like Y Combinator. 🚀💰
               </div>
               <br />
               <br />
@@ -3840,7 +4012,8 @@ exports.app = functions
               <br />
               <ol>
                 <li>
-                  <b>Created for Startups:</b>
+                  <b>Created for Startups</b>
+                  <br />
                   SAFE documents were brought to life by Y Combinator, a
                   prestigious startup accelerator that has helped launch
                   successful companies like Dropbox, Airbnb, and Reddit. They
@@ -3850,7 +4023,8 @@ exports.app = functions
                 </li>
                 <br />
                 <li>
-                  <b>Cloud Computing: </b>
+                  <b>Cloud Computing</b>
+                  <br />
                   Cloud computing has become a key player in the growth of many
                   businesses. Can you identify and explain an example of a
                   real-world application that heavily relies on cloud computing?
@@ -3859,7 +4033,8 @@ exports.app = functions
                 </li>
                 <br />
                 <li>
-                  <b>Speed and Simplicity:</b>
+                  <b>Speed and Simplicity</b>
+                  <br />
                   With a SAFE, you're able to secure funding quickly, without
                   getting lost in lengthy negotiations or complicated financial
                   terms. It's designed to be entrepreneur-friendly, so you can
@@ -3867,7 +4042,8 @@ exports.app = functions
                 </li>
                 <br />
                 <li>
-                  <b>Recognized and Respected:</b>
+                  <b>Recognized and Respected</b>
+                  <br />
                   SAFE documents are well recognized by venture capitalists
                   globally. This means when you're using a SAFE, you're speaking
                   a language that investors understand and respect. It's like
@@ -3875,27 +4051,29 @@ exports.app = functions
                 </li>
                 <br />
                 <li>
-                  <b>Flexibility and Fairness: </b>A SAFE is flexible—it lets
-                  you raise money without having to decide the exact value of
-                  your company upfront. As your startup grows and its value
-                  increases, your investors get to share in that success. This
-                  makes it a fair and attractive option for both parties. 🤝🌱
+                  <b>Flexibility and Fairness</b>
+                  <br />A SAFE is flexible—it lets you raise money without
+                  having to decide the exact value of your company upfront. As
+                  your startup grows and its value increases, your investors get
+                  to share in that success. This makes it a fair and attractive
+                  option for both parties. 🤝🌱
                 </li>
                 <br />
                 <li>
-                  <b>Success Stories:</b>Thousands of startups have used SAFE
-                  documents to raise billions of dollars in funding. With Y
-                  Combinator's guidance, these startups have transformed into
-                  successful companies that make a significant impact on the
-                  world. And guess what? You can be part of this inspiring
-                  journey too! 🌠💼
+                  <b>Success Stories</b>
+                  <br />
+                  Thousands of startups have used SAFE documents to raise
+                  billions of dollars in funding. With Y Combinator's guidance,
+                  these startups have transformed into successful companies that
+                  make a significant impact on the world. And guess what? You
+                  can be part of this inspiring journey too! 🌠💼
                 </li>
                 <br />
               </ol>
               <div>
-                My wonderful students, you have brilliant ideas, and there are
+                Wonderful students, you have brilliant ideas, and there are
                 organizations and tools out there like Y Combinator and SAFE
-                documents to help you bring those ideas to life. Your dreams are
+                documents to help you bring those ideas to life! Your dreams are
                 valid and achievable. With persistence, creativity, and courage,
                 you're capable of creating something truly remarkable. Believe
                 in your potential, and let's continue to shine together! 🎉💖
@@ -3987,26 +4165,26 @@ exports.app = functions
               <ol>
                 <li>
                   <b>
-                    Question: What exactly is Backend as a Service (BaaS) and
-                    why is it useful for a startup?
+                    What exactly is Backend as a Service (BaaS) and why is it
+                    useful for a startup?
                   </b>
                   <br />
-                  Answer: BaaS is a cloud-based service model that provides
-                  developers with ready-made backend services, such as
-                  databases, user authentication, server-side logic, and cloud
-                  storage. It's beneficial for startups, especially for smaller
-                  teams or those with limited resources, as it simplifies app
-                  development by eliminating the need to build and manage a
-                  backend from scratch. This way, you can focus on creating a
-                  great user experience and getting your product to market more
-                  quickly. 💻✨
+                  BaaS is a cloud-based service model that provides developers
+                  with ready-made backend services, such as databases, user
+                  authentication, server-side logic, and cloud storage. It's
+                  beneficial for startups, especially for smaller teams or those
+                  with limited resources, as it simplifies app development by
+                  eliminating the need to build and manage a backend from
+                  scratch. This way, you can focus on creating a great user
+                  experience and getting your product to market more quickly.
+                  💻✨
                 </li>
                 <br />
                 <li>
-                  <b>Question: How can BaaS tools help me scale my startup?</b>
+                  <b>How can BaaS tools help me scale my startup?</b>
                   <br />
-                  Answer: BaaS tools are designed to be scalable, meaning they
-                  can handle growth in user numbers or data volume without
+                  BaaS tools are designed to be scalable, meaning they can
+                  handle growth in user numbers or data volume without
                   sacrificing performance. As your startup grows, your app needs
                   to support more users and handle more data, which can be
                   technically challenging. BaaS providers manage this scaling
@@ -4016,17 +4194,17 @@ exports.app = functions
                 <br />
                 <li>
                   <b>
-                    Question: I've heard of SAFE documents for raising money.
-                    How do they work and why are they helpful for startups?
+                    I've heard of SAFE documents for raising money. How do they
+                    work and why are they helpful for startups?
                   </b>
                   <br />
-                  Answer: SAFE stands for Simple Agreement for Future Equity.
-                  It's a contract that allows you to receive investment from
-                  venture capitalists without setting a specific value for your
-                  company upfront. Instead, investors receive the right to
-                  future shares in your company. SAFE documents, developed by Y
-                  Combinator, simplify the fundraising process, making it faster
-                  and more efficient. They eliminate the need for lengthy price
+                  SAFE stands for Simple Agreement for Future Equity. It's a
+                  contract that allows you to receive investment from venture
+                  capitalists without setting a specific value for your company
+                  upfront. Instead, investors receive the right to future shares
+                  in your company. SAFE documents, developed by Y Combinator,
+                  simplify the fundraising process, making it faster and more
+                  efficient. They eliminate the need for lengthy price
                   negotiations, which can be particularly beneficial for
                   startups in their early stages, when it can be hard to
                   determine an accurate value for the company. 💼💰
@@ -4034,10 +4212,10 @@ exports.app = functions
                 <br />
               </ol>
               <div>
-                MY!!! DEAR!!! STUDENTS!!!! These are only the basics. The world
-                of app development and startup funding is broad and exciting,
-                and there's always more to learn. So stay curious, continue
-                asking questions, and let's keep exploring together! 🎉🙌
+                These are only the basics. The world of app development and
+                startup funding is broad and exciting, and there's always more
+                to learn. So stay curious, continue asking questions, and let's
+                keep exploring together! 🎉🙌
               </div>
             </div>
           ),
@@ -4054,14 +4232,13 @@ exports.app = functions
           )}?`,
           response: (
             <SchedulerBlock>
-              MY DEDICATED!!! STUDENTS! 💫 Let's map out this exciting journey
-              from learning to code, to building an app with a Backend as a
-              Service (BaaS), and then raising money to fund your startup. Are
-              you ready? Here we go! 🚀📚
+              MY DEDICATED!!! STUDENTS!!!!! 💫 Let's map out this exciting
+              journey from learning to code, to building an app with a Backend
+              as a Service (BaaS), and then raising money to fund your startup.
               <br />
               <br />
               <div>
-                <b>Step 1: Learning to Code</b>
+                <b>Learning to Code</b>
                 <br />
                 Begin by learning a programming language. For mobile app
                 development, consider learning:
@@ -4073,12 +4250,11 @@ exports.app = functions
                     React Native or Flutter 🌐
                   </li>
                 </ul>
-                Coding is like learning a new language, so practice is key!
                 <br />
                 <br />
               </div>
               <div>
-                <b>Step 2: Understanding App Development</b>
+                <b>Understanding App Development</b>
                 <br />
                 Once you're comfortable with coding, start exploring the basics
                 of app development. You'll want to learn about:
@@ -4100,7 +4276,7 @@ exports.app = functions
                 <br />
               </div>
               <div>
-                <b>Step 3: Exploring Backend as a Service (BaaS)</b>
+                <b>Exploring Backend as a Service (BaaS)</b>
                 <br />
                 Next, dive into the world of BaaS. Platforms like Firebase and
                 AWS Amplify can help manage your backend services, letting you
@@ -4116,7 +4292,7 @@ exports.app = functions
                 <br />
               </div>
               <div>
-                <b>Step 4: Building Your App</b>
+                <b>Building Your App</b>
                 <br />
                 Now, you're ready to bring your app idea to life:
                 <ul>
@@ -4133,7 +4309,7 @@ exports.app = functions
                 <br />
               </div>
               <div>
-                <b>Step 5: Understanding Startup Funding</b>
+                <b>Understanding Startup Funding</b>
                 <br />
                 Once your app is built, it's time to explore funding. Begin by
                 understanding:
@@ -4148,7 +4324,7 @@ exports.app = functions
                 <br />
               </div>
               <div>
-                <b>Step 6: Learning about SAFE documents</b>
+                <b>Learning about SAFE documents</b>
                 <br />
                 Dive deeper into the world of startup funding by understanding
                 SAFE documents. Remember, SAFE stands for Simple Agreement for
@@ -4161,7 +4337,7 @@ exports.app = functions
                 <br />
               </div>
               <div>
-                <b>Step 7: Pitching Your Startup</b>
+                <b>Pitching Your Startup</b>
                 <br />
                 Finally, you're ready to present your startup to potential
                 investors.
@@ -4176,11 +4352,11 @@ exports.app = functions
                 </ul>
                 <br />
                 <br />
-                Remember, my amazing students, this is a journey, and every
-                journey begins with a single step. It might seem challenging at
-                first, but with dedication, curiosity, and resilience, you can
-                achieve anything. Let's take these steps together, and turn your
-                brilliant ideas into reality! 🌟💖
+                Don't forget this is a journey, and every journey begins with a
+                single step. It might seem challenging at first, but with
+                dedication, curiosity, and resilience, you can achieve anything.
+                Let's take these steps together, and turn your brilliant ideas
+                into reality! 🌟💖
               </div>
             </SchedulerBlock>
           ),
@@ -4200,26 +4376,37 @@ exports.app = functions
 Creating subscriptions in Stripe involves a few steps:
 
 Frontend: Collect payment method information from the customer using Stripe's frontend library, Stripe.js.
+
 Backend: Create or retrieve a customer in Stripe.
+
 Backend: Attach the payment method to the customer.
+
 Backend: Create a subscription for the customer with the appropriate pricing plan.
-As previously mentioned, the sensitive operations (steps 2-4) should be performed on the backend to ensure security. Here's a simplified example of how you could do this:
+
+As previously mentioned, the sensitive operations (steps 2-4) should be performed on the backend to ensure security. 
 */
 
-/* The Frontend */
-/*
+/* 
+
+-- The Frontend 
 First, you'll need to set up Stripe.js on your frontend and use it to collect card details. 
 The CardElement component provides a form where users can enter their card details.
-
 
 */
 
 import React from 'react';
 import { loadStripe } from '@stripe/stripe-js';
-import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { 
+  Elements, 
+  CardElement, 
+  useStripe, 
+  useElements 
+} from '@stripe/react-stripe-js';
 
 // Load Stripe.js with your publishable key.
-const stripePromise = loadStripe('your-publishable-key');
+const stripePromise = loadStripe(
+  'your-publishable-key'
+);
 
 // Create a new CheckoutForm component
 function CheckoutForm() {
@@ -4230,24 +4417,33 @@ function CheckoutForm() {
     event.preventDefault();
 
     // Use elements.getElement to get a reference to the mounted CardElement
-    const cardElement = elements.getElement(CardElement);
+    const cardElement = elements.getElement(
+      CardElement
+    );
 
     // Use stripe.createPaymentMethod to create a new Payment Method for the card
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    const { error, paymentMethod } = await 
+    stripe.createPaymentMethod({
       type: 'card',
       card: cardElement,
     });
 
     if (!error) {
       const { id } = paymentMethod;
+
       // Now you can send the id of the payment method to your backend and create the subscription
-      fetch('http://localhost:8000/create-subscription', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ payment_method: id }),
-      });
+      fetch(
+        'http://localhost:8000/create-subscription', 
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ 
+            payment_method: id 
+          }),
+        }
+      );
     }
   };
 
@@ -4270,13 +4466,15 @@ function App() {
 
 export default App;
 
-/* The Backend */
+
 /*
-This is a very simplified example. 
-In a real-world application, you'd want to include 
-error handling and consider edge cases. You'd also 
-want to secure your endpoints and ensure only authenticated
-users can create subscriptions.
+
+-- The Backend 
+
+This is a very simplified example. In a real-world application, you'd want to include error handling and consider edge cases. 
+
+You'd also want to secure your endpoints and ensure only authenticated users can create subscriptions.
+
 */
 
 const express = require('express');
@@ -4285,30 +4483,43 @@ const app = express();
 
 app.use(express.json());
 
-app.post('/create-subscription', async (req, res) => {
-  const { payment_method } = req.body;
-  
-  // Create a new customer or retrieve an existing one
-  const customer = await stripe.customers.create({
-    payment_method,
-    email: 'customer@example.com', // you'd retrieve this from your authentication system
-    invoice_settings: {
-      default_payment_method: payment_method,
-    },
-  });
+app.post(
+  '/create-subscription', 
+  async (req, res) => {
+    const { payment_method } = req.body;
+    
+    // Create a new customer or retrieve an existing one
+    const customer = await 
+      stripe
+      .customers
+      .create({
+        payment_method,
+        email: 'customer@example.com',
+        invoice_settings: {
+          default_payment_method: payment_method,
+        },
+      });
 
-  // Create the subscription
-  const subscription = await stripe.subscriptions.create({
-    customer: customer.id,
-    items: [{ plan: 'your-plan-id' }],
-    expand: ['latest_invoice.payment_intent'],
-  });
+    // Create the subscription
+    const subscription = await 
+      stripe
+      .subscriptions
+      .create({
+        customer: customer.id,
+        items: [{ plan: 'your-plan-id' }],
+        expand: ['latest_invoice.payment_intent'],
+      });
 
-  res.send(subscription);
-});
+    res.send(subscription);
+  }
+);
 
-app.listen(8000, () => console.log('Server running on port 8000'));
-
+app.listen(
+  8000, 
+  () => console.log(
+    'Server running on port 8000'
+  )
+);
 
           `,
           spanish: ``,
@@ -4374,38 +4585,46 @@ app.listen(8000, () => console.log('Server running on port 8000'));
           )}?`,
           response: (
             <ChatBlock type={"quiz"}>
-              My ambitious students! 🌟 Here's a quiz to help you think deeply
-              about what you've learned about building a tech startup. I
-              encourage you to discuss your answers with each other and learn
-              from each other's perspectives. Let's go! 🚀✍️
+              🌟 Here's a quiz to help you think deeply about what you've
+              learned about building a tech startup. I encourage you to discuss
+              your answers with each other and learn from each other's
+              perspectives. Let's go! 🚀
               <br />
               <br />
-              Question 1: Imagine you're creating your first app using a Backend
-              as a Service (BaaS). What are the key considerations when choosing
-              a BaaS provider, and how would these considerations influence your
+              Question 1 <br />
+              Imagine you're creating your first app using a Backend as a
+              Service (BaaS). What are the key considerations when choosing a
+              BaaS provider, and how would these considerations influence your
               decision? 🧩🌐
               <br />
-              Question 2: You have an innovative app idea that solves a problem
-              in your community. Describe how you would design a user-friendly
-              interface that makes your app accessible and enjoyable to use.
-              Consider elements of UI and UX design in your response. 🎨📱
               <br />
-              Question 3: Discuss how you would approach gathering user feedback
-              on your app. Why is this feedback important, and how would you use
-              it to improve your app? 🗣️🔍
+              Question 2<br /> You have an innovative app idea that solves a
+              problem in your community. Describe how you would design a
+              user-friendly interface that makes your app accessible and
+              enjoyable to use. Consider elements of UI and UX design in your
+              response. 🎨📱
               <br />
-              Question 4: You're preparing to pitch your startup to potential
-              investors. Outline your pitch and explain your strategy for making
-              it compelling and persuasive. Remember to consider elements such
-              as your startup's story, the problem you're solving, your unique
-              solution, and your plan for growth. 📈🗣️
               <br />
-              Question 5: You've decided to raise funds using a SAFE document.
-              What are the potential advantages and drawbacks of this funding
-              method, and how would it affect both you as the startup founder
-              and your potential investors? 💰📜
+              Question 3<br /> Discuss how you would approach gathering user
+              feedback on your app. Why is this feedback important, and how
+              would you use it to improve your app? 🗣️🔍
               <br />
-              My. DEAR. STUDENTS! There's no single correct answer to these
+              <br />
+              Question 4<br /> You're preparing to pitch your startup to
+              potential investors. Outline your pitch and explain your strategy
+              for making it compelling and persuasive. Remember to consider
+              elements such as your startup's story, the problem you're solving,
+              your unique solution, and your plan for growth. 📈🗣️
+              <br />
+              <br />
+              Question 5<br /> You've decided to raise funds using a SAFE
+              document. What are the potential advantages and drawbacks of this
+              funding method, and how would it affect both you as the startup
+              founder and your potential investors? 💰📜
+              <br />
+              <br />
+              <br />
+              MY! DEAR!! STUDENTS!!!! There's no single correct answer to these
               questions. The goal is to stimulate deep thinking and meaningful
               discussions. I'm excited to hear your brilliant thoughts! 🎉💖
             </ChatBlock>
@@ -4856,8 +5075,8 @@ export default OpenAIComponent;`,
           response: (
             <div>
               🌟 Welcome to today's exciting journey through the world of
-              Computer Science, where we'll dive into the essential topics of
-              Data Structures and Algorithms.
+              computer Ssience, where we'll dive into the essential topics of
+              data structures and algorithms.
               <br />
               <br />
               I know some of you may feel a bit overwhelmed or even discouraged
@@ -4872,7 +5091,7 @@ export default OpenAIComponent;`,
               make it happen. So let's create a space that uplifts us all,
               learning not just from the course material, but from each other's
               unique perspectives and experiences. 🌈 Ready to code your dreams
-              into reality? Let's do this! 💻🚀
+              into reality? Let's do this! 💻
               <br />
               <br />
               <RandomCharacter
@@ -4903,11 +5122,14 @@ export default OpenAIComponent;`,
               addressing the common perception that these subjects are barriers
               for many learners. The lesson then explores the basics of
               programming languages, how computers interpret code, and the
-              underlying mechanics of machine code translation. Key concepts
-              like linked lists, trees, and algorithms are introduced and
-              explained in simple terms. The lesson emphasizes the importance of
-              practice and understanding foundational concepts like linked lists
-              to build towards more complex structures and algorithms. 🚀🧠💻
+              underlying mechanics of machine code translation.
+              <br />
+              <br />
+              Key concepts like linked lists, trees, and algorithms are
+              introduced and explained in simple terms. The lesson emphasizes
+              the importance of practice and understanding foundational concepts
+              like linked lists to build towards more complex structures and
+              algorithms. 🚀🧠💻
             </div>
           ),
         },
@@ -4923,15 +5145,16 @@ export default OpenAIComponent;`,
           )}?`,
           response: (
             <div>
-              🌟 Did you know the tech magic behind Tesla's Autopilot relies on
-              Data Structures and Algorithms? These are the same skills you're
+              🌐 Did you know the tech magic behind Tesla's Autopilot relies on
+              datasStructures and algorithms? These are the same skills you're
               learning! They're crucial for the car to make fast, life-saving
-              choices on the road. 🛑 From deep learning algorithms to
-              organizing real-time sensor data, this technology is
-              groundbreaking. 🌐 Mastering these skills opens up amazing career
-              opportunities for you, too. 🎓 So, as we journey through this
-              course, remember you're gearing up to be the next generation of
-              innovators. Let's drive into our bright futures together! 🚀
+              choices on the road. From deep learning algorithms to organizing
+              real-time sensor data, this technology is groundbreaking.
+              <br />
+              <br />
+              🎓 Mastering these skills opens up amazing career opportunities
+              for you, too. So, as we journey through this course, remember
+              you're gearing up to be the next generation of innovators!
             </div>
           ),
           spanish: ``,
@@ -4947,38 +5170,41 @@ export default OpenAIComponent;`,
           )}?`,
           response: (
             <div>
-              🌟 As we venture into the world of Computer Science, two
-              foundational concepts stand out: Data Structures and Algorithms.
+              🌎 As we venture into the world of computer science, two
+              foundational concepts stand out: data structures and algorithms.
               Think of Data Structures as the "storage units" of the digital
-              universe. They come in various shapes and sizes, from arrays and
-              linked lists to more complex types like binary trees and hash
+              universe. Like a skyscraper, things will need to be built a
+              certain way. They come in various shapes and sizes, from arrays
+              and linked lists to more complex types like binary trees and hash
               tables. These structures give us a systematic way to organize and
               store data, making it easier to perform operations like searching,
               sorting, and modification. 🗃️
               <br />
               <br />
               Algorithms, on the other hand, are like the "recipe books" of
-              computing. They offer specific, step-by-step instructions to solve
-              problems or complete tasks. Whether it's finding the shortest path
-              in a map, sorting a list of numbers, or searching for a particular
-              item in a database, algorithms provide the roadmaps for these
-              tasks. 🗺️
+              computing. Like the skyscraper, deeper engineering needs defines
+              the functionality of structures. For example, how does a
+              skyscraper handle wind or earthquakes? They offer specific,
+              step-by-step instructions to solve problems or complete tasks.
+              Whether it's finding the shortest path in a map, sorting a list of
+              numbers, or searching for a particular item in a database,
+              algorithms provide the roadmaps for these tasks. 🗺️
               <br />
               <br />
-              The beauty of these two concepts is how they work together. Data
-              Structures offer the 'space' where information resides, and
+              🌐 The beauty of these two concepts is how they work together.
+              Data Structures offer the 'space' where information resides, and
               Algorithms serve as the 'methods' to interact with this space.
               When well-designed, they enable efficient and fast solutions,
               propelling innovations like search engines, social media feeds,
-              and even life-saving medical technologies. 🌐
+              and even life-saving medical technologies.
               <br />
               <br />
-              As we dive deeper into this course, remember that mastering Data
-              Structures and Algorithms isn't just an academic exercise. You're
+              As we dive deeper into this course, remember that mastering data
+              structures and algorithms isn't just an academic exercise. You're
               gaining the building blocks to understand, contribute to, and even
-              revolutionize the technology that shapes our world. 🚀 So buckle
+              revolutionize the technology that shapes our world. 💫 So buckle
               up, because this journey is your first step toward becoming the
-              architects of tomorrow's digital landscapes. 💫
+              architects of tomorrow's digital landscapes.
             </div>
           ),
           spanish: ``,
@@ -4994,55 +5220,52 @@ export default OpenAIComponent;`,
           )} with one sentence answers?`,
           response: (
             <div>
-              <h2>
-                1️⃣ Why are Data Structures and Algorithms important in
-                programming?
-              </h2>
+              <b>
+                Why are Data Structures and Algorithms important in programming?
+              </b>
               <p>
-                <strong>Expert Answer</strong>: Data Structures and Algorithms
-                serve as the backbone of software development. Data Structures
-                allow you to organize and manage information in a manner that
-                facilitates efficient operations like searching, sorting, and
-                data retrieval. Algorithms, meanwhile, provide a way to solve
-                problems by specifying a series of steps that manipulate data in
-                these structures. The choice of the right data structure and
-                algorithm can drastically affect the performance and scalability
-                of an application. For instance, using a hash table for frequent
-                lookups can reduce the time complexity from \(O(n)\) to
-                \(O(1)\), making your software faster and more responsive.
+                Data Structures and Algorithms serve as the backbone of software
+                development. Data Structures allow you to organize and manage
+                information in a manner that facilitates efficient operations
+                like searching, sorting, and data retrieval. Algorithms,
+                meanwhile, provide a way to solve problems by specifying a
+                series of steps that manipulate data in these structures. The
+                choice of the right data structure and algorithm can drastically
+                affect the performance and scalability of an application. For
+                instance, using a hash table for frequent lookups can reduce the
+                time complexity from O(n) to O(1), making your software faster
+                and more responsive.
               </p>
-
-              <h2>2️⃣ What's the difference between a Stack and a Queue?</h2>
+              <br /> <br />
+              <b>What's the difference between a Stack and a Queue?</b>
               <p>
-                <strong>Expert Answer</strong>: Stacks and Queues are both
-                linear data structures, but they differ in how elements are
-                added and removed. A Stack follows a Last-In, First-Out (LIFO)
-                principle, meaning the most recently added element is the first
-                one to be removed. This is similar to a stack of plates; you add
-                to and remove from the top. Queues follow a First-In, First-Out
-                (FIFO) principle, resembling a line of people waiting for a bus;
-                the first person in line is the first to board. These structures
-                are often implemented using arrays or linked lists and are
-                fundamental in algorithms related to parsing expressions, graph
-                traversal, and task scheduling.
+                Stacks and Queues are both linear data structures, but they
+                differ in how elements are added and removed. A Stack follows a
+                Last-In, First-Out (LIFO) principle, meaning the most recently
+                added element is the first one to be removed. This is similar to
+                a stack of plates; you add to and remove from the top. Queues
+                follow a First-In, First-Out (FIFO) principle, resembling a line
+                of people waiting for a bus; the first person in line is the
+                first to board. These structures are often implemented using
+                arrays or linked lists and are fundamental in algorithms related
+                to parsing expressions, graph traversal, and task scheduling.
               </p>
-
-              <h2>
-                3️⃣ How do I choose the best sorting algorithm for a given task?
-              </h2>
+              <br /> <br />
+              <b>
+                How do I choose the best sorting algorithm for a given task?
+              </b>
               <p>
-                <strong>Expert Answer</strong>: The choice of a sorting
-                algorithm depends on various factors like the size of the
-                dataset, whether the data is partially sorted, and the resources
-                available (e.g., memory). Common sorting algorithms include
-                Bubble Sort, Quick Sort, and Merge Sort, each with its own
-                advantages and drawbacks. For small datasets, Bubble Sort or
-                Insertion Sort may suffice. For larger, unsorted datasets, Quick
-                Sort or Merge Sort are generally more efficient with time
-                complexities of \(O(n \log n)\). However, Merge Sort requires
-                additional memory for merging, making it less suitable for
-                systems with limited memory. Always consider these factors to
-                tailor your approach for optimal performance.
+                The choice of a sorting algorithm depends on various factors
+                like the size of the dataset, whether the data is partially
+                sorted, and the resources available (e.g., memory). Common
+                sorting algorithms include Bubble Sort, Quick Sort, and Merge
+                Sort, each with its own advantages and drawbacks. For small
+                datasets, Bubble Sort or Insertion Sort may suffice. For larger,
+                unsorted datasets, Quick Sort or Merge Sort are generally more
+                efficient with time complexities of O(n log n). However, Merge
+                Sort requires additional memory for merging, making it less
+                suitable for systems with limited memory. Always consider these
+                factors to tailor your approach for optimal performance.
               </p>
             </div>
           ),
@@ -5059,151 +5282,177 @@ export default OpenAIComponent;`,
           )}?`,
           response: (
             <SchedulerBlock>
-              <h1>
-                In-Depth Roadmap & Study Guide for Mastering Data Structures and
-                Algorithms
-              </h1>
-
-              <h2>Step 1: Basics & Fundamentals</h2>
+              Welcome to the thunderdome. Many computer science students
+              struggle at this point in their college careers. Tenacity is the
+              name of the game!
+              <br /> <br /> <br />
+              <h5>Step 1: Basics & Fundamentals</h5>
               <ul>
                 <li>
                   <strong>Topics:</strong> Introduction to Programming, Basic
                   Math Concepts, Complexity Analysis
+                  <br />
                 </li>
                 <li>
                   <strong>Context:</strong> Before delving into data structures,
                   you need a solid foundation.
+                  <br />
                 </li>
                 <li>
-                  <strong>Resources:</strong> Online tutorials like Codecademy,
-                  Khan Academy for math, "Big O Notation for Beginners" on
-                  Medium
+                  <strong>Resources:</strong> "Big O Notation for Beginners" on
+                  Medium, good old Youtube or cracking the coding interview.
+                  <br />
                 </li>
                 <li>
                   <strong>Goal:</strong> Acquire the basic skills to understand
                   and engage with more complex topics.
+                  <br />
                 </li>
               </ul>
-
-              <h2>Step 2: Core Data Structures</h2>
+              <br />
+              <h5>Step 2: Core Data Structures</h5>
               <ul>
                 <li>
                   <strong>Topics:</strong> Arrays, Linked Lists, Stacks, Queues
+                  <br />
                 </li>
                 <li>
                   <strong>Context:</strong> These are the building blocks of
                   more advanced data structures.
+                  <br />
                 </li>
                 <li>
                   <strong>Resources:</strong> "Data Structures Easy to Advanced
                   Course" on YouTube, LeetCode, "Data Structures and Algorithms
                   Made Easy" book
+                  <br />
                 </li>
                 <li>
                   <strong>Goal:</strong> Implement these data structures from
                   scratch and understand their complexities.
+                  <br />
                 </li>
               </ul>
-
-              <h2>Step 3: Intermediate Data Structures</h2>
+              <br />
+              <h5>Step 3: Intermediate Data Structures</h5>
               <ul>
                 <li>
                   <strong>Topics:</strong> Trees, Graphs, Hash Tables
+                  <br />
                 </li>
                 <li>
                   <strong>Context:</strong> These data structures are often used
                   in databases, networking, and other advanced applications.
+                  <br />
                 </li>
                 <li>
                   <strong>Resources:</strong> "Introduction to Algorithms" by
                   Cormen et al., Exercism.io, Academic papers
+                  <br />
                 </li>
                 <li>
                   <strong>Goal:</strong> Be able to implement these structures,
                   understand their advantages and disadvantages, and know when
                   to use them.
+                  <br />
                 </li>
               </ul>
-
-              <h2>Step 4: Basic Algorithms</h2>
+              <br />
+              <h5>Step 4: Basic Algorithms</h5>
               <ul>
                 <li>
                   <strong>Topics:</strong> Sorting (Bubble, Merge, Quick),
                   Searching (Binary, Linear)
+                  <br />
                 </li>
                 <li>
                   <strong>Context:</strong> Algorithms are your tools for
                   problem-solving.
+                  <br />
                 </li>
                 <li>
                   <strong>Resources:</strong> Coursera's "Algorithms
                   Specialization" by Stanford, HackerRank, "Cracking the Coding
                   Interview" book
+                  <br />
                 </li>
                 <li>
                   <strong>Goal:</strong> Be proficient enough to know which
                   algorithm to use for different types of problems.
+                  <br />
                 </li>
               </ul>
-
-              <h2>Step 5: Advanced Algorithms</h2>
+              <br />
+              <h5>Step 5: Advanced Algorithms</h5>
               <ul>
                 <li>
                   <strong>Topics:</strong> Dynamic Programming, Graph
                   Algorithms, Divide and Conquer
+                  <br />
                 </li>
                 <li>
                   <strong>Context:</strong> These are the algorithms that often
                   appear in tech interviews and are key to solving complex
                   problems.
+                  <br />
                 </li>
                 <li>
                   <strong>Resources:</strong> Advanced Algorithm courses on
                   Udacity or edX, Open-source projects, Hackathons
+                  <br />
                 </li>
                 <li>
                   <strong>Goal:</strong> Be able to tackle more complex problems
                   and understand the underlying theory.
+                  <br />
                 </li>
               </ul>
-
-              <h2>Step 6: Real-world Applications</h2>
+              <br />
+              <h5>Step 6: Real-world Applications</h5>
               <ul>
                 <li>
                   <strong>Topics:</strong> Databases, Networking, Cloud
                   Computing
+                  <br />
                 </li>
                 <li>
                   <strong>Context:</strong> Knowing how to apply your skills in
                   the real world is just as important as acquiring them.
+                  <br />
                 </li>
                 <li>
                   <strong>Resources:</strong> Internships, AWS training,
                   Networking events
+                  <br />
                 </li>
                 <li>
                   <strong>Goal:</strong> Gain a holistic understanding of how
                   these skills are used in industry settings.
+                  <br />
                 </li>
               </ul>
-
-              <h2>Step 7: Interview Preparation</h2>
+              <br />
+              <h5>Step 7: Interview Preparation</h5>
               <ul>
                 <li>
                   <strong>Topics:</strong> LeetCode Challenges, System Design,
                   Behavioral Questions
+                  <br />
                 </li>
                 <li>
                   <strong>Context:</strong> This is the final lap where you
                   prepare to showcase your skills to potential employers.
+                  <br />
                 </li>
                 <li>
                   <strong>Resources:</strong> LeetCode, "System Design
                   Interview" book, Mock interviews
+                  <br />
                 </li>
                 <li>
                   <strong>Goal:</strong> Be fully prepared to ace technical
                   interviews and behavioral questions.
+                  <br />
                 </li>
               </ul>
             </SchedulerBlock>
@@ -5227,18 +5476,19 @@ Then we create a function called search to look
 for a specific value (key) in the tree. 
 Finally, we build a simple BST and use the search 
 function to look for the value 17 in it.
-
-I hope this makes your journey into the world of 
-Data Structures and Algorithms exciting and understandable! 🚀
 */
-
 
 // Define a Node class to represent each node in the tree
 class Node {
   constructor(key) {
-    this.left = null;  // Pointer to the left child
-    this.right = null; // Pointer to the right child
-    this.val = key;    // Value of the node
+    // Pointer to the left child
+    this.left = null; 
+
+    // Pointer to the right child
+    this.right = null; 
+
+    // Value of the node
+    this.val = key;    
   }
 }
 
@@ -5253,7 +5503,7 @@ function search(root, key) {
   if (root.val < key) {
     return search(root.right, key);
   }
-sh
+
   // If the key is smaller than the root's value, search the left subtree
   return search(root.left, key);
 }
@@ -5341,14 +5591,12 @@ if (result !== null) {
             <ChatBlock type={"quiz"}>
               Question 1: Arrays vs Linked Lists
               <br />
-              <br />
               Why might you choose an array over a linked list when implementing
               a certain data structure? Provide at least two reasons and discuss
               the trade-offs.
               <br />
               <br />
               Question 2: Importance of Big O Notation
-              <br />
               <br />
               Explain the importance of Big O notation in algorithm analysis.
               How does it help software engineers make decisions about which
@@ -5357,14 +5605,12 @@ if (result !== null) {
               <br />
               Question 3: Hash Tables
               <br />
-              <br />
               Hash tables can experience collisions. What are collisions in the
               context of hash tables, and what are some strategies to resolve
               them?
               <br />
               <br />
               Question 4: Graph Algorithms
-              <br />
               <br />
               Discuss a real-world application where graph algorithms like
               Dijkstra's or A* would be particularly useful. Explain why you
@@ -5373,7 +5619,6 @@ if (result !== null) {
               <br />
               <br />
               Question 5: Dynamic Programming
-              <br />
               <br />
               What is dynamic programming, and how does it differ from a regular
               divide-and-conquer approach? Can you think of a real-world problem
