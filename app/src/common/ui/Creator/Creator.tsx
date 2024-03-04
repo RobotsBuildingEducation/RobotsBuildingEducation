@@ -929,14 +929,16 @@ export const Creator = {
           )}?`,
           response: (
             <SchedulerBlock>
-              <h3>Human-Computer Interaction (HCI) Study Guide and Roadmap</h3>
-
-              <h2>Step 1: Foundations</h2>
+              <h5>Human-Computer Interaction (HCI) Study Guide and Roadmap</h5>
+              <br />
+              <b>Step 1: Foundations</b>
+              <br />
               <p>
                 Start by familiarizing yourself with the basics of computer
                 science, design, and psychology. These fields form the
                 foundation of HCI:
               </p>
+              <br />
               <ul>
                 <li>
                   Computer Science: Courses like Harvard's CS50 on edX provide
@@ -951,23 +953,26 @@ export const Creator = {
                   cognitive psychology and social psychology.
                 </li>
               </ul>
-
-              <h2>Step 2: Introduction to HCI</h2>
+              <br />
+              <b>Step 2: Introduction to HCI</b>
+              <br />
               <p>
                 Take introductory courses specifically in HCI to understand its
                 principles, theories, and techniques, such as Stanford
                 University's "Introduction to Human-Computer Interaction Design"
                 available on Coursera.
               </p>
-
-              <h2>Step 3: Advanced HCI Studies</h2>
+              <br />
+              <b>Step 3: Advanced HCI Studies</b>
+              <br />
               <p>
                 After getting the basics, look into more advanced HCI topics
                 like interactive system design, user experience research, and
                 information visualization.
               </p>
-
-              <h2>Step 4: Specialize</h2>
+              <br />
+              <b>Step 4: Specialize</b>
+              <br />
               <p>
                 HCI is a broad field with many subareas. You might want to
                 specialize based on what you enjoy most or where you see the
@@ -975,12 +980,14 @@ export const Creator = {
                 information architecture, mobile interaction design, or
                 accessibility.
               </p>
-
-              <h2>Step 5: Practical Experience</h2>
+              <br />
+              <b>Step 5: Practical Experience</b>
+              <br />
               <p>
                 Gaining practical experience is key. This can come from
                 projects, internships, or work experience:
               </p>
+              <br />
               <ul>
                 <li>
                   Apply what you've learned through class projects, freelance
@@ -991,8 +998,9 @@ export const Creator = {
                   your skills to future employers.
                 </li>
               </ul>
-
-              <h2>Step 6: Networking and Professional Development</h2>
+              <br />
+              <b>Step 6: Networking and Professional Development</b>
+              <br />
               <p>
                 Getting involved in the HCI community can open doors to
                 opportunities and deepen your learning:
@@ -1008,8 +1016,10 @@ export const Creator = {
                   journals and magazines.
                 </li>
               </ul>
+              <br />
 
-              <h2>Step 7: Consider Further Education</h2>
+              <b>Step 7: Consider Further Education</b>
+              <br />
               <p>
                 If you're serious about a career in HCI, consider pursuing
                 further education, such as a master's degree in HCI or a related
@@ -1346,11 +1356,12 @@ export const Creator = {
           )}?`,
           response: (
             <div>
-              <h4>Understanding the Psychology of Self-Esteem 🌟</h4>
+              <h5>Understanding the Psychology of Self-Esteem 🌟</h5>
+              <br />
               <p>
-                Of course, my insightful students! Let's take a brief but
-                meaningful journey into the psychology of self-esteem, a subject
-                that holds immense power in shaping your lives. 🌱
+                Let's take a brief but meaningful journey into the psychology of
+                self-esteem, a subject that holds immense power in shaping your
+                lives. 🌱
               </p>
 
               <p>
@@ -1415,9 +1426,9 @@ export const Creator = {
           )} with one sentence answers?`,
           response: (
             <div>
-              <h4>Frequently Asked Questions on Self-Esteem 🌟</h4>
-
-              <h4>1. What is Self-Esteem and Why is it Important? 💡</h4>
+              <h5>Frequently Asked Questions on Self-Esteem 🌟</h5>
+              <br />
+              <b>1. What is Self-Esteem and Why is it Important? 💡</b> <br />
               <p>
                 Self-esteem refers to how you view and evaluate yourself,
                 essentially your emotional self-assessment. It's vital because
@@ -1426,8 +1437,9 @@ export const Creator = {
                 mental well-being. A healthy level of self-esteem enables you to
                 navigate the ups and downs of life with resilience and poise. 🌈
               </p>
-
-              <h4>2. How Can I Improve My Self-Esteem? 🌱</h4>
+              <br />
+              <b>2. How Can I Improve My Self-Esteem? 🌱</b>
+              <br />
               <p>
                 Improving your self-esteem is an ongoing process that involves
                 self-awareness, self-compassion, and positive self-talk. Start
@@ -1436,8 +1448,9 @@ export const Creator = {
                 from friends, family, or professionals. Remember, self-esteem is
                 like a muscle; the more you work on it, the stronger it gets. 🌟
               </p>
-
-              <h4>3. Can Low Self-Esteem Affect My Mental Health? 🌧️</h4>
+              <br />
+              <b>3. Can Low Self-Esteem Affect My Mental Health? 🌧️</b>
+              <br />
               <p>
                 Yes, low self-esteem can significantly impact your mental
                 health. It can lead to issues like anxiety, depression, and even
@@ -1461,54 +1474,50 @@ export const Creator = {
           )}?`,
           response: (
             <SchedulerBlock>
-              <h4>
-                Roadmap to Becoming a Professional Psychologist in Self-Esteem
-                🌟
-              </h4>
-
               <h6>Step 1: High School Preparation 🎒</h6>
               <p>
                 Focus on Psychology, Biology, and Statistics courses. Read
                 introductory books on psychology and self-esteem.
               </p>
 
+              <br />
               <h6>Step 2: Bachelor's Degree 📚</h6>
               <p>
                 Major in Psychology and take courses on Developmental
                 Psychology, Social Psychology, and Personality Psychology.
               </p>
-
+              <br />
               <h6>Step 3: Internship & Volunteer Work 💼</h6>
               <p>
                 Gain practical experience in clinics, schools, or mental health
                 centers. Work under a psychologist specializing in self-esteem
                 issues.
               </p>
-
+              <br />
               <h6>Step 4: Master's Degree 🎓</h6>
               <p>
                 Specialize in Clinical or Counseling Psychology. Conduct a
                 thesis on self-esteem related topics.
               </p>
-
+              <br />
               <h6>Step 5: Licensing & Certification 📜</h6>
               <p>
                 Complete the required supervised hours and pass the state
                 licensing exam.
               </p>
-
+              <br />
               <h6>Step 6: Doctorate (Optional) 🎓</h6>
               <p>
                 Ph.D. or Psy.D. in Psychology with a focus on self-esteem.
                 Publish research papers in peer-reviewed journals.
               </p>
-
+              <br />
               <h6>Step 7: Professional Development 🌱</h6>
               <p>
                 Continue education through seminars, workshops, and courses.
                 Become a member of psychological associations.
               </p>
-
+              <br />
               <h6>Step 8: Open Your Practice 🏥</h6>
               <p>
                 Specialize in self-esteem issues, build a client base, and make
@@ -1536,7 +1545,9 @@ export const Creator = {
                 flourish. 🌱
               </p>
 
-              <h4>1️⃣ Positive Affirmations 🌼</h4>
+              <br />
+              <b>Positive Affirmations 🌼</b>
+              <br />
               <p>
                 Let's start by looking ourselves in the mirror every morning and
                 saying something positive. It could be as simple as, "I am
@@ -1545,7 +1556,9 @@ export const Creator = {
                 garden of self-love.
               </p>
 
-              <h4>2️⃣ Self-Compassion 🌹</h4>
+              <br />
+              <b>Self-Compassion 🌹</b>
+              <br />
               <p>
                 We all make mistakes; it's a part of being human. Instead of
                 beating yourself up over them, treat yourself with the same
@@ -1554,36 +1567,43 @@ export const Creator = {
                 who you are.
               </p>
 
-              <h4>3️⃣ Set Boundaries 🌳</h4>
+              <br />
+              <b>Set Boundaries 🌳</b>
+              <br />
               <p>
                 Learn to say 'no' when you need to. Protecting your time and
                 emotional energy is a sign of self-respect. This might be a bit
                 challenging given societal expectations, but your well-being
                 should always come first.
               </p>
-
-              <h4>4️⃣ Celebrate Small Wins 🌻</h4>
+              <br />
+              <b>Celebrate Small Wins 🌻</b>
+              <br />
               <p>
                 Did you make it to class on time? Did you understand a difficult
                 concept? Celebrate it! These small victories add up and help you
                 recognize your own abilities and worth.
               </p>
-
-              <h4>5️⃣ Surround Yourself with Positivity 🌿</h4>
+              <br />
+              <b>Surround Yourself with Positivity 🌿</b>
+              <br />
               <p>
                 Whether it's supportive friends or uplifting music, keep
                 positive influences around you. They act as the sunlight and
                 water that your self-esteem needs to grow.
               </p>
+              <br />
 
-              <h4>6️⃣ Be Mindful of Self-Talk 🌲</h4>
+              <b>Be Mindful of Self-Talk 🌲</b>
+              <br />
               <p>
                 Pay attention to how you talk to yourself. Would you talk to a
                 friend that way? If not, it's time to change the narrative. Be
                 your own biggest cheerleader, not your worst critic.
               </p>
-
-              <h4>7️⃣ Connect with Your Community 🌺</h4>
+              <br />
+              <b>Connect with Your Community 🌺</b>
+              <br />
               <p>
                 We can't ignore that society often sends us messages that can
                 erode our self-esteem, especially when those messages are
@@ -1591,12 +1611,13 @@ export const Creator = {
                 embracing your roots and drawing strength from your community
                 can offer a strong foundation for building your self-esteem.
               </p>
+              <br />
 
               <p>
-                So, my dear students, taking care of your self-esteem is an
-                ongoing process. It's like a garden that needs regular
-                attention, but the rewards are so worth it. You'll grow into
-                stronger, more resilient versions of yourselves. 🌈💖
+                So! Taking care of your self-esteem is an ongoing process. It's
+                like a garden that needs regular attention, but the rewards are
+                so worth it. You'll grow into stronger, more resilient versions
+                of yourselves. 🌈💖
               </p>
 
               <p>Ready to nurture your inner garden? 🌱🌟</p>

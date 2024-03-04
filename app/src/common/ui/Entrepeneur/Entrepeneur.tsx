@@ -37,9 +37,8 @@ export const Entrepeneur = {
               <br />
               Welcome to our journey into crafting competitive entry-level
               resumes for high-paying careers. Your experiences and passions are
-              treasures waiting to be showcased. ✨<br />
-              Communication is the key that unlocks many doors in the
-              professional world. 🗝️
+              treasures waiting to be showcased. ✨ Communication is the key
+              that unlocks many doors in the professional world. 🗝️
               <br />
               <br />
               With every word, you're building not just a resume, but a
@@ -76,9 +75,12 @@ export const Entrepeneur = {
               engagingly. Key aspects include optimizing your LinkedIn for
               visibility, ensuring your resume makes a strong impression
               quickly, and providing a meaningful context for your career
-              journey. Adhering to a structured format, such as precise spacing
-              and font usage, plays a crucial role. Education should be concise
-              yet impactful, and skills need to be categorized thoughtfully.
+              journey.
+              <br />
+              <br />
+              Adhering to a structured format, such as precise spacing and font
+              usage, plays a crucial role. Education should be concise yet
+              impactful, and skills need to be categorized thoughtfully.
               Emphasizing real-world experience and volunteer work can
               significantly enhance your profile. Ultimately, a resume is your
               narrative, a document that speaks volumes about your potential.
@@ -665,7 +667,7 @@ export const Entrepeneur = {
           )}?`,
           response: (
             <div>
-              <h3>25 elite af quotes by Charlie Munger 🌟</h3>
+              <h5>25 elite af quotes by Charlie Munger 🌟</h5>
               <ol>
                 <li style={{ marginBottom: 12 }}>
                   "To get what you want, you have to deserve what you want."
@@ -848,49 +850,48 @@ export const Entrepeneur = {
           )} with one sentence answers?`,
           response: (
             <div>
-              <h3>1. What Is Focused Investing?</h3>
+              <h5>1. What Is Focused Investing?</h5>
               <p>
-                <strong>Answer:</strong> Focused investing is a strategy where
-                an investor puts their money into a smaller number of carefully
-                chosen stocks or other assets. Rather than spreading investments
-                across many different areas, focused investors take the time to
-                deeply understand a few, and place their faith and funds in
-                those. This approach emphasizes quality over quantity, and it
-                requires a thorough understanding, research, and belief in the
-                chosen investments. Just like choosing close friends, it's about
-                knowing them well and trusting them!{" "}
-                <span class="emoji">🤗</span>
+                Focused investing is a strategy where an investor puts their
+                money into a smaller number of carefully chosen stocks or other
+                assets. Rather than spreading investments across many different
+                areas, focused investors take the time to deeply understand a
+                few, and place their faith and funds in those. This approach
+                emphasizes quality over quantity, and it requires a thorough
+                understanding, research, and belief in the chosen investments.
+                Just like choosing close friends, it's about knowing them well
+                and trusting them! <span class="emoji">🤗</span>
               </p>
               <br />
 
-              <h3>2. Why Choose Focused Investing Over Diversification?</h3>
+              <h5>2. Why Choose Focused Investing Over Diversification?</h5>
               <p>
-                <strong>Answer:</strong> While diversification spreads risk by
-                investing in a variety of assets, focused investing concentrates
-                on a few chosen ones. This allows the investor to know their
-                investments intimately, enabling them to make more informed
-                decisions. It's like studying a few subjects deeply rather than
-                many superficially. Focused investing can offer higher returns
-                if the investments perform well, but it may carry more risk if
-                they do not. Like many things in life, dear students, it's about
-                balancing risk and reward, understanding your choices, and being
-                true to your convictions. <span class="emoji">🧠✨</span>
+                While diversification spreads risk by investing in a variety of
+                assets, focused investing concentrates on a few chosen ones.
+                This allows the investor to know their investments intimately,
+                enabling them to make more informed decisions. It's like
+                studying a few subjects deeply rather than many superficially.
+                Focused investing can offer higher returns if the investments
+                perform well, but it may carry more risk if they do not. Like
+                many things in life, dear students, it's about balancing risk
+                and reward, understanding your choices, and being true to your
+                convictions. <span class="emoji">🧠✨</span>
               </p>
               <br />
 
-              <h3>3. How Can I Get Started with Focused Investing?</h3>
+              <h5>3. How Can I Get Started with Focused Investing?</h5>
               <p>
-                <strong>Answer:</strong> Starting with focused investing
-                requires careful research and understanding. Begin by selecting
-                an industry or company that you are passionate about and learn
-                everything you can about it. Look into its business model,
-                financial health, leadership, and future prospects. Consider
-                seeking advice from a financial advisor or utilizing educational
-                resources. Always align your investments with your personal
-                goals, risk tolerance, and values. Remember, dear students, it's
-                not about rushing; it's about growing, learning, and being
-                patient with yourselves. Just as in your studies, persistence
-                and dedication are key! <span class="emoji">🌱</span>
+                Starting with focused investing requires careful research and
+                understanding. Begin by selecting an industry or company that
+                you are passionate about and learn everything you can about it.
+                Look into its business model, financial health, leadership, and
+                future prospects. Consider seeking advice from a financial
+                advisor or utilizing educational resources. Always align your
+                investments with your personal goals, risk tolerance, and
+                values. Remember, dear students, it's not about rushing; it's
+                about growing, learning, and being patient with yourselves. Just
+                as in your studies, persistence and dedication are key!{" "}
+                <span class="emoji">🌱</span>
               </p>
               <br />
 
@@ -919,7 +920,7 @@ export const Entrepeneur = {
           )}?`,
           response: (
             <SchedulerBlock>
-              <h3>Focused Investing Study Guide for Students</h3>
+              <h5>Focused Investing Study Guide for Students</h5>
               <p>
                 Absolutely, my dear students! Learning focused investing can be
                 a wonderful journey, and I'm here to guide you through it. Below
@@ -927,7 +928,7 @@ export const Entrepeneur = {
                 the best role models and books to follow. 📚✨
               </p>
 
-              <h2>1. Grasping the Basics</h2>
+              <h5>1. Grasping the Basics</h5>
               <ul>
                 <li>
                   <strong>Best Books to Read</strong>: "The Little Book That
@@ -943,7 +944,7 @@ export const Entrepeneur = {
                 </li>
               </ul>
 
-              <h2>2. Developing a Strategy: Focused Investing</h2>
+              <h5>2. Developing a Strategy: Focused Investing</h5>
               <ul>
                 <li>
                   <strong>Best Books to Read</strong>: "Common Stocks and
@@ -960,7 +961,7 @@ export const Entrepeneur = {
                 </li>
               </ul>
 
-              <h2>3. Understanding Markets and Economics</h2>
+              <h5>3. Understanding Markets and Economics</h5>
               <ul>
                 <li>
                   <strong>Best Books to Read</strong>: "A Random Walk Down Wall
@@ -976,7 +977,7 @@ export const Entrepeneur = {
                 </li>
               </ul>
 
-              <h2>4. Ethics, Social Responsibility, and Personal Growth</h2>
+              <h5>4. Ethics, Social Responsibility, and Personal Growth</h5>
               <ul>
                 <li>
                   <strong>Best Books to Read</strong>: "The Essays of Warren
@@ -992,7 +993,7 @@ export const Entrepeneur = {
                 </li>
               </ul>
 
-              <h2>5. Continuing Education and Staying Informed</h2>
+              <h5>5. Continuing Education and Staying Informed</h5>
               <ul>
                 <li>
                   <strong>Best Books to Read</strong>: "The Most Important
@@ -1044,7 +1045,6 @@ export const Entrepeneur = {
           )}?`,
           response: (
             <div>
-              <h1>Hello there! 🌟</h1>
               <p>
                 Absolutely, let's break down Apple's revenue together! As of my
                 knowledge cut-off in September 2021, Apple, one of the world's
