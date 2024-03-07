@@ -212,13 +212,13 @@ export let RoxanaLoadingAnimation = () => {
   return (
     <FadeInComponent>
       <div>
-        <Spinner animation="grow" variant="info" size="sm">
+        {/* <Spinner animation="grow" variant="info" size="sm">
           <span className="visually-hidden">Loading...</span>
-        </Spinner>
+        </Spinner> */}
         <img width="150px" src={roxanaGif} />
-        <Spinner animation="grow" variant="primary" size="sm">
+        {/* <Spinner animation="grow" variant="primary" size="sm">
           <span className="visually-hidden">Loading...</span>
-        </Spinner>
+        </Spinner> */}
       </div>
     </FadeInComponent>
   );

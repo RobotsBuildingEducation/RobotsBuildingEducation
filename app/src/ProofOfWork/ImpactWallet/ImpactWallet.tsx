@@ -37,6 +37,7 @@ import { getAuth, signOut } from "firebase/auth";
 import { ChatFrame } from "./ChatFrame/ChatFrame";
 import { Portfolio } from "./Portfolio/Portfolio";
 import { BossMode } from "./BossMode/BossMode";
+import { Experimental } from "./Cofounder/Experimental";
 
 const renderTranscriptAwards = (profileData) => {
   if (isEmpty(profileData)) {
@@ -570,6 +571,14 @@ export const ImpactWallet = ({
         zap={zap}
         handleZap={handleZap}
       />
+      {/* <Experimental
+        isCofounderOpen={isCofounderOpen}
+        setIsCofounderOpen={setIsCofounderOpen}
+        userStateReference={userStateReference}
+        globalStateReference={globalStateReference}
+        zap={zap}
+        handleZap={handleZap}
+      /> */}
 
       <BossMode
         isBossModeOpen={isBossModeOpen}
