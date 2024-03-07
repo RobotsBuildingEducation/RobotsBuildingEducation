@@ -8,6 +8,7 @@ import {
   textBlock,
 } from "../../../../styles/lazyStyles";
 import { getRandomColor } from "../../../../App.compute";
+import RandomCharacter from "../RandomCharacter/RandomCharacter";
 
 const delayedAnimation = keyframes`
 from {
@@ -47,7 +48,7 @@ const SummaryItem = ({ question, answer, index }) => {
           style={{
             // backgroundColor: japaneseThemePalette.StrongBlue,
             ...textBlock(
-              japaneseThemePalette?.WisteriaPurple,
+              japaneseThemePalette?.PowerPurple,
               1,
               8,
               "white",
@@ -85,9 +86,12 @@ export const RevealButton = ({ content }) => {
           style={{
             maxWidth: "100%",
             // width: 700 /* Add your text block styles here */,
-            ...textBlock(japaneseThemePalette?.KyotoPurple, 0),
+            ...textBlock(japaneseThemePalette?.PowerPurple, 0),
+            borderRadius: 32,
+            paddingBottom: 48,
           }}
         >
+          <RandomCharacter speed={0.2} />
           {content}
         </p>
       ),

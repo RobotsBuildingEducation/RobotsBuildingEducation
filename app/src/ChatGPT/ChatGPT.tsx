@@ -65,7 +65,7 @@ const ChatGPT = ({
 
   useEffect(() => {
     if (topRef.current) {
-      topRef.current.scrollIntoView({ behavior: "smooth" });
+      topRef.current.scrollIntoView();
     }
   }, [loadingMessage]);
 

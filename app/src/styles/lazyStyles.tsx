@@ -82,11 +82,15 @@ const panLeft = keyframes`
   }
 `;
 export const PanRightComponent = styled.div`
-  animation: ${panRight} 0.25s ease;
+  animation: ${panRight} ${(props) => {
+  return props.speed ? props.speed + "s" : "0.25s";
+}}; ease;
 `;
 
 export const PanLeftComponent = styled.div`
-  animation: ${panLeft} 0.25s ease;
+  animation: ${panLeft} ${(props) => {
+  return props.speed ? props.speed + "s" : "0.25s";
+}}; ease;
 `;
 export const sineWave = keyframes`
 0%, 100% {
@@ -519,4 +523,8 @@ export let textBlock2 = (
     color: color,
     boxShadow: boxShadow,
   };
+};
+
+export const StyledListItem = {
+  padding: 6,
 };

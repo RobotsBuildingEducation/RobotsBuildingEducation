@@ -105,22 +105,12 @@ export const Header = ({
           </Form>
         </div>
       </div> */}
-      <LearnMore languageMode={languageMode} canInstallPwa={canInstallPwa} />
+      <LearnMore
+        languageMode={languageMode}
+        canInstallPwa={canInstallPwa}
+        handleZeroKnowledgePassword={handleZeroKnowledgePassword}
+      />
       <br />
-      {localStorage.getItem("patreonPasscode") ===
-      import.meta.env.VITE_PATREON_PASSCODE ? (
-        <FadeInComponent>
-          <Button
-            variant={"dark"}
-            onClick={() => {
-              localStorage.clear();
-              handleZeroKnowledgePassword(null, true, false);
-            }}
-          >
-            Log out
-          </Button>
-        </FadeInComponent>
-      ) : null}
       <div
         style={{
           display: "flex",
