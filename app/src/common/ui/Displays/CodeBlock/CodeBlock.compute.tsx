@@ -1,27 +1,36 @@
 import { personality } from "../../../../ProofOfWork/ImpactWallet/Scheduler/Scheduler.compute";
 
-export const customInstructions = (context, formData) => {
+export const customInstructions = (formData) => {
   let jsonStructure = `Return the answer with the following json structure:
-
     "result": {
-      explanation: string
-      breakdown: [{
-          suggestedAmountOfTime: string,
-          description: string,
-          explanation: string
-      }]
+      frontend_code: {
+        explanation: string,
+        code: string
+      },
+      backend_code: {
+        explanation: string,
+        code: string
+      }
   }`;
 
+  /**
+[{
+  description: string,
+  explanation: string
+}]
+   */
+  // Personality: This is your personality: ${personality}
   let prompt = `
-    Personality: This is your personality: ${personality}
 
-    Responsibility: You're responsible responsible for creating the most effective schedule for people to learn a new skill.
-    
-    Pace: this is the pace the student wants to go - ${formData?.pace}
-    
-    Specifics: the user has shared this data with you - ${formData?.description}
 
-    Additional context about the skill: ${context}
+    Responsibility: You're responsible for writing effective code that people can learn from reading.
+    
+   ${
+     formData.description
+       ? `Specifics: the user has shared this data with you - ${formData?.description}`
+       : ""
+   }
+
 
     ${jsonStructure}
 

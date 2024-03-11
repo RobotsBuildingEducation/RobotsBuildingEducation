@@ -16,6 +16,8 @@ import "prismjs/themes/prism.css";
 import { PanLeftComponent, PanRightComponent } from "../../styles/lazyStyles";
 import { ContentLinks } from "../../common/ui/Displays/ContentLinks/ContentLinks";
 import { CodeDemo } from "./Content/CodeDemo";
+import { SchedulerBlock } from "../../common/ui/Displays/SchedulerBlock/SchedulerBlock";
+import { CodeBlock } from "../../common/ui/Displays/CodeBlock/CodeBlock";
 
 const delayedAnimation = keyframes`
 from {
@@ -105,7 +107,11 @@ const renderContent = (
       return <CodeEditor patreonObject={patreonObject} />;
     case "demonstrate":
       if (patreonObject?.hasCode) {
-        return <CodeDemo response={response} patreonObject={patreonObject} />;
+        return (
+          <CodeBlock code={response}>
+            <CodeDemo response={response} patreonObject={patreonObject} />
+          </CodeBlock>
+        );
       } else {
         return <div style={{ padding: 20 }}>{response}</div>;
       }

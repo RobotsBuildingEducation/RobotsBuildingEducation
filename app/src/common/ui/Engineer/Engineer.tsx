@@ -16,7 +16,7 @@ import inspire04 from "../../media/images/prompts/inspire04.png";
 import inspire05 from "../../media/images/prompts/inspire05.png";
 
 import { ChatBlock } from "../Displays/ChatBlock/ChatBlock";
-import { CodeBlock } from "../Displays/CodeBlock/CodeBlock";
+import { CodeDisplay } from "../Displays/CodeDisplay/CodeDisplay";
 import { CuteGradient } from "../Displays/CuteGradient/CuteGradient";
 
 import { RobotDialogue } from "../Displays/RobotDialogue/RobotDialogue";
@@ -922,7 +922,7 @@ exports.app = functions.https.onRequest(app);
               her own specific name, age, and grade and could perform actions
               like studying or taking an exam.
               <br /> <br />
-              <CodeBlock
+              <CodeDisplay
                 code={`
 class Student {
   constructor(name, age, grade) {
@@ -955,7 +955,7 @@ maria.study();`}
               from another class (the parent, or superclass). This is great for
               reusing code.
               <br /> <br />
-              <CodeBlock
+              <CodeDisplay
                 code={`
 class Athlete extends Student {
   constructor(name, age, grade, sport) {
@@ -990,7 +990,7 @@ juan.play();`}
               many forms. In code, it allows a child class to behave uniquely,
               even when using attributes inherited from a parent class. <br />{" "}
               <br />
-              <CodeBlock
+              <CodeDisplay
                 code={`
 class Artist extends Student {
   constructor(name, age, grade, artForm) {
@@ -1026,7 +1026,7 @@ sofia.study();
               controls access to an object's internal state, meaning we can
               limit how and when its data is modified. This way, we keep our
               code neat and prevent bugs. <br /> <br />
-              <CodeBlock
+              <CodeDisplay
                 code={`
 class Student {
   constructor(name, age, grade) {
@@ -1069,7 +1069,7 @@ console.log(luis.getName());
               Similarly, abstraction in OOP allows us to hide complex details
               and show only essential features. This helps make our code easier
               to understand and work with. <br /> <br />
-              <CodeBlock
+              <CodeDisplay
                 code={`
 class Student {
   constructor(name, age, grade) {
@@ -1133,7 +1133,7 @@ ana.markAttendance("Present");
               an object packages both data and the procedures that manipulate
               that data.
               <br /> <br />
-              <CodeBlock
+              <CodeDisplay
                 code={`
 let student = {
   name: 'Juan',
@@ -1158,7 +1158,7 @@ student.greet();  // Outputs: Hello, my name is Juan!`}
               different breeds, colors, and ages, but all will be capable of
               barking, eating, and sleeping.
               <br /> <br />
-              <CodeBlock
+              <CodeDisplay
                 code={`
 class Student {
   constructor(name, age) {
@@ -1186,7 +1186,7 @@ juan.greet();  // Outputs: Hello, my name is Juan!
               promote code re-usability and makes your code more organized and
               easier to manage.
               <br /> <br />
-              <CodeBlock
+              <CodeDisplay
                 code={`
 class Person {
   constructor(name) {
@@ -2087,7 +2087,7 @@ throw new Error(
               applications interactive and dynamic.
               <br />
               <br />
-              <CodeBlock
+              <CodeDisplay
                 code={`
 document
 .getElementById('myButton')
@@ -2114,7 +2114,7 @@ document
               reusable.
               <br />
               <br />
-              <CodeBlock
+              <CodeDisplay
                 code={`
 export let ClickButton = () => {
   const [
