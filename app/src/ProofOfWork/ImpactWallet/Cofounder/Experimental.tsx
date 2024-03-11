@@ -137,6 +137,7 @@ export const Experimental = ({
     >
       <Modal.Header
         closeButton
+        closeVariant="white"
         style={{
           color: "white",
           backgroundColor: "black",
