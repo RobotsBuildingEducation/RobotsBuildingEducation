@@ -6,7 +6,6 @@ import styled from "styled-components";
 import { japaneseThemePalette, textBlock } from "../../../../styles/lazyStyles";
 import { RoxanaLoadingAnimation, postInstructions } from "../../../uiSchema";
 import { customInstructions } from "./SchedulerBlock.compute";
-import { useStore } from "../../../../Store";
 
 import { useZapAnimation } from "../../../../App.hooks";
 // import { customInstructions } from "./SchedulerBlock.compute";
@@ -101,6 +100,7 @@ export const SchedulerBlock = ({ children }) => {
 
     setIsLoading(true);
     e.preventDefault();
+
     zapAnimation();
     // Here you would normally submit the form data and fetch the API response
     // For this example, we're just setting it directly
@@ -144,6 +144,7 @@ export const SchedulerBlock = ({ children }) => {
 
       let outcome = result.result;
       setApiResponse(outcome);
+
       setIsLoading(false);
     }
   };

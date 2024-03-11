@@ -5,7 +5,7 @@
 `App.compute.ts` ⚙️
 This TypeScript file is where we put logic that's too complex for the UI components. Think of it as the place for heavy lifting operations. They store functions in the App component and beyond.
 
-`App.constants.ts` 📚
+`App.constants.ts`
 Constants are unchanging values used throughout our app. This file is like a record, keeping our code consistent and organized.
 
 `App.css` 🖌️

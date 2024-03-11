@@ -357,9 +357,8 @@ export const ImpactWallet = ({
               margin: 6,
               height: 6,
               borderRadius: 4,
-              backgroundColor: "pink",
+              backgroundColor: "skyblue",
             }}
-            variant="success"
             now={Math.floor(computePercentage * 100)}
           />
         </div>
@@ -563,15 +562,7 @@ export const ImpactWallet = ({
         zap={zap}
       /> */}
 
-      <Cofounder
-        isCofounderOpen={isCofounderOpen}
-        setIsCofounderOpen={setIsCofounderOpen}
-        userStateReference={userStateReference}
-        globalStateReference={globalStateReference}
-        zap={zap}
-        handleZap={handleZap}
-      />
-      {/* <Experimental
+      {/* <Cofounder
         isCofounderOpen={isCofounderOpen}
         setIsCofounderOpen={setIsCofounderOpen}
         userStateReference={userStateReference}
@@ -579,6 +570,14 @@ export const ImpactWallet = ({
         zap={zap}
         handleZap={handleZap}
       /> */}
+      <Experimental
+        isCofounderOpen={isCofounderOpen}
+        setIsCofounderOpen={setIsCofounderOpen}
+        userStateReference={userStateReference}
+        globalStateReference={globalStateReference}
+        zap={zap}
+        handleZap={handleZap}
+      />
 
       <BossMode
         isBossModeOpen={isBossModeOpen}

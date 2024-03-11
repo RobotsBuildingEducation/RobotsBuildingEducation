@@ -15,7 +15,7 @@ export const processChildren = (children) => {
   return elements;
 };
 
-export const Typewriter = ({ speed, children }) => {
+export const Typewriter = ({ speed = 10, children }) => {
   const [displayedContent, setDisplayedContent] = useState([]);
   const [index, setIndex] = useState(0);
 
