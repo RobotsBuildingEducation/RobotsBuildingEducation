@@ -67,8 +67,6 @@ export const Experimental = ({
     );
     createPrompt(prompt);
 
-    console.log(switchStates, additionalContext);
-
     const response = await fetch(postInstructions.url, {
       method: postInstructions.method,
       headers: postInstructions.headers,
@@ -84,9 +82,6 @@ export const Experimental = ({
         ) {
           zap().then((lightningResponse) => {
             if (lightningResponse?.preimage) {
-              console.log("running zap");
-              console.log("userStateReference", userStateReference);
-              console.log("globalStateReference", globalStateReference);
               updateImpact(1, userStateReference, globalStateReference);
             }
           });
@@ -100,18 +95,16 @@ export const Experimental = ({
         console.log("{ERROR}", error);
       });
 
-    console.log("response", response);
-
     if (response) {
       let data = await response.json();
-      console.log("response data", data);
+
       //   let result = JSON.parse(data?.bot?.content);
 
       //   let outcome = result.schedule;
       let outcome = data?.bot?.content;
 
       setGptResponse(outcome);
-      console.log("outcome", outcome);
+
       handleZap("ai");
       // setCofounder(outcome);
     }
@@ -121,7 +114,7 @@ export const Experimental = ({
 
   const handleSaveToFirebaseChange = async (event) => {
     setIsSettingLoading(true);
-    console.log("userstatereferef", userStateReference);
+
     let userId = userStateReference?.databaseUserDocument?.userAuthObj?.uid;
 
     const userDocRef = doc(database, "users", userId);
