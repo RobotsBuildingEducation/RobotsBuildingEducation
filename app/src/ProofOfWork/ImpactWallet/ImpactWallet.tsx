@@ -4,6 +4,7 @@ import Lottie from "react-lottie";
 import { Button, Fade, Form, Modal, ProgressBar } from "react-bootstrap";
 import zap_animation from "../../common/anims/zap_animation.json";
 import star_animation from "../../common/anims/star_animation.json";
+import bitcoin_animation from "../../common/anims/bitcoin_animation.json";
 import { getGlobalImpact } from "../../common/uiSchema";
 import sheilferBitcoin from "../../common/media/images/sheilferBitcoin.jpeg";
 import cashAppCard from "../../common/media/images/cashAppCard.jpeg";
@@ -201,13 +202,13 @@ export const ImpactWallet = ({
                 options={{
                   loop: true,
                   autoplay: true,
-                  animationData: showZap ? zap_animation : star_animation, // Your animation data goes here
+                  animationData: showZap ? bitcoin_animation : zap_animation, // Your animation data goes here
                   // rendererSettings: {
                   //   // preserveAspectRatio: "xMidYMid slice", // Adjust as needed
                   // },
                 }}
-                width={showZap ? 40 : 55}
-                height={showZap ? 40 : 55}
+                width={showZap ? 40 : 40}
+                height={showZap ? 40 : 40}
               />
             </FadeInComponent>
             {/* @ts-ignore */}

@@ -63,9 +63,11 @@ const Patreon = ({
   patreonObject,
   isAutoPlay = false,
   handleScheduler,
+  handleWatch,
   userStateReference,
   globalStateReference,
   handleZap,
+  moduleName,
 }) => {
   const zapAmount = 1;
   let zap = useZap(zapAmount, "Robots Building Education Video");
@@ -96,7 +98,8 @@ const Patreon = ({
 
         if (videoElement.currentTime >= ninetyPercentDuration) {
           setVideoDurationDetection(true);
-          handleScheduler("video");
+          handleWatch(moduleName);
+          handleScheduler("video", moduleName);
         }
       }
     };

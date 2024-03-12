@@ -3,7 +3,12 @@ import isEmpty from "lodash/isEmpty";
 import { updateDoc } from "firebase/firestore";
 import { database } from "./database/firebaseResources";
 import { getGlobalImpact } from "./common/uiSchema";
-import { decentralizedEducationTranscript } from "./App.constants";
+import {
+  decentralizedEducationTranscript,
+  userProgression,
+  userUnlocks,
+  userWatches,
+} from "./App.constants";
 import { japaneseThemePalette } from "./styles/lazyStyles";
 import { useStore } from "./Store";
 
@@ -57,6 +62,9 @@ export const setupUserDocument = async (docRef, userStateReference, user) => {
       impact: 0,
       userAuthObj: { uid: user.uid },
       profile: decentralizedEducationTranscript,
+      progress: userProgression,
+      unlocks: userUnlocks,
+      watches: userWatches,
     });
     const response = await getDoc(docRef);
     userStateReference.setDatabaseUserDocument(response.data());

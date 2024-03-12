@@ -8,6 +8,9 @@ export const ChatGptWrapper = ({
   handleScheduler,
   handleZap,
   zap,
+  checkForUnlock,
+  handleCompletedPractice,
+  handleWatch,
 }) => {
   // Early return if patreonObject is empty and isDemo is false
   if (isEmpty(uiStateReference.patreonObject) && !uiStateReference.isDemo) {
@@ -48,6 +51,9 @@ export const ChatGptWrapper = ({
         zap={zap}
         userStateReference={userStateReference}
         globalStateReference={globalStateReference}
+        checkForUnlock={checkForUnlock}
+        handleCompletedPractice={handleCompletedPractice}
+        handleWatch={handleWatch}
       />
     </div>
   );

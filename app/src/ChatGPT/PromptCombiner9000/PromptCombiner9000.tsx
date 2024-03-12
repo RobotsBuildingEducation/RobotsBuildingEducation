@@ -89,7 +89,11 @@ const renderContent = (
   userStateReference,
   globalStateReference,
   handleZap,
-  zap
+  zap,
+  moduleName,
+  checkForUnlock,
+  handleCompletedPractice,
+  handleWatch
 ) => {
   switch (type) {
     case "patreon":
@@ -97,14 +101,23 @@ const renderContent = (
         <Patreon
           patreonObject={patreonObject}
           handleScheduler={handleScheduler}
+          handleWatch={handleWatch}
           userStateReference={userStateReference}
           globalStateReference={globalStateReference}
           handleZap={handleZap}
           zap={zap}
+          moduleName={moduleName}
         />
       );
     case "practice":
-      return <CodeEditor patreonObject={patreonObject} />;
+      return (
+        <CodeEditor
+          patreonObject={patreonObject}
+          moduleName={moduleName}
+          userStateReference={userStateReference}
+          handleCompletedPractice={handleCompletedPractice}
+        />
+      );
     case "demonstrate":
       if (patreonObject?.hasCode) {
         return (
@@ -153,7 +166,12 @@ export const PromptCombiner9000 = ({
   handleZap,
   zap,
   index,
+  moduleName,
+  checkForUnlock,
+  handleCompletedPractice,
+  handleWatch,
 }) => {
+  console.log("moduleName", moduleName);
   const [promptVisibility, setPromptVisibility] = useState("flex");
   if (isEmpty(patreonObject)) {
     return null;
@@ -217,7 +235,11 @@ export const PromptCombiner9000 = ({
                 userStateReference,
                 globalStateReference,
                 handleZap,
-                zap
+                zap,
+                moduleName,
+                checkForUnlock,
+                handleCompletedPractice,
+                handleWatch
               )}
           </FlexBox>
         </MessageContainer>

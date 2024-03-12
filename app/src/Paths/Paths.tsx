@@ -20,25 +20,91 @@ const StyledPathItem = styled.div`
   opacity: 0; /* Start with opacity 0 to make the animation visible */
   animation-fill-mode: forwards; /* Keep the element visible after the animation */
 `;
-const createDisplayTop = (topPaths, handlePathSelection, animationData) => {
+const createDisplayTop = (
+  topPaths,
+  handlePathSelection,
+  animationData,
+  unlockCreatorKey,
+  unlockDealerKey
+) => {
   return topPaths.map((path, index) => {
     const displayText = path !== "Entrepeneur" ? path : "Dealer";
 
-    return (
-      <StyledPathItem index={index} key={path}>
-        <StyledLink
-          active
-          to="/"
-          pathSelectionAnimationData={animationData}
-          path={path}
-          id={path}
-          onClick={handlePathSelection}
-          key={path}
-        >
-          {displayText}
-        </StyledLink>
-      </StyledPathItem>
-    );
+    if (unlockCreatorKey && unlockDealerKey) {
+      return (
+        <StyledPathItem index={index} key={path}>
+          <StyledLink
+            active
+            to="/"
+            pathSelectionAnimationData={animationData}
+            path={path}
+            id={path}
+            onClick={handlePathSelection}
+            key={path}
+            isUnlocked={true}
+          >
+            {displayText}
+          </StyledLink>
+        </StyledPathItem>
+      );
+    } else {
+      if (path === "Engineer") {
+        return (
+          <StyledPathItem index={index} key={path}>
+            <StyledLink
+              active
+              to="/"
+              pathSelectionAnimationData={animationData}
+              path={path}
+              id={path}
+              onClick={handlePathSelection}
+              key={path}
+              isUnlocked={true}
+            >
+              {displayText}
+            </StyledLink>
+          </StyledPathItem>
+        );
+      } else if (path === "Creator") {
+        return (
+          <StyledPathItem index={index} key={path}>
+            <StyledLink
+              active
+              to="/"
+              pathSelectionAnimationData={animationData}
+              path={path}
+              id={path}
+              key={path}
+              isUnlocked={unlockCreatorKey}
+              onClick={(event) =>
+                unlockCreatorKey ? handlePathSelection(event) : null
+              }
+            >
+              {displayText}
+            </StyledLink>
+          </StyledPathItem>
+        );
+      } else if (path === "Entrepeneur") {
+        return (
+          <StyledPathItem index={index} key={path}>
+            <StyledLink
+              active
+              to="/"
+              pathSelectionAnimationData={animationData}
+              path={path}
+              id={path}
+              key={path}
+              isUnlocked={unlockDealerKey}
+              onClick={(event) =>
+                unlockDealerKey ? handlePathSelection(event) : null
+              }
+            >
+              {displayText}
+            </StyledLink>
+          </StyledPathItem>
+        );
+      }
+    }
   });
 };
 
@@ -52,7 +118,18 @@ const createDisplayTop = (topPaths, handlePathSelection, animationData) => {
 export const Paths = ({
   handlePathSelection,
   pathSelectionAnimationData,
+  userStateReference,
 }): JSX.Element => {
+  console.log("path data.......", userStateReference);
+
+  let unlockCreatorKey =
+    userStateReference?.databaseUserDocument?.unlocks?.["Philosophy"];
+
+  let unlockDealerKey =
+    userStateReference?.databaseUserDocument?.unlocks?.[
+      "Lesson 4 Building Apps & Startups"
+    ];
+
   // Define the top paths
   const topPaths = ["Engineer", "Creator", "Entrepeneur"];
 
@@ -60,7 +137,9 @@ export const Paths = ({
   const displayTop = createDisplayTop(
     topPaths,
     handlePathSelection,
-    pathSelectionAnimationData
+    pathSelectionAnimationData,
+    unlockCreatorKey,
+    unlockDealerKey
   );
 
   return <StyledNavigationContainer>{displayTop}</StyledNavigationContainer>;

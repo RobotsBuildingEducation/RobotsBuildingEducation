@@ -25,6 +25,7 @@ const StyledAnimatedModule = styled.div`
 export const Collections = ({
   handleModuleSelection,
   currentPath,
+  userStateReference,
 }): JSX.Element | null => {
   const pathData = ui();
 
@@ -42,6 +43,8 @@ export const Collections = ({
       const boxShadowStyle = {
         boxShadow: `10px 10px 0px 0px ${japaneseThemePalette.TokyoTwilight}`,
       };
+
+      console.log("MODULES", modules);
 
       return (
         <div>
@@ -66,6 +69,7 @@ export const Collections = ({
                   collection={collection}
                   module={module}
                   handleModuleSelection={handleModuleSelection}
+                  userStateReference={userStateReference}
                 />
               </StyledAnimatedModule>
             ))}

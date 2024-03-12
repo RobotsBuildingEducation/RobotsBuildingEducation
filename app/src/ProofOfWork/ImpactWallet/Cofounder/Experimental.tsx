@@ -178,6 +178,7 @@ export const Experimental = ({
               rows={3}
               value={additionalContext}
               onChange={(e) => setAdditionalContext(e.target.value)}
+              style={{ maxWidth: 700 }}
             />
           </Form.Group>
           <br />

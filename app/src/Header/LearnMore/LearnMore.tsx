@@ -4,7 +4,7 @@ import { Button, Modal } from "react-bootstrap";
 import { usePWAInstall } from "react-use-pwa-install";
 
 import { logEvent } from "firebase/analytics";
-import { analytics } from "../../database/firebaseResources";
+import { analytics, auth } from "../../database/firebaseResources";
 import { DiscordButton } from "../../common/ui/Displays/DiscordButton/DiscordButton";
 
 import {
@@ -120,7 +120,7 @@ export const LearnMore = ({
       {/* <Button
         variant="danger"
         onClick={() => {
-        auth.signOut();
+          auth.signOut();
         }}
       >
         Sign Out{" 😭😭😭"}

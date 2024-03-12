@@ -344,7 +344,10 @@ export const StyledLink = styled(Link)`
   }};
 
   // border: 2px solid hotpink;
-  border: 2px solid #e216b4;
+  border: 2px solid
+    ${(props) => {
+      return props.isUnlocked ? "#e216b4" : "gray";
+    }};
 
   width: 115px;
 
