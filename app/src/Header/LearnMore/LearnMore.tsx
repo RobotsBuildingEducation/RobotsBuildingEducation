@@ -116,8 +116,8 @@ export const LearnMore = ({
           </PanRightComponent>
         ) : null}
       </div>
-
-      {/* <Button
+      {/* 
+      <Button
         variant="danger"
         onClick={() => {
           auth.signOut();
