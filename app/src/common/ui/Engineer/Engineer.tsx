@@ -25,6 +25,7 @@ import RandomCharacter from "../Displays/RandomCharacter/RandomCharacter";
 import { SchedulerBlock } from "../Displays/SchedulerBlock/SchedulerBlock";
 import { ArtBlock } from "../Displays/ArtBlock/ArtBlock";
 import { StyledListItem } from "../../../styles/lazyStyles";
+import { ExternalLink } from "../Displays/ExternalLink/ExternalLink";
 
 export const Engineer = {
   "Coding Crash Course Version 3": {
@@ -104,7 +105,22 @@ export const Engineer = {
               myths – programming isn't just for math wizards. It's for anyone
               willing to learn and create.
               <br />
-              <br /> Computer science isn't just about code; it's about solving
+              <br />
+              By the end of these lectures, we'll understand what it takes to
+              build an app quickly. I recommend trying out this tutorial before
+              starting lesson 1 to see how far you can get. By lesson 4, we'll
+              go through this tutorial step by step:
+              <br />
+              <br />
+              <ExternalLink
+                textDisplay={"Tutorial (text-version)"}
+                link={
+                  "https://www.patreon.com/posts/extras-building-93082226?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                }
+              />
+              <br />
+              <br />
+              Computer science isn't just about code; it's about solving
               real-world problems in any field, from art to climate tech. So,
               take a deep breath, and let's start this journey of learning and
               impact together. You're more capable than you think. Vamos!🚀💻🌟
@@ -3961,6 +3977,14 @@ exports.app = functions
           tooltip: ``,
           summaryContent: (
             <div>
+              <br />
+              <ExternalLink
+                textDisplay={"Tutorial (text-version)"}
+                link={
+                  "https://www.patreon.com/posts/extras-building-93082226?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                }
+              />
+              <br /> <br />
               In this session, we've taken a big leap in our coding journey! We
               started by setting up our development environment with tools like
               VSCode and Node.js. Next, we dived into creating a project
@@ -4093,6 +4117,14 @@ exports.app = functions
           )}?`,
           response: (
             <div>
+              <ExternalLink
+                textDisplay={"Tutorial (text-version)"}
+                link={
+                  "https://www.patreon.com/posts/extras-building-93082226?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                }
+              />
+              <br />
+              <br />
               My dear students!!!!! 🌟 Let's embark on a journey of
               understanding how we can combine the power of Backend as a Service
               (BaaS) in building apps with the financial support we can get

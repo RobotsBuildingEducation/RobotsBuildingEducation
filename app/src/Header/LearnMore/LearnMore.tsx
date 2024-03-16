@@ -116,6 +116,7 @@ export const LearnMore = ({
           </PanRightComponent>
         ) : null}
       </div>
+
       {/* 
       <Button
         variant="danger"

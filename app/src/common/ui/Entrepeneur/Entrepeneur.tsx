@@ -6,6 +6,7 @@ import { ultimateEffeciencyJutsu } from "../ui";
 import { japaneseThemePalette, textBlock } from "../../../styles/lazyStyles";
 import { SchedulerBlock } from "../Displays/SchedulerBlock/SchedulerBlock";
 import MarkdownRenderer from "../../../ChatGPT/Patreon/MarkdownRenderer/MarkdownRenderer";
+import { ExternalLink } from "../Displays/ExternalLink/ExternalLink";
 
 export const Entrepeneur = {
   "Understanding Business": {
@@ -650,6 +651,15 @@ export const Entrepeneur = {
                 whiteSpace: "pre-wrap",
               }}
             >
+              <br />
+              <ExternalLink
+                textDisplay={"The Psychology Of Human Misjudgement"}
+                link={
+                  "https://www.youtube.com/watch?v=Jv7sLrON7QY&ab_channel=WarrenBuffett"
+                }
+              />
+              <br />
+              <br />
               <MarkdownRenderer
                 file={await import("../../markdowns/focusInvesting.md?raw")}
                 patreonObject={null}
