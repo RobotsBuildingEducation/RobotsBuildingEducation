@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 // import { pwaInstallHandler } from "pwa-install-handler";
 import { Button, Modal } from "react-bootstrap";
 import { usePWAInstall } from "react-use-pwa-install";
@@ -41,18 +42,46 @@ export const LearnMore = ({
     >
       Install app
     </Button>      &nbsp; &nbsp; &nbsp; &nbsp;</>: null} */}
-      <FadeInComponent>
-        <div style={{ fontFamily: "Bungee", color: "white" }}>rox</div>
-      </FadeInComponent>
       <br />
+      <FadeInComponent>
+        <div style={{ fontFamily: "Bungee", color: "white" }}>rox.ai</div>
+      </FadeInComponent>
+
       <div
         style={{
           display: "flex",
-          justifyContent: "center",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        <br />
-        <PanLeftComponent speed={0.3}>
+        {/* <PanLeftComponent speed={0.3}>
+          <a
+            style={{ color: "white" }}
+            href={"https://old-fashionedintelligence.info/news"}
+            target={"_blank"}
+          >
+            <Button
+              variant="dark"
+              style={{
+                color: "white",
+                textShadow: "0px 0px 4px black",
+                margin: 6,
+                width: 55,
+              }}
+              onClick={() => {
+                logEvent(analytics, "select_content", {
+                  content_type: "button",
+                  item_id: "Old-Fashioned Intelligence",
+                });
+                // setIsNewsModalOpen(true);
+              }}
+            >
+              🧍🏽‍♀️
+            </Button>
+          </a>
+        </PanLeftComponent>
+        <br /> */}
+        <RiseUpAnimation speed={0.3}>
           <a
             style={{ color: "white" }}
             href={"https://old-fashionedintelligence.info/news"}
@@ -74,11 +103,11 @@ export const LearnMore = ({
                 // setIsNewsModalOpen(true);
               }}
             >
-              o-fi 📰
+              📰
             </Button>
           </a>
-        </PanLeftComponent>
-        <br />
+        </RiseUpAnimation>
+
         <RiseUpAnimation speed={0.3}>
           <Button
             variant="dark"
@@ -100,7 +129,7 @@ export const LearnMore = ({
           </Button>
         </RiseUpAnimation>
         <br />
-        {localStorage.getItem("patreonPasscode") ===
+        {/* {localStorage.getItem("patreonPasscode") ===
         import.meta.env.VITE_PATREON_PASSCODE ? (
           <PanRightComponent speed={0.3}>
             <Button
@@ -114,11 +143,10 @@ export const LearnMore = ({
               Log out
             </Button>
           </PanRightComponent>
-        ) : null}
+        ) : null} */}
       </div>
 
-      {/* 
-      <Button
+      {/* <Button
         variant="danger"
         onClick={() => {
           auth.signOut();

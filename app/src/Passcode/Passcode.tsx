@@ -162,17 +162,7 @@ export const Passcode = ({ handleZeroKnowledgePassword, patreonObject }) => {
           <br />
           {/* <br />
           <br />
-          <a
-            style={{
-              color: "gold",
-              margin: 24,
-              textDecoration: "underline",
-            }}
-            href="https://www.patreon.com/robotsbuildingeducation/about"
-            target="_blank"
-          >
-            📬 Learn more @ Patreon
-          </a> */}
+
           {/* <br />
           <br />
           <a

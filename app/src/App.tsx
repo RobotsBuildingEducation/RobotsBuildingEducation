@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Web5 } from "@web5/api/browser";
 import isEmpty from "lodash/isEmpty";
 
 import "./App.css";
@@ -7,6 +8,7 @@ import { Paths } from "./Paths/Paths";
 import {
   controlPathVisibilityMap,
   RoxanaLoadingAnimation,
+  RoxSplashAnimation,
 } from "./common/uiSchema";
 import { Collections } from "./Paths/Collections/Collections";
 import { Header } from "./Header/Header";
@@ -202,12 +204,20 @@ let App = ({ canInstallPwa }) => {
    */
 
   const connectDID = async () => {
-    // const { web5, did: aliceDid } = await Web5.connect();
-    // console.log("DID", aliceDid);
+    try {
+      const { web5, did: aliceDid } = await Web5.connect();
+      console.log("DID", aliceDid);
+      console.log("DIDX", web5.did);
+      localStorage.setItem("uniqueId", web5?.did?.agent?.agentDid);
+      return web5?.did?.agent?.agentDid;
+    } catch (error) {
+      console.log("did error", error);
+    }
   };
-  useEffect(() => {
-    // connectDID();
 
+  useEffect(() => {
+    console.log("run did..");
+    connectDID();
     // if ("serviceWorker" in navigator) {
     //   navigator.serviceWorker
     //     .register("/service-worker.js")
@@ -223,15 +233,18 @@ let App = ({ canInstallPwa }) => {
 
     const storedPasscode = localStorage.getItem("patreonPasscode");
 
-    authStateReference.setIsZeroKnowledgeUser(
-      !isEmpty(window?.webln?.walletPubkey) ||
-        localStorage.getItem("patreonPasscode") ===
-          import.meta.env.VITE_PATREON_PASSCODE ||
-        localStorage.getItem("patreonPasscode") ===
-          import.meta.env.VITE_BITCOIN_PASSCODE
-    );
+    // manages passcode, set to true after change to freemium
+    // authStateReference.setIsZeroKnowledgeUser(
+    //   !isEmpty(window?.webln?.walletPubkey) ||
+    //     localStorage.getItem("patreonPasscode") ===
+    //       import.meta.env.VITE_PATREON_PASSCODE ||
+    //     localStorage.getItem("patreonPasscode") ===
+    //       import.meta.env.VITE_BITCOIN_PASSCODE
+    // );
+    authStateReference.setIsZeroKnowledgeUser(true);
 
     onAuthStateChanged(auth, (user) => {
+      console.log("running auth");
       if (user?.displayName) {
         handleUserAuthentication(user, {
           authStateReference,
@@ -243,8 +256,16 @@ let App = ({ canInstallPwa }) => {
           console.error("Error handling user authentication:", error);
         });
       } else {
-        authStateReference.setIsSignedIn(false);
-        uiStateReference.setIsDemo(true);
+        console.log("ran without logging in", user);
+        handleUserAuthentication(user, {
+          authStateReference,
+          uiStateReference,
+          userStateReference,
+          globalStateReference,
+          updateUserEmotions,
+        }).catch((error) => {
+          console.error("Error handling user authentication:", error);
+        });
       }
     });
   }, []);
@@ -260,7 +281,7 @@ let App = ({ canInstallPwa }) => {
         }}
       >
         <RiseUpAnimation>
-          <RoxanaLoadingAnimation />
+          <RoxSplashAnimation />
         </RiseUpAnimation>
       </div>
     );

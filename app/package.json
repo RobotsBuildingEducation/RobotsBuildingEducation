@@ -16,7 +16,7 @@
     "@getalby/lightning-tools": "^5.0.0",
     "@mui/material": "^5.11.9",
     "@types/firebase": "^3.2.1",
-    "@web5/api": "^0.8.1",
+    "@web5/api": "^0.8.4",
     "axios": "^1.2.2",
     "bootstrap": "^5.2.3",
     "discord.js": "^14.14.1",
@@ -51,7 +51,8 @@
     "react-use-pwa-install": "^0.2.4",
     "rollup-plugin-cjs": "^1.0.0",
     "sort-by": "^1.2.0",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@babel/standalone": "^7.23.4",

@@ -1,10 +1,12 @@
 import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import _ from "lodash";
 import isEmpty from "lodash/isEmpty";
 import { updateDoc } from "firebase/firestore";
 import { database } from "./database/firebaseResources";
 import { getGlobalImpact } from "./common/uiSchema";
 import {
   decentralizedEducationTranscript,
+  npub,
   userProgression,
   userUnlocks,
   userWatches,
@@ -54,13 +56,21 @@ export const sortEmotionsByDate = (usersEmotionsFromDB) => {
   return groupedByMonthYear;
 };
 
-export const setupUserDocument = async (docRef, userStateReference, user) => {
+export const setupUserDocument = async (
+  docRef,
+  userStateReference,
+  user,
+  uniqueID
+) => {
   const res = await getDoc(docRef);
 
   if (!res?.data()) {
+    console.log("response not available, creating user doc");
     await setDoc(docRef, {
       impact: 0,
-      userAuthObj: { uid: user.uid },
+      userAuthObj: {
+        uid: uniqueID,
+      },
       profile: decentralizedEducationTranscript,
       progress: userProgression,
       unlocks: userUnlocks,
@@ -68,6 +78,7 @@ export const setupUserDocument = async (docRef, userStateReference, user) => {
     });
     const response = await getDoc(docRef);
     userStateReference.setDatabaseUserDocument(response.data());
+    console.log("usrstat", userStateReference);
   } else {
     userStateReference.setDatabaseUserDocument(res.data());
   }
@@ -93,15 +104,23 @@ export const updateGlobalCounters = async (
 };
 
 export const handleUserAuthentication = async (user, appFunctions) => {
-  appFunctions.authStateReference.setUserAuthObject(user);
+  appFunctions.authStateReference.setUserAuthObject(user || {});
   appFunctions.authStateReference.setIsSignedIn(true);
   appFunctions.uiStateReference.setIsDemo(false);
+  let _uniqueId = localStorage.getItem("uniqueId") || _.uniqueId("rbe-");
+  localStorage.setItem("uniqueId", _uniqueId);
 
-  const docRef = doc(database, "users", user.uid);
+  const docRef = doc(database, "users", user?.uid || _uniqueId);
+
   const globalImpactDocRef = doc(database, "global", "impact");
   const globalReserveDocRef = doc(database, "global", "reserve");
 
-  await setupUserDocument(docRef, appFunctions.userStateReference, user);
+  await setupUserDocument(
+    docRef,
+    appFunctions.userStateReference,
+    user,
+    _uniqueId
+  );
   await updateGlobalCounters(
     globalImpactDocRef,
     globalReserveDocRef,
@@ -233,4 +252,24 @@ export let getRandomColor = () => {
   }
 
   return color;
+};
+
+export let copyToClipboard = () => {
+  // Retrieve the value of "uniqueId" from local storage
+  const uniqueId = localStorage.getItem("uniqueId");
+
+  // Check if "uniqueId" is actually found in local storage
+  if (uniqueId) {
+    // Use the Clipboard API to copy the value to the clipboard
+    navigator.clipboard
+      .writeText(uniqueId)
+      .then(() => {
+        console.log("UniqueId has been copied to the clipboard successfully.");
+      })
+      .catch((err) => {
+        console.error("Failed to copy uniqueId to the clipboard:", err);
+      });
+  } else {
+    console.log("UniqueId not found in local storage.");
+  }
 };

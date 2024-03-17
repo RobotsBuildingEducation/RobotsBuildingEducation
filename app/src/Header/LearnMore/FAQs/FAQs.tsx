@@ -7,6 +7,7 @@ import {
   japaneseThemePalette,
   textBlock,
 } from "../../../styles/lazyStyles";
+import { logEvent } from "firebase/analytics";
 
 const delayedAnimation = keyframes`
 from {
@@ -63,6 +64,30 @@ const FAQSection = () => {
             ...textBlock(japaneseThemePalette.TokyoTwilight, 0),
           }}
         >
+          <h5 style={{ fontFamily: "Bungee" }}> The Proof of Work System</h5>
+          <p
+            style={{
+              maxWidth: 700,
+              ...textBlock(japaneseThemePalette.KyotoPurple, 0, 24),
+            }}
+          >
+            Robots Building Education uses a system called Proof Of Work to
+            measure learning. When you use the application, you're putting
+            robots to work! That work produces outcomes that should be
+            meaningful to communities, like improved finance for under-resourced
+            schools or homes. You can think of this system as some kind of
+            engine for universal basic income! 😁
+          </p>
+          <p
+            style={{
+              maxWidth: 700,
+              ...textBlock(japaneseThemePalette.BambooForestGreen, 0, 24),
+            }}
+          >
+            The vision is to turn this into a decentralized protocol. Systems
+            and interfaces should allow us to rewire education services, finance
+            and content for a new era of software.
+          </p>
           The foundation of Robots Building Education is an AI-enhanced
           cofounder environment that sets up individuals for success. Modern and
           important skills are taught here to support people's goals in
@@ -98,6 +123,25 @@ const FAQSection = () => {
               and subscribe to get the passcode.
             </b>
           </p>
+          <a
+            style={{
+              color: "gold",
+              margin: 24,
+              fontSize: 18,
+              textDecoration: "underline",
+            }}
+            href="https://www.patreon.com/robotsbuildingeducation"
+            target="_blank"
+          >
+            <button
+              style={{
+                backgroundColor: japaneseThemePalette.PowerPurple,
+                color: "white",
+              }}
+            >
+              📬 Join us at Patreon
+            </button>
+          </a>
         </p>
       ),
     },

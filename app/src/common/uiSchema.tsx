@@ -4,6 +4,7 @@ import { Creator } from "./ui/Creator/Creator";
 import { Engineer } from "./ui/Engineer/Engineer";
 import { Entrepeneur } from "./ui/Entrepeneur/Entrepeneur";
 import roxanaGif from "./media/images/roxanaGif.gif";
+import roxSplashAnimation from "./media/images/roxSplashAnimation.gif";
 import { FadeInComponent } from "../styles/lazyStyles";
 
 interface IPrompt {
@@ -216,6 +217,21 @@ export let RoxanaLoadingAnimation = () => {
           <span className="visually-hidden">Loading...</span>
         </Spinner> */}
         <img width="150px" src={roxanaGif} />
+        {/* <Spinner animation="grow" variant="primary" size="sm">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner> */}
+      </div>
+    </FadeInComponent>
+  );
+};
+export let RoxSplashAnimation = () => {
+  return (
+    <FadeInComponent>
+      <div>
+        {/* <Spinner animation="grow" variant="info" size="sm">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner> */}
+        <img width="200px" src={roxSplashAnimation} />
         {/* <Spinner animation="grow" variant="primary" size="sm">
           <span className="visually-hidden">Loading...</span>
         </Spinner> */}

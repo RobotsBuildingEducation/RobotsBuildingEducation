@@ -60,9 +60,9 @@ export const Header = ({
   }, [isHolyGhostModeActive, languageMode]);
   return (
     <div style={{ color: prettyColorPalette.softYellowGlow }}>
-      <FadeInComponent>
+      {/* <FadeInComponent>
         <img width="175px" src={animatedLogo} style={{ marginTop: "24px" }} />
-      </FadeInComponent>
+      </FadeInComponent> */}
       {/* <div
         style={{
           display: "flex",
@@ -110,7 +110,6 @@ export const Header = ({
         canInstallPwa={canInstallPwa}
         handleZeroKnowledgePassword={handleZeroKnowledgePassword}
       />
-      <br />
       <div
         style={{
           display: "flex",

@@ -1,3 +1,6 @@
+export const npub =
+  "npub14vskcp90k6gwp6sxjs2jwwqpcmahg6wz3h5vzq0yn6crrsq0utts52axlt";
+
 export const validPasscodes = [import.meta.env.VITE_PATREON_PASSCODE];
 
 export const decentralizedEducationTranscript = {

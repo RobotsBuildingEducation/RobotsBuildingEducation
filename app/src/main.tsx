@@ -78,6 +78,8 @@ const router = createBrowserRouter([
   },
 ]);
 
+localStorage.setItem("patreonPasscode", import.meta.env.VITE_PATREON_PASSCODE);
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <RouterProvider router={router} />
 );

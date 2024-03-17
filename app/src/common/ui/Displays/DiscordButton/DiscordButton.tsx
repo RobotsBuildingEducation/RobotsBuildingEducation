@@ -54,6 +54,7 @@ export const DiscordButton = () => (
         // borderRadius: "6px",
         maxWidth: 600,
         width: "100%",
+        marginBottom: 125,
       }}
     >
       <img

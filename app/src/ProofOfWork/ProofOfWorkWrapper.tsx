@@ -101,6 +101,8 @@ export const ProofOfWorkWrapper = ({
         handleZeroKnowledgePassword={handleZeroKnowledgePassword}
         zap={zap}
         handleZap={handleZap}
+        authStateReference={authStateReference}
+        uiStateReference={uiStateReference}
       />
     </RiseUpAnimation>
   );

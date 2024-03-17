@@ -23,6 +23,8 @@ export const ProofOfWork = ({
   handleZeroKnowledgePassword,
   zap,
   handleZap,
+  authStateReference,
+  uiStateReference,
 }) => {
   const [isImpactWalletOpen, setIsImpactWalletOpen] = useState(false);
   const [isEmotionalIntelligenceOpen, setIsEmotionalIntelligenceOpen] =
@@ -91,6 +93,8 @@ export const ProofOfWork = ({
         setIsBossModeOpen={setIsBossModeOpen}
         zap={zap}
         handleZap={handleZap}
+        authStateReference={authStateReference}
+        uiStateReference={uiStateReference}
       />
     </div>
   );
