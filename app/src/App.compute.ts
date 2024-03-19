@@ -107,7 +107,8 @@ export const handleUserAuthentication = async (user, appFunctions) => {
   appFunctions.authStateReference.setUserAuthObject(user || {});
   appFunctions.authStateReference.setIsSignedIn(true);
   appFunctions.uiStateReference.setIsDemo(false);
-  let _uniqueId = localStorage.getItem("uniqueId") || _.uniqueId("rbe-");
+  let _uniqueId =
+    localStorage.getItem("uniqueId") || user?.uid || _.uniqueId("rbe-");
   localStorage.setItem("uniqueId", _uniqueId);
 
   const docRef = doc(database, "users", user?.uid || _uniqueId);

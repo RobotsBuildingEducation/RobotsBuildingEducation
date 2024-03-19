@@ -167,6 +167,7 @@ export const ImpactWallet = ({
   let [databaseUserDocumentCopy, setDatabaseUserDocumentCopy] = useState({});
   const [inputValue, setInputValue] = useState("");
   const [isValidDidKey, setIsValidDidKey] = useState(false);
+  const [isWarningDismissed, setIsWarningDismissed] = useState(false);
 
   let params = useParams();
 
@@ -411,7 +412,8 @@ export const ImpactWallet = ({
           style={{ backgroundColor: "black", color: "white" }}
         >
           <Modal.Title style={{ fontFamily: "Bungee" }}>
-            Proof of Work @ {localStorage.getItem("uniqueId")}
+            Proof of Work @{" "}
+            {localStorage.getItem("uniqueId").substr(0, 16) + "..."}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body
@@ -434,10 +436,28 @@ export const ImpactWallet = ({
               width: "100%",
             }}
           >
-            <Button variant="light" onClick={copyToClipboard}>
+            <Button
+              variant="light"
+              onClick={copyToClipboard}
+              style={{ marginBottom: 6 }}
+            >
               Copy ID
             </Button>
             <br />
+            <div
+              style={{
+                maxWidth: "fit-content",
+                display: "flex",
+                padding: 8,
+                borderRadius: 8,
+                color: "#D6CFFE",
+                backgroundColor: "#0B0536",
+              }}
+            >
+              <span>
+                ❗ make sure to copy your ID and save it somewhere safe.
+              </span>
+            </div>
             <br />
             Enter your ID to switch accounts
             <InputGroup className="mb-3">
@@ -550,6 +570,8 @@ export const ImpactWallet = ({
                 )}
               />
               <hr />
+              <br />
+              <br />
             </p>
             <br />
             {/* <br />

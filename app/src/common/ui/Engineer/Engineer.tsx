@@ -4117,14 +4117,6 @@ exports.app = functions
           )}?`,
           response: (
             <div>
-              <ExternalLink
-                textDisplay={"Tutorial (text-version)"}
-                link={
-                  "https://www.patreon.com/posts/extras-building-93082226?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
-                }
-              />
-              <br />
-              <br />
               My dear students!!!!! 🌟 Let's embark on a journey of
               understanding how we can combine the power of Backend as a Service
               (BaaS) in building apps with the financial support we can get
