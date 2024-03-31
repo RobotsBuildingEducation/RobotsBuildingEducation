@@ -64,13 +64,7 @@ function detectBrowser() {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App canInstallPwa={true} />,
-    children: [
-      {
-        path: "/profile/:profileID",
-        element: <ImpactWallet />,
-      },
-    ],
+    element: <App />,
   },
   {
     path: "/map",

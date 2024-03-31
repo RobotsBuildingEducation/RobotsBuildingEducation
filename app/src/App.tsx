@@ -48,7 +48,7 @@ logEvent(analytics, "page_view", {
   page_location: "https://learn-robotsbuildingeducation.firebaseapp.com/",
 });
 
-let App = ({ canInstallPwa }) => {
+let App = () => {
   const showStars = useStore((state) => state.showStars);
   const showZap = useStore((state) => state.showZap);
   const setShowStars = useStore((state) => state.setShowStars);
@@ -593,7 +593,6 @@ let App = ({ canInstallPwa }) => {
           languageMode={languageMode}
           setLanguageMode={setLanguageMode}
           handleZeroKnowledgePassword={handleZeroKnowledgePassword}
-          canInstallPwa={canInstallPwa}
         />
 
         {checkSignInStates({ authStateReference }) ? <AuthDisplay /> : null}

@@ -22,7 +22,6 @@ export const Header = ({
   languageMode,
   setLanguageMode,
   handleZeroKnowledgePassword,
-  canInstallPwa,
 }) => {
   // State for Language mode switch
   const [isSpanishMode, setIsSpanishMode] = useState(false);
@@ -107,7 +106,6 @@ export const Header = ({
       </div> */}
       <LearnMore
         languageMode={languageMode}
-        canInstallPwa={canInstallPwa}
         handleZeroKnowledgePassword={handleZeroKnowledgePassword}
       />
       {/* <div

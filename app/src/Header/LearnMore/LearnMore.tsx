@@ -2,7 +2,6 @@ import { useState } from "react";
 
 // import { pwaInstallHandler } from "pwa-install-handler";
 import { Button, Modal } from "react-bootstrap";
-import { usePWAInstall } from "react-use-pwa-install";
 
 import { logEvent } from "firebase/analytics";
 import { analytics, auth } from "../../database/firebaseResources";
@@ -22,26 +21,14 @@ import FAQSection from "./FAQs/FAQs";
 let data = {};
 export const LearnMore = ({
   languageMode,
-  canInstallPwa,
+
   handleZeroKnowledgePassword,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);
 
-  const install = usePWAInstall();
-  // console.log("install", install);
   return (
     <>
-      {/* {canInstallPwa ? <><Button
-      variant="dark"
-      style={{
-        color: "white",
-        textShadow: "0px 0px 4px black",
-      }}
-      onClick={install}
-    >
-      Install app
-    </Button>      &nbsp; &nbsp; &nbsp; &nbsp;</>: null} */}
       <br />
       <FadeInComponent>
         <div style={{ fontFamily: "Bungee", color: "white" }}>rox.ai</div>
