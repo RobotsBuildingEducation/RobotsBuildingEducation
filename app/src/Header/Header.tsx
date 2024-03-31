@@ -1,22 +1,7 @@
 import { useState, useEffect } from "react";
 import { LearnMore } from "./LearnMore/LearnMore";
-// import robe_logo from "../common/media/images/robe_logo.png";
-import animatedLogo from "../common/media/images/animatedLogo.gif";
-import {
-  FadeInComponent,
-  RiseDownAnimation,
-  RiseUpAnimation,
-  prettyColorPalette,
-} from "../styles/lazyStyles";
-import { Button, Fade, Form } from "react-bootstrap";
+import { prettyColorPalette } from "../styles/lazyStyles";
 import { words } from "../common/words/words";
-import toast from "react-hot-toast";
-import {
-  Button as WalletButton,
-  Modal,
-  launchModal,
-} from "@getalby/bitcoin-connect-react";
-import styled, { keyframes } from "styled-components";
 
 export const Header = ({
   languageMode,
@@ -38,11 +23,6 @@ export const Header = ({
     setIsSpanishMode(!isSpanishMode);
   };
 
-  // Function to toggle color palette mode and update label
-  const toggleColorPaletteMode = () => {
-    setIsHolyGhostModeActive(!isHolyGhostModeActive);
-  };
-
   // Update the language mode label when switch state changes
   useEffect(() => {
     setLanguageModeLabel(isSpanishMode ? "Español" : "English");
@@ -59,74 +39,10 @@ export const Header = ({
   }, [isHolyGhostModeActive, languageMode]);
   return (
     <div style={{ color: prettyColorPalette.softYellowGlow }}>
-      {/* <FadeInComponent>
-        <img width="175px" src={animatedLogo} style={{ marginTop: "24px" }} />
-      </FadeInComponent> */}
-      {/* <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <div
-          style={{
-            textAlign: "left",
-            boxSizing: "border-box",
-
-            marginRight: 5,
-            width: "250px",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <Form
-            style={{
-              width: "200px",
-              padding: 5,
-            }}
-          >
-            <Form.Switch>
-              <Form.Check
-                type="switch"
-                id="custom-switch-lang"
-                label={languageModeLabel}
-                onChange={toggleLanguageMode}
-                checked={isSpanishMode}
-              />
-              <Form.Check
-                type="switch"
-                id="custom-switch-color"
-                label={colorPaletteLabel}
-                onChange={toggleColorPaletteMode}
-                checked={isHolyGhostModeActive}
-              />
-            </Form.Switch>
-          </Form>
-        </div>
-      </div> */}
       <LearnMore
         languageMode={languageMode}
         handleZeroKnowledgePassword={handleZeroKnowledgePassword}
       />
-      {/* <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        {localStorage.getItem("patreonPasscode") ===
-        import.meta.env.VITE_BITCOIN_PASSCODE ? (
-          <WalletButton
-            appName={"Robots Building Education"}
-            onConnect={() => toast("Connected!")}
-            onDisconnect={() => {
-              // localStorage.clear();
-              // handleZeroKnowledgePassword(null, true, null);
-            }}
-          />
-        ) : null}
-      </div>
-      <br /> <br /> */}
     </div>
   );
 };
