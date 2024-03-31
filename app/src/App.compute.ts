@@ -57,9 +57,8 @@ export const sortEmotionsByDate = (usersEmotionsFromDB) => {
 export const setupUserDocument = async (
   docRef,
   userStateReference,
-  user,
-  uniqueID,
-  web5
+  uniqueID
+  // web5
 ) => {
   const res = await getDoc(docRef);
 
@@ -110,23 +109,19 @@ export const updateGlobalCounters = async (
   );
 };
 
-export const handleUserAuthentication = async (user, appFunctions) => {
-  appFunctions.authStateReference.setUserAuthObject(user || {});
-
-  let _uniqueId =
-    localStorage.getItem("uniqueId") || user?.uid || _.uniqueId("rbe-");
+export const handleUserAuthentication = async (appFunctions) => {
+  let _uniqueId = localStorage.getItem("uniqueId") || _.uniqueId("rbe-");
   localStorage.setItem("uniqueId", _uniqueId);
 
-  const docRef = doc(database, "users", user?.uid || _uniqueId);
+  const docRef = doc(database, "users", _uniqueId);
 
   const globalImpactDocRef = doc(database, "global", "impact");
 
   await setupUserDocument(
     docRef,
     appFunctions.userStateReference,
-    user,
-    _uniqueId,
-    appFunctions?.web5
+    _uniqueId
+    // appFunctions?.web5
   );
   await updateGlobalCounters(
     globalImpactDocRef,

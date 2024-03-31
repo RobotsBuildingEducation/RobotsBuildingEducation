@@ -30,7 +30,7 @@ const computePercentage = (userImpact, proofOfWork) => {
 export const ProofOfWorkWrapper = ({
   userStateReference,
   globalStateReference,
-  authStateReference,
+
   handlePathSelection,
   updateUserEmotions,
   uiStateReference,
@@ -50,7 +50,6 @@ export const ProofOfWorkWrapper = ({
   if (!isUserEligible) return null;
 
   // Extract properties for easier readability
-  const { userAuthObject } = authStateReference;
 
   const {
     databaseUserDocument,
@@ -76,7 +75,6 @@ export const ProofOfWorkWrapper = ({
     >
       {/* backgroundColor: "", */}
       <ProofOfWork
-        userAuthObject={userAuthObject}
         displayName={auth?.currentUser?.displayName}
         databaseUserDocument={databaseUserDocument}
         computePercentage={calculatedPercentage}
@@ -92,7 +90,6 @@ export const ProofOfWorkWrapper = ({
         showZap={showZap}
         zap={zap}
         handleZap={handleZap}
-        authStateReference={authStateReference}
         uiStateReference={uiStateReference}
       />
     </RiseUpAnimation>

@@ -4,7 +4,7 @@ import { RiseUpAnimation, japaneseThemePalette } from "../styles/lazyStyles";
 
 export const ProofOfWork = ({
   globalScholarshipCounter,
-  userAuthObject,
+
   displayName,
   databaseUserDocument,
   computePercentage,
@@ -23,7 +23,7 @@ export const ProofOfWork = ({
 
   zap,
   handleZap,
-  authStateReference,
+
   uiStateReference,
 }) => {
   const [isImpactWalletOpen, setIsImpactWalletOpen] = useState(false);
@@ -66,7 +66,6 @@ export const ProofOfWork = ({
         globalImpactCounter={globalImpactCounter}
         isImpactWalletOpen={isImpactWalletOpen}
         setIsImpactWalletOpen={setIsImpactWalletOpen}
-        userAuthObject={userAuthObject}
         globalScholarshipCounter={globalScholarshipCounter}
         setIsEmotionalIntelligenceOpen={setIsEmotionalIntelligenceOpen}
         isEmotionalIntelligenceOpen={isEmotionalIntelligenceOpen}
@@ -87,7 +86,6 @@ export const ProofOfWork = ({
         setIsBossModeOpen={setIsBossModeOpen}
         zap={zap}
         handleZap={handleZap}
-        authStateReference={authStateReference}
         uiStateReference={uiStateReference}
       />
     </div>

@@ -15,7 +15,6 @@ import { getDocs, updateDoc } from "firebase/firestore";
 import { logEvent } from "firebase/analytics";
 
 import {
-  useAuthState,
   useGlobalStates,
   useUIStates,
   useUserDocument,
@@ -51,8 +50,6 @@ let App = () => {
   let zap = useZap(1, "Robots Building Education Zap");
 
   const [loading, setLoading] = useState(true);
-  // handles passcode, google sign in and registered user info
-  const { authStateReference } = useAuthState();
 
   // handles database data from the "users" collection
   let { userStateReference } = useUserDocument();
@@ -159,7 +156,7 @@ let App = () => {
    * @description check if the user has been logged in
    */
 
-  const connectDID = async (auth, user) => {
+  const connectDID = async () => {
     try {
       const { web5, did: aliceDid } = await Web5.connect();
       localStorage.setItem("uniqueId", web5?.did?.agent?.agentDid);
@@ -210,47 +207,26 @@ let App = () => {
       // console.log("finished");
 
       // console.log("runnning auth");
-      if (user?.displayName) {
-        handleUserAuthentication(user, {
-          web5,
-          authStateReference,
-          uiStateReference,
-          userStateReference,
-          globalStateReference,
-          updateUserEmotions,
-        }).catch((error) => {
-          console.error("Error handling user authentication:", error);
-        });
-      } else {
-        handleUserAuthentication(user, {
-          web5,
-          authStateReference,
-          uiStateReference,
-          userStateReference,
-          globalStateReference,
-          updateUserEmotions,
-        }).catch((error) => {
-          console.error("Error handling user authentication:", error);
-        });
-      }
 
-      // console.log("unloading");
-      // setLoading(false);
+      handleUserAuthentication({
+        web5,
+        uiStateReference,
+        userStateReference,
+        globalStateReference,
+        updateUserEmotions,
+      });
     } catch (error) {
-      connectDID(auth, user);
+      connectDID();
     }
   };
 
   useEffect(() => {
     // console.log("running after DID");
+    connectDID();
 
     setTimeout(() => {
       setLoading(false);
     }, 2000);
-
-    onAuthStateChanged(auth, (user) => {
-      connectDID(auth, user);
-    });
   }, []);
 
   if (loading) {
@@ -573,7 +549,6 @@ let App = () => {
 
       <ProofOfWorkWrapper
         userStateReference={userStateReference}
-        authStateReference={authStateReference}
         globalStateReference={globalStateReference}
         handlePathSelection={handlePathSelection}
         updateUserEmotions={updateUserEmotions}

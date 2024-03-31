@@ -1434,7 +1434,7 @@ export const BossMode = ({
   const [level, setLevel] = useState(0);
   const [hasDiscordTag, setHasDiscordTag] = useState(false);
   const [discordTag, setDiscordTag] = useState("");
-  //   let uid = userStateReference?.databaseUserDocument?.userAuthObject?.uid;
+
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userAnswer, setUserAnswer] = useState("");
   const [gameActive, setGameActive] = useState(false);

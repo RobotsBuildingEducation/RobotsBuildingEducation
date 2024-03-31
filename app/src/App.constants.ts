@@ -1,8 +1,7 @@
-export const npub =
-  "npub14vskcp90k6gwp6sxjs2jwwqpcmahg6wz3h5vzq0yn6crrsq0utts52axlt";
-
-export const validPasscodes = [import.meta.env.VITE_PATREON_PASSCODE];
-
+/**
+ * Defines the original education transcript for web5 users that gets written to a users DWN.
+ * Current centralized to the user document's "profile" data.
+ */
 export const decentralizedEducationTranscript = {
   "Philosophy of Critical Theory & Technology": false,
   "Human-Computer Interaction": false,
@@ -17,6 +16,7 @@ export const decentralizedEducationTranscript = {
   "Introduction to Finance": false,
 };
 
+// handles when user's complete practice prompts
 export const userProgression = {
   "Learning Mindset & Perspective": false,
   "Lesson 1 Coding Fundamentals": false,
@@ -31,6 +31,7 @@ export const userProgression = {
   "Focus Investing": true,
 };
 
+// Handles when a user completes both the practice prompt and the discover prompt
 export const userUnlocks = {
   "Learning Mindset & Perspective": true,
   "Lesson 1 Coding Fundamentals": false,
@@ -45,6 +46,7 @@ export const userUnlocks = {
   "Focus Investing": false,
 };
 
+// handles when a user completes the discover prompt
 export const userWatches = {
   "Learning Mindset & Perspective": false,
   "Lesson 1 Coding Fundamentals": false,
@@ -59,6 +61,7 @@ export const userWatches = {
   "Focus Investing": false,
 };
 
+// Used to iterate the maps above during unlocking events.
 export const setOfLectures = [
   "Learning Mindset & Perspective",
   "Lesson 1 Coding Fundamentals",

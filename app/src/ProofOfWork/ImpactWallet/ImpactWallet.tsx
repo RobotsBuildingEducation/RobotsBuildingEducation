@@ -22,7 +22,7 @@ import { Link, useParams } from "react-router-dom";
 import { EmotionalIntelligence } from "./EmotionalIntelligence/EmotionalIntelligence";
 import { FadeInComponent } from "../../styles/lazyStyles";
 
-import { decentralizedEducationTranscript, npub } from "../../App.constants";
+import { decentralizedEducationTranscript } from "../../App.constants";
 
 import { BossMode } from "./BossMode/BossMode";
 import { Experimental } from "./Cofounder/Experimental";
@@ -45,7 +45,6 @@ const renderTranscriptAwards = (profileData) => {
 
   let awards = [];
 
-  let decentralizedEducationTranscriptCopy = decentralizedEducationTranscript;
   for (const key in decentralizedEducationTranscript) {
     awards.push(
       <div
@@ -121,7 +120,6 @@ export const ImpactWallet = ({
   isImpactWalletOpen,
   setIsImpactWalletOpen,
 
-  userAuthObject = { uid: "null" },
   handlePathSelection,
 
   isEmotionalIntelligenceOpen,
@@ -143,10 +141,9 @@ export const ImpactWallet = ({
   isBossModeOpen,
   setIsBossModeOpen,
   handleZap,
-  authStateReference,
+
   uiStateReference,
 }) => {
-  let [databaseUserDocumentCopy, setDatabaseUserDocumentCopy] = useState({});
   const [inputValue, setInputValue] = useState("");
   const [isValidDidKey, setIsValidDidKey] = useState(false);
   const [isWarningDismissed, setIsWarningDismissed] = useState(false);
@@ -156,23 +153,7 @@ export const ImpactWallet = ({
 
   let params = useParams();
 
-  useEffect(() => {
-    if (params?.profileID && params?.profileID !== userAuthObject?.uid) {
-      const docRef = doc(database, "users", params?.profileID);
-      getDoc(docRef).then((res) => {
-        if (!res?.data()) {
-          // unsafe case?
-        } else {
-          setDatabaseUserDocumentCopy(res?.data());
-          setIsImpactWalletOpen(true);
-        }
-      });
-    } else {
-      setDatabaseUserDocumentCopy(databaseUserDocument);
-    }
-  }, [databaseUserDocument]);
-
-  let impactResult = databaseUserDocumentCopy?.impact;
+  let impactResult = databaseUserDocument?.impact;
 
   /**
    *               {/* <iframe
@@ -187,16 +168,12 @@ export const ImpactWallet = ({
     //
     if (value.includes("did:key:")) {
       localStorage.setItem("uniqueId", value);
-      handleUserAuthentication(
-        {},
-        {
-          authStateReference,
-          uiStateReference,
-          userStateReference,
-          globalStateReference,
-          updateUserEmotions,
-        }
-      ).catch((error) => {
+      handleUserAuthentication({
+        uiStateReference,
+        userStateReference,
+        globalStateReference,
+        updateUserEmotions,
+      }).catch((error) => {
         console.error("Error handling user authentication:", error);
       });
     }
@@ -265,11 +242,7 @@ export const ImpactWallet = ({
                   ?.split(" ")
                   ?.map((name) => name[0]?.toUpperCase())
                   ?.join("")}
-              </b>
-              {/* 👾 -&nbsp;
-          {databaseUserDocumentCopy?.impact / 1000 ||
-            databaseUserDocument?.impact / 1000 ||
-            0}{" "} */}{" "}
+              </b>{" "}
               &nbsp;
             </span>
             &nbsp;
@@ -527,10 +500,7 @@ export const ImpactWallet = ({
               You are &nbsp;
               <b>
                 {(
-                  ((databaseUserDocumentCopy?.impact ||
-                    databaseUserDocument.impact ||
-                    0) /
-                    globalImpactCounter) *
+                  ((databaseUserDocument.impact || 0) / globalImpactCounter) *
                   100
                 ).toFixed(2) || "0"}
                 %
@@ -545,10 +515,7 @@ export const ImpactWallet = ({
                 }}
                 variant="warning"
                 now={Math.floor(
-                  ((databaseUserDocumentCopy?.impact ||
-                    databaseUserDocument.impact ||
-                    0) /
-                    globalImpactCounter) *
+                  ((databaseUserDocument.impact || 0) / globalImpactCounter) *
                     100
                 )}
               />

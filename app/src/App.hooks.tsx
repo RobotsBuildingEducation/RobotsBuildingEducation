@@ -6,21 +6,6 @@ import { useStore } from "./Store";
 
 /**
  *
- * @returns no longer needed and can be moved to useUserDocument since this references userDocument.userAuthObject.uid
- */
-export const useAuthState = () => {
-  const [userAuthObject, setUserAuthObject] = useState({});
-
-  let authStateReference = {
-    userAuthObject,
-    setUserAuthObject,
-  };
-
-  return { authStateReference };
-};
-
-/**
- *
  * used to manage the user's collection & its respective document from firestore.
  *
  * databaseUserDocument = the actual user document data
