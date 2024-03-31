@@ -12,7 +12,7 @@ import {
 } from "./common/uiSchema";
 import { Collections } from "./Paths/Collections/Collections";
 import { Header } from "./Header/Header";
-import { Passcode } from "./Passcode/Passcode";
+
 import { auth, analytics } from "./database/firebaseResources";
 import { onAuthStateChanged } from "firebase/auth";
 import { getDocs, updateDoc } from "firebase/firestore";
@@ -586,13 +586,6 @@ let App = () => {
         <Header languageMode={languageMode} setLanguageMode={setLanguageMode} />
 
         {checkSignInStates({ authStateReference }) ? <AuthDisplay /> : null}
-
-        {!authStateReference.isZeroKnowledgeUser ? (
-          <Passcode
-            patreonObject={uiStateReference.patreonObject}
-            handleZeroKnowledgePassword={handleZeroKnowledgePassword}
-          />
-        ) : null}
 
         {authStateReference.isZeroKnowledgeUser &&
         checkActiveUserStates({ userStateReference, authStateReference }) ? (
