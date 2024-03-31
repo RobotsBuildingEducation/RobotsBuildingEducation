@@ -30,4 +30,9 @@ export default defineConfig({
     },
     extensions: [".js", ".mjs"],
   },
+  server: {
+    headers: {
+      "Content-Type": "application/javascript",
+    },
+  },
 });
