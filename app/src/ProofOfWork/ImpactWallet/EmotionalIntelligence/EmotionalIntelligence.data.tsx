@@ -14,7 +14,7 @@ export const lowEnergyFeelings = [
   { label: "Sad", emoji: "(╥﹏╥)", color: "#87CEEB", colorHover: "#76BADB" },
   {
     label: "Tired",
-    emoji: "(-_-) zzZ",
+    emoji: "(-_-) zZ",
     color: "#87CEEB",
     colorHover: "#76BADB",
   },
@@ -41,7 +41,7 @@ export const highEnergyFeelings = [
   },
   {
     label: "Anxious",
-    emoji: "(⁄ ⁄•⁄ω⁄•⁄ ⁄)",
+    emoji: "(⁄•⁄ω⁄•⁄)",
     color: "#FFB3A7",
     colorHover: "#FF9F93",
   },

@@ -22,6 +22,7 @@ import {
   useZapAnimation,
 } from "./App.hooks";
 import {
+  getCollectionDocumentsInsideUser,
   // deleteWeb5Records,
   handleUserAuthentication,
   sortEmotionsByDate,
@@ -44,7 +45,7 @@ let App = () => {
   const showStars = useStore((state) => state.showStars);
   const showZap = useStore((state) => state.showZap);
   const setShowStars = useStore((state) => state.setShowStars);
-  const setShowZap = useStore((state) => state.setShowZap);
+
   const handleZap = useZapAnimation();
 
   let zap = useZap(1, "Robots Building Education Zap");
@@ -65,8 +66,6 @@ let App = () => {
 
   // handles language switching
   let [languageMode, setLanguageMode] = useState(words["English"]);
-  // const [showStars, setShowStars] = useState(false);
-  // const [showZap, setShowZap] = useState(false);
 
   /**
    *
@@ -138,23 +137,10 @@ let App = () => {
    * - sets emotions for display
    */
   let updateUserEmotions = async (collectionRef) => {
-    await getDocs(collectionRef).then((querySnapshot) => {
-      let emotionSet = [];
-
-      querySnapshot.forEach((doc) => {
-        if (doc.data()) {
-          emotionSet.push(doc.data());
-        } else {
-        }
-      });
-      emotionSet = sortEmotionsByDate(emotionSet);
-      userStateReference.setUsersEmotionsFromDB(emotionSet);
-    });
+    let emotions = await getCollectionDocumentsInsideUser(collectionRef);
+    let emotionSet = sortEmotionsByDate(emotions);
+    userStateReference.setUsersEmotionsFromDB(emotionSet);
   };
-
-  /**
-   * @description check if the user has been logged in
-   */
 
   const connectDID = async () => {
     try {
@@ -221,7 +207,6 @@ let App = () => {
   };
 
   useEffect(() => {
-    // console.log("running after DID");
     connectDID();
 
     setTimeout(() => {
@@ -252,8 +237,6 @@ let App = () => {
   ) => {
     let locationOfHeader = uiStateReference.patreonObject.credential;
 
-    let data = {};
-
     let profile = {
       ...userStateReference.databaseUserDocument.profile,
       [locationOfHeader]: true,
@@ -269,25 +252,6 @@ let App = () => {
     }));
 
     setShowStars(true);
-
-    // // Randomize animation properties for each star
-    // document.querySelectorAll(".star").forEach((star) => {
-    //   const scale = Math.random() * 10; // Random scale
-    //   const x = Math.random() * 200 - 100; // Random x-position
-    //   const y = Math.random() * 200 - 100; // Random y-position
-    //   const duration = Math.random() * 1 + 0.5; // Random duration
-
-    //   // star.style.textShadow = "25px 25px 25px gold";
-    //   star.style.opacity = 1;
-    //   star.style.transform = `scale(${scale}) translate(${x}px, ${y}px)`;
-    //   star.style.transition = `transform ${duration}s ease-in-out, opacity ${duration}s ease-in-out`;
-
-    //   // Reset the star after the animation
-    //   setTimeout(() => {
-    //     star.style.opacity = 0;
-    //     star.style.transform = "none";
-    //   }, duration * 1000);
-    // });
 
     // Reset the whole animation after some time
     setTimeout(() => setShowStars(false), 2000);
@@ -313,25 +277,6 @@ let App = () => {
     checkForUnlock("progress", moduleData);
 
     setShowStars(true);
-
-    // // Randomize animation properties for each star
-    // document.querySelectorAll(".star").forEach((star) => {
-    //   const scale = Math.random() * 10; // Random scale
-    //   const x = Math.random() * 200 - 100; // Random x-position
-    //   const y = Math.random() * 200 - 100; // Random y-position
-    //   const duration = Math.random() * 1 + 0.5; // Random duration
-
-    //   // star.style.textShadow = "25px 25px 25px gold";
-    //   star.style.opacity = 1;
-    //   star.style.transform = `scale(${scale}) translate(${x}px, ${y}px)`;
-    //   star.style.transition = `transform ${duration}s ease-in-out, opacity ${duration}s ease-in-out`;
-
-    //   // Reset the star after the animation
-    //   setTimeout(() => {
-    //     star.style.opacity = 0;
-    //     star.style.transform = "none";
-    //   }, duration * 1000);
-    // });
 
     // Reset the whole animation after some time
     setTimeout(() => setShowStars(false), 2000);
@@ -461,41 +406,6 @@ let App = () => {
       // console.log("dwn outcome", outcome);
     }
   };
-  // const handleZap = async () => {
-  //   // document.getElementById("zap-container").style.display = "block";
-  //   setShowZap(true);
-  //   // setTimeout(() => {
-  //   //   console.log("do nothing");
-  //   //   // star.style.opacity = 0;
-  //   //   // star.style.transform = "none";
-  //   // }, 2 * 1000);
-
-  //   // Randomize animation properties for each star
-  //   // document.querySelectorAll(".zap").forEach((star) => {
-  //   //   const scale = Math.random() * 1.5; // Random scale
-  //   //   const x = Math.random() * 200 - 100; // Random x-position
-  //   //   const y = Math.random() * 200 - 100; // Random y-position
-  //   //   const duration = Math.random() * 1 + 0.5; // Random duration
-
-  //   //   // star.style.textShadow = "25px 25px 25px gold";
-
-  //   //   star.style.opacity = 1;
-  //   //   star.style.transform = `scale(${scale}) translate(${x}px, ${y}px)`;
-  //   //   star.style.transition = `transform ${duration}s ease-in-out, opacity ${duration}s ease-in-out`;
-
-  //   //   // Reset the star after the animation
-  //   //   setTimeout(() => {
-  //   //     star.style.opacity = 0;
-  //   //     star.style.transform = "none";
-  //   //   }, duration * 1000);
-  //   // });
-
-  //   // Reset the whole animation after some time
-  //   setTimeout(() => {
-  //     // document.getElementById("zap-container").style.display = "none";
-  //     setShowZap(false);
-  //   }, 2000);
-  // };
 
   return (
     <div

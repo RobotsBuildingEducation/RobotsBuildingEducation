@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import _ from "lodash";
 import isEmpty from "lodash/isEmpty";
 import { updateDoc } from "firebase/firestore";
@@ -277,4 +277,15 @@ export const deleteWeb5Records = async (recordSet, web5Reference) => {
       },
     });
   }
+};
+
+export const getCollectionDocumentsInsideUser = async (collectionRef) => {
+  let set = [];
+  await getDocs(collectionRef).then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      if (doc.data()) set.push(doc.data());
+    });
+  });
+
+  return set;
 };
