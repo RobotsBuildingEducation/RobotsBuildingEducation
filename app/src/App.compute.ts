@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import _ from "lodash";
 import isEmpty from "lodash/isEmpty";
 import { updateDoc } from "firebase/firestore";
@@ -6,13 +6,11 @@ import { database } from "./database/firebaseResources";
 import { getGlobalImpact } from "./common/uiSchema";
 import {
   decentralizedEducationTranscript,
-  npub,
   userProgression,
   userUnlocks,
   userWatches,
 } from "./App.constants";
 import { japaneseThemePalette } from "./styles/lazyStyles";
-import { useStore } from "./Store";
 
 export const sortEmotionsByDate = (usersEmotionsFromDB) => {
   let insertTestDate = usersEmotionsFromDB;

@@ -72,11 +72,3 @@ export const setOfLectures = [
   "Resume Writing",
   "Focus Investing",
 ];
-
-// let x = {
-//   "Philosophy": true,
-//   "Interactions & Design": true,
-//   "The Psychology Of Self-esteem": true,
-//   "Resume Writing": true,
-//   "Focus Investing": true,
-// }

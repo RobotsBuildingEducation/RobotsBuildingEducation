@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components";
-import { isEmpty } from "lodash";
 import { Link } from "react-router-dom";
 import { getRandomColor } from "../App.compute";
 
@@ -325,26 +324,7 @@ export const StyledLink = styled(Link)`
     color: white;
   }
 
-  background: ${(props) => {
-    // const isActive = props.active;
-    // const isSelectedPath = props.pathSelectionAnimationData.path === props.path;
-    // const currentPath = props.path;
-    // let backgroundColor = "";
-    // if (isActive && isSelectedPath) {
-    //   backgroundColor = "#FF64FF"; // Original color for selected path
-    // } else if (isActive && !isSelectedPath) {
-    //   backgroundColor = "#b271d1"; // Original color for non-selected path
-    // }
-    // // Adjust color based on path
-    // if (currentPath === "Engineer") {
-    //   // Colors remain the same
-    // } else if (currentPath === "Creator") {
-    //   backgroundColor = backgroundColor === "#FF64FF" ? "#6495ff" : "#6495ff"; // Blue versions
-    // } else if (currentPath === "Entrepeneur") {
-    //   backgroundColor = backgroundColor === "#FF64FF" ? "#ffb264" : "#ffb264"; // Golden versions
-    // }
-    // return backgroundColor;
-  }};
+  background: ${(props) => {}};
 
   // border: 2px solid hotpink;
   border: 2px solid

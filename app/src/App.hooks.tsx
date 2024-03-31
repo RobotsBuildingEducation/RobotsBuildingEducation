@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import React from "react";
+
 import { LightningAddress } from "@getalby/lightning-tools";
-import { Button, Modal, launchModal } from "@getalby/bitcoin-connect-react";
-import toast, { Toaster } from "react-hot-toast";
+
 import { useStore } from "./Store";
 
 export const useAuthState = () => {
@@ -111,7 +110,6 @@ export const useZap = (
   depositMessage = "Robots Building Education Lecture"
 ) => {
   const [invoice, setInvoice] = useState<string | undefined>(undefined);
-  const [preimage, setPreimage] = useState<string | undefined>(undefined);
 
   let payInvoice = async () => {
     console.log("running pay invoice");
@@ -141,12 +139,8 @@ export const useZap = (
 
   let createZap = async () => {
     try {
-      // robots - for real use
       const ln = new LightningAddress("levitatingnight182471@getalby.com");
 
-      // test account (things prices at 1 zap)
-      // const ln = new LightningAddress("talentedfriendship526161@getalby.com");
-      // ln.zap
       await ln.fetch();
 
       let invoiceResult = (
@@ -156,23 +150,18 @@ export const useZap = (
         })
       ).paymentRequest;
 
-      console.log("invoice result", invoiceResult);
-
       setInvoice(invoiceResult);
-      console.log("invoice?", invoice);
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    // mountInvoice();
     if (invoice) {
       payInvoice();
     }
   }, [invoice]);
 
-  // console.log("invoice result", invoice);
   return createZap;
 };
 
@@ -182,39 +171,9 @@ export const useZapAnimation = () => {
   let animation = () => {
     setShowZap(true);
     setTimeout(() => {
-      // document.getElementById("zap-container").style.display = "none";
       setShowZap(false);
     }, 2000);
   };
-  // document.getElementById("zap-container").style.display = "block";
-
-  // setTimeout(() => {
-  //   console.log("do nothing");
-  //   // star.style.opacity = 0;
-  //   // star.style.transform = "none";
-  // }, 2 * 1000);
-
-  // Randomize animation properties for each star
-  // document.querySelectorAll(".zap").forEach((star) => {
-  //   const scale = Math.random() * 1.5; // Random scale
-  //   const x = Math.random() * 200 - 100; // Random x-position
-  //   const y = Math.random() * 200 - 100; // Random y-position
-  //   const duration = Math.random() * 1 + 0.5; // Random duration
-
-  //   // star.style.textShadow = "25px 25px 25px gold";
-
-  //   star.style.opacity = 1;
-  //   star.style.transform = `scale(${scale}) translate(${x}px, ${y}px)`;
-  //   star.style.transition = `transform ${duration}s ease-in-out, opacity ${duration}s ease-in-out`;
-
-  //   // Reset the star after the animation
-  //   setTimeout(() => {
-  //     star.style.opacity = 0;
-  //     star.style.transform = "none";
-  //   }, duration * 1000);
-  // });
-
-  // Reset the whole animation after some time
 
   return animation;
 };
