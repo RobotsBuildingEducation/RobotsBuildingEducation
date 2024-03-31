@@ -1,5 +1,6 @@
 import { Modal, Form, Button, Spinner } from "react-bootstrap";
 import React, { useState } from "react";
+import isEmpty from "lodash/isEmpty";
 import {
   DynamicRoleDisplay,
   createPrompt,
@@ -183,7 +184,11 @@ export const Experimental = ({
           </Form.Group>
           <br />
 
-          <Button variant="primary" type="submit">
+          <Button
+            variant="primary"
+            type="submit"
+            disabled={isEmpty(additionalContext)}
+          >
             Submit
           </Button>
         </Form>

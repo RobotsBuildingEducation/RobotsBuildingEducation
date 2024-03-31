@@ -161,9 +161,12 @@ export const StyledModule = styled.button`
   border-top-left-radius: 12px;
   color: white;
   transition: 0.15s all ease-in-out;
-  border: 1px solid
+  border: 2px solid
     ${(props) => {
-      return props.patreonObject.isModuleDisabled
+      return props.module === "Lesson 4 Building Apps & Startups" ||
+        props.module === "Lesson 2 Frontend Programming"
+        ? "gold"
+        : props.patreonObject.isModuleDisabled
         ? "#11220E"
         : props.patreonObject.rare
         ? "#DA830D"
@@ -489,6 +492,7 @@ export let japaneseThemePalette = {
   PowerPurple: "rgba(102, 3, 252, 1)",
   PowerPink: "#f7059d",
   OrangeGold: "#FFD68B",
+  CobaltBlue: "#0044B0",
 };
 
 // opinionated

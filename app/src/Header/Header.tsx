@@ -110,7 +110,7 @@ export const Header = ({
         canInstallPwa={canInstallPwa}
         handleZeroKnowledgePassword={handleZeroKnowledgePassword}
       />
-      <div
+      {/* <div
         style={{
           display: "flex",
           justifyContent: "center",
@@ -122,13 +122,13 @@ export const Header = ({
             appName={"Robots Building Education"}
             onConnect={() => toast("Connected!")}
             onDisconnect={() => {
-              localStorage.clear();
-              handleZeroKnowledgePassword(null, true, null);
+              // localStorage.clear();
+              // handleZeroKnowledgePassword(null, true, null);
             }}
           />
         ) : null}
       </div>
-      <br /> <br />
+      <br /> <br /> */}
     </div>
   );
 };

@@ -2,6 +2,7 @@
 
 import { ChatBlock } from "../Displays/ChatBlock/ChatBlock";
 import poorCharlie from "../../media/images/poorCharlie.png";
+import neyra_logo from "../../media/images/neyra_logo.png";
 import { ultimateEffeciencyJutsu } from "../ui";
 import { japaneseThemePalette, textBlock } from "../../../styles/lazyStyles";
 import { SchedulerBlock } from "../Displays/SchedulerBlock/SchedulerBlock";
@@ -653,9 +654,67 @@ export const Entrepeneur = {
             >
               <br />
               <ExternalLink
-                textDisplay={"The Psychology Of Human Misjudgement"}
+                textDisplay={"Investment Decisions"}
+                link={"https://old-fashionedintelligence.info/investment"}
+              />
+              <br />
+              <br />
+              <ExternalLink
+                textDisplay={"Charlie's Lecture"}
                 link={
                   "https://www.youtube.com/watch?v=Jv7sLrON7QY&ab_channel=WarrenBuffett"
+                }
+              />
+              <br />
+              <br />
+              <ExternalLink
+                textDisplay={"Getting Started"}
+                link={
+                  "https://www.patreon.com/posts/get-started-with-95899996?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                }
+              />
+              <br />
+              <br />
+              <ExternalLink
+                color={"#0044B0"}
+                textDisplay={"$SQ"}
+                link={"https://profitviz.com/SQ"}
+              />
+              <ExternalLink
+                color={"#0044B0"}
+                textDisplay={"$PINS"}
+                link={"https://profitviz.com/PINS"}
+              />
+              <ExternalLink
+                color={"#0044B0"}
+                textDisplay={"$DUOL"}
+                link={"https://profitviz.com/DUOL"}
+              />
+              <br />
+              <br />
+              <ExternalLink
+                color={"#0044B0"}
+                textDisplay={"Essay: Duolingo"}
+                link={
+                  "https://www.patreon.com/posts/duolingo-stock-i-89254752?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                }
+              />{" "}
+              <br />
+              <br />
+              <ExternalLink
+                color={"#0044B0"}
+                textDisplay={"Essay: Pinterest"}
+                link={
+                  "https://www.patreon.com/posts/pinterest-stock-95638689?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                }
+              />
+              <br />
+              <br />
+              <ExternalLink
+                color={"#0044B0"}
+                textDisplay={"Essay: Block"}
+                link={
+                  "https://www.patreon.com/posts/block-stock-i-92632367?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
                 }
               />
               <br />
@@ -677,7 +736,6 @@ export const Entrepeneur = {
           )}?`,
           response: (
             <div>
-              <h5>25 elite af quotes by Charlie Munger 🌟</h5>
               <ol>
                 <li style={{ marginBottom: 12 }}>
                   "To get what you want, you have to deserve what you want."
@@ -1056,9 +1114,8 @@ export const Entrepeneur = {
           response: (
             <div>
               <p>
-                Absolutely, let's break down Apple's revenue together! As of my
-                knowledge cut-off in September 2021, Apple, one of the world's
-                leading tech companies, has several major sources of revenue:
+                Apple, one of the world's leading tech companies, has several
+                major sources of revenue:
               </p>
               <ol>
                 <li>
@@ -1096,11 +1153,6 @@ export const Entrepeneur = {
                 Please remember that these percentages are estimates and can
                 fluctuate based on a number of factors like the release of new
                 products or changes in consumer behavior. 🍎
-              </p>
-              <p>
-                Is there something more specific you would like to understand
-                about Apple's revenue breakdown? I'm here to support your
-                learning journey. 💖🌈
               </p>
             </div>
           ),
@@ -1210,6 +1262,49 @@ export const Entrepeneur = {
           request: `Alright bro, show me what you got. I wanna shop and support this network more.`,
           response: (
             <div>
+              <br />
+              <br />
+              <div
+                style={
+                  {
+                    // border: "1px solid green",
+                    // ...textBlock(
+                    //   japaneseThemePalette.PowerPurple,
+                    //   0,
+                    //   12,
+                    //   "white",
+                    //   "0px 0px 5px 0px rgba(0,0,0,0.75)"
+                    // ),
+                  }
+                }
+              >
+                Neyra runs Operation The Hustle, an independent organization
+                that introduces people to financial literacy and advanced topics
+                surrounding business, tax and wealth management. Following her
+                work will give you a more complete and well-rounded education.
+              </div>
+              <br />
+              <a
+                href="https://www.instagram.com/operationthehustle/"
+                target="_blank"
+              >
+                <img
+                  style={{
+                    width: 200,
+
+                    // backgroundColor: "black",
+                    // border: "2px solid black",
+                    // padding: 20,
+                    // border: "1px solid cyan",
+                    borderRadius: "50%",
+                    // boxShadow: "1px 1px 3px 2px rgba(0,255,140,1)",
+                    // boxShadow: "0px 0px 12px 3px rgba(0,0,0,0.75)",
+                  }}
+                  src={neyra_logo}
+                />
+              </a>
+              <hr />
+              <br />
               <div
                 style={
                   {
@@ -1228,13 +1323,15 @@ export const Entrepeneur = {
                 extolled were thrift, duty, hard work, and simplicity.
                 Subsequently, two centuries went by during which Ben's thoughts
                 on these subjects were regarded as the last word. Then Charlie
-                Munger stepped forth. – Warren Buffett From the Foreword to Poor
-                Charlie's Almanack
+                Munger stepped forth.
+                <br />
+                <br />– Warren Buffett From the Foreword to Poor Charlie's
+                Almanack
               </div>
 
               <br />
 
-              <div href="https://collabs.shop/zs1bwk" target="_blank">
+              <a href="https://collabs.shop/xgyj7o" target="_blank">
                 <img
                   style={{
                     // border: "1px solid cyan",
@@ -1245,7 +1342,7 @@ export const Entrepeneur = {
                   }}
                   src={poorCharlie}
                 />
-              </div>
+              </a>
             </div>
           ),
           spanish: ``,

@@ -47,8 +47,10 @@ export const Module = ({
   const isDisabled =
     !userStateReference?.databaseUserDocument?.unlocks?.[module];
 
+  console.log("module", module);
   return (
     <StyledModule
+      module={module}
       disabled={isDisabled}
       patreonObject={currentModule}
       key={currentModule.button}

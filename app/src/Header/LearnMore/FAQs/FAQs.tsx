@@ -8,6 +8,7 @@ import {
   textBlock,
 } from "../../../styles/lazyStyles";
 import { logEvent } from "firebase/analytics";
+import { ExternalLink } from "../../../common/ui/Displays/ExternalLink/ExternalLink";
 
 const delayedAnimation = keyframes`
 from {
@@ -92,7 +93,7 @@ const FAQSection = () => {
           cofounder environment that sets up individuals for success. Modern and
           important skills are taught here to support people's goals in
           advancing their education, changing their careers, or starting a
-          business.
+          business. You'll learn a lot about software, media and money here.
           <br />
           <br />
           This program focuses on creating a powerful first mile for learning.
@@ -146,6 +147,53 @@ const FAQSection = () => {
       ),
     },
     {
+      question: "What about AI?",
+      answer: (
+        <div
+          style={{
+            ...textBlock(japaneseThemePalette.KyotoPurple, 0),
+          }}
+        >
+          {/* <h3 style={{ maxWidth: "100%", width: 700 }}>
+            What kind of computer =do I need?
+          </h3> */}
+          <p style={{ maxWidth: "100%", width: 700 }}>
+            <ExternalLink
+              textDisplay={"A session with rox ⚡"}
+              link={
+                "https://chat.openai.com/share/874f923c-a124-4544-995b-b0c802464cde"
+              }
+              color={japaneseThemePalette?.CobaltBlue}
+            ></ExternalLink>
+            <br />
+            <br />
+            If AI can program themselves, it's likely that all work as we know
+            it will fundamentally change. But for now, it's going to change the
+            supply and demand of things in a relevant way.
+            <br />
+            <br />
+            In my view, AI makes software engineering more realistic for more
+            people. Before AI, it was clear that there was an unmanageable
+            amount of work being generated in a way where a software enginer
+            would create more work than they could complete.
+            <br />
+            <br />
+            So I personally find it more enjoyable to write code with AI than
+            without it and I believe that it makes more things like
+            entrepreneurship more accessible.
+            <br />
+            <br />
+            Thinking critically, AI is mostly concerned with making good
+            decisions. So roles that depend more on decisions will be impacted.
+            In my view, that's more senior and executive roles, and thus you
+            could start to build businesses more reasonably as a result. So
+            that's what we try to do here - we arm you with new skills and hope
+            that it influences your decisions or opportunities in a good way.
+          </p>
+        </div>
+      ),
+    },
+    {
       question: "What kind of computer do I need?",
       answer: (
         <div
@@ -162,7 +210,7 @@ const FAQSection = () => {
             device or any laptop. I like it on mobile phones.
             <br /> <br />
             If you're wondering what kind of computer you need to code, I
-            recommend a macbook pro. The next bext answer is whatever you can
+            recommend a macbook pro. The next best answer is whatever you can
             afford.
             <br />
             <br />
@@ -249,7 +297,7 @@ const FAQSection = () => {
             code the cloud.
             <br />
             <br />
-            What what if you need and iOS app, an android one, a video game, or
+            But what if you need and iOS app, an android one, a video game, or
             some kind of robot? Ultimately you'll find that when you "learn one
             language, you kinda learn them all". Again, there's a reason for
             that, but ultimately it's like worrying whether you should learn how
@@ -292,10 +340,10 @@ const FAQSection = () => {
             How you approach each will be wildly different. A self-taught
             developer in San Francisco is different than a self-taught developer
             in Nebraska. A computer science student at Stanford will have a
-            different environment a community college. The key thing here is
-            that your envionrment plays an important role in your opportunities
-            - so control for it early and often! That's why you're here! I want
-            you to be successful before you start your journey.
+            different environment than someone at a community college. The key
+            thing here is that your envionrment plays an important role in your
+            opportunities - so control for it early and often! That's why you're
+            here! I want you to be successful before you start your journey.
           </p>
         </div>
       ),
@@ -338,11 +386,11 @@ const FAQSection = () => {
             What is coding and what can I do with it?
           </h3> */}
           <p style={{ maxWidth: "100%", width: 700 }}>
-            Coding is a way to organize information. So it exists
-            everywhere.Think of it this way. Coding is written by software
-            engineers to organize information. Software engineers study computer
-            science. Computer science is the science of computation. Computation
-            is problem solving. So coding expresses the science of solving
+            Coding is a way to organize information. So it exists everywhere.
+            Think of it this way. Coding is written by software engineers to
+            organize information. Software engineers study computer science.
+            Computer science is the science of computation. Computation is
+            problem solving. So coding expresses the science of solving
             problems.
             <br />
             <br />

@@ -133,7 +133,16 @@ const renderContent = (
       return (
         <div style={{ padding: 20 }}>
           <code style={{ fontSize: 12 }}>
-            Shopify links don't work rn but the books are good to know about 😔
+            <span style={{ color: "lime" }}>
+              The following links are affiliate links by Shopify Collabs that
+              earn 7-15% commission.
+            </span>
+            <br />
+            <br />
+            <span style={{ color: "cyan", fontWeight: "bolder" }}>
+              Links with borders are creator businesses in partnership with
+              Robots Building Education.
+            </span>
           </code>
           <br />
           <br />
@@ -171,7 +180,6 @@ export const PromptCombiner9000 = ({
   handleCompletedPractice,
   handleWatch,
 }) => {
-  console.log("moduleName", moduleName);
   const [promptVisibility, setPromptVisibility] = useState("flex");
   if (isEmpty(patreonObject)) {
     return null;

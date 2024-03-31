@@ -44,8 +44,6 @@ export const Collections = ({
         boxShadow: `10px 10px 0px 0px ${japaneseThemePalette.TokyoTwilight}`,
       };
 
-      console.log("MODULES", modules);
-
       return (
         <div>
           <br />

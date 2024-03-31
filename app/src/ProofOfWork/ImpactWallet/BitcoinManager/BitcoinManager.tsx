@@ -47,12 +47,12 @@ export const BitcoinManager = ({ handleZeroKnowledgePassword }) => {
   return (
     <>
       <Toaster />
-
+      {/* 
       <Button
         appName="Robots Building Education"
         onConnect={() => toast("Connected!")}
-        onDisconnect={() => handleZeroKnowledgePassword(null, true, null)}
-      />
+        // onDisconnect={() => handleZeroKnowledgePassword(null, true, null)}
+      /> */}
       <br />
     </>
   );

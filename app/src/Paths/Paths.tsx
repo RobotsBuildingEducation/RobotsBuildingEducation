@@ -120,10 +120,10 @@ export const Paths = ({
   pathSelectionAnimationData,
   userStateReference,
 }): JSX.Element => {
-  console.log("path data.......", userStateReference);
-
   let unlockCreatorKey =
-    userStateReference?.databaseUserDocument?.unlocks?.["Philosophy"];
+    userStateReference?.databaseUserDocument?.unlocks?.[
+      "Lesson 2 Frontend Programming"
+    ];
 
   let unlockDealerKey =
     userStateReference?.databaseUserDocument?.unlocks?.[

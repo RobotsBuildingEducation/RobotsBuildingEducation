@@ -30,10 +30,11 @@ import {
 import {
   checkActiveUserStates,
   checkSignInStates,
+  deleteWeb5Records,
   handleUserAuthentication,
   sortEmotionsByDate,
 } from "./App.compute";
-import { setOfLectures, validPasscodes } from "./App.constants";
+import { setOfLectures, userUnlocks, validPasscodes } from "./App.constants";
 import { AuthDisplay } from "./AuthDisplay/AuthDisplay";
 import { LectureHeader } from "./LectureHeader/LectureHeader";
 import { ChatGptWrapper } from "./ChatGPT/ChatGptWrapper";
@@ -68,6 +69,9 @@ let App = ({ canInstallPwa }) => {
 
   // handles ui data
   let { uiStateReference } = useUIStates();
+
+  let [web5Reference, setWeb5Reference] = useState(null);
+  let [dwnRecordSet, setDwnRecordSet] = useState([]);
 
   // handles language switching
   let [languageMode, setLanguageMode] = useState(words["English"]);
@@ -203,50 +207,60 @@ let App = ({ canInstallPwa }) => {
    * @description check if the user has been logged in
    */
 
-  const connectDID = async () => {
+  const connectDID = async (auth, user) => {
     try {
       const { web5, did: aliceDid } = await Web5.connect();
-      console.log("DID", aliceDid);
-      console.log("DIDX", web5.did);
       localStorage.setItem("uniqueId", web5?.did?.agent?.agentDid);
-      return web5?.did?.agent?.agentDid;
-    } catch (error) {
-      console.log("did error", error);
-    }
-  };
 
-  useEffect(() => {
-    console.log("run did..");
-    connectDID();
-    // if ("serviceWorker" in navigator) {
-    //   navigator.serviceWorker
-    //     .register("/service-worker.js")
-    //     .then(() => console.log("Service Worker registered successfully."))
-    //     .catch((error) =>
-    //       console.log("Service Worker registration failed:", error)
-    //     );
-    // }
+      // setWeb5Reference(web5);
 
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000); // 2000 milliseconds = 2 seconds
+      // const { records } = await web5.dwn.records.query({
+      //   message: {
+      //     filter: {
+      //       // dataFormat: "text/plain",
+      //       dataFormat: "application/json",
+      //       // Additional filters if available
+      //     },
+      //   },
+      // });
 
-    const storedPasscode = localStorage.getItem("patreonPasscode");
+      // let set = [];
+      // for (let record of records) {
+      //   const data = await record.data.json();
+      //   const transcript = { record, data, id: record.id };
+      //   // todos.value.push(todo);
+      //   set.push(transcript);
+      // }
 
-    // manages passcode, set to true after change to freemium
-    // authStateReference.setIsZeroKnowledgeUser(
-    //   !isEmpty(window?.webln?.walletPubkey) ||
-    //     localStorage.getItem("patreonPasscode") ===
-    //       import.meta.env.VITE_PATREON_PASSCODE ||
-    //     localStorage.getItem("patreonPasscode") ===
-    //       import.meta.env.VITE_BITCOIN_PASSCODE
-    // );
-    authStateReference.setIsZeroKnowledgeUser(true);
+      // setDwnRecordSet(set);
 
-    onAuthStateChanged(auth, (user) => {
-      console.log("running auth");
+      // let robots = set.find((item) =>
+      //   item?.data?.protocol?.includes("https://robotsbuildingeducation.com")
+      // );
+
+      // if (!robots) {
+      //   const { record } = await web5.dwn.records.create({
+      //     data: {
+      //       protocol: "https://robotsbuildingeducation.com",
+      //       ...userUnlocks,
+      //     },
+      //     message: {
+      //       dataFormat: "application/json",
+      //       published: true,
+      //     },
+      //   });
+      // }
+
+      // deleteWeb5Records(set, web5);
+
+      // console.log("set of records", set);
+
+      // console.log("finished");
+
+      // console.log("runnning auth");
       if (user?.displayName) {
         handleUserAuthentication(user, {
+          web5,
           authStateReference,
           uiStateReference,
           userStateReference,
@@ -256,8 +270,8 @@ let App = ({ canInstallPwa }) => {
           console.error("Error handling user authentication:", error);
         });
       } else {
-        console.log("ran without logging in", user);
         handleUserAuthentication(user, {
+          web5,
           authStateReference,
           uiStateReference,
           userStateReference,
@@ -267,6 +281,25 @@ let App = ({ canInstallPwa }) => {
           console.error("Error handling user authentication:", error);
         });
       }
+
+      // console.log("unloading");
+      // setLoading(false);
+    } catch (error) {
+      connectDID(auth, user);
+    }
+  };
+
+  useEffect(() => {
+    // console.log("running after DID");
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    authStateReference.setIsZeroKnowledgeUser(true);
+
+    onAuthStateChanged(auth, (user) => {
+      connectDID(auth, user);
     });
   }, []);
 
@@ -462,10 +495,44 @@ let App = ({ canInstallPwa }) => {
         unlocks,
       });
 
+      // const { record } = await web5Reference.dwn.records.read({
+      //   message: {
+      //     filter: {
+      //       recordId: dwnRecordSet?.find(
+      //         (item) =>
+      //           item?.data?.protocol === "https://robotsbuildingeducation.com"
+      //       )?.id,
+      //     },
+      //   },
+      // });
+
+      // const transcript = await record.data.json();
+
+      // await record.update({
+      //   data: {
+      //     ...transcript,
+      //     ...unlocks,
+      //   },
+      // });
+
       userStateReference.setDatabaseUserDocument((prevDoc) => ({
         ...prevDoc,
         unlocks,
       }));
+
+      // // console.log("final result:");
+      // const { record: testRecord } = await web5Reference.dwn.records.read({
+      //   message: {
+      //     filter: {
+      //       recordId: dwnRecordSet?.find(
+      //         (item) =>
+      //           item?.data?.protocol === "https://robotsbuildingeducation.com"
+      //       )?.id,
+      //     },
+      //   },
+      // });
+      // const outcome = await testRecord.data.json();
+      // console.log("dwn outcome", outcome);
     }
   };
   // const handleZap = async () => {

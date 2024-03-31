@@ -1,5 +1,5 @@
 import React from "react";
-import { Button as DisableButton } from "react-bootstrap";
+import { Badge, Button as DisableButton } from "react-bootstrap";
 import { LightningAddress } from "@getalby/lightning-tools";
 import { Button, Modal, launchModal } from "@getalby/bitcoin-connect-react";
 import toast, { Toaster } from "react-hot-toast";
@@ -52,23 +52,41 @@ export const WalletAuth = ({ handleZeroKnowledgePassword }) => {
 
   return (
     <div>
-      <div>
+      {/* <div >
         <Toaster />
-      </div>
+      </div> */}
       {/* 
       <DisableButton variant="primary" disabled={true}>
         Connect Wallet (disabled)
       </DisableButton> */}
-      <div onClick={() => console.log("HELLO")}>
+      <div
+        style={{ zIndex: 10000000 }}
+        id="robe-button"
+        onClick={() => {
+          console.log(document.getElementById("robe-button"));
+        }}
+      >
         <Button
+          onModalOpened={() => {
+            console.log("opening modal");
+
+            console.log(
+              "elements",
+              document.getElementsByClassName("shadow-2xl")
+            );
+          }}
           // disabled={true}
           appName="Robots Building Education"
           onConnect={() => {
             localStorage.setItem("patreonPasscode", "bitcoin");
             toast("Connected!");
+
             handleZeroKnowledgePassword(null, null, true);
           }}
         />
+        <Badge bg="light" style={{ color: "black" }}>
+          🧪 experimental feature
+        </Badge>
       </div>
     </div>
   );

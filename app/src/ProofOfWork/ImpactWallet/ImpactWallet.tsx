@@ -11,43 +11,28 @@ import {
   ProgressBar,
 } from "react-bootstrap";
 import zap_animation from "../../common/anims/zap_animation.json";
-import star_animation from "../../common/anims/star_animation.json";
 import bitcoin_animation from "../../common/anims/bitcoin_animation.json";
-import { getGlobalImpact } from "../../common/uiSchema";
-import sheilferBitcoin from "../../common/media/images/sheilferBitcoin.jpeg";
-import cashAppCard from "../../common/media/images/cashAppCard.jpeg";
+
+// import cashAppCard from "../../common/media/images/cashAppCard.jpeg";
+import IMPACT_BACKGROUND from "../../common/media/images/IMPACT_BACKGROUND.jpg";
 import roxanaChat from "../../common/media/images/roxanaChat.png";
 import { logEvent } from "firebase/analytics";
 import { analytics, database } from "../../database/firebaseResources";
-import { DiscordButton } from "../../common/ui/Displays/DiscordButton/DiscordButton";
 import { doc, getDoc } from "firebase/firestore";
 import { Link, useParams } from "react-router-dom";
 import { EmotionalIntelligence } from "./EmotionalIntelligence/EmotionalIntelligence";
-import {
-  FadeInComponent,
-  PopAnimation,
-  RiseUpAnimation,
-  japaneseThemePalette,
-  textBlock,
-} from "../../styles/lazyStyles";
+import { FadeInComponent } from "../../styles/lazyStyles";
 
-import { Scheduler } from "./Scheduler/Scheduler";
 import { decentralizedEducationTranscript, npub } from "../../App.constants";
-import { Star, StarsContainer } from "./ImpactWallet.styles";
-import { Cofounder } from "./Cofounder/Cofounder";
-import {
-  Button as AlbyButton,
-  Modal as AlbyModal,
-  launchModal as albyLaunchModal,
-  closeModal as albyCloseModal,
-} from "@getalby/bitcoin-connect-react";
-import { BitcoinManager } from "./BitcoinManager/BitcoinManager";
-import { getAuth, signOut } from "firebase/auth";
-import { ChatFrame } from "./ChatFrame/ChatFrame";
-import { Portfolio } from "./Portfolio/Portfolio";
+
 import { BossMode } from "./BossMode/BossMode";
 import { Experimental } from "./Cofounder/Experimental";
-import { copyToClipboard, handleUserAuthentication } from "../../App.compute";
+import {
+  animateBorderLoading,
+  copyToClipboard,
+  handleUserAuthentication,
+} from "../../App.compute";
+import { WalletAuth } from "../../WalletAuth";
 
 const renderTranscriptAwards = (profileData) => {
   if (isEmpty(profileData)) {
@@ -168,6 +153,9 @@ export const ImpactWallet = ({
   const [inputValue, setInputValue] = useState("");
   const [isValidDidKey, setIsValidDidKey] = useState(false);
   const [isWarningDismissed, setIsWarningDismissed] = useState(false);
+
+  let [borderStateForCopyButton, setBorderStateForCopyButton] =
+    useState("1px solid purple");
 
   let params = useParams();
 
@@ -421,7 +409,7 @@ export const ImpactWallet = ({
             padding: 0,
             backgroundColor: "black",
             color: "white",
-            backgroundImage: `url(${cashAppCard})`,
+            backgroundImage: `url(${IMPACT_BACKGROUND})`,
             backgroundPosition: "center center",
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
@@ -436,14 +424,6 @@ export const ImpactWallet = ({
               width: "100%",
             }}
           >
-            <Button
-              variant="light"
-              onClick={copyToClipboard}
-              style={{ marginBottom: 6 }}
-            >
-              Copy ID
-            </Button>
-            <br />
             <div
               style={{
                 maxWidth: "fit-content",
@@ -452,11 +432,20 @@ export const ImpactWallet = ({
                 borderRadius: 8,
                 color: "#D6CFFE",
                 backgroundColor: "#0B0536",
+                cursor: "pointer",
+                border: borderStateForCopyButton,
+                transition: "0.25s all ease-in-out",
+              }}
+              onClick={() => {
+                copyToClipboard();
+                animateBorderLoading(
+                  setBorderStateForCopyButton,
+                  "1px solid gold",
+                  "1px solid purple"
+                );
               }}
             >
-              <span>
-                ❗ make sure to copy your ID and save it somewhere safe.
-              </span>
+              <span>📄 &nbsp;click to copy ID and save it somewhere safe.</span>
             </div>
             <br />
             Enter your ID to switch accounts
@@ -479,11 +468,18 @@ export const ImpactWallet = ({
                   : "Invalid DID entered"}
               </Alert>
             )}
-            <br />
             {/* <AlbyButton onConnect={() => alert("Connected!")}></AlbyButton> */}
             {/* <BitcoinManager
                 handleZeroKnowledgePassword={handleZeroKnowledgePassword}
               /> */}
+            or
+            <br />
+            <br />
+            <WalletAuth
+              handleZeroKnowledgePassword={handleZeroKnowledgePassword}
+            />
+            <br />
+            <br />
             <h4 style={{ fontFamily: "Bungee" }}>
               Your Decentralized Transcript
             </h4>

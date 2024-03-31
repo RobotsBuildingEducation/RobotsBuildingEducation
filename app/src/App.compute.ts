@@ -60,12 +60,23 @@ export const setupUserDocument = async (
   docRef,
   userStateReference,
   user,
-  uniqueID
+  uniqueID,
+  web5
 ) => {
   const res = await getDoc(docRef);
 
   if (!res?.data()) {
-    console.log("response not available, creating user doc");
+    // let result = await web5?.dwn?.records?.create({
+    //   data: {
+    //     protocol: "https://robotsbuildingeducation.com",
+    //     ...userUnlocks,
+    //   },
+    //   message: {
+    //     dataFormat: "application/json",
+    //     published: true,
+    //   },
+    // });
+
     await setDoc(docRef, {
       impact: 0,
       userAuthObj: {
@@ -78,8 +89,10 @@ export const setupUserDocument = async (
     });
     const response = await getDoc(docRef);
     userStateReference.setDatabaseUserDocument(response.data());
-    console.log("usrstat", userStateReference);
   } else {
+    // consider updates from a DWN that wont be saved to your database
+    // right now you don't need it because you're managing UI with fb already and there's no impact for wiring it in.
+    // so what this means is that web5 is more concerned with decentralized messaging than it is the state of UI
     userStateReference.setDatabaseUserDocument(res.data());
   }
 };
@@ -120,7 +133,8 @@ export const handleUserAuthentication = async (user, appFunctions) => {
     docRef,
     appFunctions.userStateReference,
     user,
-    _uniqueId
+    _uniqueId,
+    appFunctions?.web5
   );
   await updateGlobalCounters(
     globalImpactDocRef,
@@ -272,5 +286,31 @@ export let copyToClipboard = () => {
       });
   } else {
     console.log("UniqueId not found in local storage.");
+  }
+};
+
+export let animateBorderLoading = async (
+  stateAnimator,
+  styleObjectAfter,
+  styleObjectBefore
+) => {
+  stateAnimator(styleObjectAfter);
+
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  await delay(750);
+
+  stateAnimator(styleObjectBefore);
+};
+
+export const deleteWeb5Records = async (recordSet, web5Reference) => {
+  for (let i = 0; i < recordSet.length; i++) {
+    console.log(`record set at ${i}`, recordSet[i]);
+    let currentId = recordSet[i]?.id;
+
+    const deleteResult = await web5Reference.dwn.records.delete({
+      message: {
+        recordId: currentId,
+      },
+    });
   }
 };
