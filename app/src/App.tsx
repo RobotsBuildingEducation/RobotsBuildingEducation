@@ -583,11 +583,7 @@ let App = () => {
           maxWidth: "100%",
         }}
       >
-        <Header
-          languageMode={languageMode}
-          setLanguageMode={setLanguageMode}
-          handleZeroKnowledgePassword={handleZeroKnowledgePassword}
-        />
+        <Header languageMode={languageMode} setLanguageMode={setLanguageMode} />
 
         {checkSignInStates({ authStateReference }) ? <AuthDisplay /> : null}
 

@@ -1,31 +1,14 @@
 import { useState } from "react";
 
-// import { pwaInstallHandler } from "pwa-install-handler";
 import { Button, Modal } from "react-bootstrap";
-
 import { logEvent } from "firebase/analytics";
-import { analytics, auth } from "../../database/firebaseResources";
+import { analytics } from "../../database/firebaseResources";
 import { DiscordButton } from "../../common/ui/Displays/DiscordButton/DiscordButton";
-
-import {
-  FadeInComponent,
-  PanLeftComponent,
-  PanRightComponent,
-  RiseDownAnimation,
-  RiseUpAnimation,
-  japaneseThemePalette,
-  textBlock,
-} from "../../styles/lazyStyles";
+import { FadeInComponent, RiseUpAnimation } from "../../styles/lazyStyles";
 import FAQSection from "./FAQs/FAQs";
 
-let data = {};
-export const LearnMore = ({
-  languageMode,
-
-  handleZeroKnowledgePassword,
-}) => {
+export const LearnMore = ({ languageMode }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);
 
   return (
     <>
@@ -41,33 +24,6 @@ export const LearnMore = ({
           alignItems: "center",
         }}
       >
-        {/* <PanLeftComponent speed={0.3}>
-          <a
-            style={{ color: "white" }}
-            href={"https://old-fashionedintelligence.info/news"}
-            target={"_blank"}
-          >
-            <Button
-              variant="dark"
-              style={{
-                color: "white",
-                textShadow: "0px 0px 4px black",
-                margin: 6,
-                width: 55,
-              }}
-              onClick={() => {
-                logEvent(analytics, "select_content", {
-                  content_type: "button",
-                  item_id: "Old-Fashioned Intelligence",
-                });
-                // setIsNewsModalOpen(true);
-              }}
-            >
-              🧍🏽‍♀️
-            </Button>
-          </a>
-        </PanLeftComponent>
-        <br /> */}
         <RiseUpAnimation speed={0.3}>
           <a
             style={{ color: "white" }}
@@ -87,7 +43,6 @@ export const LearnMore = ({
                   content_type: "button",
                   item_id: "Old-Fashioned Intelligence",
                 });
-                // setIsNewsModalOpen(true);
               }}
             >
               📰
@@ -116,31 +71,7 @@ export const LearnMore = ({
           </Button>
         </RiseUpAnimation>
         <br />
-        {/* {localStorage.getItem("patreonPasscode") ===
-        import.meta.env.VITE_PATREON_PASSCODE ? (
-          <PanRightComponent speed={0.3}>
-            <Button
-              style={{ margin: 6, width: 110 }}
-              variant={"dark"}
-              onClick={() => {
-                localStorage.clear();
-                handleZeroKnowledgePassword(null, true, false);
-              }}
-            >
-              Log out
-            </Button>
-          </PanRightComponent>
-        ) : null} */}
       </div>
-
-      {/* <Button
-        variant="danger"
-        onClick={() => {
-          auth.signOut();
-        }}
-      >
-        Sign Out{" 😭😭😭"}
-      </Button> */}
 
       <Modal
         centered
@@ -153,11 +84,13 @@ export const LearnMore = ({
         <Modal.Header
           closeButton
           closeVariant="white"
-          style={{ backgroundColor: "black", color: "white" }}
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            border: "1px solid black",
+          }}
           onHide={() => setIsModalOpen(false)}
-        >
-          {/* <Modal.Title>{languageMode.modals.titles["1"]}</Modal.Title> */}
-        </Modal.Header>
+        ></Modal.Header>
         <Modal.Body
           style={{
             backgroundColor: "black",
@@ -165,7 +98,6 @@ export const LearnMore = ({
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            // maxWidth: 700,
             width: "100%",
           }}
         >
@@ -177,11 +109,6 @@ export const LearnMore = ({
           <br />
           <DiscordButton />
         </Modal.Body>
-        {/* <Modal.Footer style={{ backgroundColor: "black", color: "white" }}>
-          <Button variant="dark" onClick={() => setIsModalOpen(false)}>
-            Back to app
-          </Button>
-        </Modal.Footer> */}
       </Modal>
     </>
   );

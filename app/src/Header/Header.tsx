@@ -3,11 +3,7 @@ import { LearnMore } from "./LearnMore/LearnMore";
 import { prettyColorPalette } from "../styles/lazyStyles";
 import { words } from "../common/words/words";
 
-export const Header = ({
-  languageMode,
-  setLanguageMode,
-  handleZeroKnowledgePassword,
-}) => {
+export const Header = ({ languageMode, setLanguageMode }) => {
   // State for Language mode switch
   const [isSpanishMode, setIsSpanishMode] = useState(false);
   const [languageModeLabel, setLanguageModeLabel] = useState("English");
@@ -39,10 +35,7 @@ export const Header = ({
   }, [isHolyGhostModeActive, languageMode]);
   return (
     <div style={{ color: prettyColorPalette.softYellowGlow }}>
-      <LearnMore
-        languageMode={languageMode}
-        handleZeroKnowledgePassword={handleZeroKnowledgePassword}
-      />
+      <LearnMore languageMode={languageMode} />
     </div>
   );
 };
