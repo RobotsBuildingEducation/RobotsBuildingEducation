@@ -1,5 +1,5 @@
 import { logEvent } from "firebase/analytics";
-import { analytics } from "../../../../database/firebaseResources";
+import { analytics } from "../../../database/firebaseResources";
 
 /**
  * Renders a Discord connection button and a Patreon link.

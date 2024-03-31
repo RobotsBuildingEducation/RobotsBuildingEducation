@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { logEvent } from "firebase/analytics";
 import { analytics } from "../../database/firebaseResources";
-import { DiscordButton } from "../../common/ui/Displays/DiscordButton/DiscordButton";
+import { DiscordButton } from "./DiscordButton/DiscordButton";
 import { FadeInComponent, RiseUpAnimation } from "../../styles/lazyStyles";
 import FAQSection from "./FAQs/FAQs";
 
