@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Editor from "react-simple-code-editor";
 import { highlight, languages } from "prismjs/components/prism-core";
-import { japaneseThemePalette, textBlock } from "./styles/lazyStyles";
-import { useZap } from "./App.hooks";
-import { RoxanaLoadingAnimation, postInstructions } from "./common/uiSchema";
+import { japaneseThemePalette, textBlock } from "../styles/lazyStyles";
+import { useZap } from "../App.hooks";
+import { RoxanaLoadingAnimation, postInstructions } from "../common/uiSchema";
 
 // StyledTree.js
 import styled from "styled-components";
@@ -859,7 +859,7 @@ const StackTile = ({ name }) => {
   );
 };
 
-const GraphContainer = () => {
+const DecisionMap = () => {
   const [root, setRoot] = useState({
     name: "Root",
     children: mapImage,
@@ -1064,4 +1064,4 @@ const GraphContainer = () => {
   );
 };
 
-export default GraphContainer;
+export default DecisionMap;

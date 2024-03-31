@@ -40,7 +40,7 @@ import { LectureHeader } from "./LectureHeader/LectureHeader";
 import { ChatGptWrapper } from "./ChatGPT/ChatGptWrapper";
 import { ProofOfWorkWrapper } from "./ProofOfWork/ProofOfWorkWrapper";
 import { words } from "./common/words/words";
-import { InstallPWA } from "./InstallPWA";
+
 import { RiseUpAnimation } from "./styles/lazyStyles";
 import { useStore } from "./Store";
 
@@ -588,7 +588,6 @@ let App = () => {
           maxWidth: "100%",
         }}
       >
-        {/* <InstallPWA /> */}
         <Header
           languageMode={languageMode}
           setLanguageMode={setLanguageMode}
