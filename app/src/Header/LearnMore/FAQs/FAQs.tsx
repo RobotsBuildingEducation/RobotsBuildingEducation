@@ -1,6 +1,6 @@
 import { japaneseThemePalette, textBlock } from "../../../styles/lazyStyles";
 import { ExternalLink } from "../../../common/ui/Displays/ExternalLink/ExternalLink";
-import { FAQItem } from "./FAQItem.tsx/FAQItem";
+import { FAQItem } from "./FAQItem/FAQItem";
 
 /**
  * `FAQSection` component renders a list of frequently asked questions (FAQs) about the application.

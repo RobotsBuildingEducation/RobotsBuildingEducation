@@ -45,16 +45,12 @@ export const ProofOfWorkWrapper = ({
   const calculatedPercentage = computePercentage(userImpact, proofOfWork);
 
   // Check if the user is eligible to see the ProofOfWork component
-  const isUserEligible =
-    userStateReference.databaseUserDocument &&
-    authStateReference.isSignedIn &&
-    authStateReference.isZeroKnowledgeUser;
+  const isUserEligible = userStateReference.databaseUserDocument;
 
   if (!isUserEligible) return null;
 
   // Extract properties for easier readability
-  const { userAuthObject, isSignedIn, isZeroKnowledgeUser } =
-    authStateReference;
+  const { userAuthObject } = authStateReference;
 
   const {
     databaseUserDocument,

@@ -28,8 +28,6 @@ import {
   useZapAnimation,
 } from "./App.hooks";
 import {
-  checkActiveUserStates,
-  checkSignInStates,
   deleteWeb5Records,
   handleUserAuthentication,
   sortEmotionsByDate,
@@ -258,14 +256,12 @@ let App = () => {
       setLoading(false);
     }, 2000);
 
-    authStateReference.setIsZeroKnowledgeUser(true);
-
     onAuthStateChanged(auth, (user) => {
       connectDID(auth, user);
     });
   }, []);
 
-  if (loading || typeof authStateReference.isSignedIn == "string") {
+  if (loading) {
     return (
       <div
         style={{
@@ -552,56 +548,49 @@ let App = () => {
       >
         <Header languageMode={languageMode} setLanguageMode={setLanguageMode} />
 
-        {checkSignInStates({ authStateReference }) ? <AuthDisplay /> : null}
+        <>
+          <Paths
+            handlePathSelection={handlePathSelection}
+            pathSelectionAnimationData={
+              uiStateReference.pathSelectionAnimationData
+            }
+            userStateReference={userStateReference}
+          />
 
-        {authStateReference.isZeroKnowledgeUser &&
-        checkActiveUserStates({ userStateReference, authStateReference }) ? (
-          <>
-            <Paths
-              handlePathSelection={handlePathSelection}
-              pathSelectionAnimationData={
-                uiStateReference.pathSelectionAnimationData
-              }
-              userStateReference={userStateReference}
-            />
+          <Collections
+            handleModuleSelection={handleModuleSelection}
+            currentPath={uiStateReference.currentPath}
+            userStateReference={userStateReference}
+          />
 
-            <Collections
-              handleModuleSelection={handleModuleSelection}
-              currentPath={uiStateReference.currentPath}
-              userStateReference={userStateReference}
-            />
+          <LectureHeader uiStateReference={uiStateReference} />
 
-            <LectureHeader uiStateReference={uiStateReference} />
-
-            <ChatGptWrapper
-              uiStateReference={uiStateReference}
-              userStateReference={userStateReference}
-              globalStateReference={globalStateReference}
-              handleScheduler={handleScheduler}
-              handleZap={handleZap}
-              zap={zap}
-              checkForUnlock={checkForUnlock}
-              handleCompletedPractice={handleCompletedPractice}
-              handleWatch={handleWatch}
-            />
-          </>
-        ) : null}
+          <ChatGptWrapper
+            uiStateReference={uiStateReference}
+            userStateReference={userStateReference}
+            globalStateReference={globalStateReference}
+            handleScheduler={handleScheduler}
+            handleZap={handleZap}
+            zap={zap}
+            checkForUnlock={checkForUnlock}
+            handleCompletedPractice={handleCompletedPractice}
+            handleWatch={handleWatch}
+          />
+        </>
       </div>
 
-      {checkActiveUserStates({ userStateReference, authStateReference }) ? (
-        <ProofOfWorkWrapper
-          userStateReference={userStateReference}
-          authStateReference={authStateReference}
-          globalStateReference={globalStateReference}
-          handlePathSelection={handlePathSelection}
-          updateUserEmotions={updateUserEmotions}
-          uiStateReference={uiStateReference}
-          showStars={showStars}
-          showZap={showZap}
-          zap={zap}
-          handleZap={handleZap}
-        />
-      ) : null}
+      <ProofOfWorkWrapper
+        userStateReference={userStateReference}
+        authStateReference={authStateReference}
+        globalStateReference={globalStateReference}
+        handlePathSelection={handlePathSelection}
+        updateUserEmotions={updateUserEmotions}
+        uiStateReference={uiStateReference}
+        showStars={showStars}
+        showZap={showZap}
+        zap={zap}
+        handleZap={handleZap}
+      />
     </div>
   );
 };

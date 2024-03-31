@@ -116,7 +116,7 @@ export const updateGlobalCounters = async (
 
 export const handleUserAuthentication = async (user, appFunctions) => {
   appFunctions.authStateReference.setUserAuthObject(user || {});
-  appFunctions.authStateReference.setIsSignedIn(true);
+
   appFunctions.uiStateReference.setIsDemo(false);
   let _uniqueId =
     localStorage.getItem("uniqueId") || user?.uid || _.uniqueId("rbe-");
@@ -151,28 +151,6 @@ export const handleUserAuthentication = async (user, appFunctions) => {
   );
   appFunctions.updateUserEmotions(usersEmotionsCollectionRef);
   appFunctions.uiStateReference.setProofOfWorkFromModules(getGlobalImpact());
-};
-
-export const checkSignInStates = ({ authStateReference }) => {
-  if (
-    typeof authStateReference.isSignedIn === "string" ||
-    (!authStateReference.isSignedIn && authStateReference.isZeroKnowledgeUser)
-  )
-    return true;
-  else return false;
-};
-
-export const checkActiveUserStates = ({
-  userStateReference,
-  authStateReference,
-}) => {
-  if (
-    userStateReference.databaseUserDocument &&
-    authStateReference.isSignedIn &&
-    authStateReference.isZeroKnowledgeUser
-  )
-    return true;
-  else return false;
 };
 
 export const updateImpact = async (

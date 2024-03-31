@@ -5,15 +5,9 @@ import { LightningAddress } from "@getalby/lightning-tools";
 import { useStore } from "./Store";
 
 export const useAuthState = () => {
-  const [isSignedIn, setIsSignedIn] = useState("start");
-  const [isZeroKnowledgeUser, setIsZeroKnowledgeUser] = useState(false);
   const [userAuthObject, setUserAuthObject] = useState({});
 
   let authStateReference = {
-    isSignedIn,
-    setIsSignedIn,
-    isZeroKnowledgeUser,
-    setIsZeroKnowledgeUser,
     userAuthObject,
     setUserAuthObject,
   };
