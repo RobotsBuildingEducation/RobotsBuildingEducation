@@ -1,6 +1,18 @@
 import { logEvent } from "firebase/analytics";
 import { analytics } from "../../../../database/firebaseResources";
 
+/**
+ * Renders a Discord connection button and a Patreon link.
+ *
+ * This component displays a Discord widget and a Patreon promotional link. Clicking the link logs an event to Firebase Analytics and redirects the user to a specified Patreon page. The component uses inline styling for layout and appearance.
+ *
+ * The Discord widget allows users to interact with Discord within the component. The Patreon link, styled as a button, uses Firebase Analytics to track clicks, identifying the promotion's effectiveness.
+ *
+ * No props are required.
+ *
+ * Example usage:
+ * `<DiscordButton />`
+ */
 export const DiscordButton = () => (
   <div
     style={{
