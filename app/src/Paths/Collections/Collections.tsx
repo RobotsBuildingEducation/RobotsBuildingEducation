@@ -25,6 +25,7 @@ const StyledAnimatedModule = styled.div`
 export const Collections = ({
   handleModuleSelection,
   currentPath,
+  userStateReference,
 }): JSX.Element | null => {
   const pathData = ui();
 
@@ -66,6 +67,7 @@ export const Collections = ({
                   collection={collection}
                   module={module}
                   handleModuleSelection={handleModuleSelection}
+                  userStateReference={userStateReference}
                 />
               </StyledAnimatedModule>
             ))}

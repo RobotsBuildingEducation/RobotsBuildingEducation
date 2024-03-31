@@ -60,9 +60,9 @@ export const Header = ({
   }, [isHolyGhostModeActive, languageMode]);
   return (
     <div style={{ color: prettyColorPalette.softYellowGlow }}>
-      <FadeInComponent>
+      {/* <FadeInComponent>
         <img width="175px" src={animatedLogo} style={{ marginTop: "24px" }} />
-      </FadeInComponent>
+      </FadeInComponent> */}
       {/* <div
         style={{
           display: "flex",
@@ -110,8 +110,7 @@ export const Header = ({
         canInstallPwa={canInstallPwa}
         handleZeroKnowledgePassword={handleZeroKnowledgePassword}
       />
-      <br />
-      <div
+      {/* <div
         style={{
           display: "flex",
           justifyContent: "center",
@@ -123,13 +122,13 @@ export const Header = ({
             appName={"Robots Building Education"}
             onConnect={() => toast("Connected!")}
             onDisconnect={() => {
-              localStorage.clear();
-              handleZeroKnowledgePassword(null, true, null);
+              // localStorage.clear();
+              // handleZeroKnowledgePassword(null, true, null);
             }}
           />
         ) : null}
       </div>
-      <br /> <br />
+      <br /> <br /> */}
     </div>
   );
 };

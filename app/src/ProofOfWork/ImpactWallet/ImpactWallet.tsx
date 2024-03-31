@@ -1,43 +1,38 @@
 import { useEffect, useState } from "react";
 import isEmpty from "lodash/isEmpty";
 import Lottie from "react-lottie";
-import { Button, Fade, Form, Modal, ProgressBar } from "react-bootstrap";
+import {
+  Alert,
+  Button,
+  Fade,
+  Form,
+  InputGroup,
+  Modal,
+  ProgressBar,
+} from "react-bootstrap";
 import zap_animation from "../../common/anims/zap_animation.json";
-import star_animation from "../../common/anims/star_animation.json";
-import { getGlobalImpact } from "../../common/uiSchema";
-import sheilferBitcoin from "../../common/media/images/sheilferBitcoin.jpeg";
-import cashAppCard from "../../common/media/images/cashAppCard.jpeg";
+import bitcoin_animation from "../../common/anims/bitcoin_animation.json";
+
+// import cashAppCard from "../../common/media/images/cashAppCard.jpeg";
+import IMPACT_BACKGROUND from "../../common/media/images/IMPACT_BACKGROUND.jpg";
 import roxanaChat from "../../common/media/images/roxanaChat.png";
 import { logEvent } from "firebase/analytics";
 import { analytics, database } from "../../database/firebaseResources";
-import { DiscordButton } from "../../common/ui/Displays/DiscordButton/DiscordButton";
 import { doc, getDoc } from "firebase/firestore";
 import { Link, useParams } from "react-router-dom";
 import { EmotionalIntelligence } from "./EmotionalIntelligence/EmotionalIntelligence";
-import {
-  FadeInComponent,
-  PopAnimation,
-  RiseUpAnimation,
-  japaneseThemePalette,
-  textBlock,
-} from "../../styles/lazyStyles";
+import { FadeInComponent } from "../../styles/lazyStyles";
 
-import { Scheduler } from "./Scheduler/Scheduler";
-import { decentralizedEducationTranscript } from "../../App.constants";
-import { Star, StarsContainer } from "./ImpactWallet.styles";
-import { Cofounder } from "./Cofounder/Cofounder";
-import {
-  Button as AlbyButton,
-  Modal as AlbyModal,
-  launchModal as albyLaunchModal,
-  closeModal as albyCloseModal,
-} from "@getalby/bitcoin-connect-react";
-import { BitcoinManager } from "./BitcoinManager/BitcoinManager";
-import { getAuth, signOut } from "firebase/auth";
-import { ChatFrame } from "./ChatFrame/ChatFrame";
-import { Portfolio } from "./Portfolio/Portfolio";
+import { decentralizedEducationTranscript, npub } from "../../App.constants";
+
 import { BossMode } from "./BossMode/BossMode";
 import { Experimental } from "./Cofounder/Experimental";
+import {
+  animateBorderLoading,
+  copyToClipboard,
+  handleUserAuthentication,
+} from "../../App.compute";
+import { WalletAuth } from "../../WalletAuth";
 
 const renderTranscriptAwards = (profileData) => {
   if (isEmpty(profileData)) {
@@ -151,8 +146,16 @@ export const ImpactWallet = ({
   isBossModeOpen,
   setIsBossModeOpen,
   handleZap,
+  authStateReference,
+  uiStateReference,
 }) => {
   let [databaseUserDocumentCopy, setDatabaseUserDocumentCopy] = useState({});
+  const [inputValue, setInputValue] = useState("");
+  const [isValidDidKey, setIsValidDidKey] = useState(false);
+  const [isWarningDismissed, setIsWarningDismissed] = useState(false);
+
+  let [borderStateForCopyButton, setBorderStateForCopyButton] =
+    useState("1px solid purple");
 
   let params = useParams();
 
@@ -180,8 +183,29 @@ export const ImpactWallet = ({
                 title="W3Schools Free Online Web Tutorials"
               ></iframe> 
   */
+  const handleChange = (event) => {
+    const { value } = event.target;
+    setInputValue(value);
+    setIsValidDidKey(value.includes("did:key:"));
+    //
+    if (value.includes("did:key:")) {
+      localStorage.setItem("uniqueId", value);
+      handleUserAuthentication(
+        {},
+        {
+          authStateReference,
+          uiStateReference,
+          userStateReference,
+          globalStateReference,
+          updateUserEmotions,
+        }
+      ).catch((error) => {
+        console.error("Error handling user authentication:", error);
+      });
+    }
+  };
 
-  console.log("showZap", showZap);
+  // console.log("showZap", showZap);
   return (
     <>
       <div style={{ padding: 6 }}>
@@ -201,13 +225,13 @@ export const ImpactWallet = ({
                 options={{
                   loop: true,
                   autoplay: true,
-                  animationData: showZap ? zap_animation : star_animation, // Your animation data goes here
+                  animationData: showZap ? bitcoin_animation : zap_animation, // Your animation data goes here
                   // rendererSettings: {
                   //   // preserveAspectRatio: "xMidYMid slice", // Adjust as needed
                   // },
                 }}
-                width={showZap ? 40 : 55}
-                height={showZap ? 40 : 55}
+                width={showZap ? 40 : 40}
+                height={showZap ? 40 : 40}
               />
             </FadeInComponent>
             {/* @ts-ignore */}
@@ -241,9 +265,9 @@ export const ImpactWallet = ({
             <span style={{ fontSize: "66%" }}>
               <b style={{ fontFamily: "Bungee" }}>
                 {displayName
-                  .split(" ")
-                  .map((name) => name[0].toUpperCase())
-                  .join("")}
+                  ?.split(" ")
+                  ?.map((name) => name[0]?.toUpperCase())
+                  ?.join("")}
               </b>
               {/* 👾 -&nbsp;
           {databaseUserDocumentCopy?.impact / 1000 ||
@@ -330,21 +354,19 @@ export const ImpactWallet = ({
               </Button>
             ) : null}
             &nbsp; &nbsp;
-            <Link to={`/profile/${params?.profileID || userAuthObject?.uid}`}>
-              <Button
-                style={{ textShadow: "2px 2px 12px black" }}
-                onClick={() => {
-                  logEvent(analytics, "select_content", {
-                    content_type: "button",
-                    item_id: "Proof of Work",
-                  });
-                  setIsImpactWalletOpen(true);
-                }}
-                variant="secondary"
-              >
-                🏦
-              </Button>
-            </Link>
+            <Button
+              style={{ textShadow: "2px 2px 12px black" }}
+              onClick={() => {
+                logEvent(analytics, "select_content", {
+                  content_type: "button",
+                  item_id: "Proof of Work",
+                });
+                setIsImpactWalletOpen(true);
+              }}
+              variant="secondary"
+            >
+              🏦
+            </Button>
           </FadeInComponent>
         )}
 
@@ -357,9 +379,8 @@ export const ImpactWallet = ({
               margin: 6,
               height: 6,
               borderRadius: 4,
-              backgroundColor: "pink",
+              backgroundColor: "skyblue",
             }}
-            variant="success"
             now={Math.floor(computePercentage * 100)}
           />
         </div>
@@ -379,7 +400,8 @@ export const ImpactWallet = ({
           style={{ backgroundColor: "black", color: "white" }}
         >
           <Modal.Title style={{ fontFamily: "Bungee" }}>
-            Proof of Work @{params?.profileID || userAuthObject?.uid}
+            Proof of Work @{" "}
+            {localStorage.getItem("uniqueId").substr(0, 16) + "..."}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body
@@ -387,7 +409,7 @@ export const ImpactWallet = ({
             padding: 0,
             backgroundColor: "black",
             color: "white",
-            backgroundImage: `url(${cashAppCard})`,
+            backgroundImage: `url(${IMPACT_BACKGROUND})`,
             backgroundPosition: "center center",
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
@@ -402,11 +424,62 @@ export const ImpactWallet = ({
               width: "100%",
             }}
           >
+            <div
+              style={{
+                maxWidth: "fit-content",
+                display: "flex",
+                padding: 8,
+                borderRadius: 8,
+                color: "#D6CFFE",
+                backgroundColor: "#0B0536",
+                cursor: "pointer",
+                border: borderStateForCopyButton,
+                transition: "0.25s all ease-in-out",
+              }}
+              onClick={() => {
+                copyToClipboard();
+                animateBorderLoading(
+                  setBorderStateForCopyButton,
+                  "1px solid gold",
+                  "1px solid purple"
+                );
+              }}
+            >
+              <span>📄 &nbsp;click to copy ID and save it somewhere safe.</span>
+            </div>
+            <br />
+            Enter your ID to switch accounts
+            <InputGroup className="mb-3">
+              <Form.Control
+                type="text"
+                placeholder="did:key:z6MktG2..."
+                value={inputValue}
+                onChange={handleChange}
+                style={{ maxWidth: 400 }}
+              />
+            </InputGroup>
+            {inputValue && (
+              <Alert
+                variant={isValidDidKey ? "success" : "danger"}
+                style={{ maxWidth: "fit-content" }}
+              >
+                {isValidDidKey
+                  ? "Accounts have switched"
+                  : "Invalid DID entered"}
+              </Alert>
+            )}
             {/* <AlbyButton onConnect={() => alert("Connected!")}></AlbyButton> */}
             {/* <BitcoinManager
                 handleZeroKnowledgePassword={handleZeroKnowledgePassword}
               /> */}
-
+            or
+            <br />
+            <br />
+            <WalletAuth
+              handleZeroKnowledgePassword={handleZeroKnowledgePassword}
+            />
+            <br />
+            <br />
             <h4 style={{ fontFamily: "Bungee" }}>
               Your Decentralized Transcript
             </h4>
@@ -428,7 +501,6 @@ export const ImpactWallet = ({
             </div>
             <br />
             <h4 style={{ fontFamily: "Bungee" }}>Transcript Awards</h4>
-
             <div
               style={{
                 width: "100%",
@@ -441,7 +513,6 @@ export const ImpactWallet = ({
               )}
             </div>
             <br />
-
             <h4 style={{ fontFamily: "Bungee" }}>
               Scholarships Created: {globalScholarshipCounter}
             </h4>
@@ -495,35 +566,11 @@ export const ImpactWallet = ({
                 )}
               />
               <hr />
+              <br />
+              <br />
             </p>
             <br />
-            <h4 style={{ fontFamily: "Bungee" }}> The Proof of Work System</h4>
-            <p
-              style={{
-                maxWidth: 700,
-                ...textBlock(japaneseThemePalette.KyotoPurple, 0, 24),
-              }}
-            >
-              Robots Building Education uses a system called Proof Of Work to
-              measure learning. When you use the application, you're putting
-              robots to work! That work produces outcomes that should be
-              meaningful to communities, like improved finance for
-              under-resourced schools or homes. You can think of this system as
-              some kind of engine for universal basic income! 😁
-            </p>
-
-            <p
-              style={{
-                maxWidth: 700,
-                ...textBlock(japaneseThemePalette.FujiSanBlue, 0, 24),
-              }}
-            >
-              The vision is to turn this into a decentralized protocol. Systems
-              and interfaces should allow us to rewire education services,
-              finance and content for a new era of software.
-            </p>
-
-            <br />
+            {/* <br />
 
             <div>
               <h4 style={{ fontFamily: "Bungee" }}>The Reserve</h4>
@@ -531,8 +578,7 @@ export const ImpactWallet = ({
 
               <h6>last updated {globalReserveObject?.last_updated}</h6>
               <div></div>
-              {/* <Portfolio /> */}
-            </div>
+            </div> */}
           </div>
         </Modal.Body>
         {/* <Modal.Footer style={{ backgroundColor: "black", color: "white" }}>
@@ -563,15 +609,7 @@ export const ImpactWallet = ({
         zap={zap}
       /> */}
 
-      <Cofounder
-        isCofounderOpen={isCofounderOpen}
-        setIsCofounderOpen={setIsCofounderOpen}
-        userStateReference={userStateReference}
-        globalStateReference={globalStateReference}
-        zap={zap}
-        handleZap={handleZap}
-      />
-      {/* <Experimental
+      {/* <Cofounder
         isCofounderOpen={isCofounderOpen}
         setIsCofounderOpen={setIsCofounderOpen}
         userStateReference={userStateReference}
@@ -579,6 +617,14 @@ export const ImpactWallet = ({
         zap={zap}
         handleZap={handleZap}
       /> */}
+      <Experimental
+        isCofounderOpen={isCofounderOpen}
+        setIsCofounderOpen={setIsCofounderOpen}
+        userStateReference={userStateReference}
+        globalStateReference={globalStateReference}
+        zap={zap}
+        handleZap={handleZap}
+      />
 
       <BossMode
         isBossModeOpen={isBossModeOpen}

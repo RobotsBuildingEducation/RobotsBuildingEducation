@@ -19,13 +19,13 @@ const CodeExplanationUI = ({ patreonObject }) => {
         alignItems: "center",
       }}
     >
-      <Button
+      {/* <Button
         onClick={() => setOpen(!open)}
         aria-controls="code-explanation-collapse-text"
         aria-expanded={open}
       >
         Explain this code
-      </Button>
+      </Button> */}
       {open &&
         codeExplanations &&
         codeExplanations.map((item, index) => (

@@ -6,7 +6,7 @@ import duckett from "../../media/images/duckett.png";
 import powerLawFinance from "../../media/images/powerLawFinance.png";
 import innovatorsDilemma from "../../media/images/innovatorsDilemma.png";
 import backendScaling from "../../media/images/backendScaling.png";
-import prisonersDilemma from "../../media/images/prisonersDilemma.png";
+// import prisonersDilemma from "../../media/images/prisonersDilemma.png";
 import grokking from "../../media/images/grokking.png";
 import inspire00 from "../../media/images/prompts/inspire00.jpg";
 import inspire01 from "../../media/images/prompts/inspire01.png";
@@ -14,9 +14,10 @@ import inspire02 from "../../media/images/prompts/inspire02.png";
 import inspire03 from "../../media/images/prompts/inspire03.png";
 import inspire04 from "../../media/images/prompts/inspire04.png";
 import inspire05 from "../../media/images/prompts/inspire05.png";
+import girls_on_campus from "../../media/images/girls_on_campus.jpg";
 
 import { ChatBlock } from "../Displays/ChatBlock/ChatBlock";
-import { CodeBlock } from "../Displays/CodeBlock/CodeBlock";
+import { CodeDisplay } from "../Displays/CodeDisplay/CodeDisplay";
 import { CuteGradient } from "../Displays/CuteGradient/CuteGradient";
 
 import { RobotDialogue } from "../Displays/RobotDialogue/RobotDialogue";
@@ -25,6 +26,7 @@ import RandomCharacter from "../Displays/RandomCharacter/RandomCharacter";
 import { SchedulerBlock } from "../Displays/SchedulerBlock/SchedulerBlock";
 import { ArtBlock } from "../Displays/ArtBlock/ArtBlock";
 import { StyledListItem } from "../../../styles/lazyStyles";
+import { ExternalLink } from "../Displays/ExternalLink/ExternalLink";
 
 export const Engineer = {
   "Coding Crash Course Version 3": {
@@ -46,7 +48,7 @@ export const Engineer = {
       button: `Learning Mindset & Perspective`, // may not need - `name`
       header: `Learning Mindset & Perspective`,
       fileSource:
-        "https://res.cloudinary.com/sheilfer/video/upload/v1706616470/a42be5b4391e4f0fbe49401a972cac1b_1_e5ri2s.mov", // may not need
+        "https://res.cloudinary.com/dqykr1jh0/video/upload/v1711495708/symr6pztmtpkzn5aqq2r.mp4", // may not need
       prompts: {
         // should we add impact to selecting a course? adding it to "welcome" would achieve this.
         welcome: {
@@ -104,7 +106,22 @@ export const Engineer = {
               myths – programming isn't just for math wizards. It's for anyone
               willing to learn and create.
               <br />
-              <br /> Computer science isn't just about code; it's about solving
+              <br />
+              By the end of these lectures, we'll understand what it takes to
+              build an app quickly. I recommend trying out this tutorial before
+              starting lesson 1 to see how far you can get. By lesson 4, we'll
+              go through this tutorial step by step:
+              <br />
+              <br />
+              <ExternalLink
+                textDisplay={"Tutorial (text-version)"}
+                link={
+                  "https://www.patreon.com/posts/extras-building-93082226?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                }
+              />
+              <br />
+              <br />
+              Computer science isn't just about code; it's about solving
               real-world problems in any field, from art to climate tech. So,
               take a deep breath, and let's start this journey of learning and
               impact together. You're more capable than you think. Vamos!🚀💻🌟
@@ -664,6 +681,48 @@ exports.app = functions.https.onRequest(app);
           response: (
             <div>
               <div>
+                <br />
+                <br />
+                <div
+                  style={
+                    {
+                      // border: "1px solid green",
+                      // ...textBlock(
+                      //   japaneseThemePalette.PowerPurple,
+                      //   0,
+                      //   12,
+                      //   "white",
+                      //   "0px 0px 5px 0px rgba(0,0,0,0.75)"
+                      // ),
+                    }
+                  }
+                >
+                  Girls On Campus is an organization that helps women find
+                  success in their pursuit for higher education. They work with
+                  Robots Building Education to create and distribute
+                  scholarships among other important resources in order to
+                  assist others navigating the complexities behind education.
+                </div>
+                <br />
+                <a href="https://www.girlsoncampus.org/" target="_blank">
+                  <img
+                    style={{
+                      width: 200,
+
+                      backgroundColor: "#FFEDF7",
+                      border: "4px solid #C95F8F",
+                      padding: 20,
+                      // border: "1px solid cyan",
+                      borderRadius: 48,
+                      // boxShadow: "1px 1px 3px 2px rgba(0,255,140,1)",
+                      boxShadow: "0px 0px 12px 3px rgba(0,0,0,0.75)",
+                    }}
+                    src={girls_on_campus}
+                  />
+                </a>
+                <hr />
+                <br />
+
                 <div
                   style={
                     {
@@ -679,12 +738,12 @@ exports.app = functions.https.onRequest(app);
                   }
                 >
                   Cracking The Coding Interview is recognized as "the bible" for
-                  interview preparation. It's an introductory text that refresh
-                  you on the subject.
+                  interview preparation. It's an introductory text that
+                  refreshes you on the subject. Read it early to challenge
+                  yourself and prepare ahead!
                 </div>
                 <br />
-                <br />
-                <div>
+                <a href="https://collabs.shop/evundv" target="_blank">
                   <img
                     style={{
                       // border: "1px solid cyan",
@@ -695,37 +754,7 @@ exports.app = functions.https.onRequest(app);
                     }}
                     src={ctci}
                   />
-                </div>
-                <br />
-                <br />
-                <br />
-                <div
-                // style={textBlock(
-                //   japaneseThemePalette.PowerPurple,
-                //   0,
-                //   12,
-                //   "white",
-                //   "0px 0px 5px 0px rgba(0,0,0,0.75)"
-                // )}
-                >
-                  I recommend getting these books as soon as possible so that
-                  you can challenge yourself and fail faster. Some of the best
-                  learning you'll experience is when the tasks are too hard.
-                </div>
-
-                <br />
-                <div>
-                  <img
-                    style={{
-                      // border: "1px solid cyan",
-                      borderRadius: 12,
-                      // boxShadow: "1px 1px 3px 2px rgba(0,255,140,1)",
-                      boxShadow:
-                        "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)",
-                    }}
-                    src={grokking}
-                  />
-                </div>
+                </a>
               </div>
             </div>
           ),
@@ -922,7 +951,7 @@ exports.app = functions.https.onRequest(app);
               her own specific name, age, and grade and could perform actions
               like studying or taking an exam.
               <br /> <br />
-              <CodeBlock
+              <CodeDisplay
                 code={`
 class Student {
   constructor(name, age, grade) {
@@ -955,7 +984,7 @@ maria.study();`}
               from another class (the parent, or superclass). This is great for
               reusing code.
               <br /> <br />
-              <CodeBlock
+              <CodeDisplay
                 code={`
 class Athlete extends Student {
   constructor(name, age, grade, sport) {
@@ -990,7 +1019,7 @@ juan.play();`}
               many forms. In code, it allows a child class to behave uniquely,
               even when using attributes inherited from a parent class. <br />{" "}
               <br />
-              <CodeBlock
+              <CodeDisplay
                 code={`
 class Artist extends Student {
   constructor(name, age, grade, artForm) {
@@ -1026,7 +1055,7 @@ sofia.study();
               controls access to an object's internal state, meaning we can
               limit how and when its data is modified. This way, we keep our
               code neat and prevent bugs. <br /> <br />
-              <CodeBlock
+              <CodeDisplay
                 code={`
 class Student {
   constructor(name, age, grade) {
@@ -1069,7 +1098,7 @@ console.log(luis.getName());
               Similarly, abstraction in OOP allows us to hide complex details
               and show only essential features. This helps make our code easier
               to understand and work with. <br /> <br />
-              <CodeBlock
+              <CodeDisplay
                 code={`
 class Student {
   constructor(name, age, grade) {
@@ -1133,7 +1162,7 @@ ana.markAttendance("Present");
               an object packages both data and the procedures that manipulate
               that data.
               <br /> <br />
-              <CodeBlock
+              <CodeDisplay
                 code={`
 let student = {
   name: 'Juan',
@@ -1158,7 +1187,7 @@ student.greet();  // Outputs: Hello, my name is Juan!`}
               different breeds, colors, and ages, but all will be capable of
               barking, eating, and sleeping.
               <br /> <br />
-              <CodeBlock
+              <CodeDisplay
                 code={`
 class Student {
   constructor(name, age) {
@@ -1186,7 +1215,7 @@ juan.greet();  // Outputs: Hello, my name is Juan!
               promote code re-usability and makes your code more organized and
               easier to manage.
               <br /> <br />
-              <CodeBlock
+              <CodeDisplay
                 code={`
 class Person {
   constructor(name) {
@@ -1547,7 +1576,7 @@ print(rihanna.perform("at the Grammy Awards"))
 
               <br />
 
-              <div href="https://collabs.shop/pkyf0g" target="_blank">
+              <a href="https://collabs.shop/f3oakw" target="_blank">
                 <img
                   style={{
                     // border: "1px solid cyan",
@@ -1558,7 +1587,7 @@ print(rihanna.perform("at the Grammy Awards"))
                   }}
                   src={automateTheBoring}
                 />
-              </div>
+              </a>
             </div>
           ),
           spanish: ``,
@@ -2087,7 +2116,7 @@ throw new Error(
               applications interactive and dynamic.
               <br />
               <br />
-              <CodeBlock
+              <CodeDisplay
                 code={`
 document
 .getElementById('myButton')
@@ -2114,7 +2143,7 @@ document
               reusable.
               <br />
               <br />
-              <CodeBlock
+              <CodeDisplay
                 code={`
 export let ClickButton = () => {
   const [
@@ -2579,15 +2608,28 @@ export default LoginForm;
                 }
               >
                 This book by Duckett is a frontend classic that provides visual
-                illustrations of HTML and CSS concepts. Despite the modern
-                approach to explaining frontend here, it's still important to
-                know the fundamentals of the software is responsible for the
-                look and feel of modern applications.
+                illustrations of HTML and CSS concepts. It teaches an older
+                Javascript framework called JQuery that has largely been
+                replaced by React, however briefly going through JQuery still
+                lets you{" "}
+                <a
+                  style={{ textDecoration: "underline" }}
+                  href="https://chat.openai.com/share/574cbe07-acc0-4d8b-9176-455880f5dd76"
+                  target="_blank"
+                >
+                  improve with your base HTML/CSS/Javascript skills &
+                  creativity.
+                </a>
+                <br /> <br />
+                Despite the modern approach to explaining frontend here, it's
+                still important to know the fundamentals and the history of the
+                software that is responsible for the look and feel of modern
+                applications.
               </div>
 
               <br />
 
-              <div href="https://collabs.shop/kkwfvu" target="_blank">
+              <a href="https://collabs.shop/kb9na4" target="_blank">
                 <img
                   style={{
                     // border: "1px solid cyan",
@@ -2598,7 +2640,7 @@ export default LoginForm;
                   }}
                   src={duckett}
                 />
-              </div>
+              </a>
             </div>
           ),
           spanish: ``,
@@ -3551,15 +3593,15 @@ if __name__ == '__main__':
                   }
                 }
               >
-                This book will introduce you to some industry level standards to
-                building large scale technology. Some of the problems
+                This book will introduce you to some industry level standards
+                for building large scale technology. Some of the problems
                 encountered here may not be witnessed for years into your
                 career.
               </div>
 
               <br />
 
-              <div href="https://collabs.shop/iu3ion" target="_blank">
+              <a href="https://collabs.shop/o07lmn" target="_blank">
                 <img
                   style={{
                     // border: "1px solid cyan",
@@ -3570,7 +3612,7 @@ if __name__ == '__main__':
                   }}
                   src={backendScaling}
                 />
-              </div>
+              </a>
             </div>
           ),
           spanish: ``,
@@ -3961,6 +4003,14 @@ exports.app = functions
           tooltip: ``,
           summaryContent: (
             <div>
+              <br />
+              <ExternalLink
+                textDisplay={"Tutorial (text-version)"}
+                link={
+                  "https://www.patreon.com/posts/extras-building-93082226?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                }
+              />
+              <br /> <br />
               In this session, we've taken a big leap in our coding journey! We
               started by setting up our development environment with tools like
               VSCode and Node.js. Next, we dived into creating a project
@@ -4662,7 +4712,7 @@ app.listen(
 
                 <br />
 
-                <div href="https://collabs.shop/2kdqmy" target="_blank">
+                <a href="https://collabs.shop/ajq2oy" target="_blank">
                   <img
                     style={{
                       // border: "1px solid cyan",
@@ -4673,7 +4723,7 @@ app.listen(
                     }}
                     src={powerLawFinance}
                   />
-                </div>
+                </a>
               </div>
               <br />
               <br />
@@ -4697,7 +4747,7 @@ app.listen(
 
                 <br />
 
-                <div href="https://collabs.shop/dldeb6" target="_blank">
+                <a href="https://collabs.shop/nohpwc" target="_blank">
                   <img
                     style={{
                       // border: "1px solid cyan",
@@ -4708,7 +4758,7 @@ app.listen(
                     }}
                     src={innovatorsDilemma}
                   />
-                </div>
+                </a>
               </div>
             </div>
           ),
@@ -5638,28 +5688,24 @@ if (result !== null) {
           request: `Alright bro, show me what you got. I wanna shop and support this network more.`,
           response: (
             <div>
+              <br />
+
               <div
-                style={
-                  {
-                    // ...textBlock(
-                    //   japaneseThemePalette.PowerPurple,
-                    //   0,
-                    //   12,
-                    //   "white",
-                    //   "0px 0px 5px 0px rgba(0,0,0,0.75)"
-                    // ),
-                  }
-                }
+              // style={textBlock(
+              //   japaneseThemePalette.PowerPurple,
+              //   0,
+              //   12,
+              //   "white",
+              //   "0px 0px 5px 0px rgba(0,0,0,0.75)"
+              // )}
               >
-                This book introduces you to the history of modern game theory,
-                which has had enormous consequences in computing history. The
-                quality of your decisions will have to improve when your skills
-                and income improve.
+                I recommend getting these books as soon as possible so that you
+                can challenge yourself and fail faster. Some of the best
+                learning you'll experience is when the tasks are too hard.
               </div>
 
               <br />
-
-              <div href="https://collabs.shop/iu3ion" target="_blank">
+              <a href="https://collabs.shop/gus8ib" target="_blank">
                 <img
                   style={{
                     // border: "1px solid cyan",
@@ -5668,9 +5714,9 @@ if (result !== null) {
                     boxShadow:
                       "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)",
                   }}
-                  src={prisonersDilemma}
+                  src={grokking}
                 />
-              </div>
+              </a>
             </div>
           ),
           spanish: ``,

@@ -46,6 +46,9 @@ const ChatGPT = ({
   userStateReference,
   globalStateReference,
   zap,
+  checkForUnlock,
+  handleCompletedPractice,
+  handleWatch,
 }: Record<string, any>) => {
   const [shouldRenderIntro, setShouldRenderIntro] = useState(true);
   const [promptMessage, setPromptMessage] = useState("");
@@ -181,6 +184,10 @@ const ChatGPT = ({
           handleZap={handleZap}
           zap={zap}
           index={index}
+          moduleName={moduleName}
+          handleUnlocker={checkForUnlock}
+          handleCompletedPractice={handleCompletedPractice}
+          handleWatch={handleWatch}
         />
       ))}
 

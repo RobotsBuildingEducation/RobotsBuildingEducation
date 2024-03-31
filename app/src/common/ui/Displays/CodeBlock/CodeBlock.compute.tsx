@@ -1,27 +1,37 @@
 import { personality } from "../../../../ProofOfWork/ImpactWallet/Scheduler/Scheduler.compute";
 
-export const customInstructions = (context, formData) => {
+export const customInstructions = (formData) => {
   let jsonStructure = `Return the answer with the following json structure:
-
     "result": {
-      explanation: string
-      breakdown: [{
-          suggestedAmountOfTime: string,
-          description: string,
-          explanation: string
-      }]
+      frontend_code: {
+        explanation: string,
+        code: string
+      },
+      backend_code: {
+        explanation: string,
+        code: string
+      }
   }`;
 
+  /**
+[{
+  description: string,
+  explanation: string
+}]
+   */
+  // Personality: This is your personality: ${personality}
   let prompt = `
-    Personality: This is your personality: ${personality}
 
-    Responsibility: You're responsible responsible for creating the most effective schedule for people to learn a new skill.
-    
-    Pace: this is the pace the student wants to go - ${formData?.pace}
-    
-    Specifics: the user has shared this data with you - ${formData?.description}
+    Do not mention any details you're being provided, it is only improve the quality of your anwers.
 
-    Additional context about the skill: ${context}
+    Responsibility: You're responsible for writing effective code that people can learn from reading. The code that you provide should be the most accurate expert answer using leading industry tools. Avoid providing example data or example code and write implementable code so that developers can be productive too. You're being asked this because you're a co-founder pushing the capacities of your user and want to inspire progress, so larger sets of code is totally acceptable.
+    
+   ${
+     formData.description
+       ? `Specifics: the user has shared this data with you - ${formData?.description}`
+       : ""
+   }
+
 
     ${jsonStructure}
 

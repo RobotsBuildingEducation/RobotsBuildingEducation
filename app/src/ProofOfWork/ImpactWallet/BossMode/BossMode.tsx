@@ -1650,7 +1650,12 @@ export const BossMode = ({
                 />
                 <br />
                 <br />
-                <button onClick={submitDiscordTagInput}>Submit</button>
+                <button
+                  disabled={discordTag?.length < 2}
+                  onClick={submitDiscordTagInput}
+                >
+                  Submit
+                </button>
               </div>
             )}
           </div>

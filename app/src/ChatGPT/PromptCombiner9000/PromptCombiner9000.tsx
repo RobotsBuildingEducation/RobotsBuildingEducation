@@ -16,6 +16,8 @@ import "prismjs/themes/prism.css";
 import { PanLeftComponent, PanRightComponent } from "../../styles/lazyStyles";
 import { ContentLinks } from "../../common/ui/Displays/ContentLinks/ContentLinks";
 import { CodeDemo } from "./Content/CodeDemo";
+import { SchedulerBlock } from "../../common/ui/Displays/SchedulerBlock/SchedulerBlock";
+import { CodeBlock } from "../../common/ui/Displays/CodeBlock/CodeBlock";
 
 const delayedAnimation = keyframes`
 from {
@@ -87,7 +89,11 @@ const renderContent = (
   userStateReference,
   globalStateReference,
   handleZap,
-  zap
+  zap,
+  moduleName,
+  checkForUnlock,
+  handleCompletedPractice,
+  handleWatch
 ) => {
   switch (type) {
     case "patreon":
@@ -95,17 +101,30 @@ const renderContent = (
         <Patreon
           patreonObject={patreonObject}
           handleScheduler={handleScheduler}
+          handleWatch={handleWatch}
           userStateReference={userStateReference}
           globalStateReference={globalStateReference}
           handleZap={handleZap}
           zap={zap}
+          moduleName={moduleName}
         />
       );
     case "practice":
-      return <CodeEditor patreonObject={patreonObject} />;
+      return (
+        <CodeEditor
+          patreonObject={patreonObject}
+          moduleName={moduleName}
+          userStateReference={userStateReference}
+          handleCompletedPractice={handleCompletedPractice}
+        />
+      );
     case "demonstrate":
       if (patreonObject?.hasCode) {
-        return <CodeDemo response={response} patreonObject={patreonObject} />;
+        return (
+          <CodeBlock code={response}>
+            <CodeDemo response={response} patreonObject={patreonObject} />
+          </CodeBlock>
+        );
       } else {
         return <div style={{ padding: 20 }}>{response}</div>;
       }
@@ -114,7 +133,16 @@ const renderContent = (
       return (
         <div style={{ padding: 20 }}>
           <code style={{ fontSize: 12 }}>
-            Shopify links don't work rn but the books are good to know about 😔
+            <span style={{ color: "lime" }}>
+              The following links are affiliate links by Shopify Collabs that
+              earn 7-15% commission.
+            </span>
+            <br />
+            <br />
+            <span style={{ color: "cyan", fontWeight: "bolder" }}>
+              Links with borders are creator businesses in partnership with
+              Robots Building Education.
+            </span>
           </code>
           <br />
           <br />
@@ -147,6 +175,10 @@ export const PromptCombiner9000 = ({
   handleZap,
   zap,
   index,
+  moduleName,
+  checkForUnlock,
+  handleCompletedPractice,
+  handleWatch,
 }) => {
   const [promptVisibility, setPromptVisibility] = useState("flex");
   if (isEmpty(patreonObject)) {
@@ -211,7 +243,11 @@ export const PromptCombiner9000 = ({
                 userStateReference,
                 globalStateReference,
                 handleZap,
-                zap
+                zap,
+                moduleName,
+                checkForUnlock,
+                handleCompletedPractice,
+                handleWatch
               )}
           </FlexBox>
         </MessageContainer>

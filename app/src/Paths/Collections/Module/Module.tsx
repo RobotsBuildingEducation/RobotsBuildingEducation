@@ -6,6 +6,7 @@ export const Module = ({
   path,
   collection,
   module,
+  userStateReference,
 }): JSX.Element | null => {
   let currentModule = ui()[path][collection][module];
 
@@ -40,8 +41,17 @@ export const Module = ({
     );
   }
 
+  // console.log("userStateReference", userStateReference);
+  // console.log("module", module);
+
+  const isDisabled =
+    !userStateReference?.databaseUserDocument?.unlocks?.[module];
+
+  console.log("module", module);
   return (
     <StyledModule
+      module={module}
+      disabled={isDisabled}
       patreonObject={currentModule}
       key={currentModule.button}
       onClick={() => {
@@ -50,7 +60,15 @@ export const Module = ({
           : null;
       }}
     >
-      {currentModule.sourceType === "video" ? (
+      {isDisabled && (
+        <>
+          <span style={{ fontSize: "24px" }}>🔒</span>
+          <br />
+        </>
+      )}
+      {/* {currentModule.button}   */}
+
+      {currentModule.sourceType === "video" && !isDisabled ? (
         <span>
           {" "}
           &#9658;
@@ -59,7 +77,7 @@ export const Module = ({
       ) : (
         ""
       )}
-      {currentModule.sourceType === "markdown" ? (
+      {currentModule.sourceType === "markdown" && !isDisabled ? (
         <span>
           📄 <br /> {currentModule.button}
         </span>

@@ -214,6 +214,7 @@ export const EmotionalIntelligence = ({
                 </EmotionButton>
               ))}
             </div>
+            <br /> <br /> <br />{" "}
           </div>
 
           {!isEmpty(usersEmotionsFromDB) ? (
@@ -287,6 +288,9 @@ export const EmotionalIntelligence = ({
                           </EmotionButton>
                         ))
                         .reverse()}
+                      <br /> <br /> <br />
+                      <br />
+                      <br />
                     </div>
                   );
                 })}

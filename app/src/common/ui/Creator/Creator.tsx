@@ -1193,7 +1193,7 @@ export const Creator = {
 
               <br />
 
-              <div>
+              <a href="https://collabs.shop/ah4vbz" target="_blank">
                 <img
                   style={{
                     // border: "1px solid cyan",
@@ -1204,7 +1204,7 @@ export const Creator = {
                   }}
                   src={designOfEverydayThings}
                 />
-              </div>
+              </a>
             </div>
           ),
           spanish: ``,

@@ -7,6 +7,8 @@ import "prismjs/themes/prism.css";
 import RandomCharacter from "../../common/ui/Displays/RandomCharacter/RandomCharacter";
 
 import styled from "styled-components";
+import { database } from "../../database/firebaseResources";
+import { doc } from "firebase/firestore";
 
 const CopyButton = styled.button`
   /* default styles */
@@ -21,7 +23,12 @@ const CopyButton = styled.button`
   }
 `;
 
-const CodeEditor = ({ patreonObject }) => {
+const CodeEditor = ({
+  patreonObject,
+  moduleName,
+  userStateReference,
+  handleCompletedPractice,
+}) => {
   const stepMap = patreonObject?.prompts?.practice?.steps || [
     {
       code: "const express = require('express');",
@@ -73,6 +80,16 @@ const CodeEditor = ({ patreonObject }) => {
       }
     }
   };
+
+  const updateProgressInFirestore = async (moduleName) => {
+    handleCompletedPractice(moduleName);
+  };
+
+  useEffect(() => {
+    if (isComplete) {
+      updateProgressInFirestore(moduleName);
+    }
+  }, [isComplete]);
 
   return (
     <div
