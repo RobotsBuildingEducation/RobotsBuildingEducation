@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
 import { Web5 } from "@web5/api/browser";
-import isEmpty from "lodash/isEmpty";
 
 import "./App.css";
 
 import { Paths } from "./Paths/Paths";
-import {
-  controlPathVisibilityMap,
-  RoxanaLoadingAnimation,
-  RoxSplashAnimation,
-} from "./common/uiSchema";
+import { RoxSplashAnimation } from "./common/uiSchema";
 import { Collections } from "./Paths/Collections/Collections";
 import { Header } from "./Header/Header";
 
@@ -28,12 +23,12 @@ import {
   useZapAnimation,
 } from "./App.hooks";
 import {
-  deleteWeb5Records,
+  // deleteWeb5Records,
   handleUserAuthentication,
   sortEmotionsByDate,
 } from "./App.compute";
-import { setOfLectures, userUnlocks, validPasscodes } from "./App.constants";
-import { AuthDisplay } from "./AuthDisplay/AuthDisplay";
+import { setOfLectures } from "./App.constants";
+
 import { LectureHeader } from "./LectureHeader/LectureHeader";
 import { ChatGptWrapper } from "./ChatGPT/ChatGptWrapper";
 import { ProofOfWorkWrapper } from "./ProofOfWork/ProofOfWorkWrapper";
@@ -97,11 +92,8 @@ let App = () => {
         },
       ],
     });
-    uiStateReference.setVisibilityMap(
-      controlPathVisibilityMap(uiStateReference.visibilityMap, event.target.id)
-    );
+
     uiStateReference.setCurrentPath(event.target.id);
-    uiStateReference.setCurrentPathForAnalytics(event.target.id);
 
     uiStateReference.setPatreonObject({});
     uiStateReference.setModuleName("");

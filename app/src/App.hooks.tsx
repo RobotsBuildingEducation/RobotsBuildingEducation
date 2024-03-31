@@ -4,6 +4,10 @@ import { LightningAddress } from "@getalby/lightning-tools";
 
 import { useStore } from "./Store";
 
+/**
+ *
+ * @returns no longer needed and can be moved to useUserDocument since this references userDocument.userAuthObject.uid
+ */
 export const useAuthState = () => {
   const [userAuthObject, setUserAuthObject] = useState({});
 
@@ -15,6 +19,15 @@ export const useAuthState = () => {
   return { authStateReference };
 };
 
+/**
+ *
+ * used to manage the user's collection & its respective document from firestore.
+ *
+ * databaseUserDocument = the actual user document data
+ * userDocumentReference = the argument that gets used to retrieve the user's document from Firestore
+ * usersEmotionsCollectionReference = the argument used to retrieve the user's emotions collection (saved data)
+ * usersEmotionsFromDB = the actual emotion data
+ */
 export const useUserDocument = () => {
   const [databaseUserDocument, setDatabaseUserDocument] = useState({});
   const [userDocumentReference, setUserDocumentReference] = useState({});
@@ -39,13 +52,23 @@ export const useUserDocument = () => {
   return { userStateReference };
 };
 
+/**
+ *
+ 
+ * Used to manage the global collection in firestore
+ *
+ * globalDocumentReference = used to retrieve the impact document in the global collection
+ * globalImpactCounter = simple counter data, global.impact.total
+ * globalScholarshipCounter = simple counter data, global.impact.scholarships
+ * globalLevelCounter = highest level in quiz mode
+ * globalLeaderName = name of discord user with highest score
+ */
 export const useGlobalStates = () => {
   const [globalDocumentReference, setGlobalDocumentReference] = useState({});
   const [globalImpactCounter, setGlobalImpactCounter] = useState(0);
   const [globalLevelCounter, setGlobalLevelCounter] = useState(0);
   const [globalLeaderName, setGlobalLeaderName] = useState("RO.B.E");
   const [globalScholarshipCounter, setGlobalScholarshipCounter] = useState(0);
-  const [globalReserveObject, setGobalReserveObject] = useState({});
 
   let globalStateReference = {
     globalDocumentReference,
@@ -54,8 +77,7 @@ export const useGlobalStates = () => {
     setGlobalImpactCounter,
     globalScholarshipCounter,
     setGlobalScholarshipCounter,
-    globalReserveObject,
-    setGobalReserveObject,
+
     globalLevelCounter,
     setGlobalLevelCounter,
     globalLeaderName,
@@ -65,16 +87,24 @@ export const useGlobalStates = () => {
   return { globalStateReference };
 };
 
+/**
+ *
+ * Used to manage the UI state of the application, unrelated to the state of the database.
+ *
+ * patreonObject = the lecture data set
+ * currentPath = path selected between Engineer, Creator, Dealer
+ * moduleName = name of lecture selected
+ * pathSelectionAnimationData = animation triggers for the path selection/hover
+ * proofOfWorkFromModules = calculates the ui() to get all impact points
+ */
 export const useUIStates = () => {
   const [patreonObject, setPatreonObject] = useState({});
   const [currentPath, setCurrentPath] = useState("");
-  const [currentPathForAnalytics, setCurrentPathForAnalytics] = useState("");
   const [moduleName, setModuleName] = useState("");
   const [pathSelectionAnimationData, setPathSelectionAnimationData] = useState(
     {}
   );
-  const [visibilityMap, setVisibilityMap] = useState({});
-  const [isDemo, setIsDemo] = useState(true);
+
   const [proofOfWorkFromModules, setProofOfWorkFromModules] = useState(0);
 
   let uiStateReference = {
@@ -82,16 +112,11 @@ export const useUIStates = () => {
     setPatreonObject,
     currentPath,
     setCurrentPath,
-    currentPathForAnalytics,
-    setCurrentPathForAnalytics,
     moduleName,
     setModuleName,
     pathSelectionAnimationData,
     setPathSelectionAnimationData,
-    visibilityMap,
-    setVisibilityMap,
-    isDemo,
-    setIsDemo,
+
     proofOfWorkFromModules,
     setProofOfWorkFromModules,
   };
@@ -99,6 +124,30 @@ export const useUIStates = () => {
   return { uiStateReference };
 };
 
+/**
+ * Custom React hook to create and pay a Lightning Network invoice using Alby's LightningAddress.
+ *
+ * This hook abstracts the functionality to generate a new Lightning Network invoice with a specified
+ * deposit amount and message. It then attempts to pay this invoice using the connected wallet via WebLN.
+ *
+ * @param {number} depositAmount - The amount in satoshis to be deposited (default is 1 satoshi).
+ * @param {string} depositMessage - A message to accompany the deposit, for context (default is a message about Robots Building Education Lecture).
+ *
+ * @returns {Function} createZap - A function that initiates the creation of a new Lightning Network invoice.
+ *
+ * @example
+ * const createZap = useZap(100, "Donation for project X");
+ *
+ * useEffect(() => {
+ *   createZap();
+ * }, []);
+ *
+ * The hook manages the invoice state internally and automatically attempts payment upon invoice creation.
+ * It leverages the `@getalby/lightning-tools` for generating invoices and uses WebLN for payment if available.
+ * Errors during the invoice creation or payment process are logged to the console and displayed via alert.
+ *
+ * Note: This hook requires a WebLN-enabled browser extension like Alby to be installed and configured by the user.
+ */
 export const useZap = (
   depositAmount = 1,
   depositMessage = "Robots Building Education Lecture"
@@ -106,7 +155,6 @@ export const useZap = (
   const [invoice, setInvoice] = useState<string | undefined>(undefined);
 
   let payInvoice = async () => {
-    console.log("running pay invoice");
     try {
       if (!window.webln || !window.webln) {
         throw new Error("Please connect your wallet");
@@ -159,6 +207,9 @@ export const useZap = (
   return createZap;
 };
 
+/**
+ * handles lecture events when a user selects a prompt or completes a task like a completed video or AI completion.
+ */
 export const useZapAnimation = () => {
   const setShowZap = useStore((state) => state.setShowZap);
 

@@ -97,27 +97,22 @@ export const setupUserDocument = async (
 
 export const updateGlobalCounters = async (
   globalImpactDocRef,
-  globalReserveDocRef,
+
   globalStateReference
 ) => {
-  const [globalImpactRes, globalReserveRes] = await Promise.all([
-    getDoc(globalImpactDocRef),
-    getDoc(globalReserveDocRef),
-  ]);
+  const [globalImpactRes] = await Promise.all([getDoc(globalImpactDocRef)]);
 
   globalStateReference.setGlobalLeaderName(globalImpactRes.data().discord);
   globalStateReference.setGlobalLevelCounter(globalImpactRes.data().level);
   globalStateReference.setGlobalImpactCounter(globalImpactRes.data().total);
   globalStateReference.setGlobalScholarshipCounter(
-    globalReserveRes.data().scholarships
+    globalImpactRes.data().scholarships
   );
-  globalStateReference.setGobalReserveObject(globalReserveRes.data());
 };
 
 export const handleUserAuthentication = async (user, appFunctions) => {
   appFunctions.authStateReference.setUserAuthObject(user || {});
 
-  appFunctions.uiStateReference.setIsDemo(false);
   let _uniqueId =
     localStorage.getItem("uniqueId") || user?.uid || _.uniqueId("rbe-");
   localStorage.setItem("uniqueId", _uniqueId);
@@ -125,7 +120,6 @@ export const handleUserAuthentication = async (user, appFunctions) => {
   const docRef = doc(database, "users", user?.uid || _uniqueId);
 
   const globalImpactDocRef = doc(database, "global", "impact");
-  const globalReserveDocRef = doc(database, "global", "reserve");
 
   await setupUserDocument(
     docRef,
@@ -136,7 +130,6 @@ export const handleUserAuthentication = async (user, appFunctions) => {
   );
   await updateGlobalCounters(
     globalImpactDocRef,
-    globalReserveDocRef,
     appFunctions.globalStateReference
   );
 

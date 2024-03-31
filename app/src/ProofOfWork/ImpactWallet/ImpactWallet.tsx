@@ -13,7 +13,6 @@ import {
 import zap_animation from "../../common/anims/zap_animation.json";
 import bitcoin_animation from "../../common/anims/bitcoin_animation.json";
 
-// import cashAppCard from "../../common/media/images/cashAppCard.jpeg";
 import IMPACT_BACKGROUND from "../../common/media/images/IMPACT_BACKGROUND.jpg";
 import roxanaChat from "../../common/media/images/roxanaChat.png";
 import { logEvent } from "firebase/analytics";
@@ -124,8 +123,6 @@ export const ImpactWallet = ({
 
   userAuthObject = { uid: "null" },
   handlePathSelection,
-  isDemo,
-  globalReserveObject,
 
   isEmotionalIntelligenceOpen,
   setIsEmotionalIntelligenceOpen,
@@ -276,83 +273,75 @@ export const ImpactWallet = ({
               &nbsp;
             </span>
             &nbsp;
-            {!isDemo ? (
+            <Button
+              style={{ textShadow: "2px 2px 12px black" }}
+              onClick={() => {
+                logEvent(analytics, "select_content", {
+                  content_type: "button",
+                  item_id: "Boss Mode",
+                });
+                setIsBossModeOpen(true);
+              }}
+              variant="secondary"
+              // disabled
+            >
+              💎
+            </Button>
+            &nbsp; &nbsp;
+            <Button
+              style={{ textShadow: "2px 2px 12px black" }}
+              onClick={() => {
+                logEvent(analytics, "select_content", {
+                  content_type: "button",
+                  item_id: "Cofounder",
+                });
+                setIsCofounderOpen(true);
+              }}
+              variant="secondary"
+            >
+              🌀
+            </Button>
+            &nbsp; &nbsp;
+            <a
+              href="https://chat.openai.com/g/g-09h5uQiFC-ms-roxana"
+              target="_blank"
+            >
               <Button
                 style={{ textShadow: "2px 2px 12px black" }}
                 onClick={() => {
                   logEvent(analytics, "select_content", {
                     content_type: "button",
-                    item_id: "Boss Mode",
+                    item_id: "Scheduler",
                   });
-                  setIsBossModeOpen(true);
-                }}
-                variant="secondary"
-                // disabled
-              >
-                💎
-              </Button>
-            ) : null}
-            &nbsp; &nbsp;
-            {!isDemo ? (
-              <Button
-                style={{ textShadow: "2px 2px 12px black" }}
-                onClick={() => {
-                  logEvent(analytics, "select_content", {
-                    content_type: "button",
-                    item_id: "Cofounder",
-                  });
-                  setIsCofounderOpen(true);
+                  // setIsChatFrameOpen(true);
                 }}
                 variant="secondary"
               >
-                🌀
-              </Button>
-            ) : null}
-            &nbsp; &nbsp;
-            {!isDemo ? (
-              <a
-                href="https://chat.openai.com/g/g-09h5uQiFC-ms-roxana"
-                target="_blank"
-              >
-                <Button
-                  style={{ textShadow: "2px 2px 12px black" }}
-                  onClick={() => {
-                    logEvent(analytics, "select_content", {
-                      content_type: "button",
-                      item_id: "Scheduler",
-                    });
-                    // setIsChatFrameOpen(true);
+                <img
+                  src={roxanaChat}
+                  width="16"
+                  style={{
+                    borderRadius: "50%",
+                    boxShadow: "2px 2px 12px black",
+                    marginBottom: 1,
                   }}
-                  variant="secondary"
-                >
-                  <img
-                    src={roxanaChat}
-                    width="16"
-                    style={{
-                      borderRadius: "50%",
-                      boxShadow: "2px 2px 12px black",
-                      marginBottom: 1,
-                    }}
-                  />
-                </Button>
-              </a>
-            ) : null}
-            &nbsp; &nbsp;
-            {!isDemo ? (
-              <Button
-                style={{ textShadow: "2px 2px 12px black" }}
-                onClick={() => {
-                  logEvent(analytics, "select_content", {
-                    content_type: "button",
-                    item_id: "Therapy Session",
-                  });
-                  setIsEmotionalIntelligenceOpen(true);
-                }}
-                variant="secondary"
-              >
-                🫶🏽
+                />
               </Button>
-            ) : null}
+            </a>
+            &nbsp; &nbsp;
+            <Button
+              style={{ textShadow: "2px 2px 12px black" }}
+              onClick={() => {
+                logEvent(analytics, "select_content", {
+                  content_type: "button",
+                  item_id: "Therapy Session",
+                });
+                setIsEmotionalIntelligenceOpen(true);
+              }}
+              variant="secondary"
+            >
+              🫶🏽
+            </Button>
             &nbsp; &nbsp;
             <Button
               style={{ textShadow: "2px 2px 12px black" }}
@@ -517,7 +506,7 @@ export const ImpactWallet = ({
             <p>
               Work Done By You
               <br />
-              {impactResult}
+              {Number(impactResult / 1000).toFixed(2)}
               {/* / {getGlobalImpact()} */}
               <ProgressBar
                 style={{
@@ -532,7 +521,7 @@ export const ImpactWallet = ({
               <br />
               Work Done By All
               <br />
-              <b>{globalImpactCounter}</b>
+              <b>{Number(globalImpactCounter / 1000).toFixed(2)}</b>
               <br />
               <br />
               You are &nbsp;
@@ -568,15 +557,6 @@ export const ImpactWallet = ({
               <br />
             </p>
             <br />
-            {/* <br />
-
-            <div>
-              <h4 style={{ fontFamily: "Bungee" }}>The Reserve</h4>
-              <h6>invested {globalReserveObject?.invested || "N/A"}</h6>
-
-              <h6>last updated {globalReserveObject?.last_updated}</h6>
-              <div></div>
-            </div> */}
           </div>
         </Modal.Body>
         {/* <Modal.Footer style={{ backgroundColor: "black", color: "white" }}>

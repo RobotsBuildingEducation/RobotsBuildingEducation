@@ -58,10 +58,8 @@ export const ProofOfWorkWrapper = ({
     usersEmotionsFromDB,
   } = userStateReference;
 
-  const { globalImpactCounter, globalScholarshipCounter, globalReserveObject } =
+  const { globalImpactCounter, globalScholarshipCounter } =
     globalStateReference;
-
-  const { isDemo } = uiStateReference;
 
   return (
     <RiseUpAnimation
@@ -87,9 +85,7 @@ export const ProofOfWorkWrapper = ({
         usersEmotionsFromDB={usersEmotionsFromDB}
         globalScholarshipCounter={globalScholarshipCounter}
         handlePathSelection={handlePathSelection}
-        globalReserveObject={globalReserveObject}
         updateUserEmotions={updateUserEmotions}
-        isDemo={isDemo}
         userStateReference={userStateReference}
         globalStateReference={globalStateReference}
         showStars={showStars}

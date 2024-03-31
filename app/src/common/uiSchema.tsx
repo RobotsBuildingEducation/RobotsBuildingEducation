@@ -148,16 +148,6 @@ export const ui = (): IPath => {
 };
 export let uiPaths = ["Engineer", "Creator", "Entrepeneur"];
 
-// this manages the view when selected `engineer, creator, business or 26th street`
-export let controlPathVisibilityMap = (visibilityMap, selectedPath) => {
-  let result = visibilityMap;
-  uiPaths.forEach((path) => {
-    result[path] = false;
-  });
-  result[selectedPath] = true;
-  return result;
-};
-
 /**
  * @returns the total amount of proof of work points available in the platform.
  */

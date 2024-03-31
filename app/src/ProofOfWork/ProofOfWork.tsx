@@ -10,11 +10,11 @@ export const ProofOfWork = ({
   computePercentage,
   globalImpactCounter,
   handlePathSelection,
-  globalReserveObject,
+
   usersEmotionsCollectionReference,
   usersEmotionsFromDB,
   updateUserEmotions,
-  isDemo,
+
   //some redundancy since I haven't refactored these values yet.
   userStateReference,
   globalStateReference,
@@ -36,10 +36,6 @@ export const ProofOfWork = ({
 
   const [isChatFrameOpen, setIsChatFrameOpen] = useState(false);
   const [isBossModeOpen, setIsBossModeOpen] = useState(false);
-
-  if (isDemo) {
-    return null;
-  }
 
   return (
     <div
@@ -72,7 +68,6 @@ export const ProofOfWork = ({
         setIsImpactWalletOpen={setIsImpactWalletOpen}
         userAuthObject={userAuthObject}
         globalScholarshipCounter={globalScholarshipCounter}
-        globalReserveObject={globalReserveObject}
         setIsEmotionalIntelligenceOpen={setIsEmotionalIntelligenceOpen}
         isEmotionalIntelligenceOpen={isEmotionalIntelligenceOpen}
         usersEmotionsCollectionReference={usersEmotionsCollectionReference}

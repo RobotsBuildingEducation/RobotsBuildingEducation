@@ -39,7 +39,7 @@ const ChatGPT = ({
   globalDocumentReference,
   globalImpactCounter,
   setGlobalImpactCounter,
-  isDemo = false,
+
   moduleName,
   handleScheduler,
   handleZap,
@@ -124,10 +124,7 @@ const ChatGPT = ({
     globalImpactCounter,
     globalDocumentReference
   ) => {
-    if (
-      (!isEmpty(databaseUserDocument) || !isEmpty(userDocumentReference)) &&
-      !isDemo
-    ) {
+    if (!isEmpty(databaseUserDocument) || !isEmpty(userDocumentReference)) {
       await updateDoc(userDocumentReference, {
         impact: databaseUserDocument?.impact + impact,
       });
