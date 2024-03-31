@@ -143,39 +143,6 @@ let App = () => {
   };
 
   /**
-   * Historically, this function handled entrance into the app using a passcode that was acquired by signing up to Patreon.
-   * This is no longer actively used.
-   */
-  const handleZeroKnowledgePassword = (
-    event,
-    logout = false,
-    bitcoin = false
-  ) => {
-    if (validPasscodes.includes(event?.target?.value)) {
-      localStorage.setItem("patreonPasscode", event.target.value);
-      uiStateReference.setPatreonObject({});
-      authStateReference.setIsZeroKnowledgeUser(true);
-      logEvent(analytics, "login", { method: "zeroKnowledge" });
-    }
-
-    if (logout) {
-      uiStateReference.setPatreonObject({});
-      authStateReference.setIsZeroKnowledgeUser(false);
-      logEvent(analytics, "login", { method: "zeroKnowledge" });
-    }
-
-    if (bitcoin) {
-      localStorage.setItem(
-        "patreonPasscode",
-        import.meta.env.VITE_BITCOIN_PASSCODE
-      );
-      uiStateReference.setPatreonObject({});
-      authStateReference.setIsZeroKnowledgeUser(true);
-      logEvent(analytics, "login", { method: "zeroKnowledge" });
-    }
-  };
-
-  /**
    *
    * @param collectionRef A collection object used to retrieve or processdatabase data
    * @description gets each emotion document in a user's collection of emotions and prepares them for display
@@ -631,7 +598,6 @@ let App = () => {
           uiStateReference={uiStateReference}
           showStars={showStars}
           showZap={showZap}
-          handleZeroKnowledgePassword={handleZeroKnowledgePassword}
           zap={zap}
           handleZap={handleZap}
         />

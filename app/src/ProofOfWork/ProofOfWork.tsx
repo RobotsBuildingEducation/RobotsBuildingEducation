@@ -20,7 +20,7 @@ export const ProofOfWork = ({
   globalStateReference,
   showStars,
   showZap,
-  handleZeroKnowledgePassword,
+
   zap,
   handleZap,
   authStateReference,
@@ -85,7 +85,6 @@ export const ProofOfWork = ({
         showZap={showZap}
         isCofounderOpen={isCofounderOpen}
         setIsCofounderOpen={setIsCofounderOpen}
-        handleZeroKnowledgePassword={handleZeroKnowledgePassword}
         globalStateReference={globalStateReference}
         isChatFrameOpen={isChatFrameOpen}
         setIsChatFrameOpen={setIsChatFrameOpen}

@@ -36,7 +36,7 @@ export const ProofOfWorkWrapper = ({
   uiStateReference,
   showStars,
   showZap,
-  handleZeroKnowledgePassword,
+
   zap,
   handleZap,
 }) => {
@@ -98,7 +98,6 @@ export const ProofOfWorkWrapper = ({
         globalStateReference={globalStateReference}
         showStars={showStars}
         showZap={showZap}
-        handleZeroKnowledgePassword={handleZeroKnowledgePassword}
         zap={zap}
         handleZap={handleZap}
         authStateReference={authStateReference}

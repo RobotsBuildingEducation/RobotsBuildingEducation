@@ -139,7 +139,7 @@ export const ImpactWallet = ({
   showZap,
   isCofounderOpen,
   setIsCofounderOpen,
-  handleZeroKnowledgePassword,
+
   userStateReference,
   globalStateReference,
   zap,
@@ -397,7 +397,11 @@ export const ImpactWallet = ({
         <Modal.Header
           closeVariant="white"
           closeButton
-          style={{ backgroundColor: "black", color: "white" }}
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            border: "1px solid black",
+          }}
         >
           <Modal.Title style={{ fontFamily: "Bungee" }}>
             Proof of Work @{" "}
@@ -468,16 +472,10 @@ export const ImpactWallet = ({
                   : "Invalid DID entered"}
               </Alert>
             )}
-            {/* <AlbyButton onConnect={() => alert("Connected!")}></AlbyButton> */}
-            {/* <BitcoinManager
-                handleZeroKnowledgePassword={handleZeroKnowledgePassword}
-              /> */}
             or
             <br />
             <br />
-            <WalletAuth
-              handleZeroKnowledgePassword={handleZeroKnowledgePassword}
-            />
+            <WalletAuth />
             <br />
             <br />
             <h4 style={{ fontFamily: "Bungee" }}>
