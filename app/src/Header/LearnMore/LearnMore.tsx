@@ -7,6 +7,23 @@ import { DiscordButton } from "./DiscordButton/DiscordButton";
 import { FadeInComponent, RiseUpAnimation } from "../../styles/lazyStyles";
 import FAQSection from "./FAQs/FAQs";
 
+/**
+ * `LearnMore` component that provides additional information and resources to the user.
+ *
+ * This component displays a section with a stylized "rox.ai" title and two buttons. The first button links to a news page, while the second opens a modal with FAQs and a Discord connection button. It uses animations for visual enhancement and tracks the modal's open state to manage its visibility.
+ *
+ * Props:
+ * @param {Object} languageMode - Contains localized strings for button labels and other UI elements, allowing for dynamic language switching.
+ *
+ * State:
+ * @state {boolean} isModalOpen - Tracks whether the FAQ and Discord modal is open.
+ *
+ * Behavior:
+ * - On clicking the news button, logs an event to Firebase Analytics and navigates the user to an external news page.
+ * - On clicking the about button, toggles the modal's visibility, showing or hiding additional resources including FAQs and a Discord invite.
+ * - Utilizes `FadeInComponent` and `RiseUpAnimation` for entrance animations, enhancing user experience with visual effects.
+ * - The modal provides a centralized way to access FAQs and connect with the Discord community, promoting engagement.
+ */
 export const LearnMore = ({ languageMode }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 

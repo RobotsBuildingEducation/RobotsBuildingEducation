@@ -1,13 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Collapse, Button } from "react-bootstrap";
 import styled, { keyframes } from "styled-components";
 
-import {
-  RiseUpAnimation,
-  japaneseThemePalette,
-  textBlock,
-} from "../../../styles/lazyStyles";
-import { logEvent } from "firebase/analytics";
+import { japaneseThemePalette, textBlock } from "../../../styles/lazyStyles";
 import { ExternalLink } from "../../../common/ui/Displays/ExternalLink/ExternalLink";
 
 const delayedAnimation = keyframes`
