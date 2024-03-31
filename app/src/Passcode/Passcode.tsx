@@ -5,7 +5,7 @@ import styled, { keyframes } from "styled-components";
 import { ui } from "../common/uiSchema";
 import ChatGPT from "../ChatGPT/ChatGPT";
 
-import { WalletAuth } from "../WalletAuth";
+import { WalletAuth } from "../ProofOfWork/ImpactWallet/WalletAuth/WalletAuth";
 import {
   FadeInComponent,
   PanLeftComponent,

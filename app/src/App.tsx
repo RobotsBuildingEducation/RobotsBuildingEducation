@@ -143,13 +143,8 @@ let App = () => {
   };
 
   /**
-   *
-   * @param event A typing event
-   * @description a process that checks when a user has submitted a valid passcode
-   * - stores passcode to local storage
-   * - clears patreon lecture selected
-   * - sets success password flag to true
-   * - logs event to anlytics
+   * Historically, this function handled entrance into the app using a passcode that was acquired by signing up to Patreon.
+   * This is no longer actively used.
    */
   const handleZeroKnowledgePassword = (
     event,

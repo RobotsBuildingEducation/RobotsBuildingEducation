@@ -32,7 +32,7 @@ import {
   copyToClipboard,
   handleUserAuthentication,
 } from "../../App.compute";
-import { WalletAuth } from "../../WalletAuth";
+import { WalletAuth } from "./WalletAuth/WalletAuth";
 
 const renderTranscriptAwards = (profileData) => {
   if (isEmpty(profileData)) {
