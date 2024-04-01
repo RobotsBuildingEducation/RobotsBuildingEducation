@@ -293,6 +293,7 @@ export let ChatBlock = ({ children, type = "quiz" }) => {
             borderTop: "5px solid lavender",
             borderLeft: "5px solid lavender",
             borderRight: "5px solid lavender",
+            borderBottom: "1px solid black",
           }}
         >
           <Modal.Title style={{ fontFamily: "Bungee" }}>
@@ -346,6 +347,7 @@ export let ChatBlock = ({ children, type = "quiz" }) => {
             borderBottom: "5px solid lavender",
             borderLeft: "5px solid lavender",
             borderRight: "5px solid lavender",
+            borderTop: "1px solid black",
           }}
         >
           {/* <Button
