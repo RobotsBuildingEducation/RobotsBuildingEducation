@@ -5,7 +5,7 @@ import "./App.css";
 
 import { Paths } from "./Paths/Paths";
 import { RoxSplashAnimation } from "./common/uiSchema";
-import { Collections } from "./Paths/Collections/Collections";
+import { Collections } from "./Collections/Collections";
 import { Header } from "./Header/Header";
 
 import { analytics } from "./database/firebaseResources";
@@ -145,7 +145,10 @@ let App = () => {
   const connectDID = async () => {
     try {
       const { web5, did: aliceDid } = await Web5.connect();
-      localStorage.setItem("uniqueId", web5?.did?.agent?.agentDid);
+      console.log(!localStorage.getItem("uniqueId"));
+      if (!localStorage.getItem("uniqueId")) {
+        localStorage.setItem("uniqueId", web5?.did?.agent?.agentDid);
+      }
 
       // setWeb5Reference(web5);
 

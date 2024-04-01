@@ -1,5 +1,5 @@
-import { ui } from "../../../common/uiSchema";
-import { ComingSoonModule, StyledModule } from "../../../styles/lazyStyles";
+import { ui } from "../../common/uiSchema";
+import { ComingSoonModule, StyledModule } from "../../styles/lazyStyles";
 
 export const Module = ({
   handleModuleSelection,

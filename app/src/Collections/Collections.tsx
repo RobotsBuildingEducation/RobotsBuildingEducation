@@ -1,9 +1,9 @@
 import styled, { keyframes } from "styled-components";
-import { ui } from "../../common/uiSchema";
+import { ui } from "../common/uiSchema";
 import {
   StyledCollectionContainer,
   japaneseThemePalette,
-} from "../../styles/lazyStyles";
+} from "../styles/lazyStyles";
 import { Module } from "./Module/Module";
 
 const delayedAnimation = keyframes`
