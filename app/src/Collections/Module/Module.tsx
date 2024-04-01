@@ -3,13 +3,11 @@ import { ComingSoonModule, StyledModule } from "../../styles/lazyStyles";
 
 export const Module = ({
   handleModuleSelection,
-  path,
-  collection,
+
   module,
   userStateReference,
+  currentModule,
 }): JSX.Element | null => {
-  let currentModule = ui()[path][collection][module];
-
   if (currentModule?.underConstruction && currentModule?.isModuleDisabled) {
     return (
       <ComingSoonModule
