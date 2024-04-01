@@ -47,7 +47,11 @@ export const ContentLinks = ({ patreonObject, type }) => {
         onHide={() => setIsWikiOpen(false)}
       >
         <Modal.Header
-          style={{ backgroundColor: "black", color: "white" }}
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            borderBottom: "1px solid black",
+          }}
           closeVariant="white"
           closeButton
         >
