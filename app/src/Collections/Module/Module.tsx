@@ -3,7 +3,6 @@ import { ComingSoonModule, StyledModule } from "../../styles/lazyStyles";
 
 export const Module = ({
   handleModuleSelection,
-
   module,
   userStateReference,
   currentModule,

@@ -42,7 +42,7 @@ export const Collections = ({
   // get the modules for each collection
   const displayCollections = collections.map((collection) => {
     const modules = Object.keys(uiCollections[currentPath][collection]);
-    let currentModule = uiCollections[currentPath][collection][module];
+
     if (modules && modules.length > 0) {
       return (
         <div>
@@ -54,7 +54,7 @@ export const Collections = ({
                   module={module}
                   handleModuleSelection={handleModuleSelection}
                   userStateReference={userStateReference}
-                  currentModule={currentModule}
+                  currentModule={uiCollections[currentPath][collection][module]}
                 />
               </StyledAnimatedModule>
             ))}
