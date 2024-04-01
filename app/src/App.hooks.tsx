@@ -166,14 +166,14 @@ export const useZap = (
 
   let createZap = async () => {
     try {
-      const ln = new LightningAddress("levitatingnight182471@getalby.com");
+      const ln = new LightningAddress("strongstingray4@primal.net");
 
       await ln.fetch();
 
       let invoiceResult = (
         await ln.requestInvoice({
           satoshi: 1,
-          comment: "invoice requested",
+          comment: "Robots Building Education",
         })
       ).paymentRequest;
 

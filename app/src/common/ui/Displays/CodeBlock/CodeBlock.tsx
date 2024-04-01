@@ -131,7 +131,6 @@ export const CodeBlock = ({ children, code }) => {
         setIsLoading(false);
       });
 
-    console.log("response", response);
     if (response) {
       // let data = await response.json();
 
@@ -139,9 +138,8 @@ export const CodeBlock = ({ children, code }) => {
       // setApiResponse(data?.bot?.content || "");
 
       let data = await response.json();
-      console.log("data", data);
+
       let result = JSON.parse(data?.bot?.content);
-      console.log("result", result);
 
       let outcome = result.result;
 
@@ -151,7 +149,6 @@ export const CodeBlock = ({ children, code }) => {
     }
   };
 
-  console.log("parsed content..., ", parsedContent);
   return (
     <div
       style={{

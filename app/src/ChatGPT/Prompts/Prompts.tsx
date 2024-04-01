@@ -45,6 +45,8 @@ const PromptButton = ({
     let satoshis = computeTotalImpactFromPrompt(patreonObject, type);
     // let data = useZap(satoshis);
     // let zap = useZap(1);
+
+    console.log("running bitcoin");
     return (
       <StyledPromptButton
         tabindex="0"

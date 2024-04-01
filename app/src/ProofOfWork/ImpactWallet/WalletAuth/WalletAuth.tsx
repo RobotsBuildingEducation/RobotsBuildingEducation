@@ -16,12 +16,15 @@ export const WalletAuth = () => {
         <Button
           appName="Robots Building Education"
           onConnect={() => {
-            localStorage.setItem("patreonPasscode", "bitcoin");
+            localStorage.setItem(
+              "patreonPasscode",
+              import.meta.env.VITE_BITCOIN_PASSCODE
+            );
           }}
           onDisconnect={() => {
             localStorage.setItem(
               "patreonPasscode",
-              import.meta.env.VITE_PATREON_PASSCODE
+              import.meta.env.VITE_BITCOIN_PASSCODE
             );
           }}
         />
