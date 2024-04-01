@@ -29,4 +29,5 @@ export default defineConfig({
     },
     extensions: [".js", ".mjs"],
   },
+  base: "./",
 });

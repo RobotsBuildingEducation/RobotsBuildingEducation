@@ -8,9 +8,9 @@ import { RoxSplashAnimation } from "./common/uiSchema";
 import { Collections } from "./Paths/Collections/Collections";
 import { Header } from "./Header/Header";
 
-import { auth, analytics } from "./database/firebaseResources";
-import { onAuthStateChanged } from "firebase/auth";
-import { getDocs, updateDoc } from "firebase/firestore";
+import { analytics } from "./database/firebaseResources";
+
+import { updateDoc } from "firebase/firestore";
 
 import { logEvent } from "firebase/analytics";
 
