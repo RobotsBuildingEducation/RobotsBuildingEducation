@@ -1616,7 +1616,11 @@ export const BossMode = ({
         onHide={() => setIsBossModeOpen(false)}
       >
         <Modal.Header
-          style={{ backgroundColor: "black", color: "white" }}
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            borderBottom: "1px solid black",
+          }}
           closeVariant="white"
           closeButton
         >

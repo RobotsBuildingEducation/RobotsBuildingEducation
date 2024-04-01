@@ -143,6 +143,7 @@ export const Experimental = ({
           color: "white",
           backgroundColor: "black",
           fontFamily: "Bungee",
+          borderBottom: "1px solid black",
         }}
       >
         <Modal.Title>Co-founder</Modal.Title>

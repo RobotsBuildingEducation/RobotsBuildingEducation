@@ -30,6 +30,7 @@ export const EmotionButton = styled.button`
 
 export const EmotionalIntelligenceStyles = {
   Header: {
+    borderBottom: "1px solid black",
     backgroundColor: "black",
     color: "white",
   },
