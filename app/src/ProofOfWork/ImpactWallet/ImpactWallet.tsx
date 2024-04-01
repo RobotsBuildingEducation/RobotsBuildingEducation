@@ -367,7 +367,7 @@ export const ImpactWallet = ({
         >
           <Modal.Title style={{ fontFamily: "Bungee" }}>
             Proof of Work @{" "}
-            {localStorage.getItem("uniqueId").substr(0, 16) + "..."}
+            {(localStorage.getItem("uniqueId")?.substr(0, 16) || "") + "..."}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body
