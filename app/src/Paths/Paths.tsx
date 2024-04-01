@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { StyledNavigationContainer, StyledLink } from "../styles/lazyStyles";
+import { uiPaths } from "../common/uiSchema";
 
 // Helper function to create display elements
 const delayedAnimation = keyframes`
@@ -19,13 +20,12 @@ const StyledPathItem = styled.div`
 
 // helper function to render
 const createPathElements = (
-  topPaths,
   handlePathSelection,
   pathSelectionAnimationData,
   unlockCreatorKey,
   unlockDealerKey
 ) => {
-  return topPaths.map((path, index) => {
+  return uiPaths.map((path, index) => {
     const displayText = path !== "Entrepeneur" ? path : "Dealer";
 
     if (unlockCreatorKey && unlockDealerKey) {
@@ -130,11 +130,9 @@ export const Paths = ({
     ];
 
   // Define the paths
-  const paths = ["Engineer", "Creator", "Entrepeneur"];
 
   // Generate the display elements for the top paths
   const pathElements = createPathElements(
-    paths,
     handlePathSelection,
     pathSelectionAnimationData,
     unlockCreatorKey,

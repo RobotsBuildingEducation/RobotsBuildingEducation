@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { ui } from "../common/uiSchema";
+import { uiCollections } from "../common/uiSchema";
 import {
   StyledCollectionContainer,
   japaneseThemePalette,
@@ -22,43 +22,31 @@ const StyledAnimatedModule = styled.div`
   opacity: 0; /* Start with opacity 0 to make the animation visible */
   animation-fill-mode: forwards; /* Keep the element visible after the animation */
 `;
+
+/**
+handles the container for all of the lectures inside of a path.
+Currently, there's only one lecture per path. However, this can easily be changed/extended in the uiSchema file.
+ */
 export const Collections = ({
   handleModuleSelection,
   currentPath,
   userStateReference,
 }): JSX.Element | null => {
-  const pathData = ui();
+  // Check if the currentPath exists in the ui schema
+  if (!currentPath || !uiCollections || !uiCollections[currentPath])
+    return null;
 
-  // Check if the currentPath exists in the data
-  if (!currentPath || !pathData || !pathData[currentPath]) return null;
+  //although not displayed, this is the first child under a Path. For example, it would be "Coding Crash Course Version 3" under Engineer
+  const collections = Object.keys(uiCollections[currentPath]);
 
-  const collections = Object.keys(pathData[currentPath]);
-
+  // get the modules for each collection
   const displayCollections = collections.map((collection) => {
-    const modules = Object.keys(pathData[currentPath][collection]);
+    const modules = Object.keys(uiCollections[currentPath][collection]);
 
     if (modules && modules.length > 0) {
-      const isSpecialCollection =
-        collection === "Coding Crash Course Version 3";
-      const boxShadowStyle = {
-        boxShadow: `10px 10px 0px 0px ${japaneseThemePalette.TokyoTwilight}`,
-      };
-
       return (
         <div>
           <br />
-          {/* <h3>
-            {isSpecialCollection ? (
-              <img
-                alt={collection}
-                title={collection}
-                style={boxShadowStyle}
-                src="https://res.cloudinary.com/dtkeyccga/image/upload/v1691640371/ROBE_assets/Collection_Banners_zlhvjw_pcb0io.gif"
-              />
-            ) : (
-              collection
-            )}
-          </h3> */}
           <StyledCollectionContainer>
             {modules.map((module, index) => (
               <StyledAnimatedModule index={index} key={module}>

@@ -148,6 +148,7 @@ export const ui = (): IPath => {
 };
 export let uiPaths = ["Engineer", "Creator", "Entrepeneur"];
 
+export const uiCollections = ui();
 /**
  * @returns the total amount of proof of work points available in the platform.
  */
