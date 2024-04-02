@@ -168,6 +168,7 @@ export const useZap = (
     try {
       const ln = new LightningAddress("strongstingray4@primal.net");
 
+      console.log("ln", ln);
       await ln.fetch();
 
       let invoiceResult = (
@@ -177,6 +178,7 @@ export const useZap = (
         })
       ).paymentRequest;
 
+      console.log("invoice", invoiceResult);
       setInvoice(invoiceResult);
     } catch (error) {
       console.error(error);

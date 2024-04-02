@@ -42,7 +42,7 @@ const PromptButton = ({
     localStorage.getItem("patreonPasscode") ===
     import.meta.env.VITE_BITCOIN_PASSCODE
   ) {
-    let satoshis = computeTotalImpactFromPrompt(patreonObject, type);
+    // let satoshis = computeTotalImpactFromPrompt(patreonObject, type);
     // let data = useZap(satoshis);
     // let zap = useZap(1);
 
