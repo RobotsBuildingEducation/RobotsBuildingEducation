@@ -165,32 +165,23 @@ export const StyledModule = styled.button`
       return props.module === "Lesson 4 Building Apps & Startups" ||
         props.module === "Lesson 2 Frontend Programming"
         ? "gold"
-        : props.patreonObject.isModuleDisabled
-        ? "#11220E"
-        : props.patreonObject.rare
-        ? "#DA830D"
-        : props.patreonObject.highValue
-        ? "#F8B125"
-        : props.patreonObject.new
-        ? "#f9c4ff"
-        : props.patreonObject.underConstruction
-        ? "#6A74B4"
+        : props.patreonObject.creatorBorder
+        ? "black"
+        : props.patreonObject.dealerBorder
+        ? "#ffd164"
         : "#B271D1";
     }};
 
   text-shadow: 1px 1px 5px black;
 
-  /* cursor: ${(props) => {
-    return props.patreonObject.isModuleDisabled ? "not-allowed" : "grab";
+  /* cursor: grab;
   }}; */
 
   &:hover {
     transform: scale(1.1);
 
     background: ${(props) => {
-      return props.patreonObject.isModuleDisabled
-        ? "#48464A"
-        : getRandomColor();
+      return getRandomColor();
     }};
 
     animation: ${sineWave} 3s infinite ease-in-out;
@@ -222,46 +213,30 @@ export const ComingSoonModule = styled.button`
   transition: 0.15s all ease-in-out;
   border: 5px dashed
     ${(props) => {
-      return props.patreonObject.isModuleDisabled
-        ? japaneseThemePalette.GoldenAccent
-        : props.patreonObject.rare
+      return props.patreonObject.creatorBorder
         ? "#DA830D"
-        : props.patreonObject.highValue
-        ? "#F8B125"
-        : props.patreonObject.new
-        ? "#f9c4ff"
-        : props.patreonObject.underConstruction
-        ? "#6A74B4"
+        : props.patreonObject.dealerBorder
+        ? "black"
         : "#B271D1";
     }};
 
   text-shadow: 1px 1px 5px black;
   background-color: ${(props) => {
-    return props.patreonObject.isModuleDisabled
-      ? "black"
-      : props.patreonObject.rare
+    return props.patreonObject.creatorBorder
       ? "#DA830D"
-      : props.patreonObject.highValue
+      : props.patreonObject.dealerBorder
       ? "#F8B125"
-      : props.patreonObject.new
-      ? "#f6a3ff"
-      : props.patreonObject.underConstruction
-      ? "#6A74B4"
       : "#F099AD";
   }};
 
-  cursor: ${(props) => {
-    return props.patreonObject.isModuleDisabled
-      ? "not-allowed!important"
-      : "grab";
+  cursor: grab;
   }};
 
   &:hover {
     transform: scale(1.1);
 
-    background: ${(props) => {
-      return props.patreonObject.isModuleDisabled ? "black" : "#f5befa";
-    }};
+    background: #f5befa;
+
   }
 `;
 
@@ -291,7 +266,7 @@ export const StyledLink = styled(Link)`
       // Function to convert a hex color to its blue version
       const toBlueVersion = (color) => {
         // Implement your logic to convert to blue version
-        return "#64ddff"; // Example
+        return "#001eff"; // Example
       };
 
       // Function to convert a hex color to its golden version

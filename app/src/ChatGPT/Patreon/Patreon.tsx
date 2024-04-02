@@ -32,8 +32,8 @@ const renderVideo = (patreonObject, isAutoPlay, videoRef) => (
       <source src={patreonObject.fileSource} type="video/mp4" />
       <source src={patreonObject.fileSource} type="video/mov" />
     </video>
-    {patreonObject.prompts?.patreon?.summaryContent && (
-      <RevealButton content={patreonObject.prompts?.patreon?.summaryContent} />
+    {patreonObject.prompts?.patreon?.extraContent && (
+      <RevealButton content={patreonObject.prompts?.patreon?.extraContent} />
     )}
     {patreonObject?.prompts?.patreon?.additionalContent && (
       <MarkdownRenderer
@@ -42,20 +42,6 @@ const renderVideo = (patreonObject, isAutoPlay, videoRef) => (
       />
     )}
   </>
-);
-
-// Function to display GIF content
-const renderGif = (patreonObject) => <img src={patreonObject.fileSource} />;
-
-// Function to display Markdown content
-const renderMarkdown = (patreonObject, handleScheduler) => (
-  <div style={markdownStyle}>
-    <MarkdownRenderer
-      file={patreonObject?.fileSource}
-      patreonObject={patreonObject}
-      handleScheduler={handleScheduler}
-    />
-  </div>
 );
 
 // Main Patreon component
@@ -141,20 +127,9 @@ const Patreon = ({
     };
   }, [videoDurationDetection, isVideoPlaying]);
 
-  // Function to determine which type of content to display
-  const determineFileView = () => {
-    if (patreonObject.sourceType === "video") {
-      return renderVideo(patreonObject, isAutoPlay, videoRef);
-    }
-    if (patreonObject.sourceType === "gif") {
-      return renderGif(patreonObject);
-    }
-    return renderMarkdown(patreonObject, handleScheduler);
-  };
-
   return (
-    <div style={{ padding: 20 }} key={patreonObject.button}>
-      {determineFileView()}
+    <div style={{ padding: 20 }} key={patreonObject.header}>
+      {renderVideo(patreonObject, isAutoPlay, videoRef)}
     </div>
   );
 };

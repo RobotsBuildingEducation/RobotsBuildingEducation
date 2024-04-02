@@ -8,59 +8,24 @@ import roxSplashAnimation from "./media/images/roxSplashAnimation.gif";
 import { FadeInComponent } from "../styles/lazyStyles";
 
 interface IPrompt {
-  // has the user selected? when database is passed into ui()
-  completed: boolean;
-
-  //value set
   impact: number;
 
-  //additional context
-  tooltip: string | JSX.Element;
-
-  //prompt display text
   action: string;
 
-  // prompt display icon
   icon: string;
 
-  // data sent to chat GPT
   request: string;
 
-  // data returned by chat GPT
   response: string | JSX.Element;
 
-  // spanish translation/stoggle/
-  spanish?: string | boolean;
+  spanish?: string | boolean | JSX.Element;
 
-  //fine tuned with human ideas.
-  humanTouch?: boolean;
-
-  //enhanced with machine learning.
-  robotTouch?: boolean;
-
-  //fine-tuned with currently patreon hosted content
-  premiumContent?: boolean;
-
-  //fine-tuned with advertising content
-  sponsoredContent?: boolean;
-
-  // may display custom content like an image, python code, javascript code, etc
-  dynamicContent?: boolean;
-
-  advertisementLink?: string;
-  backgroundStyles?: Record<string, any>;
-  advertisingImageSrc: string;
+  //customs & practice prompt
+  [index: string]: any;
 }
 
 interface IModule {
-  filler: string;
-
   hasCode?: boolean;
-  // markdown or video for patreon content
-  sourceType: string;
-
-  // button to enter module
-  button: string;
 
   // title header
   header: string;
@@ -68,57 +33,32 @@ interface IModule {
   // video or .markdown fies
   fileSource: any;
 
-  // developer release flag
-  new: boolean;
+  // styling for modules
+  dealerBorder?: boolean;
+  creatorBorder?: boolean;
 
-  // developer flag again
-  needsImprovement: boolean;
-
-  // great value find
-  highValue: boolean;
-
-  //rare value in general
-  rare?: boolean;
-
-  // is there something the developers are disabling?
-  underConstruction: boolean;
-
-  // has the user completed the module? When database is passed into ui(...)
-  completed: boolean;
-
-  // tool tip to add more UI on tags
-  tooltip: string;
   prompts: {
-    //3 point low-stakes challenger quiz
+    welcome: Partial<IPrompt>;
+
     quiz: IPrompt;
 
-    //Frequently Asked Questions
     ask: IPrompt;
 
-    //inspiration material
     inspire: IPrompt;
 
-    //one sentence definition
     define: IPrompt;
 
-    // summarize concept
     summarize: IPrompt;
 
-    // code example or some other demo type
     demonstrate: IPrompt;
 
-    // 10 bullet point study guide
     guide: IPrompt;
 
-    // patreon first content (videos+canva)
     patreon: IPrompt;
 
-    // advertising agreements with patrons
     shop: IPrompt;
-    practice?: IPrompt;
-    intro?: IPrompt;
 
-    //in the future: translate. Dropdown/search + translate Module
+    practice?: IPrompt;
   };
 
   [index: string]: any;

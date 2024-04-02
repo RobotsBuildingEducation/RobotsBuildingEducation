@@ -53,34 +53,6 @@ export const Intro = ({
           >
             Patreon
           </a>
-          .
-          <br />
-          <br />
-          {patreonObject?.prompts?.intro?.response && (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                textAlign: "center",
-                border: "1px solid red",
-              }}
-            >
-              <div>$3 advertisement asdfasd</div>
-              <h3>{patreonObject?.prompts?.intro?.response}</h3>
-              <h4>{patreonObject?.prompts?.intro?.advertisementPitch}</h4>
-              <a
-                onClick={() => handlePatreonClick(moduleName)}
-                href={patreonObject?.prompts?.intro?.advertisementLink}
-                target={"_blank"}
-              >
-                <img
-                  src={patreonObject?.prompts?.intro?.advertisementImageSrc}
-                  style={patreonObject?.prompts?.intro?.backgroundStyles}
-                />
-              </a>
-            </div>
-          )}
         </div>
       )}
     </div>

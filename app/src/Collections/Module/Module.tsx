@@ -15,11 +15,9 @@ export const Module = ({
       module={module}
       disabled={isDisabled}
       patreonObject={currentModule}
-      key={currentModule.button}
+      key={currentModule.header}
       onClick={() => {
-        !currentModule?.isModuleDisabled
-          ? handleModuleSelection(currentModule, module)
-          : null;
+        handleModuleSelection(currentModule, module);
       }}
     >
       {isDisabled ? (
@@ -30,7 +28,7 @@ export const Module = ({
       ) : (
         <span>
           &#9658;
-          <br /> {currentModule.button}
+          <br /> {currentModule.header}
         </span>
       )}
     </StyledModule>
