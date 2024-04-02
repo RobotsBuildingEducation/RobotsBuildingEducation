@@ -11,7 +11,6 @@ import inspire08 from "../../media/images/prompts/inspire08.png";
 export const Creator = {
   Communications: {
     Philosophy: {
-      documentID: ``,
       filler: ``,
       new: false,
       highValue: false,
@@ -645,7 +644,6 @@ export const Creator = {
       },
     },
     "Interactions & Design": {
-      documentID: ``,
       filler: ``,
       new: false,
       highValue: false,
@@ -1213,7 +1211,6 @@ export const Creator = {
       },
     },
     "The Psychology Of Self-esteem": {
-      documentID: ``,
       backgroundImgSrc:
         "https://res.cloudinary.com/sheilfer/image/upload/v1695548485/Module_Buttons_10_u50oik.gif",
       filler: ``,
@@ -1701,7 +1698,7 @@ export const Creator = {
         },
       },
       // Memes: {
-      //   documentID: ``,
+      //
       //   filler: ``,
       //   new: false,
       //   highValue: false,
@@ -1847,7 +1844,7 @@ export const Creator = {
       // },
     },
     // Custom: {
-    //   documentID: ``,
+    //
     //   // backgroundImgSrc:
     //   //   "https://rp es.cloudinary.com/sheilfer/image/upload/v1695548485/Module_Buttons_10_u50oik.gif",
     //   filler: ``,
@@ -2297,7 +2294,7 @@ export const Creator = {
     //     },
     //   },
     //   // Memes: {
-    //   //   documentID: ``,
+    //   //
     //   //   filler: ``,
     //   //   new: false,
     //   //   highValue: false,

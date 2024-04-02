@@ -53,8 +53,6 @@ interface IPrompt {
 }
 
 interface IModule {
-  documentID: string;
-  // internal preference
   filler: string;
 
   hasCode?: boolean;

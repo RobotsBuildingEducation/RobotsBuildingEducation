@@ -24,14 +24,11 @@ import { RobotDialogue } from "../Displays/RobotDialogue/RobotDialogue";
 
 import RandomCharacter from "../Displays/RandomCharacter/RandomCharacter";
 import { SchedulerBlock } from "../Displays/SchedulerBlock/SchedulerBlock";
-import { ArtBlock } from "../Displays/ArtBlock/ArtBlock";
-import { StyledListItem } from "../../../styles/lazyStyles";
 import { ExternalLink } from "../Displays/ExternalLink/ExternalLink";
 
 export const Engineer = {
   "Coding Crash Course Version 3": {
     "Learning Mindset & Perspective": {
-      documentID: ``,
       backgroundImgSrc:
         "https://res.cloudinary.com/dtkeyccga/image/upload/v1691640391/ROBE_assets/Module_Buttons_1_ixnitr_scjfyk.gif",
       hasCode: true,
@@ -764,7 +761,6 @@ exports.app = functions.https.onRequest(app);
       },
     },
     "Lesson 1 Coding Fundamentals": {
-      documentID: ``,
       backgroundImgSrc:
         "https://res.cloudinary.com/dtkeyccga/image/upload/v1691640402/ROBE_assets/Module_Buttons_8_yzjtoj_muwgiv.gif",
       hasCode: true,
@@ -1942,7 +1938,6 @@ throw new Error(
       },
     },
     "Lesson 2 Frontend Programming": {
-      documentID: ``,
       backgroundImgSrc:
         "https://res.cloudinary.com/dtkeyccga/image/upload/v1691640338/ROBE_assets/Module_Buttons_4_n2grll_xqtadc.gif",
       hasCode: true,
@@ -2893,7 +2888,6 @@ return <div style={gradientStyle}>
       },
     },
     "Lesson 3 Backend Engineering": {
-      documentID: ``,
       backgroundImgSrc:
         "https://res.cloudinary.com/dtkeyccga/image/upload/v1691640379/ROBE_assets/Module_Buttons_5_vulvwr_oymbfb.gif",
       hasCode: true,
@@ -3934,7 +3928,6 @@ exports.app = functions
       },
     },
     "Lesson 4 Building Apps & Startups": {
-      documentID: ``,
       backgroundImgSrc:
         "https://res.cloudinary.com/dtkeyccga/image/upload/v1691640340/ROBE_assets/Module_Buttons_7_uonnwt_s4ymov.gif",
       hasCode: true,
@@ -5102,7 +5095,6 @@ export default OpenAIComponent;`,
       },
     },
     "Lesson 5 Computer Science": {
-      documentID: ``,
       backgroundImgSrc:
         "https://res.cloudinary.com/dtkeyccga/image/upload/v1693290833/Module_Buttons_9_kmpzgb.gif",
       hasCode: true,

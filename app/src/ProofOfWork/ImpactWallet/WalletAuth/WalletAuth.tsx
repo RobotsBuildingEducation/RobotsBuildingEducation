@@ -24,7 +24,7 @@ export const WalletAuth = () => {
           onDisconnect={() => {
             localStorage.setItem(
               "patreonPasscode",
-              import.meta.env.VITE_BITCOIN_PASSCODE
+              import.meta.env.VITE_PATREON_PASSCODE
             );
           }}
         />

@@ -12,7 +12,6 @@ import { ExternalLink } from "../Displays/ExternalLink/ExternalLink";
 export const Entrepeneur = {
   "Understanding Business": {
     "Resume Writing": {
-      documentID: ``,
       hasCode: false,
       filler: ``,
       new: false,
@@ -583,7 +582,6 @@ export const Entrepeneur = {
       },
     },
     "Focus Investing": {
-      documentID: ``,
       hasCode: false,
       backgroundImgSrc:
         "https://res.cloudinary.com/sheilfer/image/upload/v1697448653/Module_Buttons_10_ynvvtv.gif",
@@ -1351,7 +1349,7 @@ export const Entrepeneur = {
       },
     },
     // "Resource Allocation": {
-    //   documentID: ``,
+    //
     //   hasCode: false,
     //   filler: ``,
     //   new: false,
