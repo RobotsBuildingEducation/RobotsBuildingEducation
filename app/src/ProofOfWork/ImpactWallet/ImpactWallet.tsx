@@ -155,12 +155,6 @@ export const ImpactWallet = ({
 
   let impactResult = databaseUserDocument?.impact;
 
-  /**
-   *               {/* <iframe
-                src="https://chat.openai.com/g/g-09h5uQiFC-ms-roxana"
-                title="W3Schools Free Online Web Tutorials"
-              ></iframe> 
-  */
   const handleChange = (event) => {
     const { value } = event.target;
     setInputValue(value);
@@ -434,10 +428,6 @@ export const ImpactWallet = ({
                   : "Invalid DID entered"}
               </Alert>
             )}
-            or
-            <br />
-            <br />
-            <WalletAuth />
             <br />
             <br />
             <h4 style={{ fontFamily: "Bungee" }}>

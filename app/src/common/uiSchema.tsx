@@ -88,7 +88,7 @@ export let uiPaths = ["Engineer", "Creator", "Entrepeneur"];
 
 export const uiCollections = ui();
 /**
- * @returns the total amount of proof of work points available in the platform.
+ * @returns the total amount of proof of work points collected from module.prompts[prompt].impact
  */
 export let getGlobalImpact = () => {
   let pathKeys = Object.keys(ui());
@@ -138,6 +138,7 @@ export let getGlobalImpact = () => {
   return sum;
 };
 
+//used when calling openapi
 export let RoxanaLoadingAnimation = () => {
   return (
     <FadeInComponent>
@@ -153,6 +154,8 @@ export let RoxanaLoadingAnimation = () => {
     </FadeInComponent>
   );
 };
+
+//used when loading the app
 export let RoxSplashAnimation = () => {
   return (
     <FadeInComponent>
@@ -169,6 +172,7 @@ export let RoxSplashAnimation = () => {
   );
 };
 
+//used to call openAPI
 export const postInstructions = {
   url: "https://us-central1-learn-robotsbuildingeducation.cloudfunctions.net/app/prompt",
   method: "POST",

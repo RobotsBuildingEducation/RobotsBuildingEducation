@@ -36,6 +36,7 @@ import { words } from "./common/words/words";
 
 import { RiseUpAnimation } from "./styles/lazyStyles";
 import { useStore } from "./Store";
+import { WalletAuth } from "./ProofOfWork/ImpactWallet/WalletAuth/WalletAuth";
 
 logEvent(analytics, "page_view", {
   page_location: "https://learn-robotsbuildingeducation.firebaseapp.com/",
@@ -430,6 +431,7 @@ let App = () => {
         <Header languageMode={languageMode} setLanguageMode={setLanguageMode} />
 
         <>
+          <WalletAuth />
           <Paths
             handlePathSelection={handlePathSelection}
             pathSelectionAnimationData={

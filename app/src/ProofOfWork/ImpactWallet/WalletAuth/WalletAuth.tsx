@@ -1,5 +1,6 @@
 import { Badge } from "react-bootstrap";
 import { Button } from "@getalby/bitcoin-connect-react";
+import { useState } from "react";
 
 /**
  * WalletAuth Component
@@ -9,10 +10,17 @@ import { Button } from "@getalby/bitcoin-connect-react";
  * @param {Object} props The props object.
  * @returns {ReactElement} The WalletAuth component.
  */
+
 export const WalletAuth = () => {
+  let [trigger, setTrigger] = useState(false);
   return (
     <div>
-      <div style={{ zIndex: 10000000 }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <Button
           appName="Robots Building Education"
           onConnect={() => {
@@ -28,9 +36,9 @@ export const WalletAuth = () => {
             );
           }}
         />
-        <Badge bg="light" style={{ color: "black" }}>
+        {/* <Badge bg="light" style={{ color: "black" }}>
           🧪 experimental feature
-        </Badge>
+        </Badge> */}
       </div>
     </div>
   );

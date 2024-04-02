@@ -16,7 +16,7 @@ const containerStyle = {
   width: "min-width",
 
   // border: "1px solid red",
-  zIndex: 1000,
+  zIndex: 1100,
 
   transition: "0.33s all ease-in-out",
   borderRadius: 12,
