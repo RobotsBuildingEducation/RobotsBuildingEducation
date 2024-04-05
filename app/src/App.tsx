@@ -36,7 +36,13 @@ import { words } from "./common/words/words";
 
 import { RiseUpAnimation } from "./styles/lazyStyles";
 import { useStore } from "./Store";
-import { createWeb5Record, getWeb5Records } from "./App.web5";
+import {
+  createWebNodeRecord,
+  deleteWebNodeRecords,
+  queryAndSetWebNodeRecords,
+  testUpdatedWebNodeRecords,
+  updateWebNodeRecord,
+} from "./App.web5";
 
 // import { deleteWeb5Records } from "./App.web5";
 
@@ -155,12 +161,12 @@ let App = () => {
       }
 
       // setWeb5Reference(web5);
-      // let set = await getWeb5Records(web5);
+      // let set = await queryAndSetWebNodeRecords(web5);
       // setDwnRecordSet(set);
-      // await createWeb5Record(web5, set, userUnlocks);
+      // await createWebNodeRecord(web5, set, userUnlocks);
 
       // use when testing new data
-      // deleteWeb5Records(set, web5);
+      // deleteWebNodeRecords(set, web5);
 
       handleUserAuthentication({
         web5,
@@ -218,11 +224,6 @@ let App = () => {
       ...prevDoc,
       profile,
     }));
-
-    // setShowStars(true);
-
-    // Reset the whole animation after some time
-    // setTimeout(() => setShowStars(false), 2000);
   };
 
   const handleCompletedPractice = async (moduleData = null) => {
@@ -243,11 +244,6 @@ let App = () => {
     }));
 
     checkForUnlock("progress", moduleData);
-
-    // setShowStars(true);
-
-    // Reset the whole animation after some time
-    // setTimeout(() => setShowStars(false), 2000);
   };
 
   const handleWatch = async (moduleData = null) => {
@@ -268,27 +264,6 @@ let App = () => {
     checkForUnlock("watches", moduleData);
 
     handleZap();
-
-    // // Randomize animation properties for each star
-    // document.querySelectorAll(".star").forEach((star) => {
-    //   const scale = Math.random() * 10; // Random scale
-    //   const x = Math.random() * 200 - 100; // Random x-position
-    //   const y = Math.random() * 200 - 100; // Random y-position
-    //   const duration = Math.random() * 1 + 0.5; // Random duration
-
-    //   // star.style.textShadow = "25px 25px 25px gold";
-    //   star.style.opacity = 1;
-    //   star.style.transform = `scale(${scale}) translate(${x}px, ${y}px)`;
-    //   star.style.transition = `transform ${duration}s ease-in-out, opacity ${duration}s ease-in-out`;
-
-    //   // Reset the star after the animation
-    //   setTimeout(() => {
-    //     star.style.opacity = 0;
-    //     star.style.transform = "none";
-    //   }, duration * 1000);
-    // });
-
-    // Reset the whole animation after some time
   };
 
   const checkForUnlock = async (setType, moduleName) => {
@@ -336,44 +311,15 @@ let App = () => {
         unlocks,
       });
 
-      // const { record } = await web5Reference.dwn.records.read({
-      //   message: {
-      //     filter: {
-      //       recordId: dwnRecordSet?.find(
-      //         (item) =>
-      //           item?.data?.protocol === "https://robotsbuildingeducation.com"
-      //       )?.id,
-      //     },
-      //   },
-      // });
-
-      // const transcript = await record.data.json();
-
-      // await record.update({
-      //   data: {
-      //     ...transcript,
-      //     ...unlocks,
-      //   },
-      // });
+      // await updateWebNodeRecord(web5Reference, dwnRecordSet, unlocks);
 
       userStateReference.setDatabaseUserDocument((prevDoc) => ({
         ...prevDoc,
         unlocks,
       }));
 
-      // // console.log("final result:");
-      // const { record: testRecord } = await web5Reference.dwn.records.read({
-      //   message: {
-      //     filter: {
-      //       recordId: dwnRecordSet?.find(
-      //         (item) =>
-      //           item?.data?.protocol === "https://robotsbuildingeducation.com"
-      //       )?.id,
-      //     },
-      //   },
-      // });
-      // const outcome = await testRecord.data.json();
-      // console.log("dwn outcome", outcome);
+      // testUpdatedWebNodeRecords(web5Reference, dwnRecordSet);
+
       setShowStars(true);
 
       // Reset the whole animation after some time
