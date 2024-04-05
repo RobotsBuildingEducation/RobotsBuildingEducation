@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { updateImpact } from "../../App.compute";
 import { useZap } from "../../App.hooks";
-import { RevealButton } from "../../common/ui/Displays/RevealButton/RevealButton";
+import { RevealButton } from "../../common/ui/Elements/RevealButton/RevealButton";
 
 // Style object for the video element
 const videoStyle = {
@@ -103,7 +103,7 @@ const Patreon = ({
         zap().then((response) => {
           if (response?.preimage) {
             updateImpact(zapAmount, userStateReference, globalStateReference);
-            // handleZap("video");
+            handleZap("video");
           }
         });
       }, 15000);

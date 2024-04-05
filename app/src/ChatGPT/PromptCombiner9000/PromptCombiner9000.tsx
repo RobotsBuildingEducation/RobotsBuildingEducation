@@ -1,23 +1,19 @@
 import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
+
 import { isEmpty } from "lodash";
-import { logEvent } from "firebase/analytics";
+
 import Patreon from "../Patreon/Patreon";
 import CodeEditor from "../CodeEditor/CodeEditor";
-import { analytics } from "../../database/firebaseResources";
-import { Button } from "react-bootstrap";
-import Editor from "react-simple-code-editor";
-import { highlight, languages } from "prismjs/components/prism-core";
+
 import "prismjs/components/prism-clike";
 import "prismjs/components/prism-javascript";
 import "prismjs/themes/prism.css";
-import { PanLeftComponent, PanRightComponent } from "../../styles/lazyStyles";
-import { ContentLinks } from "../../common/ui/Displays/ContentLinks/ContentLinks";
-import { CodeDemo } from "./Content/CodeDemo";
-import { SchedulerBlock } from "../../common/ui/Displays/SchedulerBlock/SchedulerBlock";
-import { CodeBlock } from "../../common/ui/Displays/CodeBlock/CodeBlock";
+import { PanLeftComponent } from "../../styles/lazyStyles";
+import { ContentLinks } from "../../common/ui/Elements/ContentLinks/ContentLinks";
+import { CodeDemo } from "./CodeDemo/CodeDemo";
+
+import { CodeBlock } from "../../common/ui/Elements/CodeBlock/CodeBlock";
 
 const delayedAnimation = keyframes`
 from {

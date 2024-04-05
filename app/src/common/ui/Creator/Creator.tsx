@@ -1,8 +1,8 @@
-import { ChatBlock } from "../Displays/ChatBlock/ChatBlock";
+import { ChatBlock } from "../Elements/ChatBlock/ChatBlock";
 import designOfEverydayThings from "../../media/images/designOfEverydayThings.png";
 import { ultimateEffeciencyJutsu } from "../ui";
-import { SchedulerBlock } from "../Displays/SchedulerBlock/SchedulerBlock";
-import MarkdownRenderer from "../../../ChatGPT/Patreon/MarkdownRenderer/MarkdownRenderer";
+import { SchedulerBlock } from "../Elements/SchedulerBlock/SchedulerBlock";
+import MarkdownRenderer from "../Elements/MarkdownRenderer/MarkdownRenderer";
 import inspire06 from "../../media/images/prompts/inspire06.jpg";
 import inspire07 from "../../media/images/prompts/inspire07.jpg";
 import inspire08 from "../../media/images/prompts/inspire08.png";

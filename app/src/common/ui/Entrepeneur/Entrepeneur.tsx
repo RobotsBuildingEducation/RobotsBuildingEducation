@@ -1,11 +1,11 @@
 //i did not spell Entrepreneur correctly.
-import { ChatBlock } from "../Displays/ChatBlock/ChatBlock";
+import { ChatBlock } from "../Elements/ChatBlock/ChatBlock";
 import poorCharlie from "../../media/images/poorCharlie.png";
 import neyra_logo from "../../media/images/neyra_logo.png";
 import { ultimateEffeciencyJutsu } from "../ui";
-import { SchedulerBlock } from "../Displays/SchedulerBlock/SchedulerBlock";
-import MarkdownRenderer from "../../../ChatGPT/Patreon/MarkdownRenderer/MarkdownRenderer";
-import { ExternalLink } from "../Displays/ExternalLink/ExternalLink";
+import { SchedulerBlock } from "../Elements/SchedulerBlock/SchedulerBlock";
+import MarkdownRenderer from "../Elements/MarkdownRenderer/MarkdownRenderer";
+import { ExternalLink } from "../Elements/ExternalLink/ExternalLink";
 
 export const Entrepeneur = {
   "Understanding Business": {

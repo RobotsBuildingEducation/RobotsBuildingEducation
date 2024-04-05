@@ -1,8 +1,8 @@
 import { logEvent } from "firebase/analytics";
 import { isEmpty } from "lodash";
-import { analytics } from "../../../database/firebaseResources";
-import { RoxanaLoadingAnimation } from "../../../common/uiSchema";
-import { RiseUpAnimation } from "../../../styles/lazyStyles";
+import { analytics } from "../../database/firebaseResources";
+import { RoxanaLoadingAnimation } from "../../common/uiSchema";
+import { RiseUpAnimation } from "../../styles/lazyStyles";
 
 // Function to handle the Patreon click event for analytics
 const handlePatreonClick = (moduleName) => {

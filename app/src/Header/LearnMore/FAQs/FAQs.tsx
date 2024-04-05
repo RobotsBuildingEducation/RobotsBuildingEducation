@@ -1,6 +1,6 @@
 import IMPACT_BACKGROUND from "../../../common/media/images/IMPACT_BACKGROUND.jpg";
 import { japaneseThemePalette, textBlock } from "../../../styles/lazyStyles";
-import { ExternalLink } from "../../../common/ui/Displays/ExternalLink/ExternalLink";
+import { ExternalLink } from "../../../common/ui/Elements/ExternalLink/ExternalLink";
 import { FAQItem } from "./FAQItem/FAQItem";
 
 /**

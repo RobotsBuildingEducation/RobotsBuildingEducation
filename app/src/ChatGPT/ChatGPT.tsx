@@ -10,12 +10,8 @@ import {
   computeResponseList,
   computeTotalImpactFromPrompt,
 } from "./ChatGPT.compute";
-import { Intro } from "./PromptCombiner9000/Content/Intro";
-import {
-  FadeInComponent,
-  PanLeftComponent,
-  PanRightComponent,
-} from "../styles/lazyStyles";
+import { Intro } from "./Intro/Intro";
+import { FadeInComponent, PanLeftComponent } from "../styles/lazyStyles";
 import { useBitcoinAnimation } from "../App.hooks";
 
 const logAnalyticsEvent = (item_list_id, item_id, item_name) => {

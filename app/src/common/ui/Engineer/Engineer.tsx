@@ -15,15 +15,15 @@ import inspire04 from "../../media/images/prompts/inspire04.png";
 import inspire05 from "../../media/images/prompts/inspire05.png";
 import girls_on_campus from "../../media/images/girls_on_campus.jpg";
 
-import { ChatBlock } from "../Displays/ChatBlock/ChatBlock";
-import { CodeDisplay } from "../Displays/CodeDisplay/CodeDisplay";
-import { CuteGradient } from "../Displays/CuteGradient/CuteGradient";
+import { ChatBlock } from "../Elements/ChatBlock/ChatBlock";
+import { CodeDisplay } from "../Elements/CodeDisplay/CodeDisplay";
+import { CuteGradient } from "../Elements/CuteGradient/CuteGradient";
 
-import { RobotDialogue } from "../Displays/RobotDialogue/RobotDialogue";
+import { RobotDialogue } from "../Elements/RobotDialogue/RobotDialogue";
 
-import RandomCharacter from "../Displays/RandomCharacter/RandomCharacter";
-import { SchedulerBlock } from "../Displays/SchedulerBlock/SchedulerBlock";
-import { ExternalLink } from "../Displays/ExternalLink/ExternalLink";
+import RandomCharacter from "../Elements/RandomCharacter/RandomCharacter";
+import { SchedulerBlock } from "../Elements/SchedulerBlock/SchedulerBlock";
+import { ExternalLink } from "../Elements/ExternalLink/ExternalLink";
 
 export const Engineer = {
   "Coding Crash Course Version 3": {

@@ -8,7 +8,7 @@ import "prismjs/components/prism-javascript";
 import "prismjs/themes/prism.css";
 import { LiveError, LivePreview, LiveProvider } from "react-live";
 import { useState } from "react";
-import { Typewriter } from "../../../../common/ui/Displays/Typewriter/Typewriter";
+import { Typewriter } from "../../../../common/ui/Elements/Typewriter/Typewriter";
 
 const StyledPromptHeaderButton = styled.button`
   background-color: transparent;
