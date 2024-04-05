@@ -24,7 +24,6 @@ import {
 } from "./App.hooks";
 import {
   getCollectionDocumentsInsideUser,
-  // deleteWeb5Records,
   handleUserAuthentication,
   sortEmotionsByDate,
 } from "./App.compute";
@@ -37,7 +36,9 @@ import { words } from "./common/words/words";
 
 import { RiseUpAnimation } from "./styles/lazyStyles";
 import { useStore } from "./Store";
-import { WalletAuth } from "./ProofOfWork/ImpactWallet/WalletAuth/WalletAuth";
+import { createWeb5Record, getWeb5Records } from "./App.web5";
+
+// import { deleteWeb5Records } from "./App.web5";
 
 logEvent(analytics, "page_view", {
   page_location: "https://learn-robotsbuildingeducation.firebaseapp.com/",
@@ -148,58 +149,18 @@ let App = () => {
 
   const connectDID = async () => {
     try {
-      const { web5, did: aliceDid } = await Web5.connect();
-      console.log(!localStorage.getItem("uniqueId"));
+      const { web5 } = await Web5.connect();
       if (!localStorage.getItem("uniqueId")) {
         localStorage.setItem("uniqueId", web5?.did?.agent?.agentDid);
       }
 
       // setWeb5Reference(web5);
-
-      // const { records } = await web5.dwn.records.query({
-      //   message: {
-      //     filter: {
-      //       // dataFormat: "text/plain",
-      //       dataFormat: "application/json",
-      //       // Additional filters if available
-      //     },
-      //   },
-      // });
-
-      // let set = [];
-      // for (let record of records) {
-      //   const data = await record.data.json();
-      //   const transcript = { record, data, id: record.id };
-      //   // todos.value.push(todo);
-      //   set.push(transcript);
-      // }
-
+      // let set = await getWeb5Records(web5);
       // setDwnRecordSet(set);
+      // await createWeb5Record(web5, set, userUnlocks);
 
-      // let robots = set.find((item) =>
-      //   item?.data?.protocol?.includes("https://robotsbuildingeducation.com")
-      // );
-
-      // if (!robots) {
-      //   const { record } = await web5.dwn.records.create({
-      //     data: {
-      //       protocol: "https://robotsbuildingeducation.com",
-      //       ...userUnlocks,
-      //     },
-      //     message: {
-      //       dataFormat: "application/json",
-      //       published: true,
-      //     },
-      //   });
-      // }
-
+      // use when testing new data
       // deleteWeb5Records(set, web5);
-
-      // console.log("set of records", set);
-
-      // console.log("finished");
-
-      // console.log("runnning auth");
 
       handleUserAuthentication({
         web5,

@@ -88,7 +88,7 @@ export const uiCollections = ui();
 /**
  * @returns the total amount of proof of work points collected from module.prompts[prompt].impact
  */
-export let getGlobalImpact = () => {
+export let getTotalImpactFromModules = () => {
   let pathKeys = Object.keys(ui());
 
   let sum = 0;

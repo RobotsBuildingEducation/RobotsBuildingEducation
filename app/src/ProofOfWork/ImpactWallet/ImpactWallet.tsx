@@ -409,7 +409,7 @@ export const ImpactWallet = ({
                 transition: "0.25s all ease-in-out",
               }}
               onClick={() => {
-                copyToClipboard();
+                copyToClipboard(localStorage.getItem("uniqueId"));
                 animateBorderLoading(
                   setBorderStateForCopyButton,
                   "1px solid gold",
@@ -482,7 +482,6 @@ export const ImpactWallet = ({
               Work Done By You
               <br />
               {Number(impactResult / 1000).toFixed(2)}
-              {/* / {getGlobalImpact()} */}
               <ProgressBar
                 style={{
                   backgroundColor: "black",

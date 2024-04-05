@@ -3,7 +3,7 @@ import _ from "lodash";
 import isEmpty from "lodash/isEmpty";
 import { updateDoc } from "firebase/firestore";
 import { database } from "./database/firebaseResources";
-import { getGlobalImpact } from "./common/uiSchema";
+import { getTotalImpactFromModules } from "./common/uiSchema";
 import {
   decentralizedEducationTranscript,
   userProgression,
@@ -12,6 +12,13 @@ import {
 } from "./App.constants";
 import { japaneseThemePalette } from "./styles/lazyStyles";
 
+/**
+ * Sorts an array of emotion objects by their timestamp property and groups them by month and year.
+ * @param {Object[]} usersEmotionsFromDB - The array of emotion objects fetched from the database.
+ * Each object should have a 'timestamp' property representing the time the emotion was recorded.
+ * @returns {Object} An object with keys as 'Month Year' strings and values as arrays of emotion objects
+ * that fall within that month and year.
+ */
 export const sortEmotionsByDate = (usersEmotionsFromDB) => {
   let insertTestDate = usersEmotionsFromDB;
 
@@ -54,6 +61,10 @@ export const sortEmotionsByDate = (usersEmotionsFromDB) => {
   return groupedByMonthYear;
 };
 
+/**
+ *
+ * sets up user's data in database document for the first time or retrieves it and sets it to state.
+ */
 export const setupUserDocument = async (
   docRef,
   userStateReference,
@@ -94,6 +105,10 @@ export const setupUserDocument = async (
   }
 };
 
+/**
+ *
+ * defines global data that gets displayed in the app.
+ */
 export const updateGlobalCounters = async (
   globalImpactDocRef,
 
@@ -109,6 +124,12 @@ export const updateGlobalCounters = async (
   );
 };
 
+/**
+ *
+ * runs when the app loads or when a user switches accounts.
+ * goes through global/user collections and sets app ux state.
+ *
+ */
 export const handleUserAuthentication = async (appFunctions) => {
   let _uniqueId = localStorage.getItem("uniqueId") || _.uniqueId("rbe-");
   localStorage.setItem("uniqueId", _uniqueId);
@@ -138,9 +159,14 @@ export const handleUserAuthentication = async (appFunctions) => {
     usersEmotionsCollectionRef
   );
   appFunctions.updateUserEmotions(usersEmotionsCollectionRef);
-  appFunctions.uiStateReference.setProofOfWorkFromModules(getGlobalImpact());
+  appFunctions.uiStateReference.setProofOfWorkFromModules(
+    getTotalImpactFromModules()
+  );
 };
 
+/**
+ * updates user impact and global impact in database and state
+ */
 export const updateImpact = async (
   impact,
   userStateReference,
@@ -176,6 +202,9 @@ export const updateImpact = async (
   }
 };
 
+/**
+ * similar to updating impact, we need to update the user's level and global state level since we display a leaderboard
+ */
 export const updateLevel = async (
   level,
   discordTag,
@@ -219,6 +248,10 @@ export const updateLevel = async (
   }
 };
 
+/*
+ *
+ * defines a random color from the japanese theme palette
+ */
 export let getRandomColor = () => {
   const keys = Object.keys(japaneseThemePalette);
   const randomIndex = Math.floor(Math.random() * keys.length);
@@ -233,15 +266,14 @@ export let getRandomColor = () => {
   return color;
 };
 
-export let copyToClipboard = () => {
-  // Retrieve the value of "uniqueId" from local storage
-  const uniqueId = localStorage.getItem("uniqueId");
-
-  // Check if "uniqueId" is actually found in local storage
-  if (uniqueId) {
+/**
+ * copies string to clipboard
+ */
+export let copyToClipboard = (data) => {
+  if (data) {
     // Use the Clipboard API to copy the value to the clipboard
     navigator.clipboard
-      .writeText(uniqueId)
+      .writeText(data)
       .then(() => {
         console.log("UniqueId has been copied to the clipboard successfully.");
       })
@@ -253,6 +285,9 @@ export let copyToClipboard = () => {
   }
 };
 
+/**
+ * creates a visual signal when a copy button or event is pressed
+ */
 export let animateBorderLoading = async (
   stateAnimator,
   styleObjectAfter,
@@ -264,19 +299,6 @@ export let animateBorderLoading = async (
   await delay(750);
 
   stateAnimator(styleObjectBefore);
-};
-
-export const deleteWeb5Records = async (recordSet, web5Reference) => {
-  for (let i = 0; i < recordSet.length; i++) {
-    console.log(`record set at ${i}`, recordSet[i]);
-    let currentId = recordSet[i]?.id;
-
-    const deleteResult = await web5Reference.dwn.records.delete({
-      message: {
-        recordId: currentId,
-      },
-    });
-  }
 };
 
 export const getCollectionDocumentsInsideUser = async (collectionRef) => {
