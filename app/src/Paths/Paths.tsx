@@ -121,12 +121,12 @@ export const Paths = ({
   // checks the user's document to see whether or not they've unlocked the paths
   let unlockCreatorKey =
     userStateReference?.databaseUserDocument?.unlocks?.[
-      "Lesson 2 Frontend Programming"
+      "Lesson 3 Backend Engineering"
     ];
 
   let unlockDealerKey =
     userStateReference?.databaseUserDocument?.unlocks?.[
-      "Lesson 4 Building Apps & Startups"
+      "Lesson 5 Computer Science"
     ];
 
   // Define the paths

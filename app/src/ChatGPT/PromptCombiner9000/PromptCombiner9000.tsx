@@ -89,6 +89,7 @@ const renderContent = (
   userStateReference,
   globalStateReference,
   handleZap,
+
   zap,
   moduleName,
   checkForUnlock,
@@ -173,6 +174,7 @@ export const PromptCombiner9000 = ({
   userStateReference,
   globalStateReference,
   handleZap,
+
   zap,
   index,
   moduleName,
@@ -243,6 +245,7 @@ export const PromptCombiner9000 = ({
                 userStateReference,
                 globalStateReference,
                 handleZap,
+
                 zap,
                 moduleName,
                 checkForUnlock,

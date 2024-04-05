@@ -12,7 +12,7 @@ import {
 } from "react-bootstrap";
 import zap_animation from "../../common/anims/zap_animation.json";
 import bitcoin_animation from "../../common/anims/bitcoin_animation.json";
-
+import star_animation from "../../common/anims/star_animation.json";
 import IMPACT_BACKGROUND from "../../common/media/images/IMPACT_BACKGROUND.jpg";
 import roxanaChat from "../../common/media/images/roxanaChat.png";
 import { logEvent } from "firebase/analytics";
@@ -32,6 +32,7 @@ import {
   handleUserAuthentication,
 } from "../../App.compute";
 import { WalletAuth } from "./WalletAuth/WalletAuth";
+import { useStore } from "../../Store";
 
 const renderTranscriptAwards = (profileData) => {
   if (isEmpty(profileData)) {
@@ -131,7 +132,7 @@ export const ImpactWallet = ({
   isSchedulerOpen,
 
   showStars,
-  showZap,
+  // showZap,
   isCofounderOpen,
   setIsCofounderOpen,
 
@@ -143,7 +144,11 @@ export const ImpactWallet = ({
   handleZap,
 
   uiStateReference,
+  // showBitcoin,
 }) => {
+  const showBitcoin = useStore((state) => state.showBitcoin);
+  const showZap = useStore((state) => state.showZap);
+  console.log("showbitcoin", showBitcoin);
   const [inputValue, setInputValue] = useState("");
   const [isValidDidKey, setIsValidDidKey] = useState(false);
   const [isWarningDismissed, setIsWarningDismissed] = useState(false);
@@ -177,7 +182,7 @@ export const ImpactWallet = ({
   return (
     <>
       <div style={{ padding: 6 }}>
-        {showZap || showStars ? (
+        {showZap || showStars || showBitcoin ? (
           <div style={{ height: 38 }}>
             {/* <FadeInComponent speed={2}> */}
             {/* <PopAnimation> */}
@@ -193,7 +198,14 @@ export const ImpactWallet = ({
                 options={{
                   loop: true,
                   autoplay: true,
-                  animationData: showZap ? bitcoin_animation : zap_animation, // Your animation data goes here
+                  animationData: showStars
+                    ? star_animation
+                    : showBitcoin
+                    ? bitcoin_animation
+                    : showZap
+                    ? zap_animation
+                    : zap_animation,
+
                   // rendererSettings: {
                   //   // preserveAspectRatio: "xMidYMid slice", // Adjust as needed
                   // },

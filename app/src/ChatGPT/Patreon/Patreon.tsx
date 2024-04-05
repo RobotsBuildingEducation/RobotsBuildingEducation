@@ -83,9 +83,10 @@ const Patreon = ({
         const ninetyPercentDuration = videoElement.duration * 0.9;
 
         if (videoElement.currentTime >= ninetyPercentDuration) {
+          console.log("running video");
           setVideoDurationDetection(true);
-          handleWatch(moduleName);
           handleScheduler("video", moduleName);
+          handleWatch(moduleName);
         }
       }
     };
@@ -109,7 +110,7 @@ const Patreon = ({
         zap().then((response) => {
           if (response?.preimage) {
             updateImpact(zapAmount, userStateReference, globalStateReference);
-            handleZap("video");
+            // handleZap("video");
           }
         });
       }, 15000);

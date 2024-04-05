@@ -4,7 +4,7 @@ import { RiseUpAnimation, japaneseThemePalette } from "../styles/lazyStyles";
 
 export const ProofOfWork = ({
   globalScholarshipCounter,
-
+  showBitcoin,
   displayName,
   databaseUserDocument,
   computePercentage,
@@ -43,7 +43,8 @@ export const ProofOfWork = ({
         border: "1px solid #1C1C1E",
 
         padding: 6,
-        backgroundColor: showStars || showZap ? "black" : "#1C1C1E",
+        backgroundColor:
+          showStars || showZap || showBitcoin ? "black" : "#1C1C1E",
         // backgroundColor: "#",
 
         maxWidth: "600px",
@@ -86,6 +87,7 @@ export const ProofOfWork = ({
         setIsBossModeOpen={setIsBossModeOpen}
         zap={zap}
         handleZap={handleZap}
+        showBitcoin={showBitcoin}
         uiStateReference={uiStateReference}
       />
     </div>

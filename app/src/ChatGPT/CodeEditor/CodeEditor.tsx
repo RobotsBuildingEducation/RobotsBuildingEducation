@@ -9,6 +9,7 @@ import RandomCharacter from "../../common/ui/Displays/RandomCharacter/RandomChar
 import styled from "styled-components";
 import { database } from "../../database/firebaseResources";
 import { doc } from "firebase/firestore";
+import { useZapAnimation } from "../../App.hooks";
 
 const CopyButton = styled.button`
   /* default styles */

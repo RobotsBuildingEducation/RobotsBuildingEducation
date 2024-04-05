@@ -36,6 +36,7 @@ export const ProofOfWorkWrapper = ({
   uiStateReference,
   showStars,
   showZap,
+  showBitcoin,
 
   zap,
   handleZap,
@@ -65,10 +66,12 @@ export const ProofOfWorkWrapper = ({
       style={{
         ...containerStyle,
         border: `1px solid ${
-          showStars || showZap ? japaneseThemePalette?.OrangeGold : "#33009F"
+          showStars || showZap || showBitcoin
+            ? japaneseThemePalette?.OrangeGold
+            : "#33009F"
         }`,
         boxShadow:
-          showStars || showZap
+          showStars || showZap || showBitcoin
             ? "0px 0px 17px 0px rgba(255,204,0,1)"
             : "0px 0px 6px 0px rgba(0,0,0,0.75)",
       }}
@@ -90,6 +93,7 @@ export const ProofOfWorkWrapper = ({
         showZap={showZap}
         zap={zap}
         handleZap={handleZap}
+        showBitcoin={showBitcoin}
         uiStateReference={uiStateReference}
       />
     </RiseUpAnimation>

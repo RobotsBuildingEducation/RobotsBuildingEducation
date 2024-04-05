@@ -198,12 +198,28 @@ export const useZap = (
  * handles lecture events when a user selects a prompt or completes a task like a completed video or AI completion.
  */
 export const useZapAnimation = () => {
+  // console.log("running zap..");
   const setShowZap = useStore((state) => state.setShowZap);
 
   let animation = () => {
     setShowZap(true);
     setTimeout(() => {
       setShowZap(false);
+    }, 2000);
+  };
+
+  return animation;
+};
+
+export const useBitcoinAnimation = () => {
+  console.log("bitcoin animation");
+  const setShowBitcoin = useStore((state) => state.setShowBitcoin);
+
+  let animation = () => {
+    console.log("changing showBitcoin..");
+    setShowBitcoin(true);
+    setTimeout(() => {
+      setShowBitcoin(false);
     }, 2000);
   };
 

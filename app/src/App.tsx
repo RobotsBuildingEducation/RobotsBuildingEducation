@@ -15,6 +15,7 @@ import { updateDoc } from "firebase/firestore";
 import { logEvent } from "firebase/analytics";
 
 import {
+  useBitcoinAnimation,
   useGlobalStates,
   useUIStates,
   useUserDocument,
@@ -45,9 +46,11 @@ logEvent(analytics, "page_view", {
 let App = () => {
   const showStars = useStore((state) => state.showStars);
   const showZap = useStore((state) => state.showZap);
+  const showBitcoin = useStore((state) => state.showBitcoin);
   const setShowStars = useStore((state) => state.setShowStars);
 
   const handleZap = useZapAnimation();
+  // const handleZap = () => {};
 
   let zap = useZap(1, "Robots Building Education Zap");
 
@@ -255,10 +258,10 @@ let App = () => {
       profile,
     }));
 
-    setShowStars(true);
+    // setShowStars(true);
 
     // Reset the whole animation after some time
-    setTimeout(() => setShowStars(false), 2000);
+    // setTimeout(() => setShowStars(false), 2000);
   };
 
   const handleCompletedPractice = async (moduleData = null) => {
@@ -280,10 +283,10 @@ let App = () => {
 
     checkForUnlock("progress", moduleData);
 
-    setShowStars(true);
+    // setShowStars(true);
 
     // Reset the whole animation after some time
-    setTimeout(() => setShowStars(false), 2000);
+    // setTimeout(() => setShowStars(false), 2000);
   };
 
   const handleWatch = async (moduleData = null) => {
@@ -302,6 +305,8 @@ let App = () => {
     }));
 
     checkForUnlock("watches", moduleData);
+
+    handleZap();
 
     // // Randomize animation properties for each star
     // document.querySelectorAll(".star").forEach((star) => {
@@ -408,6 +413,14 @@ let App = () => {
       // });
       // const outcome = await testRecord.data.json();
       // console.log("dwn outcome", outcome);
+      setShowStars(true);
+
+      // Reset the whole animation after some time
+      setTimeout(() => setShowStars(false), 2000);
+    } else {
+      if (setType === "progress") {
+        handleZap();
+      }
     }
   };
 
@@ -469,6 +482,7 @@ let App = () => {
         uiStateReference={uiStateReference}
         showStars={showStars}
         showZap={showZap}
+        showBitcoin={showBitcoin}
         zap={zap}
         handleZap={handleZap}
       />
