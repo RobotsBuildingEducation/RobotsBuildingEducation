@@ -1,7 +1,6 @@
 import { ChatBlock } from "../Displays/ChatBlock/ChatBlock";
 import designOfEverydayThings from "../../media/images/designOfEverydayThings.png";
 import { ultimateEffeciencyJutsu } from "../ui";
-import { japaneseThemePalette, textBlock } from "../../../styles/lazyStyles";
 import { SchedulerBlock } from "../Displays/SchedulerBlock/SchedulerBlock";
 import MarkdownRenderer from "../../../ChatGPT/Patreon/MarkdownRenderer/MarkdownRenderer";
 import inspire06 from "../../media/images/prompts/inspire06.jpg";

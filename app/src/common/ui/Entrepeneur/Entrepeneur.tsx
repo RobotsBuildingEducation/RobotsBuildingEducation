@@ -4,7 +4,7 @@ import { ChatBlock } from "../Displays/ChatBlock/ChatBlock";
 import poorCharlie from "../../media/images/poorCharlie.png";
 import neyra_logo from "../../media/images/neyra_logo.png";
 import { ultimateEffeciencyJutsu } from "../ui";
-import { japaneseThemePalette, textBlock } from "../../../styles/lazyStyles";
+
 import { SchedulerBlock } from "../Displays/SchedulerBlock/SchedulerBlock";
 import MarkdownRenderer from "../../../ChatGPT/Patreon/MarkdownRenderer/MarkdownRenderer";
 import { ExternalLink } from "../Displays/ExternalLink/ExternalLink";

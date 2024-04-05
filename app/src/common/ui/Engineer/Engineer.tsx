@@ -6,7 +6,6 @@ import duckett from "../../media/images/duckett.png";
 import powerLawFinance from "../../media/images/powerLawFinance.png";
 import innovatorsDilemma from "../../media/images/innovatorsDilemma.png";
 import backendScaling from "../../media/images/backendScaling.png";
-// import prisonersDilemma from "../../media/images/prisonersDilemma.png";
 import grokking from "../../media/images/grokking.png";
 import inspire00 from "../../media/images/prompts/inspire00.jpg";
 import inspire01 from "../../media/images/prompts/inspire01.png";

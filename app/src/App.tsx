@@ -431,7 +431,6 @@ let App = () => {
         <Header languageMode={languageMode} setLanguageMode={setLanguageMode} />
 
         <>
-          <WalletAuth />
           <Paths
             handlePathSelection={handlePathSelection}
             pathSelectionAnimationData={

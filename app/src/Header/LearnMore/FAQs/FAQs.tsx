@@ -1,3 +1,4 @@
+import IMPACT_BACKGROUND from "../../../common/media/images/IMPACT_BACKGROUND.jpg";
 import { japaneseThemePalette, textBlock } from "../../../styles/lazyStyles";
 import { ExternalLink } from "../../../common/ui/Displays/ExternalLink/ExternalLink";
 import { FAQItem } from "./FAQItem/FAQItem";
@@ -112,6 +113,41 @@ const FAQSection = () => {
             >
               📬 Join us at Patreon
             </button>
+          </a>
+        </p>
+      ),
+    },
+    {
+      question: "How do I connect a wallet?",
+      answer: (
+        <p
+          style={{
+            maxWidth: "100%",
+            width: 700 /* Add your text block styles here */,
+            ...textBlock("black", 0),
+          }}
+        >
+          <a
+            style={{ color: "white", textDecoration: "underline" }}
+            href="https://github.com/RobotsBuildingEducation/RobotsBuildingEducation"
+            target="_blank"
+          >
+            Access to the source code is given to offer transparency and safety.
+          </a>
+          <br />
+          <br />
+          I've written a user guide that introduces you to a number of networks
+          to get started:
+          <a
+            // style={{ color: "white", textDecoration: "underline" }}
+            href="https://old-fashionedintelligence.info/access"
+            target="_blank"
+          >
+            <img
+              src={IMPACT_BACKGROUND}
+              width="300px"
+              style={{ borderRadius: "50%", borderBottom: "1px solid gold" }}
+            />
           </a>
         </p>
       ),

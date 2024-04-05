@@ -6,6 +6,7 @@ import { analytics } from "../../database/firebaseResources";
 import { DiscordButton } from "./DiscordButton/DiscordButton";
 import { FadeInComponent, RiseUpAnimation } from "../../styles/lazyStyles";
 import FAQSection from "./FAQs/FAQs";
+import { WalletAuth } from "../../ProofOfWork/ImpactWallet/WalletAuth/WalletAuth";
 
 /**
  * `LearnMore` component that provides additional information and resources to the user.
@@ -31,7 +32,7 @@ export const LearnMore = ({ languageMode }) => {
     <>
       <br />
       <FadeInComponent>
-        <div style={{ fontFamily: "Bungee", color: "white" }}>rox.ai</div>
+        <h2 style={{ fontFamily: "Bungee", color: "white" }}>ROX.AI</h2>
       </FadeInComponent>
 
       <div
@@ -53,7 +54,7 @@ export const LearnMore = ({ languageMode }) => {
                 color: "white",
                 textShadow: "0px 0px 4px black",
                 margin: 6,
-                width: 110,
+                width: 180,
               }}
               onClick={() => {
                 logEvent(analytics, "select_content", {
@@ -74,7 +75,7 @@ export const LearnMore = ({ languageMode }) => {
               color: "white",
               textShadow: "0px 0px 4px black",
               margin: 6,
-              width: 110,
+              width: 180,
             }}
             onClick={() => {
               logEvent(analytics, "select_content", {
@@ -87,7 +88,12 @@ export const LearnMore = ({ languageMode }) => {
             {languageMode.buttons["9"]}
           </Button>
         </RiseUpAnimation>
-        <br />
+
+        <RiseUpAnimation>
+          <div style={{ margin: 6 }}>
+            <WalletAuth />
+          </div>
+        </RiseUpAnimation>
       </div>
 
       <Modal
