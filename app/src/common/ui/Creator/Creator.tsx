@@ -657,10 +657,6 @@ export const Creator = {
           response: `null`,
           spanish: ``,
 
-          // additionalContent: await import(
-          //   "../../markdowns/humanComputerInteraction.md?raw"
-          // ),
-
           extraContent: (
             <div
               style={{

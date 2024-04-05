@@ -1,11 +1,3 @@
-import React, { useState } from "react";
-
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import { japaneseThemePalette, textBlock } from "../../../../styles/lazyStyles";
-import sheilferBitcoin from "../../media/images/sheilferBitcoin.jpeg";
-import { Modal } from "react-bootstrap";
-import { ChatBlock } from "../ChatBlock/ChatBlock";
 import Editor from "react-simple-code-editor";
 import { highlight, languages } from "prismjs/components/prism-core";
 import "prismjs/components/prism-clike";
