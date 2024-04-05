@@ -1,5 +1,3 @@
-import { personality } from "../../../../ProofOfWork/ImpactWallet/Scheduler/Scheduler.compute";
-
 export const customInstructions = (formData) => {
   let jsonStructure = `Return the answer with the following json structure:
     "result": {
@@ -19,7 +17,7 @@ export const customInstructions = (formData) => {
   explanation: string
 }]
    */
-  // Personality: This is your personality: ${personality}
+
   let prompt = `
 
     Do not mention any details you're being provided, it is only improve the quality of your anwers.

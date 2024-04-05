@@ -6,7 +6,7 @@ import { analytics } from "../../database/firebaseResources";
 import { DiscordButton } from "./DiscordButton/DiscordButton";
 import { FadeInComponent, RiseUpAnimation } from "../../styles/lazyStyles";
 import FAQSection from "./FAQs/FAQs";
-import { WalletAuth } from "../../ProofOfWork/ImpactWallet/WalletAuth/WalletAuth";
+import { WalletAuth } from "../WalletAuth/WalletAuth";
 
 /**
  * `LearnMore` component that provides additional information and resources to the user.

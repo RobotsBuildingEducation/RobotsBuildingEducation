@@ -23,6 +23,7 @@ import {
   useZapAnimation,
 } from "./App.hooks";
 import {
+  computePercentage,
   getCollectionDocumentsInsideUser,
   handleUserAuthentication,
   sortEmotionsByDate,
@@ -384,7 +385,6 @@ let App = () => {
       <ProofOfWorkWrapper
         userStateReference={userStateReference}
         globalStateReference={globalStateReference}
-        handlePathSelection={handlePathSelection}
         updateUserEmotions={updateUserEmotions}
         uiStateReference={uiStateReference}
         showStars={showStars}
@@ -392,6 +392,7 @@ let App = () => {
         showBitcoin={showBitcoin}
         zap={zap}
         handleZap={handleZap}
+        computePercentage={computePercentage}
       />
     </div>
   );

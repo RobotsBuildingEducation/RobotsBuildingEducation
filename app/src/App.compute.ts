@@ -315,3 +315,8 @@ export const getCollectionDocumentsInsideUser = async (collectionRef) => {
 
   return set;
 };
+
+// Calculate the compute percentage
+export const computePercentage = (userImpact, proofOfWork) => {
+  return (userImpact || 0) / (proofOfWork || 77500);
+};

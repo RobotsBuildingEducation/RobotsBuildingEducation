@@ -1,40 +1,33 @@
 import { useState } from "react";
-import { ImpactWallet } from "./ImpactWallet/ImpactWallet";
-import { RiseUpAnimation, japaneseThemePalette } from "../styles/lazyStyles";
+import { ActionBar } from "./ActionBar/ActionBar";
 
+// another pass through element, handles modal activations :D
 export const ProofOfWork = ({
   globalScholarshipCounter,
   showBitcoin,
   displayName,
   databaseUserDocument,
-  computePercentage,
+  calculatedPercentage,
   globalImpactCounter,
-  handlePathSelection,
 
   usersEmotionsCollectionReference,
   usersEmotionsFromDB,
   updateUserEmotions,
-
   //some redundancy since I haven't refactored these values yet.
   userStateReference,
   globalStateReference,
   showStars,
   showZap,
-
   zap,
   handleZap,
-
   uiStateReference,
 }) => {
   const [isImpactWalletOpen, setIsImpactWalletOpen] = useState(false);
   const [isEmotionalIntelligenceOpen, setIsEmotionalIntelligenceOpen] =
     useState(false);
 
-  const [isSchedulerOpen, setIsSchedulerOpen] = useState(false);
-
   const [isCofounderOpen, setIsCofounderOpen] = useState(false);
 
-  const [isChatFrameOpen, setIsChatFrameOpen] = useState(false);
   const [isBossModeOpen, setIsBossModeOpen] = useState(false);
 
   return (
@@ -45,7 +38,6 @@ export const ProofOfWork = ({
         padding: 6,
         backgroundColor:
           showStars || showZap || showBitcoin ? "black" : "#1C1C1E",
-        // backgroundColor: "#",
 
         maxWidth: "600px",
         minWidth: "300px",
@@ -54,16 +46,10 @@ export const ProofOfWork = ({
         borderRadius: 12,
       }}
     >
-      {/* 
-      Need to refactor this. 
-      Impact wallet should only be the modal
-      EmotionalIntelligence is not a child of Impact Wallet. */}
-
-      <ImpactWallet
+      <ActionBar
         displayName={displayName}
-        handlePathSelection={handlePathSelection}
         databaseUserDocument={databaseUserDocument}
-        computePercentage={computePercentage}
+        calculatedPercentage={calculatedPercentage}
         globalImpactCounter={globalImpactCounter}
         isImpactWalletOpen={isImpactWalletOpen}
         setIsImpactWalletOpen={setIsImpactWalletOpen}
@@ -73,21 +59,15 @@ export const ProofOfWork = ({
         usersEmotionsCollectionReference={usersEmotionsCollectionReference}
         usersEmotionsFromDB={usersEmotionsFromDB}
         updateUserEmotions={updateUserEmotions}
-        setIsSchedulerOpen={setIsSchedulerOpen}
-        isSchedulerOpen={isSchedulerOpen}
         userStateReference={userStateReference}
         showStars={showStars}
-        showZap={showZap}
         isCofounderOpen={isCofounderOpen}
         setIsCofounderOpen={setIsCofounderOpen}
         globalStateReference={globalStateReference}
-        isChatFrameOpen={isChatFrameOpen}
-        setIsChatFrameOpen={setIsChatFrameOpen}
         isBossModeOpen={isBossModeOpen}
         setIsBossModeOpen={setIsBossModeOpen}
         zap={zap}
         handleZap={handleZap}
-        showBitcoin={showBitcoin}
         uiStateReference={uiStateReference}
       />
     </div>

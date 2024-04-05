@@ -1,9 +1,5 @@
 import { auth } from "../database/firebaseResources";
-import {
-  RiseDownAnimation,
-  RiseUpAnimation,
-  japaneseThemePalette,
-} from "../styles/lazyStyles";
+import { RiseUpAnimation, japaneseThemePalette } from "../styles/lazyStyles";
 import { ProofOfWork } from "./ProofOfWork";
 
 // Define the style for the container
@@ -14,24 +10,19 @@ const containerStyle = {
   position: "sticky",
   bottom: 0,
   width: "min-width",
-
-  // border: "1px solid red",
   zIndex: 1100,
-
   transition: "0.33s all ease-in-out",
   borderRadius: 12,
 };
 
-// Calculate the compute percentage
-const computePercentage = (userImpact, proofOfWork) => {
-  return (userImpact || 0) / (proofOfWork || 77500);
-};
-
+/**
+ *
+ * pass-through styling wrapper
+ */
 export const ProofOfWorkWrapper = ({
   userStateReference,
   globalStateReference,
 
-  handlePathSelection,
   updateUserEmotions,
   uiStateReference,
   showStars,
@@ -40,6 +31,7 @@ export const ProofOfWorkWrapper = ({
 
   zap,
   handleZap,
+  computePercentage,
 }) => {
   const userImpact = userStateReference.databaseUserDocument?.impact;
   const proofOfWork = uiStateReference.proofOfWorkFromModules;
@@ -49,8 +41,6 @@ export const ProofOfWorkWrapper = ({
   const isUserEligible = userStateReference.databaseUserDocument;
 
   if (!isUserEligible) return null;
-
-  // Extract properties for easier readability
 
   const {
     databaseUserDocument,
@@ -80,12 +70,11 @@ export const ProofOfWorkWrapper = ({
       <ProofOfWork
         displayName={auth?.currentUser?.displayName}
         databaseUserDocument={databaseUserDocument}
-        computePercentage={calculatedPercentage}
+        calculatedPercentage={calculatedPercentage}
         globalImpactCounter={globalImpactCounter}
         usersEmotionsCollectionReference={usersEmotionsCollectionReference}
         usersEmotionsFromDB={usersEmotionsFromDB}
         globalScholarshipCounter={globalScholarshipCounter}
-        handlePathSelection={handlePathSelection}
         updateUserEmotions={updateUserEmotions}
         userStateReference={userStateReference}
         globalStateReference={globalStateReference}

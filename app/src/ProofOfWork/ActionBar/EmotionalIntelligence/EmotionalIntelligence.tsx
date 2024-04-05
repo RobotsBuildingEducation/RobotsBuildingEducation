@@ -40,6 +40,7 @@ export const EmotionalIntelligence = ({
   zap,
   handleZap,
 }) => {
+  console.log("running the emotional intelligence bot");
   const [isEmotionModalOpen, setIsEmotionModalOpen] = useState(false);
   const [selectedEmotion, setSelectedEmotion] = useState("");
   const [emotionNote, setEmotionNote] = useState("");

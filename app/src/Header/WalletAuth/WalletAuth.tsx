@@ -1,6 +1,4 @@
-import { Badge } from "react-bootstrap";
 import { Button } from "@getalby/bitcoin-connect-react";
-import { useState } from "react";
 
 /**
  * WalletAuth Component
@@ -12,7 +10,6 @@ import { useState } from "react";
  */
 
 export const WalletAuth = () => {
-  let [trigger, setTrigger] = useState(false);
   return (
     <div>
       <div
@@ -36,9 +33,6 @@ export const WalletAuth = () => {
             );
           }}
         />
-        {/* <Badge bg="light" style={{ color: "black" }}>
-          🧪 experimental feature
-        </Badge> */}
       </div>
     </div>
   );
