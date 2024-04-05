@@ -129,7 +129,6 @@ export const Engineer = {
             `Learn Coding`
           )}?`,
           response: (
-            // <ArtBlock>
             <div>
               Meet Kismet, a robot developed by Cynthia Breazeal at the MIT
               Media Lab back in the late 1990s. Kismet wasn't just any robot; it

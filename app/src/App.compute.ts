@@ -301,6 +301,10 @@ export let animateBorderLoading = async (
   stateAnimator(styleObjectBefore);
 };
 
+/**
+ *
+ * gets the data from a nested collection inside of a user
+ */
 export const getCollectionDocumentsInsideUser = async (collectionRef) => {
   let set = [];
   await getDocs(collectionRef).then((querySnapshot) => {

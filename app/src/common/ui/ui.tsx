@@ -1,4 +1,7 @@
 // repeatable + defining word combos. Level 1 prompts
+/**
+ * no long actively used. legacy data in the ui schema
+ */
 export let ultimateEffeciencyJutsu = (key) => {
   let map = {
     [`Lesson 1`]: `coding and computer logic`,

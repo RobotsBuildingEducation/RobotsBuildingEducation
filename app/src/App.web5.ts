@@ -14,6 +14,9 @@ export const deleteWeb5Records = async (recordSet, web5) => {
   }
 };
 
+/**
+ * queries the user's dwn and creates an array we can set to state
+ */
 export const getWeb5Records = async (web5) => {
   const { records } = await web5.dwn.records.query({
     message: {
@@ -35,6 +38,9 @@ export const getWeb5Records = async (web5) => {
   return set;
 };
 
+/**
+ * looks for a record with robotsbuildingeducation.com and if the set of records does not contain it, it gets created.
+ */
 export const createWeb5Record = async (web5, set, userUnlocks) => {
   let robots = set.find((item) =>
     item?.data?.protocol?.includes("https://robotsbuildingeducation.com")

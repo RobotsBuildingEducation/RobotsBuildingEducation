@@ -4,26 +4,11 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const OpenAI = require("openai");
 const bodyParser = require("body-parser");
-// const { Client, GatewayIntentBits } = require('discord.js');
 
 dotenv.config();
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-
-// const client = new Client({ intents: [
-//   GatewayIntentBits.Guilds,
-//   GatewayIntentBits.GuildMembers,
-//   GatewayIntentBits.GuildMessages,
-//   GatewayIntentBits.DirectMessages,
-//   GatewayIntentBits.MessageContent
-// ] });
-
-// client.on('ready', () => {
-//   console.log(`Logged in as ${client.user.tag}!`);
-// });
-
-// client.login(process.env.DISCORD_BOT_KEY);
 
 const app = express();
 app.use(cors());
@@ -86,31 +71,5 @@ app.post("/create-image", async (req, res) => {
     res.status(500).send({ error: error.message });
   }
 });
-
-// app.post('/setTimer', (req, res) => {
-
-//   const userId = req.body.userId; // Get Discord User ID from the request
-//   // Set a timer for 12 hours and then remind the user
-
-//   client.users.fetch(userId).then((user) => {
-//     // user.send('Your 12-hour timer is up! You can answer the next question now.');
-//   const channel = client.channels.cache.get('1199792098157797458');
-//   channel.send(`<@${userId}> Your timer is up! You can answer the next question now.`);
-//   })
-//   // }, 12 * 60 * 60 * 1000); // 12 hours in milliseconds
-
-//   res.send('Timer set!');
-// });
-
-// app.post('/setTimer', (req, res) => {
-//   try{
-//     client.on("messageCreate", (message) => {
-//       if (message.author.bot) return;
-//       if (message.content === "hello") message.reply("hello");
-//     });
-//   }catch(error){
-//     res.status(500).send({ error: error.message });
-//   }
-// })
 
 exports.app = functions.https.onRequest(app);

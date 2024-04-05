@@ -45,7 +45,6 @@ export const Creator = {
           response: `null`,
           spanish: ``,
 
-          // additionalContent: await import("../../markdowns/philosophy.md?raw"),
           extraContent: (
             <div
               style={{

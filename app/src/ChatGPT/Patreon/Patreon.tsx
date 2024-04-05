@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import MarkdownRenderer from "./MarkdownRenderer/MarkdownRenderer";
 
 import { updateImpact } from "../../App.compute";
 import { useZap } from "../../App.hooks";
@@ -34,12 +33,6 @@ const renderVideo = (patreonObject, isAutoPlay, videoRef) => (
     </video>
     {patreonObject.prompts?.patreon?.extraContent && (
       <RevealButton content={patreonObject.prompts?.patreon?.extraContent} />
-    )}
-    {patreonObject?.prompts?.patreon?.additionalContent && (
-      <MarkdownRenderer
-        file={patreonObject?.prompts?.patreon?.additionalContent}
-        patreonObject={patreonObject}
-      />
     )}
   </>
 );
