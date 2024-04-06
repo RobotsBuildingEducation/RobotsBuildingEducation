@@ -124,5 +124,3 @@ export const SunsetCanvas = () => {
     ></canvas>
   );
 };
-
-export default SunsetCanvas;

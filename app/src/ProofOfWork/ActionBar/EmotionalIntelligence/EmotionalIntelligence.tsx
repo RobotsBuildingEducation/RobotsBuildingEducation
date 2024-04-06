@@ -17,6 +17,7 @@ import {
   lowEnergyFeelings,
 } from "./EmotionalIntelligence.data";
 import {
+  SunsetCanvas,
   customInstructions,
   emotionSummarizer,
   formatEmotionItem,
@@ -25,7 +26,7 @@ import {
 
 import roxanaFocusing from "../../../common/media/images/roxanaFocusing.png";
 import roxanaKind from "../../../common/media/images/roxanaKind.png";
-import { SunsetCanvas } from "./SunsetCanvas";
+
 import { useZap } from "../../../App.hooks";
 import { updateImpact } from "../../../App.compute";
 

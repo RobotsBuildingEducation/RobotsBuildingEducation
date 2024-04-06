@@ -3,7 +3,6 @@ import { Alert, Form, InputGroup, Modal, ProgressBar } from "react-bootstrap";
 import IMPACT_BACKGROUND from "../../../common/media/images/IMPACT_BACKGROUND.jpg";
 import {
   animateBorderLoading,
-  computePercentage,
   copyToClipboard,
   handleUserAuthentication,
 } from "../../../App.compute";
