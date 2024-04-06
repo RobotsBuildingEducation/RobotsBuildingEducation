@@ -18,6 +18,7 @@ In 2023, it takes the form of an AI cofounder that generates scholarships throug
 
 ## Code Quality
 
+[app design](https://private-user-images.githubusercontent.com/65219666/320198620-9d7503a3-54b5-43e5-a7f1-6fe2a4ee9913.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTI0MDAwMTYsIm5iZiI6MTcxMjM5OTcxNiwicGF0aCI6Ii82NTIxOTY2Ni8zMjAxOTg2MjAtOWQ3NTAzYTMtNTRiNS00M2U1LWE3ZjEtNmZlMmE0ZWU5OTEzLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA0MDYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNDA2VDEwMzUxNlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTRjNDQ2MDZmMTc3NjJkYjFjZGMzOWNiMzYxYTVjMmYyMzBhZDJlMjI1NTg3ZjhkZWMxODYzNmNkMjczOTNkZTgmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.WLHK4LGXSSM00Nya_ZLW0dStpiQ9nU3RXlqHKCw7YTw)
 Eventually, we want refinements to take us to a level where the code is so readable and intuitive that people on social media can casually understand it with little or no experience.
 
 So this means improving the quality of comments, variable names and data flow over time. The point isn't to write epicly awesome software - the point is to be teachable and inspiring for newcomers. The code should be good enough that it explains itself in a simple screenshot or carousel of screenshots... ideally!
