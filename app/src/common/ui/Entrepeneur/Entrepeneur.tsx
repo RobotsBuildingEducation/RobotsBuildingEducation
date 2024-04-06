@@ -6,6 +6,7 @@ import { ultimateEffeciencyJutsu } from "../ui";
 import { SchedulerBlock } from "../Elements/SchedulerBlock/SchedulerBlock";
 import MarkdownRenderer from "../Elements/MarkdownRenderer/MarkdownRenderer";
 import { ExternalLink } from "../Elements/ExternalLink/ExternalLink";
+import { Typewriter } from "../Elements/Typewriter/Typewriter";
 
 export const Entrepeneur = {
   "Understanding Business": {
@@ -24,7 +25,7 @@ export const Entrepeneur = {
       prompts: {
         welcome: {
           response: (
-            <div>
+            <Typewriter>
               Hola estudiantes! 🌼
               <br />
               <br />
@@ -45,7 +46,7 @@ export const Entrepeneur = {
               Con cariño,
               <br />
               rox 🌹
-            </div>
+            </Typewriter>
           ),
           spanish: ``,
         },
@@ -570,7 +571,7 @@ export const Entrepeneur = {
       prompts: {
         welcome: {
           response: (
-            <div>
+            <Typewriter>
               <h3>Welcome, Scholars! 🌟</h3>
               <p>
                 Today, we're exploring the wisdom of Charlie Munger, a master
@@ -590,7 +591,7 @@ export const Entrepeneur = {
                 <br />
                 rox (your gentle mentor with cosmic aspirations) 🌺🌌
               </p>
-            </div>
+            </Typewriter>
             // </ChatBlock>
           ),
           spanish: ``,

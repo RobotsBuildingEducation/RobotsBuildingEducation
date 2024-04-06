@@ -159,8 +159,6 @@ const ChatGPT = ({
       <br />
       <PanLeftComponent>
         <Intro
-          shouldRenderIntro={shouldRenderIntro}
-          moduleName={moduleName}
           patreonObject={patreonObject}
           loadingMessage={loadingMessage}
           isResponseActive={isResponseActive}

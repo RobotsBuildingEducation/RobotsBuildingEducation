@@ -1,23 +1,10 @@
-import { logEvent } from "firebase/analytics";
 import { isEmpty } from "lodash";
-import { analytics } from "../../database/firebaseResources";
+
 import { RoxanaLoadingAnimation } from "../../common/uiSchema";
 import { RiseUpAnimation } from "../../styles/lazyStyles";
 
-// Function to handle the Patreon click event for analytics
-const handlePatreonClick = (moduleName) => {
-  logEvent(analytics, "select_promotion", {
-    creative_name: `https://www.patreon.com/RobotsBuildingEducation`,
-    creative_slot: `${moduleName} Intro Slot`,
-    promotion_id: `Robots Building Education`,
-    promotion_name: "advertising_launch",
-  });
-  window.open("https://www.patreon.com/RobotsBuildingEducation");
-};
-
 // Main Intro component
 export const Intro = ({
-  moduleName,
   patreonObject,
   loadingMessage,
   isResponseActive,
@@ -31,30 +18,7 @@ export const Intro = ({
     <div style={{ padding: 20 }}>
       {!isEmpty(patreonObject?.prompts?.welcome) ? (
         <div>{patreonObject?.prompts?.welcome?.response}</div>
-      ) : (
-        <div>
-          I'm rox, built with various robots made by Apple, Tiktok, and OpenAI.
-          I help Sheilfer build RO.B.E 😊
-          <br />
-          <br />
-          Want to help me build Robots Building Education? Please read more in
-          your Proof of Work 🏦.
-          <br />
-          <br />
-          Want to plug your business? Contact me inside of&nbsp;
-          <a
-            onClick={() => handlePatreonClick(moduleName)}
-            target="_blank"
-            style={{
-              color: "white",
-              textDecoration: "underline",
-              cursor: "grab",
-            }}
-          >
-            Patreon
-          </a>
-        </div>
-      )}
+      ) : null}
     </div>
   );
 

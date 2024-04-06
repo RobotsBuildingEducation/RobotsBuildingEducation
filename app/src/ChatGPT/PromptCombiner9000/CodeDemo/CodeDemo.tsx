@@ -6,6 +6,7 @@ import "prismjs/themes/prism.css";
 import { Accordion, Button, Card, Collapse } from "react-bootstrap";
 import { useState } from "react";
 
+// disabled for now.
 const CodeExplanationUI = ({ patreonObject }) => {
   const [open, setOpen] = useState(false); // Controls the visibility of the explanation
 
@@ -73,6 +74,7 @@ const CodeExplanationUI = ({ patreonObject }) => {
     </div>
   );
 };
+
 export const CodeDemo = ({ patreonObject, response }) => {
   return (
     <div

@@ -102,7 +102,6 @@ const renderContent = (
           userStateReference={userStateReference}
           globalStateReference={globalStateReference}
           handleZap={handleZap}
-          zap={zap}
           moduleName={moduleName}
         />
       );
@@ -111,7 +110,6 @@ const renderContent = (
         <CodeEditor
           patreonObject={patreonObject}
           moduleName={moduleName}
-          userStateReference={userStateReference}
           handleCompletedPractice={handleCompletedPractice}
         />
       );

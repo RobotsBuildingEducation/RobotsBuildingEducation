@@ -24,6 +24,7 @@ import { RobotDialogue } from "../Elements/RobotDialogue/RobotDialogue";
 import RandomCharacter from "../Elements/RandomCharacter/RandomCharacter";
 import { SchedulerBlock } from "../Elements/SchedulerBlock/SchedulerBlock";
 import { ExternalLink } from "../Elements/ExternalLink/ExternalLink";
+import { Typewriter } from "../Elements/Typewriter/Typewriter";
 
 export const Engineer = {
   "Coding Crash Course Version 3": {
@@ -40,8 +41,7 @@ export const Engineer = {
         // should we add impact to selecting a course? adding it to "welcome" would achieve this.
         welcome: {
           response: (
-            // <Typewriter speed={10}>
-            <div>
+            <Typewriter>
               Dear Innovators &amp; Bright Minds 🌟,
               <br />
               <br />
@@ -69,7 +69,7 @@ export const Engineer = {
                 width="100"
                 borderRadius={"50%"}
               />
-            </div>
+            </Typewriter>
           ),
           spanish: ``,
         },
@@ -745,7 +745,7 @@ exports.app = functions.https.onRequest(app);
       prompts: {
         welcome: {
           response: (
-            <div>
+            <Typewriter>
               ¡Hola, estudiantes! 🌸
               <br />
               <br />
@@ -770,7 +770,7 @@ exports.app = functions.https.onRequest(app);
               <br />
               rox 🌟
               <RandomCharacter notSoRandomCharacter={"10"} width="100" />
-            </div>
+            </Typewriter>
           ),
           spanish: ``,
         },
@@ -1895,7 +1895,7 @@ throw new Error(
       prompts: {
         welcome: {
           response: (
-            <div>
+            <Typewriter>
               Exceptional students! 🌟
               <br />
               <br />
@@ -1929,7 +1929,7 @@ throw new Error(
                 width="150"
                 // borderRadius={"50%"}
               />
-            </div>
+            </Typewriter>
           ),
           spanish: ``,
         },
@@ -2820,7 +2820,7 @@ return <div style={gradientStyle}>
       prompts: {
         welcome: {
           response: (
-            <div>
+            <Typewriter>
               Hello!!!! 😊
               <br />
               <br />
@@ -2848,7 +2848,7 @@ return <div style={gradientStyle}>
                 width="100"
                 // borderRadius={"50%"}
               />
-            </div>
+            </Typewriter>
           ),
           spanish: ``,
         },
@@ -3835,7 +3835,7 @@ exports.app = functions
         welcome: {
           response: (
             // <ChatBlock type={"quiz"}>
-            <div>
+            <Typewriter>
               Brave students! 🌟
               <br /> <br />
               Welcome to your incredible journey as future startup founders and
@@ -3864,7 +3864,7 @@ exports.app = functions
                 width="100"
                 // borderRadius={"50%"}
               />
-            </div>
+            </Typewriter>
           ),
           spanish: ``,
         },
@@ -4975,7 +4975,7 @@ export default OpenAIComponent;`,
       prompts: {
         welcome: {
           response: (
-            <div>
+            <Typewriter>
               🌟 Welcome to today's exciting journey through the world of
               computer Ssience, where we'll dive into the essential topics of
               data structures and algorithms.
@@ -5001,7 +5001,7 @@ export default OpenAIComponent;`,
                 width="100"
                 // borderRadius={"50%"}
               />
-            </div>
+            </Typewriter>
           ),
           spanish: ``,
         },

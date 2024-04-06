@@ -6,6 +6,7 @@ import MarkdownRenderer from "../Elements/MarkdownRenderer/MarkdownRenderer";
 import inspire06 from "../../media/images/prompts/inspire06.jpg";
 import inspire07 from "../../media/images/prompts/inspire07.jpg";
 import inspire08 from "../../media/images/prompts/inspire08.png";
+import { Typewriter } from "../Elements/Typewriter/Typewriter";
 
 export const Creator = {
   Communications: {
@@ -22,7 +23,7 @@ export const Creator = {
       prompts: {
         welcome: {
           response: (
-            <div>
+            <Typewriter>
               Welcome, brilliant minds! 🌟 Today, we embark on an enlightening
               journey through the realms of Critical Race Theory, Machine
               Learning Algorithms, and Macroeconomics. Together, we'll explore
@@ -31,7 +32,7 @@ export const Creator = {
               Ready to dive into this intellectual adventure with curiosity and
               courage? Let's unravel the complexities of our world and build
               bridges to a future where knowledge empowers us all. 🚀💡
-            </div>
+            </Typewriter>
           ),
           spanish: ``,
         },
@@ -630,7 +631,7 @@ export const Creator = {
       prompts: {
         welcome: {
           response: (
-            <div>
+            <Typewriter>
               Fellow visionaries! 🌈 Today, we're setting sail into the vibrant
               seas of Human-Computer Interaction, Entrepreneurship, and Design.
               It's a thrilling expedition where creativity meets innovation,
@@ -642,7 +643,7 @@ export const Creator = {
               world where every interaction and creation tells a story? Let's
               embark on this journey together, crafting futures where technology
               dances gracefully with human ambition. 🌐💼🎨
-            </div>
+            </Typewriter>
           ),
           spanish: ``,
         },
@@ -1169,7 +1170,7 @@ export const Creator = {
       prompts: {
         welcome: {
           response: (
-            <div>
+            <Typewriter>
               Hello, my bright stars 🌟! Welcome to today's lecture on the
               fascinating topic of the Psychology of Self-Esteem. I'm so excited
               to have you all here, and I hope you are too. 🤗
@@ -1200,7 +1201,7 @@ export const Creator = {
               <br />
               <br />
               Ready? Let's get started! 🚀
-            </div>
+            </Typewriter>
           ),
           spanish: ``,
         },
