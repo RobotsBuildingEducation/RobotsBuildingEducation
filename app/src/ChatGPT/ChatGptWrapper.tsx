@@ -12,14 +12,13 @@ export const ChatGptWrapper = ({
   handleCompletedPractice,
   handleWatch,
 }) => {
-  // Early return if patreonObject is empty and isDemo is false
-  if (isEmpty(uiStateReference.patreonObject) && !uiStateReference.isDemo) {
+  // Early return if patreonObject is empty
+  if (isEmpty(uiStateReference.patreonObject)) {
     return null;
   }
 
   // Extract relevant props
-  const { currentPathForAnalytics, patreonObject, moduleName } =
-    uiStateReference;
+  const { patreonObject, moduleName } = uiStateReference;
 
   const {
     userDocumentReference,
@@ -37,7 +36,6 @@ export const ChatGptWrapper = ({
   return (
     <div style={{ width: "100%" }}>
       <ChatGPT
-        currentPath={currentPathForAnalytics}
         patreonObject={patreonObject}
         userDocumentReference={userDocumentReference}
         databaseUserDocument={databaseUserDocument}

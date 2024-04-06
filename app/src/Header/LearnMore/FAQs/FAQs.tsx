@@ -1,58 +1,29 @@
-import React, { useState } from "react";
-import { Collapse, Button } from "react-bootstrap";
-import styled, { keyframes } from "styled-components";
+import IMPACT_BACKGROUND from "../../../common/media/images/IMPACT_BACKGROUND.jpg";
+import { japaneseThemePalette, textBlock } from "../../../styles/lazyStyles";
+import { ExternalLink } from "../../../common/ui/Elements/ExternalLink/ExternalLink";
+import { FAQItem } from "./FAQItem/FAQItem";
 
-import {
-  RiseUpAnimation,
-  japaneseThemePalette,
-  textBlock,
-} from "../../../styles/lazyStyles";
-import { logEvent } from "firebase/analytics";
-import { ExternalLink } from "../../../common/ui/Displays/ExternalLink/ExternalLink";
-
-const delayedAnimation = keyframes`
-from {
-    transform: translateY(100px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`;
-const StyledFAQItem = styled.div`
-  animation: ${delayedAnimation} 0.5s ease-out;
-  animation-delay: ${(props) => props.index * 0.06}s; /* Delay based on index */
-  opacity: 0; /* Start with opacity 0 to make the animation visible */
-  animation-fill-mode: forwards; /* Keep the element visible after the animation */
-`;
-const FAQItem = ({ question, answer, index }) => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div style={{ marginBottom: "10px" }}>
-      <StyledFAQItem index={index}>
-        <Button
-          style={{ padding: 25, width: "100%", marginTop: 12 }}
-          onClick={() => setOpen(!open)}
-          aria-controls="example-collapse-text"
-          aria-expanded={open}
-          variant="dark"
-        >
-          <h4>{question}</h4>
-        </Button>
-      </StyledFAQItem>
-      <Collapse in={open}>
-        <div id="example-collapse-text">
-          <br />
-          {answer}
-          <br />
-        </div>
-      </Collapse>
-    </div>
-  );
-};
-
+/**
+ * `FAQSection` component renders a list of frequently asked questions (FAQs) about the application.
+ *
+ * This component displays a series of questions and their corresponding answers related to the application's usage, concepts, and objectives. Each FAQ item is styled with a unique theme from `lazyStyles`, providing a visually distinct look for different sections of content. The component dynamically renders a list of `FAQItem` components, passing down individual questions and formatted answers.
+ *
+ * Utilizes:
+ * - `japaneseThemePalette` for styling answers with specific color themes.
+ * - `ExternalLink` for rendering external links within FAQ answers.
+ * - `FAQItem` for displaying individual question and answer pairs.
+ *
+ * The `FAQSection` is designed to be flexible, allowing for easy updates or additions to the FAQ content. It serves as a centralized resource for users to learn more about the application and its features in an engaging manner.
+ *
+ * No props are accepted by this component.
+ *
+ * Example of usage:
+ * ```jsx
+ * <FAQSection />
+ * ```
+ *
+ * The component makes use of predefined styles from `lazyStyles` to ensure consistency in presentation while allowing for thematic variations across different FAQ items. It aims to provide users with clear, informative answers to common questions, enhancing their understanding and engagement with the application.
+ */
 const FAQSection = () => {
   const faqs = [
     {
@@ -142,6 +113,41 @@ const FAQSection = () => {
             >
               📬 Join us at Patreon
             </button>
+          </a>
+        </p>
+      ),
+    },
+    {
+      question: "How do I connect a wallet?",
+      answer: (
+        <p
+          style={{
+            maxWidth: "100%",
+            width: 700 /* Add your text block styles here */,
+            ...textBlock("black", 0),
+          }}
+        >
+          <a
+            style={{ color: "white", textDecoration: "underline" }}
+            href="https://github.com/RobotsBuildingEducation/RobotsBuildingEducation"
+            target="_blank"
+          >
+            Access to the source code is given to offer transparency and safety.
+          </a>
+          <br />
+          <br />
+          I've written a user guide that introduces you to a number of networks
+          to get started:
+          <a
+            // style={{ color: "white", textDecoration: "underline" }}
+            href="https://old-fashionedintelligence.info/access"
+            target="_blank"
+          >
+            <img
+              src={IMPACT_BACKGROUND}
+              width="300px"
+              style={{ borderRadius: "50%", borderBottom: "1px solid gold" }}
+            />
           </a>
         </p>
       ),

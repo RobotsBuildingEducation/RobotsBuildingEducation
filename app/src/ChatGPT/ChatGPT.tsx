@@ -10,12 +10,9 @@ import {
   computeResponseList,
   computeTotalImpactFromPrompt,
 } from "./ChatGPT.compute";
-import { Intro } from "./PromptCombiner9000/Content/Intro";
-import {
-  FadeInComponent,
-  PanLeftComponent,
-  PanRightComponent,
-} from "../styles/lazyStyles";
+import { Intro } from "./Intro/Intro";
+import { FadeInComponent, PanLeftComponent } from "../styles/lazyStyles";
+import { useBitcoinAnimation } from "../App.hooks";
 
 const logAnalyticsEvent = (item_list_id, item_id, item_name) => {
   logEvent(analytics, "select_item", {
@@ -39,10 +36,11 @@ const ChatGPT = ({
   globalDocumentReference,
   globalImpactCounter,
   setGlobalImpactCounter,
-  isDemo = false,
+
   moduleName,
   handleScheduler,
   handleZap,
+
   userStateReference,
   globalStateReference,
   zap,
@@ -50,6 +48,7 @@ const ChatGPT = ({
   handleCompletedPractice,
   handleWatch,
 }: Record<string, any>) => {
+  const handleBitcoinAnimation = useBitcoinAnimation();
   const [shouldRenderIntro, setShouldRenderIntro] = useState(true);
   const [promptMessage, setPromptMessage] = useState("");
   const [loadingMessage, setLoadingMessage] = useState("");
@@ -82,6 +81,8 @@ const ChatGPT = ({
 
   const handleSubmit = async (event, prompt = null, promptType = null) => {
     event.preventDefault();
+
+    handleBitcoinAnimation();
     let result = computeResult(promptType, patreonObject);
 
     setParentVisibility(true);
@@ -124,10 +125,7 @@ const ChatGPT = ({
     globalImpactCounter,
     globalDocumentReference
   ) => {
-    if (
-      (!isEmpty(databaseUserDocument) || !isEmpty(userDocumentReference)) &&
-      !isDemo
-    ) {
+    if (!isEmpty(databaseUserDocument) || !isEmpty(userDocumentReference)) {
       await updateDoc(userDocumentReference, {
         impact: databaseUserDocument?.impact + impact,
       });
@@ -161,8 +159,6 @@ const ChatGPT = ({
       <br />
       <PanLeftComponent>
         <Intro
-          shouldRenderIntro={shouldRenderIntro}
-          moduleName={moduleName}
           patreonObject={patreonObject}
           loadingMessage={loadingMessage}
           isResponseActive={isResponseActive}
@@ -185,7 +181,7 @@ const ChatGPT = ({
           zap={zap}
           index={index}
           moduleName={moduleName}
-          handleUnlocker={checkForUnlock}
+          checkForUnlock={checkForUnlock}
           handleCompletedPractice={handleCompletedPractice}
           handleWatch={handleWatch}
         />

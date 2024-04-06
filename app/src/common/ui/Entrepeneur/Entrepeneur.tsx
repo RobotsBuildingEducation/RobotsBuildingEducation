@@ -1,28 +1,20 @@
 //i did not spell Entrepreneur correctly.
-
-import { ChatBlock } from "../Displays/ChatBlock/ChatBlock";
+import { ChatBlock } from "../Elements/ChatBlock/ChatBlock";
 import poorCharlie from "../../media/images/poorCharlie.png";
 import neyra_logo from "../../media/images/neyra_logo.png";
 import { ultimateEffeciencyJutsu } from "../ui";
-import { japaneseThemePalette, textBlock } from "../../../styles/lazyStyles";
-import { SchedulerBlock } from "../Displays/SchedulerBlock/SchedulerBlock";
-import MarkdownRenderer from "../../../ChatGPT/Patreon/MarkdownRenderer/MarkdownRenderer";
-import { ExternalLink } from "../Displays/ExternalLink/ExternalLink";
+import { SchedulerBlock } from "../Elements/SchedulerBlock/SchedulerBlock";
+import MarkdownRenderer from "../Elements/MarkdownRenderer/MarkdownRenderer";
+import { ExternalLink } from "../Elements/ExternalLink/ExternalLink";
+import { Typewriter } from "../Elements/Typewriter/Typewriter";
 
 export const Entrepeneur = {
   "Understanding Business": {
     "Resume Writing": {
-      documentID: ``,
       hasCode: false,
-      filler: ``,
-      new: false,
-      highValue: true,
-      underConstruction: false,
-      completed: false,
-      needsImprovement: false,
-      tooltip: ``,
-      sourceType: `video`, // may not need
-      button: `Resume Writing`, // may not need - `name`
+
+      dealerBorder: true,
+
       header: `Resume Writing`,
       credential: "Business Writing",
       backgroundImgSrc:
@@ -33,7 +25,7 @@ export const Entrepeneur = {
       prompts: {
         welcome: {
           response: (
-            <div>
+            <Typewriter>
               Hola estudiantes! 🌼
               <br />
               <br />
@@ -54,13 +46,11 @@ export const Entrepeneur = {
               Con cariño,
               <br />
               rox 🌹
-            </div>
+            </Typewriter>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         patreon: {
-          completed: false,
           impact: 1000,
           action: `generate`,
           icon: `✨`, //`✍️`
@@ -69,8 +59,8 @@ export const Entrepeneur = {
           )}?`,
           response: `null`,
           spanish: ``,
-          tooltip: ``,
-          summaryContent: (
+
+          extraContent: (
             <div>
               Crafting a compelling resume is akin to designing a user
               interface; it's about communicating your value effectively and
@@ -91,7 +81,6 @@ export const Entrepeneur = {
           ),
         },
         inspire: {
-          completed: false,
           impact: 100,
           action: `inspire`,
           icon: `⚡`,
@@ -118,10 +107,8 @@ export const Entrepeneur = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         summarize: {
-          completed: false,
           impact: 100,
           action: `summarize`,
           icon: `📚`,
@@ -175,10 +162,8 @@ export const Entrepeneur = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         ask: {
-          completed: false,
           impact: 100,
           action: `ask`,
           icon: `🔮`,
@@ -255,10 +240,8 @@ export const Entrepeneur = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         guide: {
-          completed: false,
           impact: 100,
           action: `guide`,
           icon: `🧚`,
@@ -382,10 +365,8 @@ export const Entrepeneur = {
             </SchedulerBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         demonstrate: {
-          completed: false,
           impact: 100,
           humanTouch: true,
           action: `demonstrate`,
@@ -493,10 +474,8 @@ export const Entrepeneur = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         define: {
-          completed: false,
           impact: 100,
           action: `define`, // may not need
           icon: `🧿`, // may not need
@@ -506,11 +485,9 @@ export const Entrepeneur = {
           response:
             "Effective business communication skills foster collaboration, drive decision-making, and strengthen relationships, propelling organizational success.",
           spanish: ``,
-          tooltip: ``,
         },
 
         quiz: {
-          completed: false,
           impact: 100,
           action: `quiz`,
           icon: `🧪`,
@@ -568,35 +545,24 @@ export const Entrepeneur = {
             </ChatBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         shop: {
-          completed: false,
           impact: 100,
           action: `shop`,
           icon: `🛍️`,
           request: `Alright bro, show me what you got. I wanna shop and support this network more.`,
           response: `This shopping slot is not being utilized yet. Please contact me in Patreon to qualify.`,
           spanish: ``,
-          tooltip: ``,
         },
       },
     },
     "Focus Investing": {
-      documentID: ``,
       hasCode: false,
       backgroundImgSrc:
         "https://res.cloudinary.com/sheilfer/image/upload/v1697448653/Module_Buttons_10_ynvvtv.gif",
-      filler: ``,
-      new: false,
-      highValue: true,
-      underConstruction: false,
-      completed: false,
-      needsImprovement: false,
-      isModuleDisabled: false,
-      tooltip: ``,
-      sourceType: `video`, // may not need
-      button: `Focus Investing`, // may not need - `name`
+
+      dealerBorder: true,
+
       header: `Focus Investing`,
       credential: "Introduction to Finance",
       fileSource:
@@ -605,7 +571,7 @@ export const Entrepeneur = {
       prompts: {
         welcome: {
           response: (
-            <div>
+            <Typewriter>
               <h3>Welcome, Scholars! 🌟</h3>
               <p>
                 Today, we're exploring the wisdom of Charlie Munger, a master
@@ -625,14 +591,12 @@ export const Entrepeneur = {
                 <br />
                 rox (your gentle mentor with cosmic aspirations) 🌺🌌
               </p>
-            </div>
+            </Typewriter>
             // </ChatBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         patreon: {
-          completed: false,
           impact: 1000,
           action: `generate`,
           icon: `✨`, //`✍️`
@@ -641,11 +605,8 @@ export const Entrepeneur = {
           )}?`,
           response: `null`,
           spanish: ``,
-          tooltip: ``,
-          // additionalContent: await import(
-          //   "../../markdowns/focusInvesting.md?raw"
-          // ),
-          summaryContent: (
+
+          extraContent: (
             <div
               style={{
                 overflowWrap: "break-word",
@@ -727,7 +688,6 @@ export const Entrepeneur = {
           ),
         },
         inspire: {
-          completed: false,
           impact: 100,
           action: `inspire`,
           icon: `⚡`,
@@ -834,10 +794,8 @@ export const Entrepeneur = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         summarize: {
-          completed: false,
           impact: 100,
           action: `summarize`,
           icon: `📚`,
@@ -906,10 +864,8 @@ export const Entrepeneur = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         ask: {
-          completed: false,
           impact: 100,
           action: `ask`,
           icon: `🔮`,
@@ -976,10 +932,8 @@ export const Entrepeneur = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         guide: {
-          completed: false,
           impact: 100,
           action: `guide`,
           icon: `🧚`,
@@ -1101,10 +1055,8 @@ export const Entrepeneur = {
             </SchedulerBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         demonstrate: {
-          completed: false,
           impact: 100,
           action: `demonstrate`,
           icon: `🎨`,
@@ -1157,10 +1109,8 @@ export const Entrepeneur = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         define: {
-          completed: false,
           impact: 100,
           action: `define`, // may not need
           icon: `🧿`, // may not need
@@ -1170,11 +1120,9 @@ export const Entrepeneur = {
           response:
             "\n\nCharlie Munger’s view on focus investing is to thoroughly understand the fundamentals of a small number of investment opportunities and to invest in them with conviction.",
           spanish: ``,
-          tooltip: ``,
         },
 
         quiz: {
-          completed: false,
           impact: 100,
           action: `quiz`,
           icon: `🧪`,
@@ -1252,10 +1200,8 @@ export const Entrepeneur = {
             </ChatBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         shop: {
-          completed: false,
           impact: 100,
           action: `shop`,
           icon: `🛍️`,
@@ -1346,150 +1292,8 @@ export const Entrepeneur = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
       },
     },
-    // "Resource Allocation": {
-    //   documentID: ``,
-    //   hasCode: false,
-    //   filler: ``,
-    //   new: false,
-    //   highValue: true,
-    //   underConstruction: true,
-    //   completed: false,
-    //   needsImprovement: false,
-    //   isModuleDisabled: true,
-    //   tooltip: ``,
-    //   sourceType: `markdown`, // may not need
-    //   button: `Resource Allocation`, // may not need - `name`
-    //   header: `Resource Allocation`,
-    //   fileSource: await import("../../markdowns/wealthManagement.md?raw"), // may not need
-
-    //   prompts: {
-    //     patreon: {
-    //       completed: false,
-    //       impact: 1000,
-    //       action: `generate`,
-    //       icon: `✍️`, //`✍️`
-    //       request: `rox, can you please generate material to introduce me to ${ultimateEffeciencyJutsu(
-    //         `Wealth Management`
-    //       )}?`,
-    //       response: `null`,
-    //       spanish: ``,
-    //       tooltip: ``,
-    //     },
-    //     inspire: {
-    //       completed: false,
-    //       impact: 100,
-    //       action: `inspire`,
-    //       icon: `⚡`,
-    //       request: `rox, can you please explain how investing in real estate with something like an FHA loan is a safe way to leverage money?`,
-    //       response:
-    //         "\n\nReal estate investment with an FHA loan is a safe way to leverage money because FHA loans are government-backed. This means that the government covers a portion of the loan, so if you are unable to make payments, the government will step in and provide assistance. Additionally, FHA loans are a type of mortgage that is widely used and accepted, so if you were to default on the loan, it would be easy to find buyers. Also, FHA loans often come with lower interest rates, which means your monthly payments would be lower. Finally, FHA loans often require a lower down payment, which allows you to leverage money without having to use too much of your own funds.",
-    //       spanish: ``,
-    //       tooltip: ``,
-    //     },
-    //     summarize: {
-    //       completed: false,
-    //       impact: 100,
-    //       action: `summarize`,
-    //       icon: `📚`,
-    //       request: `rox, can you please summarize the basics of ${ultimateEffeciencyJutsu(
-    //         `Wealth Management`
-    //       )}?`,
-    //       response:
-    //         "\n\nReal estate is considered a safe way of leveraging money because it is typically considered a tangible, long-term asset. It is also considered less volatile than many other investments, as real estate is typically slower to rise and fall in value. Moreover, real estate is often considered to be a good diversification to a portfolio, because it is not directly linked to the stock market. Finally, real estate is seen as a good way to leverage money because it typically offers the opportunity to leverage debt in order to enhance returns, such as via the use of mortgages and other financial instruments.",
-    //       spanish: ``,
-    //       tooltip: ``,
-    //     },
-    //     ask: {
-    //       completed: false,
-    //       impact: 100,
-    //       action: `ask`,
-    //       icon: `🔮`,
-    //       request: `rox, can you please show me three frequently asked beginner questions about ${ultimateEffeciencyJutsu(
-    //         `Wealth Management`
-    //       )} with one sentence answers?`,
-    //       response:
-    //         "\n\n1. Is real estate a good investment in terms of overall market performance? Answer: Yes, because it tends to remain relatively stable no matter what the overall market is doing. \n\n2. Is real estate a safe way to leverage money? Answer: Yes, because it typically keeps its value over the long-term. \n\n3. What risks should I be aware of when investing in real estate? Answer: Volatility in the market, risks associated with tenants, unexpected repairs and maintenance and interest rate changes.",
-    //       spanish: ``,
-    //       tooltip: ``,
-    //     },
-    //     guide: {
-    //       completed: false,
-    //       impact: 100,
-    //       action: `guide`,
-    //       icon: `🧚`,
-    //       request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
-    //         `Wealth Management`
-    //       )}?`,
-    //       response:
-    //         "\n\n1. Real estate is typically seen as a safe investment since it historically provides strong returns in the long-term. \n2. It is also considered a hedge against inflation since property values tend to appreciate faster than the consumer price index.\n3. Real estate can be a great diversification tool for traditional *stocks, bonds, and cash investments. \n4. Through leasing or renting, real estate can be a great source of passive income, which is attractive for investors. \n5. Real estate investments can create large tax benefits, due to the long-term depreciation that can be claimed on investment properties.\n6. By leveraging certain amounts of borrowed capital with real estate investments, investors can utilize “leverage” for greater returns with less capital outlay.\n7. Even in times of economic uncertainty, real estate tends to remain relatively stable as a source of investment, as it is generally not correlated with the stock market.\n8. Real estate markets generally move in a cyclical manner, which can open the door to potential opportunities to capitalize on market timing.\n9. Investing in the right market, such as emerging neighborhoods can turn a small rental into a future resale opportunity with positive returns. \n10. Real estate investors can take advantage of certain business vehicles, such as a Limited Liability Corporation (LLC) to secure their investments and gain additional tax benefits.",
-    //       spanish: ``,
-    //       tooltip: ``,
-    //     },
-    //     demonstrate: {
-    //       completed: false,
-    //       impact: 100,
-    //       action: `demonstrate`,
-    //       icon: `🎨`,
-    //       request: `rox, can you please show me example how real estate is tied to the overall market so it's a safe way to leverage money?`,
-    //       response:
-    //         "\n\nReal estate is linked to the broader economy in several ways. The housing market is strongly associated with mortgage lending, employment, consumer confidence, and consumer spending. When the overall economy is doing well, there is typically greater demand for real estate, driving prices higher. This creates a positive cycle of investment returns, which can be leveraged to create additional investments, or to acquire additional real estate for rental income or appreciation. Similarly, when consumer spending and employment levels are low, the housing market tends to be affected, leading to decreased prices. Despite this, real estate remains an attractive long-term investment due to its potential for capital and rental income, as well as its tangible and safe nature.",
-    //       spanish: ``,
-    //       tooltip: ``,
-    //     },
-    //     define: {
-    //       completed: false,
-    //       impact: 100,
-    //       action: `define`, // may not need
-    //       icon: `🧿`, // may not need
-    //       request: `rox, can you please define ${ultimateEffeciencyJutsu(
-    //         `Wealth Management`
-    //       )} in exactly one sentence?`,
-    //       response:
-    //         "\n\nReal estate investments can provide a safe way to leverage money and create a diversified portfolio, as the property values tend to mirror the overall market trends.",
-    //       spanish: ``,
-    //       tooltip: ``,
-    //     },
-
-    //     quiz: {
-    //       completed: false,
-    //       impact: 100,
-    //       action: `quiz`,
-    //       icon: `🧪`,
-    //       request: `rox, can you please write a 3 question quiz for beginners that's challenging about ${ultimateEffeciencyJutsu(
-    //         `Wealth Management`
-    //       )}?`,
-    //       response: (
-    //         <ChatBlock type={"quiz"}>
-    //           1. What is the relationship between real estate investing and the
-    //           stock market?
-    //           <br />
-    //           <br />
-    //           2. What are the benefits of investing in real estate rather than
-    //           in the stock market?
-    //           <br />
-    //           <br />
-    //           3. What strategies should investors use to make the most of their
-    //           money when investing in real estate?
-    //         </ChatBlock>
-    //       ),
-    //       spanish: ``,
-    //       tooltip: ``,
-    //     },
-    //     shop: {
-    //       completed: false,
-    //       impact: 100,
-    //       action: `shop`,
-    //       icon: `🛍️`,
-    //       request: `Alright bro, show me what you got. I wanna shop and support this network more.`,
-    //       response: `This shopping slot is not being utilized yet. Please contact me in Patreon to qualify.`,
-    //       spanish: ``,
-    //       tooltip: ``,
-    //     },
-    //   },
-    // },
   },
 };

@@ -1,9 +1,6 @@
 import styled, { keyframes } from "styled-components";
-import {
-  StyledNavigationContainer,
-  StyledLink,
-  FadeInComponent,
-} from "../styles/lazyStyles";
+import { StyledNavigationContainer, StyledLink } from "../styles/lazyStyles";
+import { uiPaths } from "../common/uiSchema";
 
 // Helper function to create display elements
 const delayedAnimation = keyframes`
@@ -20,14 +17,15 @@ const StyledPathItem = styled.div`
   opacity: 0; /* Start with opacity 0 to make the animation visible */
   animation-fill-mode: forwards; /* Keep the element visible after the animation */
 `;
-const createDisplayTop = (
-  topPaths,
+
+// helper function to render
+const createPathElements = (
   handlePathSelection,
-  animationData,
+  pathSelectionAnimationData,
   unlockCreatorKey,
   unlockDealerKey
 ) => {
-  return topPaths.map((path, index) => {
+  return uiPaths.map((path, index) => {
     const displayText = path !== "Entrepeneur" ? path : "Dealer";
 
     if (unlockCreatorKey && unlockDealerKey) {
@@ -36,7 +34,7 @@ const createDisplayTop = (
           <StyledLink
             active
             to="/"
-            pathSelectionAnimationData={animationData}
+            pathSelectionAnimationData={pathSelectionAnimationData}
             path={path}
             id={path}
             onClick={handlePathSelection}
@@ -54,7 +52,7 @@ const createDisplayTop = (
             <StyledLink
               active
               to="/"
-              pathSelectionAnimationData={animationData}
+              pathSelectionAnimationData={pathSelectionAnimationData}
               path={path}
               id={path}
               onClick={handlePathSelection}
@@ -71,7 +69,7 @@ const createDisplayTop = (
             <StyledLink
               active
               to="/"
-              pathSelectionAnimationData={animationData}
+              pathSelectionAnimationData={pathSelectionAnimationData}
               path={path}
               id={path}
               key={path}
@@ -90,7 +88,7 @@ const createDisplayTop = (
             <StyledLink
               active
               to="/"
-              pathSelectionAnimationData={animationData}
+              pathSelectionAnimationData={pathSelectionAnimationData}
               path={path}
               id={path}
               key={path}
@@ -120,27 +118,26 @@ export const Paths = ({
   pathSelectionAnimationData,
   userStateReference,
 }): JSX.Element => {
+  // checks the user's document to see whether or not they've unlocked the paths
   let unlockCreatorKey =
     userStateReference?.databaseUserDocument?.unlocks?.[
-      "Lesson 2 Frontend Programming"
+      "Lesson 3 Backend Engineering"
     ];
 
   let unlockDealerKey =
     userStateReference?.databaseUserDocument?.unlocks?.[
-      "Lesson 4 Building Apps & Startups"
+      "Lesson 5 Computer Science"
     ];
 
-  // Define the top paths
-  const topPaths = ["Engineer", "Creator", "Entrepeneur"];
+  // Define the paths
 
   // Generate the display elements for the top paths
-  const displayTop = createDisplayTop(
-    topPaths,
+  const pathElements = createPathElements(
     handlePathSelection,
     pathSelectionAnimationData,
     unlockCreatorKey,
     unlockDealerKey
   );
 
-  return <StyledNavigationContainer>{displayTop}</StyledNavigationContainer>;
+  return <StyledNavigationContainer>{pathElements}</StyledNavigationContainer>;
 };

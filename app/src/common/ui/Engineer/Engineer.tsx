@@ -6,7 +6,6 @@ import duckett from "../../media/images/duckett.png";
 import powerLawFinance from "../../media/images/powerLawFinance.png";
 import innovatorsDilemma from "../../media/images/innovatorsDilemma.png";
 import backendScaling from "../../media/images/backendScaling.png";
-// import prisonersDilemma from "../../media/images/prisonersDilemma.png";
 import grokking from "../../media/images/grokking.png";
 import inspire00 from "../../media/images/prompts/inspire00.jpg";
 import inspire01 from "../../media/images/prompts/inspire01.png";
@@ -16,36 +15,25 @@ import inspire04 from "../../media/images/prompts/inspire04.png";
 import inspire05 from "../../media/images/prompts/inspire05.png";
 import girls_on_campus from "../../media/images/girls_on_campus.jpg";
 
-import { ChatBlock } from "../Displays/ChatBlock/ChatBlock";
-import { CodeDisplay } from "../Displays/CodeDisplay/CodeDisplay";
-import { CuteGradient } from "../Displays/CuteGradient/CuteGradient";
+import { ChatBlock } from "../Elements/ChatBlock/ChatBlock";
+import { CodeDisplay } from "../Elements/CodeDisplay/CodeDisplay";
+import { CuteGradient } from "../Elements/CuteGradient/CuteGradient";
 
-import { RobotDialogue } from "../Displays/RobotDialogue/RobotDialogue";
+import { RobotDialogue } from "../Elements/RobotDialogue/RobotDialogue";
 
-import RandomCharacter from "../Displays/RandomCharacter/RandomCharacter";
-import { SchedulerBlock } from "../Displays/SchedulerBlock/SchedulerBlock";
-import { ArtBlock } from "../Displays/ArtBlock/ArtBlock";
-import { StyledListItem } from "../../../styles/lazyStyles";
-import { ExternalLink } from "../Displays/ExternalLink/ExternalLink";
+import RandomCharacter from "../Elements/RandomCharacter/RandomCharacter";
+import { SchedulerBlock } from "../Elements/SchedulerBlock/SchedulerBlock";
+import { ExternalLink } from "../Elements/ExternalLink/ExternalLink";
+import { Typewriter } from "../Elements/Typewriter/Typewriter";
 
 export const Engineer = {
   "Coding Crash Course Version 3": {
     "Learning Mindset & Perspective": {
-      documentID: ``,
       backgroundImgSrc:
         "https://res.cloudinary.com/dtkeyccga/image/upload/v1691640391/ROBE_assets/Module_Buttons_1_ixnitr_scjfyk.gif",
       hasCode: true,
-      hasCustomIntro: true,
-      filler: ``,
-      new: true,
-      highValue: false,
-      underConstruction: false,
-      completed: false,
-      needsImprovement: false,
+
       credential: "Introduction to Engineering",
-      tooltip: ``,
-      sourceType: `video`, // may not need
-      button: `Learning Mindset & Perspective`, // may not need - `name`
       header: `Learning Mindset & Perspective`,
       fileSource:
         "https://res.cloudinary.com/dqykr1jh0/video/upload/v1711495708/symr6pztmtpkzn5aqq2r.mp4", // may not need
@@ -53,8 +41,7 @@ export const Engineer = {
         // should we add impact to selecting a course? adding it to "welcome" would achieve this.
         welcome: {
           response: (
-            // <Typewriter speed={10}>
-            <div>
+            <Typewriter>
               Dear Innovators &amp; Bright Minds 🌟,
               <br />
               <br />
@@ -82,13 +69,11 @@ export const Engineer = {
                 width="100"
                 borderRadius={"50%"}
               />
-            </div>
+            </Typewriter>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         patreon: {
-          completed: false,
           impact: 1000,
           action: `generate`,
           icon: `✨`, //`✍️`
@@ -97,8 +82,8 @@ export const Engineer = {
           )}?`,
           response: `null`,
           spanish: ``,
-          tooltip: ``,
-          summaryContent: (
+
+          extraContent: (
             <div>
               Hola, learners! Feeling a bit nervous about diving into coding and
               business building? No worries, that's perfectly normal. It's just
@@ -137,7 +122,6 @@ export const Engineer = {
         inspire: {
           headerImageSrc: inspire00,
           wikiLink: "https://en.wikipedia.org/wiki/Cynthia_Breazeal",
-          completed: false,
           impact: 100,
           action: `inspire`,
           icon: `⚡`,
@@ -145,7 +129,6 @@ export const Engineer = {
             `Learn Coding`
           )}?`,
           response: (
-            // <ArtBlock>
             <div>
               Meet Kismet, a robot developed by Cynthia Breazeal at the MIT
               Media Lab back in the late 1990s. Kismet wasn't just any robot; it
@@ -178,10 +161,8 @@ export const Engineer = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         summarize: {
-          completed: false,
           impact: 100,
           action: `summarize`,
           icon: `📚`,
@@ -243,10 +224,8 @@ export const Engineer = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         ask: {
-          completed: false,
           impact: 100,
           action: `ask`,
           icon: `🔮`,
@@ -317,10 +296,8 @@ export const Engineer = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         guide: {
-          completed: false,
           impact: 100,
           action: `guide`,
           icon: `🧚`,
@@ -467,10 +444,8 @@ export const Engineer = {
             </SchedulerBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         demonstrate: {
-          completed: false,
           impact: 100,
           action: `demonstrate`,
           icon: `🎨`,
@@ -533,7 +508,7 @@ app.post("/task", async (request, response) => {
 exports.app = functions.https.onRequest(app);
           `,
           spanish: ``,
-          tooltip: ``,
+
           codeBreakdown: [
             {
               code: "const functions = require('firebase-functions');",
@@ -578,7 +553,6 @@ exports.app = functions.https.onRequest(app);
           ],
         },
         define: {
-          completed: false,
           impact: 100,
           action: `define`, // may not need
           icon: `🧿`, // may not need
@@ -588,10 +562,8 @@ exports.app = functions.https.onRequest(app);
           response:
             "\n\n The intersectionality of computer science refers to the application of computational principles and techniques to solve problems, generate insights, and drive innovation across diverse disciplines and fields of study.",
           spanish: ``,
-          tooltip: ``,
         },
         quiz: {
-          completed: false,
           impact: 100,
           action: `quiz`,
           icon: `🧪`,
@@ -630,10 +602,8 @@ exports.app = functions.https.onRequest(app);
             </ChatBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         practice: {
-          completed: false,
           impact: 750,
           action: `practice`,
           icon: `🥋`,
@@ -669,11 +639,10 @@ exports.app = functions.https.onRequest(app);
           input: `console.log("Hello world!");`,
           response: <div>good job grasshopper!</div>,
           spanish: ``,
-          tooltip: ``,
+
           reward: <div>Hello world!</div>,
         },
         shop: {
-          completed: false,
           impact: 100,
           action: `shop`,
           icon: `🛍️`,
@@ -759,26 +728,16 @@ exports.app = functions.https.onRequest(app);
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
       },
     },
     "Lesson 1 Coding Fundamentals": {
-      documentID: ``,
       backgroundImgSrc:
         "https://res.cloudinary.com/dtkeyccga/image/upload/v1691640402/ROBE_assets/Module_Buttons_8_yzjtoj_muwgiv.gif",
       hasCode: true,
-      hasCustomIntro: true,
-      filler: ``,
-      highValue: false,
-      underConstruction: false,
-      completed: false,
-      needsImprovement: false,
+
       credential: "Programming Fundamentals",
-      new: true,
-      tooltip: ``,
-      sourceType: `video`, // may not need
-      button: `Lesson 1 Coding Fundamentals`, // may not need - `name`
+
       header: `Lesson 1 Coding Fundamentals`,
       fileSource:
         "https://res.cloudinary.com/sheilfer/video/upload/v1693470075/CODING_LESSON_1_OOP_COMPRESSED_rnyagi_jalk2h.mov", // may not need
@@ -786,7 +745,7 @@ exports.app = functions.https.onRequest(app);
       prompts: {
         welcome: {
           response: (
-            <div>
+            <Typewriter>
               ¡Hola, estudiantes! 🌸
               <br />
               <br />
@@ -811,13 +770,11 @@ exports.app = functions.https.onRequest(app);
               <br />
               rox 🌟
               <RandomCharacter notSoRandomCharacter={"10"} width="100" />
-            </div>
+            </Typewriter>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         patreon: {
-          completed: false,
           impact: 1000,
           action: `generate`,
           icon: `✨`, //`✍️`
@@ -826,8 +783,8 @@ exports.app = functions.https.onRequest(app);
           )}?`,
           response: `null`,
           spanish: ``,
-          tooltip: ``,
-          summaryContent: (
+
+          extraContent: (
             <div>
               In this lecture, we're embracing the challenge of learning to
               code, starting with the more complex topics like creating objects
@@ -858,7 +815,7 @@ exports.app = functions.https.onRequest(app);
         inspire: {
           headerImageSrc: inspire01,
           wikiLink: "https://en.wikipedia.org/wiki/Object-oriented_programming",
-          completed: false,
+
           impact: 100,
           action: `inspire`,
           icon: `⚡`,
@@ -920,10 +877,8 @@ exports.app = functions.https.onRequest(app);
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         summarize: {
-          completed: false,
           impact: 100,
           action: `summarize`,
           icon: `📚`,
@@ -1140,10 +1095,8 @@ ana.markAttendance("Present");
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         ask: {
-          completed: false,
           impact: 100,
           action: `ask`,
           icon: `🔮`,
@@ -1254,10 +1207,8 @@ juan.study();  // Outputs: Juan is studying.
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         guide: {
-          completed: false,
           impact: 100,
           action: `guide`,
           icon: `🧚`,
@@ -1386,10 +1337,8 @@ juan.study();  // Outputs: Juan is studying.
             </SchedulerBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         demonstrate: {
-          completed: false,
           impact: 100,
           action: `demonstrate`,
           icon: `🎨`,
@@ -1439,7 +1388,6 @@ print(rihanna.sing("Love On The Brain"))
 print(rihanna.perform("at the Grammy Awards"))
           `,
           spanish: ``,
-          tooltip: ``,
 
           codeBreakdown: [
             {
@@ -1485,7 +1433,6 @@ print(rihanna.perform("at the Grammy Awards"))
           ],
         },
         define: {
-          completed: false,
           impact: 100,
           action: `define`, // may not need
           icon: `🧿`, // may not need
@@ -1494,10 +1441,8 @@ print(rihanna.perform("at the Grammy Awards"))
           )} in exactly one sentence?`,
           response: `Object-Oriented Programming is a programming paradigm that organizes data into objects and behavior into classes, promoting code reuse through inheritance, encapsulation of data and functions together, and enabling polymorphism to allow a single interface for a general class of actions.`,
           spanish: ``,
-          tooltip: ``,
         },
         quiz: {
-          completed: false,
           impact: 100,
           action: `quiz`,
           icon: `🧪`,
@@ -1545,10 +1490,8 @@ print(rihanna.perform("at the Grammy Awards"))
             </ChatBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         shop: {
-          completed: false,
           impact: 100,
           action: `shop`,
           icon: `🛍️`,
@@ -1591,10 +1534,8 @@ print(rihanna.perform("at the Grammy Awards"))
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         practice: {
-          completed: false,
           impact: 750,
           action: `practice`,
           icon: `🥋`,
@@ -1937,25 +1878,16 @@ throw new Error(
 }`,
           response: <div>good job grasshopper!</div>,
           spanish: ``,
-          tooltip: ``,
         },
       },
     },
     "Lesson 2 Frontend Programming": {
-      documentID: ``,
       backgroundImgSrc:
         "https://res.cloudinary.com/dtkeyccga/image/upload/v1691640338/ROBE_assets/Module_Buttons_4_n2grll_xqtadc.gif",
       hasCode: true,
-      filler: ``,
-      highValue: false,
-      underConstruction: false,
-      completed: false,
-      needsImprovement: false,
+
       credential: "Frontend Software Engineering",
-      new: true,
-      tooltip: ``,
-      sourceType: `video`, // may not need
-      button: `Lesson 2 Frontend Programming`, // may not need - `name`
+
       header: `Lesson 2 Frontend Programming`,
       fileSource:
         "https://res.cloudinary.com/dtkeyccga/video/upload/v1691637324/v3/CODING_LESSON_2_FRONTEND_COMPRESSED_lc7u4p.mov", // may not need
@@ -1963,7 +1895,7 @@ throw new Error(
       prompts: {
         welcome: {
           response: (
-            <div>
+            <Typewriter>
               Exceptional students! 🌟
               <br />
               <br />
@@ -1997,13 +1929,11 @@ throw new Error(
                 width="150"
                 // borderRadius={"50%"}
               />
-            </div>
+            </Typewriter>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         patreon: {
-          completed: false,
           impact: 1000,
           action: `generate`,
           icon: `✨`, //`✍️`
@@ -2012,8 +1942,8 @@ throw new Error(
           )}?`,
           response: `null`,
           spanish: ``,
-          tooltip: ``,
-          summaryContent: (
+
+          extraContent: (
             <div>
               In Lesson 2, we discover frontend development using React,
               focusing on event-driven programming. We review concepts like
@@ -2043,7 +1973,7 @@ throw new Error(
           headerImageSrc: inspire02,
           wikiLink:
             "https://en.wikipedia.org/wiki/Human%E2%80%93computer_interaction",
-          completed: false,
+
           impact: 100,
           action: `inspire`,
           icon: `⚡`,
@@ -2095,10 +2025,8 @@ throw new Error(
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         summarize: {
-          completed: false,
           impact: 100,
           action: `summarize`,
           icon: `📚`,
@@ -2174,10 +2102,8 @@ export let ClickButton = () => {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         ask: {
-          completed: false,
           impact: 100,
           action: `ask`,
           icon: `🔮`,
@@ -2238,10 +2164,8 @@ export let ClickButton = () => {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         guide: {
-          completed: false,
           impact: 100,
           action: `guide`,
           icon: `🧚`,
@@ -2376,10 +2300,8 @@ export let ClickButton = () => {
             </SchedulerBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         demonstrate: {
-          completed: false,
           impact: 100,
           action: `demonstrate`,
           icon: `🎨`,
@@ -2460,7 +2382,7 @@ export default LoginForm;
 
           `,
           spanish: ``,
-          tooltip: ``,
+
           codeBreakdown: [
             {
               code: "import firebase from 'firebase/app'; import 'firebase/auth';",
@@ -2505,7 +2427,6 @@ export default LoginForm;
           ],
         },
         define: {
-          completed: false,
           impact: 100,
           action: `define`, // may not need
           icon: `🧿`, // may not need
@@ -2514,11 +2435,9 @@ export default LoginForm;
           )} in exactly one sentence?`,
           response: `Event-driven programming is about writing code that responds to user actions or system events, user-centered design focuses on tailoring the design based on user needs and feedback, and component architecture involves building a system from separate parts, each encapsulating a specific functionality, that work together seamlessly.`,
           spanish: ``,
-          tooltip: ``,
         },
 
         quiz: {
-          completed: false,
           impact: 100,
           action: `quiz`,
           icon: `🧪`,
@@ -2584,10 +2503,8 @@ export default LoginForm;
             </ChatBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         shop: {
-          completed: false,
           impact: 100,
           action: `shop`,
           icon: `🛍️`,
@@ -2644,10 +2561,8 @@ export default LoginForm;
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         practice: {
-          completed: false,
           impact: 750,
           action: `practice`,
           icon: `🥋`,
@@ -2888,25 +2803,16 @@ return <div style={gradientStyle}>
 };`,
           response: <div>good job grasshopper!</div>,
           spanish: ``,
-          tooltip: ``,
         },
       },
     },
     "Lesson 3 Backend Engineering": {
-      documentID: ``,
       backgroundImgSrc:
         "https://res.cloudinary.com/dtkeyccga/image/upload/v1691640379/ROBE_assets/Module_Buttons_5_vulvwr_oymbfb.gif",
       hasCode: true,
-      filler: ``,
-      highValue: false,
-      underConstruction: false,
-      completed: false,
-      needsImprovement: false,
+
       credential: "Backend Software Engineering",
-      new: true,
-      tooltip: ``,
-      sourceType: `video`, // may not need
-      button: `Lesson 3 Backend Engineering`, // may not need - `name`
+
       header: `Lesson 3 Backend Engineering`,
       fileSource:
         "https://res.cloudinary.com/dtkeyccga/video/upload/v1691637319/v3/CODING_LESSON_3_BACKEND_COMPRESSED_qzpnwg.mov", // may not need
@@ -2914,7 +2820,7 @@ return <div style={gradientStyle}>
       prompts: {
         welcome: {
           response: (
-            <div>
+            <Typewriter>
               Hello!!!! 😊
               <br />
               <br />
@@ -2942,13 +2848,11 @@ return <div style={gradientStyle}>
                 width="100"
                 // borderRadius={"50%"}
               />
-            </div>
+            </Typewriter>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         patreon: {
-          completed: false,
           impact: 1000,
           action: `generate`,
           icon: `✨`, //`✍️`
@@ -2957,8 +2861,8 @@ return <div style={gradientStyle}>
           )}?`,
           response: `null`,
           spanish: ``,
-          tooltip: ``,
-          summaryContent: (
+
+          extraContent: (
             <div>
               This lesson introduces backend software engineering, starting with
               operating systems, which are the heart of computing. We explore
@@ -2984,7 +2888,7 @@ return <div style={gradientStyle}>
         inspire: {
           headerImageSrc: inspire03,
           wikiLink: "https://en.wikipedia.org/wiki/Serverless_computing",
-          completed: false,
+
           impact: 100,
           action: `inspire`,
           icon: `⚡`,
@@ -3068,10 +2972,8 @@ return <div style={gradientStyle}>
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         summarize: {
-          completed: false,
           impact: 100,
           action: `summarize`,
           icon: `📚`,
@@ -3124,10 +3026,8 @@ return <div style={gradientStyle}>
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         ask: {
-          completed: false,
           impact: 100,
           action: `ask`,
           icon: `🔮`,
@@ -3194,10 +3094,8 @@ return <div style={gradientStyle}>
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         guide: {
-          completed: false,
           impact: 100,
           action: `guide`,
           icon: `🧚`,
@@ -3348,10 +3246,8 @@ return <div style={gradientStyle}>
             </SchedulerBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         demonstrate: {
-          completed: false,
           impact: 100,
           action: `demonstrate`,
           icon: `🎨`,
@@ -3446,7 +3342,7 @@ if __name__ == '__main__':
 
           `,
           spanish: ``,
-          tooltip: ``,
+
           codeBreakdown: [
             {
               code: "from flask import Flask, jsonify, request",
@@ -3501,7 +3397,6 @@ if __name__ == '__main__':
           ],
         },
         define: {
-          completed: false,
           impact: 100,
           action: `define`, // may not need
           icon: `🧿`, // may not need
@@ -3510,10 +3405,8 @@ if __name__ == '__main__':
           )} in exactly one sentence?`,
           response: `Backend engineering builds the hidden machinery that powers our apps and websites, cloud computing uses the internet to access and store data instead of a local computer, and big data refers to processing vast amounts of information to uncover patterns and insights. `,
           spanish: ``,
-          tooltip: ``,
         },
         quiz: {
-          completed: false,
           impact: 100,
           action: `quiz`,
           icon: `🧪`,
@@ -3570,10 +3463,8 @@ if __name__ == '__main__':
             </ChatBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         shop: {
-          completed: false,
           impact: 100,
           action: `shop`,
           icon: `🛍️`,
@@ -3616,10 +3507,8 @@ if __name__ == '__main__':
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         practice: {
-          completed: false,
           impact: 750,
           action: `practice`,
           icon: `🥋`,
@@ -3929,24 +3818,14 @@ exports.app = functions
 .onRequest(app);`,
           response: <div>good job grasshopper!</div>,
           spanish: ``,
-          tooltip: ``,
         },
       },
     },
     "Lesson 4 Building Apps & Startups": {
-      documentID: ``,
       backgroundImgSrc:
         "https://res.cloudinary.com/dtkeyccga/image/upload/v1691640340/ROBE_assets/Module_Buttons_7_uonnwt_s4ymov.gif",
       hasCode: true,
-      filler: ``,
-      highValue: false,
-      underConstruction: false,
-      completed: false,
-      needsImprovement: false,
-      new: true,
-      tooltip: ``,
-      sourceType: `video`, // may not need
-      button: `Lesson 4 Building Apps`, // may not need - `name`
+
       header: `Lesson 4 Building Apps`,
       credential: "Full-stack Software Engineering",
       fileSource:
@@ -3956,7 +3835,7 @@ exports.app = functions
         welcome: {
           response: (
             // <ChatBlock type={"quiz"}>
-            <div>
+            <Typewriter>
               Brave students! 🌟
               <br /> <br />
               Welcome to your incredible journey as future startup founders and
@@ -3985,13 +3864,11 @@ exports.app = functions
                 width="100"
                 // borderRadius={"50%"}
               />
-            </div>
+            </Typewriter>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         patreon: {
-          completed: false,
           impact: 1000,
           action: `generate`,
           icon: `✨`, //`✍️`
@@ -4000,8 +3877,8 @@ exports.app = functions
           )}?`,
           response: `null`,
           spanish: ``,
-          tooltip: ``,
-          summaryContent: (
+
+          extraContent: (
             <div>
               <br />
               <ExternalLink
@@ -4036,7 +3913,7 @@ exports.app = functions
         inspire: {
           headerImageSrc: inspire04,
           wikiLink: "https://en.wikipedia.org/wiki/Y_Combinator",
-          completed: false,
+
           impact: 100,
           action: `inspire`,
           icon: `⚡`,
@@ -4131,10 +4008,8 @@ exports.app = functions
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         summarize: {
-          completed: false,
           impact: 100,
           action: `summarize`,
           icon: `📚`,
@@ -4200,10 +4075,8 @@ exports.app = functions
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         ask: {
-          completed: false,
           impact: 100,
           action: `ask`,
           icon: `🔮`,
@@ -4270,10 +4143,8 @@ exports.app = functions
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         guide: {
-          completed: false,
           impact: 100,
           action: `guide`,
           icon: `🧚`,
@@ -4411,10 +4282,8 @@ exports.app = functions
             </SchedulerBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         demonstrate: {
-          completed: false,
           impact: 100,
           action: `demonstrate`,
           icon: `🎨`,
@@ -4573,7 +4442,7 @@ app.listen(
 
           `,
           spanish: ``,
-          tooltip: ``,
+
           codeBreakdown: [
             {
               code: "import { loadStripe } from '@stripe/stripe-js';",
@@ -4613,7 +4482,6 @@ app.listen(
           ],
         },
         define: {
-          completed: false,
           impact: 100,
           action: `define`, // may not need
           icon: `🧿`, // may not need
@@ -4623,10 +4491,8 @@ app.listen(
           response:
             "Listening to your customers is crucial in building a tech startup because it's their needs, feedback, and experiences that will guide you to create a product that truly solves a problem and adds value to their lives. 🎯💖",
           spanish: ``,
-          tooltip: ``,
         },
         quiz: {
-          completed: false,
           impact: 100,
           action: `quiz`,
           icon: `🧪`,
@@ -4680,10 +4546,8 @@ app.listen(
             </ChatBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         shop: {
-          completed: false,
           impact: 100,
           action: `shop`,
           icon: `🛍️`,
@@ -4763,10 +4627,8 @@ app.listen(
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         practice: {
-          completed: false,
           impact: 750,
           action: `practice`,
           icon: `🥋`,
@@ -5097,24 +4959,14 @@ Generate and Save
 export default OpenAIComponent;`,
           response: <div>good job grasshopper!</div>,
           spanish: ``,
-          tooltip: ``,
         },
       },
     },
     "Lesson 5 Computer Science": {
-      documentID: ``,
       backgroundImgSrc:
         "https://res.cloudinary.com/dtkeyccga/image/upload/v1693290833/Module_Buttons_9_kmpzgb.gif",
       hasCode: true,
-      filler: ``,
-      highValue: false,
-      underConstruction: false,
-      completed: false,
-      needsImprovement: false,
-      new: true,
-      tooltip: ``,
-      sourceType: `video`, // may not need
-      button: `Lesson 5 Computer Science`, // may not need - `name`
+
       header: `Lesson 5 Computer Science`,
       credential: "Data Structures & Algorithms",
       fileSource:
@@ -5123,7 +4975,7 @@ export default OpenAIComponent;`,
       prompts: {
         welcome: {
           response: (
-            <div>
+            <Typewriter>
               🌟 Welcome to today's exciting journey through the world of
               computer Ssience, where we'll dive into the essential topics of
               data structures and algorithms.
@@ -5149,13 +5001,11 @@ export default OpenAIComponent;`,
                 width="100"
                 // borderRadius={"50%"}
               />
-            </div>
+            </Typewriter>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         patreon: {
-          completed: false,
           impact: 1000,
           action: `generate`,
           icon: `✨`, //`✍️`
@@ -5164,8 +5014,8 @@ export default OpenAIComponent;`,
           )}?`,
           response: `null`,
           spanish: ``,
-          tooltip: ``,
-          summaryContent: (
+
+          extraContent: (
             <div>
               This lesson tackles the often intimidating topics of data
               structures and algorithms in computer science. It begins by
@@ -5186,7 +5036,7 @@ export default OpenAIComponent;`,
         inspire: {
           headerImageSrc: inspire05,
           wikiLink: "https://en.wikipedia.org/wiki/John_von_Neumann",
-          completed: false,
+
           impact: 100,
           action: `inspire`,
           icon: `⚡`,
@@ -5208,10 +5058,8 @@ export default OpenAIComponent;`,
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         summarize: {
-          completed: false,
           impact: 100,
           action: `summarize`,
           icon: `📚`,
@@ -5258,10 +5106,8 @@ export default OpenAIComponent;`,
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         ask: {
-          completed: false,
           impact: 100,
           action: `ask`,
           icon: `🔮`,
@@ -5320,10 +5166,8 @@ export default OpenAIComponent;`,
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         guide: {
-          completed: false,
           impact: 100,
           action: `guide`,
           icon: `🧚`,
@@ -5508,10 +5352,8 @@ export default OpenAIComponent;`,
             </SchedulerBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         demonstrate: {
-          completed: false,
           impact: 100,
           action: `demonstrate`,
           icon: `🎨`,
@@ -5582,7 +5424,7 @@ if (result !== null) {
 }
           `,
           spanish: ``,
-          tooltip: ``,
+
           codeBreakdown: [
             {
               code: "class Node { ... }",
@@ -5617,7 +5459,6 @@ if (result !== null) {
           ],
         },
         define: {
-          completed: false,
           impact: 100,
           action: `define`, // may not need
           icon: `🧿`, // may not need
@@ -5627,10 +5468,8 @@ if (result !== null) {
           response:
             "Data structures are ways to organize and store data, while algorithms are step-by-step instructions for solving specific problems or performing tasks.",
           spanish: ``,
-          tooltip: ``,
         },
         quiz: {
-          completed: false,
           impact: 100,
           action: `quiz`,
           icon: `🧪`,
@@ -5678,10 +5517,8 @@ if (result !== null) {
             </ChatBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         shop: {
-          completed: false,
           impact: 100,
           action: `shop`,
           icon: `🛍️`,
@@ -5720,10 +5557,8 @@ if (result !== null) {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         practice: {
-          completed: false,
           impact: 750,
           action: `practice`,
           icon: `🥋`,
@@ -6094,21 +5929,8 @@ const dist = dijkstra(graph, 'A');
 console.log(dist);`,
           response: <div>good job grasshopper!</div>,
           spanish: ``,
-          tooltip: ``,
         },
       },
     },
   },
-};
-
-let set = {
-  "Philosophy of Critical Theory & Technology": false,
-  "Human-Computer Interaction": false,
-  "The Psychology Of Self-esteem": false,
-  "Introduction to Engineering": false,
-  "Programming Fundamentals": false,
-  "Frontend Software Engineering": false,
-  "Backend Software Engineering": false,
-  "Full-stack Software Engineering": false,
-  "Data Structures & Algorithms": false,
 };

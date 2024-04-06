@@ -1,26 +1,21 @@
 import { useEffect, useState } from "react";
 import { Web5 } from "@web5/api/browser";
-import isEmpty from "lodash/isEmpty";
 
 import "./App.css";
 
 import { Paths } from "./Paths/Paths";
-import {
-  controlPathVisibilityMap,
-  RoxanaLoadingAnimation,
-  RoxSplashAnimation,
-} from "./common/uiSchema";
-import { Collections } from "./Paths/Collections/Collections";
+import { RoxSplashAnimation } from "./common/uiSchema";
+import { Collections } from "./Collections/Collections";
 import { Header } from "./Header/Header";
-import { Passcode } from "./Passcode/Passcode";
-import { auth, analytics } from "./database/firebaseResources";
-import { onAuthStateChanged } from "firebase/auth";
-import { getDocs, updateDoc } from "firebase/firestore";
+
+import { analytics } from "./database/firebaseResources";
+
+import { updateDoc } from "firebase/firestore";
 
 import { logEvent } from "firebase/analytics";
 
 import {
-  useAuthState,
+  useBitcoinAnimation,
   useGlobalStates,
   useUIStates,
   useUserDocument,
@@ -28,38 +23,46 @@ import {
   useZapAnimation,
 } from "./App.hooks";
 import {
-  checkActiveUserStates,
-  checkSignInStates,
-  deleteWeb5Records,
+  computePercentage,
+  getCollectionDocumentsInsideUser,
   handleUserAuthentication,
   sortEmotionsByDate,
 } from "./App.compute";
-import { setOfLectures, userUnlocks, validPasscodes } from "./App.constants";
-import { AuthDisplay } from "./AuthDisplay/AuthDisplay";
+import { setOfLectures } from "./App.constants";
+
 import { LectureHeader } from "./LectureHeader/LectureHeader";
 import { ChatGptWrapper } from "./ChatGPT/ChatGptWrapper";
 import { ProofOfWorkWrapper } from "./ProofOfWork/ProofOfWorkWrapper";
 import { words } from "./common/words/words";
-import { InstallPWA } from "./InstallPWA";
+
 import { RiseUpAnimation } from "./styles/lazyStyles";
 import { useStore } from "./Store";
+import {
+  createWebNodeRecord,
+  deleteWebNodeRecords,
+  queryAndSetWebNodeRecords,
+  testUpdatedWebNodeRecords,
+  updateWebNodeRecord,
+} from "./App.web5";
+
+// import { deleteWeb5Records } from "./App.web5";
 
 logEvent(analytics, "page_view", {
   page_location: "https://learn-robotsbuildingeducation.firebaseapp.com/",
 });
 
-let App = ({ canInstallPwa }) => {
+let App = () => {
   const showStars = useStore((state) => state.showStars);
   const showZap = useStore((state) => state.showZap);
+  const showBitcoin = useStore((state) => state.showBitcoin);
   const setShowStars = useStore((state) => state.setShowStars);
-  const setShowZap = useStore((state) => state.setShowZap);
+
   const handleZap = useZapAnimation();
+  // const handleZap = () => {};
 
   let zap = useZap(1, "Robots Building Education Zap");
 
   const [loading, setLoading] = useState(true);
-  // handles passcode, google sign in and registered user info
-  const { authStateReference } = useAuthState();
 
   // handles database data from the "users" collection
   let { userStateReference } = useUserDocument();
@@ -75,8 +78,6 @@ let App = ({ canInstallPwa }) => {
 
   // handles language switching
   let [languageMode, setLanguageMode] = useState(words["English"]);
-  // const [showStars, setShowStars] = useState(false);
-  // const [showZap, setShowZap] = useState(false);
 
   /**
    *
@@ -99,11 +100,8 @@ let App = ({ canInstallPwa }) => {
         },
       ],
     });
-    uiStateReference.setVisibilityMap(
-      controlPathVisibilityMap(uiStateReference.visibilityMap, event.target.id)
-    );
+
     uiStateReference.setCurrentPath(event.target.id);
-    uiStateReference.setCurrentPathForAnalytics(event.target.id);
 
     uiStateReference.setPatreonObject({});
     uiStateReference.setModuleName("");
@@ -144,44 +142,6 @@ let App = ({ canInstallPwa }) => {
 
   /**
    *
-   * @param event A typing event
-   * @description a process that checks when a user has submitted a valid passcode
-   * - stores passcode to local storage
-   * - clears patreon lecture selected
-   * - sets success password flag to true
-   * - logs event to anlytics
-   */
-  const handleZeroKnowledgePassword = (
-    event,
-    logout = false,
-    bitcoin = false
-  ) => {
-    if (validPasscodes.includes(event?.target?.value)) {
-      localStorage.setItem("patreonPasscode", event.target.value);
-      uiStateReference.setPatreonObject({});
-      authStateReference.setIsZeroKnowledgeUser(true);
-      logEvent(analytics, "login", { method: "zeroKnowledge" });
-    }
-
-    if (logout) {
-      uiStateReference.setPatreonObject({});
-      authStateReference.setIsZeroKnowledgeUser(false);
-      logEvent(analytics, "login", { method: "zeroKnowledge" });
-    }
-
-    if (bitcoin) {
-      localStorage.setItem(
-        "patreonPasscode",
-        import.meta.env.VITE_BITCOIN_PASSCODE
-      );
-      uiStateReference.setPatreonObject({});
-      authStateReference.setIsZeroKnowledgeUser(true);
-      logEvent(analytics, "login", { method: "zeroKnowledge" });
-    }
-  };
-
-  /**
-   *
    * @param collectionRef A collection object used to retrieve or processdatabase data
    * @description gets each emotion document in a user's collection of emotions and prepares them for display
    * - gets user's data from database
@@ -189,121 +149,47 @@ let App = ({ canInstallPwa }) => {
    * - sets emotions for display
    */
   let updateUserEmotions = async (collectionRef) => {
-    await getDocs(collectionRef).then((querySnapshot) => {
-      let emotionSet = [];
-
-      querySnapshot.forEach((doc) => {
-        if (doc.data()) {
-          emotionSet.push(doc.data());
-        } else {
-        }
-      });
-      emotionSet = sortEmotionsByDate(emotionSet);
-      userStateReference.setUsersEmotionsFromDB(emotionSet);
-    });
+    let emotions = await getCollectionDocumentsInsideUser(collectionRef);
+    let emotionSet = sortEmotionsByDate(emotions);
+    userStateReference.setUsersEmotionsFromDB(emotionSet);
   };
 
-  /**
-   * @description check if the user has been logged in
-   */
-
-  const connectDID = async (auth, user) => {
+  const connectDID = async () => {
     try {
-      const { web5, did: aliceDid } = await Web5.connect();
-      localStorage.setItem("uniqueId", web5?.did?.agent?.agentDid);
-
-      // setWeb5Reference(web5);
-
-      // const { records } = await web5.dwn.records.query({
-      //   message: {
-      //     filter: {
-      //       // dataFormat: "text/plain",
-      //       dataFormat: "application/json",
-      //       // Additional filters if available
-      //     },
-      //   },
-      // });
-
-      // let set = [];
-      // for (let record of records) {
-      //   const data = await record.data.json();
-      //   const transcript = { record, data, id: record.id };
-      //   // todos.value.push(todo);
-      //   set.push(transcript);
-      // }
-
-      // setDwnRecordSet(set);
-
-      // let robots = set.find((item) =>
-      //   item?.data?.protocol?.includes("https://robotsbuildingeducation.com")
-      // );
-
-      // if (!robots) {
-      //   const { record } = await web5.dwn.records.create({
-      //     data: {
-      //       protocol: "https://robotsbuildingeducation.com",
-      //       ...userUnlocks,
-      //     },
-      //     message: {
-      //       dataFormat: "application/json",
-      //       published: true,
-      //     },
-      //   });
-      // }
-
-      // deleteWeb5Records(set, web5);
-
-      // console.log("set of records", set);
-
-      // console.log("finished");
-
-      // console.log("runnning auth");
-      if (user?.displayName) {
-        handleUserAuthentication(user, {
-          web5,
-          authStateReference,
-          uiStateReference,
-          userStateReference,
-          globalStateReference,
-          updateUserEmotions,
-        }).catch((error) => {
-          console.error("Error handling user authentication:", error);
-        });
-      } else {
-        handleUserAuthentication(user, {
-          web5,
-          authStateReference,
-          uiStateReference,
-          userStateReference,
-          globalStateReference,
-          updateUserEmotions,
-        }).catch((error) => {
-          console.error("Error handling user authentication:", error);
-        });
+      const { web5 } = await Web5.connect();
+      if (!localStorage.getItem("uniqueId")) {
+        localStorage.setItem("uniqueId", web5?.did?.agent?.agentDid);
       }
 
-      // console.log("unloading");
-      // setLoading(false);
+      // setWeb5Reference(web5);
+      // let set = await queryAndSetWebNodeRecords(web5);
+      // setDwnRecordSet(set);
+      // await createWebNodeRecord(web5, set, userUnlocks);
+
+      // use when testing new data
+      // deleteWebNodeRecords(set, web5);
+
+      handleUserAuthentication({
+        web5,
+        uiStateReference,
+        userStateReference,
+        globalStateReference,
+        updateUserEmotions,
+      });
     } catch (error) {
-      connectDID(auth, user);
+      connectDID();
     }
   };
 
   useEffect(() => {
-    // console.log("running after DID");
+    connectDID();
 
     setTimeout(() => {
       setLoading(false);
     }, 2000);
-
-    authStateReference.setIsZeroKnowledgeUser(true);
-
-    onAuthStateChanged(auth, (user) => {
-      connectDID(auth, user);
-    });
   }, []);
 
-  if (loading || typeof authStateReference.isSignedIn == "string") {
+  if (loading) {
     return (
       <div
         style={{
@@ -326,8 +212,6 @@ let App = ({ canInstallPwa }) => {
   ) => {
     let locationOfHeader = uiStateReference.patreonObject.credential;
 
-    let data = {};
-
     let profile = {
       ...userStateReference.databaseUserDocument.profile,
       [locationOfHeader]: true,
@@ -341,30 +225,6 @@ let App = ({ canInstallPwa }) => {
       ...prevDoc,
       profile,
     }));
-
-    setShowStars(true);
-
-    // // Randomize animation properties for each star
-    // document.querySelectorAll(".star").forEach((star) => {
-    //   const scale = Math.random() * 10; // Random scale
-    //   const x = Math.random() * 200 - 100; // Random x-position
-    //   const y = Math.random() * 200 - 100; // Random y-position
-    //   const duration = Math.random() * 1 + 0.5; // Random duration
-
-    //   // star.style.textShadow = "25px 25px 25px gold";
-    //   star.style.opacity = 1;
-    //   star.style.transform = `scale(${scale}) translate(${x}px, ${y}px)`;
-    //   star.style.transition = `transform ${duration}s ease-in-out, opacity ${duration}s ease-in-out`;
-
-    //   // Reset the star after the animation
-    //   setTimeout(() => {
-    //     star.style.opacity = 0;
-    //     star.style.transform = "none";
-    //   }, duration * 1000);
-    // });
-
-    // Reset the whole animation after some time
-    setTimeout(() => setShowStars(false), 2000);
   };
 
   const handleCompletedPractice = async (moduleData = null) => {
@@ -385,30 +245,6 @@ let App = ({ canInstallPwa }) => {
     }));
 
     checkForUnlock("progress", moduleData);
-
-    setShowStars(true);
-
-    // // Randomize animation properties for each star
-    // document.querySelectorAll(".star").forEach((star) => {
-    //   const scale = Math.random() * 10; // Random scale
-    //   const x = Math.random() * 200 - 100; // Random x-position
-    //   const y = Math.random() * 200 - 100; // Random y-position
-    //   const duration = Math.random() * 1 + 0.5; // Random duration
-
-    //   // star.style.textShadow = "25px 25px 25px gold";
-    //   star.style.opacity = 1;
-    //   star.style.transform = `scale(${scale}) translate(${x}px, ${y}px)`;
-    //   star.style.transition = `transform ${duration}s ease-in-out, opacity ${duration}s ease-in-out`;
-
-    //   // Reset the star after the animation
-    //   setTimeout(() => {
-    //     star.style.opacity = 0;
-    //     star.style.transform = "none";
-    //   }, duration * 1000);
-    // });
-
-    // Reset the whole animation after some time
-    setTimeout(() => setShowStars(false), 2000);
   };
 
   const handleWatch = async (moduleData = null) => {
@@ -428,26 +264,7 @@ let App = ({ canInstallPwa }) => {
 
     checkForUnlock("watches", moduleData);
 
-    // // Randomize animation properties for each star
-    // document.querySelectorAll(".star").forEach((star) => {
-    //   const scale = Math.random() * 10; // Random scale
-    //   const x = Math.random() * 200 - 100; // Random x-position
-    //   const y = Math.random() * 200 - 100; // Random y-position
-    //   const duration = Math.random() * 1 + 0.5; // Random duration
-
-    //   // star.style.textShadow = "25px 25px 25px gold";
-    //   star.style.opacity = 1;
-    //   star.style.transform = `scale(${scale}) translate(${x}px, ${y}px)`;
-    //   star.style.transition = `transform ${duration}s ease-in-out, opacity ${duration}s ease-in-out`;
-
-    //   // Reset the star after the animation
-    //   setTimeout(() => {
-    //     star.style.opacity = 0;
-    //     star.style.transform = "none";
-    //   }, duration * 1000);
-    // });
-
-    // Reset the whole animation after some time
+    handleZap();
   };
 
   const checkForUnlock = async (setType, moduleName) => {
@@ -495,81 +312,25 @@ let App = ({ canInstallPwa }) => {
         unlocks,
       });
 
-      // const { record } = await web5Reference.dwn.records.read({
-      //   message: {
-      //     filter: {
-      //       recordId: dwnRecordSet?.find(
-      //         (item) =>
-      //           item?.data?.protocol === "https://robotsbuildingeducation.com"
-      //       )?.id,
-      //     },
-      //   },
-      // });
-
-      // const transcript = await record.data.json();
-
-      // await record.update({
-      //   data: {
-      //     ...transcript,
-      //     ...unlocks,
-      //   },
-      // });
+      // await updateWebNodeRecord(web5Reference, dwnRecordSet, unlocks);
 
       userStateReference.setDatabaseUserDocument((prevDoc) => ({
         ...prevDoc,
         unlocks,
       }));
 
-      // // console.log("final result:");
-      // const { record: testRecord } = await web5Reference.dwn.records.read({
-      //   message: {
-      //     filter: {
-      //       recordId: dwnRecordSet?.find(
-      //         (item) =>
-      //           item?.data?.protocol === "https://robotsbuildingeducation.com"
-      //       )?.id,
-      //     },
-      //   },
-      // });
-      // const outcome = await testRecord.data.json();
-      // console.log("dwn outcome", outcome);
+      // testUpdatedWebNodeRecords(web5Reference, dwnRecordSet);
+
+      setShowStars(true);
+
+      // Reset the whole animation after some time
+      setTimeout(() => setShowStars(false), 2000);
+    } else {
+      if (setType === "progress") {
+        handleZap();
+      }
     }
   };
-  // const handleZap = async () => {
-  //   // document.getElementById("zap-container").style.display = "block";
-  //   setShowZap(true);
-  //   // setTimeout(() => {
-  //   //   console.log("do nothing");
-  //   //   // star.style.opacity = 0;
-  //   //   // star.style.transform = "none";
-  //   // }, 2 * 1000);
-
-  //   // Randomize animation properties for each star
-  //   // document.querySelectorAll(".zap").forEach((star) => {
-  //   //   const scale = Math.random() * 1.5; // Random scale
-  //   //   const x = Math.random() * 200 - 100; // Random x-position
-  //   //   const y = Math.random() * 200 - 100; // Random y-position
-  //   //   const duration = Math.random() * 1 + 0.5; // Random duration
-
-  //   //   // star.style.textShadow = "25px 25px 25px gold";
-
-  //   //   star.style.opacity = 1;
-  //   //   star.style.transform = `scale(${scale}) translate(${x}px, ${y}px)`;
-  //   //   star.style.transition = `transform ${duration}s ease-in-out, opacity ${duration}s ease-in-out`;
-
-  //   //   // Reset the star after the animation
-  //   //   setTimeout(() => {
-  //   //     star.style.opacity = 0;
-  //   //     star.style.transform = "none";
-  //   //   }, duration * 1000);
-  //   // });
-
-  //   // Reset the whole animation after some time
-  //   setTimeout(() => {
-  //     // document.getElementById("zap-container").style.display = "none";
-  //     setShowZap(false);
-  //   }, 2000);
-  // };
 
   return (
     <div
@@ -588,72 +349,51 @@ let App = ({ canInstallPwa }) => {
           maxWidth: "100%",
         }}
       >
-        {/* <InstallPWA /> */}
-        <Header
-          languageMode={languageMode}
-          setLanguageMode={setLanguageMode}
-          handleZeroKnowledgePassword={handleZeroKnowledgePassword}
-          canInstallPwa={canInstallPwa}
-        />
+        <Header languageMode={languageMode} setLanguageMode={setLanguageMode} />
 
-        {checkSignInStates({ authStateReference }) ? <AuthDisplay /> : null}
-
-        {!authStateReference.isZeroKnowledgeUser ? (
-          <Passcode
-            patreonObject={uiStateReference.patreonObject}
-            handleZeroKnowledgePassword={handleZeroKnowledgePassword}
+        <>
+          <Paths
+            handlePathSelection={handlePathSelection}
+            pathSelectionAnimationData={
+              uiStateReference.pathSelectionAnimationData
+            }
+            userStateReference={userStateReference}
           />
-        ) : null}
 
-        {authStateReference.isZeroKnowledgeUser &&
-        checkActiveUserStates({ userStateReference, authStateReference }) ? (
-          <>
-            <Paths
-              handlePathSelection={handlePathSelection}
-              pathSelectionAnimationData={
-                uiStateReference.pathSelectionAnimationData
-              }
-              userStateReference={userStateReference}
-            />
+          <Collections
+            handleModuleSelection={handleModuleSelection}
+            currentPath={uiStateReference.currentPath}
+            userStateReference={userStateReference}
+          />
 
-            <Collections
-              handleModuleSelection={handleModuleSelection}
-              currentPath={uiStateReference.currentPath}
-              userStateReference={userStateReference}
-            />
+          <LectureHeader uiStateReference={uiStateReference} />
 
-            <LectureHeader uiStateReference={uiStateReference} />
-
-            <ChatGptWrapper
-              uiStateReference={uiStateReference}
-              userStateReference={userStateReference}
-              globalStateReference={globalStateReference}
-              handleScheduler={handleScheduler}
-              handleZap={handleZap}
-              zap={zap}
-              checkForUnlock={checkForUnlock}
-              handleCompletedPractice={handleCompletedPractice}
-              handleWatch={handleWatch}
-            />
-          </>
-        ) : null}
+          <ChatGptWrapper
+            uiStateReference={uiStateReference}
+            userStateReference={userStateReference}
+            globalStateReference={globalStateReference}
+            handleScheduler={handleScheduler}
+            handleZap={handleZap}
+            zap={zap}
+            checkForUnlock={checkForUnlock}
+            handleCompletedPractice={handleCompletedPractice}
+            handleWatch={handleWatch}
+          />
+        </>
       </div>
 
-      {checkActiveUserStates({ userStateReference, authStateReference }) ? (
-        <ProofOfWorkWrapper
-          userStateReference={userStateReference}
-          authStateReference={authStateReference}
-          globalStateReference={globalStateReference}
-          handlePathSelection={handlePathSelection}
-          updateUserEmotions={updateUserEmotions}
-          uiStateReference={uiStateReference}
-          showStars={showStars}
-          showZap={showZap}
-          handleZeroKnowledgePassword={handleZeroKnowledgePassword}
-          zap={zap}
-          handleZap={handleZap}
-        />
-      ) : null}
+      <ProofOfWorkWrapper
+        userStateReference={userStateReference}
+        globalStateReference={globalStateReference}
+        updateUserEmotions={updateUserEmotions}
+        uiStateReference={uiStateReference}
+        showStars={showStars}
+        showZap={showZap}
+        showBitcoin={showBitcoin}
+        zap={zap}
+        handleZap={handleZap}
+        computePercentage={computePercentage}
+      />
     </div>
   );
 };

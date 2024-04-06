@@ -3,11 +3,8 @@ import styled, { keyframes } from "styled-components";
 import { Button, Modal } from "react-bootstrap";
 import { isEmpty } from "lodash";
 import ReactJson from "react-json-view";
-import { logEvent } from "firebase/analytics";
-import { analytics } from "../../database/firebaseResources";
-import { RiseUpAnimation, StyledPromptButton } from "../../styles/lazyStyles";
-import { computeTotalImpactFromPrompt } from "../ChatGPT.compute";
-import { useZap } from "../../App.hooks";
+
+import { StyledPromptButton } from "../../styles/lazyStyles";
 
 const delayedAnimation = keyframes`
 from {
@@ -42,9 +39,11 @@ const PromptButton = ({
     localStorage.getItem("patreonPasscode") ===
     import.meta.env.VITE_BITCOIN_PASSCODE
   ) {
-    let satoshis = computeTotalImpactFromPrompt(patreonObject, type);
+    // let satoshis = computeTotalImpactFromPrompt(patreonObject, type);
     // let data = useZap(satoshis);
     // let zap = useZap(1);
+
+    console.log("running bitcoin");
     return (
       <StyledPromptButton
         tabindex="0"
@@ -55,7 +54,6 @@ const PromptButton = ({
             .then((response) => {
               console.log("response from zap", response);
               onClick(e);
-              handleZap("lecture");
             })
             .catch((error) => {
               console.log("error", error);
@@ -76,7 +74,6 @@ const PromptButton = ({
       borderHighlight={"#48484a"}
       style={{ display: loading ? "none" : "flex" }}
       onClick={(e) => {
-        handleZap("lecture");
         onClick(e, prompt, type);
       }}
     >
@@ -109,6 +106,7 @@ export const Prompts = ({
   patreonObject,
   handleSubmit,
   handleZap,
+
   zap,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

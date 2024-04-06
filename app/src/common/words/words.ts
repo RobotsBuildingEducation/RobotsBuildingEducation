@@ -1,8 +1,4 @@
-//you want to keep word interfaces pretty flat and predictacle.
-//this makes it pretty simple to start toggling your content for bilingual speakers using GPT.
-//we use numbers to index each key in a key-value pair because we don't know what the key is going to describe.
-//additional descriptions can be handled by comments. that's right, comments as code.
-
+// work in progress. intent is to make toggling english and spanish easily rather than using internationalization libraries.
 export let words = {
   English: {
     modals: {
@@ -13,7 +9,7 @@ export let words = {
         "4": "How You Feel",
         "5": "Proof of Work",
         "6": "Conversation Grader",
-        "7": "The Quiz"
+        "7": "The Quiz",
       },
       headers: {
         "1": "RO.B.E",
@@ -33,7 +29,6 @@ export let words = {
         "15": "Hey what about cybersecurity, data analytics or these certificates?",
         "16": "Did I go to school?",
 
-
         //proof of work wallet
         "20": "The Proof of Work System",
         "21": "Scholarships Created: ",
@@ -47,7 +42,6 @@ export let words = {
         "26": "Low energy",
 
         // TODO: get the header titles from ui(). need to remove the "Coding" image
-
       },
     },
 
@@ -76,7 +70,6 @@ export let words = {
       "12": "Creator",
       "13": "Dealer",
 
-
       //modules (tbd)
 
       // engineer - version 3 crash course
@@ -103,33 +96,27 @@ export let words = {
       "44": "guide",
       "45": "shop",
 
-
       // emotional intelligence
       "46": "Motivated",
-      "48": "Excited", 
-      "49": "Stressed", 
-      "50": "Anxious", 
+      "48": "Excited",
+      "49": "Stressed",
+      "50": "Anxious",
 
       "51": "Peaceful",
-      "52": "Content", 
-      "53": "Sad", 
-      "54": "Tired", 
+      "52": "Content",
+      "53": "Sad",
+      "54": "Tired",
       "55": "generate insight",
 
       // conversation grader
       "56": "Grade",
       "57": "Add to conversation",
-      "58":"Ask rox for assistance on your quiz! Grade your conversation and see how you can improve =)",
+      "58": "Ask rox for assistance on your quiz! Grade your conversation and see how you can improve =)",
 
       //switches
       "59": "Zen Garden",
-      "60": "Holy Ghost"
-
-
-
-
+      "60": "Holy Ghost",
     },
-
   },
   Español: {
     modals: {
@@ -140,7 +127,7 @@ export let words = {
         "4": "Cómo Te Sientes",
         "5": "Prueba de Trabajo",
         "6": "Evaluador de Conversación",
-        "7": "El Cuestionario"
+        "7": "El Cuestionario",
       },
       headers: {
         "1": "RO.B.E",

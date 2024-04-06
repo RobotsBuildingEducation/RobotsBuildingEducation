@@ -1,27 +1,18 @@
 import { useEffect, useState } from "react";
-import React from "react";
+
 import { LightningAddress } from "@getalby/lightning-tools";
-import { Button, Modal, launchModal } from "@getalby/bitcoin-connect-react";
-import toast, { Toaster } from "react-hot-toast";
+
 import { useStore } from "./Store";
 
-export const useAuthState = () => {
-  const [isSignedIn, setIsSignedIn] = useState("start");
-  const [isZeroKnowledgeUser, setIsZeroKnowledgeUser] = useState(false);
-  const [userAuthObject, setUserAuthObject] = useState({});
-
-  let authStateReference = {
-    isSignedIn,
-    setIsSignedIn,
-    isZeroKnowledgeUser,
-    setIsZeroKnowledgeUser,
-    userAuthObject,
-    setUserAuthObject,
-  };
-
-  return { authStateReference };
-};
-
+/**
+ *
+ * used to manage the user's collection & its respective document from firestore.
+ *
+ * databaseUserDocument = the actual user document data
+ * userDocumentReference = the argument that gets used to retrieve the user's document from Firestore
+ * usersEmotionsCollectionReference = the argument used to retrieve the user's emotions collection (saved data)
+ * usersEmotionsFromDB = the actual emotion data
+ */
 export const useUserDocument = () => {
   const [databaseUserDocument, setDatabaseUserDocument] = useState({});
   const [userDocumentReference, setUserDocumentReference] = useState({});
@@ -46,13 +37,23 @@ export const useUserDocument = () => {
   return { userStateReference };
 };
 
+/**
+ *
+ 
+ * Used to manage the global collection in firestore
+ *
+ * globalDocumentReference = used to retrieve the impact document in the global collection
+ * globalImpactCounter = simple counter data, global.impact.total
+ * globalScholarshipCounter = simple counter data, global.impact.scholarships
+ * globalLevelCounter = highest level in quiz mode
+ * globalLeaderName = name of discord user with highest score
+ */
 export const useGlobalStates = () => {
   const [globalDocumentReference, setGlobalDocumentReference] = useState({});
   const [globalImpactCounter, setGlobalImpactCounter] = useState(0);
   const [globalLevelCounter, setGlobalLevelCounter] = useState(0);
   const [globalLeaderName, setGlobalLeaderName] = useState("RO.B.E");
   const [globalScholarshipCounter, setGlobalScholarshipCounter] = useState(0);
-  const [globalReserveObject, setGobalReserveObject] = useState({});
 
   let globalStateReference = {
     globalDocumentReference,
@@ -61,8 +62,7 @@ export const useGlobalStates = () => {
     setGlobalImpactCounter,
     globalScholarshipCounter,
     setGlobalScholarshipCounter,
-    globalReserveObject,
-    setGobalReserveObject,
+
     globalLevelCounter,
     setGlobalLevelCounter,
     globalLeaderName,
@@ -72,16 +72,24 @@ export const useGlobalStates = () => {
   return { globalStateReference };
 };
 
+/**
+ *
+ * Used to manage the UI state of the application, unrelated to the state of the database.
+ *
+ * patreonObject = the lecture data set
+ * currentPath = path selected between Engineer, Creator, Dealer
+ * moduleName = name of lecture selected
+ * pathSelectionAnimationData = animation triggers for the path selection/hover
+ * proofOfWorkFromModules = calculates the ui() to get all impact points
+ */
 export const useUIStates = () => {
   const [patreonObject, setPatreonObject] = useState({});
   const [currentPath, setCurrentPath] = useState("");
-  const [currentPathForAnalytics, setCurrentPathForAnalytics] = useState("");
   const [moduleName, setModuleName] = useState("");
   const [pathSelectionAnimationData, setPathSelectionAnimationData] = useState(
     {}
   );
-  const [visibilityMap, setVisibilityMap] = useState({});
-  const [isDemo, setIsDemo] = useState(true);
+
   const [proofOfWorkFromModules, setProofOfWorkFromModules] = useState(0);
 
   let uiStateReference = {
@@ -89,16 +97,11 @@ export const useUIStates = () => {
     setPatreonObject,
     currentPath,
     setCurrentPath,
-    currentPathForAnalytics,
-    setCurrentPathForAnalytics,
     moduleName,
     setModuleName,
     pathSelectionAnimationData,
     setPathSelectionAnimationData,
-    visibilityMap,
-    setVisibilityMap,
-    isDemo,
-    setIsDemo,
+
     proofOfWorkFromModules,
     setProofOfWorkFromModules,
   };
@@ -106,15 +109,37 @@ export const useUIStates = () => {
   return { uiStateReference };
 };
 
+/**
+ * Custom React hook to create and pay a Lightning Network invoice using Alby's LightningAddress.
+ *
+ * This hook abstracts the functionality to generate a new Lightning Network invoice with a specified
+ * deposit amount and message. It then attempts to pay this invoice using the connected wallet via WebLN.
+ *
+ * @param {number} depositAmount - The amount in satoshis to be deposited (default is 1 satoshi).
+ * @param {string} depositMessage - A message to accompany the deposit, for context (default is a message about Robots Building Education Lecture).
+ *
+ * @returns {Function} createZap - A function that initiates the creation of a new Lightning Network invoice.
+ *
+ * @example
+ * const createZap = useZap(100, "Donation for project X");
+ *
+ * useEffect(() => {
+ *   createZap();
+ * }, []);
+ *
+ * The hook manages the invoice state internally and automatically attempts payment upon invoice creation.
+ * It leverages the `@getalby/lightning-tools` for generating invoices and uses WebLN for payment if available.
+ * Errors during the invoice creation or payment process are logged to the console and displayed via alert.
+ *
+ * Note: This hook requires a WebLN-enabled browser extension like Alby to be installed and configured by the user.
+ */
 export const useZap = (
   depositAmount = 1,
   depositMessage = "Robots Building Education Lecture"
 ) => {
   const [invoice, setInvoice] = useState<string | undefined>(undefined);
-  const [preimage, setPreimage] = useState<string | undefined>(undefined);
 
   let payInvoice = async () => {
-    console.log("running pay invoice");
     try {
       if (!window.webln || !window.webln) {
         throw new Error("Please connect your wallet");
@@ -141,80 +166,62 @@ export const useZap = (
 
   let createZap = async () => {
     try {
-      // robots - for real use
-      const ln = new LightningAddress("levitatingnight182471@getalby.com");
+      const ln = new LightningAddress("strongstingray4@primal.net");
 
-      // test account (things prices at 1 zap)
-      // const ln = new LightningAddress("talentedfriendship526161@getalby.com");
-      // ln.zap
+      console.log("ln", ln);
       await ln.fetch();
 
       let invoiceResult = (
         await ln.requestInvoice({
           satoshi: 1,
-          comment: "invoice requested",
+          comment: "Robots Building Education",
         })
       ).paymentRequest;
 
-      console.log("invoice result", invoiceResult);
-
+      console.log("invoice", invoiceResult);
       setInvoice(invoiceResult);
-      console.log("invoice?", invoice);
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    // mountInvoice();
     if (invoice) {
       payInvoice();
     }
   }, [invoice]);
 
-  // console.log("invoice result", invoice);
   return createZap;
 };
 
+/**
+ * handles lecture events when a user selects a prompt or completes a task like a completed video or AI completion.
+ */
 export const useZapAnimation = () => {
+  // console.log("running zap..");
   const setShowZap = useStore((state) => state.setShowZap);
 
   let animation = () => {
     setShowZap(true);
     setTimeout(() => {
-      // document.getElementById("zap-container").style.display = "none";
       setShowZap(false);
     }, 2000);
   };
-  // document.getElementById("zap-container").style.display = "block";
 
-  // setTimeout(() => {
-  //   console.log("do nothing");
-  //   // star.style.opacity = 0;
-  //   // star.style.transform = "none";
-  // }, 2 * 1000);
+  return animation;
+};
 
-  // Randomize animation properties for each star
-  // document.querySelectorAll(".zap").forEach((star) => {
-  //   const scale = Math.random() * 1.5; // Random scale
-  //   const x = Math.random() * 200 - 100; // Random x-position
-  //   const y = Math.random() * 200 - 100; // Random y-position
-  //   const duration = Math.random() * 1 + 0.5; // Random duration
+export const useBitcoinAnimation = () => {
+  console.log("bitcoin animation");
+  const setShowBitcoin = useStore((state) => state.setShowBitcoin);
 
-  //   // star.style.textShadow = "25px 25px 25px gold";
-
-  //   star.style.opacity = 1;
-  //   star.style.transform = `scale(${scale}) translate(${x}px, ${y}px)`;
-  //   star.style.transition = `transform ${duration}s ease-in-out, opacity ${duration}s ease-in-out`;
-
-  //   // Reset the star after the animation
-  //   setTimeout(() => {
-  //     star.style.opacity = 0;
-  //     star.style.transform = "none";
-  //   }, duration * 1000);
-  // });
-
-  // Reset the whole animation after some time
+  let animation = () => {
+    console.log("changing showBitcoin..");
+    setShowBitcoin(true);
+    setTimeout(() => {
+      setShowBitcoin(false);
+    }, 2000);
+  };
 
   return animation;
 };

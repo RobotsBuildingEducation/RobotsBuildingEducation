@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components";
-import { isEmpty } from "lodash";
 import { Link } from "react-router-dom";
 import { getRandomColor } from "../App.compute";
 
@@ -166,32 +165,23 @@ export const StyledModule = styled.button`
       return props.module === "Lesson 4 Building Apps & Startups" ||
         props.module === "Lesson 2 Frontend Programming"
         ? "gold"
-        : props.patreonObject.isModuleDisabled
-        ? "#11220E"
-        : props.patreonObject.rare
-        ? "#DA830D"
-        : props.patreonObject.highValue
-        ? "#F8B125"
-        : props.patreonObject.new
-        ? "#f9c4ff"
-        : props.patreonObject.underConstruction
-        ? "#6A74B4"
+        : props.patreonObject.creatorBorder
+        ? "black"
+        : props.patreonObject.dealerBorder
+        ? "#ffd164"
         : "#B271D1";
     }};
 
   text-shadow: 1px 1px 5px black;
 
-  /* cursor: ${(props) => {
-    return props.patreonObject.isModuleDisabled ? "not-allowed" : "grab";
+  /* cursor: grab;
   }}; */
 
   &:hover {
     transform: scale(1.1);
 
     background: ${(props) => {
-      return props.patreonObject.isModuleDisabled
-        ? "#48464A"
-        : getRandomColor();
+      return getRandomColor();
     }};
 
     animation: ${sineWave} 3s infinite ease-in-out;
@@ -223,46 +213,30 @@ export const ComingSoonModule = styled.button`
   transition: 0.15s all ease-in-out;
   border: 5px dashed
     ${(props) => {
-      return props.patreonObject.isModuleDisabled
-        ? japaneseThemePalette.GoldenAccent
-        : props.patreonObject.rare
+      return props.patreonObject.creatorBorder
         ? "#DA830D"
-        : props.patreonObject.highValue
-        ? "#F8B125"
-        : props.patreonObject.new
-        ? "#f9c4ff"
-        : props.patreonObject.underConstruction
-        ? "#6A74B4"
+        : props.patreonObject.dealerBorder
+        ? "black"
         : "#B271D1";
     }};
 
   text-shadow: 1px 1px 5px black;
   background-color: ${(props) => {
-    return props.patreonObject.isModuleDisabled
-      ? "black"
-      : props.patreonObject.rare
+    return props.patreonObject.creatorBorder
       ? "#DA830D"
-      : props.patreonObject.highValue
+      : props.patreonObject.dealerBorder
       ? "#F8B125"
-      : props.patreonObject.new
-      ? "#f6a3ff"
-      : props.patreonObject.underConstruction
-      ? "#6A74B4"
       : "#F099AD";
   }};
 
-  cursor: ${(props) => {
-    return props.patreonObject.isModuleDisabled
-      ? "not-allowed!important"
-      : "grab";
+  cursor: grab;
   }};
 
   &:hover {
     transform: scale(1.1);
 
-    background: ${(props) => {
-      return props.patreonObject.isModuleDisabled ? "black" : "#f5befa";
-    }};
+    background: #f5befa;
+
   }
 `;
 
@@ -292,7 +266,7 @@ export const StyledLink = styled(Link)`
       // Function to convert a hex color to its blue version
       const toBlueVersion = (color) => {
         // Implement your logic to convert to blue version
-        return "#64ddff"; // Example
+        return "#001eff"; // Example
       };
 
       // Function to convert a hex color to its golden version
@@ -325,26 +299,7 @@ export const StyledLink = styled(Link)`
     color: white;
   }
 
-  background: ${(props) => {
-    // const isActive = props.active;
-    // const isSelectedPath = props.pathSelectionAnimationData.path === props.path;
-    // const currentPath = props.path;
-    // let backgroundColor = "";
-    // if (isActive && isSelectedPath) {
-    //   backgroundColor = "#FF64FF"; // Original color for selected path
-    // } else if (isActive && !isSelectedPath) {
-    //   backgroundColor = "#b271d1"; // Original color for non-selected path
-    // }
-    // // Adjust color based on path
-    // if (currentPath === "Engineer") {
-    //   // Colors remain the same
-    // } else if (currentPath === "Creator") {
-    //   backgroundColor = backgroundColor === "#FF64FF" ? "#6495ff" : "#6495ff"; // Blue versions
-    // } else if (currentPath === "Entrepeneur") {
-    //   backgroundColor = backgroundColor === "#FF64FF" ? "#ffb264" : "#ffb264"; // Golden versions
-    // }
-    // return backgroundColor;
-  }};
+  background: ${(props) => {}};
 
   // border: 2px solid hotpink;
   border: 2px solid

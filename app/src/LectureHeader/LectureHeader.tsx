@@ -8,6 +8,10 @@ const headerStyle = {
   fontFamily: "Bungee",
 };
 
+/**
+ *
+ * @returns a component that renders the title of the selected module
+ */
 export const LectureHeader = ({ uiStateReference }) => {
   // Check for the existence of the header in patreonObject
   const headerExists = !isEmpty(uiStateReference.patreonObject.header);

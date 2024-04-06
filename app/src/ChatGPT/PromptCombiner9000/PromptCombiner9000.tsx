@@ -1,23 +1,19 @@
 import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
+
 import { isEmpty } from "lodash";
-import { logEvent } from "firebase/analytics";
+
 import Patreon from "../Patreon/Patreon";
 import CodeEditor from "../CodeEditor/CodeEditor";
-import { analytics } from "../../database/firebaseResources";
-import { Button } from "react-bootstrap";
-import Editor from "react-simple-code-editor";
-import { highlight, languages } from "prismjs/components/prism-core";
+
 import "prismjs/components/prism-clike";
 import "prismjs/components/prism-javascript";
 import "prismjs/themes/prism.css";
-import { PanLeftComponent, PanRightComponent } from "../../styles/lazyStyles";
-import { ContentLinks } from "../../common/ui/Displays/ContentLinks/ContentLinks";
-import { CodeDemo } from "./Content/CodeDemo";
-import { SchedulerBlock } from "../../common/ui/Displays/SchedulerBlock/SchedulerBlock";
-import { CodeBlock } from "../../common/ui/Displays/CodeBlock/CodeBlock";
+import { PanLeftComponent } from "../../styles/lazyStyles";
+import { ContentLinks } from "../../common/ui/Elements/ContentLinks/ContentLinks";
+import { CodeDemo } from "./CodeDemo/CodeDemo";
+
+import { CodeBlock } from "../../common/ui/Elements/CodeBlock/CodeBlock";
 
 const delayedAnimation = keyframes`
 from {
@@ -89,6 +85,7 @@ const renderContent = (
   userStateReference,
   globalStateReference,
   handleZap,
+
   zap,
   moduleName,
   checkForUnlock,
@@ -105,7 +102,6 @@ const renderContent = (
           userStateReference={userStateReference}
           globalStateReference={globalStateReference}
           handleZap={handleZap}
-          zap={zap}
           moduleName={moduleName}
         />
       );
@@ -114,14 +110,16 @@ const renderContent = (
         <CodeEditor
           patreonObject={patreonObject}
           moduleName={moduleName}
-          userStateReference={userStateReference}
           handleCompletedPractice={handleCompletedPractice}
         />
       );
     case "demonstrate":
       if (patreonObject?.hasCode) {
         return (
-          <CodeBlock code={response}>
+          <CodeBlock
+            userStateReference={userStateReference}
+            globalStateReference={globalStateReference}
+          >
             <CodeDemo response={response} patreonObject={patreonObject} />
           </CodeBlock>
         );
@@ -173,6 +171,7 @@ export const PromptCombiner9000 = ({
   userStateReference,
   globalStateReference,
   handleZap,
+
   zap,
   index,
   moduleName,
@@ -243,6 +242,7 @@ export const PromptCombiner9000 = ({
                 userStateReference,
                 globalStateReference,
                 handleZap,
+
                 zap,
                 moduleName,
                 checkForUnlock,

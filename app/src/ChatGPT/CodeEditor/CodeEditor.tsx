@@ -4,11 +4,10 @@ import { highlight, languages } from "prismjs/components/prism-core";
 import "prismjs/components/prism-clike";
 import "prismjs/components/prism-javascript";
 import "prismjs/themes/prism.css";
-import RandomCharacter from "../../common/ui/Displays/RandomCharacter/RandomCharacter";
 
 import styled from "styled-components";
-import { database } from "../../database/firebaseResources";
-import { doc } from "firebase/firestore";
+
+import RandomCharacter from "../../common/ui/Elements/RandomCharacter/RandomCharacter";
 
 const CopyButton = styled.button`
   /* default styles */
@@ -26,7 +25,7 @@ const CopyButton = styled.button`
 const CodeEditor = ({
   patreonObject,
   moduleName,
-  userStateReference,
+
   handleCompletedPractice,
 }) => {
   const stepMap = patreonObject?.prompts?.practice?.steps || [

@@ -1,27 +1,18 @@
-import { ChatBlock } from "../Displays/ChatBlock/ChatBlock";
+import { ChatBlock } from "../Elements/ChatBlock/ChatBlock";
 import designOfEverydayThings from "../../media/images/designOfEverydayThings.png";
 import { ultimateEffeciencyJutsu } from "../ui";
-import { japaneseThemePalette, textBlock } from "../../../styles/lazyStyles";
-import { SchedulerBlock } from "../Displays/SchedulerBlock/SchedulerBlock";
-import MarkdownRenderer from "../../../ChatGPT/Patreon/MarkdownRenderer/MarkdownRenderer";
+import { SchedulerBlock } from "../Elements/SchedulerBlock/SchedulerBlock";
+import MarkdownRenderer from "../Elements/MarkdownRenderer/MarkdownRenderer";
 import inspire06 from "../../media/images/prompts/inspire06.jpg";
 import inspire07 from "../../media/images/prompts/inspire07.jpg";
 import inspire08 from "../../media/images/prompts/inspire08.png";
+import { Typewriter } from "../Elements/Typewriter/Typewriter";
 
 export const Creator = {
   Communications: {
     Philosophy: {
-      documentID: ``,
-      filler: ``,
-      new: false,
-      highValue: false,
-      underConstruction: true,
-      completed: false,
-      rare: true,
-      needsImprovement: false,
-      tooltip: ``,
-      sourceType: `video`, // may not need
-      button: `Philosophy @ RO.B.E`, // may not need - `name`
+      creatorBorder: true,
+
       header: `Philosophy @ RO.B.E`,
       credential: "Philosophy of Critical Theory & Technology",
       backgroundImgSrc:
@@ -32,7 +23,7 @@ export const Creator = {
       prompts: {
         welcome: {
           response: (
-            <div>
+            <Typewriter>
               Welcome, brilliant minds! 🌟 Today, we embark on an enlightening
               journey through the realms of Critical Race Theory, Machine
               Learning Algorithms, and Macroeconomics. Together, we'll explore
@@ -41,13 +32,11 @@ export const Creator = {
               Ready to dive into this intellectual adventure with curiosity and
               courage? Let's unravel the complexities of our world and build
               bridges to a future where knowledge empowers us all. 🚀💡
-            </div>
+            </Typewriter>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         patreon: {
-          completed: false,
           impact: 1000,
           action: `generate`,
           icon: `✨`, //`✍️`
@@ -56,9 +45,8 @@ export const Creator = {
           )}?`,
           response: `null`,
           spanish: ``,
-          tooltip: ``,
-          // additionalContent: await import("../../markdowns/philosophy.md?raw"),
-          summaryContent: (
+
+          extraContent: (
             <div
               style={{
                 overflowWrap: "break-word",
@@ -75,7 +63,7 @@ export const Creator = {
         inspire: {
           headerImageSrc: inspire06,
           wikiLink: "https://en.wikipedia.org/wiki/Abraham_Lincoln",
-          completed: false,
+
           impact: 100,
           action: `inspire`,
           icon: `⚡`,
@@ -138,10 +126,8 @@ export const Creator = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         summarize: {
-          completed: false,
           impact: 100,
           action: `summarize`,
           icon: `📚`,
@@ -219,10 +205,8 @@ export const Creator = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         ask: {
-          completed: false,
           impact: 100,
           action: `ask`,
           icon: `🔮`,
@@ -303,10 +287,8 @@ export const Creator = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         guide: {
-          completed: false,
           impact: 100,
           action: `guide`,
           icon: `🧚`,
@@ -465,10 +447,8 @@ export const Creator = {
             </SchedulerBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         demonstrate: {
-          completed: false,
           impact: 100,
           action: `demonstrate`,
           icon: `🎨`,
@@ -563,10 +543,8 @@ export const Creator = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         define: {
-          completed: false,
           impact: 100,
           action: `define`, // may not need
           icon: `🧿`, // may not need
@@ -583,10 +561,8 @@ export const Creator = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         quiz: {
-          completed: false,
           impact: 100,
           action: `quiz`,
           icon: `🧪`,
@@ -630,33 +606,22 @@ export const Creator = {
             </ChatBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         shop: {
-          completed: false,
           impact: 100,
           action: `shop`,
           icon: `🛍️`,
           request: `Alright bro, show me what you got. I wanna shop and support this network more.`,
           response: `This shopping slot is not being utilized yet. Please contact me in Patreon to qualify.`,
           spanish: ``,
-          tooltip: ``,
         },
       },
     },
     "Interactions & Design": {
-      documentID: ``,
-      filler: ``,
-      new: false,
-      highValue: false,
-      underConstruction: false,
-      completed: false,
-      rare: true,
-      needsImprovement: false,
+      creatorBorder: true,
+
       credential: "Human-Computer Interaction",
-      tooltip: ``,
-      sourceType: `video`, // may not need
-      button: `Interactions & Design`, // may not need - `name`
+
       header: `Interactions & Design`,
       backgroundImgSrc:
         "https://res.cloudinary.com/sheilfer/image/upload/v1697448652/Module_Buttons_11_fcepaw.gif",
@@ -666,7 +631,7 @@ export const Creator = {
       prompts: {
         welcome: {
           response: (
-            <div>
+            <Typewriter>
               Fellow visionaries! 🌈 Today, we're setting sail into the vibrant
               seas of Human-Computer Interaction, Entrepreneurship, and Design.
               It's a thrilling expedition where creativity meets innovation,
@@ -678,13 +643,11 @@ export const Creator = {
               world where every interaction and creation tells a story? Let's
               embark on this journey together, crafting futures where technology
               dances gracefully with human ambition. 🌐💼🎨
-            </div>
+            </Typewriter>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         patreon: {
-          completed: false,
           impact: 1000,
           action: `generate`,
           icon: `✨`, //`✍️`
@@ -693,12 +656,8 @@ export const Creator = {
           )}?`,
           response: `null`,
           spanish: ``,
-          tooltip: ``,
-          // additionalContent: await import(
-          //   "../../markdowns/humanComputerInteraction.md?raw"
-          // ),
 
-          summaryContent: (
+          extraContent: (
             <div
               style={{
                 overflowWrap: "break-word",
@@ -720,7 +679,7 @@ export const Creator = {
           headerImageSrc: inspire07,
           wikiLink:
             "https://en.wikipedia.org/wiki/The_Design_of_Everyday_Things",
-          completed: false,
+
           impact: 100,
           action: `inspire`,
           icon: `⚡`,
@@ -774,10 +733,8 @@ export const Creator = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         summarize: {
-          completed: false,
           impact: 100,
           action: `summarize`,
           icon: `📚`,
@@ -843,10 +800,8 @@ export const Creator = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         ask: {
-          completed: false,
           impact: 100,
           action: `ask`,
           icon: `🔮`,
@@ -917,10 +872,8 @@ export const Creator = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         guide: {
-          completed: false,
           impact: 100,
           action: `guide`,
           icon: `🧚`,
@@ -1028,10 +981,8 @@ export const Creator = {
             </SchedulerBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         demonstrate: {
-          completed: false,
           impact: 100,
           action: `demonstrate`,
           icon: `🎨`,
@@ -1092,10 +1043,8 @@ export const Creator = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         define: {
-          completed: false,
           impact: 100,
           action: `define`, // may not need
           icon: `🧿`, // may not need
@@ -1111,10 +1060,8 @@ export const Creator = {
               expressive and meaningful digital experiences.
             </div>
           ),
-          tooltip: ``,
         },
         quiz: {
-          completed: false,
           impact: 100,
           action: `quiz`,
           icon: `🧪`,
@@ -1162,10 +1109,8 @@ export const Creator = {
             </ChatBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         shop: {
-          completed: false,
           impact: 100,
           action: `shop`,
           icon: `🛍️`,
@@ -1208,32 +1153,24 @@ export const Creator = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
       },
     },
     "The Psychology Of Self-esteem": {
-      documentID: ``,
       backgroundImgSrc:
         "https://res.cloudinary.com/sheilfer/image/upload/v1695548485/Module_Buttons_10_u50oik.gif",
-      filler: ``,
-      new: false,
-      highValue: false,
-      underConstruction: false,
-      completed: false,
-      rare: true,
-      needsImprovement: false,
+
+      creatorBorder: true,
+
       credential: "Psychology of Self-esteem",
-      tooltip: ``,
-      sourceType: `video`, // may not need
-      button: `The Psychology Of Self-esteem`, // may not need - `name`
+
       header: `The Psychology Of Self-esteem`,
       fileSource:
         "https://res.cloudinary.com/sheilfer/video/upload/v1706607491/Snaptik.app_7307805149592833326_xs7eky.mp4", // may not need
       prompts: {
         welcome: {
           response: (
-            <div>
+            <Typewriter>
               Hello, my bright stars 🌟! Welcome to today's lecture on the
               fascinating topic of the Psychology of Self-Esteem. I'm so excited
               to have you all here, and I hope you are too. 🤗
@@ -1264,13 +1201,11 @@ export const Creator = {
               <br />
               <br />
               Ready? Let's get started! 🚀
-            </div>
+            </Typewriter>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         patreon: {
-          completed: false,
           impact: 1000,
           action: `generate`,
           icon: `✨`, //`✍️`
@@ -1279,8 +1214,8 @@ export const Creator = {
           )}?`,
           response: `null`,
           spanish: ``,
-          tooltip: ``,
-          summaryContent: (
+
+          extraContent: (
             <div>
               Exploring the nuances of psychology, we look into self-esteem's
               significance and the complexities of self-acceptance amidst
@@ -1296,7 +1231,7 @@ export const Creator = {
         inspire: {
           headerImageSrc: inspire08,
           wikiLink: "https://en.wikipedia.org/wiki/Maya_Angelou",
-          completed: false,
+
           impact: 100,
           action: `inspire`,
           icon: `⚡`,
@@ -1344,10 +1279,8 @@ export const Creator = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         summarize: {
-          completed: false,
           impact: 100,
           action: `summarize`,
           icon: `📚`,
@@ -1414,10 +1347,8 @@ export const Creator = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         ask: {
-          completed: false,
           impact: 100,
           action: `ask`,
           icon: `🔮`,
@@ -1462,10 +1393,8 @@ export const Creator = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         guide: {
-          completed: false,
           impact: 100,
           action: `guide`,
           icon: `🧚`,
@@ -1526,10 +1455,8 @@ export const Creator = {
             </SchedulerBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         demonstrate: {
-          completed: false,
           impact: 100,
           action: `demonstrate`,
           icon: `🎨`,
@@ -1624,10 +1551,8 @@ export const Creator = {
             </div>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         define: {
-          completed: false,
           impact: 100,
           action: `define`, // may not need
           icon: `🧿`, // may not need
@@ -1641,11 +1566,9 @@ export const Creator = {
               challenges, opportunities, and relationships in life. ✨💖
             </div>
           ),
-          tooltip: ``,
         },
 
         quiz: {
-          completed: false,
           impact: 100,
           action: `quiz`,
           icon: `🧪`,
@@ -1687,760 +1610,16 @@ export const Creator = {
             </ChatBlock>
           ),
           spanish: ``,
-          tooltip: ``,
         },
         shop: {
-          completed: false,
           impact: 100,
           action: `shop`,
           icon: `🛍️`,
           request: `Alright bro, show me what you got. I wanna shop and support this network more.`,
           response: `This shopping slot is not being utilized yet. Please contact me in Patreon to qualify.`,
           spanish: ``,
-          tooltip: ``,
         },
       },
-      // Memes: {
-      //   documentID: ``,
-      //   filler: ``,
-      //   new: false,
-      //   highValue: false,
-      //   underConstruction: false,
-      //   completed: false,
-      //   rare: true,
-      //   needsImprovement: false,
-
-      //   tooltip: ``,
-      //   sourceType: `markdown`, // may not need
-      //   button: `Memes`, // may not need - `name`
-      //   header: `Memes`,
-      //   fileSource: await import("../../markdowns/emptyMarkdown.md?raw"), // may not need
-
-      //   prompts: {
-      //     welcome: {
-      //       response: (
-
-      //         <div>
-      //           Hello, my bright students!
-      //           <br />
-      //           <br />
-      //           Today, we're diving into the tasty history of cooking birds for
-      //           dinner. It's not just about food; it's about culture, community,
-      //           and how we've come together through time. 🍗🌈 From roasting over
-      //           ancient campfires to modern-day recipes, cooking birds tells a
-      //           story that's rich and full of flavor. 🌍 So grab your curiosity
-      //           and let's take a quick but delicious journey back in time! 🕰🍴
-      //           Ready? Let's go! 🌟💖
-      //         </div>
-
-      //       ),
-      //       spanish: ``,
-      //       tooltip: ``,
-      //     },
-      //     patreon: {
-      //       completed: false,
-      //       impact: 1000,
-      //       action: `generate`,
-      //       icon: `✨`, //`✍️`
-      //       request: `rox, can you please show me how to ${ultimateEffeciencyJutsu(
-      //         `Memes`
-      //       )}?`,
-      //       response: `null`,
-      //       spanish: ``,
-      //       tooltip: ``,
-      //     },
-      //     inspire: {
-      //       completed: false,
-      //       impact: 100,
-      //       action: `inspire`,
-      //       icon: `⚡`,
-      //       request: `rox, can you please share an inspiring story about ${ultimateEffeciencyJutsu(
-      //         `Memes`
-      //       )}?`,
-      //       response: <div />,
-      //       spanish: ``,
-      //       tooltip: ``,
-      //     },
-      //     summarize: {
-      //       completed: false,
-      //       impact: 100,
-      //       action: `summarize`,
-      //       icon: `📚`,
-      //       request: `rox, can you please summarize the basics of ${ultimateEffeciencyJutsu(
-      //         `Memes`
-      //       )}?`,
-      //       response: <div />,
-      //       spanish: ``,
-      //       tooltip: ``,
-      //     },
-      //     ask: {
-      //       completed: false,
-      //       impact: 100,
-      //       action: `ask`,
-      //       icon: `🔮`,
-      //       request: `rox, can you please show me three frequently asked beginner questions about ${ultimateEffeciencyJutsu(
-      //         `Memes`
-      //       )} with one sentence answers?`,
-      //       response: <div />,
-      //       spanish: ``,
-      //       tooltip: ``,
-      //     },
-      //     guide: {
-      //       completed: false,
-      //       impact: 100,
-      //       action: `guide`,
-      //       icon: `�`,
-      //       request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
-      //         `Memes`
-      //       )}?`,
-      //       response: <div />,
-      //       spanish: ``,
-      //       tooltip: ``,
-      //     },
-      //     demonstrate: {
-      //       completed: false,
-      //       impact: 100,
-      //       action: `demonstrate`,
-      //       icon: `🎨`,
-      //       request: `rox, can you please show me an example of ${ultimateEffeciencyJutsu(
-      //         `Memes`
-      //       )}?`,
-      //       response: <div />,
-      //       spanish: ``,
-      //       tooltip: ``,
-      //     },
-      //     define: {
-      //       completed: false,
-      //       impact: 100,
-      //       action: `define`, // may not need
-      //       icon: `🧿`, // may not need
-      //       request: `rox, can you please define ${ultimateEffeciencyJutsu(
-      //         `Memes`
-      //       )} in exactly one sentence?`,
-      //       response: <div />,
-      //       tooltip: ``,
-      //     },
-
-      //     quiz: {
-      //       completed: false,
-      //       impact: 100,
-      //       action: `quiz`,
-      //       icon: `🧪`,
-      //       request: `rox, can you please write a 3 question quiz for beginners that's challenging about ${ultimateEffeciencyJutsu(
-      //         `Memes`
-      //       )} without any answers?`,
-      //       response: <div />,
-      //       spanish: ``,
-      //       tooltip: ``,
-      //     },
-      //     shop: {
-      //       completed: false,
-      //       impact: 100,
-      //       action: `shop`,
-      //       icon: `🛍️`,
-      //       request: `Alright bro, show me what you got. I wanna shop and support this network more.`,
-      //       response: `This shopping slot is not being utilized yet. Please contact me in Patreon to qualify.`,
-      //       spanish: ``,
-      //       tooltip: ``,
-      //     },
-      //   },
-      // },
     },
-    // Custom: {
-    //   documentID: ``,
-    //   // backgroundImgSrc:
-    //   //   "https://rp es.cloudinary.com/sheilfer/image/upload/v1695548485/Module_Buttons_10_u50oik.gif",
-    //   filler: ``,
-    //   new: false,
-    //   highValue: false,
-    //   underConstruction: false,
-    //   completed: false,
-    //   rare: true,
-    //   needsImprovement: false,
-    //   tooltip: ``,
-    //   sourceType: `video`, // may not need
-    //   button: `Roxana's Lab`, // may not need - `name`
-    //   header: `Roxana's Lab`,
-    //   fileSource:
-    //     "https://res.cloudinary.com/dtkeyccga/video/upload/v1695379551/kw8utz8affjpot9acemp.mov", // may not need
-    //   prompts: {
-    //     welcome: {
-    //       response: <div>hi.. hello 😈</div>,
-    //       spanish: ``,
-    //       tooltip: ``,
-    //     },
-    //     patreon: {
-    //       completed: false,
-    //       impact: 1000,
-    //       action: `generate`,
-    //       icon: `✨`, //`✍️`
-    //       request: `Hey Rox! Tell us about your genius plan with the robots! 😂`,
-    //       response: `null`,
-    //       spanish: ``,
-    //       tooltip: ``,
-    //       additionalContent: await import(
-    //         "../../markdowns/selfEsteemAddendum.md?raw"
-    //       ),
-    //     },
-    //     inspire: {
-    //       completed: false,
-    //       impact: 100,
-    //       action: `inspire`,
-    //       icon: `⚡`,
-    //       request: `rox, can you please share an inspiring story about ${ultimateEffeciencyJutsu(
-    //         `The Psychology Of Self-esteem`
-    //       )}?`,
-    //       response: (
-    //         <div>
-    //           <h3>The Life of J.K. Rowling 📚</h3>
-    //           <p>
-    //             Joanne Rowling was born in Yate, England, in 1965. She always
-    //             dreamed of being a writer but faced numerous obstacles along the
-    //             way. After graduating from the University of Exeter, she worked
-    //             in various jobs, including as a researcher and a bilingual
-    //             secretary, but she was not content.
-    //           </p>
-
-    //           <h4>Early Struggles and Low Points 🌧️</h4>
-    //           <p>
-    //             Rowling moved to Portugal to teach English, where she married
-    //             and had a daughter. The marriage ended in divorce, and Rowling
-    //             returned to the UK as a single mother living on state benefits.
-    //             She was clinically depressed and considered herself a failure.
-    //             This was a low point in her life, where her self-esteem was
-    //             severely tested.
-    //           </p>
-
-    //           <h4>The Birth of Harry Potter ⚡</h4>
-    //           <p>
-    //             During a train journey, the idea for "Harry Potter" popped into
-    //             her head. Even though she was struggling, Rowling believed in
-    //             her story. She spent years crafting the first book, facing
-    //             numerous rejections from publishers. Her self-esteem was
-    //             bolstered by her belief in her work and her desire to prove
-    //             herself.
-    //           </p>
-
-    //           <h4>Impact on Society 🌍</h4>
-    //           <p>
-    //             Once published, "Harry Potter" became a cultural phenomenon. It
-    //             didn't just entertain; it encouraged a whole generation to read
-    //             and explore themes of friendship, courage, and the importance of
-    //             choices. The books have been translated into numerous languages,
-    //             and the films have grossed billions worldwide.
-    //           </p>
-
-    //           <h4>The Ripple Effect 🌊</h4>
-    //           <p>
-    //             Rowling's journey from a struggling single mother to one of the
-    //             most successful authors in history has made her a symbol of
-    //             resilience and the power of self-belief. Her story has inspired
-    //             countless individuals to overcome their challenges, boosting
-    //             their own self-esteem and making meaningful contributions to
-    //             society.
-    //           </p>
-
-    //           <h4>Final Thoughts 🌟🌈</h4>
-    //           <p>
-    //             So, my bright students, J.K. Rowling's life shows us that no
-    //             matter how difficult your circumstances may be, your self-esteem
-    //             and belief in your own abilities can help you rise above them.
-    //             What do you think you could achieve if you truly believed in
-    //             yourselves?
-    //           </p>
-    //         </div>
-    //       ),
-    //       spanish: ``,
-    //       tooltip: ``,
-    //     },
-    //     summarize: {
-    //       completed: false,
-    //       impact: 100,
-    //       action: `summarize`,
-    //       icon: `📚`,
-    //       request: `rox, can you please summarize the basics of ${ultimateEffeciencyJutsu(
-    //         `The Psychology Of Self-esteem`
-    //       )}?`,
-    //       response: (
-    //         <div>
-    //           <h4>Understanding the Psychology of Self-Esteem 🌟</h4>
-    //           <p>
-    //             Of course, my insightful students! Let's take a brief but
-    //             meaningful journey into the psychology of self-esteem, a subject
-    //             that holds immense power in shaping your lives. 🌱
-    //           </p>
-
-    //           <p>
-    //             Self-esteem is often described as the emotional evaluation of
-    //             your own worth. It's like a mental mirror reflecting how you
-    //             view yourself—your abilities, your limitations, and your value
-    //             as an individual. 💖
-    //           </p>
-
-    //           <p>
-    //             A healthy level of self-esteem is crucial for your overall
-    //             well-being. When your self-esteem is robust, you're more likely
-    //             to tackle challenges head-on, cultivate meaningful
-    //             relationships, and live a life aligned with your values and
-    //             aspirations. 🌟
-    //           </p>
-
-    //           <p>
-    //             However, self-esteem isn't a constant state; it's a fluctuating
-    //             continuum influenced by various factors like your upbringing,
-    //             experiences, and even societal expectations. Let's acknowledge
-    //             that we all live in a society that often sets standards based on
-    //             race, gender, and economic status, among other factors. These
-    //             external influences can be barriers, but it's crucial to
-    //             remember that you have the power to define your self-worth. 🌈
-    //           </p>
-
-    //           <p>
-    //             Building self-esteem is a lifelong process, my dear students. It
-    //             involves self-awareness, self-compassion, and an active
-    //             engagement with the world around you. Even when you face
-    //             setbacks, which are an inevitable part of life, a strong sense
-    //             of self-esteem equips you with the resilience to bounce back. 🌻
-    //           </p>
-
-    //           <p>
-    //             So, to sum it up: your self-esteem is a cornerstone of your
-    //             mental and emotional health. It impacts how you deal with life's
-    //             ups and downs, how you connect with others, and most
-    //             importantly, how you view yourself. Nurture it, cherish it, and
-    //             let it be the foundation upon which you build the beautiful
-    //             edifice of your life. 🏰💕
-    //           </p>
-
-    //           <p>
-    //             I hope this essay empowers you to reflect on your own
-    //             self-esteem and take steps to nourish it, for it will be one of
-    //             your most faithful companions on the journey called life. 🌱🌟
-    //           </p>
-    //         </div>
-    //       ),
-    //       spanish: ``,
-    //       tooltip: ``,
-    //     },
-    //     ask: {
-    //       completed: false,
-    //       impact: 100,
-    //       action: `ask`,
-    //       icon: `🔮`,
-    //       request: `rox, can you please show me three frequently asked beginner questions about ${ultimateEffeciencyJutsu(
-    //         `The Psychology Of Self-esteem`
-    //       )} with one sentence answers?`,
-    //       response: (
-    //         <div>
-    //           <h4>Frequently Asked Questions on Self-Esteem 🌟</h4>
-
-    //           <h4>1. What is Self-Esteem and Why is it Important? 💡</h4>
-    //           <p>
-    //             Self-esteem refers to how you view and evaluate yourself,
-    //             essentially your emotional self-assessment. It's vital because
-    //             it influences almost every aspect of your life, from your
-    //             relationships to your ability to face challenges and even your
-    //             mental well-being. A healthy level of self-esteem enables you to
-    //             navigate the ups and downs of life with resilience and poise. 🌈
-    //           </p>
-
-    //           <h4>2. How Can I Improve My Self-Esteem? 🌱</h4>
-    //           <p>
-    //             Improving your self-esteem is an ongoing process that involves
-    //             self-awareness, self-compassion, and positive self-talk. Start
-    //             by acknowledging your strengths and achievements, no matter how
-    //             small. Set achievable goals, and don't hesitate to seek support
-    //             from friends, family, or professionals. Remember, self-esteem is
-    //             like a muscle; the more you work on it, the stronger it gets. 🌟
-    //           </p>
-
-    //           <h4>3. Can Low Self-Esteem Affect My Mental Health? 🌧️</h4>
-    //           <p>
-    //             Yes, low self-esteem can significantly impact your mental
-    //             health. It can lead to issues like anxiety, depression, and even
-    //             contribute to more severe mental health conditions. However,
-    //             it's important to note that while low self-esteem may be a
-    //             factor, it is not the sole cause of mental health issues. If
-    //             you're struggling, it's crucial to seek professional help. 💖
-    //           </p>
-    //         </div>
-    //       ),
-    //       spanish: ``,
-    //       tooltip: ``,
-    //     },
-    //     guide: {
-    //       completed: false,
-    //       impact: 100,
-    //       action: `guide`,
-    //       icon: `�`,
-    //       request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
-    //         `The Psychology Of Self-esteem`
-    //       )}?`,
-    //       response: (
-    //         <div>
-    //           <h4>
-    //             Roadmap to Becoming a Professional Psychologist in Self-Esteem
-    //             🌟
-    //           </h4>
-
-    //           <h6>Step 1: High School Preparation 🎒</h6>
-    //           <p>
-    //             Focus on Psychology, Biology, and Statistics courses. Read
-    //             introductory books on psychology and self-esteem.
-    //           </p>
-
-    //           <h6>Step 2: Bachelor's Degree 📚</h6>
-    //           <p>
-    //             Major in Psychology and take courses on Developmental
-    //             Psychology, Social Psychology, and Personality Psychology.
-    //           </p>
-
-    //           <h6>Step 3: Internship & Volunteer Work 💼</h6>
-    //           <p>
-    //             Gain practical experience in clinics, schools, or mental health
-    //             centers. Work under a psychologist specializing in self-esteem
-    //             issues.
-    //           </p>
-
-    //           <h6>Step 4: Master's Degree 🎓</h6>
-    //           <p>
-    //             Specialize in Clinical or Counseling Psychology. Conduct a
-    //             thesis on self-esteem related topics.
-    //           </p>
-
-    //           <h6>Step 5: Licensing & Certification 📜</h6>
-    //           <p>
-    //             Complete the required supervised hours and pass the state
-    //             licensing exam.
-    //           </p>
-
-    //           <h6>Step 6: Doctorate (Optional) 🎓</h6>
-    //           <p>
-    //             Ph.D. or Psy.D. in Psychology with a focus on self-esteem.
-    //             Publish research papers in peer-reviewed journals.
-    //           </p>
-
-    //           <h6>Step 7: Professional Development 🌱</h6>
-    //           <p>
-    //             Continue education through seminars, workshops, and courses.
-    //             Become a member of psychological associations.
-    //           </p>
-
-    //           <h6>Step 8: Open Your Practice 🏥</h6>
-    //           <p>
-    //             Specialize in self-esteem issues, build a client base, and make
-    //             a meaningful impact.
-    //           </p>
-    //         </div>
-    //       ),
-    //       spanish: ``,
-    //       tooltip: ``,
-    //     },
-    //     demonstrate: {
-    //       completed: false,
-    //       impact: 100,
-    //       action: `demonstrate`,
-    //       icon: `🎨`,
-    //       request: `rox, can you please show me an example of ${ultimateEffeciencyJutsu(
-    //         `The Psychology Of Self-esteem`
-    //       )}?`,
-    //       response: (
-    //         <div>
-    //           <p>
-    //             Taking care of your self-esteem is like tending to a garden; it
-    //             requires patience, love, and a little bit of know-how. Let's
-    //             explore some ways you can nurture your self-esteem and help it
-    //             flourish. 🌱
-    //           </p>
-
-    //           <h4>1️⃣ Positive Affirmations 🌼</h4>
-    //           <p>
-    //             Let's start by looking ourselves in the mirror every morning and
-    //             saying something positive. It could be as simple as, "I am
-    //             worthy," or "I am enough." These affirmations serve as little
-    //             seeds of positivity that, over time, can grow into a beautiful
-    //             garden of self-love.
-    //           </p>
-
-    //           <h4>2️⃣ Self-Compassion 🌹</h4>
-    //           <p>
-    //             We all make mistakes; it's a part of being human. Instead of
-    //             beating yourself up over them, treat yourself with the same
-    //             kindness you'd offer a friend. Remind yourself that you're still
-    //             learning and growing. It's okay to be imperfect; it makes you
-    //             who you are.
-    //           </p>
-
-    //           <h4>3️⃣ Set Boundaries 🌳</h4>
-    //           <p>
-    //             Learn to say 'no' when you need to. Protecting your time and
-    //             emotional energy is a sign of self-respect. This might be a bit
-    //             challenging given societal expectations, but your well-being
-    //             should always come first.
-    //           </p>
-
-    //           <h4>4️⃣ Celebrate Small Wins 🌻</h4>
-    //           <p>
-    //             Did you make it to class on time? Did you understand a difficult
-    //             concept? Celebrate it! These small victories add up and help you
-    //             recognize your own abilities and worth.
-    //           </p>
-
-    //           <h4>5️⃣ Surround Yourself with Positivity 🌿</h4>
-    //           <p>
-    //             Whether it's supportive friends or uplifting music, keep
-    //             positive influences around you. They act as the sunlight and
-    //             water that your self-esteem needs to grow.
-    //           </p>
-
-    //           <h4>6️⃣ Be Mindful of Self-Talk 🌲</h4>
-    //           <p>
-    //             Pay attention to how you talk to yourself. Would you talk to a
-    //             friend that way? If not, it's time to change the narrative. Be
-    //             your own biggest cheerleader, not your worst critic.
-    //           </p>
-
-    //           <h4>7️⃣ Connect with Your Community 🌺</h4>
-    //           <p>
-    //             We can't ignore that society often sends us messages that can
-    //             erode our self-esteem, especially when those messages are
-    //             steeped in systemic issues like race and class. However,
-    //             embracing your roots and drawing strength from your community
-    //             can offer a strong foundation for building your self-esteem.
-    //           </p>
-
-    //           <p>
-    //             So, my dear students, taking care of your self-esteem is an
-    //             ongoing process. It's like a garden that needs regular
-    //             attention, but the rewards are so worth it. You'll grow into
-    //             stronger, more resilient versions of yourselves. 🌈💖
-    //           </p>
-
-    //           <p>Ready to nurture your inner garden? 🌱🌟</p>
-    //         </div>
-    //       ),
-    //       spanish: ``,
-    //       tooltip: ``,
-    //     },
-    //     define: {
-    //       completed: false,
-    //       impact: 100,
-    //       action: `define`, // may not need
-    //       icon: `🧿`, // may not need
-    //       request: `rox, can you please define ${ultimateEffeciencyJutsu(
-    //         `The Psychology Of Self-esteem`
-    //       )} in exactly one sentence?`,
-    //       response: (
-    //         <div>
-    //           The psychology of self-esteem revolves around the inner belief in
-    //           one's own worth and abilities, which shapes how we navigate
-    //           challenges, opportunities, and relationships in life. ✨💖
-    //         </div>
-    //       ),
-    //       tooltip: ``,
-    //     },
-
-    //     quiz: {
-    //       completed: false,
-    //       impact: 100,
-    //       action: `quiz`,
-    //       icon: `🧪`,
-    //       request: `rox, can you please write a 3 question quiz for beginners that's challenging about ${ultimateEffeciencyJutsu(
-    //         `The Psychology Of Self-esteem`
-    //       )} without any answers?`,
-    //       response: (
-    //         <ChatBlock type={"quiz"}>
-    //           Question 1
-    //           <br />
-    //           <br />
-    //           How does the "looking-glass self" theory relate to self-esteem?
-    //           <br />
-    //           <br />
-    //           Question 2
-    //           <br />
-    //           <br />
-    //           Discuss the impact of social media on adolescent self-esteem.
-    //           <br />
-    //           <br />
-    //           Question 3<br />
-    //           <br />
-    //           Explain how cognitive behavioral therapy (CBT) can be used to
-    //           improve self-esteem.
-    //           <br />
-    //           <br />
-    //           Question 4
-    //           <br />
-    //           <br />
-    //           What role does self-compassion play in the development of healthy
-    //           self-esteem?
-    //           <br />
-    //           <br />
-    //           Question 5
-    //           <br />
-    //           <br />
-    //           Analyze the relationship between self-esteem and academic
-    //           performance.
-    //         </ChatBlock>
-    //       ),
-    //       spanish: ``,
-    //       tooltip: ``,
-    //     },
-    //     shop: {
-    //       completed: false,
-    //       impact: 100,
-    //       action: `shop`,
-    //       icon: `🛍️`,
-    //       request: `Alright bro, show me what you got. I wanna shop and support this network more.`,
-    //       response: `This shopping slot is not being utilized yet. Please contact me in Patreon to qualify.`,
-    //       spanish: ``,
-    //       tooltip: ``,
-    //     },
-    //   },
-    //   // Memes: {
-    //   //   documentID: ``,
-    //   //   filler: ``,
-    //   //   new: false,
-    //   //   highValue: false,
-    //   //   underConstruction: false,
-    //   //   completed: false,
-    //   //   rare: true,
-    //   //   needsImprovement: false,
-
-    //   //   tooltip: ``,
-    //   //   sourceType: `markdown`, // may not need
-    //   //   button: `Memes`, // may not need - `name`
-    //   //   header: `Memes`,
-    //   //   fileSource: await import("../../markdowns/emptyMarkdown.md?raw"), // may not need
-
-    //   //   prompts: {
-    //   //     welcome: {
-    //   //       response: (
-
-    //   //         <div>
-    //   //           Hello, my bright students!
-    //   //           <br />
-    //   //           <br />
-    //   //           Today, we're diving into the tasty history of cooking birds for
-    //   //           dinner. It's not just about food; it's about culture, community,
-    //   //           and how we've come together through time. 🍗🌈 From roasting over
-    //   //           ancient campfires to modern-day recipes, cooking birds tells a
-    //   //           story that's rich and full of flavor. 🌍 So grab your curiosity
-    //   //           and let's take a quick but delicious journey back in time! 🕰🍴
-    //   //           Ready? Let's go! 🌟💖
-    //   //         </div>
-
-    //   //       ),
-    //   //       spanish: ``,
-    //   //       tooltip: ``,
-    //   //     },
-    //   //     patreon: {
-    //   //       completed: false,
-    //   //       impact: 1000,
-    //   //       action: `generate`,
-    //   //       icon: `✨`, //`✍️`
-    //   //       request: `rox, can you please show me how to ${ultimateEffeciencyJutsu(
-    //   //         `Memes`
-    //   //       )}?`,
-    //   //       response: `null`,
-    //   //       spanish: ``,
-    //   //       tooltip: ``,
-    //   //     },
-    //   //     inspire: {
-    //   //       completed: false,
-    //   //       impact: 100,
-    //   //       action: `inspire`,
-    //   //       icon: `⚡`,
-    //   //       request: `rox, can you please share an inspiring story about ${ultimateEffeciencyJutsu(
-    //   //         `Memes`
-    //   //       )}?`,
-    //   //       response: <div />,
-    //   //       spanish: ``,
-    //   //       tooltip: ``,
-    //   //     },
-    //   //     summarize: {
-    //   //       completed: false,
-    //   //       impact: 100,
-    //   //       action: `summarize`,
-    //   //       icon: `📚`,
-    //   //       request: `rox, can you please summarize the basics of ${ultimateEffeciencyJutsu(
-    //   //         `Memes`
-    //   //       )}?`,
-    //   //       response: <div />,
-    //   //       spanish: ``,
-    //   //       tooltip: ``,
-    //   //     },
-    //   //     ask: {
-    //   //       completed: false,
-    //   //       impact: 100,
-    //   //       action: `ask`,
-    //   //       icon: `🔮`,
-    //   //       request: `rox, can you please show me three frequently asked beginner questions about ${ultimateEffeciencyJutsu(
-    //   //         `Memes`
-    //   //       )} with one sentence answers?`,
-    //   //       response: <div />,
-    //   //       spanish: ``,
-    //   //       tooltip: ``,
-    //   //     },
-    //   //     guide: {
-    //   //       completed: false,
-    //   //       impact: 100,
-    //   //       action: `guide`,
-    //   //       icon: `�`,
-    //   //       request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
-    //   //         `Memes`
-    //   //       )}?`,
-    //   //       response: <div />,
-    //   //       spanish: ``,
-    //   //       tooltip: ``,
-    //   //     },
-    //   //     demonstrate: {
-    //   //       completed: false,
-    //   //       impact: 100,
-    //   //       action: `demonstrate`,
-    //   //       icon: `🎨`,
-    //   //       request: `rox, can you please show me an example of ${ultimateEffeciencyJutsu(
-    //   //         `Memes`
-    //   //       )}?`,
-    //   //       response: <div />,
-    //   //       spanish: ``,
-    //   //       tooltip: ``,
-    //   //     },
-    //   //     define: {
-    //   //       completed: false,
-    //   //       impact: 100,
-    //   //       action: `define`, // may not need
-    //   //       icon: `🧿`, // may not need
-    //   //       request: `rox, can you please define ${ultimateEffeciencyJutsu(
-    //   //         `Memes`
-    //   //       )} in exactly one sentence?`,
-    //   //       response: <div />,
-    //   //       tooltip: ``,
-    //   //     },
-
-    //   //     quiz: {
-    //   //       completed: false,
-    //   //       impact: 100,
-    //   //       action: `quiz`,
-    //   //       icon: `🧪`,
-    //   //       request: `rox, can you please write a 3 question quiz for beginners that's challenging about ${ultimateEffeciencyJutsu(
-    //   //         `Memes`
-    //   //       )} without any answers?`,
-    //   //       response: <div />,
-    //   //       spanish: ``,
-    //   //       tooltip: ``,
-    //   //     },
-    //   //     shop: {
-    //   //       completed: false,
-    //   //       impact: 100,
-    //   //       action: `shop`,
-    //   //       icon: `🛍️`,
-    //   //       request: `Alright bro, show me what you got. I wanna shop and support this network more.`,
-    //   //       response: `This shopping slot is not being utilized yet. Please contact me in Patreon to qualify.`,
-    //   //       spanish: ``,
-    //   //       tooltip: ``,
-    //   //     },
-    //   //   },
-    //   // },
-    // },
   },
 };

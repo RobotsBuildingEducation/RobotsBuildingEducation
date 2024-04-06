@@ -1,5 +1,3 @@
-import { Spinner } from "react-bootstrap";
-
 import { Creator } from "./ui/Creator/Creator";
 import { Engineer } from "./ui/Engineer/Engineer";
 import { Entrepeneur } from "./ui/Entrepeneur/Entrepeneur";
@@ -8,61 +6,24 @@ import roxSplashAnimation from "./media/images/roxSplashAnimation.gif";
 import { FadeInComponent } from "../styles/lazyStyles";
 
 interface IPrompt {
-  // has the user selected? when database is passed into ui()
-  completed: boolean;
-
-  //value set
   impact: number;
 
-  //additional context
-  tooltip: string | JSX.Element;
-
-  //prompt display text
   action: string;
 
-  // prompt display icon
   icon: string;
 
-  // data sent to chat GPT
   request: string;
 
-  // data returned by chat GPT
   response: string | JSX.Element;
 
-  // spanish translation/stoggle/
-  spanish?: string | boolean;
+  spanish?: string | boolean | JSX.Element;
 
-  //fine tuned with human ideas.
-  humanTouch?: boolean;
-
-  //enhanced with machine learning.
-  robotTouch?: boolean;
-
-  //fine-tuned with currently patreon hosted content
-  premiumContent?: boolean;
-
-  //fine-tuned with advertising content
-  sponsoredContent?: boolean;
-
-  // may display custom content like an image, python code, javascript code, etc
-  dynamicContent?: boolean;
-
-  advertisementLink?: string;
-  backgroundStyles?: Record<string, any>;
-  advertisingImageSrc: string;
+  //customs & practice prompt
+  [index: string]: any;
 }
 
 interface IModule {
-  documentID: string;
-  // internal preference
-  filler: string;
-
   hasCode?: boolean;
-  // markdown or video for patreon content
-  sourceType: string;
-
-  // button to enter module
-  button: string;
 
   // title header
   header: string;
@@ -70,57 +31,32 @@ interface IModule {
   // video or .markdown fies
   fileSource: any;
 
-  // developer release flag
-  new: boolean;
+  // styling for modules
+  dealerBorder?: boolean;
+  creatorBorder?: boolean;
 
-  // developer flag again
-  needsImprovement: boolean;
-
-  // great value find
-  highValue: boolean;
-
-  //rare value in general
-  rare?: boolean;
-
-  // is there something the developers are disabling?
-  underConstruction: boolean;
-
-  // has the user completed the module? When database is passed into ui(...)
-  completed: boolean;
-
-  // tool tip to add more UI on tags
-  tooltip: string;
   prompts: {
-    //3 point low-stakes challenger quiz
+    welcome: Partial<IPrompt>;
+
     quiz: IPrompt;
 
-    //Frequently Asked Questions
     ask: IPrompt;
 
-    //inspiration material
     inspire: IPrompt;
 
-    //one sentence definition
     define: IPrompt;
 
-    // summarize concept
     summarize: IPrompt;
 
-    // code example or some other demo type
     demonstrate: IPrompt;
 
-    // 10 bullet point study guide
     guide: IPrompt;
 
-    // patreon first content (videos+canva)
     patreon: IPrompt;
 
-    // advertising agreements with patrons
     shop: IPrompt;
-    practice?: IPrompt;
-    intro?: IPrompt;
 
-    //in the future: translate. Dropdown/search + translate Module
+    practice?: IPrompt;
   };
 
   [index: string]: any;
@@ -135,8 +71,11 @@ interface IPath {
   Entrepeneur: ICollection;
 }
 
-// be pro customization. Redundancy is fine if it allows for more customization.
-// start uniform. Adjust ChatGPT settings in sandbox and adjust UX here.
+/**
+be pro customization. Redundancy is fine if it allows for more customization.
+
+defines the UI
+*/
 export const ui = (): IPath => {
   // can branch this further to reduce JSON size computed when invoked.
 
@@ -148,20 +87,12 @@ export const ui = (): IPath => {
 };
 export let uiPaths = ["Engineer", "Creator", "Entrepeneur"];
 
-// this manages the view when selected `engineer, creator, business or 26th street`
-export let controlPathVisibilityMap = (visibilityMap, selectedPath) => {
-  let result = visibilityMap;
-  uiPaths.forEach((path) => {
-    result[path] = false;
-  });
-  result[selectedPath] = true;
-  return result;
-};
+export const uiCollections = ui();
 
 /**
- * @returns the total amount of proof of work points available in the platform.
+ * @returns the total amount of proof of work points collected from module.prompts[prompt].impact
  */
-export let getGlobalImpact = () => {
+export let getTotalImpactFromModules = () => {
   let pathKeys = Object.keys(ui());
 
   let sum = 0;
@@ -209,6 +140,10 @@ export let getGlobalImpact = () => {
   return sum;
 };
 
+/**
+ *
+ * used when calling openai
+ */
 export let RoxanaLoadingAnimation = () => {
   return (
     <FadeInComponent>
@@ -224,6 +159,11 @@ export let RoxanaLoadingAnimation = () => {
     </FadeInComponent>
   );
 };
+
+/**
+ *
+ * @returns used when loading the app
+ */
 export let RoxSplashAnimation = () => {
   return (
     <FadeInComponent>
@@ -240,6 +180,9 @@ export let RoxSplashAnimation = () => {
   );
 };
 
+/**
+ * used to call openAPI
+ */
 export const postInstructions = {
   url: "https://us-central1-learn-robotsbuildingeducation.cloudfunctions.net/app/prompt",
   method: "POST",
