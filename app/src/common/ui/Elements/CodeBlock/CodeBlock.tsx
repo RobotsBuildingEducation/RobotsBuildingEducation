@@ -15,10 +15,10 @@ The dialogue modal handles a simple form managing a text input and submit/create
 When the create button is pressed, a message is sent to OpenAI's chat completion API.
 Their servers return an answer to the prompt we've requested.
 
-This prompt has a flag called "isJsonMode" and it's set to true, meaning that our response will be structured
-using a key-value pairing: 
+This prompt has a flag called "isJsonMode" and it's set to true,
+meaning that our response will be structured using a key-value pairing that's defined by customInstructions(...) function:
 
-response {
+result {
   frontend_code: {
     explanation,
     code
