@@ -320,3 +320,21 @@ export const getCollectionDocumentsInsideUser = async (collectionRef) => {
 export const computePercentage = (userImpact, proofOfWork) => {
   return (userImpact || 0) / (proofOfWork || 77500);
 };
+
+export const completeZapEvent = (
+  zap,
+  updateImpact,
+  userStateReference,
+  globalStateReference
+) => {
+  if (
+    localStorage.getItem("patreonPasscode") ===
+    import.meta.env.VITE_BITCOIN_PASSCODE
+  ) {
+    zap().then((lightningResponse) => {
+      if (lightningResponse?.preimage) {
+        updateImpact(1, userStateReference, globalStateReference);
+      }
+    });
+  }
+};

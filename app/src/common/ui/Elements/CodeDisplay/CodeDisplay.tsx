@@ -21,14 +21,13 @@ export let CodeDisplay = ({ code }) => {
       <pre>
         <Editor
           value={code}
-          // onValueChange={handleChange}
           highlight={(input) => highlight(input, languages.js)}
           padding={10}
           style={{
             fontFamily: '"Fira code", "Fira Mono", monospace',
             fontSize: 12,
             width: "100%",
-            // border: "1px solid black",
+
             borderRadius: 7,
           }}
           disabled

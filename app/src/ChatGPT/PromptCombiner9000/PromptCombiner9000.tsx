@@ -116,7 +116,10 @@ const renderContent = (
     case "demonstrate":
       if (patreonObject?.hasCode) {
         return (
-          <CodeBlock code={response}>
+          <CodeBlock
+            userStateReference={userStateReference}
+            globalStateReference={globalStateReference}
+          >
             <CodeDemo response={response} patreonObject={patreonObject} />
           </CodeBlock>
         );
