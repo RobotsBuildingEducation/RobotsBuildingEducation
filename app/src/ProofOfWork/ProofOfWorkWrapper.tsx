@@ -7,7 +7,7 @@ const containerStyle = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  position: "sticky",
+  position: "fixed",
   bottom: 0,
   width: "min-width",
   zIndex: 1100,
