@@ -42,7 +42,7 @@ export const LearnMore = ({ languageMode }) => {
           alignItems: "center",
         }}
       >
-        <RiseUpAnimation speed={0.3}>
+        {/* <RiseUpAnimation speed={0.3}>
           <a
             style={{ color: "white" }}
             href={"https://old-fashionedintelligence.info/news"}
@@ -66,7 +66,7 @@ export const LearnMore = ({ languageMode }) => {
               📰
             </Button>
           </a>
-        </RiseUpAnimation>
+        </RiseUpAnimation> */}
 
         <RiseUpAnimation speed={0.3}>
           <Button

@@ -6,7 +6,6 @@ import "prismjs/components/prism-javascript";
 import "prismjs/themes/prism.css";
 
 import styled from "styled-components";
-
 import RandomCharacter from "../../common/ui/Elements/RandomCharacter/RandomCharacter";
 
 const CopyButton = styled.button`

@@ -1,5 +1,6 @@
 import { logEvent } from "firebase/analytics";
 import { analytics } from "../../../database/firebaseResources";
+import lightningmember from "../../../common/media/images/lightningmember.png";
 
 /**
  * Renders a Discord connection button and a Patreon link.
@@ -54,11 +55,8 @@ export const DiscordButton = () => (
         marginBottom: 125,
       }}
     >
-      <img
-        src="https://res.cloudinary.com/dtkeyccga/image/upload/v1704759921/Patreon_tiers_9_odravd.png"
-        style={{ borderRadius: 12, width: "100%" }}
-      />
-      &nbsp;&nbsp;<div style={{ padding: 5 }}>Get subscriber passcode</div>
+      <img src={lightningmember} style={{ borderRadius: 12, width: "100%" }} />
+      &nbsp;&nbsp;<div style={{ padding: 5 }}>Become a lightning member</div>
     </a>
 
     <br />
