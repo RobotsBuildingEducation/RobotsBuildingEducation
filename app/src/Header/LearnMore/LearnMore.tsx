@@ -91,7 +91,7 @@ export const LearnMore = ({ languageMode }) => {
             <a
               style={{ color: "white" }}
               href={
-                "https://primal.net/p/npub1mgt5c7qh6dm9rg57mrp89rqtzn64958nj5w9g2d2h9dng27hmp0sww7u2v"
+                "https://primal.net/p/npub14vskcp90k6gwp6sxjs2jwwqpcmahg6wz3h5vzq0yn6crrsq0utts52axlt"
               }
               target={"_blank"}
             >

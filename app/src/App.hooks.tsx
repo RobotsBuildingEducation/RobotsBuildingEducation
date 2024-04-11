@@ -166,7 +166,7 @@ export const useZap = (
 
   let createZap = async () => {
     try {
-      const ln = new LightningAddress("strongstingray4@primal.net");
+      const ln = new LightningAddress("tomatochipmunk3@primal.net");
 
       console.log("ln", ln);
       await ln.fetch();

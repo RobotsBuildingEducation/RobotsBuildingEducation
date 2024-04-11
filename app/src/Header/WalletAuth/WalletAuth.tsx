@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import { Button } from "@getalby/bitcoin-connect-react";
+import Form from "react-bootstrap/Form";
 
 /**
  * WalletAuth Component
@@ -10,14 +12,18 @@ import { Button } from "@getalby/bitcoin-connect-react";
  */
 
 export const WalletAuth = () => {
+  const [showAuth, setShowAuth] = useState(false);
+  useEffect(() => {
+    if (
+      localStorage.getItem("patreonPasscode") ===
+      import.meta.env.VITE_BITCOIN_PASSCODE
+    ) {
+      setShowAuth(true);
+    }
+  }, []);
   return (
-    <div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      {showAuth ? (
         <Button
           appName="Robots Building Education"
           onConnect={() => {
@@ -33,7 +39,26 @@ export const WalletAuth = () => {
             );
           }}
         />
-      </div>
+      ) : (
+        <Form>
+          <Form.Check
+            style={{ textAlign: "left" }}
+            type="switch"
+            // id="custom-switch"
+            label="Bitcoin mode"
+            checked={showAuth}
+            onChange={() => setShowAuth(!showAuth)}
+          />
+          {/* <Form.Check
+              disabled={true}
+              type="switch"
+              // id="custom-switch"
+              label="Spanish mode (disabled)"
+              checked={showAuth}
+              onChange={() => setShowAuth(!showAuth)}
+            /> */}
+        </Form>
+      )}
     </div>
   );
 };
