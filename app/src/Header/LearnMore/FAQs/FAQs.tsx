@@ -92,7 +92,12 @@ const FAQSection = () => {
             <b>
               If you want to support the early stages of RO.B.E or learn more
               about what I teach, please continue to explore. Visit the Patreon
-              and subscribe to get the passcode.
+              and join for free for early access & behind the scenes content.
+              <br />
+              <br />
+              It's pretty valuable since this is a startup & education
+              community. The $5 subscription is optional. I'm trying to load you
+              up like it's Costco before you make that choice.
             </b>
           </p>
           <a
