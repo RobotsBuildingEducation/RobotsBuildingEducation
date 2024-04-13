@@ -128,18 +128,42 @@ export const Prompts = ({
         if (!prompt) return null;
         return (
           <AnimatedPrompt index={index}>
-            <PromptButton
-              patreonObject={patreonObject}
-              key={type}
-              icon={prompt?.icon}
-              action={prompt?.action}
-              type={type}
-              loading={!!loadingMessage}
-              prompt={prompt}
-              onClick={(e) => !loadingMessage && handleSubmit(e, prompt, type)}
-              handleZap={handleZap}
-              zap={zap}
-            />
+            {type === "shop" ? (
+              <>
+                {" "}
+                <PromptButton
+                  patreonObject={patreonObject}
+                  key={type}
+                  icon={prompt?.icon}
+                  action={prompt?.action}
+                  type={type}
+                  loading={!!loadingMessage}
+                  prompt={prompt}
+                  onClick={(e) =>
+                    !loadingMessage && handleSubmit(e, prompt, type)
+                  }
+                  handleZap={handleZap}
+                  zap={zap}
+                />
+                <br />
+                <br />
+              </>
+            ) : (
+              <PromptButton
+                patreonObject={patreonObject}
+                key={type}
+                icon={prompt?.icon}
+                action={prompt?.action}
+                type={type}
+                loading={!!loadingMessage}
+                prompt={prompt}
+                onClick={(e) =>
+                  !loadingMessage && handleSubmit(e, prompt, type)
+                }
+                handleZap={handleZap}
+                zap={zap}
+              />
+            )}
           </AnimatedPrompt>
         );
       })}

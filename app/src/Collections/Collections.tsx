@@ -59,6 +59,9 @@ export const Collections = ({
               </StyledAnimatedModule>
             ))}
           </StyledCollectionContainer>
+          <br />
+          <br />
+          <br />
         </div>
       );
     }
