@@ -13,6 +13,7 @@ import Form from "react-bootstrap/Form";
 
 export const WalletAuth = () => {
   const [showAuth, setShowAuth] = useState(false);
+  let element = <span>Bitcoin mode&nbsp;&nbsp;</span>;
   useEffect(() => {
     if (
       localStorage.getItem("patreonPasscode") ===
@@ -22,7 +23,7 @@ export const WalletAuth = () => {
     }
   }, []);
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div style={{ display: "flex", justifyContent: "center", marginBottom: 6 }}>
       {showAuth ? (
         <Button
           appName="Robots Building Education"
@@ -42,10 +43,9 @@ export const WalletAuth = () => {
       ) : (
         <Form>
           <Form.Check
-            style={{ textAlign: "left" }}
             type="switch"
             // id="custom-switch"
-            label="Bitcoin mode"
+            label={element}
             checked={showAuth}
             onChange={() => setShowAuth(!showAuth)}
           />

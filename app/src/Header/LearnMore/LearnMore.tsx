@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Button, Modal } from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
 import { logEvent } from "firebase/analytics";
 import { analytics } from "../../database/firebaseResources";
 import { DiscordButton } from "./DiscordButton/DiscordButton";
@@ -183,8 +183,18 @@ export const LearnMore = ({ languageMode }) => {
 
         {showThird && (
           <RiseUpAnimation>
-            <div style={{ margin: 6 }}>
+            <div style={{ margin: 6, textAlign: "left" }}>
               <WalletAuth />
+
+              <Form>
+                <Form.Check
+                  type="switch"
+                  // id="custom-switch"
+                  label="Spanish mode"
+                  checked={false}
+                  disabled
+                />
+              </Form>
             </div>
           </RiseUpAnimation>
         )}
