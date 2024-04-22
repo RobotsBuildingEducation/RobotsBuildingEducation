@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/experimental/map",
+    path: "/map",
     element: <DecisionMap />,
   },
 ]);

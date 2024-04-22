@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { LightningAddress } from "@getalby/lightning-tools";
 
 import { useStore } from "./Store";
+import RandomCharacter from "./common/ui/Elements/RandomCharacter/RandomCharacter";
 
 /**
  *
@@ -224,4 +225,19 @@ export const useBitcoinAnimation = () => {
   };
 
   return animation;
+};
+
+export const TimedRandomCharacter = () => {
+  const [key, setKey] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // This updates the key state, causing the component to re-render
+      setKey((prevKey) => prevKey + 1);
+    }, 3000); // Set the interval to 1000 ms (1 second)
+
+    return () => clearInterval(interval); // Clean up the interval on component unmount
+  }, []);
+
+  return <RandomCharacter key={key} borderRadius="50%" />;
 };

@@ -6,8 +6,9 @@ import { logEvent } from "firebase/analytics";
 
 import { decentralizedEducationTranscript } from "../../App.constants";
 
-import { FadeInComponent } from "../../styles/lazyStyles";
+import { FadeInComponent, japaneseThemePalette } from "../../styles/lazyStyles";
 import { analytics } from "../../database/firebaseResources";
+import { useState } from "react";
 
 export const renderTranscriptAwards = (profileData) => {
   if (isEmpty(profileData)) {
@@ -86,13 +87,28 @@ export const renderCheckboxes = (profileData) => {
   return checkboxes;
 };
 
-export const renderActionBarControls = ({
+export const RenderActionBarControls = ({
   displayName,
   setIsBossModeOpen,
   setIsCofounderOpen,
   setIsEmotionalIntelligenceOpen,
   setIsImpactWalletOpen,
+  isStartupOpen,
+  setIsStartupOpen,
 }) => {
+  const [isHovered, setIsHovered] = useState({
+    bossMode: false,
+    cofounder: false,
+    chatLink: false,
+    emotionalIntelligence: false,
+    impactWallet: false,
+    startup: false,
+  });
+
+  // Handler for mouse enter and leave
+  const handleHover = (button, value) => {
+    setIsHovered((prev) => ({ ...prev, [button]: value }));
+  };
   return (
     <FadeInComponent>
       <span style={{ fontSize: "66%" }}>
@@ -103,31 +119,74 @@ export const renderActionBarControls = ({
             ?.join("")}
         </b>
       </span>
-      &nbsp;
-      <Button
-        style={{ textShadow: "2px 2px 12px black" }}
+      {/* <Button
+        style={{
+          textShadow: "1px 1px 1px black",
+          borderBottom: isHovered.bossMode
+            ? "0px solid transparent"
+            : `2px solid ${japaneseThemePalette.CobaltBlue}`,
+        }}
         onClick={() => {
           logEvent(analytics, "select_content", {
             content_type: "button",
             item_id: "Boss Mode",
           });
           setIsBossModeOpen(true);
+          setIsCofounderOpen(false);
+          setIsEmotionalIntelligenceOpen(false);
+          setIsImpactWalletOpen(false);
         }}
-        variant="secondary"
+        variant="dark"
+        onMouseEnter={() => handleHover("bossMode", true)}
+        onMouseLeave={() => handleHover("bossMode", false)}
+      >
+        🫂
+      </Button>
+      &nbsp;&nbsp;&nbsp; */}
+      <Button
+        style={{
+          textShadow: "1px 1px 1px black",
+          borderBottom: isHovered.bossMode
+            ? "0px solid transparent"
+            : `2px solid ${japaneseThemePalette.CobaltBlue}`,
+        }}
+        onClick={() => {
+          logEvent(analytics, "select_content", {
+            content_type: "button",
+            item_id: "Boss Mode",
+          });
+          setIsBossModeOpen(true);
+          setIsCofounderOpen(false);
+          setIsEmotionalIntelligenceOpen(false);
+          setIsImpactWalletOpen(false);
+        }}
+        variant="dark"
+        onMouseEnter={() => handleHover("bossMode", true)}
+        onMouseLeave={() => handleHover("bossMode", false)}
       >
         💎
       </Button>
       &nbsp; &nbsp;
       <Button
-        style={{ textShadow: "2px 2px 12px black" }}
+        style={{
+          textShadow: "1px 1px 1px black",
+          borderBottom: isHovered.cofounder
+            ? "0px solid transparent"
+            : `2px solid ${japaneseThemePalette.CobaltBlue}`,
+        }}
         onClick={() => {
           logEvent(analytics, "select_content", {
             content_type: "button",
             item_id: "Cofounder",
           });
           setIsCofounderOpen(true);
+          setIsBossModeOpen(false);
+          setIsEmotionalIntelligenceOpen(false);
+          setIsImpactWalletOpen(false);
         }}
-        variant="secondary"
+        variant="dark"
+        onMouseEnter={() => handleHover("cofounder", true)}
+        onMouseLeave={() => handleHover("cofounder", false)}
       >
         🌀
       </Button>
@@ -138,14 +197,21 @@ export const renderActionBarControls = ({
         rel="noopener noreferrer"
       >
         <Button
-          style={{ textShadow: "2px 2px 12px black" }}
+          style={{
+            textShadow: "1px 1px 1px black",
+            borderBottom: isHovered.chatLink
+              ? "0px solid transparent"
+              : `2px solid ${japaneseThemePalette.CobaltBlue}`,
+          }}
           onClick={() => {
             logEvent(analytics, "select_content", {
               content_type: "button",
               item_id: "chatGPT_link",
             });
           }}
-          variant="secondary"
+          variant="dark"
+          onMouseEnter={() => handleHover("chatLink", true)}
+          onMouseLeave={() => handleHover("chatLink", false)}
         >
           <img
             src={roxanaChat}
@@ -153,7 +219,7 @@ export const renderActionBarControls = ({
             width="16"
             style={{
               borderRadius: "50%",
-              boxShadow: "2px 2px 12px black",
+              boxShadow: "1px 1px 1px black",
               marginBottom: 1,
             }}
           />
@@ -161,29 +227,49 @@ export const renderActionBarControls = ({
       </a>
       &nbsp; &nbsp;
       <Button
-        style={{ textShadow: "2px 2px 12px black" }}
+        style={{
+          textShadow: "1px 1px 1px black",
+          borderBottom: isHovered.emotionalIntelligence
+            ? "0px solid transparent"
+            : `2px solid ${japaneseThemePalette.CobaltBlue}`,
+        }}
         onClick={() => {
           logEvent(analytics, "select_content", {
             content_type: "button",
             item_id: "Therapy Session",
           });
           setIsEmotionalIntelligenceOpen(true);
+          setIsBossModeOpen(false);
+          setIsCofounderOpen(false);
+          setIsImpactWalletOpen(false);
         }}
-        variant="secondary"
+        variant="dark"
+        onMouseEnter={() => handleHover("emotionalIntelligence", true)}
+        onMouseLeave={() => handleHover("emotionalIntelligence", false)}
       >
         🫶🏽
       </Button>
       &nbsp; &nbsp;
       <Button
-        style={{ textShadow: "2px 2px 12px black" }}
+        style={{
+          textShadow: "1px 1px 1px black",
+          borderBottom: isHovered.impactWallet
+            ? "0px solid transparent"
+            : `2px solid ${japaneseThemePalette.CobaltBlue}`,
+        }}
         onClick={() => {
           logEvent(analytics, "select_content", {
             content_type: "button",
             item_id: "Proof of Work",
           });
           setIsImpactWalletOpen(true);
+          setIsEmotionalIntelligenceOpen(false);
+          setIsBossModeOpen(false);
+          setIsCofounderOpen(false);
         }}
-        variant="secondary"
+        variant="dark"
+        onMouseEnter={() => handleHover("impactWallet", true)}
+        onMouseLeave={() => handleHover("impactWallet", false)}
       >
         🏦
       </Button>

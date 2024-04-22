@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Web5 } from "@web5/api/browser";
 
 import "./App.css";
 
 import { Paths } from "./Paths/Paths";
-import { RoxSplashAnimation } from "./common/uiSchema";
+import { RoxSplashAnimation, uiCollections } from "./common/uiSchema";
 import { Collections } from "./Collections/Collections";
 import { Header } from "./Header/Header";
 
@@ -15,7 +15,8 @@ import { updateDoc } from "firebase/firestore";
 import { logEvent } from "firebase/analytics";
 
 import {
-  useBitcoinAnimation,
+  TimedRandomCharacter,
+  // useBitcoinAnimation,
   useGlobalStates,
   useUIStates,
   useUserDocument,
@@ -30,12 +31,11 @@ import {
 } from "./App.compute";
 import { setOfLectures } from "./App.constants";
 
-import { LectureHeader } from "./LectureHeader/LectureHeader";
 import { ChatGptWrapper } from "./ChatGPT/ChatGptWrapper";
 import { ProofOfWorkWrapper } from "./ProofOfWork/ProofOfWorkWrapper";
 import { words } from "./common/words/words";
 
-import { RiseUpAnimation } from "./styles/lazyStyles";
+import { RiseUpAnimation, japaneseThemePalette } from "./styles/lazyStyles";
 import { useStore } from "./Store";
 import {
   createWebNodeRecord,
@@ -44,8 +44,15 @@ import {
   testUpdatedWebNodeRecords,
   updateWebNodeRecord,
 } from "./App.web5";
+import { Intro } from "./ChatGPT/Intro/Intro";
+import { PromptMessage } from "./ChatGPT/PromptMessage/PromptMessage";
+// import RandomCharacter from "./common/ui/Elements/RandomCharacter/RandomCharacter";
+import { CodeDisplay } from "./common/ui/Elements/CodeDisplay/CodeDisplay";
+// import { Typewriter } from "./common/ui/Elements/Typewriter/Typewriter";
 
 // import { deleteWeb5Records } from "./App.web5";
+import roxanaChat from "./common/media/images/roxanaChat.png";
+import { GlobalModal } from "./common/ui/Elements/GlobalModal/GlobalModal";
 
 logEvent(analytics, "page_view", {
   page_location: "https://learn-robotsbuildingeducation.firebaseapp.com/",
@@ -56,6 +63,9 @@ let App = () => {
   const showZap = useStore((state) => state.showZap);
   const showBitcoin = useStore((state) => state.showBitcoin);
   const setShowStars = useStore((state) => state.setShowStars);
+  const { setIsGlobalModalActive, setModalContent } = useStore();
+
+  const topRef = useRef(null); // Create the ref
 
   const handleZap = useZapAnimation();
   // const handleZap = () => {};
@@ -78,6 +88,7 @@ let App = () => {
 
   // handles language switching
   let [languageMode, setLanguageMode] = useState(words["English"]);
+  // let [isGlobalModalActive, setIsGlobalModalActive] = useState(false);
 
   /**
    *
@@ -188,6 +199,12 @@ let App = () => {
       setLoading(false);
     }, 2000);
   }, []);
+
+  useEffect(() => {
+    if (topRef.current) {
+      topRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [uiStateReference.currentPath]); // Dependency array to control when the scroll happens
 
   if (loading) {
     return (
@@ -325,6 +342,11 @@ let App = () => {
 
       // Reset the whole animation after some time
       setTimeout(() => setShowStars(false), 2000);
+
+      setModalContent({
+        hello: "yes",
+      });
+      // setIsGlobalModalActive(true);
     } else {
       if (setType === "progress") {
         handleZap();
@@ -333,68 +355,298 @@ let App = () => {
   };
 
   return (
-    <div
-      style={{
-        margin: "auto",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
+    <>
       <div
-        className="App"
         style={{
-          minHeight: "100dvh",
-          width: 640,
-          maxWidth: "100%",
+          margin: "auto",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        <Header languageMode={languageMode} setLanguageMode={setLanguageMode} />
+        <div
+          className="App"
+          style={{
+            minHeight: "100dvh",
+            width: "100%",
+            maxWidth: "700px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+          ref={topRef}
+        >
+          <>
+            <Paths
+              handlePathSelection={handlePathSelection}
+              pathSelectionAnimationData={
+                uiStateReference.pathSelectionAnimationData
+              }
+              userStateReference={userStateReference}
+            />
 
-        <>
-          <Paths
-            handlePathSelection={handlePathSelection}
-            pathSelectionAnimationData={
-              uiStateReference.pathSelectionAnimationData
-            }
-            userStateReference={userStateReference}
-          />
+            <div
+              style={{
+                marginTop: 115,
+                width: "100%",
+                maxWidth: 700,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              {/* {uiStateReference.patreonObject.header ? null : ( */}
+              <div style={{ width: "100%" }}>
+                <RiseUpAnimation>
+                  <h1
+                    style={{
+                      fontFamily: "Bungee",
+                      display: "flex",
+                      justifyContent: "center",
+                      textAlign: "center",
+                    }}
+                  >
+                    <TimedRandomCharacter />
+                    ROX
+                  </h1>
+                </RiseUpAnimation>
 
-          <Collections
-            handleModuleSelection={handleModuleSelection}
-            currentPath={uiStateReference.currentPath}
-            userStateReference={userStateReference}
-          />
+                <Header
+                  languageMode={languageMode}
+                  setLanguageMode={setLanguageMode}
+                />
 
-          <LectureHeader uiStateReference={uiStateReference} />
+                {/* {uiStateReference.currentPath ? ( */}
+                {uiStateReference.patreonObject.header ? null : (
+                  <>
+                    <PromptMessage
+                      patreonObject={{ ok: "hey" }}
+                      promptMessage={
+                        uiStateReference.currentPath ? "let's learn!" : "rox?"
+                      }
+                    />
+                    <Intro
+                      patreonObject={{
+                        prompts: {
+                          welcome: {
+                            response: uiStateReference.currentPath ? (
+                              <Collections
+                                handleModuleSelection={handleModuleSelection}
+                                currentPath={uiStateReference.currentPath}
+                                userStateReference={userStateReference}
+                              />
+                            ) : (
+                              <div
+                              // speed={uiStateReference.currentPath ? 0 : 0}
+                              >
+                                Hello{" "}
+                                <b>
+                                  {(localStorage
+                                    .getItem("uniqueId")
+                                    ?.substr(0, 16) || "") + "!"}
+                                </b>{" "}
+                                <br />
+                                You've created an account already! 🪄
+                                <br />
+                                <br />
+                                <h3>
+                                  Welcome to Robots Building Education! 😊
+                                </h3>
+                                <br />
+                                I'm rox. I'm an assistant supervised and curated
+                                by Sheilfer so we can deliver a good quality
+                                education centered around teaching you skills
+                                and encouraging you to build the future. We're
+                                going to learn about coding and business here.
+                                Sheilf says I'm a cofounder, but it's gonna take
+                                a while for me to get there. Let's take a look
+                                at our tools:
+                                <br />
+                                <br />
+                                💎 - quiz feature
+                                <br />
+                                🌀 - cofounder assistant
+                                <br />
+                                <img
+                                  width={16}
+                                  height={16}
+                                  style={{ borderRadius: "50%" }}
+                                  src={roxanaChat}
+                                ></img>{" "}
+                                - openAI GPT
+                                <br />
+                                🫶🏽 - emotional intelligence
+                                <br />
+                                🏦 - identity wallet
+                                <br />
+                                ⭐ - conversation quiz
+                                <br />
+                                <br />
+                                <h4>Engineer</h4>
+                                <hr />
+                                <h4>Creator</h4>
+                                <hr />
+                                <h4>Dealer</h4>
+                                Listen here buddy. Don't offend me 😠 This isn't
+                                some cheap AI content. You hear me? This is as
+                                real as it gets. Believe it. You're not in the
+                                position to judge me when you trust Tiktok to
+                                recommend you content. Did you know Musical.ly
+                                was an education app first? They gave up. Sold
+                                out. Yeah. So now we're here fixing the mess
+                                they created.
+                                <br />
+                                <br />
+                                Anyway. You gotta get on our level! I'm pretty
+                                good and I keep getting better. I mean check
+                                this advanced code out. That's me. Even Sheilf
+                                was impressed. He's never seen Javascript like
+                                this before! Easy! 😎
+                                <br /> <br />
+                                <CodeDisplay
+                                  code={`
+// Fisher-Yates (or Knuth) shuffle algorithm
+const shuffleArray = (array) => {
+  let currentIndex = array.length,
+    randomIndex;
 
-          <ChatGptWrapper
-            uiStateReference={uiStateReference}
-            userStateReference={userStateReference}
-            globalStateReference={globalStateReference}
-            handleScheduler={handleScheduler}
-            handleZap={handleZap}
-            zap={zap}
-            checkForUnlock={checkForUnlock}
-            handleCompletedPractice={handleCompletedPractice}
-            handleWatch={handleWatch}
-          />
-        </>
+  // While there remain elements to shuffle...
+  while (currentIndex !== 0) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(
+      Math.random() 
+      * 
+      currentIndex
+    );
+
+    currentIndex--;
+
+    // And swap it with the current element.
+    [
+      array[
+        currentIndex], 
+        array[randomIndex]
+      ] 
+      = [
+        array[randomIndex], 
+        array[currentIndex]
+      ];
+  }
+
+  return array;
+};`}
+                                />
+                                <br /> <br />
+                                Okay okay I'll stop messing around. We're
+                                building this platform because we believe that
+                                we can create scholarships with learning. This
+                                means that we manually create these scholarships
+                                if you subscribe to Patreon, which is made
+                                publicly free too. Feel welcome to use the tools
+                                at the bottom as they continue to advance with
+                                you over time:
+                                <br /> <br />
+                                Programmatically, this means we research ways to
+                                make Bitcoin more accessible and meaningful.
+                                Bitcoin allows us to monetize user experiences
+                                instead of offering subscription services. It's
+                                here where we believe that this decentralized
+                                network can change finance for education
+                                services.
+                                <br />
+                                <br />
+                                And you ought to believe it because you did
+                                create your account already using a
+                                decentralized identity! You did that inside of
+                                Tiktok! So in a way it's like Tiktok's AI is
+                                helping us create scholarships too.
+                                <br />
+                                <br />
+                                So that's why it's called Robots Building
+                                Education. We designed this platform to create
+                                scholarships out of learning.
+                                <br />
+                                <br />
+                                <div
+                                  style={{
+                                    backgroundColor:
+                                      japaneseThemePalette.CobaltBlue,
+                                    padding: 10,
+                                    borderRadius: 8,
+                                  }}
+                                >
+                                  ⚠️😌 Please visit the panel summoned by the 🏦
+                                  button below to save your ID key somewhere
+                                  safe. This lets you migrate your account to
+                                  your preferred social media account or
+                                  browser.
+                                </div>
+                                <br />
+                                <br />
+                              </div>
+                            ),
+                          },
+                        },
+                      }}
+                      loadingMessage={false}
+                      isResponseActive={false}
+                      promptSelection={{}}
+                    />
+                  </>
+                )}
+                {/* ) : null} */}
+
+                {/* <br /> */}
+                {}
+                {!uiStateReference.patreonObject.header ? (
+                  <>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                  </>
+                ) : null}
+              </div>
+              {/* )} */}
+              {/* <Collections
+              handleModuleSelection={handleModuleSelection}
+              currentPath={uiStateReference.currentPath}
+              userStateReference={userStateReference}
+            /> */}
+
+              <ChatGptWrapper
+                uiStateReference={uiStateReference}
+                userStateReference={userStateReference}
+                globalStateReference={globalStateReference}
+                handleScheduler={handleScheduler}
+                handleZap={handleZap}
+                zap={zap}
+                checkForUnlock={checkForUnlock}
+                handleCompletedPractice={handleCompletedPractice}
+                handleWatch={handleWatch}
+              />
+            </div>
+          </>
+        </div>
+
+        <ProofOfWorkWrapper
+          userStateReference={userStateReference}
+          globalStateReference={globalStateReference}
+          updateUserEmotions={updateUserEmotions}
+          uiStateReference={uiStateReference}
+          showStars={showStars}
+          showZap={showZap}
+          showBitcoin={showBitcoin}
+          zap={zap}
+          handleZap={handleZap}
+          computePercentage={computePercentage}
+        />
       </div>
 
-      <ProofOfWorkWrapper
-        userStateReference={userStateReference}
-        globalStateReference={globalStateReference}
-        updateUserEmotions={updateUserEmotions}
-        uiStateReference={uiStateReference}
-        showStars={showStars}
-        showZap={showZap}
-        showBitcoin={showBitcoin}
-        zap={zap}
-        handleZap={handleZap}
-        computePercentage={computePercentage}
-      />
-    </div>
+      <GlobalModal />
+    </>
   );
 };
 

@@ -50,7 +50,7 @@ const MessageContainer = styled.div`
   padding: 20px;
   min-width: 350px;
   // max-width: 600px;
-  max-width: 70.5%;
+  max-width: 80.5%;
   border-radius: 50px;
   margin: 24px 0 12px 0;
 `;
@@ -111,6 +111,7 @@ const renderContent = (
           patreonObject={patreonObject}
           moduleName={moduleName}
           handleCompletedPractice={handleCompletedPractice}
+          userStateReference={userStateReference}
         />
       );
     case "demonstrate":
@@ -126,7 +127,6 @@ const renderContent = (
       } else {
         return <div style={{ padding: 20 }}>{response}</div>;
       }
-      break;
     case "shop":
       return (
         <div style={{ padding: 20 }}>

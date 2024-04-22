@@ -105,25 +105,63 @@ export const sineWave = keyframes`
   border-radius: 62.5% 37.5% 37.5% 62.5%;
 }
 `;
+export const movingFace = keyframes`
+0%, 100% {
+  border-radius: 10px 50px 50px 10px;
+  transform: translateY(0) rotate(0deg);
+}
+25% {
+  border-radius: 50px 10px 10px 50px;
+  transform: translateY(-5px) rotate(-2deg);
+}
+50% {
+  border-radius: 10px 50px 50px 10px;
+  transform: translateY(0) rotate(0deg);
+}
+75% {
+  border-radius: 50px 10px 10px 50px;
+  transform: translateY(5px) rotate(2deg);
+}
+`;
+export const rectanglePump = keyframes`
+0%, 100% {
+  border-radius: 10px 50px 50px 10px;
+}
+25% {
+  border-radius: 50px 10px 10px 50px;
+}
+50% {
+  border-radius: 10px 50px 50px 10px;
+}
+75% {
+  border-radius: 50px 10px 10px 50px;
+}
+
+`;
 
 export const StyledNavigationContainer = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
+  margin: 0;
+  padding: 0;
   max-width: 100%;
   min-width: 100%;
+  opacity: 0.9;
 
   /* max-width: 100%; */
   transition: 0.2s all ease-in-out;
-  padding: 12px;
+
   border-radius: 2px;
   /* box-shadow: 0 3px 6px #0b186be2, 0 6px 6px rgba(0, 0, 0, 0.23); */
   &:hover {
     /* transform: scale(1.01); */
     /* box-shadow: 0 19px 38px  #0b186be2, 0 15px 12px rgba(0,0,0,0.22); */
   }
+
+  position: fixed;
+  background-color: black;
+  z-index: 100;
+  padding-top: 4px;
 `;
 
 export const StyledCollectionContainer = styled.div`
@@ -132,12 +170,13 @@ export const StyledCollectionContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  margin-top: 12px;
-  margin-bottom: 12px;
+  // margin-bottom: 12px;
   transition: 0.2s all ease-in-out;
-  padding: 12px;
+  // padding: 12px;
   border-radius: 2px;
   /* box-shadow: 0 3px 6px #6b0b68e1, 0 6px 6px rgba(0, 0, 0, 0.23); */
+  width: 100%;
+  max-width: 600px;
   &:hover {
     /* transform: scale(1.01); */
     /* box-shadow: 0 19px 38px  #0b186be2, 0 15px 12px rgba(0,0,0,0.22); */
@@ -256,6 +295,7 @@ export const StyledLink = styled(Link)`
     }};
 
     background: ${(props) => {
+      const isUnlocked = props.isUnlocked;
       const isActive = props.active;
       const isSelectedPath =
         props.pathSelectionAnimationData.path === props.path;
@@ -266,7 +306,8 @@ export const StyledLink = styled(Link)`
       // Function to convert a hex color to its blue version
       const toBlueVersion = (color) => {
         // Implement your logic to convert to blue version
-        return "#001eff"; // Example
+        // return "#001eff"; // Example
+        return "#000";
       };
 
       // Function to convert a hex color to its golden version
@@ -282,7 +323,9 @@ export const StyledLink = styled(Link)`
       }
 
       // Adjust color based on path
-      if (currentPath === "Engineer") {
+      if (!isUnlocked) {
+        backgroundColor = "black";
+      } else if (currentPath === "Engineer") {
         // Colors remain the same
       } else if (currentPath === "Creator") {
         backgroundColor = toBlueVersion(backgroundColor);
@@ -293,7 +336,7 @@ export const StyledLink = styled(Link)`
       return backgroundColor;
     }};
 
-    animation: ${sineWave} 3s infinite ease-in-out;
+    animation: ${rectanglePump} 3s infinite ease-in-out;
 
     text-shadow: 1px 1px 5px black;
     color: white;
@@ -304,29 +347,108 @@ export const StyledLink = styled(Link)`
   // border: 2px solid hotpink;
   border: 2px solid
     ${(props) => {
-      return props.isUnlocked ? "#e216b4" : "gray";
+      const isUnlocked = props.isUnlocked;
+      const isActive = props.active;
+      const isSelectedPath =
+        props.pathSelectionAnimationData.path === props.path;
+      const currentPath = props.path;
+
+      let backgroundColor = "";
+
+      // Function to convert a hex color to its blue version
+      const toBlueVersion = (color) => {
+        // Implement your logic to convert to blue version
+        // return "#001eff"; // Example
+        return "#0044B0";
+      };
+
+      // Function to convert a hex color to its golden version
+      const toGoldenVersion = (color) => {
+        // Implement your logic to convert to golden version
+        return "#ffd164"; // Example
+      };
+
+      if (isActive && isSelectedPath) {
+        backgroundColor = "#ff64ff";
+      } else if (isActive && !isSelectedPath) {
+        backgroundColor = "#ff64ff;";
+      }
+
+      // Adjust color based on path
+      if (!isUnlocked) {
+        backgroundColor = "gray";
+      } else if (currentPath === "Engineer") {
+        // Colors remain the same
+      } else if (currentPath === "Creator") {
+        backgroundColor = toBlueVersion(backgroundColor);
+      } else if (currentPath === "Entrepeneur") {
+        backgroundColor = toGoldenVersion(backgroundColor);
+      }
+
+      return backgroundColor;
     }};
 
   width: 115px;
 
-  height: 115px;
+  height: 75px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 8px;
-  margin: 8px;
+  // margin: 8px;
+  margin-left: 8px;
+  margin-right: 8px;
 
   color: white;
   transition: 0.15s all ease-in-out;
   text-shadow: 1px 1px 5px black;
   // color: #f5befa;
-  border-radius: 44%;
+  border-radius: 0px;
+  //      " #e216b4"
 
   box-shadow: ${(props) => {
-    return props.pathSelectionAnimationData.path === props.path
-      ? // ? "1px 1px 17px 6px rgba(255,100,255,1);"
-        "1px 1px 17px 6px #4C00EA"
-      : "";
+    const isUnlocked = props.isUnlocked;
+    const isActive = props.active;
+    const isSelectedPath = props.pathSelectionAnimationData.path === props.path;
+    const currentPath = props.path;
+
+    let backgroundColor = "";
+
+    // Function to convert a hex color to its blue version
+    const toBlueVersion = (color) => {
+      // Implement your logic to convert to blue version
+      // return "#001eff"; // Example
+      return " #0044B0";
+    };
+
+    // Function to convert a hex color to its golden version
+    const toGoldenVersion = (color) => {
+      // Implement your logic to convert to golden version
+      return " #ffd164"; // Example
+    };
+
+    // if (isActive && isSelectedPath) {
+    //   backgroundColor = "1px 1px 3px 1px #ff64ff";
+    // } else if (isActive && !isSelectedPath) {
+    //   backgroundColor = "1px 1px 3px 1px #ff64ff";
+    // }
+
+    if (isSelectedPath) {
+      backgroundColor = "1px 1px 3px 1px";
+    }
+
+    // Adjust color based on path
+    if (!isUnlocked) {
+      backgroundColor = "";
+    } else if (currentPath === "Engineer") {
+      backgroundColor += " #e216b4";
+    } else if (currentPath === "Creator") {
+      backgroundColor += toBlueVersion(backgroundColor);
+    } else if (currentPath === "Entrepeneur") {
+      backgroundColor += toGoldenVersion(backgroundColor);
+    }
+
+    return backgroundColor;
   }};
 
   /* cursor: ${(props) => {
@@ -394,9 +516,12 @@ export const StyledPromptButton = styled.button`
   color: white;
   /* border: 2px solid #48484a; */
 
+  /*       isPracticeComplete={isPracticeComplete}
+  isVideoWatched={isVideoWatched} */
+
   border: 1px solid
     ${(props) => {
-      return props?.borderHighlight;
+      return props?.isGold ? "gold" : props?.borderHighlight;
     }};
   /* border-top-left-radius: 30px;
   border-top-right-radius: 30px;
@@ -448,6 +573,7 @@ export let japaneseThemePalette = {
   PowerPink: "#f7059d",
   OrangeGold: "#FFD68B",
   CobaltBlue: "#0044B0",
+  iphoneBlue: "2C2C2E",
 };
 
 // opinionated
@@ -489,4 +615,18 @@ export let textBlock2 = (
 
 export const StyledListItem = {
   padding: 6,
+};
+
+export const responsiveBox = {
+  width: "100%",
+  maxWidth: 700,
+};
+
+export let paddingBlock = (backgroundColor) => {
+  return {
+    backgroundColor: backgroundColor,
+    borderRadius: 12,
+    padding: 16,
+    color: "white",
+  };
 };

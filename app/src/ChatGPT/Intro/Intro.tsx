@@ -32,7 +32,7 @@ export const Intro = ({
         justifyContent: "flex-start",
         textAlign: "left",
         padding: 20,
-        maxWidth: "70.5%",
+        maxWidth: "80.5%",
 
         borderTopLeftRadius: 50,
         borderTopRightRadius: 50,

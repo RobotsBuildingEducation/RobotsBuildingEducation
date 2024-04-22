@@ -24,8 +24,8 @@ const mainContainerStyle = {
 export const PromptMessage = ({
   promptMessage,
   patreonObject,
-  chatGptResponseList,
-  loadingMessage,
+  chatGptResponseList = [],
+  loadingMessage = false,
 }) => {
   // Check if patreonObject exists
   if (isEmpty(patreonObject)) return null;
@@ -36,9 +36,9 @@ export const PromptMessage = ({
     displayMessage = "let's learn!";
   }
 
-  if (chatGptResponseList?.length > 0 && !loadingMessage) {
-    displayMessage = "thank you rox!";
-  }
+  // if (chatGptResponseList?.length > 0 && !loadingMessage) {
+  //   displayMessage = "thank you rox!";
+  // }      {/*
 
   return (
     <div style={mainContainerStyle}>

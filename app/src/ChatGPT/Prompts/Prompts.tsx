@@ -33,6 +33,8 @@ const PromptButton = ({
   prompt,
   handleZap,
   zap,
+  isPracticeComplete,
+  isVideoWatched,
 }) => {
   let actionVar = action === "generate" ? "discover" : action;
   if (
@@ -68,11 +70,27 @@ const PromptButton = ({
     );
   }
 
+  let isGold = true;
+  if (patreonObject?.header !== "Learning Mindset & Perspective") {
+    isGold = false;
+  } else if (type === "shop") {
+    isGold = false;
+  } else if (type === "guide") {
+    isGold = false;
+  } else if (type === "patreon") {
+    if (isVideoWatched) isGold = false;
+  } else if (type === "practice") {
+    if (isPracticeComplete) isGold = false;
+  }
+
   return (
     <StyledPromptButton
       tabindex="0"
+      isGold={isGold}
       borderHighlight={"#48484a"}
-      style={{ display: loading ? "none" : "flex" }}
+      style={{
+        display: loading ? "none" : "flex",
+      }}
       onClick={(e) => {
         onClick(e, prompt, type);
       }}
@@ -106,10 +124,27 @@ export const Prompts = ({
   patreonObject,
   handleSubmit,
   handleZap,
+  userStateReference,
 
   zap,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // console.log("patreonobj", patreonObject);
+  // console.log("user ref", userStateReference);
+  // console.log("db user doc", userStateReference?.databaseUserDocument);
+
+  let isl1 = patreonObject?.header === "Learning Mindset & Perspective";
+
+  let isVideoWatched =
+    isl1 &&
+    userStateReference?.databaseUserDocument?.watches?.[
+      "Learning Mindset & Perspective"
+    ];
+  let isPracticeComplete =
+    isl1 &&
+    userStateReference?.databaseUserDocument?.progress?.[
+      "Learning Mindset & Perspective"
+    ];
 
   if (isEmpty(patreonObject)) return null;
 
@@ -125,6 +160,7 @@ export const Prompts = ({
     >
       {promptTypes.map((type, index) => {
         const prompt = patreonObject.prompts[type];
+
         if (!prompt) return null;
         return (
           <AnimatedPrompt index={index}>
@@ -147,6 +183,7 @@ export const Prompts = ({
                 />
                 <br />
                 <br />
+                <br />
               </>
             ) : (
               <PromptButton
@@ -162,6 +199,8 @@ export const Prompts = ({
                 }
                 handleZap={handleZap}
                 zap={zap}
+                isPracticeComplete={isPracticeComplete}
+                isVideoWatched={isVideoWatched}
               />
             )}
           </AnimatedPrompt>

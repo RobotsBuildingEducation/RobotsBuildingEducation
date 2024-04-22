@@ -12,7 +12,7 @@ const headerStyle = {
  *
  * @returns a component that renders the title of the selected module
  */
-export const LectureHeader = ({ uiStateReference }) => {
+export const LectureHeader = ({ uiStateReference, topRef }) => {
   // Check for the existence of the header in patreonObject
   const headerExists = !isEmpty(uiStateReference.patreonObject.header);
 
@@ -22,6 +22,7 @@ export const LectureHeader = ({ uiStateReference }) => {
   // Render the header if it exists
   return (
     <>
+      {/* <div ref={topRef}></div> */}
       <br />
       <RiseUpAnimation>
         <h2 style={headerStyle}>

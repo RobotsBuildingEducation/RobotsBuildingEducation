@@ -12,6 +12,7 @@ to {
 } 
 `;
 const StyledPathItem = styled.div`
+  perspective: 1000px;
   animation: ${delayedAnimation} 0.3s ease-out;
   animation-delay: ${(props) => props.index * 0.15}s; /* Delay based on index */
   opacity: 0; /* Start with opacity 0 to make the animation visible */

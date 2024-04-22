@@ -2,6 +2,7 @@ import IMPACT_BACKGROUND from "../../../common/media/images/IMPACT_BACKGROUND.jp
 import { japaneseThemePalette, textBlock } from "../../../styles/lazyStyles";
 import { ExternalLink } from "../../../common/ui/Elements/ExternalLink/ExternalLink";
 import { FAQItem } from "./FAQItem/FAQItem";
+import { useState } from "react";
 
 /**
  * `FAQSection` component renders a list of frequently asked questions (FAQs) about the application.
@@ -25,6 +26,8 @@ import { FAQItem } from "./FAQItem/FAQItem";
  * The component makes use of predefined styles from `lazyStyles` to ensure consistency in presentation while allowing for thematic variations across different FAQ items. It aims to provide users with clear, informative answers to common questions, enhancing their understanding and engagement with the application.
  */
 const FAQSection = () => {
+  const [borderColor, setBorderColor] = useState("white");
+  const [display, setDisplay] = useState("none");
   const faqs = [
     {
       question: "What is this? (simple)",
@@ -48,14 +51,15 @@ const FAQSection = () => {
           </ul>
           <div style={{ marginBottom: 12 }}>
             The idea is to provide meaningful value in order to convert folks to
-            subscribe or use the bitcoin version of the app. The idea here is
-            attempting to build an platform that creates scholarships with
-            learning.
+            subscribe to Patreon or use the bitcoin version of the app. The goal
+            is attempting to build an education platform that creates
+            scholarships with learning.
           </div>
           <div>
-            This is accomplished with research into decentralized software
-            systems that may one day create a new fabric for education finance
-            by monetizing user experiences rather than subscription services.
+            In the long term, this is accomplished with research into
+            decentralized software systems that may one day create a new fabric
+            for education finance by monetizing user experiences rather than
+            subscription services.
           </div>
         </p>
       ),
@@ -67,27 +71,30 @@ const FAQSection = () => {
           style={{
             maxWidth: "100%",
             width: 700 /* Add your text block styles here */,
-            ...textBlock(japaneseThemePalette.TokyoTwilight, 0),
+            ...textBlock(japaneseThemePalette.CobaltBlue, 0),
           }}
         >
           <h5 style={{ fontFamily: "Bungee" }}> The Proof of Work System</h5>
           <p
             style={{
               maxWidth: 700,
-              ...textBlock(japaneseThemePalette.KyotoPurple, 0, 24),
+              ...textBlock(japaneseThemePalette.CobaltBlue, 0, 24),
+              border: "1px solid gray",
             }}
           >
             Robots Building Education uses a system called Proof Of Work to
             measure learning. When you use the application, you're putting
             robots to work! That work produces outcomes that should be
-            meaningful to communities, like improved finance for under-resourced
-            schools or homes. You can think of this system as some kind of
-            engine for universal basic income! 😁
+            meaningful to neighborhoods, like improved finance for
+            under-resourced schools or homes. You can think of this as a
+            decentralized fabric that allows education technology to become a
+            public service.
           </p>
           <p
             style={{
               maxWidth: 700,
-              ...textBlock(japaneseThemePalette.BambooForestGreen, 0, 24),
+              ...textBlock(japaneseThemePalette.CobaltBlue, 0, 24),
+              border: "1px solid gray",
             }}
           >
             The vision is to turn this into a decentralized protocol. Systems
@@ -405,9 +412,9 @@ const FAQSection = () => {
             As usual, the best answer is going to be "it depends". I recommend
             bootcamps if the value of your time is extremely high. For example,
             you need to take care of a newborn child and want to create more
-            time and opportunity. Another example is that you're mental health
-            is in decline, you have a healthy bank account and you have
-            thoroughly examined your intent for paying a premium for time.
+            time and opportunity. Another example is that you have a healthy
+            bank account and you have thoroughly examined your intent for paying
+            a premium for time.
             <br />
             <br />I don't recommend going to a bootcamp as a shorcut into the
             industry. A bootcamp is no different than being self-taught or going
@@ -587,15 +594,46 @@ const FAQSection = () => {
 
   return (
     <div style={{ maxWidth: 700, width: "100%", backgroundColor: "black" }}>
-      <h1 style={{ fontFamily: "Bungee" }}>FAQs</h1>
-      {faqs.map((faq, index) => (
-        <FAQItem
-          index={index}
-          key={index}
-          question={faq.question}
-          answer={faq.answer}
-        />
-      ))}
+      <h1
+        style={{
+          fontFamily: "Bungee",
+          borderBottom: `1px solid ${borderColor}`,
+          borderBottomLeftRadius: "12px",
+          borderBottomRightRadius: "12px",
+          padding: 24,
+          cursor: "pointer",
+          transition: "0.16s all ease-in-out",
+        }}
+        onClick={() => {
+          if (display === "none") {
+            setDisplay("block");
+          } else {
+            setDisplay("none");
+          }
+        }}
+        onMouseEnter={() => {
+          setBorderColor("blue");
+        }}
+        onMouseLeave={() => {
+          setBorderColor("white");
+        }}
+      >
+        FAQs
+      </h1>
+      <div
+        style={{
+          display: display,
+        }}
+      >
+        {faqs.map((faq, index) => (
+          <FAQItem
+            index={index}
+            key={index}
+            question={faq.question}
+            answer={faq.answer}
+          />
+        ))}
+      </div>
     </div>
   );
 };

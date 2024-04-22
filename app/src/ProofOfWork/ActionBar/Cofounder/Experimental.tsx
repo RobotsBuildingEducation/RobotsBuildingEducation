@@ -14,6 +14,7 @@ import {
 import { updateImpact } from "../../../App.compute";
 import { deleteField, doc, setDoc, updateDoc } from "firebase/firestore";
 import { database } from "../../../database/firebaseResources";
+import { responsiveBox } from "../../../styles/lazyStyles";
 
 export const Experimental = ({
   isCofounderOpen,
@@ -149,8 +150,14 @@ export const Experimental = ({
         <Modal.Title>Co-founder</Modal.Title>
       </Modal.Header>
       <Modal.Body style={{ color: "white", backgroundColor: "black" }}>
+        <div style={responsiveBox}>
+          The cofounder assistant will help you with various tasks including the
+          ability to write software and documents, structure content, create
+          schedules or discover investment insight.
+        </div>
+        <br />
         <Form onSubmit={handleSubmit}>
-          <h4 style={{ fontFamily: "Bungee" }}>Choose your role:</h4>
+          <h4 style={{ fontFamily: "Bungee" }}>Choose your role</h4>
           <div style={{ marginBottom: 12 }}>
             {Object.keys(switchStates).map((role, index) => (
               <Form.Check

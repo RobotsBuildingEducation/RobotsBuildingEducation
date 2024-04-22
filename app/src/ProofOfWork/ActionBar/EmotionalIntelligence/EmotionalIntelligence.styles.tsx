@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { sineWave } from "../../../styles/lazyStyles";
+import { movingFace, sineWave } from "../../../styles/lazyStyles";
 
 export const EmotionButton = styled.button`
   //   background-color: #000f89;
@@ -24,7 +24,7 @@ export const EmotionButton = styled.button`
       return props.noClick ? "unset" : "pointer";
     }};
 
-    animation: ${sineWave} 3s infinite ease-in-out;
+    animation: ${movingFace} 3s infinite ease-in-out;
   }
 `;
 

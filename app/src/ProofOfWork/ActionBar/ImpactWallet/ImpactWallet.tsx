@@ -8,6 +8,7 @@ import {
 } from "../../../App.compute";
 import { useState } from "react";
 import { renderCheckboxes, renderTranscriptAwards } from "../ActionBar.compute";
+import { responsiveBox } from "../../../styles/lazyStyles";
 
 export const ImpactWallet = ({
   isImpactWalletOpen,
@@ -89,6 +90,11 @@ export const ImpactWallet = ({
               width: "100%",
             }}
           >
+            <div style={responsiveBox}>
+              Your identity wallet keeps track of the data that you can migrate
+              to other platforms, services or applications.
+            </div>
+            <br />
             <div
               style={{
                 maxWidth: "fit-content",

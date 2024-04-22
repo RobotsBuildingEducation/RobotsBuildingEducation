@@ -5,6 +5,7 @@ import {
   japaneseThemePalette,
 } from "../styles/lazyStyles";
 import { Module } from "./Module/Module";
+import { useEffect, useRef } from "react";
 
 const delayedAnimation = keyframes`
 from {
@@ -32,6 +33,8 @@ export const Collections = ({
   currentPath,
   userStateReference,
 }): JSX.Element | null => {
+  console.log("current path", currentPath);
+
   // Check if the currentPath exists in the ui schema
   if (!currentPath || !uiCollections || !uiCollections[currentPath])
     return null;
@@ -46,7 +49,6 @@ export const Collections = ({
     if (modules && modules.length > 0) {
       return (
         <div>
-          <br />
           <StyledCollectionContainer>
             {modules.map((module, index) => (
               <StyledAnimatedModule index={index} key={module}>
@@ -59,9 +61,6 @@ export const Collections = ({
               </StyledAnimatedModule>
             ))}
           </StyledCollectionContainer>
-          <br />
-          <br />
-          <br />
         </div>
       );
     }
@@ -70,7 +69,13 @@ export const Collections = ({
   });
 
   return (
-    <div style={{ transition: "0.23s all ease-in-out" }}>
+    <div
+      style={{
+        transition: "0.23s all ease-in-out",
+        marginBottom: 24,
+      }}
+      // ref={topRef}
+    >
       {displayCollections}
     </div>
   );

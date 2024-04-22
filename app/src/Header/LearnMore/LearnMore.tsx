@@ -50,11 +50,6 @@ export const LearnMore = ({ languageMode }) => {
 
   return (
     <>
-      <br />
-      <FadeInComponent>
-        <h2 style={{ fontFamily: "Bungee", color: "white" }}>ROX</h2>
-      </FadeInComponent>
-
       <div
         style={{
           display: "flex",
@@ -86,7 +81,7 @@ export const LearnMore = ({ languageMode }) => {
             </Button>
           </RiseUpAnimation>
         )}
-        {showSecond && (
+        {/* {showSecond && (
           <RiseUpAnimation speed={0.3}>
             <a
               style={{ color: "white" }}
@@ -175,17 +170,17 @@ export const LearnMore = ({ languageMode }) => {
                     </defs>
                   </svg>
                 </div>
-                <div>&nbsp; Open Nostr</div>
+                <div>&nbsp; Connect</div>
               </Button>
             </a>
           </RiseUpAnimation>
-        )}
+        )} */}
 
         {showThird && (
           <RiseUpAnimation>
             <div style={{ margin: 6, textAlign: "left" }}>
               <WalletAuth />
-
+              {/* 
               <Form>
                 <Form.Check
                   type="switch"
@@ -194,7 +189,7 @@ export const LearnMore = ({ languageMode }) => {
                   checked={false}
                   disabled
                 />
-              </Form>
+              </Form> */}
             </div>
           </RiseUpAnimation>
         )}
@@ -232,8 +227,6 @@ export const LearnMore = ({ languageMode }) => {
           <br />
           <br />
 
-          <br />
-          <br />
           <DiscordButton />
         </Modal.Body>
       </Modal>

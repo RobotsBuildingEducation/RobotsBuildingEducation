@@ -41,12 +41,12 @@ export const Engineer = {
         // should we add impact to selecting a course? adding it to "welcome" would achieve this.
         welcome: {
           response: (
-            <Typewriter>
-              Dear Innovators &amp; Bright Minds 🌟,
+            <Typewriter speed={5}>
+              Innovators &amp; Bright Minds 🌟,
               <br />
               <br />
               🌱 Welcome to your journey through the dynamic world of computer
-              science! I'm rox, your guide on this path of discovery. Computer
+              science! I'm here to guide you on this path of discovery. Computer
               science is not just coding, it's a universe where creativity,
               problem-solving, and a multitude of disciplines collide.
               <br />

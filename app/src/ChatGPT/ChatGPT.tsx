@@ -11,8 +11,14 @@ import {
   computeTotalImpactFromPrompt,
 } from "./ChatGPT.compute";
 import { Intro } from "./Intro/Intro";
-import { FadeInComponent, PanLeftComponent } from "../styles/lazyStyles";
+import {
+  FadeInComponent,
+  PanLeftComponent,
+  PanRightComponent,
+  RiseUpAnimation,
+} from "../styles/lazyStyles";
 import { useBitcoinAnimation } from "../App.hooks";
+import { LectureHeader } from "../LectureHeader/LectureHeader";
 
 const logAnalyticsEvent = (item_list_id, item_id, item_name) => {
   logEvent(analytics, "select_item", {
@@ -47,6 +53,7 @@ const ChatGPT = ({
   checkForUnlock,
   handleCompletedPractice,
   handleWatch,
+  uiStateReference,
 }: Record<string, any>) => {
   const handleBitcoinAnimation = useBitcoinAnimation();
   const [shouldRenderIntro, setShouldRenderIntro] = useState(true);
@@ -59,14 +66,14 @@ const ChatGPT = ({
 
   useEffect(() => {
     setIsResponseActive(false);
-    setPromptMessage("");
+    setPromptMessage(patreonObject?.header);
     setChatGptResponseList([]);
   }, [patreonObject]);
 
   const topRef = useRef(null);
 
   useEffect(() => {
-    if (topRef.current) {
+    if (topRef.current && promptSelection === "practice") {
       topRef.current.scrollIntoView();
     }
   }, [loadingMessage]);
@@ -145,17 +152,20 @@ const ChatGPT = ({
     <div
       onSubmit={handleSubmit}
       style={{ transition: "0.3s all ease-in-out", color: "white" }}
-      key={loadingMessage}
+      ref={topRef}
+      // key={loadingMessage}
     >
-      <div ref={topRef}></div>
+      {/* <LectureHeader uiStateReference={uiStateReference} topRef={topRef} /> */}
       <FadeInComponent>
         <PromptMessage
           promptMessage={promptMessage}
           patreonObject={patreonObject}
           chatGptResponseList={chatGptResponseList}
           loadingMessage={loadingMessage}
+          topRef={topRef}
         />
       </FadeInComponent>
+
       <br />
       <PanLeftComponent>
         <Intro
@@ -193,6 +203,7 @@ const ChatGPT = ({
         handleSubmit={handleSubmit}
         handleZap={handleZap}
         zap={zap}
+        userStateReference={userStateReference}
       />
     </div>
   );
