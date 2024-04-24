@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useContext } from "react";
 
 import { LightningAddress } from "@getalby/lightning-tools";
 
 import { useStore } from "./Store";
 import RandomCharacter from "./common/ui/Elements/RandomCharacter/RandomCharacter";
+import { renderTranscriptAwards } from "./ProofOfWork/ActionBar/ActionBar.compute";
 
 /**
  *
@@ -240,4 +242,39 @@ export const TimedRandomCharacter = () => {
   }, []);
 
   return <RandomCharacter key={key} borderRadius="50%" />;
+};
+
+export const useGlobalModal = (config) => {
+  const setIsGlobalModalActive = useStore(
+    (state) => state.setIsGlobalModalActive
+  );
+  const setModalContent = useStore((state) => state.setModalContent);
+
+  const handleModal = (type) => {
+    let message = config.defaultMessage; // Default message if none provided for type
+    if (config.messages && config.messages[type]) {
+      message = config.messages[type];
+    }
+
+    setModalContent({ message });
+    setIsGlobalModalActive(true);
+  };
+
+  return handleModal;
+};
+
+export const getTranscriptDisplay = (profile) => {
+  let data = "ok";
+
+  return (
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        flexWrap: "wrap",
+      }}
+    >
+      {renderTranscriptAwards(profile)}
+    </div>
+  );
 };

@@ -78,7 +78,7 @@ const Patreon = ({
         if (videoElement.currentTime >= ninetyPercentDuration) {
           console.log("running video");
           setVideoDurationDetection(true);
-          handleScheduler("video", moduleName);
+          // handleScheduler("video", moduleName);
           handleWatch(moduleName);
         }
       }

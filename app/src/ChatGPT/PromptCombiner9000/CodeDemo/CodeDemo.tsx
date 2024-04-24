@@ -75,7 +75,7 @@ const CodeExplanationUI = ({ patreonObject }) => {
   );
 };
 
-export const CodeDemo = ({ patreonObject, response }) => {
+export const CodeDemo = ({ patreonObject = {}, response }) => {
   return (
     <div
       style={{
@@ -90,7 +90,7 @@ export const CodeDemo = ({ patreonObject, response }) => {
       }}
     >
       <pre style={{ whiteSpace: "pre-wrap" }}>
-        <CodeExplanationUI patreonObject={patreonObject} />
+        {/* <CodeExplanationUI patreonObject={patreonObject} /> */}
         <Editor
           value={response}
           // onValueChange={handleChange}

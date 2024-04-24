@@ -245,44 +245,44 @@ const FAQSection = () => {
         </div>
       ),
     },
-    {
-      question: "What about AI?",
-      answer: (
-        <div
-          style={{
-            ...textBlock(japaneseThemePalette.KyotoPurple, 0),
-          }}
-        >
-          {/* <h3 style={{ maxWidth: "100%", width: 700 }}>
-            What kind of computer =do I need?
-          </h3> */}
-          <p style={{ maxWidth: "100%", width: 700 }}>
-            If AI can program themselves, it's likely that all work as we know
-            it will fundamentally change. But for now, it's going to change the
-            supply and demand of things in a relevant way.
-            <br />
-            <br />
-            In my view, AI makes software engineering more realistic for more
-            people. Before AI, it was clear that there was an unmanageable
-            amount of work being generated in a way where a software enginer
-            would create more work than they could complete.
-            <br />
-            <br />
-            So I personally find it more enjoyable to write code with AI than
-            without it and I believe that it makes more things like
-            entrepreneurship more accessible.
-            <br />
-            <br />
-            Thinking critically, AI is mostly concerned with making good
-            decisions. So roles that depend more on decisions will be impacted.
-            In my view, that's more senior and executive roles, and thus you
-            could start to build businesses more reasonably as a result. So
-            that's what we try to do here - we arm you with new skills and hope
-            that it influences your decisions or opportunities in a good way.
-          </p>
-        </div>
-      ),
-    },
+    // {
+    //   question: "What about AI?",
+    //   answer: (
+    //     <div
+    //       style={{
+    //         ...textBlock(japaneseThemePalette.KyotoPurple, 0),
+    //       }}
+    //     >
+    //       {/* <h3 style={{ maxWidth: "100%", width: 700 }}>
+    //         What kind of computer =do I need?
+    //       </h3> */}
+    //       <p style={{ maxWidth: "100%", width: 700 }}>
+    //         If AI can program themselves, it's likely that all work as we know
+    //         it will fundamentally change. But for now, it's going to change the
+    //         supply and demand of things in a relevant way.
+    //         <br />
+    //         <br />
+    //         In my view, AI makes software engineering more realistic for more
+    //         people. Before AI, it was clear that there was an unmanageable
+    //         amount of work being generated in a way where a software enginer
+    //         would create more work than they could complete.
+    //         <br />
+    //         <br />
+    //         So I personally find it more enjoyable to write code with AI than
+    //         without it and I believe that it makes more things like
+    //         entrepreneurship more accessible.
+    //         <br />
+    //         <br />
+    //         Thinking critically, AI is mostly concerned with making good
+    //         decisions. So roles that depend more on decisions will be impacted.
+    //         In my view, that's more senior and executive roles, and thus you
+    //         could start to build businesses more reasonably as a result. So
+    //         that's what we try to do here - we arm you with new skills and hope
+    //         that it influences your decisions or opportunities in a good way.
+    //       </p>
+    //     </div>
+    //   ),
+    // },
     {
       question: "What kind of computer do I need?",
       answer: (

@@ -180,6 +180,7 @@ export const LearnMore = ({ languageMode }) => {
           <RiseUpAnimation>
             <div style={{ margin: 6, textAlign: "left" }}>
               <WalletAuth />
+              <br />
               {/* 
               <Form>
                 <Form.Check

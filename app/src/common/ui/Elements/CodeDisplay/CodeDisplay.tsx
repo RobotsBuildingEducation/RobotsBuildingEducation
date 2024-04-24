@@ -12,7 +12,7 @@ export let CodeDisplay = ({ code }) => {
         backgroundColor: "#faf3e0",
         width: "100%",
         padding: 20,
-        wordBreak: "break-word",
+        // wordBreak: "break-word",
         display: "flex",
         flexDirection: "column",
         borderRadius: 15,

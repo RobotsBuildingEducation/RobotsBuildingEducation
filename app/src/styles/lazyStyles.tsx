@@ -167,7 +167,7 @@ export const StyledNavigationContainer = styled.div`
 export const StyledCollectionContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  // align-items: center;
   justify-content: center;
 
   // margin-bottom: 12px;
@@ -176,6 +176,7 @@ export const StyledCollectionContainer = styled.div`
   border-radius: 2px;
   /* box-shadow: 0 3px 6px #6b0b68e1, 0 6px 6px rgba(0, 0, 0, 0.23); */
   width: 100%;
+
   max-width: 600px;
   &:hover {
     /* transform: scale(1.01); */
@@ -504,7 +505,7 @@ export const StyledPromptButton = styled.button`
   background-color: ${(props) => {
     return props.loadingMessage
       ? "#48484A"
-      : props.disabled
+      : props.isDisabled
       ? "rgba(225, 229, 230, .12)"
       : "black";
   }};
@@ -574,6 +575,7 @@ export let japaneseThemePalette = {
   OrangeGold: "#FFD68B",
   CobaltBlue: "#0044B0",
   iphoneBlue: "2C2C2E",
+  roxPink: "",
 };
 
 // opinionated
@@ -630,3 +632,30 @@ export let paddingBlock = (backgroundColor) => {
     color: "white",
   };
 };
+
+// export let roxMessageBlock = (backgroundColor) => {
+//   return {
+//     backgroundColor: backgroundColor,
+//     borderRadius: 12,
+//     padding: 16,
+//     color: "white",
+//   };
+// };
+
+export const StyledRoxHeader = styled.h1`
+  cursor: pointer;
+  font-family: "Bungee", sans-serif;
+  // display: flex;
+  // justify-content: center;
+
+  transition: 0.05s all linear;
+
+  width: fit-content;
+
+  &:hover {
+    transform: scale(1.02); // Scales up the text by 10% on hover
+    color: #ebfaf9;
+    text-shadow: 1px 1px 3px gold;
+    text-decoration: underline;
+  }
+`;

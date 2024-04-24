@@ -9,13 +9,15 @@ export const Intro = ({
   loadingMessage,
   isResponseActive,
   promptSelection,
+  isHome = false,
+  isCollection = false,
 }) => {
   // Return null if patreonObject is empty
   if (isEmpty(patreonObject)) return null;
 
   // Roxana's intro text logic
   const RoxanaIntroText = () => (
-    <div style={{ padding: 20 }}>
+    <div style={{ padding: 15 }}>
       {!isEmpty(patreonObject?.prompts?.welcome) ? (
         <div>{patreonObject?.prompts?.welcome?.response}</div>
       ) : null}
@@ -31,8 +33,10 @@ export const Intro = ({
         display: "flex",
         justifyContent: "flex-start",
         textAlign: "left",
-        padding: 20,
-        maxWidth: "80.5%",
+        padding: 5,
+        // maxWidth: isHome ? "90.5%" : "80.5%",
+        maxWidth: isHome ? "90.5%" : "80.5%",
+        minWidth: "fit-content",
 
         borderTopLeftRadius: 50,
         borderTopRightRadius: 50,

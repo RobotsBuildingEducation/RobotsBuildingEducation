@@ -85,11 +85,11 @@ export const Engineer = {
 
           extraContent: (
             <div>
-              Hola, learners! Feeling a bit nervous about diving into coding and
-              business building? No worries, that's perfectly normal. It's just
-              a sign you're ready to grow and challenge yourself. Forget the
-              myths – programming isn't just for math wizards. It's for anyone
-              willing to learn and create.
+              Feeling a bit nervous about diving into coding and business
+              building? No worries, that's perfectly normal. It's just a sign
+              you're ready to grow and challenge yourself. Forget the myths –
+              programming isn't just for math wizards. It's for anyone willing
+              to learn and create.
               <br />
               <br />
               By the end of these lectures, we'll understand what it takes to
@@ -797,6 +797,14 @@ exports.app = functions.https.onRequest(app);
               placed on understanding coding as an organization of information,
               not just mathematics, and exploring both synchronous and
               asynchronous functions.
+              <br />
+              <br />
+              <ExternalLink
+                textDisplay={"Creating Bitcoin apps"}
+                link={
+                  "https://www.patreon.com/posts/creating-bitcoin-100270766?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                }
+              />
               <br />
               <br />
               We also learn looping with practical examples, highlighting the

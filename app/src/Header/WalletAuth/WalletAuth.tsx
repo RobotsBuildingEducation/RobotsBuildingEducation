@@ -11,7 +11,7 @@ import Form from "react-bootstrap/Form";
  * @returns {ReactElement} The WalletAuth component.
  */
 
-export const WalletAuth = () => {
+export const WalletAuth = ({ isDisabled = false }) => {
   const [showAuth, setShowAuth] = useState(false);
   let element = <span>Bitcoin mode&nbsp;&nbsp;</span>;
   useEffect(() => {
@@ -24,41 +24,43 @@ export const WalletAuth = () => {
   }, []);
   return (
     <div style={{ display: "flex", justifyContent: "center", marginBottom: 6 }}>
-      {showAuth ? (
-        <Button
-          appName="Robots Building Education"
-          onConnect={() => {
-            localStorage.setItem(
-              "patreonPasscode",
-              import.meta.env.VITE_BITCOIN_PASSCODE
-            );
-          }}
-          onDisconnect={() => {
-            localStorage.setItem(
-              "patreonPasscode",
-              import.meta.env.VITE_PATREON_PASSCODE
-            );
-          }}
-        />
-      ) : (
-        <Form>
-          <Form.Check
-            type="switch"
-            // id="custom-switch"
-            label={element}
-            checked={showAuth}
-            onChange={() => setShowAuth(!showAuth)}
-          />
-          {/* <Form.Check
-              disabled={true}
-              type="switch"
-              // id="custom-switch"
-              label="Spanish mode (disabled)"
-              checked={showAuth}
-              onChange={() => setShowAuth(!showAuth)}
-            /> */}
-        </Form>
-      )}
+      {/* {showAuth ? ( */}
+      <Button
+        appName="Robots Building Education"
+        onConnect={() => {
+          localStorage.setItem(
+            "patreonPasscode",
+            import.meta.env.VITE_BITCOIN_PASSCODE
+          );
+        }}
+        onDisconnect={() => {
+          localStorage.setItem(
+            "patreonPasscode",
+            import.meta.env.VITE_PATREON_PASSCODE
+          );
+        }}
+      />
+      {/* // ) : ( 
+        
+              //   <Form>
+      //     <Form.Check
+      //       type="switch"
+      //       // id="custom-switch"
+      //       label={element}
+      //       checked={showAuth}
+      //       onChange={() => setShowAuth(!showAuth)}
+      //     />
+      //     {/* <Form.Check
+      //         disabled={true}
+      //         type="switch"
+      //         // id="custom-switch"
+      //         label="Spanish mode (disabled)"
+      //         checked={showAuth}
+      //         onChange={() => setShowAuth(!showAuth)}
+      //       /> *
+      //   </Form>
+      // )}
+        */}
     </div>
   );
 };

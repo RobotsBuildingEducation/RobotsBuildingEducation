@@ -1,3 +1,5 @@
+import { modalConfig } from "../../App.constants";
+import { useGlobalModal } from "../../App.hooks";
 import { ComingSoonModule, StyledModule } from "../../styles/lazyStyles";
 
 export const Module = ({
@@ -9,15 +11,19 @@ export const Module = ({
   // renders a lock emoji if the user doesn't have the lecture unlocked yet
   const isDisabled =
     !userStateReference?.databaseUserDocument?.unlocks?.[module];
-
+  let handleModal = useGlobalModal(modalConfig);
   return (
     <StyledModule
       module={module}
-      disabled={isDisabled}
+      isDisabled={isDisabled}
       patreonObject={currentModule}
       key={currentModule.header}
       onClick={() => {
-        handleModuleSelection(currentModule, module);
+        if (isDisabled) {
+          handleModal("disabledModule");
+        } else {
+          handleModuleSelection(currentModule, module);
+        }
       }}
     >
       {isDisabled ? (

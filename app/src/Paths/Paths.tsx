@@ -1,6 +1,9 @@
 import styled, { keyframes } from "styled-components";
 import { StyledNavigationContainer, StyledLink } from "../styles/lazyStyles";
 import { uiPaths } from "../common/uiSchema";
+import { useStore } from "../Store";
+import { useGlobalModal } from "../App.hooks";
+import { modalConfig } from "../App.constants";
 
 // Helper function to create display elements
 const delayedAnimation = keyframes`
@@ -26,6 +29,8 @@ const createPathElements = (
   unlockCreatorKey,
   unlockDealerKey
 ) => {
+  let handleModal = useGlobalModal(modalConfig);
+
   return uiPaths.map((path, index) => {
     const displayText = path !== "Entrepeneur" ? path : "Dealer";
 
@@ -76,7 +81,9 @@ const createPathElements = (
               key={path}
               isUnlocked={unlockCreatorKey}
               onClick={(event) =>
-                unlockCreatorKey ? handlePathSelection(event) : null
+                unlockCreatorKey
+                  ? handlePathSelection(event)
+                  : handleModal("creator")
               }
             >
               {displayText}
@@ -95,7 +102,9 @@ const createPathElements = (
               key={path}
               isUnlocked={unlockDealerKey}
               onClick={(event) =>
-                unlockDealerKey ? handlePathSelection(event) : null
+                unlockDealerKey
+                  ? handlePathSelection(event)
+                  : handleModal("dealer")
               }
             >
               {displayText}

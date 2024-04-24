@@ -75,3 +75,51 @@ export const setOfLectures = [
   "Resume Writing",
   "Focus Investing",
 ];
+
+export const modalConfig = {
+  defaultMessage: "This is the default modal message.",
+  messages: {
+    creator:
+      "You need to complete Lesson 2: Frontend Programming in Engineering to unlock this path.",
+    dealer:
+      "You need to complete Lesson 4: Building Apps in Engineering to unlock this path.",
+    "Learning Mindset & Perspective-video":
+      "Watching 90% of the discover video completes one of two parts needed to unlock the next lecture! Complete the exercise in the practice prompt to unlock the next stage.",
+    "Learning Mindset & Perspective-practice":
+      "Finishing 100% of the practice exercise completes one of two parts needed to unlock the next lecture! Watch 90% of the video found in the discover prompt to unlock the next stage.",
+    "Learning Mindset & Perspective-complete": (
+      <div>
+        Good job! You've unlocked the next lecture and earned the following
+        transcript award in your identity wallet 🏦 🥹
+        <div
+          id={`Introduction to Engineering`}
+          label={`Introduction to Engineering`}
+          style={{
+            width: 125,
+            height: 125,
+            backgroundColor: "rgba(13,41,179, 1)",
+            margin: 2,
+            border: "5px solid rgba(0,0,255, 1)",
+
+            borderRadius: "20%",
+            padding: 5,
+          }}
+        >
+          Learning Mindset & Perspective
+        </div>
+      </div>
+    ),
+    disabledModule:
+      "This lecture hasn't been unlocked yet. Complete the video and practice tasks in the lesson before it in order to access.",
+    // "Lesson 1 Coding Fundamentals": "empty",
+    // "Lesson 2 Frontend Programming": "empty",
+    // "Lesson 3 Backend Engineering": "empty",
+    // "Lesson 4 Building Apps & Startups": "empty",
+    // "Lesson 5 Computer Science": "empty",
+    // Philosophy: "empty",
+    // "Interactions & Design": "empty",
+    // "The Psychology Of Self-esteem": "empty",
+    // "Resume Writing": "empty",
+    // "Focus Investing": "empty",
+  },
+};

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { useStore } from "../../../../Store";
+import RandomCharacter from "../RandomCharacter/RandomCharacter";
+import { paddingBlock } from "../../../../styles/lazyStyles";
 
 export const GlobalModal = ({}) => {
   const { isGlobalModalActive, setIsGlobalModalActive, modalContent } =
@@ -24,13 +26,20 @@ export const GlobalModal = ({}) => {
           closeButton
           closeVariant="white"
           closeButton
-          style={{ backgroundColor: "black", color: "white" }}
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            border: "1px solid black",
+          }}
         >
-          <Modal.Title>A message from rox</Modal.Title>
+          <Modal.Title style={{ display: "flex", alignItems: "center" }}>
+            <RandomCharacter />
+            &nbsp;a message from rox
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ backgroundColor: "black", color: "white" }}>
-          Good job
-          {JSON.stringify(modalContent)}
+          <div style={paddingBlock("#500CB5")}>{modalContent.message}</div>
+          {/* {JSON.stringify(modalContent)} */}
         </Modal.Body>
       </Modal>
     </>

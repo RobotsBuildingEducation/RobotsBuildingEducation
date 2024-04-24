@@ -42,7 +42,7 @@ const Heading = styled.h2`
   margin-top: 24px;
 `;
 
-const MessageContainer = styled.div`
+export const MessageContainer = styled.div`
   background-color: ${(props) => (props.loading ? "black" : "#2C2C2E")};
   color: white;
   display: ${(props) => (props.loading ? "none" : "flex")};
@@ -55,7 +55,7 @@ const MessageContainer = styled.div`
   margin: 24px 0 12px 0;
 `;
 
-const FlexBox = styled.div`
+export const FlexBox = styled.div`
   display: flex;
   width: 100%;
 `;
