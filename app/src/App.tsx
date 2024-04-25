@@ -408,7 +408,7 @@ let App = () => {
 
             <div
               style={{
-                marginTop: 115,
+                marginTop: 85,
                 width: "100%",
                 maxWidth: 700,
                 display: "flex",
@@ -457,7 +457,7 @@ let App = () => {
                     />
                     <br />
                     <Intro
-                      isCollection={uiStateReference.currentPath}
+                      // isCollection={uiStateReference.currentPath}
                       isHome={isEmpty(uiStateReference.patreonObject.header)}
                       patreonObject={{
                         prompts: {
@@ -477,13 +477,13 @@ let App = () => {
                               >
                                 {/* <h3>Robots Building Education</h3> */}
                                 {/* <h6>
-                                  <b style={{ textDecoration: "underline" }}>
-                                    create scholarships with learning&nbsp;
-                                  </b>
-                                  <br />
-                                  <br />
-                                  <br />
-                                </h6> */}
+                                    <b style={{ textDecoration: "underline" }}>
+                                      create scholarships with learning&nbsp;
+                                    </b>
+                                    <br />
+                                    <br />
+                                    <br />
+                                  </h6> */}
                                 <br />
                                 {userStateReference.databaseUserDocument
                                   .firstVisit
@@ -515,12 +515,12 @@ let App = () => {
                                   {userStateReference.databaseUserDocument
                                     .firstVisit ? (
                                     `I'm rox. I'm an assistant supervised and curated
-                                  by Sheilfer so we can deliver a good quality
-                                  education to prepare you for the future. We're
-                                  going to learn about coding and business here.
-                                  Sheilf says I'm a cofounder, but I think it's
-                                  gonna take a while for me to get there, so let's
-                                  take a look at our tools:`
+                                    by Sheilfer so we can deliver a good quality
+                                    education to prepare you for the future. We're
+                                    going to learn about coding and business here.
+                                    Sheilf says I'm a cofounder, but I think it's
+                                    gonna take a while for me to get there, so let's
+                                    take a look at our tools:`
                                   ) : (
                                     <GetLandingPageMessage
                                       unlocks={
@@ -842,36 +842,36 @@ let App = () => {
                                 <br /> <br />
                                 <CodeDisplay
                                   code={`
-// Fisher-Yates (or Knuth) shuffle algorithm
-const shuffleArray = (array) => {
-  let currentIndex = array.length,
-    randomIndex;
+  // Fisher-Yates (or Knuth) shuffle algorithm
+  const shuffleArray = (array) => {
+    let currentIndex = array.length,
+      randomIndex;
 
-  // While there remain elements to shuffle...
-  while (currentIndex !== 0) {
-    // Pick a remaining element...
-    randomIndex = Math.floor(
-      Math.random() 
-      * 
-      currentIndex
-    );
+    // While there remain elements to shuffle...
+    while (currentIndex !== 0) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(
+        Math.random() 
+        * 
+        currentIndex
+      );
 
-    currentIndex--;
+      currentIndex--;
 
-    // And swap it with the current element.
-    [
-      array[
-        currentIndex], 
-        array[randomIndex]
-      ] 
-      = [
-        array[randomIndex], 
-        array[currentIndex]
-      ];
-  }
+      // And swap it with the current element.
+      [
+        array[
+          currentIndex], 
+          array[randomIndex]
+        ] 
+        = [
+          array[randomIndex], 
+          array[currentIndex]
+        ];
+    }
 
-  return array;
-};`}
+    return array;
+  };`}
                                 />
                                 <br /> <br />
                                 Okay okay I'll stop messing around. We're
@@ -934,10 +934,10 @@ const shuffleArray = (array) => {
               </div>
               {/* )} */}
               {/* <Collections
-              handleModuleSelection={handleModuleSelection}
-              currentPath={uiStateReference.currentPath}
-              userStateReference={userStateReference}
-            /> */}
+                handleModuleSelection={handleModuleSelection}
+                currentPath={uiStateReference.currentPath}
+                userStateReference={userStateReference}
+              /> */}
 
               <ChatGptWrapper
                 uiStateReference={uiStateReference}

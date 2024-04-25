@@ -19,7 +19,10 @@ export const Intro = ({
   const RoxanaIntroText = () => (
     <div style={{ padding: 15 }}>
       {!isEmpty(patreonObject?.prompts?.welcome) ? (
-        <div>{patreonObject?.prompts?.welcome?.response}</div>
+        <div>
+          <br />
+          {patreonObject?.prompts?.welcome?.response}
+        </div>
       ) : null}
     </div>
   );
@@ -36,7 +39,7 @@ export const Intro = ({
         padding: 5,
         // maxWidth: isHome ? "90.5%" : "80.5%",
         maxWidth: isHome ? "90.5%" : "80.5%",
-        minWidth: "fit-content",
+        minWidth: isHome ? "90.5%" : "80.5%",
 
         borderTopLeftRadius: 50,
         borderTopRightRadius: 50,
@@ -47,7 +50,7 @@ export const Intro = ({
         {loadingMessage ? (
           <RoxanaLoadingAnimation />
         ) : isResponseActive ? (
-          <h2 style={{ fontFamily: "Bungee" }}>
+          <h2 style={{ fontFamily: "Bungee", padding: 10 }}>
             {promptSelection === "patreon" && "Discover ►⚡🎨"}
             {promptSelection === "guide" && "Guide 🧿📚🔮🗓🧪"}
             {promptSelection === "shop" && "Shop 🛍️"}

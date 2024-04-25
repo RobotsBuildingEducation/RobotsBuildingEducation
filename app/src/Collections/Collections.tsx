@@ -22,6 +22,7 @@ const StyledAnimatedModule = styled.div`
   animation-delay: ${(props) => props.index * 0.06}s; /* Delay based on index */
   opacity: 0; /* Start with opacity 0 to make the animation visible */
   animation-fill-mode: forwards; /* Keep the element visible after the animation */
+  margin: 0;
 `;
 
 /**

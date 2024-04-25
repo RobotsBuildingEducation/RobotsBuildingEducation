@@ -188,7 +188,7 @@ export const StyledModule = styled.button`
   background-color: black;
   // background-size: cover;
   box-sizing: border-box;
-  margin: 8px;
+  margin: 6px;
   width: 140px;
   height: 200px;
   display: flex;
@@ -391,7 +391,7 @@ export const StyledLink = styled(Link)`
 
   width: 115px;
 
-  height: 75px;
+  height: 55px;
   display: flex;
   justify-content: space-between;
   align-items: center;

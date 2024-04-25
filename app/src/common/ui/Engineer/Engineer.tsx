@@ -1964,6 +1964,14 @@ throw new Error(
               evolve and their impact on software development.
               <br />
               <br />
+              <ExternalLink
+                textDisplay={"Creating social media apps"}
+                link={
+                  "https://www.patreon.com/posts/building-social-99832935?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                }
+              />
+              <br />
+              <br />
               By breaking down the components of a React application, the lesson
               aims to introduce frontend development and empower learners to
               experiment and understand the underlying mechanics of web

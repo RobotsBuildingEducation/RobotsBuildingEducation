@@ -364,19 +364,19 @@ export const GetLandingPageMessage = ({ unlocks }) => {
     </div>
   );
 
-  if (!unlocks["Philosophy"]) {
+  if (!unlocks?.["Philosophy"]) {
     message = (
       <div>
         🤔 Dive into the depths of 'Philosophy' and explore existential
         questions that have intrigued thinkers for centuries.
         <br />
         <br />
-        Discussion Point: The debate between <em>Determinism</em> and{" "}
+        Suggestion: The debate between <em>Determinism</em> and{" "}
         <em>Free Will</em>.
       </div>
     );
   }
-  if (!unlocks["The Psychology Of Self-esteem"]) {
+  if (!unlocks?.["The Psychology Of Self-esteem"]) {
     message = (
       <div>
         🧠 Boost your confidence and unlock your potential with our 'Psychology
@@ -384,12 +384,12 @@ export const GetLandingPageMessage = ({ unlocks }) => {
         self-image.
         <br />
         <br />
-        Example Topic: <em>Cognitive Behavioral Techniques</em> to improve
-        personal perception.
+        Suggestion: <em>Cognitive Behavioral Techniques</em> to improve personal
+        perception.
       </div>
     );
   }
-  if (!unlocks["Lesson 5 Computer Science"]) {
+  if (!unlocks?.["Lesson 5 Computer Science"]) {
     message = (
       <div>
         💻 Advance your tech career with 'Lesson 5 in Computer Science'. Tackle
@@ -397,55 +397,60 @@ export const GetLandingPageMessage = ({ unlocks }) => {
         problem-solving.
         <br />
         <br />
-        Coding Challenge: Implement a <em>Binary Search Tree</em> from scratch.
+        Suggestion: Implement a <em>Binary Search Tree</em> from scratch.
       </div>
     );
   }
-  if (!unlocks["Resume Writing"]) {
+  if (!unlocks?.["Resume Writing"]) {
     message = (
       <div>
         📄 Elevate your career with our Resume Writing lecture. Learn how to
         present your skills compellingly and professionally.
         <br />
         <br />
-        Quick Tip: Use action verbs and quantifiable achievements to make your
+        Suggestion: Use action verbs and quantifiable achievements to make your
         resume stand out!
       </div>
     );
   }
-  if (!unlocks["Focus Investing"]) {
+  if (!unlocks?.["Focus Investing"]) {
     message = (
       <div>
         💵 Make informed financial decisions with Focus Investing. Learn about
         markets, assets, and portfolio strategies.
         <br />
         <br />
-        Investment Strategy: Dive into <em>Index Funds</em> for a diversified
-        and less risky investment portfolio.
+        Suggestion: Dive into <em>Index Funds</em> for a diversified and less
+        risky investment portfolio.
       </div>
     );
   }
-  if (!unlocks["Interactions & Design"]) {
+  if (!unlocks?.["Interactions & Design"]) {
     message = (
       <div>
         🎨 Interactions & Design isn't just about aesthetics. It’s about making
         apps people love to use.
         <br />
         <br />
-        Design Tip: Use principles of <em>User-Centered Design</em> to improve
+        Suggestion: Use principles of <em>User-Centered Design</em> to improve
         the usability of your projects.
       </div>
     );
   }
-  if (!unlocks["Lesson 4 Building Apps & Startups"]) {
+  if (!unlocks?.["Lesson 4 Building Apps & Startups"]) {
     message = (
       <div>
         🚀 Turn ideas into reality in Building Apps & Startups. From ideation to
         MVP, learn what it takes to start up.
         <br />
         <br />
-        Inspiration: Build a simple <em>To-Do List</em> app with React to manage
+        Suggestion: Build a simple <em>To-Do List</em> app with React to manage
         your startup tasks.
+        <br />
+        <br />
+        Challenge: understand how this code works.
+        <br />
+        <br />
         <CodeDisplay
           code={`
 import React, { 
@@ -617,15 +622,18 @@ async function connectAndStoreDID() {
       </div>
     );
   }
-  if (!unlocks["Lesson 3 Backend Engineering"]) {
+  if (!unlocks?.["Lesson 3 Backend Engineering"]) {
     message = (
       <div>
         🔧 Unleash the power of server-side technologies with Backend
         Engineering. Delve into databases, APIs, and server logic.
         <br />
         <br />
-        Try This: Create a RESTful API using Node.js and Express to handle user
-        authentication.
+        Suggestion: Create a RESTful API using Node.js and Express to handle
+        user authentication.
+        <br />
+        <br />
+        Challenge: understand how this code works.
         <br />
         <br />
         <CodeDisplay
@@ -706,15 +714,18 @@ exports.api = functions
       </div>
     );
   }
-  if (!unlocks["Lesson 2 Frontend Programming"]) {
+  if (!unlocks?.["Lesson 2 Frontend Programming"]) {
     message = (
       <div>
         🌐 Beautify the web in Frontend Programming. Learn CSS tricks,
         JavaScript frameworks, and responsive design.
         <br />
         <br />
-        Example Project: Develop an interactive homepage with CSS animations and
+        Suggestion: Develop an interactive homepage with CSS animations and
         JavaScript interactivity.
+        <br />
+        <br />
+        Challenge: understand how this code works.
         <br />
         <br />
         <CodeDisplay
@@ -818,7 +829,7 @@ export default ChatForm;
       </div>
     );
   }
-  if (!unlocks["Lesson 1 Coding Fundamentals"]) {
+  if (!unlocks?.["Lesson 1 Coding Fundamentals"]) {
     message = (
       <>
         <div>
@@ -826,9 +837,12 @@ export default ChatForm;
           foundations of object oriented programming.
           <br />
           <br />
-          First Code: Write a simple calculator in Python to solidify your
+          Suggestion: Write a simple calculator in Python to solidify your
           understanding of basic programming constructs. Then figure out how my
           mind works!
+          <br />
+          <br />
+          Challenge: understand how this code works.
           <br />
           <br />
         </div>
@@ -891,15 +905,18 @@ class Rox {
       </>
     );
   }
-  if (!unlocks["Learning Mindset & Perspective"]) {
+  if (!unlocks?.["Learning Mindset & Perspective"]) {
     message = (
       <div>
         🧠 Adopt a learner’s mindset in Learning Mindset & Perspective. Explore
         techniques to enhance your learning efficiency.
         <br />
         <br />
-        Actionable Step: Practice <em>mind mapping</em> to visualize complex
-        concepts.
+        Suggestion: Practice mind mapping to visualize complex concepts.
+        <br />
+        <br />
+        Challenge: Go through all the videos as quickly as possible! Progress is
+        a good incentive to continue making more progress.
       </div>
     );
   }
