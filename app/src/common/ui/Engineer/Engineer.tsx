@@ -41,12 +41,12 @@ export const Engineer = {
         // should we add impact to selecting a course? adding it to "welcome" would achieve this.
         welcome: {
           response: (
-            <Typewriter>
-              Dear Innovators &amp; Bright Minds 🌟,
+            <Typewriter speed={5}>
+              Innovators &amp; Bright Minds 🌟,
               <br />
               <br />
               🌱 Welcome to your journey through the dynamic world of computer
-              science! I'm rox, your guide on this path of discovery. Computer
+              science! I'm here to guide you on this path of discovery. Computer
               science is not just coding, it's a universe where creativity,
               problem-solving, and a multitude of disciplines collide.
               <br />
@@ -85,11 +85,11 @@ export const Engineer = {
 
           extraContent: (
             <div>
-              Hola, learners! Feeling a bit nervous about diving into coding and
-              business building? No worries, that's perfectly normal. It's just
-              a sign you're ready to grow and challenge yourself. Forget the
-              myths – programming isn't just for math wizards. It's for anyone
-              willing to learn and create.
+              Feeling a bit nervous about diving into coding and business
+              building? No worries, that's perfectly normal. It's just a sign
+              you're ready to grow and challenge yourself. Forget the myths –
+              programming isn't just for math wizards. It's for anyone willing
+              to learn and create.
               <br />
               <br />
               By the end of these lectures, we'll understand what it takes to
@@ -797,6 +797,14 @@ exports.app = functions.https.onRequest(app);
               placed on understanding coding as an organization of information,
               not just mathematics, and exploring both synchronous and
               asynchronous functions.
+              <br />
+              <br />
+              <ExternalLink
+                textDisplay={"Creating Bitcoin apps"}
+                link={
+                  "https://www.patreon.com/posts/creating-bitcoin-100270766?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                }
+              />
               <br />
               <br />
               We also learn looping with practical examples, highlighting the
@@ -1954,6 +1962,14 @@ throw new Error(
               The lesson underscores the value of learning React for modern web
               development, providing insights into how programming languages
               evolve and their impact on software development.
+              <br />
+              <br />
+              <ExternalLink
+                textDisplay={"Creating social media apps"}
+                link={
+                  "https://www.patreon.com/posts/building-social-99832935?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                }
+              />
               <br />
               <br />
               By breaking down the components of a React application, the lesson

@@ -19,7 +19,7 @@ app.post("/prompt", async (req, res) => {
   try {
     const prompt = req.body.prompt;
     let constructor = {
-      model: "gpt-4-turbo-preview",
+      model: "gpt-4-turbo",
       messages: [{ role: "user", content: prompt }],
     };
 

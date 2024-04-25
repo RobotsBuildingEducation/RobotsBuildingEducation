@@ -12,7 +12,8 @@ import { Experimental } from "./Cofounder/Experimental";
 import { useStore } from "../../Store";
 
 import { ImpactWallet } from "./ImpactWallet/ImpactWallet";
-import { renderActionBarControls } from "./ActionBar.compute";
+import { RenderActionBarControls } from "./ActionBar.compute";
+import { Startup } from "./Startup/Startup";
 
 export const ActionBar = ({
   displayName,
@@ -43,6 +44,8 @@ export const ActionBar = ({
   handleZap,
 
   uiStateReference,
+  isStartupOpen,
+  setIsStartupOpen,
 }) => {
   const showBitcoin = useStore((state) => state.showBitcoin);
   const showZap = useStore((state) => state.showZap);
@@ -71,13 +74,15 @@ export const ActionBar = ({
             </FadeInComponent>
           </div>
         ) : (
-          renderActionBarControls({
-            displayName,
-            setIsBossModeOpen,
-            setIsCofounderOpen,
-            setIsEmotionalIntelligenceOpen,
-            setIsImpactWalletOpen,
-          })
+          <RenderActionBarControls
+            displayName={displayName}
+            setIsBossModeOpen={setIsBossModeOpen}
+            setIsCofounderOpen={setIsCofounderOpen}
+            setIsEmotionalIntelligenceOpen={setIsEmotionalIntelligenceOpen}
+            setIsImpactWalletOpen={setIsImpactWalletOpen}
+            setIsStartupOpen={setIsStartupOpen}
+            isStartupOpen={isStartupOpen}
+          />
         )}
 
         {/* &nbsp; &nbsp; &nbsp;{" "} */}
@@ -91,7 +96,10 @@ export const ActionBar = ({
               borderRadius: 4,
               backgroundColor: "skyblue",
             }}
-            now={Math.floor(calculatedPercentage * 100)}
+            // now={Math.floor(calculatedPercentage * 100)}
+            now={Math.floor(
+              ((databaseUserDocument.impact || 0) / globalImpactCounter) * 100
+            )}
           />
         </div>
       </div>
@@ -125,23 +133,38 @@ export const ActionBar = ({
         />
       ) : null}
 
-      <Experimental
-        isCofounderOpen={isCofounderOpen}
-        setIsCofounderOpen={setIsCofounderOpen}
-        userStateReference={userStateReference}
-        globalStateReference={globalStateReference}
-        zap={zap}
-        handleZap={handleZap}
-      />
+      {isCofounderOpen ? (
+        <Experimental
+          isCofounderOpen={isCofounderOpen}
+          setIsCofounderOpen={setIsCofounderOpen}
+          userStateReference={userStateReference}
+          globalStateReference={globalStateReference}
+          zap={zap}
+          handleZap={handleZap}
+        />
+      ) : null}
 
-      <BossMode
-        isBossModeOpen={isBossModeOpen}
-        setIsBossModeOpen={setIsBossModeOpen}
-        userStateReference={userStateReference}
-        globalStateReference={globalStateReference}
-        zap={zap}
-        handleZap={handleZap}
-      />
+      {isBossModeOpen ? (
+        <BossMode
+          isBossModeOpen={isBossModeOpen}
+          setIsBossModeOpen={setIsBossModeOpen}
+          userStateReference={userStateReference}
+          globalStateReference={globalStateReference}
+          zap={zap}
+          handleZap={handleZap}
+        />
+      ) : null}
+
+      {isStartupOpen ? (
+        <Startup
+          isStartupOpen={isStartupOpen}
+          setIsStartupOpen={setIsStartupOpen}
+          userStateReference={userStateReference}
+          globalStateReference={globalStateReference}
+          zap={zap}
+          handleZap={handleZap}
+        />
+      ) : null}
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ActionBar } from "./ActionBar/ActionBar";
 
 // another pass through element, handles modal activations :D
@@ -29,6 +29,36 @@ export const ProofOfWork = ({
   const [isCofounderOpen, setIsCofounderOpen] = useState(false);
 
   const [isBossModeOpen, setIsBossModeOpen] = useState(false);
+
+  const [isStartupOpen, setIsStartupOpen] = useState(false);
+  // useEffect(() => {
+  //   if (isImpactWalletOpen) {
+  //     setIsEmotionalIntelligenceOpen(false);
+  //     setIsCofounderOpen(false);
+  //     setIsBossModeOpen(false);
+  //   }
+  //   if (isEmotionalIntelligenceOpen) {
+  //     setIsImpactWalletOpen(false);
+  //     setIsCofounderOpen(false);
+  //     setIsBossModeOpen(false);
+  //   }
+  //   if (isCofounderOpen) {
+  //     setIsEmotionalIntelligenceOpen(false);
+  //     setIsImpactWalletOpen(false);
+  //     setIsBossModeOpen(false);
+  //   }
+  //   ``;
+  //   if (isBossModeOpen) {
+  //     setIsEmotionalIntelligenceOpen(false);
+  //     setIsCofounderOpen(false);
+  //     setIsImpactWalletOpen(false);
+  //   }
+  // }, [
+  //   isImpactWalletOpen,
+  //   isEmotionalIntelligenceOpen,
+  //   isCofounderOpen,
+  //   isBossModeOpen,
+  // ]);
 
   return (
     <div
@@ -69,6 +99,8 @@ export const ProofOfWork = ({
         zap={zap}
         handleZap={handleZap}
         uiStateReference={uiStateReference}
+        isStartupOpen={isStartupOpen}
+        setIsStartupOpen={setIsStartupOpen}
       />
     </div>
   );

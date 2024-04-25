@@ -42,7 +42,7 @@ const Heading = styled.h2`
   margin-top: 24px;
 `;
 
-const MessageContainer = styled.div`
+export const MessageContainer = styled.div`
   background-color: ${(props) => (props.loading ? "black" : "#2C2C2E")};
   color: white;
   display: ${(props) => (props.loading ? "none" : "flex")};
@@ -50,12 +50,12 @@ const MessageContainer = styled.div`
   padding: 20px;
   min-width: 350px;
   // max-width: 600px;
-  max-width: 70.5%;
+  max-width: 80.5%;
   border-radius: 50px;
   margin: 24px 0 12px 0;
 `;
 
-const FlexBox = styled.div`
+export const FlexBox = styled.div`
   display: flex;
   width: 100%;
 `;
@@ -111,6 +111,7 @@ const renderContent = (
           patreonObject={patreonObject}
           moduleName={moduleName}
           handleCompletedPractice={handleCompletedPractice}
+          userStateReference={userStateReference}
         />
       );
     case "demonstrate":
@@ -126,7 +127,6 @@ const renderContent = (
       } else {
         return <div style={{ padding: 20 }}>{response}</div>;
       }
-      break;
     case "shop":
       return (
         <div style={{ padding: 20 }}>

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-
+import { japaneseThemePalette, textBlock } from "../../styles/lazyStyles";
 import { updateImpact } from "../../App.compute";
 import { useZap } from "../../App.hooks";
 import { RevealButton } from "../../common/ui/Elements/RevealButton/RevealButton";
@@ -78,7 +78,7 @@ const Patreon = ({
         if (videoElement.currentTime >= ninetyPercentDuration) {
           console.log("running video");
           setVideoDurationDetection(true);
-          handleScheduler("video", moduleName);
+          // handleScheduler("video", moduleName);
           handleWatch(moduleName);
         }
       }
@@ -123,6 +123,26 @@ const Patreon = ({
 
   return (
     <div style={{ padding: 20 }} key={patreonObject.header}>
+      {patreonObject.header === "Learning Mindset & Perspective" &&
+      !userStateReference.databaseUserDocument.watches[
+        "Learning Mindset & Perspective"
+      ] ? (
+        <>
+          <div
+            style={{
+              ...textBlock(japaneseThemePalette.CobaltBlue, 0, 24),
+            }}
+          >
+            <b>
+              watch 90% of the video to complete the first step in unlocking the
+              next lecture ⚡
+            </b>
+          </div>
+          <br />
+          <br />
+        </>
+      ) : null}
+
       {renderVideo(patreonObject, isAutoPlay, videoRef)}
     </div>
   );

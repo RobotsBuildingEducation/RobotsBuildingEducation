@@ -9,15 +9,20 @@ export const Intro = ({
   loadingMessage,
   isResponseActive,
   promptSelection,
+  isHome = false,
+  isCollection = false,
 }) => {
   // Return null if patreonObject is empty
   if (isEmpty(patreonObject)) return null;
 
   // Roxana's intro text logic
   const RoxanaIntroText = () => (
-    <div style={{ padding: 20 }}>
+    <div style={{ padding: 15 }}>
       {!isEmpty(patreonObject?.prompts?.welcome) ? (
-        <div>{patreonObject?.prompts?.welcome?.response}</div>
+        <div>
+          <br />
+          {patreonObject?.prompts?.welcome?.response}
+        </div>
       ) : null}
     </div>
   );
@@ -31,8 +36,10 @@ export const Intro = ({
         display: "flex",
         justifyContent: "flex-start",
         textAlign: "left",
-        padding: 20,
-        maxWidth: "70.5%",
+        padding: 5,
+        // maxWidth: isHome ? "90.5%" : "80.5%",
+        maxWidth: isHome ? "90.5%" : "80.5%",
+        minWidth: isHome ? "90.5%" : "80.5%",
 
         borderTopLeftRadius: 50,
         borderTopRightRadius: 50,
@@ -43,7 +50,7 @@ export const Intro = ({
         {loadingMessage ? (
           <RoxanaLoadingAnimation />
         ) : isResponseActive ? (
-          <h2 style={{ fontFamily: "Bungee" }}>
+          <h2 style={{ fontFamily: "Bungee", padding: 10 }}>
             {promptSelection === "patreon" && "Discover ►⚡🎨"}
             {promptSelection === "guide" && "Guide 🧿📚🔮🗓🧪"}
             {promptSelection === "shop" && "Shop 🛍️"}

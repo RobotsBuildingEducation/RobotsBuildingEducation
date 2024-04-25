@@ -2,6 +2,7 @@ import IMPACT_BACKGROUND from "../../../common/media/images/IMPACT_BACKGROUND.jp
 import { japaneseThemePalette, textBlock } from "../../../styles/lazyStyles";
 import { ExternalLink } from "../../../common/ui/Elements/ExternalLink/ExternalLink";
 import { FAQItem } from "./FAQItem/FAQItem";
+import { useState } from "react";
 
 /**
  * `FAQSection` component renders a list of frequently asked questions (FAQs) about the application.
@@ -25,35 +26,75 @@ import { FAQItem } from "./FAQItem/FAQItem";
  * The component makes use of predefined styles from `lazyStyles` to ensure consistency in presentation while allowing for thematic variations across different FAQ items. It aims to provide users with clear, informative answers to common questions, enhancing their understanding and engagement with the application.
  */
 const FAQSection = () => {
+  const [borderColor, setBorderColor] = useState("white");
+  const [display, setDisplay] = useState("none");
   const faqs = [
     {
-      question: "What is this?",
+      question: "What is this? (simple)",
       answer: (
         <p
           style={{
             maxWidth: "100%",
             width: 700 /* Add your text block styles here */,
-            ...textBlock(japaneseThemePalette.TokyoTwilight, 0),
+            ...textBlock(japaneseThemePalette.CobaltBlue, 0),
+          }}
+        >
+          <div>
+            You'll get access to 10-15 lecture modules around subjects like
+          </div>
+          <ul>
+            <li>coding</li>
+            <li>communication</li>
+            <li>finance</li>
+            <li>psychology</li>
+            <li>philosophy</li>
+          </ul>
+          <div style={{ marginBottom: 12 }}>
+            The idea is to provide meaningful value in order to convert folks to
+            subscribe to Patreon or use the bitcoin version of the app. The goal
+            is attempting to build an education platform that creates
+            scholarships with learning.
+          </div>
+          <div>
+            In the long term, this is accomplished with research into
+            decentralized software systems that may one day create a new fabric
+            for education finance by monetizing user experiences rather than
+            subscription services.
+          </div>
+        </p>
+      ),
+    },
+    {
+      question: "What is this? (in your words)",
+      answer: (
+        <p
+          style={{
+            maxWidth: "100%",
+            width: 700 /* Add your text block styles here */,
+            ...textBlock(japaneseThemePalette.CobaltBlue, 0),
           }}
         >
           <h5 style={{ fontFamily: "Bungee" }}> The Proof of Work System</h5>
           <p
             style={{
               maxWidth: 700,
-              ...textBlock(japaneseThemePalette.KyotoPurple, 0, 24),
+              ...textBlock(japaneseThemePalette.CobaltBlue, 0, 24),
+              border: "1px solid gray",
             }}
           >
             Robots Building Education uses a system called Proof Of Work to
             measure learning. When you use the application, you're putting
             robots to work! That work produces outcomes that should be
-            meaningful to communities, like improved finance for under-resourced
-            schools or homes. You can think of this system as some kind of
-            engine for universal basic income! 😁
+            meaningful to neighborhoods, like improved finance for
+            under-resourced schools or homes. You can think of this as a
+            decentralized fabric that allows education technology to become a
+            public service.
           </p>
           <p
             style={{
               maxWidth: 700,
-              ...textBlock(japaneseThemePalette.BambooForestGreen, 0, 24),
+              ...textBlock(japaneseThemePalette.CobaltBlue, 0, 24),
+              border: "1px solid gray",
             }}
           >
             The vision is to turn this into a decentralized protocol. Systems
@@ -92,7 +133,12 @@ const FAQSection = () => {
             <b>
               If you want to support the early stages of RO.B.E or learn more
               about what I teach, please continue to explore. Visit the Patreon
-              and subscribe to get the passcode.
+              and join for free for early access & behind the scenes content.
+              <br />
+              <br />
+              It's pretty valuable since this is a startup & education
+              community. The $5 subscription is optional. I'm trying to load you
+              up like it's Costco before you make that choice.
             </b>
           </p>
           <a
@@ -199,6 +245,44 @@ const FAQSection = () => {
         </div>
       ),
     },
+    // {
+    //   question: "What about AI?",
+    //   answer: (
+    //     <div
+    //       style={{
+    //         ...textBlock(japaneseThemePalette.KyotoPurple, 0),
+    //       }}
+    //     >
+    //       {/* <h3 style={{ maxWidth: "100%", width: 700 }}>
+    //         What kind of computer =do I need?
+    //       </h3> */}
+    //       <p style={{ maxWidth: "100%", width: 700 }}>
+    //         If AI can program themselves, it's likely that all work as we know
+    //         it will fundamentally change. But for now, it's going to change the
+    //         supply and demand of things in a relevant way.
+    //         <br />
+    //         <br />
+    //         In my view, AI makes software engineering more realistic for more
+    //         people. Before AI, it was clear that there was an unmanageable
+    //         amount of work being generated in a way where a software enginer
+    //         would create more work than they could complete.
+    //         <br />
+    //         <br />
+    //         So I personally find it more enjoyable to write code with AI than
+    //         without it and I believe that it makes more things like
+    //         entrepreneurship more accessible.
+    //         <br />
+    //         <br />
+    //         Thinking critically, AI is mostly concerned with making good
+    //         decisions. So roles that depend more on decisions will be impacted.
+    //         In my view, that's more senior and executive roles, and thus you
+    //         could start to build businesses more reasonably as a result. So
+    //         that's what we try to do here - we arm you with new skills and hope
+    //         that it influences your decisions or opportunities in a good way.
+    //       </p>
+    //     </div>
+    //   ),
+    // },
     {
       question: "What kind of computer do I need?",
       answer: (
@@ -328,9 +412,9 @@ const FAQSection = () => {
             As usual, the best answer is going to be "it depends". I recommend
             bootcamps if the value of your time is extremely high. For example,
             you need to take care of a newborn child and want to create more
-            time and opportunity. Another example is that you're mental health
-            is in decline, you have a healthy bank account and you have
-            thoroughly examined your intent for paying a premium for time.
+            time and opportunity. Another example is that you have a healthy
+            bank account and you have thoroughly examined your intent for paying
+            a premium for time.
             <br />
             <br />I don't recommend going to a bootcamp as a shorcut into the
             industry. A bootcamp is no different than being self-taught or going
@@ -510,15 +594,46 @@ const FAQSection = () => {
 
   return (
     <div style={{ maxWidth: 700, width: "100%", backgroundColor: "black" }}>
-      <h1 style={{ fontFamily: "Bungee" }}>FAQs</h1>
-      {faqs.map((faq, index) => (
-        <FAQItem
-          index={index}
-          key={index}
-          question={faq.question}
-          answer={faq.answer}
-        />
-      ))}
+      <h1
+        style={{
+          fontFamily: "Bungee",
+          borderBottom: `1px solid ${borderColor}`,
+          borderBottomLeftRadius: "12px",
+          borderBottomRightRadius: "12px",
+          padding: 24,
+          cursor: "pointer",
+          transition: "0.16s all ease-in-out",
+        }}
+        onClick={() => {
+          if (display === "none") {
+            setDisplay("block");
+          } else {
+            setDisplay("none");
+          }
+        }}
+        onMouseEnter={() => {
+          setBorderColor("blue");
+        }}
+        onMouseLeave={() => {
+          setBorderColor("white");
+        }}
+      >
+        FAQs
+      </h1>
+      <div
+        style={{
+          display: display,
+        }}
+      >
+        {faqs.map((faq, index) => (
+          <FAQItem
+            index={index}
+            key={index}
+            question={faq.question}
+            answer={faq.answer}
+          />
+        ))}
+      </div>
     </div>
   );
 };

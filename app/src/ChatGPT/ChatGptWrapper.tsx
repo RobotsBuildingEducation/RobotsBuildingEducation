@@ -52,6 +52,7 @@ export const ChatGptWrapper = ({
         checkForUnlock={checkForUnlock}
         handleCompletedPractice={handleCompletedPractice}
         handleWatch={handleWatch}
+        uiStateReference={uiStateReference}
       />
     </div>
   );

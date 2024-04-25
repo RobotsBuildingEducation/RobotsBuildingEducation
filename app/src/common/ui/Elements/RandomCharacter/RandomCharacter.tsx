@@ -54,32 +54,52 @@ const characterImagesMap = {
 };
 
 const RandomCharacter = ({
-  notSoRandomCharacter = null,
   width = "50px",
   speed = 1.33,
   borderRadius = null,
+  notSoRandomCharacter = null,
 }) => {
   const [image, setImage] = useState("");
 
   useEffect(() => {
-    // Randomly select an image when the component mounts
-    const randomImage =
-      characterImages[Math.floor(Math.random() * characterImages.length)];
+    const usedIndices = JSON.parse(localStorage.getItem("usedIndices")) || [];
+
+    // Filter out used characters
+    const availableCharacters = characterImages.filter(
+      (_, index) => !usedIndices.includes(index)
+    );
+
+    // Select a random character from the available ones
+    const randomIndex = Math.floor(Math.random() * availableCharacters.length);
+    const randomImage = availableCharacters[randomIndex];
+
+    // Update used indices
+    const newUsedIndices = [
+      ...usedIndices,
+      characterImages.indexOf(randomImage),
+    ];
+    if (newUsedIndices.length === characterImages.length) {
+      // Reset if all characters have been used
+      localStorage.setItem("usedIndices", JSON.stringify([]));
+    } else {
+      localStorage.setItem("usedIndices", JSON.stringify(newUsedIndices));
+    }
+
     setImage(randomImage);
   }, []);
 
-  return notSoRandomCharacter ? (
+  return (
     <FadeInComponent speed={speed}>
       <img
-        src={characterImagesMap[notSoRandomCharacter]}
-        alt={`Character ${notSoRandomCharacter}`}
+        src={
+          notSoRandomCharacter
+            ? characterImagesMap[notSoRandomCharacter]
+            : image
+        }
+        alt="Random Character"
         width={width}
-        style={{ borderRadius: borderRadius }}
+        style={{ borderRadius }}
       />
-    </FadeInComponent>
-  ) : (
-    <FadeInComponent speed={speed}>
-      <img src={image} alt="Random Character" width={width} />{" "}
     </FadeInComponent>
   );
 };

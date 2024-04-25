@@ -1,4 +1,12 @@
-import { Alert, Form, InputGroup, Modal, ProgressBar } from "react-bootstrap";
+import {
+  Alert,
+  Button,
+  Form,
+  InputGroup,
+  Modal,
+  ProgressBar,
+  Spinner,
+} from "react-bootstrap";
 
 import IMPACT_BACKGROUND from "../../../common/media/images/IMPACT_BACKGROUND.jpg";
 import {
@@ -8,6 +16,8 @@ import {
 } from "../../../App.compute";
 import { useState } from "react";
 import { renderCheckboxes, renderTranscriptAwards } from "../ActionBar.compute";
+import { responsiveBox } from "../../../styles/lazyStyles";
+import { getDoc, updateDoc } from "firebase/firestore";
 
 export const ImpactWallet = ({
   isImpactWalletOpen,
@@ -21,11 +31,17 @@ export const ImpactWallet = ({
   calculatedPercentage,
   globalImpactCounter,
 }) => {
+  let [copyString, setCopyString] = useState(
+    "Click to copy ID and save it somewhere safe."
+  );
   let [borderStateForCopyButton, setBorderStateForCopyButton] =
     useState("1px solid purple");
 
   const [inputValue, setInputValue] = useState("");
   const [isValidDidKey, setIsValidDidKey] = useState(false);
+  const [displayNameInput, setDisplayNameInput] = useState("");
+
+  const [isDisplayNameUpdating, setIsDisplayNameUpdating] = useState(false);
 
   let impactResult = databaseUserDocument?.impact;
 
@@ -46,6 +62,24 @@ export const ImpactWallet = ({
       });
     }
   };
+
+  const handleDisplayNameInput = (event) => {
+    setDisplayNameInput(event.target.value);
+  };
+
+  const saveDisplayName = async () => {
+    setIsDisplayNameUpdating(true);
+    await updateDoc(userStateReference.userDocumentReference, {
+      displayName: displayNameInput,
+    });
+
+    const response = await getDoc(userStateReference.userDocumentReference);
+    userStateReference.setDatabaseUserDocument(response.data());
+    setDisplayNameInput("");
+
+    setIsDisplayNameUpdating(false);
+  };
+
   return (
     <>
       <Modal
@@ -65,8 +99,12 @@ export const ImpactWallet = ({
           }}
         >
           <Modal.Title style={{ fontFamily: "Bungee" }}>
-            Proof of Work @{" "}
-            {(localStorage.getItem("uniqueId")?.substr(0, 16) || "") + "..."}
+            Proof of Work{" "}
+            {userStateReference.databaseUserDocument.displayName ? "w/" : "@"}
+            &nbsp;
+            {userStateReference.databaseUserDocument.displayName
+              ? userStateReference.databaseUserDocument.displayName
+              : (localStorage.getItem("uniqueId")?.substr(0, 16) || "") + "..."}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body
@@ -89,6 +127,42 @@ export const ImpactWallet = ({
               width: "100%",
             }}
           >
+            <div style={responsiveBox}>
+              Your identity wallet keeps track of the data that you can migrate
+              to other platforms, services or applications.
+            </div>
+            <br />
+            Create an account name
+            <InputGroup className="mb-3">
+              <Form.Control
+                type="text"
+                placeholder="queen rox"
+                value={displayNameInput}
+                onChange={handleDisplayNameInput}
+                style={{ maxWidth: 400 }}
+              />
+              &nbsp; &nbsp;
+              <Button
+                variant="dark"
+                onClick={() => {
+                  saveDisplayName();
+                }}
+              >
+                {isDisplayNameUpdating ? <Spinner size={"sm"} /> : "✅"}
+              </Button>
+            </InputGroup>
+            <br />
+            <br />
+            Enter your ID to switch accounts
+            <InputGroup className="mb-3">
+              <Form.Control
+                type="text"
+                placeholder="did:key:z6MktG2..."
+                value={inputValue}
+                onChange={handleChange}
+                style={{ maxWidth: 400 }}
+              />
+            </InputGroup>
             <div
               style={{
                 maxWidth: "fit-content",
@@ -101,28 +175,23 @@ export const ImpactWallet = ({
                 border: borderStateForCopyButton,
                 transition: "0.25s all ease-in-out",
               }}
-              onClick={() => {
+              onClick={async () => {
                 copyToClipboard(localStorage.getItem("uniqueId"));
+                setCopyString("Copied!");
                 animateBorderLoading(
                   setBorderStateForCopyButton,
                   "1px solid gold",
                   "1px solid purple"
                 );
+                const delay = (ms) =>
+                  new Promise((resolve) => setTimeout(resolve, ms));
+                await delay(750);
+                setCopyString("Click to copy ID and save it somewhere safe.");
               }}
             >
-              <span>📄 &nbsp;click to copy ID and save it somewhere safe.</span>
+              <span>📄 &nbsp;{copyString}</span>
             </div>
             <br />
-            Enter your ID to switch accounts
-            <InputGroup className="mb-3">
-              <Form.Control
-                type="text"
-                placeholder="did:key:z6MktG2..."
-                value={inputValue}
-                onChange={handleChange}
-                style={{ maxWidth: 400 }}
-              />
-            </InputGroup>
             {inputValue && (
               <Alert
                 variant={isValidDidKey ? "success" : "danger"}

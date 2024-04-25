@@ -3,14 +3,13 @@ import { useEffect, useState } from "react";
 import { isEmpty } from "lodash";
 import { Button, Modal } from "react-bootstrap";
 import styled from "styled-components";
-import { MultipleChoiceQuestion } from "./Templates/MultipleChoiceQuestion/MultipleChoiceQuestion";
-import { TextInputQuestion } from "./Templates/TextInputQuestion/TextInputQuestion";
+// import { MultipleChoiceQuestion } from "./Templates/MultipleChoiceQuestion/MultipleChoiceQuestion";
+// import { TextInputQuestion } from "./Templates/TextInputQuestion/TextInputQuestion";
 import { getDoc, updateDoc } from "firebase/firestore";
 import { updateImpact, updateLevel } from "../../../App.compute";
-import { OutputQuestion } from "./Templates/OutputQuestion/OutputQuestion";
+// import { OutputQuestion } from "./Templates/OutputQuestion/OutputQuestion";
 import { japaneseThemePalette } from "../../../styles/lazyStyles";
-import { SelectionQuestion } from "./Templates/SelectionQuestion/SelectionQuestion";
-import { useStore } from "../../../Store";
+// import { SelectionQuestion } from "./Templates/SelectionQuestion/SelectionQuestion";
 
 const Container = styled.div`
   /* Add your styles here */
@@ -1431,16 +1430,15 @@ export const getBackgroundColorForLevel = (level) => {
   return currentOpacity;
 };
 
-export const BossMode = ({
-  isBossModeOpen,
-  setIsBossModeOpen,
+export const Startup = ({
+  setIsStartupOpen,
+  isStartupOpen,
   userStateReference,
   globalStateReference,
   zap,
   handleZap,
 }) => {
   //   console.log("user state reference", userStateReference);
-  // const { setIsGlobalModalActive } = useStore();
 
   const [screenColor, setScreenColor] = useState(
     getBackgroundColorForLevel(userStateReference?.databaseUserDocument?.level)
@@ -1655,19 +1653,17 @@ export const BossMode = ({
         )
       );
     }
-
-    // setIsGlobalModalActive(true);
   }, []);
 
   return (
     <>
       <Modal
         centered
-        show={isBossModeOpen}
+        show={isStartupOpen}
         style={{ backgroundColor: "black" }}
         fullscreen
         keyboard
-        onHide={() => setIsBossModeOpen(false)}
+        onHide={() => setIsStartupOpen(false)}
       >
         <Modal.Header
           style={{
@@ -1736,7 +1732,7 @@ export const BossMode = ({
             )}
           </div>
           <br />
-          {!gameActive && hasDiscordTag ? (
+          {/* {!gameActive && hasDiscordTag ? (
             <Container>
               {currentQuestion.type === "output" && (
                 <OutputQuestion
@@ -1770,7 +1766,7 @@ export const BossMode = ({
             <RewardScreen
               isAnswerCorrect={localStorage.getItem("isAnswerCorrect")}
             />
-          )}
+          )} */}
         </Modal.Body>
         {/* <Modal.Footer style={{ backgroundColor: "black" }}>
           <Button variant="dark" onClick={() => setIsBossModeOpen(false)}>

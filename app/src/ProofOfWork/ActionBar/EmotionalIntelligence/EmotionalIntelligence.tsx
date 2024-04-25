@@ -29,6 +29,7 @@ import roxanaKind from "../../../common/media/images/roxanaKind.png";
 
 import { useZap } from "../../../App.hooks";
 import { updateImpact } from "../../../App.compute";
+import { responsiveBox } from "../../../styles/lazyStyles";
 
 export const EmotionalIntelligence = ({
   isEmotionalIntelligenceOpen,
@@ -173,6 +174,11 @@ export const EmotionalIntelligence = ({
           </Modal.Title>
         </Modal.Header>
         <Modal.Body style={EmotionalIntelligenceStyles.Body}>
+          <div style={responsiveBox}>
+            The emotionally intelligent assistant will help you track, process
+            and review your emotions.
+          </div>
+          <br />
           <h1 style={EmotionalIntelligenceStyles.Banner}>
             <div
               style={EmotionalIntelligenceStyles.BannerBackground}
@@ -181,7 +187,6 @@ export const EmotionalIntelligence = ({
               🌌&nbsp;how do you feel today?
             </div>
           </h1>
-
           <div style={EmotionalIntelligenceStyles.EnergyLevelContainer}>
             <h3 style={{ textAlign: "center", fontFamily: "Bungee" }}>
               High Energy
@@ -218,7 +223,6 @@ export const EmotionalIntelligence = ({
             </div>
             <br /> <br /> <br />{" "}
           </div>
-
           {!isEmpty(usersEmotionsFromDB) ? (
             <>
               <h1
@@ -367,7 +371,6 @@ export const EmotionalIntelligence = ({
                 </div>
               ) : null}
             </div>
-
             {shouldRenderSaveButton ? (
               <div>
                 <Button

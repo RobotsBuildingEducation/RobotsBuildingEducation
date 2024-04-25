@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import { useContext } from "react";
 
 import { LightningAddress } from "@getalby/lightning-tools";
 
 import { useStore } from "./Store";
+import RandomCharacter from "./common/ui/Elements/RandomCharacter/RandomCharacter";
+import { renderTranscriptAwards } from "./ProofOfWork/ActionBar/ActionBar.compute";
 
 /**
  *
@@ -166,7 +169,7 @@ export const useZap = (
 
   let createZap = async () => {
     try {
-      const ln = new LightningAddress("strongstingray4@primal.net");
+      const ln = new LightningAddress("tomatochipmunk3@primal.net");
 
       console.log("ln", ln);
       await ln.fetch();
@@ -224,4 +227,54 @@ export const useBitcoinAnimation = () => {
   };
 
   return animation;
+};
+
+export const TimedRandomCharacter = () => {
+  const [key, setKey] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // This updates the key state, causing the component to re-render
+      setKey((prevKey) => prevKey + 1);
+    }, 3000); // Set the interval to 1000 ms (1 second)
+
+    return () => clearInterval(interval); // Clean up the interval on component unmount
+  }, []);
+
+  return <RandomCharacter key={key} borderRadius="50%" />;
+};
+
+export const useGlobalModal = (config) => {
+  const setIsGlobalModalActive = useStore(
+    (state) => state.setIsGlobalModalActive
+  );
+  const setModalContent = useStore((state) => state.setModalContent);
+
+  const handleModal = (type) => {
+    let message = config.defaultMessage; // Default message if none provided for type
+    if (config.messages && config.messages[type]) {
+      message = config.messages[type];
+    }
+
+    setModalContent({ message });
+    setIsGlobalModalActive(true);
+  };
+
+  return handleModal;
+};
+
+export const getTranscriptDisplay = (profile) => {
+  let data = "ok";
+
+  return (
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        flexWrap: "wrap",
+      }}
+    >
+      {renderTranscriptAwards(profile)}
+    </div>
+  );
 };

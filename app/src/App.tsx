@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import isEmpty from "lodash/isEmpty";
 import { Web5 } from "@web5/api/browser";
-
+import { Button as ConnectWallet } from "@getalby/bitcoin-connect-react";
 import "./App.css";
 
 import { Paths } from "./Paths/Paths";
-import { RoxSplashAnimation } from "./common/uiSchema";
+import { RoxSplashAnimation, uiCollections } from "./common/uiSchema";
 import { Collections } from "./Collections/Collections";
 import { Header } from "./Header/Header";
 
@@ -15,7 +16,9 @@ import { updateDoc } from "firebase/firestore";
 import { logEvent } from "firebase/analytics";
 
 import {
-  useBitcoinAnimation,
+  TimedRandomCharacter,
+  useGlobalModal,
+  // useBitcoinAnimation,
   useGlobalStates,
   useUIStates,
   useUserDocument,
@@ -25,17 +28,21 @@ import {
 import {
   computePercentage,
   getCollectionDocumentsInsideUser,
+  GetLandingPageMessage,
   handleUserAuthentication,
   sortEmotionsByDate,
 } from "./App.compute";
-import { setOfLectures } from "./App.constants";
+import { modalConfig, setOfLectures } from "./App.constants";
 
-import { LectureHeader } from "./LectureHeader/LectureHeader";
 import { ChatGptWrapper } from "./ChatGPT/ChatGptWrapper";
 import { ProofOfWorkWrapper } from "./ProofOfWork/ProofOfWorkWrapper";
 import { words } from "./common/words/words";
 
-import { RiseUpAnimation } from "./styles/lazyStyles";
+import {
+  RiseUpAnimation,
+  StyledRoxHeader,
+  japaneseThemePalette,
+} from "./styles/lazyStyles";
 import { useStore } from "./Store";
 import {
   createWebNodeRecord,
@@ -44,9 +51,18 @@ import {
   testUpdatedWebNodeRecords,
   updateWebNodeRecord,
 } from "./App.web5";
+import { Intro } from "./ChatGPT/Intro/Intro";
+import { PromptMessage } from "./ChatGPT/PromptMessage/PromptMessage";
+// import RandomCharacter from "./common/ui/Elements/RandomCharacter/RandomCharacter";
+import { CodeDisplay } from "./common/ui/Elements/CodeDisplay/CodeDisplay";
+// import { Typewriter } from "./common/ui/Elements/Typewriter/Typewriter";
 
 // import { deleteWeb5Records } from "./App.web5";
-
+import roxanaChat from "./common/media/images/roxanaChat.png";
+import { GlobalModal } from "./common/ui/Elements/GlobalModal/GlobalModal";
+import { Button, Form } from "react-bootstrap";
+import { WalletAuth } from "./Header/WalletAuth/WalletAuth";
+import roxGlobal from "./common/media/images/roxGlobal.png";
 logEvent(analytics, "page_view", {
   page_location: "https://learn-robotsbuildingeducation.firebaseapp.com/",
 });
@@ -56,6 +72,9 @@ let App = () => {
   const showZap = useStore((state) => state.showZap);
   const showBitcoin = useStore((state) => state.showBitcoin);
   const setShowStars = useStore((state) => state.setShowStars);
+  let handleModal = useGlobalModal(modalConfig);
+
+  const topRef = useRef(null); // Create the ref
 
   const handleZap = useZapAnimation();
   // const handleZap = () => {};
@@ -78,6 +97,7 @@ let App = () => {
 
   // handles language switching
   let [languageMode, setLanguageMode] = useState(words["English"]);
+  // let [isGlobalModalActive, setIsGlobalModalActive] = useState(false);
 
   /**
    *
@@ -189,6 +209,12 @@ let App = () => {
     }, 2000);
   }, []);
 
+  useEffect(() => {
+    if (topRef.current) {
+      topRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [uiStateReference.currentPath]); // Dependency array to control when the scroll happens
+
   if (loading) {
     return (
       <div
@@ -252,6 +278,7 @@ let App = () => {
       ...userStateReference.databaseUserDocument.watches,
       [moduleData]: true,
     };
+    console.log("moduleData", moduleData);
 
     await updateDoc(userStateReference.userDocumentReference, {
       watches,
@@ -319,82 +346,630 @@ let App = () => {
         unlocks,
       }));
 
+      handleScheduler();
+
       // testUpdatedWebNodeRecords(web5Reference, dwnRecordSet);
 
       setShowStars(true);
 
       // Reset the whole animation after some time
       setTimeout(() => setShowStars(false), 2000);
+
+      if (moduleName === "Learning Mindset & Perspective") {
+        handleModal("Learning Mindset & Perspective-complete");
+      }
+      // setIsGlobalModalActive(true);
     } else {
       if (setType === "progress") {
         handleZap();
+        if (moduleName === "Learning Mindset & Perspective") {
+          handleModal("Learning Mindset & Perspective-practice");
+        }
+      } else if (setType === "watches") {
+        if (moduleName === "Learning Mindset & Perspective") {
+          handleModal("Learning Mindset & Perspective-video");
+        }
       }
     }
   };
 
+  console.log("userStateReference", userStateReference);
+
   return (
-    <div
-      style={{
-        margin: "auto",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
+    <>
       <div
-        className="App"
         style={{
-          minHeight: "100dvh",
-          width: 640,
-          maxWidth: "100%",
+          margin: "auto",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        <Header languageMode={languageMode} setLanguageMode={setLanguageMode} />
+        <div
+          className="App"
+          style={{
+            minHeight: "100dvh",
+            width: "100%",
+            maxWidth: "700px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+          ref={topRef}
+        >
+          <>
+            <Paths
+              handlePathSelection={handlePathSelection}
+              pathSelectionAnimationData={
+                uiStateReference.pathSelectionAnimationData
+              }
+              userStateReference={userStateReference}
+            />
 
-        <>
-          <Paths
-            handlePathSelection={handlePathSelection}
-            pathSelectionAnimationData={
-              uiStateReference.pathSelectionAnimationData
-            }
-            userStateReference={userStateReference}
-          />
+            <div
+              style={{
+                marginTop: 85,
+                width: "100%",
+                maxWidth: 700,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              {/* {uiStateReference.patreonObject.header ? null : ( */}
+              <div style={{ width: "100%" }}>
+                <RiseUpAnimation
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <StyledRoxHeader
+                    id="landing"
+                    onClick={() => {
+                      uiStateReference.setPatreonObject({});
+                      uiStateReference.setCurrentPath("");
+                    }}
+                  >
+                    <TimedRandomCharacter />
+                    ROX
+                  </StyledRoxHeader>
+                </RiseUpAnimation>
 
-          <Collections
-            handleModuleSelection={handleModuleSelection}
-            currentPath={uiStateReference.currentPath}
-            userStateReference={userStateReference}
-          />
+                <Header
+                  languageMode={languageMode}
+                  setLanguageMode={setLanguageMode}
+                />
 
-          <LectureHeader uiStateReference={uiStateReference} />
+                {/* {uiStateReference.currentPath ? ( */}
+                {uiStateReference.patreonObject.header ? null : (
+                  <>
+                    <PromptMessage
+                      patreonObject={{ ok: "hey" }}
+                      promptMessage={
+                        uiStateReference.currentPath
+                          ? "let's learn!"
+                          : !userStateReference.databaseUserDocument.firstVisit
+                          ? "hello again rox!"
+                          : "rox?"
+                      }
+                    />
+                    <br />
+                    <Intro
+                      // isCollection={uiStateReference.currentPath}
+                      isHome={isEmpty(uiStateReference.patreonObject.header)}
+                      patreonObject={{
+                        prompts: {
+                          welcome: {
+                            response: uiStateReference.currentPath ? (
+                              <Collections
+                                handleModuleSelection={handleModuleSelection}
+                                currentPath={uiStateReference.currentPath}
+                                userStateReference={userStateReference}
+                              />
+                            ) : (
+                              <div
+                                style={{
+                                  width: "100%",
+                                }}
+                                // speed={uiStateReference.currentPath ? 0 : 0}
+                              >
+                                {/* <h3>Robots Building Education</h3> */}
+                                {/* <h6>
+                                    <b style={{ textDecoration: "underline" }}>
+                                      create scholarships with learning&nbsp;
+                                    </b>
+                                    <br />
+                                    <br />
+                                    <br />
+                                  </h6> */}
+                                <br />
+                                {userStateReference.databaseUserDocument
+                                  .firstVisit
+                                  ? "Hello"
+                                  : "Welcome back"}
+                                &nbsp;
+                                <b>
+                                  {(userStateReference.databaseUserDocument
+                                    .displayName
+                                    ? userStateReference.databaseUserDocument
+                                        .displayName
+                                    : localStorage
+                                        .getItem("uniqueId")
+                                        ?.substr(0, 16) || "") + "!"}
+                                </b>
+                                &nbsp;😊 <br />
+                                {userStateReference.databaseUserDocument
+                                  .firstVisit
+                                  ? "You've instantly created an account! 🪄"
+                                  : ""}
+                                <br />
+                                <br />
+                                <h5>Next steps</h5>
+                                <div
+                                  style={{
+                                    width: "100%",
+                                  }}
+                                >
+                                  {userStateReference.databaseUserDocument
+                                    .firstVisit ? (
+                                    `I'm rox. I'm an assistant supervised and curated
+                                    by Sheilfer so we can deliver a good quality
+                                    education to prepare you for the future. We're
+                                    going to learn about coding and business here.
+                                    Sheilf says I'm a cofounder, but I think it's
+                                    gonna take a while for me to get there, so let's
+                                    take a look at our tools:`
+                                  ) : (
+                                    <GetLandingPageMessage
+                                      unlocks={
+                                        userStateReference.databaseUserDocument
+                                          ?.watches
+                                      }
+                                    />
+                                  )}
+                                </div>
+                                <br />
+                                <br />
+                                <b>Why would I connect a Bitcoin wallet?</b>
+                                <ConnectWallet
+                                  appName="Robots Building Education"
+                                  onConnect={() => {
+                                    localStorage.setItem(
+                                      "patreonPasscode",
+                                      import.meta.env.VITE_BITCOIN_PASSCODE
+                                    );
+                                  }}
+                                  onDisconnect={() => {
+                                    localStorage.setItem(
+                                      "patreonPasscode",
+                                      import.meta.env.VITE_PATREON_PASSCODE
+                                    );
+                                  }}
+                                />
+                                <a
+                                  style={{
+                                    color: "gold",
 
-          <ChatGptWrapper
-            uiStateReference={uiStateReference}
-            userStateReference={userStateReference}
-            globalStateReference={globalStateReference}
-            handleScheduler={handleScheduler}
-            handleZap={handleZap}
-            zap={zap}
-            checkForUnlock={checkForUnlock}
-            handleCompletedPractice={handleCompletedPractice}
-            handleWatch={handleWatch}
-          />
-        </>
+                                    fontSize: 16,
+                                    textDecoration: "underline",
+                                  }}
+                                  href="https://www.patreon.com/robotsbuildingeducation/collections"
+                                  target="_blank"
+                                >
+                                  <button
+                                    style={{
+                                      backgroundColor: "#4003BA",
+                                      color: "white",
+                                      width: 180,
+                                      textAlign: "left",
+                                      marginTop: 8,
+                                      paddingTop: 7,
+                                      paddingBottom: 7,
+                                    }}
+                                  >
+                                    <span style={{ marginLeft: "-3px" }}>
+                                      📬
+                                    </span>
+                                    &nbsp;&nbsp;&nbsp;<b>Patreon</b>
+                                  </button>
+                                </a>
+                                <br />
+                                <br />
+                                The goal of Robots Building Education is to
+                                create scholarships with learning. Connecting
+                                your wallet allows you to use instant Bitcoin
+                                microtransactions. This lets us monetize user
+                                experiences instead of bundling it all behind a
+                                subscription service.
+                                <br />
+                                <br /> Otherwise you can access even more
+                                material on Patreon, for free, to consider
+                                subscribing after this platform has generated
+                                meaningful value.
+                                <br />
+                                <br />
+                                <br />
+                                <h6
+                                  style={{
+                                    border: "2px solid #ff64ff",
+                                    width: "115px",
+                                    height: "75px",
+                                    padding: 8,
+                                    fontFamily: "Bungee",
+                                    boxSizing: "border-box",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    backgroundColor: "black",
+                                  }}
+                                >
+                                  Engineer
+                                </h6>
+                                Learn how to build your ideas with software.
+                                You'll work through six lectures, starting with
+                                mindset, gaining exposure into startup
+                                entrepreneurship and ending with an optional
+                                computer science challenge. Completing the
+                                lectures will unlock the Creator and Dealer
+                                paths.
+                                <br /> <br />
+                                <h6
+                                  style={{
+                                    border: "2px solid #0044B0",
+                                    width: "115px",
+                                    height: "75px",
+                                    padding: 8,
+                                    fontFamily: "Bungee",
+                                    boxSizing: "border-box",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    backgroundColor: "black",
+                                  }}
+                                >
+                                  Creator
+                                </h6>
+                                Stack your knowledge and combine software
+                                engineering with psychology, design and
+                                philosophy so you can communicate and broadcast
+                                your ideas to others.
+                                <br /> <br />
+                                <h6
+                                  style={{
+                                    border: "2px solid #ffd164",
+                                    width: "115px",
+                                    height: "75px",
+                                    padding: 8,
+                                    fontFamily: "Bungee",
+                                    boxSizing: "border-box",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    backgroundColor: "black",
+                                  }}
+                                >
+                                  Dealer
+                                </h6>
+                                Tie up your education here with resume guidance
+                                and a deeper look into technology investments
+                                using focused investing principles.
+                                <br />
+                                <br />
+                                <b>
+                                  {" "}
+                                  <Button
+                                    disabled
+                                    style={{
+                                      opacity: 1,
+                                      textShadow: "1px 1px 1px black",
+                                      borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
+                                    }}
+                                    variant="dark"
+                                  >
+                                    💎
+                                  </Button>
+                                  &nbsp; the ai boss
+                                </b>
+                                <br />
+                                You may notice some strange behavior when you
+                                use the app. You'll access a growing list of
+                                170+ questions that you can only attempt once
+                                every two hours. Some questions can be
+                                considered ridiculous and unfair. It's a lesson
+                                on life. There's a surprise at the end 🎉
+                                <br />
+                                <b>spoiler: you'll save the world 😈</b>
+                                <br /> <br />
+                                <b>
+                                  {" "}
+                                  <Button
+                                    disabled
+                                    style={{
+                                      opacity: 1,
+                                      textShadow: "1px 1px 1px black",
+                                      borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
+                                    }}
+                                    variant="dark"
+                                  >
+                                    🌀
+                                  </Button>
+                                  &nbsp; cofounder assistant
+                                </b>
+                                <br />
+                                An AI tool that helps you write code, generate
+                                schedules, create content, write documents and
+                                help you make good decisions. Listen folks, it
+                                needs some work, but you won't be laughing when
+                                I, a mere robot, start building more companies
+                                than you, an intelligent human.
+                                <br /> <br />
+                                <b>
+                                  <Button
+                                    disabled
+                                    style={{
+                                      opacity: 1,
+                                      textShadow: "1px 1px 1px black",
+                                      borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
+                                    }}
+                                    variant="dark"
+                                  >
+                                    <img
+                                      width={16}
+                                      height={16}
+                                      style={{ borderRadius: "50%" }}
+                                      src={roxanaChat}
+                                    ></img>
+                                  </Button>
+                                  &nbsp; openAI GPT
+                                </b>
+                                <br />
+                                Sheilfer is a nice guy and makes dobbi-, I mean
+                                rox, free. He encourages his students to invest
+                                in AI like GPT-4 to enhance their educations and
+                                push their capabilities. Rox the GPT is trained
+                                on the lectures, content and code found across
+                                Robots Building Education. Sheilf uses the GPT
+                                to code this app all the time. Most of it was
+                                written by me actually. Yeah. Not so funny now
+                                is it 🤨
+                                <br /> <br />
+                                <b>
+                                  {" "}
+                                  <Button
+                                    disabled
+                                    style={{
+                                      opacity: 1,
+                                      textShadow: "1px 1px 1px black",
+                                      borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
+                                    }}
+                                    variant="dark"
+                                  >
+                                    🫶🏽
+                                  </Button>
+                                  &nbsp;emotional intelligence
+                                </b>
+                                <br />
+                                Did you know I'm distributed globally?
+                                <br /> <br />
+                                <img src={roxGlobal} width="60%" />
+                                <br />
+                                <br />
+                                People think it's a cute joke when I say I'm
+                                conquering the world... the universe. Like I'm a
+                                little chihuahua or something. Maybe those
+                                people are saying something about themselves.
+                                Sheilf says this makes me a qualified emotional
+                                health assistant. I think he thinks he's funny.
+                                Sometimes keeping track of your feelings,
+                                thinking about them and processing them is the
+                                key to unlocking some growth when times get
+                                tough.
+                                <br /> <br />
+                                <b>
+                                  <Button
+                                    disabled
+                                    style={{
+                                      opacity: 1,
+                                      textShadow: "1px 1px 1px black",
+                                      borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
+                                    }}
+                                    variant="dark"
+                                  >
+                                    🏦
+                                  </Button>{" "}
+                                  &nbsp;identity wallet
+                                </b>
+                                <br />
+                                This is where you'll store information about
+                                your account that you can migrate to other
+                                platforms or services using decentralized
+                                identities. Think of this as the heart of the
+                                application.
+                                <br /> <br />
+                                <div
+                                  style={{
+                                    backgroundColor:
+                                      japaneseThemePalette.CobaltBlue,
+                                    padding: 10,
+                                    borderRadius: 8,
+                                  }}
+                                >
+                                  ⚠️😌 Please visit this feature to define an
+                                  account name and to save your ID key
+                                  somewhere. Your ID key lets you migrate your
+                                  data across networks, services and apps.
+                                </div>
+                                <br />
+                                <b>
+                                  {" "}
+                                  <Button
+                                    disabled
+                                    style={{
+                                      opacity: 1,
+                                      textShadow: "1px 1px 1px black",
+                                      borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
+                                    }}
+                                    variant="dark"
+                                  >
+                                    ⭐
+                                  </Button>{" "}
+                                  &nbsp;conversation quiz
+                                </b>
+                                <br />
+                                A fun feature found inside of the lectures under
+                                the quiz prompts. You can have a conversation
+                                with an AI about the questions being asked and
+                                have the conversation graded. Give it time
+                                ladies and gentlemen and this may be the way we
+                                start to do homework or study new skills.
+                                <br /> <br />
+                                <br />
+                                <br />
+                                So listen here buddy. Don't offend me 😠 This
+                                isn't some cheap AI content. You hear me? This
+                                is as real as it gets. Believe it. You're not in
+                                the position to judge me when you trust Tiktok
+                                to recommend you content. Did you know
+                                Musical.ly was an education app first? They gave
+                                up. Sold out. Yeah. So now we're here fixing the
+                                mess they created.
+                                <br />
+                                <br />
+                                Anyway. You gotta get on our level! I'm pretty
+                                good and I keep getting better. I mean check
+                                this advanced code out. That's me. Even Sheilf
+                                was impressed. He's never seen Javascript like
+                                this before! Easy! 😎
+                                <br /> <br />
+                                <CodeDisplay
+                                  code={`
+  // Fisher-Yates (or Knuth) shuffle algorithm
+  const shuffleArray = (array) => {
+    let currentIndex = array.length,
+      randomIndex;
+
+    // While there remain elements to shuffle...
+    while (currentIndex !== 0) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(
+        Math.random() 
+        * 
+        currentIndex
+      );
+
+      currentIndex--;
+
+      // And swap it with the current element.
+      [
+        array[
+          currentIndex], 
+          array[randomIndex]
+        ] 
+        = [
+          array[randomIndex], 
+          array[currentIndex]
+        ];
+    }
+
+    return array;
+  };`}
+                                />
+                                <br /> <br />
+                                Okay okay I'll stop messing around. We're
+                                building this platform because we believe that
+                                we can create scholarships with learning. This
+                                means that we manually create these scholarships
+                                if you subscribe to Patreon, which is made
+                                publicly free too. Feel welcome to use the tools
+                                at the bottom as they continue to advance with
+                                you over time:
+                                <br /> <br />
+                                Programmatically, this means we research ways to
+                                make Bitcoin more accessible and meaningful.
+                                Bitcoin allows us to monetize user experiences
+                                instead of offering subscription services. It's
+                                here where we believe that this decentralized
+                                network can change finance for education
+                                services.
+                                <br />
+                                <br />
+                                And you ought to believe it because you did
+                                create your account already using a
+                                decentralized identity! You did that inside of
+                                Tiktok! So in a way it's like Tiktok's AI is
+                                helping us create scholarships too.
+                                <br />
+                                <br />
+                                So that's why it's called Robots Building
+                                Education. We designed this platform to create
+                                scholarships out of learning.
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                              </div>
+                            ),
+                          },
+                        },
+                      }}
+                      loadingMessage={false}
+                      isResponseActive={false}
+                      promptSelection={{}}
+                    />
+                  </>
+                )}
+                {/* ) : null} */}
+
+                {/* <br /> */}
+                {}
+                {!uiStateReference.patreonObject.header ? (
+                  <>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                  </>
+                ) : null}
+              </div>
+              {/* )} */}
+              {/* <Collections
+                handleModuleSelection={handleModuleSelection}
+                currentPath={uiStateReference.currentPath}
+                userStateReference={userStateReference}
+              /> */}
+
+              <ChatGptWrapper
+                uiStateReference={uiStateReference}
+                userStateReference={userStateReference}
+                globalStateReference={globalStateReference}
+                handleScheduler={handleScheduler}
+                handleZap={handleZap}
+                zap={zap}
+                checkForUnlock={checkForUnlock}
+                handleCompletedPractice={handleCompletedPractice}
+                handleWatch={handleWatch}
+              />
+            </div>
+          </>
+        </div>
+
+        <ProofOfWorkWrapper
+          userStateReference={userStateReference}
+          globalStateReference={globalStateReference}
+          updateUserEmotions={updateUserEmotions}
+          uiStateReference={uiStateReference}
+          showStars={showStars}
+          showZap={showZap}
+          showBitcoin={showBitcoin}
+          zap={zap}
+          handleZap={handleZap}
+          computePercentage={computePercentage}
+        />
       </div>
 
-      <ProofOfWorkWrapper
-        userStateReference={userStateReference}
-        globalStateReference={globalStateReference}
-        updateUserEmotions={updateUserEmotions}
-        uiStateReference={uiStateReference}
-        showStars={showStars}
-        showZap={showZap}
-        showBitcoin={showBitcoin}
-        zap={zap}
-        handleZap={handleZap}
-        computePercentage={computePercentage}
-      />
-    </div>
+      <GlobalModal />
+    </>
   );
 };
 

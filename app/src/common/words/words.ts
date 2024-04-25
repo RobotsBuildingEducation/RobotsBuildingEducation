@@ -63,7 +63,7 @@ export let words = {
       "8": "Copy Lightning Address",
 
       //intro
-      "9": "Learn more",
+      "9": "Learn More",
 
       //paths
       "11": "Engineer",
