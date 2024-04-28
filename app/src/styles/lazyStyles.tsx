@@ -308,7 +308,7 @@ export const StyledLink = styled(Link)`
       const toBlueVersion = (color) => {
         // Implement your logic to convert to blue version
         // return "#001eff"; // Example
-        return "#000";
+        return "#000f89";
       };
 
       // Function to convert a hex color to its golden version
@@ -318,9 +318,9 @@ export const StyledLink = styled(Link)`
       };
 
       if (isActive && isSelectedPath) {
-        backgroundColor = "#ff64ff";
+        backgroundColor = "#4003ba";
       } else if (isActive && !isSelectedPath) {
-        backgroundColor = "#ff64ff;";
+        backgroundColor = "#4003ba;";
       }
 
       // Adjust color based on path
@@ -360,7 +360,7 @@ export const StyledLink = styled(Link)`
       const toBlueVersion = (color) => {
         // Implement your logic to convert to blue version
         // return "#001eff"; // Example
-        return "#0044B0";
+        return "#000f89";
       };
 
       // Function to convert a hex color to its golden version
@@ -370,9 +370,9 @@ export const StyledLink = styled(Link)`
       };
 
       if (isActive && isSelectedPath) {
-        backgroundColor = "#ff64ff";
+        backgroundColor = "#4003ba";
       } else if (isActive && !isSelectedPath) {
-        backgroundColor = "#ff64ff;";
+        backgroundColor = "#4003ba";
       }
 
       // Adjust color based on path
@@ -419,7 +419,7 @@ export const StyledLink = styled(Link)`
     const toBlueVersion = (color) => {
       // Implement your logic to convert to blue version
       // return "#001eff"; // Example
-      return " #0044B0";
+      return " #000f89";
     };
 
     // Function to convert a hex color to its golden version
@@ -442,7 +442,7 @@ export const StyledLink = styled(Link)`
     if (!isUnlocked) {
       backgroundColor = "";
     } else if (currentPath === "Engineer") {
-      backgroundColor += " #e216b4";
+      backgroundColor += " #4003ba";
     } else if (currentPath === "Creator") {
       backgroundColor += toBlueVersion(backgroundColor);
     } else if (currentPath === "Entrepeneur") {
@@ -567,7 +567,7 @@ export let japaneseThemePalette = {
   DeepCherryBlossomPink: "#C71585", // Deep Cherry Blossom
   ProsperityEmeraldGreen: "#31d660", // Symbol of Wealth
   StrongRed: "#DC143C", // Japanese Flag Red
-  StrongBlue: "#00008B", // Indigo Blue Textile
+  PhthaloBlue: "#000f89", // Indigo Blue Textile
   DarkMetallicSilver: "#5A5A5A", // Darkened Steel Samurai Sword
   // Lavender: "rgba(220,205,255, 1)",
   PowerPurple: "rgba(102, 3, 252, 1)",
@@ -658,4 +658,5 @@ export const StyledRoxHeader = styled.h1`
     text-shadow: 1px 1px 3px gold;
     text-decoration: underline;
   }
+  text-decoration: underline;
 `;

@@ -46,7 +46,7 @@ const SummaryItem = ({ question, answer, index }) => {
           aria-expanded={open}
           onClick={() => setOpen(!open)}
           style={{
-            // backgroundColor: japaneseThemePalette.StrongBlue,
+            // backgroundColor: japaneseThemePalette.PhthaloBlue,
             ...textBlock(
               japaneseThemePalette?.PowerPurple,
               1,

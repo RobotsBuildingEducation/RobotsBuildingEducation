@@ -49,8 +49,29 @@ export const Intro = ({
       <div style={{ display: "flex" }}>
         {loadingMessage ? (
           <RoxanaLoadingAnimation />
+        ) : isResponseActive &&
+          patreonObject.header === "Learning Mindset & Perspective" ? (
+          <div>
+            <h2 style={{ fontFamily: "Bungee", padding: 15 }}>
+              {promptSelection === "patreon" && "Discover ►"}
+              {promptSelection === "guide" && "Guide 🗓️"}
+              {promptSelection === "shop" && "Shop 🛍️"}
+              {promptSelection === "practice" && "Practice 🥋"}
+            </h2>
+
+            <div style={{ padding: 15 }}>
+              {promptSelection === "patreon" &&
+                "The discover prompt exposes you to beginner, intermediate and advanced subject matter."}
+              {promptSelection === "guide" &&
+                "The guide prompt offers direction and guardrails for deeper study."}
+              {promptSelection === "shop" &&
+                "The shop tab lets your connect with other creator platforms and additional resources"}
+              {promptSelection === "practice" &&
+                "The practice session lets you work through common blocks of code you'll find building software services."}
+            </div>
+          </div>
         ) : isResponseActive ? (
-          <h2 style={{ fontFamily: "Bungee", padding: 10 }}>
+          <h2 style={{ fontFamily: "Bungee", padding: 15 }}>
             {promptSelection === "patreon" && "Discover ►⚡🎨"}
             {promptSelection === "guide" && "Guide 🧿📚🔮🗓🧪"}
             {promptSelection === "shop" && "Shop 🛍️"}

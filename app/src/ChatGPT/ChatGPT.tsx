@@ -204,6 +204,7 @@ const ChatGPT = ({
         handleZap={handleZap}
         zap={zap}
         userStateReference={userStateReference}
+        uiStateReference={uiStateReference}
       />
     </div>
   );
