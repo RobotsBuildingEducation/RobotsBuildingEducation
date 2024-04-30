@@ -232,7 +232,7 @@ export const SchedulerBlock = ({ children }) => {
     <div
       style={{
         ...textBlock(
-          japaneseThemePalette.StrongBlue,
+          japaneseThemePalette.PhthaloBluePurple,
           0,
           12,
           "white",
@@ -242,14 +242,16 @@ export const SchedulerBlock = ({ children }) => {
     >
       <button
         onMouseEnter={() => {
-          setBoxShadow(`6px 6px 5px 0px ${japaneseThemePalette.StrongBlue}`);
+          setBoxShadow(
+            `6px 6px 5px 0px ${japaneseThemePalette.PhthaloBluePurple}`
+          );
         }}
         onMouseLeave={() => {
           setBoxShadow("6px 6px 5px 0px rgba(0,0,0,0.75)");
         }}
         style={{
           boxShadow: boxShadow,
-          backgroundColor: japaneseThemePalette.StrongBlue,
+          backgroundColor: japaneseThemePalette.PhthaloBluePurple,
         }}
         onClick={() => {
           setIsModalOpen(true);

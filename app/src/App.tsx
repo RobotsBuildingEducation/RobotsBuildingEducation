@@ -533,6 +533,8 @@ let App = () => {
                                 <br />
                                 <br />
                                 <b>Why would I connect a Bitcoin wallet?</b>
+                                <br />
+                                <br />
                                 <ConnectWallet
                                   appName="Robots Building Education"
                                   onConnect={() => {
@@ -560,7 +562,7 @@ let App = () => {
                                 >
                                   <button
                                     style={{
-                                      backgroundColor: "#4003BA",
+                                      backgroundColor: "#4003ba",
                                       color: "white",
                                       width: 180,
                                       textAlign: "left",
@@ -572,28 +574,77 @@ let App = () => {
                                     <span style={{ marginLeft: "-3px" }}>
                                       📬
                                     </span>
-                                    &nbsp;&nbsp;&nbsp;<b>Patreon</b>
+                                    &nbsp;&nbsp;&nbsp;<b>Subscribe</b>
                                   </button>
                                 </a>
+                                {/* <div
+                                  style={{
+                                    overflow: "auto",
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    justifyContent: "flex-end",
+                                    alignItems: "center",
+                                    width: "259px",
+                                    backgroundColor: "#FFFFFF",
+                                    border: "1px solid rgba(0, 0, 0, 0.1)",
+                                    boxShadow: "-2px 10px 5px rgba(0, 0, 0, 0)",
+                                    borderRadius: "10px",
+                                    fontFamily:
+                                      "SQ Market, SQ Market, Helvetica, Arial, sans-serif",
+                                  }}
+                                >
+                                  <div style={{ padding: "20px" }}>
+                                    <a
+                                      target="_blank"
+                                      href="https://checkout.square.site/merchant/ML78ARYGVMPGF/checkout/6PGLHHPOOPTJTGOA4FS7A6MK?src=embed"
+                                      style={{
+                                        display: "inline-block",
+                                        fontSize: "18px",
+                                        lineHeight: "48px",
+                                        height: "48px",
+                                        color: "#ffffff",
+                                        minWidth: "212px",
+                                        backgroundColor: "#006aff",
+                                        textAlign: "center",
+                                        boxShadow:
+                                          "0 0 0 1px rgba(0,0,0,.1) inset",
+                                        borderRadius: "6px",
+                                      }}
+                                    >
+                                      Buy now
+                                    </a>
+                                  </div>
+                                </div> */}
                                 <br />
                                 <br />
                                 The goal of Robots Building Education is to
-                                create scholarships with learning. Connecting
-                                your wallet allows you to use instant Bitcoin
+                                create scholarships with learning.{" "}
+                                <a
+                                  // style={{ color: "white", textDecoration: "underline" }}
+                                  href="https://old-fashionedintelligence.info/access"
+                                  target="_blank"
+                                  style={{
+                                    textDecoration: "underline",
+                                    color: "white",
+                                  }}
+                                >
+                                  <b>Connecting your wallet</b>
+                                </a>{" "}
+                                allows you to use instant Bitcoin
                                 microtransactions. This lets us monetize user
                                 experiences instead of bundling it all behind a
                                 subscription service.
                                 <br />
                                 <br /> Otherwise you can access even more
-                                material on Patreon, for free, to consider
-                                subscribing after this platform has generated
-                                meaningful value.
+                                material and services on Patreon, for free, to
+                                consider subscribing after this platform has
+                                generated meaningful value.
                                 <br />
                                 <br />
                                 <br />
                                 <h6
                                   style={{
-                                    border: "2px solid #ff64ff",
+                                    border: "2px solid #4003ba",
                                     width: "115px",
                                     height: "75px",
                                     padding: 8,
@@ -616,7 +667,7 @@ let App = () => {
                                 <br /> <br />
                                 <h6
                                   style={{
-                                    border: "2px solid #0044B0",
+                                    border: "2px solid #000f89",
                                     width: "115px",
                                     height: "75px",
                                     padding: 8,
@@ -923,7 +974,6 @@ let App = () => {
                 {}
                 {!uiStateReference.patreonObject.header ? (
                   <>
-                    <br />
                     <br />
                     <br />
                     <br />

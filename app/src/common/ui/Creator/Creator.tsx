@@ -23,7 +23,7 @@ export const Creator = {
       prompts: {
         welcome: {
           response: (
-            <Typewriter>
+            <Typewriter speed={5}>
               Welcome, brilliant minds! 🌟 Today, we embark on an enlightening
               journey through the realms of Critical Race Theory, Machine
               Learning Algorithms, and Macroeconomics. Together, we'll explore
@@ -631,7 +631,7 @@ export const Creator = {
       prompts: {
         welcome: {
           response: (
-            <Typewriter>
+            <Typewriter speed={5}>
               Fellow visionaries! 🌈 Today, we're setting sail into the vibrant
               seas of Human-Computer Interaction, Entrepreneurship, and Design.
               It's a thrilling expedition where creativity meets innovation,
@@ -1170,7 +1170,7 @@ export const Creator = {
       prompts: {
         welcome: {
           response: (
-            <Typewriter>
+            <Typewriter speed={5}>
               Hello, my bright stars 🌟! Welcome to today's lecture on the
               fascinating topic of the Psychology of Self-Esteem. I'm so excited
               to have you all here, and I hope you are too. 🤗

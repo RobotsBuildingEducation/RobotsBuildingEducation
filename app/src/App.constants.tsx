@@ -123,3 +123,12 @@ export const modalConfig = {
     // "Focus Investing": "empty",
   },
 };
+
+export let engineerHeaders = [
+  "Learning Mindset & Perspective",
+  "Lesson 1 Coding Fundamentals",
+  "Lesson 2 Frontend Programming",
+  "Lesson 3 Backend Engineering",
+  "Lesson 4 Building Apps & Startups",
+  "Lesson 5 Computer Science",
+];

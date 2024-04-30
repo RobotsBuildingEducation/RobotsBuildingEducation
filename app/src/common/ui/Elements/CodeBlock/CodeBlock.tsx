@@ -101,7 +101,7 @@ export const CodeBlock = ({
   return (
     <div
       style={{
-        backgroundColor: japaneseThemePalette.StrongBlue,
+        backgroundColor: japaneseThemePalette.PhthaloBluePurple,
         borderRadius: 30,
         padding: 12,
       }}

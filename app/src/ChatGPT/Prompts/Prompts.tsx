@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { Button, Modal } from "react-bootstrap";
 import { isEmpty } from "lodash";
 import ReactJson from "react-json-view";
 
 import { StyledPromptButton } from "../../styles/lazyStyles";
+import { engineerHeaders } from "../../App.constants";
 
 const delayedAnimation = keyframes`
 from {
@@ -18,7 +19,7 @@ from {
 `;
 const AnimatedPrompt = styled.div`
   animation: ${delayedAnimation} 0.5s ease-out;
-  animation-delay: ${(props) => props.index * 0.15}s; /* Delay based on index */
+  animation-delay: ${(props) => props.index * 0.12}s; /* Delay based on index */
   opacity: 0; /* Start with opacity 0 to make the animation visible */
   animation-fill-mode: forwards; /* Keep the element visible after the animation */
 `;
@@ -125,10 +126,11 @@ export const Prompts = ({
   handleSubmit,
   handleZap,
   userStateReference,
-
   zap,
+  uiStateReference,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showPrompts, setShowPrompts] = useState(false);
   // console.log("patreonobj", patreonObject);
   // console.log("user ref", userStateReference);
   // console.log("db user doc", userStateReference?.databaseUserDocument);
@@ -150,6 +152,19 @@ export const Prompts = ({
 
   const promptTypes = ["patreon", "guide", "practice", "shop"];
 
+  console.log("currpth", uiStateReference);
+  useEffect(() => {
+    if (engineerHeaders.includes(patreonObject?.header)) {
+      const timer = setTimeout(() => {
+        setShowPrompts(true);
+      }, 750); // 5000 milliseconds = 5 seconds
+
+      return () => clearTimeout(timer); // Clear the timeout if the component unmounts
+    } else {
+      setShowPrompts(true);
+    }
+  }, []); // Empty dependency array means this effect runs only once after the initial render
+
   return (
     <div
       style={{
@@ -158,15 +173,35 @@ export const Prompts = ({
         flexDirection: "column",
       }}
     >
-      {promptTypes.map((type, index) => {
-        const prompt = patreonObject.prompts[type];
+      {showPrompts &&
+        promptTypes.map((type, index) => {
+          const prompt = patreonObject.prompts[type];
 
-        if (!prompt) return null;
-        return (
-          <AnimatedPrompt index={index}>
-            {type === "shop" ? (
-              <>
-                {" "}
+          if (!prompt) return null;
+          return (
+            <AnimatedPrompt index={index}>
+              {type === "shop" ? (
+                <>
+                  {" "}
+                  <PromptButton
+                    patreonObject={patreonObject}
+                    key={type}
+                    icon={prompt?.icon}
+                    action={prompt?.action}
+                    type={type}
+                    loading={!!loadingMessage}
+                    prompt={prompt}
+                    onClick={(e) =>
+                      !loadingMessage && handleSubmit(e, prompt, type)
+                    }
+                    handleZap={handleZap}
+                    zap={zap}
+                  />
+                  <br />
+                  <br />
+                  <br />
+                </>
+              ) : (
                 <PromptButton
                   patreonObject={patreonObject}
                   key={type}
@@ -180,32 +215,13 @@ export const Prompts = ({
                   }
                   handleZap={handleZap}
                   zap={zap}
+                  isPracticeComplete={isPracticeComplete}
+                  isVideoWatched={isVideoWatched}
                 />
-                <br />
-                <br />
-                <br />
-              </>
-            ) : (
-              <PromptButton
-                patreonObject={patreonObject}
-                key={type}
-                icon={prompt?.icon}
-                action={prompt?.action}
-                type={type}
-                loading={!!loadingMessage}
-                prompt={prompt}
-                onClick={(e) =>
-                  !loadingMessage && handleSubmit(e, prompt, type)
-                }
-                handleZap={handleZap}
-                zap={zap}
-                isPracticeComplete={isPracticeComplete}
-                isVideoWatched={isVideoWatched}
-              />
-            )}
-          </AnimatedPrompt>
-        );
-      })}
+              )}
+            </AnimatedPrompt>
+          );
+        })}
 
       <br />
       {/* <Button

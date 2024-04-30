@@ -745,7 +745,7 @@ exports.app = functions.https.onRequest(app);
       prompts: {
         welcome: {
           response: (
-            <Typewriter>
+            <Typewriter speed={5}>
               ¡Hola, estudiantes! 🌸
               <br />
               <br />
@@ -1903,7 +1903,7 @@ throw new Error(
       prompts: {
         welcome: {
           response: (
-            <Typewriter>
+            <Typewriter speed={5}>
               Exceptional students! 🌟
               <br />
               <br />
@@ -2836,7 +2836,7 @@ return <div style={gradientStyle}>
       prompts: {
         welcome: {
           response: (
-            <Typewriter>
+            <Typewriter speed={5}>
               Hello!!!! 😊
               <br />
               <br />
@@ -3851,7 +3851,7 @@ exports.app = functions
         welcome: {
           response: (
             // <ChatBlock type={"quiz"}>
-            <Typewriter>
+            <Typewriter speed={5}>
               Brave students! 🌟
               <br /> <br />
               Welcome to your incredible journey as future startup founders and
@@ -4991,7 +4991,7 @@ export default OpenAIComponent;`,
       prompts: {
         welcome: {
           response: (
-            <Typewriter>
+            <Typewriter speed={5}>
               🌟 Welcome to today's exciting journey through the world of
               computer Ssience, where we'll dive into the essential topics of
               data structures and algorithms.

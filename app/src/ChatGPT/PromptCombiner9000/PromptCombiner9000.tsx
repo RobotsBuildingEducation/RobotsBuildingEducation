@@ -9,7 +9,11 @@ import CodeEditor from "../CodeEditor/CodeEditor";
 import "prismjs/components/prism-clike";
 import "prismjs/components/prism-javascript";
 import "prismjs/themes/prism.css";
-import { PanLeftComponent } from "../../styles/lazyStyles";
+import {
+  PanLeftComponent,
+  RiseDownAnimation,
+  RiseUpAnimation,
+} from "../../styles/lazyStyles";
 import { ContentLinks } from "../../common/ui/Elements/ContentLinks/ContentLinks";
 import { CodeDemo } from "./CodeDemo/CodeDemo";
 
@@ -215,11 +219,11 @@ export const PromptCombiner9000 = ({
           //       : "1px solid white",
           // }}
         >
-          <PanLeftComponent>
+          <RiseDownAnimation speed={"0.20"}>
             <StyledPromptHeaderButton variant="dark">
               {type === "patreon" ? "discover" : type} {icon}
             </StyledPromptHeaderButton>
-          </PanLeftComponent>
+          </RiseDownAnimation>
         </Heading>
       )}
 
