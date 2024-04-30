@@ -226,7 +226,7 @@ const FAQSection = () => {
             <br />
             In my view, AI makes software engineering more realistic for more
             people. Before AI, it was clear that there was an unmanageable
-            amount of work being generated in a way where a software enginer
+            amount of work being generated in a way where a software engineer
             would create more work than they could complete.
             <br />
             <br />

@@ -45,7 +45,9 @@ const riseDownAnimation = keyframes`
   }
 `;
 export const RiseDownAnimation = styled.div`
-  animation: ${riseDownAnimation} 0.38s ease-in-out;
+  animation: ${riseDownAnimation} ${(props) => {
+  return props.speed ? props.speed + "s" : "0.38s";
+}}; ease-in-out;
 `;
 
 const fadeInAnimation = keyframes`
@@ -567,7 +569,7 @@ export let japaneseThemePalette = {
   DeepCherryBlossomPink: "#C71585", // Deep Cherry Blossom
   ProsperityEmeraldGreen: "#31d660", // Symbol of Wealth
   StrongRed: "#DC143C", // Japanese Flag Red
-  PhthaloBlue: "#000f89", // Indigo Blue Textile
+  PhthaloBluePurple: "#000f89", // Indigo Blue Textile
   DarkMetallicSilver: "#5A5A5A", // Darkened Steel Samurai Sword
   // Lavender: "rgba(220,205,255, 1)",
   PowerPurple: "rgba(102, 3, 252, 1)",

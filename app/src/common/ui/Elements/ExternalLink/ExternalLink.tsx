@@ -1,6 +1,7 @@
 import React from "react";
+import { LinkIcon } from "../../../svgs/LinkIcon";
 
-export const ExternalLink = ({ textDisplay, link, color = "teal" }) => {
+export const ExternalLink = ({ textDisplay, link, color = "#4003ba" }) => {
   return (
     <a
       target="_blank"
@@ -14,7 +15,7 @@ export const ExternalLink = ({ textDisplay, link, color = "teal" }) => {
       }}
       href={link}
     >
-      {textDisplay}
+      <LinkIcon /> {textDisplay}
     </a>
   );
 };

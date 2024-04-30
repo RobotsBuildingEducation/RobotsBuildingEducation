@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import DecisionMap from "./experimental/DecisionMap";
+import { Dashboard } from "./Dashboard/Dashboard";
 
 // This file handles things before the app launches with route "/".
 // It defines frontend routes and defines a legacy passcode that used to be used to enter the app.
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/map",
     element: <DecisionMap />,
+  },
+  {
+    path: "/sudo",
+    element: <Dashboard />,
   },
 ]);
 
