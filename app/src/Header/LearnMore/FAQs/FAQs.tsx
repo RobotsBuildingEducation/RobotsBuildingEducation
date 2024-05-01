@@ -213,7 +213,7 @@ const FAQSection = () => {
             <ExternalLink
               textDisplay={"A session with rox ⚡"}
               link={
-                "https://chat.openai.com/share/874f923c-a124-4544-995b-b0c802464cde"
+                "https://chat.openai.com/share/9c85235b-5748-4d0f-abd9-fe9e29b16a3d"
               }
               color={japaneseThemePalette?.CobaltBlue}
             ></ExternalLink>

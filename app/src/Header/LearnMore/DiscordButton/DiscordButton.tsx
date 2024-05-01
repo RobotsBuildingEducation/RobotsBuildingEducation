@@ -227,7 +227,7 @@ export const DiscordButton = () => {
               promotion_name: "advertising_launch",
             })
           }
-          href="https://www.patreon.com/RobotsBuildingEducation/about"
+          href="https://www.patreon.com/RobotsBuildingEducation"
           target={"_blank"}
           style={{
             color: "white",
