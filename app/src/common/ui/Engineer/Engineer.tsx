@@ -99,7 +99,9 @@ export const Engineer = {
               <br />
               <br />
               <ExternalLink
-                textDisplay={"Tutorial (text-version)"}
+                textDisplay={
+                  "Lesson 4: Building An App Tutorial (text-version)"
+                }
                 link={
                   "https://www.patreon.com/posts/extras-building-93082226?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
                 }
@@ -800,7 +802,7 @@ exports.app = functions.https.onRequest(app);
               <br />
               <br />
               <ExternalLink
-                textDisplay={"Creating Bitcoin apps"}
+                textDisplay={"Creating Bitcoin Apps"}
                 link={
                   "https://www.patreon.com/posts/creating-bitcoin-100270766?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
                 }
@@ -1965,9 +1967,17 @@ throw new Error(
               <br />
               <br />
               <ExternalLink
-                textDisplay={"Creating social media apps"}
+                textDisplay={"Creating Social Media Apps"}
                 link={
                   "https://www.patreon.com/posts/building-social-99832935?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                }
+              />
+              <br />
+              <br />
+              <ExternalLink
+                textDisplay={"Creating A Job Network App"}
+                link={
+                  "https://www.patreon.com/posts/building-job-for-97860116?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
                 }
               />
               <br />
@@ -2850,6 +2860,14 @@ return <div style={gradientStyle}>
               data? It's like the leaves of a forest whispering stories, sharing
               knowledge, and predicting the future. 🌳☁️🍃 .... you following
               me?
+              <br />
+              <br />
+              <ExternalLink
+                textDisplay={"Building AI Apps"}
+                link={
+                  "https://www.patreon.com/posts/building-ai-apps-101818356?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                }
+              />
               <br />
               <br />
               So let's embark on this adventure together. Remember, every
@@ -3896,6 +3914,11 @@ exports.app = functions
 
           extraContent: (
             <div>
+              In this session, we've taken a big leap in our coding journey! We
+              started by setting up our development environment with tools like
+              VSCode and Node.js. Next, we dived into creating a project
+              directory and getting our React project up and running.
+              <br />
               <br />
               <ExternalLink
                 textDisplay={"Tutorial (text-version)"}
@@ -3903,11 +3926,6 @@ exports.app = functions
                   "https://www.patreon.com/posts/extras-building-93082226?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
                 }
               />
-              <br /> <br />
-              In this session, we've taken a big leap in our coding journey! We
-              started by setting up our development environment with tools like
-              VSCode and Node.js. Next, we dived into creating a project
-              directory and getting our React project up and running.
               <br />
               <br />
               But it's not just about the frontend; we also explored setting up
@@ -3918,6 +3936,14 @@ exports.app = functions
               The lesson is like building a bridge between your creative ideas
               and the real digital world. We're not just learning to code; we're
               learning to bring our visions to life! 🌉💻🚀
+              <br />
+              <br />
+              <ExternalLink
+                textDisplay={"Building With Decentralized IDs"}
+                link={
+                  "https://www.patreon.com/posts/web5-micro-app-102947896?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                }
+              />
               <br />
               <br />
               Ready to explore more about user authentication, database
