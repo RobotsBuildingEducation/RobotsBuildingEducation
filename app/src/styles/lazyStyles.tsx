@@ -1,6 +1,20 @@
 import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
-import { getRandomColor } from "../App.compute";
+// import { getRandomColor } from "../App.compute";
+
+let getRandomColor = () => {
+  const keys = Object.keys(japaneseThemePalette);
+  const randomIndex = Math.floor(Math.random() * keys.length);
+  const randomKey = keys[randomIndex];
+  const color = japaneseThemePalette[randomKey];
+
+  // Handle empty or undefined color values
+  if (!color || color === "") {
+    return getRandomColor(); // Recursively call the function until a valid color is found
+  }
+
+  return color;
+};
 
 const popAnimation = keyframes`
 0%, 100% { transform: scale(1); }

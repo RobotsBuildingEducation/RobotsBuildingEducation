@@ -99,9 +99,7 @@ export const Engineer = {
               <br />
               <br />
               <ExternalLink
-                textDisplay={
-                  "Lesson 4: Building An App Tutorial (text-version)"
-                }
+                textDisplay={"Lesson 4: Building Apps"}
                 link={
                   "https://www.patreon.com/posts/extras-building-93082226?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
                 }
@@ -1967,7 +1965,7 @@ throw new Error(
               <br />
               <br />
               <ExternalLink
-                textDisplay={"Creating Social Media Apps"}
+                textDisplay={"Social Media App"}
                 link={
                   "https://www.patreon.com/posts/building-social-99832935?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
                 }
@@ -1975,7 +1973,7 @@ throw new Error(
               <br />
               <br />
               <ExternalLink
-                textDisplay={"Creating A Job Network App"}
+                textDisplay={"Job Network App"}
                 link={
                   "https://www.patreon.com/posts/building-job-for-97860116?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
                 }

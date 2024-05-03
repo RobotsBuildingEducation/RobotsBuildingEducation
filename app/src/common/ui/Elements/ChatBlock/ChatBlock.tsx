@@ -9,8 +9,15 @@ import {
   customInstructions,
   gatherConversationContext,
 } from "./ChatBlock.compute";
-import { postInstructions } from "../../../uiSchema";
 import { useZapAnimation } from "../../../../App.hooks";
+
+const postInstructions = {
+  url: "https://us-central1-learn-robotsbuildingeducation.cloudfunctions.net/app/prompt",
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
 
 export const EmotionalIntelligenceStyles = {
   Header: {
