@@ -614,11 +614,6 @@ export const Entrepeneur = {
               }}
             >
               <br />
-              <ExternalLink
-                textDisplay={"Investment Decisions"}
-                link={"https://old-fashionedintelligence.info/investment"}
-              />
-              <br />
               <br />
               <ExternalLink
                 textDisplay={"Charlie's Lecture"}
@@ -637,24 +632,14 @@ export const Entrepeneur = {
               <br />
               <br />
               <ExternalLink
-                color={"#0044B0"}
-                textDisplay={"$SQ"}
-                link={"https://profitviz.com/SQ"}
-              />
-              <ExternalLink
-                color={"#0044B0"}
-                textDisplay={"$PINS"}
-                link={"https://profitviz.com/PINS"}
-              />
-              <ExternalLink
-                color={"#0044B0"}
-                textDisplay={"$DUOL"}
-                link={"https://profitviz.com/DUOL"}
+                textDisplay={"Essay: Meta"}
+                link={
+                  "https://www.patreon.com/posts/meta-stock-i-103131370?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                }
               />
               <br />
               <br />
               <ExternalLink
-                color={"#0044B0"}
                 textDisplay={"Essay: Duolingo"}
                 link={
                   "https://www.patreon.com/posts/duolingo-stock-i-89254752?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
@@ -663,7 +648,6 @@ export const Entrepeneur = {
               <br />
               <br />
               <ExternalLink
-                color={"#0044B0"}
                 textDisplay={"Essay: Pinterest"}
                 link={
                   "https://www.patreon.com/posts/pinterest-stock-95638689?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
@@ -672,7 +656,6 @@ export const Entrepeneur = {
               <br />
               <br />
               <ExternalLink
-                color={"#0044B0"}
                 textDisplay={"Essay: Block"}
                 link={
                   "https://www.patreon.com/posts/block-stock-i-92632367?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"

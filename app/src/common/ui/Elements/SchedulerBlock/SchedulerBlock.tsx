@@ -3,13 +3,41 @@ import { Button, Form, Modal, Row, Col } from "react-bootstrap";
 
 import isEmpty from "lodash/isEmpty";
 import styled from "styled-components";
-import { japaneseThemePalette, textBlock } from "../../../../styles/lazyStyles";
-import { RoxanaLoadingAnimation, postInstructions } from "../../../uiSchema";
+import {
+  FadeInComponent,
+  japaneseThemePalette,
+  textBlock,
+} from "../../../../styles/lazyStyles";
+import roxanaGif from "../../../media/images/roxanaGif.gif";
+
 import { customInstructions } from "./SchedulerBlock.compute";
 
 import { useZapAnimation } from "../../../../App.hooks";
 // import { customInstructions } from "./SchedulerBlock.compute";
 
+const postInstructions = {
+  url: "https://us-central1-learn-robotsbuildingeducation.cloudfunctions.net/app/prompt",
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
+
+let RoxanaLoadingAnimation = () => {
+  return (
+    <FadeInComponent>
+      <div>
+        {/* <Spinner animation="grow" variant="info" size="sm">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner> */}
+        <img width="150px" src={roxanaGif} />
+        {/* <Spinner animation="grow" variant="primary" size="sm">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner> */}
+      </div>
+    </FadeInComponent>
+  );
+};
 export const EmotionalIntelligenceStyles = {
   EmotionHeader: {
     backgroundColor: "black",
