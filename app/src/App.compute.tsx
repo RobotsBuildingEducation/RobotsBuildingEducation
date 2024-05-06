@@ -74,7 +74,7 @@ export const setupUserDocument = async (
 ) => {
   const res = await getDoc(docRef);
 
-  console.log("xyz", res?.data());
+  console.log("setup user document", res?.data());
   if (!res?.data()) {
     // let result = await web5?.dwn?.records?.create({
     //   data: {
@@ -99,7 +99,7 @@ export const setupUserDocument = async (
       firstVisit: true,
     });
     const response = await getDoc(docRef);
-    console.log("response", response.data());
+
     userStateReference.setDatabaseUserDocument(response.data());
   } else {
     // consider updates from a DWN that wont be saved to your database
@@ -111,7 +111,9 @@ export const setupUserDocument = async (
       });
     }
 
-    userStateReference.setDatabaseUserDocument(res.data());
+    const response = await getDoc(docRef);
+
+    userStateReference.setDatabaseUserDocument(response.data());
   }
 };
 
@@ -922,4 +924,13 @@ class Rox {
   }
 
   return message;
+};
+
+export const isLocalStorageValid = () => {
+  return (
+    localStorage.getItem("patreonPasscode") ===
+      import.meta.env.VITE_PATREON_PASSCODE ||
+    localStorage.getItem("patreonPasscode") ===
+      import.meta.env.VITE_PATREON_PASSCODE
+  );
 };

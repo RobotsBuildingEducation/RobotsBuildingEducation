@@ -181,8 +181,10 @@ export const EmotionalIntelligence = ({
           <br />
           <h1 style={EmotionalIntelligenceStyles.Banner}>
             <div
-              style={EmotionalIntelligenceStyles.BannerBackground}
-              style={{ fontFamily: "Bungee" }}
+              style={{
+                ...EmotionalIntelligenceStyles.BannerBackground,
+                fontFamily: "Bungee",
+              }}
             >
               🌌&nbsp;how do you feel today?
             </div>

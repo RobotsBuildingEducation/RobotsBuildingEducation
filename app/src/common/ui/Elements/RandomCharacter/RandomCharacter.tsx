@@ -96,7 +96,7 @@ const RandomCharacter = ({
             ? characterImagesMap[notSoRandomCharacter]
             : image
         }
-        alt="Random Character"
+        alt=""
         width={width}
         style={{ borderRadius }}
       />

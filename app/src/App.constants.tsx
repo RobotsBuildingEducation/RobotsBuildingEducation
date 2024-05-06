@@ -111,16 +111,6 @@ export const modalConfig = {
     ),
     disabledModule:
       "This lecture hasn't been unlocked yet. Complete the video and practice tasks in the lesson before it in order to access.",
-    // "Lesson 1 Coding Fundamentals": "empty",
-    // "Lesson 2 Frontend Programming": "empty",
-    // "Lesson 3 Backend Engineering": "empty",
-    // "Lesson 4 Building Apps & Startups": "empty",
-    // "Lesson 5 Computer Science": "empty",
-    // Philosophy: "empty",
-    // "Interactions & Design": "empty",
-    // "The Psychology Of Self-esteem": "empty",
-    // "Resume Writing": "empty",
-    // "Focus Investing": "empty",
   },
 };
 

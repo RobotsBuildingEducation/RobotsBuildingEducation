@@ -30,6 +30,7 @@ import {
   getCollectionDocumentsInsideUser,
   GetLandingPageMessage,
   handleUserAuthentication,
+  isLocalStorageValid,
   sortEmotionsByDate,
 } from "./App.compute";
 import { modalConfig, setOfLectures } from "./App.constants";
@@ -63,6 +64,7 @@ import { GlobalModal } from "./common/ui/Elements/GlobalModal/GlobalModal";
 import { Button, Form } from "react-bootstrap";
 import { WalletAuth } from "./Header/WalletAuth/WalletAuth";
 import roxGlobal from "./common/media/images/roxGlobal.png";
+import { PasscodeModal } from "./PasscodeModal/PasscodeModal";
 logEvent(analytics, "page_view", {
   page_location: "https://learn-robotsbuildingeducation.firebaseapp.com/",
 });
@@ -97,7 +99,8 @@ let App = () => {
 
   // handles language switching
   let [languageMode, setLanguageMode] = useState(words["English"]);
-  // let [isGlobalModalActive, setIsGlobalModalActive] = useState(false);
+
+  let [isLocalModalActive, setIsLocalModalActive] = useState(false);
 
   /**
    *
@@ -144,20 +147,26 @@ let App = () => {
    */
   const handleModuleSelection = (module, moduleName) => {
     // can redefine this as module object rather than patreon object. low priority
-    uiStateReference.setPatreonObject(module);
 
-    logEvent(analytics, "select_item", {
-      item_list_id: `RO.B.E_module|${moduleName}`,
-      item_list_name: `RO.B.E_module|${moduleName}`,
-      items: [
-        {
-          item_id: moduleName,
-          item_name: moduleName,
-        },
-      ],
-    });
-    uiStateReference.setModuleName(moduleName);
-    uiStateReference.setCurrentPath("");
+    console.log("running valid storage", isLocalStorageValid());
+    if (moduleName === "Focus Investing" && isLocalStorageValid() === false) {
+      setIsLocalModalActive(true);
+    } else {
+      uiStateReference.setPatreonObject(module);
+
+      logEvent(analytics, "select_item", {
+        item_list_id: `RO.B.E_module|${moduleName}`,
+        item_list_name: `RO.B.E_module|${moduleName}`,
+        items: [
+          {
+            item_id: moduleName,
+            item_name: moduleName,
+          },
+        ],
+      });
+      uiStateReference.setModuleName(moduleName);
+      uiStateReference.setCurrentPath("");
+    }
   };
 
   /**
@@ -372,8 +381,6 @@ let App = () => {
       }
     }
   };
-
-  console.log("userStateReference", userStateReference);
 
   return (
     <>
@@ -1018,7 +1025,12 @@ let App = () => {
         />
       </div>
 
-      <GlobalModal />
+      <GlobalModal userStateReference={userStateReference} />
+      <PasscodeModal
+        isLocalModalActive={isLocalModalActive}
+        setIsLocalModalActive={setIsLocalModalActive}
+        handleModuleSelection={handleModuleSelection}
+      />
     </>
   );
 };

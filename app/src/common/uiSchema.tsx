@@ -4,6 +4,7 @@ import { Entrepeneur } from "./ui/Entrepeneur/Entrepeneur";
 import roxanaGif from "./media/images/roxanaGif.gif";
 import roxSplashAnimation from "./media/images/roxSplashAnimation.gif";
 import { FadeInComponent } from "../styles/lazyStyles";
+import { Typewriter } from "./ui/Elements/Typewriter/Typewriter";
 
 interface IPrompt {
   impact: number;
@@ -75,6 +76,8 @@ interface IPath {
 be pro customization. Redundancy is fine if it allows for more customization.
 
 defines the UI
+
+
 */
 export const ui = (): IPath => {
   // can branch this further to reduce JSON size computed when invoked.
@@ -155,6 +158,11 @@ export let RoxanaLoadingAnimation = () => {
         {/* <Spinner animation="grow" variant="primary" size="sm">
           <span className="visually-hidden">Loading...</span>
         </Spinner> */}
+        {/* <Typewriter speed={5}>
+          <div>
+            loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................loading..................
+          </div>
+        </Typewriter> */}
       </div>
     </FadeInComponent>
   );

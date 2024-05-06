@@ -1,61 +1,3 @@
-### Storytelling Recipe
-
-Explore ideas at a high level. These concepts can be applied to essays, videos, stories, musical orchestrations and so forth. They’re recursions of each other.
-
-#### INTRO (FIRST 2 SECONDS)
-
-Create a hook
-
-1. Set expectations
-   Meet the expectations set by the header text and first shot
-
-#### INTRO (FIRST 15 SECONDS)
-
-Create commitment
-
-1. Context
-   Make the video make sense
-
-2. Introduce the stakes
-   How will you be rewarded for watching?
-   How much energy was put into creating this?
-
-3. Knowledge sharing
-   What trail or breadcrumbs of information can you provide?
-
-#### BODY
-
-Create engagement
-
-1. Camera motion
-   change the space every 2-5 seconds to capture words, thoughts or frames
-   Study films like The Titanic to understand things like suspense or emotion
-
-2. Scripts
-   Add additional conversations like jokes, flashbacks, or additional narratives
-   Have periods where you heat up and cool down the plot. Too much energy is exhausting, not enough energy is boring. Break these into larger subframes of the video that capture a block of scenes.
-
-#### CONCLUSION
-
-Create reward
-
-1. Payoff and reward
-   Either introduce the result or complete the result
-   End with a tone or message, generally something positive, funny, wholesome etc.
-
-2. Scripts
-   Add additional conversations like jokes, flashbacks, or additional narratives
-   Have periods where you heat up and cool down the plot. Too much energy is exhausting, not enough energy is boring. Break these into larger subframes of the video that capture a block of scenes.
-
-REVISIONS
-Create improvements
-
-Get feedback
-Where does it feel stale?
-Where does the context lose sense?
-Do people’s behavior change while watching something?
-Ask for thoughts or reviews
-
 ## Content Review (20M+ views)
 
 These findings provide valuable insights into the dynamics of viral content, the role of community ethos, and the importance of timeliness and relevance.
@@ -282,7 +224,7 @@ Master ability to title and brand
 
 These are true for the same reason - we’re participating in a communication platform.
 
-I could write a book poetically explaining each concept but really that’s all a giant waste of time in comparison to what you really need. So here’s the real secret to growing on social media. You need to decolonize your mind. What the fuck does that mean, man?
+I could write a book poetically explaining each concept but really that’s all a giant waste of time in comparison to what you really need. So here’s the real secret to growing on social media.
 
 This is a complicated thing because it means a lot of different things for different people, and frankly, I’m not the best at it either. So here’s what I know:
 

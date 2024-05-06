@@ -1,6 +1,6 @@
 //@ts-nocheck
 import { useEffect, useState } from "react";
-import { isEmpty } from "lodash";
+
 import { Button, Modal } from "react-bootstrap";
 import styled from "styled-components";
 import { MultipleChoiceQuestion } from "./Templates/MultipleChoiceQuestion/MultipleChoiceQuestion";
@@ -10,7 +10,6 @@ import { updateImpact, updateLevel } from "../../../App.compute";
 import { OutputQuestion } from "./Templates/OutputQuestion/OutputQuestion";
 import { japaneseThemePalette } from "../../../styles/lazyStyles";
 import { SelectionQuestion } from "./Templates/SelectionQuestion/SelectionQuestion";
-import { useStore } from "../../../Store";
 
 const Container = styled.div`
   /* Add your styles here */

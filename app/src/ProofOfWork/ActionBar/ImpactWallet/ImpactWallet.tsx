@@ -247,7 +247,6 @@ export const ImpactWallet = ({
               <ProgressBar
                 style={{
                   backgroundColor: "black",
-                  borderRadius: "0px",
                   margin: 12,
                   borderRadius: 5,
                 }}
@@ -272,7 +271,7 @@ export const ImpactWallet = ({
               <ProgressBar
                 style={{
                   backgroundColor: "black",
-                  borderRadius: "0px",
+
                   margin: 12,
                   borderRadius: 5,
                 }}

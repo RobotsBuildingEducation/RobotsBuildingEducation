@@ -13,7 +13,7 @@ import { useStore } from "../../Store";
 
 import { ImpactWallet } from "./ImpactWallet/ImpactWallet";
 import { RenderActionBarControls } from "./ActionBar.compute";
-import { Startup } from "./Startup/Startup";
+// import { Startup } from "./Startup/Startup";
 
 export const ActionBar = ({
   displayName,
@@ -89,8 +89,6 @@ export const ActionBar = ({
         <div>
           <ProgressBar
             style={{
-              backgroundColor: "black",
-              borderRadius: "0px",
               margin: 6,
               height: 6,
               borderRadius: 4,
@@ -155,7 +153,7 @@ export const ActionBar = ({
         />
       ) : null}
 
-      {isStartupOpen ? (
+      {/* {isStartupOpen ? (
         <Startup
           isStartupOpen={isStartupOpen}
           setIsStartupOpen={setIsStartupOpen}
@@ -164,7 +162,7 @@ export const ActionBar = ({
           zap={zap}
           handleZap={handleZap}
         />
-      ) : null}
+      ) : null} */}
     </>
   );
 };

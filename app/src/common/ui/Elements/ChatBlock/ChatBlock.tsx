@@ -318,7 +318,6 @@ export let ChatBlock = ({ children, type = "quiz" }) => {
         <Modal.Body
           //   onHide={() => setIsModalOpen(false)}
           style={{
-            padding: 0,
             backgroundColor: "black",
             color: "white",
             padding: 24,
