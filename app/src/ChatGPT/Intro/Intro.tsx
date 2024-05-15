@@ -1,7 +1,7 @@
 import { isEmpty } from "lodash";
 
-import { RoxanaLoadingAnimation } from "../../common/uiSchema";
 import { RiseUpAnimation } from "../../styles/lazyStyles";
+import { RoxanaLoadingAnimation } from "../../App.compute";
 
 // Main Intro component
 export const Intro = ({
@@ -31,6 +31,7 @@ export const Intro = ({
   return (
     <RiseUpAnimation
       style={{
+        //4003ba //2C2C2E
         backgroundColor: loadingMessage ? "black" : "#2C2C2E",
         color: "white",
         display: "flex",

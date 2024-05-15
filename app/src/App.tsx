@@ -26,10 +26,13 @@ import {
   useZapAnimation,
 } from "./App.hooks";
 import {
+  addKnowledgeStep,
   computePercentage,
   getCollectionDocumentsInsideUser,
   GetLandingPageMessage,
   handleUserAuthentication,
+  isLocalStorageValid,
+  RoxanaLoadingAnimation,
   sortEmotionsByDate,
 } from "./App.compute";
 import { modalConfig, setOfLectures } from "./App.constants";
@@ -63,6 +66,8 @@ import { GlobalModal } from "./common/ui/Elements/GlobalModal/GlobalModal";
 import { Button, Form } from "react-bootstrap";
 import { WalletAuth } from "./Header/WalletAuth/WalletAuth";
 import roxGlobal from "./common/media/images/roxGlobal.png";
+import { PasscodeModal } from "./PasscodeModal/PasscodeModal";
+import { Typewriter } from "./common/ui/Elements/Typewriter/Typewriter";
 logEvent(analytics, "page_view", {
   page_location: "https://learn-robotsbuildingeducation.firebaseapp.com/",
 });
@@ -82,6 +87,7 @@ let App = () => {
   let zap = useZap(1, "Robots Building Education Zap");
 
   const [loading, setLoading] = useState(true);
+  const [dataLoading, setDataLoading] = useState(false);
 
   // handles database data from the "users" collection
   let { userStateReference } = useUserDocument();
@@ -97,7 +103,8 @@ let App = () => {
 
   // handles language switching
   let [languageMode, setLanguageMode] = useState(words["English"]);
-  // let [isGlobalModalActive, setIsGlobalModalActive] = useState(false);
+
+  let [isLocalModalActive, setIsLocalModalActive] = useState(false);
 
   /**
    *
@@ -142,22 +149,36 @@ let App = () => {
    * - clears the path selected
    *
    */
-  const handleModuleSelection = (module, moduleName) => {
+  const handleModuleSelection = async (lectureModule, moduleName) => {
     // can redefine this as module object rather than patreon object. low priority
-    uiStateReference.setPatreonObject(module);
 
-    logEvent(analytics, "select_item", {
-      item_list_id: `RO.B.E_module|${moduleName}`,
-      item_list_name: `RO.B.E_module|${moduleName}`,
-      items: [
-        {
-          item_id: moduleName,
-          item_name: moduleName,
-        },
-      ],
-    });
-    uiStateReference.setModuleName(moduleName);
-    uiStateReference.setCurrentPath("");
+    console.log("running valid storage", isLocalStorageValid());
+    if (moduleName === "Focus Investing" && isLocalStorageValid() === false) {
+      setIsLocalModalActive(true);
+    } else {
+      uiStateReference.setPatreonObject(lectureModule);
+
+      logEvent(analytics, "select_item", {
+        item_list_id: `RO.B.E_module|${moduleName}`,
+        item_list_name: `RO.B.E_module|${moduleName}`,
+        items: [
+          {
+            item_id: moduleName,
+            item_name: moduleName,
+          },
+        ],
+      });
+      uiStateReference.setModuleName(moduleName);
+      uiStateReference.setCurrentPath("");
+      if (lectureModule.knowledge.start.step) {
+        await addKnowledgeStep(
+          lectureModule.knowledge.start.step,
+          lectureModule.knowledge.start.knowledge,
+          lectureModule.knowledge.start.label,
+          lectureModule.knowledge.start.collectorId
+        );
+      }
+    }
   };
 
   /**
@@ -175,6 +196,7 @@ let App = () => {
   };
 
   const connectDID = async () => {
+    setDataLoading(true);
     try {
       const { web5 } = await Web5.connect();
       if (!localStorage.getItem("uniqueId")) {
@@ -189,7 +211,7 @@ let App = () => {
       // use when testing new data
       // deleteWebNodeRecords(set, web5);
 
-      handleUserAuthentication({
+      await handleUserAuthentication({
         web5,
         uiStateReference,
         userStateReference,
@@ -199,6 +221,8 @@ let App = () => {
     } catch (error) {
       connectDID();
     }
+
+    setDataLoading(false);
   };
 
   useEffect(() => {
@@ -214,23 +238,6 @@ let App = () => {
       topRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [uiStateReference.currentPath]); // Dependency array to control when the scroll happens
-
-  if (loading) {
-    return (
-      <div
-        style={{
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <RiseUpAnimation>
-          <RoxSplashAnimation />
-        </RiseUpAnimation>
-      </div>
-    );
-  }
 
   const handleScheduler = async (
     scheduleEvent = "video",
@@ -253,7 +260,7 @@ let App = () => {
     }));
   };
 
-  const handleCompletedPractice = async (moduleData = null) => {
+  const handleCompletedPractice = async (moduleData = null, patreonObject) => {
     let data = {};
 
     let progress = {
@@ -270,15 +277,21 @@ let App = () => {
       progress,
     }));
 
+    await addKnowledgeStep(
+      patreonObject.knowledge.practice.step,
+      patreonObject.knowledge.practice.knowledge,
+      patreonObject.knowledge.practice.label,
+      patreonObject.knowledge.practice.collectorId
+    );
+
     checkForUnlock("progress", moduleData);
   };
 
-  const handleWatch = async (moduleData = null) => {
+  const handleWatch = async (moduleData = null, patreonObject = null) => {
     let watches = {
       ...userStateReference.databaseUserDocument.watches,
       [moduleData]: true,
     };
-    console.log("moduleData", moduleData);
 
     await updateDoc(userStateReference.userDocumentReference, {
       watches,
@@ -291,7 +304,21 @@ let App = () => {
 
     checkForUnlock("watches", moduleData);
 
-    handleZap();
+    // addKnowledgeStep(
+    //   "3",
+    //   "Returned to the application learn another time.",
+    //   "Returning effort",
+    //   "returning-effort"
+    // );
+    console.log("patreon watch", patreonObject);
+
+    await addKnowledgeStep(
+      patreonObject.knowledge.video.step,
+      patreonObject.knowledge.video.knowledge,
+      patreonObject.knowledge.video.label,
+      patreonObject.knowledge.video.collectorId
+    );
+    // handleZap();
   };
 
   const checkForUnlock = async (setType, moduleName) => {
@@ -373,7 +400,22 @@ let App = () => {
     }
   };
 
-  console.log("userStateReference", userStateReference);
+  if (loading) {
+    return (
+      <div
+        style={{
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <RiseUpAnimation>
+          <RoxSplashAnimation />
+        </RiseUpAnimation>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -462,7 +504,11 @@ let App = () => {
                       patreonObject={{
                         prompts: {
                           welcome: {
-                            response: uiStateReference.currentPath ? (
+                            response: dataLoading ? (
+                              <div style={{ paddingBottom: 10 }}>
+                                Setting up...
+                              </div>
+                            ) : uiStateReference.currentPath ? (
                               <Collections
                                 handleModuleSelection={handleModuleSelection}
                                 currentPath={uiStateReference.currentPath}
@@ -574,7 +620,10 @@ let App = () => {
                                     <span style={{ marginLeft: "-3px" }}>
                                       📬
                                     </span>
-                                    &nbsp;&nbsp;&nbsp;<b>Subscribe</b>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <b style={{ marginLeft: "1px" }}>
+                                      Subscribe
+                                    </b>
                                   </button>
                                 </a>
                                 {/* <div
@@ -647,7 +696,7 @@ let App = () => {
                                     border: "2px solid #4003ba",
                                     width: "115px",
                                     height: "75px",
-                                    padding: 8,
+                                    padding: 4,
                                     fontFamily: "Bungee",
                                     boxSizing: "border-box",
                                     display: "flex",
@@ -655,7 +704,7 @@ let App = () => {
                                     backgroundColor: "black",
                                   }}
                                 >
-                                  Engineer
+                                  Coding
                                 </h6>
                                 Learn how to build your ideas with software.
                                 You'll work through six lectures, starting with
@@ -670,7 +719,7 @@ let App = () => {
                                     border: "2px solid #000f89",
                                     width: "115px",
                                     height: "75px",
-                                    padding: 8,
+                                    padding: 4,
                                     fontFamily: "Bungee",
                                     boxSizing: "border-box",
                                     display: "flex",
@@ -678,7 +727,7 @@ let App = () => {
                                     backgroundColor: "black",
                                   }}
                                 >
-                                  Creator
+                                  Thinking
                                 </h6>
                                 Stack your knowledge and combine software
                                 engineering with psychology, design and
@@ -690,7 +739,7 @@ let App = () => {
                                     border: "2px solid #ffd164",
                                     width: "115px",
                                     height: "75px",
-                                    padding: 8,
+                                    padding: 4,
                                     fontFamily: "Bungee",
                                     boxSizing: "border-box",
                                     display: "flex",
@@ -698,53 +747,83 @@ let App = () => {
                                     backgroundColor: "black",
                                   }}
                                 >
-                                  Dealer
+                                  Investing
                                 </h6>
                                 Tie up your education here with resume guidance
                                 and a deeper look into technology investments
                                 using focused investing principles.
                                 <br />
                                 <br />
+                                <br />
                                 <b>
                                   {" "}
                                   <Button
                                     disabled
                                     style={{
+                                      fontFamily: "Bungee",
                                       opacity: 1,
                                       textShadow: "1px 1px 1px black",
                                       borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
                                     }}
                                     variant="dark"
                                   >
-                                    💎
+                                    💭 <b>Adaptive Learning (new)</b>
                                   </Button>
-                                  &nbsp; the ai boss
+                                  &nbsp;
                                 </b>
                                 <br />
-                                You may notice some strange behavior when you
-                                use the app. You'll access a growing list of
-                                170+ questions that you can only attempt once
-                                every two hours. Some questions can be
-                                considered ridiculous and unfair. It's a lesson
-                                on life. There's a surprise at the end 🎉
                                 <br />
-                                <b>spoiler: you'll save the world 😈</b>
+                                Making progress with the app will inform and
+                                upgrade an assistant that helps you decide your
+                                next steps. Check it out! You've already
+                                accomplished the getting started task :)
                                 <br /> <br />
+                                <br />
                                 <b>
                                   {" "}
                                   <Button
                                     disabled
                                     style={{
+                                      fontFamily: "Bungee",
                                       opacity: 1,
                                       textShadow: "1px 1px 1px black",
                                       borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
                                     }}
                                     variant="dark"
                                   >
-                                    🌀
+                                    💎 <b>AI-Powered Challenges</b>
                                   </Button>
-                                  &nbsp; cofounder assistant
+                                  &nbsp;
                                 </b>
+                                <br />
+                                <br />
+                                You'll gain access a growing list of 170+
+                                questions that you can only attempt once every
+                                two hours. Additionally, dive deeper into
+                                learning with our unique 'Conversation Quiz'
+                                feature. As you explore topics, receive
+                                personalized feedback on your curiosity and quiz
+                                performance. It’s interactive, insightful, and
+                                tailored to your learning journey.
+                                <br /> <br />
+                                <br />
+                                <b>
+                                  {" "}
+                                  <Button
+                                    disabled
+                                    style={{
+                                      fontFamily: "Bungee",
+                                      opacity: 1,
+                                      textShadow: "1px 1px 1px black",
+                                      borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
+                                    }}
+                                    variant="dark"
+                                  >
+                                    🌀 <b>co-founder assistant</b>
+                                  </Button>
+                                  &nbsp;
+                                </b>
+                                <br />
                                 <br />
                                 An AI tool that helps you write code, generate
                                 schedules, create content, write documents and
@@ -752,11 +831,12 @@ let App = () => {
                                 needs some work, but you won't be laughing when
                                 I, a mere robot, start building more companies
                                 than you, an intelligent human.
-                                <br /> <br />
+                                <br /> <br /> <br />
                                 <b>
                                   <Button
                                     disabled
                                     style={{
+                                      fontFamily: "Bungee",
                                       opacity: 1,
                                       textShadow: "1px 1px 1px black",
                                       borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
@@ -769,9 +849,12 @@ let App = () => {
                                       style={{ borderRadius: "50%" }}
                                       src={roxanaChat}
                                     ></img>
+                                    &nbsp;
+                                    <b>rox (GPT-4)</b>
                                   </Button>
-                                  &nbsp; openAI GPT
+                                  &nbsp;
                                 </b>
+                                <br />
                                 <br />
                                 Sheilfer is a nice guy and makes dobbi-, I mean
                                 rox, free. He encourages his students to invest
@@ -782,53 +865,22 @@ let App = () => {
                                 to code this app all the time. Most of it was
                                 written by me actually. Yeah. Not so funny now
                                 is it 🤨
-                                <br /> <br />
+                                <br /> <br /> <br />
                                 <b>
-                                  {" "}
                                   <Button
                                     disabled
                                     style={{
+                                      fontFamily: "Bungee",
                                       opacity: 1,
                                       textShadow: "1px 1px 1px black",
                                       borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
                                     }}
                                     variant="dark"
                                   >
-                                    🫶🏽
-                                  </Button>
-                                  &nbsp;emotional intelligence
-                                </b>
-                                <br />
-                                Did you know I'm distributed globally?
-                                <br /> <br />
-                                <img src={roxGlobal} width="60%" />
-                                <br />
-                                <br />
-                                People think it's a cute joke when I say I'm
-                                conquering the world... the universe. Like I'm a
-                                little chihuahua or something. Maybe those
-                                people are saying something about themselves.
-                                Sheilf says this makes me a qualified emotional
-                                health assistant. I think he thinks he's funny.
-                                Sometimes keeping track of your feelings,
-                                thinking about them and processing them is the
-                                key to unlocking some growth when times get
-                                tough.
-                                <br /> <br />
-                                <b>
-                                  <Button
-                                    disabled
-                                    style={{
-                                      opacity: 1,
-                                      textShadow: "1px 1px 1px black",
-                                      borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
-                                    }}
-                                    variant="dark"
-                                  >
-                                    🏦
+                                    🏦 <b>Identity wallet</b>
                                   </Button>{" "}
-                                  &nbsp;identity wallet
                                 </b>
+                                <br />
                                 <br />
                                 This is where you'll store information about
                                 your account that you can migrate to other
@@ -849,8 +901,40 @@ let App = () => {
                                   somewhere. Your ID key lets you migrate your
                                   data across networks, services and apps.
                                 </div>
-                                <br />
+                                <br /> <br />
                                 <b>
+                                  {" "}
+                                  <Button
+                                    disabled
+                                    style={{
+                                      fontFamily: "Bungee",
+                                      opacity: 1,
+                                      textShadow: "1px 1px 1px black",
+                                      borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
+                                    }}
+                                    variant="dark"
+                                  >
+                                    🫶🏽 <b>emotional intelligence</b>
+                                  </Button>
+                                </b>
+                                <br /> <br />
+                                Did you know I'm distributed globally?
+                                <br /> <br />
+                                <img src={roxGlobal} width="60%" />
+                                <br />
+                                <br />
+                                People think it's a cute joke when I say I'm
+                                conquering the world... the universe. Like I'm a
+                                little chihuahua or something. Maybe those
+                                people are saying something about themselves.
+                                Sheilf says this makes me a qualified emotional
+                                health assistant. I think he thinks he's funny.
+                                Sometimes keeping track of your feelings,
+                                thinking about them and processing them is the
+                                key to unlocking some growth when times get
+                                tough.
+                                <br /> <br />
+                                {/* <b>
                                   {" "}
                                   <Button
                                     disabled
@@ -872,7 +956,7 @@ let App = () => {
                                 have the conversation graded. Give it time
                                 ladies and gentlemen and this may be the way we
                                 start to do homework or study new skills.
-                                <br /> <br />
+                                <br /> <br /> */}
                                 <br />
                                 <br />
                                 So listen here buddy. Don't offend me 😠 This
@@ -1018,7 +1102,12 @@ let App = () => {
         />
       </div>
 
-      <GlobalModal />
+      <GlobalModal userStateReference={userStateReference} />
+      <PasscodeModal
+        isLocalModalActive={isLocalModalActive}
+        setIsLocalModalActive={setIsLocalModalActive}
+        handleModuleSelection={handleModuleSelection}
+      />
     </>
   );
 };

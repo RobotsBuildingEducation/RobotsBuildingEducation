@@ -4,9 +4,12 @@ html {
 }
 
 body {
+  /* scrollbar-color: #4003ba black; */
+  scrollbar-color: #4003ba black;
   overflow: auto;
   height: 100%;
   overscroll-behavior: none;
+  scrollbar-gutter: stable both-edges;
 }
 
 #root {

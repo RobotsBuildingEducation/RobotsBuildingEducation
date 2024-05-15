@@ -8,11 +8,8 @@ import {
   formatLabel,
   generatePromptBasedOnSwitches,
 } from "./Experimental.compute";
-import {
-  RoxanaLoadingAnimation,
-  postInstructions,
-} from "../../../common/uiSchema";
-import { updateImpact } from "../../../App.compute";
+import { postInstructions } from "../../../common/uiSchema";
+import { RoxanaLoadingAnimation, updateImpact } from "../../../App.compute";
 import {
   Timestamp,
   addDoc,
@@ -28,6 +25,7 @@ import {
   responsiveBox,
 } from "../../../styles/lazyStyles";
 import { ExternalLink } from "../../../common/ui/Elements/ExternalLink/ExternalLink";
+import { Title } from "../../../common/svgs/Title";
 
 export const Experimental = ({
   isCofounderOpen,
@@ -36,6 +34,7 @@ export const Experimental = ({
   handleZap,
   userStateReference,
   globalStateReference,
+  setIsStartupOpen,
 }) => {
   const [switchStates, setSwitchStates] = useState(
     userStateReference?.databaseUserDocument?.switchStates
@@ -176,7 +175,10 @@ export const Experimental = ({
       centered
       show={isCofounderOpen}
       fullscreen
-      onHide={() => setIsCofounderOpen(false)}
+      onHide={() => {
+        setIsCofounderOpen(false);
+        setIsStartupOpen(false);
+      }}
     >
       <Modal.Header
         closeButton
@@ -188,7 +190,13 @@ export const Experimental = ({
           borderBottom: "1px solid black",
         }}
       >
-        <Modal.Title>Co-founder</Modal.Title>
+        <Title
+          title={"Assistant"}
+          closeFunction={() => {
+            setIsCofounderOpen(false);
+            setIsStartupOpen(false);
+          }}
+        />
       </Modal.Header>
       <Modal.Body style={{ color: "white", backgroundColor: "black" }}>
         <h4 style={{ fontFamily: "Bungee" }}>Connect</h4>
@@ -218,7 +226,7 @@ export const Experimental = ({
         <Form style={responsiveBox} onSubmit={handleTicketSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>
-              <b>Message</b>
+              <b>Message me privately</b>
             </Form.Label>
             <Form.Control
               as="textarea"

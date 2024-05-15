@@ -75,45 +75,6 @@ const FAQSection = () => {
           }}
         >
           <h5 style={{ fontFamily: "Bungee" }}> The Proof of Work System</h5>
-          <p
-            style={{
-              maxWidth: 700,
-              ...textBlock(japaneseThemePalette.CobaltBlue, 0, 24),
-              border: "1px solid gray",
-            }}
-          >
-            Robots Building Education uses a system called Proof Of Work to
-            measure learning. When you use the application, you're putting
-            robots to work! That work produces outcomes that should be
-            meaningful to neighborhoods, like improved finance for
-            under-resourced schools or homes. You can think of this as a
-            decentralized fabric that allows education technology to become a
-            public service.
-          </p>
-          <p
-            style={{
-              maxWidth: 700,
-              ...textBlock(japaneseThemePalette.CobaltBlue, 0, 24),
-              border: "1px solid gray",
-            }}
-          >
-            The vision is to turn this into a decentralized protocol. Systems
-            and interfaces should allow us to rewire education services, finance
-            and content for a new era of software.
-          </p>
-          The foundation of Robots Building Education is an AI-enhanced
-          cofounder environment that sets up individuals for success. Modern and
-          important skills are taught here to support people's goals in
-          advancing their education, changing their careers, or starting a
-          business. You'll learn a lot about software, media and money here.
-          <br />
-          <br />
-          This program focuses on creating a powerful first mile for learning.
-          It's meant to embolden and encourage your ambitions by showing you how
-          quickly you can accomplish a challenging goal or overcome a barrier
-          with the right network.
-          <br />
-          <br />
           My hopes and dreams with the product include the ability to
           redistribute subscriptions. I think this has the potential to change
           the digital learning landscape. My work is informed by these three
@@ -121,14 +82,23 @@ const FAQSection = () => {
           <br />
           <br />
           <ol>
-            <li>Every student should have access to many best-fit teachers.</li>
-            <li>
-              An inordinate amount of education and inequitable learning happens
-              on social media. Unrecorded education or learning is a systemic
-              failure.
-            </li>
-            <li>Learning events should build communities.</li>
+            <li>Every student should have access to many good teachers.</li>
+            <li>Online education should be the best education</li>
+            <li>Learning creates scholarships</li>
           </ol>
+          Robots Building Education uses a system called Proof Of Work to
+          measure learning. When you use the application, you're putting robots
+          to work! That work produces outcomes that should be meaningful to
+          neighborhoods, like improved finance for under-resourced schools or
+          homes. You can think of this as a decentralized fabric that allows
+          education technology to become a public service.
+          <br />
+          <br />
+          The vision is to turn this into a decentralized protocol. Systems and
+          interfaces should allow us to rewire education services, finance and
+          content for a new era of software.
+          <br />
+          <br />
           <p style={{ maxWidth: "100%", width: 700 }}>
             <b>
               If you want to support the early stages of RO.B.E or learn more
@@ -213,7 +183,7 @@ const FAQSection = () => {
             <ExternalLink
               textDisplay={"A session with rox ⚡"}
               link={
-                "https://chat.openai.com/share/874f923c-a124-4544-995b-b0c802464cde"
+                "https://chat.openai.com/share/9c85235b-5748-4d0f-abd9-fe9e29b16a3d"
               }
               color={japaneseThemePalette?.CobaltBlue}
             ></ExternalLink>

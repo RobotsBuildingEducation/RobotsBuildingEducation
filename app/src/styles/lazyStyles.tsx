@@ -1,6 +1,5 @@
 import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
-// import { getRandomColor } from "../App.compute";
 
 let getRandomColor = () => {
   const keys = Object.keys(japaneseThemePalette);
@@ -411,7 +410,7 @@ export const StyledLink = styled(Link)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px;
+  padding: 4px;
   // margin: 8px;
   margin-left: 8px;
   margin-right: 8px;
@@ -536,7 +535,7 @@ export const StyledPromptButton = styled.button`
   /*       isPracticeComplete={isPracticeComplete}
   isVideoWatched={isVideoWatched} */
 
-  border: 1px solid
+  border: 3px solid
     ${(props) => {
       return props?.isGold ? "gold" : props?.borderHighlight;
     }};
@@ -558,6 +557,44 @@ export const StyledPromptButton = styled.button`
   &:hover {
     transform: scale(1.1);
   }
+`;
+
+export const StaticPromptButton = styled.div`
+  background-color: ${(props) => {
+    return props.loadingMessage
+      ? "#48484A"
+      : props.isDisabled
+      ? "rgba(225, 229, 230, .12)"
+      : "black";
+  }};
+
+  cursor: not-allowed;
+
+  color: white;
+  /* border: 2px solid #48484a; */
+
+  /*       isPracticeComplete={isPracticeComplete}
+  isVideoWatched={isVideoWatched} */
+
+  border: 1px solid
+    ${(props) => {
+      return props?.isGold ? "gold" : props?.borderHighlight;
+    }};
+  /* border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px; */
+  text-align: left;
+  padding: 10px;
+  width: 200px;
+  margin-top: 24px;
+
+  display: flex;
+  align-items: center;
+  transition: 0.15s all ease-in-out;
+  -webkit-box-shadow: 0px 1px 15px -1px rgba(42, 63, 120, 1);
+  -moz-box-shadow: 0px 1px 15px -1px rgba(42, 63, 120, 1);
+  box-shadow: 0px 1px 15px -1px rgba(42, 63, 120, 1);
+  border-radius: 10px;
 `;
 
 export let prettyColorPalette = {
@@ -592,6 +629,7 @@ export let japaneseThemePalette = {
   CobaltBlue: "#0044B0",
   iphoneBlue: "2C2C2E",
   roxPink: "",
+  themePurple: "4003ba",
 };
 
 // opinionated

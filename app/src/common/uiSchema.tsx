@@ -1,7 +1,7 @@
 import { Creator } from "./ui/Creator/Creator";
 import { Engineer } from "./ui/Engineer/Engineer";
 import { Entrepeneur } from "./ui/Entrepeneur/Entrepeneur";
-import roxanaGif from "./media/images/roxanaGif.gif";
+
 import roxSplashAnimation from "./media/images/roxSplashAnimation.gif";
 import { FadeInComponent } from "../styles/lazyStyles";
 
@@ -75,6 +75,8 @@ interface IPath {
 be pro customization. Redundancy is fine if it allows for more customization.
 
 defines the UI
+
+
 */
 export const ui = (): IPath => {
   // can branch this further to reduce JSON size computed when invoked.
@@ -138,26 +140,6 @@ export let getTotalImpactFromModules = () => {
   });
 
   return sum;
-};
-
-/**
- *
- * used when calling openai
- */
-export let RoxanaLoadingAnimation = () => {
-  return (
-    <FadeInComponent>
-      <div>
-        {/* <Spinner animation="grow" variant="info" size="sm">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner> */}
-        <img width="150px" src={roxanaGif} />
-        {/* <Spinner animation="grow" variant="primary" size="sm">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner> */}
-      </div>
-    </FadeInComponent>
-  );
 };
 
 /**

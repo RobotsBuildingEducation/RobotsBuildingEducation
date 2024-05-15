@@ -7,6 +7,7 @@ import inspire06 from "../../media/images/prompts/inspire06.jpg";
 import inspire07 from "../../media/images/prompts/inspire07.jpg";
 import inspire08 from "../../media/images/prompts/inspire08.png";
 import { Typewriter } from "../Elements/Typewriter/Typewriter";
+import { ExternalLink } from "../Elements/ExternalLink/ExternalLink";
 
 export const Creator = {
   Communications: {
@@ -664,6 +665,15 @@ export const Creator = {
                 whiteSpace: "pre-wrap",
               }}
             >
+              <br />
+              <ExternalLink
+                textDisplay={"Old internet design"}
+                link={
+                  "https://www.patreon.com/posts/learning-from-of-98786643?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                }
+              />{" "}
+              <br /> <br />
+              <br />
               <MarkdownRenderer
                 file={
                   await import(

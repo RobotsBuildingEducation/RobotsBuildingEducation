@@ -1,6 +1,6 @@
 //@ts-nocheck
 import { useEffect, useState } from "react";
-import { isEmpty } from "lodash";
+
 import { Button, Modal } from "react-bootstrap";
 import styled from "styled-components";
 import { MultipleChoiceQuestion } from "./Templates/MultipleChoiceQuestion/MultipleChoiceQuestion";
@@ -10,7 +10,7 @@ import { updateImpact, updateLevel } from "../../../App.compute";
 import { OutputQuestion } from "./Templates/OutputQuestion/OutputQuestion";
 import { japaneseThemePalette } from "../../../styles/lazyStyles";
 import { SelectionQuestion } from "./Templates/SelectionQuestion/SelectionQuestion";
-import { useStore } from "../../../Store";
+import { Title } from "../../../common/svgs/Title";
 
 const Container = styled.div`
   /* Add your styles here */
@@ -1438,6 +1438,7 @@ export const BossMode = ({
   globalStateReference,
   zap,
   handleZap,
+  setIsStartupOpen,
 }) => {
   //   console.log("user state reference", userStateReference);
   // const { setIsGlobalModalActive } = useStore();
@@ -1586,6 +1587,22 @@ export const BossMode = ({
       }
     } else {
       localStorage.setItem("isAnswerCorrect", "false");
+      let whurl = import.meta.env.VITE_DISCORD_WEBHOOK_URL;
+
+      const msg = {
+        content: `<@&1194428959862030387> ${userStateReference?.databaseUserDocument?.discordTag} has failed ${level} 😳`,
+        username: "rox",
+      };
+      try {
+        fetch(whurl + "?wait=true", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(msg),
+        });
+      } catch (e) {
+        console.log("error", error);
+        console.log("{error}", { error });
+      }
     }
 
     if (
@@ -1667,20 +1684,27 @@ export const BossMode = ({
         style={{ backgroundColor: "black" }}
         fullscreen
         keyboard
-        onHide={() => setIsBossModeOpen(false)}
+        onHide={() => {
+          setIsBossModeOpen(false);
+          setIsStartupOpen(false);
+        }}
       >
         <Modal.Header
+          closeButton
           style={{
             backgroundColor: "black",
             color: "white",
             borderBottom: "1px solid black",
           }}
           closeVariant="white"
-          closeButton
         >
-          <Modal.Title style={{ fontFamily: "Bungee" }}>
-            rox the ai boss
-          </Modal.Title>
+          <Title
+            title={"Rox the AI Boss"}
+            closeFunction={() => {
+              setIsBossModeOpen(false);
+              setIsStartupOpen(false);
+            }}
+          />
         </Modal.Header>
         <Modal.Body
           style={{
@@ -1714,7 +1738,7 @@ export const BossMode = ({
                   ranging from software engineering to building startups that
                   you can only attempt once every two hours. Some questions will
                   be more fair than others. You may see experimental features
-                  implemented if you use <b>Bitcoin mode.</b>
+                  implemented if you connect your Bitcoin wallet.
                 </div>
                 <br />
                 <br />

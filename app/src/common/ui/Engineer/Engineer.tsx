@@ -36,12 +36,56 @@ export const Engineer = {
       credential: "Introduction to Engineering",
       header: `Learning Mindset & Perspective`,
       fileSource:
-        "https://res.cloudinary.com/dqykr1jh0/video/upload/v1711495708/symr6pztmtpkzn5aqq2r.mp4", // may not need
+        "https://res.cloudinary.com/dqykr1jh0/video/upload/v1711495708/symr6pztmtpkzn5aqq2r.mp4",
+
+      // entire set is complete
+      knowledge: {
+        start: {
+          step: "3",
+          knowledge: "Started to learn about coding and why it matters.",
+          label: "Start journey",
+          collectorId: "journey-start",
+        },
+        discover: {
+          step: "4",
+          knowledge:
+            "The individual learns about Cynthia Breazeal's pioneering work with the robot Kismet, highlighting the evolution and impact of machine learning in enhancing human-computer interaction. They are introduced to a practical JavaScript example, demonstrating how to set up a web server using Express and Firebase functions, integrate OpenAI's API, and handle asynchronous requests. Through the detailed code breakdown, they gain an understanding of various programming concepts and how to apply them, making complex topics more approachable and encouraging continuous learning and innovation.",
+          label: "Discover computational literacy",
+          collectorId: "Learning Mindset & Perspective-discover",
+        },
+        video: {
+          step: "5",
+          knowledge:
+            "The individual learns that coding is accessible to everyone, regardless of their background or initial skill level. They gain insights into overcoming imposter syndrome and building confidence through structured steps: imagining, drawing connections, observing, and practicing. Additionally, they are encouraged to see coding as a versatile tool that can be applied to various fields, fostering a mindset of problem-solving and continuous learning.",
+          label: "Introduction to engineering",
+          collectorId: "Learning Mindset & Perspective-video",
+        },
+        guide: {
+          step: "6",
+          knowledge:
+            "The individual gains an understanding of the interdisciplinary nature of computer science and its applications across various fields, such as healthcare, environmental studies, and the arts. They learn the importance of computational thinking, the role of mathematics, and strategies for continuous learning in the rapidly evolving field. Additionally, they receive a study guide outlining stages of learning, a concise definition of the intersectionality of computer science, and a quiz to test their knowledge on its diverse applications.",
+          label: "Study guide",
+          collectorId: "Learning Mindset & Perspective-guide",
+        },
+        practice: {
+          step: "7",
+          knowledge: `In this section, the individual practices defining a class and creating an object in coding. They learn how to write a basic line of code (console.log("Hello world!");) and understand its use in testing logic and communicating data between systems. Additionally, they gain familiarity with using the browser's console to view data and messages, a fundamental skill for developers.`,
+          label: "Practice session",
+          collectorId: "Learning Mindset & Perspective-practice",
+        },
+        shop: {
+          step: "8",
+          knowledge:
+            "The individual gains an understanding of the interdisciplinary nature of computer science and its applications across various fields, such as healthcare, environmental studies, and the arts. They learn the importance of computational thinking, the role of mathematics, and strategies for continuous learning in the rapidly evolving field. Additionally, they receive a study guide outlining stages of learning, a concise definition of the intersectionality of computer science, and a quiz to test their knowledge on its diverse applications.",
+          label: "Domain expansion",
+          collectorId: "Learning Mindset & Perspective-shop",
+        },
+      },
       prompts: {
         // should we add impact to selecting a course? adding it to "welcome" would achieve this.
         welcome: {
           response: (
-            <Typewriter speed={5}>
+            <Typewriter speed={0}>
               Innovators &amp; Bright Minds 🌟,
               <br />
               <br />
@@ -73,6 +117,7 @@ export const Engineer = {
           ),
           spanish: ``,
         },
+
         patreon: {
           impact: 1000,
           action: `generate`,
@@ -305,7 +350,7 @@ export const Engineer = {
             `Learn Coding`
           )}?`,
           response: (
-            <SchedulerBlock>
+            <SchedulerBlock hasTutorial={true}>
               <div>
                 Let's break down this process into five stages, taking you from
                 the basics to professional expertise in intersectional research,
@@ -571,7 +616,7 @@ exports.app = functions.https.onRequest(app);
             `Learn Coding`
           )}?`,
           response: (
-            <ChatBlock type={"quiz"}>
+            <ChatBlock type={"quiz"} hasTutorial={true}>
               🌐Geography & Computer Science: How can computer science and GIS
               (Geographic Information System) technologies be combined to help
               combat climate change?

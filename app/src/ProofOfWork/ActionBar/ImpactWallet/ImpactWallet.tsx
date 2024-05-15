@@ -18,6 +18,7 @@ import { useState } from "react";
 import { renderCheckboxes, renderTranscriptAwards } from "../ActionBar.compute";
 import { responsiveBox } from "../../../styles/lazyStyles";
 import { getDoc, updateDoc } from "firebase/firestore";
+import { Title } from "../../../common/svgs/Title";
 
 export const ImpactWallet = ({
   isImpactWalletOpen,
@@ -30,6 +31,7 @@ export const ImpactWallet = ({
   globalScholarshipCounter,
   calculatedPercentage,
   globalImpactCounter,
+  setIsStartupOpen,
 }) => {
   let [copyString, setCopyString] = useState(
     "Click to copy ID and save it somewhere safe."
@@ -86,7 +88,10 @@ export const ImpactWallet = ({
         centered
         show={isImpactWalletOpen}
         fullscreen
-        onHide={() => setIsImpactWalletOpen(false)}
+        onHide={() => {
+          setIsImpactWalletOpen(false);
+          setIsStartupOpen(false);
+        }}
         keyboard
       >
         <Modal.Header
@@ -98,14 +103,26 @@ export const ImpactWallet = ({
             border: "1px solid black",
           }}
         >
-          <Modal.Title style={{ fontFamily: "Bungee" }}>
-            Proof of Work{" "}
-            {userStateReference.databaseUserDocument.displayName ? "w/" : "@"}
-            &nbsp;
-            {userStateReference.databaseUserDocument.displayName
-              ? userStateReference.databaseUserDocument.displayName
-              : (localStorage.getItem("uniqueId")?.substr(0, 16) || "") + "..."}
-          </Modal.Title>
+          <Title
+            title={
+              <div>
+                Proof of Work{" "}
+                {userStateReference.databaseUserDocument.displayName
+                  ? "w/"
+                  : "@"}
+                &nbsp;
+                {userStateReference.databaseUserDocument.displayName
+                  ? userStateReference.databaseUserDocument.displayName
+                  : (localStorage.getItem("uniqueId")?.substr(0, 16) || "") +
+                    "..."}
+              </div>
+            }
+            closeFunction={() => {
+              setIsImpactWalletOpen(false);
+              setIsStartupOpen(false);
+            }}
+          />
+          <Modal.Title style={{ fontFamily: "Bungee" }}></Modal.Title>
         </Modal.Header>
         <Modal.Body
           style={{
@@ -129,7 +146,8 @@ export const ImpactWallet = ({
           >
             <div style={responsiveBox}>
               Your identity wallet keeps track of the data that you can migrate
-              to other platforms, services or applications.
+              to other platforms, services or applications. The work recorded is
+              the amount of information distributed by rox.
             </div>
             <br />
             Create an account name
@@ -224,6 +242,8 @@ export const ImpactWallet = ({
               </Form>
             </div>
             <br />
+            <br />
+            <br />
             <h4 style={{ fontFamily: "Bungee" }}>Transcript Awards</h4>
             <div
               style={{
@@ -237,30 +257,32 @@ export const ImpactWallet = ({
               )}
             </div>
             <br />
+            <br />
+            <br />
             <h4 style={{ fontFamily: "Bungee" }}>
               Scholarships Created: {globalScholarshipCounter}
             </h4>
             <p>
               Work Done By You
               <br />
-              {Number(impactResult / 1000).toFixed(2)}
-              <ProgressBar
+              <b>{Number(impactResult / 1000).toFixed(2)}</b>
+              {/* <ProgressBar
                 style={{
                   backgroundColor: "black",
-                  borderRadius: "0px",
                   margin: 12,
                   borderRadius: 5,
                 }}
                 // variant="success"
                 now={Math.floor(calculatedPercentage * 100)}
-              />
+              /> */}
+              <br />
               <br />
               Work Done By All
               <br />
               <b>{Number(globalImpactCounter / 1000).toFixed(2)}</b>
               <br />
               <br />
-              You are &nbsp;
+              {/* You are &nbsp;
               <b>
                 {(
                   ((databaseUserDocument.impact || 0) / globalImpactCounter) *
@@ -268,11 +290,11 @@ export const ImpactWallet = ({
                 ).toFixed(2) || "0"}
                 %
               </b>
-              &nbsp;of the work 😳
-              <ProgressBar
+              &nbsp;of the work 😳 */}
+              {/* <ProgressBar
                 style={{
                   backgroundColor: "black",
-                  borderRadius: "0px",
+
                   margin: 12,
                   borderRadius: 5,
                 }}
@@ -281,7 +303,7 @@ export const ImpactWallet = ({
                   ((databaseUserDocument.impact || 0) / globalImpactCounter) *
                     100
                 )}
-              />
+              /> */}
               <hr />
               <br />
               <br />

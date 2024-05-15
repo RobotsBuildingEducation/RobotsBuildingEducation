@@ -8,6 +8,7 @@ export const Module = ({
   userStateReference,
   currentModule,
 }): JSX.Element | null => {
+  console.log("Module....", currentModule);
   // renders a lock emoji if the user doesn't have the lecture unlocked yet
   const isDisabled =
     !userStateReference?.databaseUserDocument?.unlocks?.[module];

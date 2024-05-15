@@ -7,6 +7,7 @@ import { SchedulerBlock } from "../Elements/SchedulerBlock/SchedulerBlock";
 import MarkdownRenderer from "../Elements/MarkdownRenderer/MarkdownRenderer";
 import { ExternalLink } from "../Elements/ExternalLink/ExternalLink";
 import { Typewriter } from "../Elements/Typewriter/Typewriter";
+import { ImageZoomer } from "../Elements/ImageZoomer/ImageZoomer";
 
 export const Entrepeneur = {
   "Understanding Business": {
@@ -68,6 +69,14 @@ export const Entrepeneur = {
               visibility, ensuring your resume makes a strong impression
               quickly, and providing a meaningful context for your career
               journey.
+              <br />
+              <br />
+              <span style={{ fontSize: "95%" }}>Select to zoom</span>
+              <ImageZoomer
+                src={
+                  "https://res.cloudinary.com/dtkeyccga/image/upload/v1714955072/faiufxxoka6kctx3evam.png"
+                }
+              />
               <br />
               <br />
               Adhering to a structured format, such as precise spacing and font
@@ -632,14 +641,6 @@ export const Entrepeneur = {
               <br />
               <br />
               <ExternalLink
-                textDisplay={"Essay: Meta"}
-                link={
-                  "https://www.patreon.com/posts/meta-stock-i-103131370?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
-                }
-              />
-              <br />
-              <br />
-              <ExternalLink
                 textDisplay={"Essay: Duolingo"}
                 link={
                   "https://www.patreon.com/posts/duolingo-stock-i-89254752?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
@@ -659,6 +660,22 @@ export const Entrepeneur = {
                 textDisplay={"Essay: Block"}
                 link={
                   "https://www.patreon.com/posts/block-stock-i-92632367?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                }
+              />
+              <br />
+              <br />
+              <ExternalLink
+                textDisplay={"Essay: Meta"}
+                link={
+                  "https://www.patreon.com/posts/meta-stock-i-103131370?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                }
+              />
+              <br />
+              <br />
+              <ExternalLink
+                textDisplay={"Block's Letter"}
+                link={
+                  "https://s29.q4cdn.com/628966176/files/doc_financials/2024/q1/Shareholder-Letter_1Q24_Block.pdf"
                 }
               />
               <br />

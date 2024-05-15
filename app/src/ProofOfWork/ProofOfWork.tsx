@@ -31,34 +31,54 @@ export const ProofOfWork = ({
   const [isBossModeOpen, setIsBossModeOpen] = useState(false);
 
   const [isStartupOpen, setIsStartupOpen] = useState(false);
-  // useEffect(() => {
-  //   if (isImpactWalletOpen) {
-  //     setIsEmotionalIntelligenceOpen(false);
-  //     setIsCofounderOpen(false);
-  //     setIsBossModeOpen(false);
-  //   }
-  //   if (isEmotionalIntelligenceOpen) {
-  //     setIsImpactWalletOpen(false);
-  //     setIsCofounderOpen(false);
-  //     setIsBossModeOpen(false);
-  //   }
-  //   if (isCofounderOpen) {
-  //     setIsEmotionalIntelligenceOpen(false);
-  //     setIsImpactWalletOpen(false);
-  //     setIsBossModeOpen(false);
-  //   }
-  //   ``;
-  //   if (isBossModeOpen) {
-  //     setIsEmotionalIntelligenceOpen(false);
-  //     setIsCofounderOpen(false);
-  //     setIsImpactWalletOpen(false);
-  //   }
-  // }, [
-  //   isImpactWalletOpen,
-  //   isEmotionalIntelligenceOpen,
-  //   isCofounderOpen,
-  //   isBossModeOpen,
-  // ]);
+
+  const [isAdaptiveLearningOpen, setIsAdaptiveLearningOpen] = useState(false);
+
+  useEffect(() => {
+    if (isImpactWalletOpen) {
+      setIsEmotionalIntelligenceOpen(false);
+      setIsCofounderOpen(false);
+      setIsBossModeOpen(false);
+      // setIsStartupOpen(false);
+    }
+    if (isEmotionalIntelligenceOpen) {
+      setIsImpactWalletOpen(false);
+      setIsCofounderOpen(false);
+      setIsBossModeOpen(false);
+      // setIsStartupOpen(false);
+    }
+    if (isCofounderOpen) {
+      setIsEmotionalIntelligenceOpen(false);
+      setIsImpactWalletOpen(false);
+      setIsBossModeOpen(false);
+      // setIsStartupOpen(false);
+    }
+
+    if (isBossModeOpen) {
+      setIsEmotionalIntelligenceOpen(false);
+      setIsCofounderOpen(false);
+      setIsImpactWalletOpen(false);
+      // setIsStartupOpen(false);
+    }
+
+    if (isStartupOpen) {
+      // setIsEmotionalIntelligenceOpen(false);
+      // setIsCofounderOpen(false);
+      // setIsImpactWalletOpen(false);
+      // setIsBossModeOpen(false);
+      setIsAdaptiveLearningOpen(false);
+    }
+    if (isAdaptiveLearningOpen) {
+      setIsStartupOpen(false);
+    }
+  }, [
+    isImpactWalletOpen,
+    isEmotionalIntelligenceOpen,
+    isCofounderOpen,
+    isBossModeOpen,
+    isStartupOpen,
+    isAdaptiveLearningOpen,
+  ]);
 
   return (
     <div
@@ -101,6 +121,8 @@ export const ProofOfWork = ({
         uiStateReference={uiStateReference}
         isStartupOpen={isStartupOpen}
         setIsStartupOpen={setIsStartupOpen}
+        isAdaptiveLearningOpen={isAdaptiveLearningOpen}
+        setIsAdaptiveLearningOpen={setIsAdaptiveLearningOpen}
       />
     </div>
   );

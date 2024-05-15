@@ -2,7 +2,8 @@ import { isEmpty } from "lodash";
 
 // Define styles for the message container
 const messageContainerStyle = {
-  backgroundColor: "#000f89",
+  // 4003ba //000f89
+  backgroundColor: "#4003ba",
   color: "white",
   display: "flex",
   flexDirection: "column",

@@ -1,17 +1,29 @@
-import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  runTransaction,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
+import Lottie from "react-lottie";
 import _ from "lodash";
 import isEmpty from "lodash/isEmpty";
-import { updateDoc } from "firebase/firestore";
 import { database } from "./database/firebaseResources";
-import { getTotalImpactFromModules } from "./common/uiSchema";
+// import { getTotalImpactFromModules } from "./common/uiSchema";
 import {
   decentralizedEducationTranscript,
   userProgression,
   userUnlocks,
   userWatches,
 } from "./App.constants";
-import { japaneseThemePalette } from "./styles/lazyStyles";
+import { FadeInComponent, japaneseThemePalette } from "./styles/lazyStyles";
 import { CodeDisplay } from "./common/ui/Elements/CodeDisplay/CodeDisplay";
+
+import chat_loading_animation from "./common/anims/chat_loading_animation.json";
+import roxanaGif from "./common/media/images/roxanaGif.gif";
 
 /**
  * Sorts an array of emotion objects by their timestamp property and groups them by month and year.
@@ -74,7 +86,7 @@ export const setupUserDocument = async (
 ) => {
   const res = await getDoc(docRef);
 
-  console.log("xyz", res?.data());
+  console.log("setup user document", res?.data());
   if (!res?.data()) {
     // let result = await web5?.dwn?.records?.create({
     //   data: {
@@ -99,8 +111,15 @@ export const setupUserDocument = async (
       firstVisit: true,
     });
     const response = await getDoc(docRef);
-    console.log("response", response.data());
+
     userStateReference.setDatabaseUserDocument(response.data());
+
+    addKnowledgeStep(
+      "1",
+      "Launched a decentralized AI assistant that works inside of social media and started their first session with us at robotsbuildingeducation.com.",
+      "Got started",
+      "get-started"
+    );
   } else {
     // consider updates from a DWN that wont be saved to your database
     // right now you don't need it because you're managing UI with fb already and there's no impact for wiring it in.
@@ -111,7 +130,23 @@ export const setupUserDocument = async (
       });
     }
 
-    userStateReference.setDatabaseUserDocument(res.data());
+    const response = await getDoc(docRef);
+
+    userStateReference.setDatabaseUserDocument(response.data());
+
+    await addKnowledgeStep(
+      "1",
+      "Launched a decentralized AI assistant that works inside of social media and started their first session with us at robotsbuildingeducation.com.",
+      "Got started",
+      "get-started"
+    );
+
+    addKnowledgeStep(
+      "2",
+      "Returned to the application learn another time.",
+      "Returning effort",
+      "returning-effort"
+    );
   }
 };
 
@@ -169,9 +204,9 @@ export const handleUserAuthentication = async (appFunctions) => {
     usersEmotionsCollectionRef
   );
   appFunctions.updateUserEmotions(usersEmotionsCollectionRef);
-  appFunctions.uiStateReference.setProofOfWorkFromModules(
-    getTotalImpactFromModules()
-  );
+  // appFunctions.uiStateReference.setProofOfWorkFromModules(
+  //   getTotalImpactFromModules()
+  // );
 };
 
 /**
@@ -198,8 +233,19 @@ export const updateImpact = async (
       impact: databaseUserDocument?.impact + impact,
     });
 
+    const refreshedImpactDocument = doc(database, "global", "impact");
+
+    // Fetch the document
+    let refreshedImpactData = await getDoc(refreshedImpactDocument).then(
+      (docSnap) => {
+        if (docSnap.exists()) {
+          return docSnap.data().total;
+        }
+      }
+    );
+
     await updateDoc(globalDocumentReference, {
-      total: globalImpactCounter + impact,
+      total: (refreshedImpactData || globalImpactCounter) + impact,
     });
 
     setDatabaseUserDocument((prevDoc) => ({
@@ -922,4 +968,128 @@ class Rox {
   }
 
   return message;
+};
+
+export const isLocalStorageValid = () => {
+  return (
+    localStorage.getItem("patreonPasscode") ===
+      import.meta.env.VITE_PATREON_PASSCODE ||
+    localStorage.getItem("patreonPasscode") ===
+      import.meta.env.VITE_PATREON_PASSCODE
+  );
+};
+
+/**
+ *
+ * used when calling openai or simulating loads
+ */
+export let RoxanaLoadingAnimation = ({ nochat = false }) => {
+  return (
+    <FadeInComponent>
+      <div>
+        {nochat ? null : (
+          <Lottie
+            options={{
+              loop: true,
+              autoplay: true,
+              animationData: chat_loading_animation,
+            }}
+            width={60}
+            height={60}
+            style={{ marginLeft: "105px" }}
+          />
+        )}
+
+        <img width="150px" src={roxanaGif} />
+      </div>
+    </FadeInComponent>
+  );
+};
+
+export const renderTranscriptAwards = (profileData) => {
+  if (isEmpty(profileData)) {
+    return (
+      <div>
+        No data is available. <br />
+        <br />
+      </div>
+    );
+  }
+
+  let awards = [];
+
+  for (const key in decentralizedEducationTranscript) {
+    awards.push(
+      <div
+        id={`${key}`}
+        label={`${key}`}
+        style={{
+          width: 125,
+          height: 125,
+          backgroundColor: profileData[key]
+            ? "rgba(13,41,179, 1)"
+            : "rgba(206, 206, 214,0.3)",
+          margin: 2,
+          border: profileData[key]
+            ? "5px solid rgba(0,0,255, 1)"
+            : "5px solid gray",
+          borderRadius: "20%",
+          padding: 5,
+        }}
+      >
+        {key}
+      </div>
+    );
+  }
+
+  return awards;
+};
+
+export const addKnowledgeStep = async (step, knowledge, label, collectorId) => {
+  console.log("step", step);
+  console.log("knowledge", knowledge);
+  console.log("label", label);
+  console.log("collector", collectorId);
+
+  try {
+    const userDocRef = doc(database, "users", localStorage.getItem("uniqueId"));
+    const knowledgeCollectionRef = collection(userDocRef, "knowledge");
+
+    console.log("knowledge step user doc", userDocRef);
+    console.log("knowledge step knowledge doc", knowledgeCollectionRef);
+
+    await runTransaction(database, async (transaction) => {
+      const userDocSnapshot = await transaction.get(userDocRef);
+      if (!userDocSnapshot.exists()) {
+        throw new Error("User document does not exist!");
+      }
+
+      const userDocData = userDocSnapshot.data();
+      const knowledgeKeys = userDocData.knowledgeKeys || [];
+
+      if (knowledgeKeys.includes(collectorId)) {
+        console.log("Knowledge already exists. No update necessary.");
+        return;
+      }
+
+      // Add the knowledge document
+      const knowledgeDocRef = await addDoc(knowledgeCollectionRef, {
+        step: step,
+        label: label,
+        knowledge: knowledge,
+      });
+
+      console.log("knowledge document reference", knowledgeCollectionRef);
+
+      // Update the user's knowledgeKeys array
+      transaction.update(userDocRef, {
+        knowledgeKeys: [...knowledgeKeys, collectorId],
+      });
+
+      console.log("Document successfully written and user updated!");
+    });
+  } catch (error) {
+    console.log({ error });
+    console.error("Error writing document and updating user: ", error);
+  }
 };

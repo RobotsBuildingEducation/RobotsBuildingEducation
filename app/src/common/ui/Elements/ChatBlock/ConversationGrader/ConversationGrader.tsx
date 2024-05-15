@@ -1,8 +1,5 @@
-import { Button, Form } from "react-bootstrap";
-import { logEvent } from "firebase/analytics";
-import { analytics } from "../../../../../database/firebaseResources";
-import { ui } from "../../../../uiSchema";
-import { useState } from "react";
+import { Form } from "react-bootstrap";
+
 import { Chat } from "./Chat/Chat";
 
 // export const get;

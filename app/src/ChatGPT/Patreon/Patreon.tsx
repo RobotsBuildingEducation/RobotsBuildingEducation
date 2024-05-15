@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { japaneseThemePalette, textBlock } from "../../styles/lazyStyles";
-import { updateImpact } from "../../App.compute";
+import { addKnowledgeStep, updateImpact } from "../../App.compute";
 import { useZap } from "../../App.hooks";
 import { RevealButton } from "../../common/ui/Elements/RevealButton/RevealButton";
+import { KnowledgeCollector } from "../../common/ui/Elements/KnowledgeCollector/KnowledgeCollector";
+import { HintUI } from "../../common/ui/Elements/HintUI/HintUI";
 
 // Style object for the video element
 const videoStyle = {
@@ -79,7 +81,7 @@ const Patreon = ({
           console.log("running video");
           setVideoDurationDetection(true);
           // handleScheduler("video", moduleName);
-          handleWatch(moduleName);
+          handleWatch(moduleName, patreonObject);
         }
       }
     };
@@ -144,6 +146,18 @@ const Patreon = ({
       ) : null}
 
       {renderVideo(patreonObject, isAutoPlay, videoRef)}
+      {/* <br />
+      <KnowledgeCollector
+        step={1}
+        knowledge={"data"}
+        label={"test"}
+        collectorId={"test"}
+      />
+      <HintUI
+        message={
+          "Pressing this button will collect knowledge for adaptive learning assistance 💭"
+        }
+      /> */}
     </div>
   );
 };
