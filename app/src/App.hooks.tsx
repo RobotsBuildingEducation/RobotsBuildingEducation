@@ -5,7 +5,6 @@ import { LightningAddress } from "@getalby/lightning-tools";
 
 import { useStore } from "./Store";
 import RandomCharacter from "./common/ui/Elements/RandomCharacter/RandomCharacter";
-import { renderTranscriptAwards } from "./ProofOfWork/ActionBar/ActionBar.compute";
 
 /**
  *
@@ -244,7 +243,7 @@ export const TimedRandomCharacter = () => {
   return <RandomCharacter key={key} borderRadius="50%" />;
 };
 
-export const useGlobalModal = (config) => {
+export const useGlobalModal = (config, exception = null) => {
   const setIsGlobalModalActive = useStore(
     (state) => state.setIsGlobalModalActive
   );
@@ -261,20 +260,4 @@ export const useGlobalModal = (config) => {
   };
 
   return handleModal;
-};
-
-export const getTranscriptDisplay = (profile) => {
-  let data = "ok";
-
-  return (
-    <div
-      style={{
-        width: "100%",
-        display: "flex",
-        flexWrap: "wrap",
-      }}
-    >
-      {renderTranscriptAwards(profile)}
-    </div>
-  );
 };

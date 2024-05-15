@@ -32,7 +32,9 @@ const createPathElements = (
   let handleModal = useGlobalModal(modalConfig);
 
   return uiPaths.map((path, index) => {
-    const displayText = path !== "Entrepeneur" ? path : "Dealer";
+    let displayText = path !== "Entrepeneur" ? path : "Investing";
+    if (path === "Creator") displayText = "Thinking";
+    if (path === "Engineer") displayText = "Coding";
 
     if (unlockCreatorKey && unlockDealerKey) {
       return (

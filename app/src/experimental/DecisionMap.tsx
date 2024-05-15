@@ -3,10 +3,11 @@ import Editor from "react-simple-code-editor";
 import { highlight, languages } from "prismjs/components/prism-core";
 import { japaneseThemePalette, textBlock } from "../styles/lazyStyles";
 import { useZap } from "../App.hooks";
-import { RoxanaLoadingAnimation, postInstructions } from "../common/uiSchema";
+import { postInstructions } from "../common/uiSchema";
 
 // StyledTree.js
 import styled from "styled-components";
+import { RoxanaLoadingAnimation } from "../App.compute";
 
 export const TreeNode = styled.div`
   position: relative;

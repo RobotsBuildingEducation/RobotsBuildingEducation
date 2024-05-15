@@ -2,10 +2,7 @@
 import React, { useEffect, useState } from "react";
 import isEmpty from "lodash/isEmpty";
 import { Button, Modal, Form } from "react-bootstrap";
-import {
-  RoxanaLoadingAnimation,
-  postInstructions,
-} from "../../../common/uiSchema";
+import { postInstructions } from "../../../common/uiSchema";
 
 import styled from "styled-components";
 import { addDoc, updateDoc } from "firebase/firestore";
@@ -25,7 +22,7 @@ import {
   executiveAssistantKnowledge,
 } from "./Cofounder.constants";
 import { useZap } from "../../../App.hooks";
-import { updateImpact } from "../../../App.compute";
+import { RoxanaLoadingAnimation, updateImpact } from "../../../App.compute";
 const Container = styled.div`
   font-family: "Arial", sans-serif;
   color: #4a4a4a;
@@ -582,7 +579,7 @@ export const Cofounder = ({
           closeVariant="white"
           closeButton
         >
-          <Modal.Title style={{ fontFamily: "Bungee" }}>Co-founder</Modal.Title>
+          <Modal.Title style={{ fontFamily: "Bungee" }}>Assistant</Modal.Title>
         </Modal.Header>
 
         <Modal.Body

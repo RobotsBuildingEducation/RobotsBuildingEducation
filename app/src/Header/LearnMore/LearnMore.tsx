@@ -7,6 +7,7 @@ import { DiscordButton } from "./DiscordButton/DiscordButton";
 import { FadeInComponent, RiseUpAnimation } from "../../styles/lazyStyles";
 import FAQSection from "./FAQs/FAQs";
 import { WalletAuth } from "../WalletAuth/WalletAuth";
+import { Title } from "../../common/svgs/Title";
 
 /**
  * `LearnMore` component that provides additional information and resources to the user.
@@ -213,7 +214,9 @@ export const LearnMore = ({ languageMode }) => {
             border: "1px solid black",
           }}
           onHide={() => setIsModalOpen(false)}
-        ></Modal.Header>
+        >
+          <Title title={""} closeFunction={() => setIsModalOpen(false)} />
+        </Modal.Header>
         <Modal.Body
           style={{
             backgroundColor: "black",

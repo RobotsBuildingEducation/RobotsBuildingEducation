@@ -18,6 +18,7 @@ import { ContentLinks } from "../../common/ui/Elements/ContentLinks/ContentLinks
 import { CodeDemo } from "./CodeDemo/CodeDemo";
 
 import { CodeBlock } from "../../common/ui/Elements/CodeBlock/CodeBlock";
+import { HintUI } from "../../common/ui/Elements/HintUI/HintUI";
 
 const delayedAnimation = keyframes`
 from {
@@ -124,6 +125,7 @@ const renderContent = (
           <CodeBlock
             userStateReference={userStateReference}
             globalStateReference={globalStateReference}
+            patreonObject={patreonObject}
           >
             <CodeDemo response={response} patreonObject={patreonObject} />
           </CodeBlock>

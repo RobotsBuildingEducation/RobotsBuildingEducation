@@ -1,12 +1,15 @@
 // imported files. Mostly software functions that are abstracted out for re-use.
 import { useState } from "react";
+import Lottie from "react-lottie";
+import arrow_animation from "../../../anims/arrow_animation.json";
 import { japaneseThemePalette } from "../../../../styles/lazyStyles";
 import { postInstructions } from "../../../uiSchema";
 import { customInstructions } from "./CodeBlock.compute";
 import { useZap, useZapAnimation } from "../../../../App.hooks";
-import { completeZapEvent, updateImpact } from "../../../../App.compute";
+import { completeZapEvent } from "../../../../App.compute";
 import { ActivateCofounder } from "./ActivateCofounder/ActivateCofounder";
 import { SoftwareEngineer } from "./SoftwareEngineer/SoftwareEngineer";
+import { HintUI } from "../HintUI/HintUI";
 
 /**
 CodeBlock is a component that renders an activation button and a dialogue modal.
@@ -36,6 +39,7 @@ export const CodeBlock = ({
   children,
   userStateReference,
   globalStateReference,
+  patreonObject,
 }) => {
   //hooks
   let zap = useZap();
@@ -71,12 +75,7 @@ export const CodeBlock = ({
       body: JSON.stringify({ prompt, isJsonMode: true }),
     })
       .then((response) => {
-        completeZapEvent(
-          zap,
-          updateImpact,
-          userStateReference,
-          globalStateReference
-        );
+        completeZapEvent(zap, userStateReference, globalStateReference);
 
         return response;
       })
@@ -108,12 +107,19 @@ export const CodeBlock = ({
     >
       {/* button that opens up the cofounder modal in the demonstrate prompt */}
       <ActivateCofounder setIsModalOpen={setIsModalOpen} />
-      <br />
-      <br />
 
+      {patreonObject.header === "Learning Mindset & Perspective" ? (
+        <HintUI
+          message={
+            "The cofounder assistant will help you set up basic applications and features."
+          }
+        />
+      ) : null}
+
+      <br />
+      <br />
       {/* the content in the demonstrate prompt */}
       {children}
-
       {/* the AI dialogue modal to create frontend and backend code examples */}
       <SoftwareEngineer
         isModalOpen={isModalOpen}

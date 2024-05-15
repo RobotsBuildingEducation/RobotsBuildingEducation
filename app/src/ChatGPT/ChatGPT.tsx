@@ -19,6 +19,7 @@ import {
 } from "../styles/lazyStyles";
 import { useBitcoinAnimation } from "../App.hooks";
 import { LectureHeader } from "../LectureHeader/LectureHeader";
+import { addKnowledgeStep, updateImpact } from "../App.compute";
 
 const logAnalyticsEvent = (item_list_id, item_id, item_name) => {
   logEvent(analytics, "select_item", {
@@ -101,13 +102,7 @@ const ChatGPT = ({
     setIsResponseActive(true);
     setChatGptResponseList(result?.response);
 
-    await updateImpact(
-      result.impact,
-      databaseUserDocument,
-      userDocumentReference,
-      globalImpactCounter,
-      globalDocumentReference
-    );
+    await updateImpact(result.impact, userStateReference, globalStateReference);
 
     logEvent(analytics, "spend_virtual_currency", {
       value: result.impact,
@@ -116,6 +111,30 @@ const ChatGPT = ({
     });
 
     setLoadingMessage("");
+
+    console.log("promptType", promptType);
+    console.log("prompt", prompt);
+
+    const remappedPrompts = {
+      patreon: "discover",
+      guide: "guide",
+      shop: "shop",
+      practice: "practice",
+    };
+
+    console.log(
+      "knowledge result",
+      patreonObject.knowledge[remappedPrompts[promptType]].step
+    );
+
+    if (!(promptType === "practice")) {
+      await addKnowledgeStep(
+        patreonObject.knowledge[remappedPrompts[promptType]].step,
+        patreonObject.knowledge[remappedPrompts[promptType]].knowledge,
+        patreonObject.knowledge[remappedPrompts[promptType]].label,
+        patreonObject.knowledge[remappedPrompts[promptType]].collectorId
+      );
+    }
   };
 
   const computeResult = (promptType, patreonObject) => {
@@ -125,28 +144,28 @@ const ChatGPT = ({
     };
   };
 
-  const updateImpact = async (
-    impact,
-    databaseUserDocument,
-    userDocumentReference,
-    globalImpactCounter,
-    globalDocumentReference
-  ) => {
-    if (!isEmpty(databaseUserDocument) || !isEmpty(userDocumentReference)) {
-      await updateDoc(userDocumentReference, {
-        impact: databaseUserDocument?.impact + impact,
-      });
-      await updateDoc(globalDocumentReference, {
-        total: globalImpactCounter + impact,
-      });
-      setDatabaseUserDocument((prevDoc) => ({
-        ...prevDoc,
-        impact: prevDoc?.impact + impact,
-      }));
-      setGlobalImpactCounter((prevCounter) => prevCounter + impact);
-    } else {
-    }
-  };
+  // const updateImpact = async (
+  //   impact,
+  //   databaseUserDocument,
+  //   userDocumentReference,
+  //   globalImpactCounter,
+  //   globalDocumentReference
+  // ) => {
+  //   if (!isEmpty(databaseUserDocument) || !isEmpty(userDocumentReference)) {
+  //     await updateDoc(userDocumentReference, {
+  //       impact: databaseUserDocument?.impact + impact,
+  //     });
+  //     await updateDoc(globalDocumentReference, {
+  //       total: globalImpactCounter + impact,
+  //     });
+  //     setDatabaseUserDocument((prevDoc) => ({
+  //       ...prevDoc,
+  //       impact: prevDoc?.impact + impact,
+  //     }));
+  //     setGlobalImpactCounter((prevCounter) => prevCounter + impact);
+  //   } else {
+  //   }
+  // };
 
   return (
     <div

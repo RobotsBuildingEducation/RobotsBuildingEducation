@@ -13,6 +13,12 @@ import { useStore } from "../../Store";
 
 import { ImpactWallet } from "./ImpactWallet/ImpactWallet";
 import { RenderActionBarControls } from "./ActionBar.compute";
+import { useEffect, useState } from "react";
+import { doc, onSnapshot } from "firebase/firestore";
+import { database } from "../../database/firebaseResources";
+import { useBitcoinAnimation } from "../../App.hooks";
+import { Startup } from "./Startup/Startup";
+import { AdaptiveLearning } from "./AdaptiveLearning/AdaptiveLearning";
 // import { Startup } from "./Startup/Startup";
 
 export const ActionBar = ({
@@ -46,9 +52,48 @@ export const ActionBar = ({
   uiStateReference,
   isStartupOpen,
   setIsStartupOpen,
+  isAdaptiveLearningOpen,
+  setIsAdaptiveLearningOpen,
 }) => {
   const showBitcoin = useStore((state) => state.showBitcoin);
   const showZap = useStore((state) => state.showZap);
+
+  const [realtimeImpact, setRealtimeImpact] = useState(globalImpactCounter);
+  const handleBitcoinAnimation = useBitcoinAnimation();
+  const [isImpactMounted, setIsImpactMounted] = useState(false);
+
+  useEffect(() => {
+    const impactDocRef = doc(database, "global", "impact");
+
+    const unsubscribe = onSnapshot(
+      impactDocRef,
+      (doc) => {
+        if (doc.exists()) {
+          const data = doc.data();
+          console.log("Data xyz", data);
+          setRealtimeImpact(data.total || 0);
+          // handleBitcoinAnimation();
+
+          // if (isImpactMounted) {
+          //   console.log("wtffffff asdkaskdfasdfkasdkfaskdfks");
+          // } else {
+          // }
+          // setIsImpactMounted(true);
+
+          // Update local state with the new total
+        } else {
+          console.log("No such document!");
+        }
+      },
+      (error) => {
+        console.log("Error getting document:", error);
+      }
+    );
+
+    // Optional: fetch and set the globalImpactCounter here or define it statically if it changes
+
+    return () => unsubscribe(); // Cleanup subscription on component unmount
+  }, []);
 
   return (
     <>
@@ -75,13 +120,13 @@ export const ActionBar = ({
           </div>
         ) : (
           <RenderActionBarControls
+            setIsAdaptiveLearningOpen={setIsAdaptiveLearningOpen}
             displayName={displayName}
             setIsBossModeOpen={setIsBossModeOpen}
             setIsCofounderOpen={setIsCofounderOpen}
             setIsEmotionalIntelligenceOpen={setIsEmotionalIntelligenceOpen}
             setIsImpactWalletOpen={setIsImpactWalletOpen}
             setIsStartupOpen={setIsStartupOpen}
-            isStartupOpen={isStartupOpen}
           />
         )}
 
@@ -95,14 +140,12 @@ export const ActionBar = ({
               backgroundColor: "skyblue",
             }}
             // now={Math.floor(calculatedPercentage * 100)}
-            now={Math.floor(
-              ((databaseUserDocument.impact || 0) / globalImpactCounter) * 100
-            )}
+            now={(realtimeImpact / 21000000) * 100}
           />
         </div>
       </div>
 
-      {isImpactWalletOpen ? (
+      {/* {isImpactWalletOpen ? (
         <ImpactWallet
           isImpactWalletOpen={isImpactWalletOpen}
           setIsImpactWalletOpen={setIsImpactWalletOpen}
@@ -151,9 +194,18 @@ export const ActionBar = ({
           zap={zap}
           handleZap={handleZap}
         />
-      ) : null}
+      ) : null} */}
 
-      {/* {isStartupOpen ? (
+      <AdaptiveLearning
+        setIsAdaptiveLearningOpen={setIsAdaptiveLearningOpen}
+        isAdaptiveLearningOpen={isAdaptiveLearningOpen}
+        userStateReference={userStateReference}
+        globalStateReference={globalStateReference}
+        zap={zap}
+        handleZap={handleZap}
+      />
+
+      {isStartupOpen ? (
         <Startup
           isStartupOpen={isStartupOpen}
           setIsStartupOpen={setIsStartupOpen}
@@ -161,8 +213,26 @@ export const ActionBar = ({
           globalStateReference={globalStateReference}
           zap={zap}
           handleZap={handleZap}
+          isBossModeOpen={isBossModeOpen}
+          isCofounderOpen={isCofounderOpen}
+          isEmotionalIntelligenceOpen={isEmotionalIntelligenceOpen}
+          isImpactWalletOpen={isImpactWalletOpen}
+          setIsImpactWalletOpen={setIsImpactWalletOpen}
+          setIsCofounderOpen={setIsCofounderOpen}
+          setIsBossModeOpen={setIsBossModeOpen}
+          uiStateReference={uiStateReference}
+          updateUserEmotions={updateUserEmotions}
+          databaseUserDocument={databaseUserDocument}
+          globalScholarshipCounter={globalScholarshipCounter}
+          calculatedPercentage={calculatedPercentage}
+          globalImpactCounter={globalImpactCounter}
+          usersEmotionsCollectionReference={usersEmotionsCollectionReference}
+          setIsEmotionalIntelligenceOpen={setIsEmotionalIntelligenceOpen}
+          usersEmotionsFromDB={usersEmotionsFromDB}
+          isAdaptiveLearningOpen={isAdaptiveLearningOpen}
+          setIsAdaptiveLearningOpen={setIsAdaptiveLearningOpen}
         />
-      ) : null} */}
+      ) : null}
     </>
   );
 };

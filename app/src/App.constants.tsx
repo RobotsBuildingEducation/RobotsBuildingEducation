@@ -1,3 +1,5 @@
+import { StaticPromptButton } from "./styles/lazyStyles";
+
 /**
  * Defines the original education transcript for web5 users that gets written to a users DWN.
  * Current centralized to the user document's "profile" data.
@@ -80,13 +82,39 @@ export const modalConfig = {
   defaultMessage: "This is the default modal message.",
   messages: {
     creator:
-      "You need to complete Lesson 2: Frontend Programming in Engineering to unlock this path.",
+      "You need to complete Lesson 2: Frontend Programming in Coding to unlock this path.",
     dealer:
-      "You need to complete Lesson 4: Building Apps in Engineering to unlock this path.",
-    "Learning Mindset & Perspective-video":
-      "Watching 90% of the discover video completes one of two parts needed to unlock the next lecture! Complete the exercise in the practice prompt to unlock the next stage.",
-    "Learning Mindset & Perspective-practice":
-      "Finishing 100% of the practice exercise completes one of two parts needed to unlock the next lecture! Watch 90% of the video found in the discover prompt to unlock the next stage.",
+      "You need to complete Lesson 4: Building Apps in Coding to unlock this path.",
+    "Learning Mindset & Perspective-video": (
+      <div>
+        Watching 90% of the discover video completes one of two parts needed to
+        unlock the next lecture! Complete the exercise in the practice prompt to
+        unlock the next stage.
+        <StaticPromptButton
+          disabled
+          isGold
+          // borderHighlight={"#48484a"}
+          style={{ display: "flex" }}
+        >
+          <a style={{ color: "white" }}>🥋 &nbsp;practice</a>
+        </StaticPromptButton>
+      </div>
+    ),
+    "Learning Mindset & Perspective-practice": (
+      <div>
+        Finishing 100% of the practice exercise completes one of two parts
+        needed to unlock the next lecture! Watch 90% of the video found in the
+        discover prompt to unlock the next stage.
+        <StaticPromptButton
+          disabled
+          isGold
+          // borderHighlight={"#48484a"}
+          style={{ display: "flex" }}
+        >
+          <a style={{ color: "white" }}>✨ &nbsp;discover</a>
+        </StaticPromptButton>
+      </div>
+    ),
     "Learning Mindset & Perspective-complete": (
       <div>
         Good job! You've unlocked the next lecture and earned the following

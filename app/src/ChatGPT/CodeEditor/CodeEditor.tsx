@@ -83,7 +83,7 @@ const CodeEditor = ({
   };
 
   const updateProgressInFirestore = async (moduleName) => {
-    handleCompletedPractice(moduleName);
+    handleCompletedPractice(moduleName, patreonObject);
   };
 
   useEffect(() => {

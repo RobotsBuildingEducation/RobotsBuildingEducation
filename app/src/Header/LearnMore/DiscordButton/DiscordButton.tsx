@@ -56,11 +56,6 @@ export const DiscordButton = () => {
         Connect
       </h1>
       <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
 
       <div
         style={{

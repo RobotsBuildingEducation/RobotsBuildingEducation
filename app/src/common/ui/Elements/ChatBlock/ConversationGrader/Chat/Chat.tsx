@@ -1,33 +1,34 @@
 import React, { useEffect, useRef } from "react";
-import { RoxanaLoadingAnimation } from "../../../../../uiSchema";
+import { RoxanaLoadingAnimation } from "../../../../../../App.compute";
 
 export const Chat = ({ conversation, gradeResult }) => {
   const requestStyle = {
     textAlign: "left",
-    backgroundColor: "#2C2C2E",
-    padding: "10px",
-    borderTopLeftRadius: "20px",
-    borderTopRightRadius: "20px",
-    borderBottomRightRadius: "20px",
+    backgroundColor: "#4003ba",
+    padding: "20px",
+    borderTopLeftRadius: "50px",
+    borderTopRightRadius: "50px",
+    borderBottomLeftRadius: "50px",
+    borderBottomRightRadius: "0px",
     marginBottom: "10px",
     maxWidth: "70%",
-    alignSelf: "flex-start",
-    borderBottomLeftRadius: "0px",
+
+    alignSelf: "flex-end",
   };
 
   const responseStyle = {
     textAlign: "left",
-    backgroundColor: "#007aff",
+    backgroundColor: "#2C2C2E",
     color: "white",
-    padding: "10px",
+    padding: "20px",
     borderRadius: "10px",
     marginBottom: "10px",
     maxWidth: "70%",
-    alignSelf: "flex-end",
-    borderBottomRightRadius: "0px",
-    borderTopLeftRadius: "20px",
-    borderTopRightRadius: "20px",
-    borderBottomLeftRadius: "20px",
+    alignSelf: "flex-start",
+    borderBottomLeftRadius: "0px",
+    borderTopLeftRadius: "50px",
+    borderTopRightRadius: "50px",
+    borderBottomRightRadius: "50px",
   };
   const loadingStyle = {
     textAlign: "left",
@@ -37,18 +38,17 @@ export const Chat = ({ conversation, gradeResult }) => {
     borderRadius: "10px",
     marginBottom: "10px",
     maxWidth: "70%",
-    alignSelf: "flex-end",
+    alignSelf: "flex-start",
     borderBottomRightRadius: "0px",
-    borderTopLeftRadius: "20px",
-    borderTopRightRadius: "20px",
-    borderBottomLeftRadius: "20px",
+    borderTopLeftRadius: "50px",
+    borderTopRightRadius: "50px",
+    borderBottomLeftRadius: "50px",
   };
 
   const containerStyle = {
     display: "flex",
     flexDirection: "column",
     width: "100%",
-    maxWidth: "500px",
     padding: "15px",
     backgroundColor: "black",
     overflowY: "scroll",

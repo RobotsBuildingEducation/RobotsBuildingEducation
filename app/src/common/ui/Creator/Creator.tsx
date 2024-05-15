@@ -54,12 +54,6 @@ export const Creator = {
                 whiteSpace: "pre-wrap",
               }}
             >
-              <ExternalLink
-                textDisplay={"Old internet design"}
-                link={
-                  "https://www.patreon.com/posts/learning-from-of-98786643?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
-                }
-              />
               <MarkdownRenderer
                 file={await import("../../markdowns/philosophy.md?raw")}
                 patreonObject={null}
@@ -671,6 +665,15 @@ export const Creator = {
                 whiteSpace: "pre-wrap",
               }}
             >
+              <br />
+              <ExternalLink
+                textDisplay={"Old internet design"}
+                link={
+                  "https://www.patreon.com/posts/learning-from-of-98786643?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                }
+              />{" "}
+              <br /> <br />
+              <br />
               <MarkdownRenderer
                 file={
                   await import(

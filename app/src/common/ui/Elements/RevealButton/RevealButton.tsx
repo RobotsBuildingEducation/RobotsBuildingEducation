@@ -80,7 +80,7 @@ const SummaryItem = ({ question, answer, index }) => {
 export const RevealButton = ({ content }) => {
   const data = [
     {
-      question: "📜 Quest",
+      question: "📜 Learn more",
       answer: (
         <p
           style={{

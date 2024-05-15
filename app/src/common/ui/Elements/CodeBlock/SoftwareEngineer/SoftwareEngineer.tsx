@@ -5,8 +5,9 @@ import {
   japaneseThemePalette,
   textBlock,
 } from "../../../../../styles/lazyStyles";
-import { RoxanaLoadingAnimation } from "../../../../uiSchema";
+
 import { styling } from "./SoftwareEngineer.styles";
+import { RoxanaLoadingAnimation } from "../../../../../App.compute";
 
 export const SoftwareEngineer = ({
   isModalOpen,
@@ -24,9 +25,10 @@ export const SoftwareEngineer = ({
       keyboard
       onHide={() => setIsModalOpen(false)}
       style={{ zIndex: 10000 }}
+      size="lg"
     >
       <Modal.Header closeButton closeVariant="white" style={styling.Header}>
-        <Modal.Title style={{ fontFamily: "Bungee" }}>Co-founder</Modal.Title>
+        <Modal.Title style={{ fontFamily: "Bungee" }}>Assistant</Modal.Title>
       </Modal.Header>
       <Modal.Body
         style={{

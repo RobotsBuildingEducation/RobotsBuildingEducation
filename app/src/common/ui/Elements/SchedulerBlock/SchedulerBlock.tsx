@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, Modal, Row, Col } from "react-bootstrap";
+import Lottie from "react-lottie";
 
 import isEmpty from "lodash/isEmpty";
 import styled from "styled-components";
@@ -13,6 +14,9 @@ import roxanaGif from "../../../media/images/roxanaGif.gif";
 import { customInstructions } from "./SchedulerBlock.compute";
 
 import { useZapAnimation } from "../../../../App.hooks";
+import chat_loading_animation from "../../../anims/chat_loading_animation.json";
+import { HintUI } from "../HintUI/HintUI";
+import { RoxanaLoadingAnimation } from "../../../../App.compute";
 // import { customInstructions } from "./SchedulerBlock.compute";
 
 const postInstructions = {
@@ -23,21 +27,6 @@ const postInstructions = {
   },
 };
 
-let RoxanaLoadingAnimation = () => {
-  return (
-    <FadeInComponent>
-      <div>
-        {/* <Spinner animation="grow" variant="info" size="sm">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner> */}
-        <img width="150px" src={roxanaGif} />
-        {/* <Spinner animation="grow" variant="primary" size="sm">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner> */}
-      </div>
-    </FadeInComponent>
-  );
-};
 export const EmotionalIntelligenceStyles = {
   EmotionHeader: {
     backgroundColor: "black",
@@ -84,7 +73,7 @@ const Stage = styled.div`
 `;
 
 const Title = styled.h2`
-  color: orange;
+  color: #31d660;
 `;
 
 const Time = styled.p`
@@ -95,11 +84,11 @@ const Time = styled.p`
 
 const Explanation = styled.p``;
 
-export const SchedulerBlock = ({ children }) => {
+export const SchedulerBlock = ({ children, hasTutorial = false }) => {
   const zapAnimation = useZapAnimation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  let [boxShadow, setBoxShadow] = useState("6px 6px 5px 0px rgba(0,0,0,0.75)");
+  let [boxShadow, setBoxShadow] = useState(false);
   const [formState, setFormState] = useState({
     description: "",
     pace: "daily",
@@ -268,42 +257,51 @@ export const SchedulerBlock = ({ children }) => {
         ),
       }}
     >
-      <button
+      <Button
+        variant="dark"
         onMouseEnter={() => {
-          setBoxShadow(
-            `6px 6px 5px 0px ${japaneseThemePalette.PhthaloBluePurple}`
-          );
+          setBoxShadow(true);
         }}
         onMouseLeave={() => {
-          setBoxShadow("6px 6px 5px 0px rgba(0,0,0,0.75)");
+          setBoxShadow(false);
         }}
         style={{
-          boxShadow: boxShadow,
-          backgroundColor: japaneseThemePalette.PhthaloBluePurple,
+          width: 48,
+          height: 48,
+          textShadow: "1px 1px 1px black",
+          borderBottom: boxShadow
+            ? "2px solid transparent"
+            : `2px solid ${japaneseThemePalette.CobaltBlue}`,
         }}
         onClick={() => {
           setIsModalOpen(true);
         }}
       >
         🌀
-      </button>
+      </Button>
+      <br />
+      {hasTutorial ? (
+        <HintUI
+          message={"The executive assistant will help you create a study plan."}
+        />
+      ) : null}
       <br />
       <br />
       {children}
-
       <Modal
         show={isModalOpen}
         centered
         keyboard
         onHide={() => setIsModalOpen(false)}
         style={{ zIndex: 1000000 }}
+        size="lg"
       >
         <Modal.Header
           closeButton
           closeVariant="white"
           style={EmotionalIntelligenceStyles.EmotionHeader}
         >
-          <Modal.Title style={{ fontFamily: "Bungee" }}>Co-founder</Modal.Title>
+          <Modal.Title style={{ fontFamily: "Bungee" }}>Assistant</Modal.Title>
         </Modal.Header>
         <Modal.Body
           style={{

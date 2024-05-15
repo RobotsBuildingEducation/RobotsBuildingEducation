@@ -10,6 +10,7 @@ import {
   gatherConversationContext,
 } from "./ChatBlock.compute";
 import { useZapAnimation } from "../../../../App.hooks";
+import { HintUI } from "../HintUI/HintUI";
 
 const postInstructions = {
   url: "https://us-central1-learn-robotsbuildingeducation.cloudfunctions.net/app/prompt",
@@ -139,7 +140,7 @@ export const EmotionalIntelligenceStyles = {
     borderBottomRightRadius: 30,
   },
 };
-export let ChatBlock = ({ children, type = "quiz" }) => {
+export let ChatBlock = ({ children, type = "quiz", hasTutorial }) => {
   const zapAnimation = useZapAnimation();
   const [isConversationContextWindowOpen, setIsConversationContextWindowOpen] =
     useState(false);
@@ -152,7 +153,7 @@ export let ChatBlock = ({ children, type = "quiz" }) => {
   const [gradeResult, setGradeResult] = useState("");
   const [isGrading, setIsGrading] = useState(false);
 
-  let [boxShadow, setBoxShadow] = useState("6px 6px 5px 0px rgba(0,0,0,0.75)");
+  let [boxShadow, setBoxShadow] = useState(false);
 
   let messageContext = gatherConversationContext(children);
 
@@ -262,31 +263,46 @@ export let ChatBlock = ({ children, type = "quiz" }) => {
         ),
       }}
     >
-      <button
+      <Button
+        variant="dark"
+        style={{
+          width: 48,
+          height: 48,
+          textShadow: "1px 1px 1px black",
+          borderBottom: boxShadow
+            ? "2px solid transparent"
+            : `2px solid ${japaneseThemePalette.CobaltBlue}`,
+        }}
         onMouseEnter={() => {
-          setBoxShadow(`6px 6px 5px 0px ${japaneseThemePalette.PowerPurple}`);
+          setBoxShadow(true);
         }}
         onMouseLeave={() => {
-          setBoxShadow("6px 6px 5px 0px rgba(0,0,0,0.75)");
-        }}
-        style={{
-          boxShadow: boxShadow,
-          backgroundColor: "#FFD68B",
+          setBoxShadow(false);
         }}
         onClick={() => {
           setIsModalOpen(true);
         }}
       >
-        ⭐
-      </button>
+        💎
+      </Button>
+      <br />
+      {hasTutorial ? (
+        <HintUI
+          message={
+            "The conversation quiz will grade your curiosity and provide feedback."
+          }
+        />
+      ) : null}
+      <br />
       <Modal
         centered
-        fullscreen={false}
+        // fullscreen={true}
         show={isModalOpen}
         // show={true}
         onHide={() => setIsModalOpen(false)}
         keyboard={true}
         style={{ zIndex: 1000000 }}
+        size="lg"
       >
         <Modal.Header
           closeButton
@@ -303,9 +319,7 @@ export let ChatBlock = ({ children, type = "quiz" }) => {
             borderBottom: "1px solid black",
           }}
         >
-          <Modal.Title style={{ fontFamily: "Bungee" }}>
-            Conversation Grader
-          </Modal.Title>
+          <Modal.Title style={{ fontFamily: "Bungee" }}>Quiz</Modal.Title>
           &nbsp;&nbsp; &nbsp;
           <Button
             variant="primary"

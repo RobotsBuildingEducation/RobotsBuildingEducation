@@ -1,17 +1,16 @@
 //@ts-nocheck
 import { useState } from "react";
 import { isEmpty } from "lodash";
+import Lottie from "react-lottie";
 import { Button, Modal } from "react-bootstrap";
+
 import {
   EmotionButton,
   EmotionalIntelligenceStyles,
 } from "./EmotionalIntelligence.styles";
 import { addDoc } from "firebase/firestore";
 import Form from "react-bootstrap/Form";
-import {
-  RoxanaLoadingAnimation,
-  postInstructions,
-} from "../../../common/uiSchema";
+import { postInstructions } from "../../../common/uiSchema";
 import {
   highEnergyFeelings,
   lowEnergyFeelings,
@@ -26,10 +25,12 @@ import {
 
 import roxanaFocusing from "../../../common/media/images/roxanaFocusing.png";
 import roxanaKind from "../../../common/media/images/roxanaKind.png";
+import heart_chat_animation from "../../../common/anims/heart_chat_animation.json";
 
 import { useZap } from "../../../App.hooks";
-import { updateImpact } from "../../../App.compute";
+import { RoxanaLoadingAnimation, updateImpact } from "../../../App.compute";
 import { responsiveBox } from "../../../styles/lazyStyles";
+import { Title } from "../../../common/svgs/Title";
 
 export const EmotionalIntelligence = ({
   isEmotionalIntelligenceOpen,
@@ -41,6 +42,7 @@ export const EmotionalIntelligence = ({
   globalStateReference,
   zap,
   handleZap,
+  setIsStartupOpen,
 }) => {
   console.log("running the emotional intelligence bot");
   const [isEmotionModalOpen, setIsEmotionModalOpen] = useState(false);
@@ -162,16 +164,23 @@ export const EmotionalIntelligence = ({
         show={isEmotionalIntelligenceOpen}
         fullscreen
         keyboard
-        onHide={() => setIsEmotionalIntelligenceOpen(false)}
+        onHide={() => {
+          setIsEmotionalIntelligenceOpen(false);
+          setIsStartupOpen(false);
+        }}
       >
         <Modal.Header
           style={EmotionalIntelligenceStyles.Header}
           closeVariant="white"
           closeButton
         >
-          <Modal.Title style={{ fontFamily: "Bungee" }}>
-            Emotional Intelligence
-          </Modal.Title>
+          <Title
+            title={"Emotional Intelligence"}
+            closeFunction={() => {
+              setIsEmotionalIntelligenceOpen(false);
+              setIsStartupOpen(false);
+            }}
+          />
         </Modal.Header>
         <Modal.Body style={EmotionalIntelligenceStyles.Body}>
           <div style={responsiveBox}>
@@ -247,7 +256,15 @@ export const EmotionalIntelligence = ({
               </h1>
               {isSummarizerLoading ? (
                 <div style={{ textAlign: "center" }}>
-                  <RoxanaLoadingAnimation />
+                  <div
+                    style={{
+                      display: "flex",
+
+                      justifyContent: "center",
+                    }}
+                  >
+                    <RoxanaLoadingAnimation nochat={false} />
+                  </div>
                 </div>
               ) : null}
               {!isEmpty(summarizerResponse) ? (
@@ -397,7 +414,15 @@ export const EmotionalIntelligence = ({
                 justifyContent: "center",
               }}
             >
-              <RoxanaLoadingAnimation />
+              <div
+                style={{
+                  display: "flex",
+
+                  justifyContent: "center",
+                }}
+              >
+                <RoxanaLoadingAnimation nochat={false} />
+              </div>
             </div>
           ) : null}
 

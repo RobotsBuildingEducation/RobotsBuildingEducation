@@ -228,7 +228,7 @@ I could write a book poetically explaining each concept but really that’s all 
 
 This is a complicated thing because it means a lot of different things for different people, and frankly, I’m not the best at it either. So here’s what I know:
 
-A good model to examine is your classic rockstar or an artist like Cardi B. They do things to command a certain presence and attention in and outside of a performance, and the dynamic between the two is what creates a following audience. The key thing is not that they don’t give a fuck.
+A good model to examine is your classic rockstar or an artist like Cardi B. They do things to command a certain presence and attention in and outside of a performance, and the dynamic between the two is what creates a following audience. The key thing is not that they don’t care.
 
 They care a lot about their image. The key thing is that they allow themselves to express themselves with confidence and will attempt to actualize their ideas strategically and repeatedly. They chase. It’s not easy to show up regularly like that.
 

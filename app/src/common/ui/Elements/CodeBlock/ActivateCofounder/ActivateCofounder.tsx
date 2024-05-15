@@ -1,31 +1,34 @@
 import { useState } from "react";
 import { japaneseThemePalette } from "../../../../../styles/lazyStyles";
+import { Button } from "react-bootstrap";
 
 export const ActivateCofounder = ({ setIsModalOpen }) => {
-  let [boxShadow, setBoxShadow] = useState("6px 6px 5px 0px rgba(0,0,0,0.75)");
+  let [boxShadow, setBoxShadow] = useState(false);
 
   return (
     <>
-      <button
+      <Button
+        variant="dark"
+        style={{
+          width: 48,
+          height: 48,
+          textShadow: "1px 1px 1px black",
+          borderBottom: boxShadow
+            ? "2px solid transparent"
+            : `2px solid ${japaneseThemePalette.CobaltBlue}`,
+        }}
         onMouseEnter={() => {
-          setBoxShadow(
-            `6px 6px 5px 0px ${japaneseThemePalette.PhthaloBluePurple}`
-          );
+          setBoxShadow(true);
         }}
         onMouseLeave={() => {
-          setBoxShadow("6px 6px 5px 0px rgba(0,0,0,0.75)");
-        }}
-        style={{
-          boxShadow: boxShadow,
-          backgroundColor: japaneseThemePalette.PhthaloBluePurple,
+          setBoxShadow(false);
         }}
         onClick={() => {
           setIsModalOpen(true);
         }}
       >
         🌀
-      </button>
-      <br />
+      </Button>
       <br />
     </>
   );
