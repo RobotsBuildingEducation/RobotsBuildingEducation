@@ -178,7 +178,7 @@ export const EmotionalIntelligence = ({
             title={"Emotional Intelligence"}
             closeFunction={() => {
               setIsEmotionalIntelligenceOpen(false);
-              setIsStartupOpen(false);
+              // setIsStartupOpen(false);
             }}
           />
         </Modal.Header>

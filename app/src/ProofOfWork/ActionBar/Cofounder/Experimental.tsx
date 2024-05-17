@@ -194,7 +194,7 @@ export const Experimental = ({
           title={"Assistant"}
           closeFunction={() => {
             setIsCofounderOpen(false);
-            setIsStartupOpen(false);
+            // setIsStartupOpen(false);
           }}
         />
       </Modal.Header>

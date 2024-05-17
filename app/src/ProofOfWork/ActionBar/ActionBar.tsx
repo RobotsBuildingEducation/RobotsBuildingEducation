@@ -54,6 +54,8 @@ export const ActionBar = ({
   setIsStartupOpen,
   isAdaptiveLearningOpen,
   setIsAdaptiveLearningOpen,
+  isLeetmigoOpen,
+  setIsLeetmigoOpen,
 }) => {
   const showBitcoin = useStore((state) => state.showBitcoin);
   const showZap = useStore((state) => state.showZap);
@@ -231,6 +233,8 @@ export const ActionBar = ({
           usersEmotionsFromDB={usersEmotionsFromDB}
           isAdaptiveLearningOpen={isAdaptiveLearningOpen}
           setIsAdaptiveLearningOpen={setIsAdaptiveLearningOpen}
+          isLeetmigoOpen={isLeetmigoOpen}
+          setIsLeetmigoOpen={setIsLeetmigoOpen}
         />
       ) : null}
     </>

@@ -1702,7 +1702,7 @@ export const BossMode = ({
             title={"Rox the AI Boss"}
             closeFunction={() => {
               setIsBossModeOpen(false);
-              setIsStartupOpen(false);
+              // setIsStartupOpen(false);
             }}
           />
         </Modal.Header>
