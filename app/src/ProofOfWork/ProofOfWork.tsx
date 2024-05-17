@@ -34,23 +34,28 @@ export const ProofOfWork = ({
 
   const [isAdaptiveLearningOpen, setIsAdaptiveLearningOpen] = useState(false);
 
+  const [isLeetmigoOpen, setIsLeetmigoOpen] = useState(false);
+
   useEffect(() => {
     if (isImpactWalletOpen) {
       setIsEmotionalIntelligenceOpen(false);
       setIsCofounderOpen(false);
       setIsBossModeOpen(false);
+      setIsLeetmigoOpen(false);
       // setIsStartupOpen(false);
     }
     if (isEmotionalIntelligenceOpen) {
       setIsImpactWalletOpen(false);
       setIsCofounderOpen(false);
       setIsBossModeOpen(false);
+      setIsLeetmigoOpen(false);
       // setIsStartupOpen(false);
     }
     if (isCofounderOpen) {
       setIsEmotionalIntelligenceOpen(false);
       setIsImpactWalletOpen(false);
       setIsBossModeOpen(false);
+      setIsLeetmigoOpen(false);
       // setIsStartupOpen(false);
     }
 
@@ -58,7 +63,15 @@ export const ProofOfWork = ({
       setIsEmotionalIntelligenceOpen(false);
       setIsCofounderOpen(false);
       setIsImpactWalletOpen(false);
+      setIsLeetmigoOpen(false);
       // setIsStartupOpen(false);
+    }
+
+    if (isLeetmigoOpen) {
+      setIsEmotionalIntelligenceOpen(false);
+      setIsCofounderOpen(false);
+      setIsImpactWalletOpen(false);
+      setIsBossModeOpen(false);
     }
 
     if (isStartupOpen) {
@@ -123,6 +136,8 @@ export const ProofOfWork = ({
         setIsStartupOpen={setIsStartupOpen}
         isAdaptiveLearningOpen={isAdaptiveLearningOpen}
         setIsAdaptiveLearningOpen={setIsAdaptiveLearningOpen}
+        isLeetmigoOpen={isLeetmigoOpen}
+        setIsLeetmigoOpen={setIsLeetmigoOpen}
       />
     </div>
   );

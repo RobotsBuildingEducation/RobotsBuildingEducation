@@ -14,13 +14,14 @@ import { BossMode } from "../BossMode/BossMode";
 import { Experimental } from "../Cofounder/Experimental";
 import { EmotionalIntelligence } from "../EmotionalIntelligence/EmotionalIntelligence";
 import { ImpactWallet } from "../ImpactWallet/ImpactWallet";
+import { Leetmigo } from "../Leetmigo/Leetmigo";
 
 const StyledFeature = styled(Button)`
   max-width: 700px;
   width: 100%;
-  height: 100px;
+  height: 75px;
   font-family: Bungee;
-  font-size: 18px;
+  font-size: 16px;
   text-align: left;
 `;
 export const RenderActionBarControls = ({
@@ -29,6 +30,7 @@ export const RenderActionBarControls = ({
   setIsEmotionalIntelligenceOpen,
   setIsImpactWalletOpen,
   setIsStartupOpen,
+  setIsLeetmigoOpen,
 }) => {
   const [isHovered, setIsHovered] = useState({
     bossMode: false,
@@ -37,6 +39,7 @@ export const RenderActionBarControls = ({
     emotionalIntelligence: false,
     impactWallet: false,
     startup: false,
+    leetmigo: false,
   });
 
   // Handler for mouse enter and leave
@@ -76,6 +79,8 @@ export const RenderActionBarControls = ({
             setIsEmotionalIntelligenceOpen(false);
             setIsBossModeOpen(false);
             setIsCofounderOpen(false);
+            setIsLeetmigoOpen(false);
+
             // setIsStartupOpen(false);
           }}
           variant="dark"
@@ -124,6 +129,33 @@ export const RenderActionBarControls = ({
         <StyledFeature
           style={{
             textShadow: "1px 1px 1px black",
+            borderBottom: isHovered.leetmigo
+              ? "0px solid transparent"
+              : `2px solid ${japaneseThemePalette.CobaltBlue}`,
+          }}
+          onClick={() => {
+            logEvent(analytics, "select_content", {
+              content_type: "button",
+              item_id: "Leetmigo",
+            });
+            setIsLeetmigoOpen(true);
+            setIsEmotionalIntelligenceOpen(false);
+            setIsBossModeOpen(false);
+            setIsCofounderOpen(false);
+            setIsImpactWalletOpen(false);
+
+            // setIsStartupOpen(false);
+          }}
+          variant="dark"
+          onMouseEnter={() => handleHover("leetmigo", true)}
+          onMouseLeave={() => handleHover("leetmigo", false)}
+        >
+          🥋 Super Practice Mode
+        </StyledFeature>
+        &nbsp; &nbsp;
+        <StyledFeature
+          style={{
+            textShadow: "1px 1px 1px black",
             borderBottom: isHovered.bossMode
               ? "0px solid transparent"
               : `2px solid ${japaneseThemePalette.CobaltBlue}`,
@@ -137,6 +169,8 @@ export const RenderActionBarControls = ({
             setIsCofounderOpen(false);
             setIsEmotionalIntelligenceOpen(false);
             setIsImpactWalletOpen(false);
+            setIsLeetmigoOpen(false);
+
             // setIsStartupOpen(false);
           }}
           variant="dark"
@@ -162,6 +196,8 @@ export const RenderActionBarControls = ({
             setIsBossModeOpen(false);
             setIsEmotionalIntelligenceOpen(false);
             setIsImpactWalletOpen(false);
+            setIsLeetmigoOpen(false);
+
             // setIsStartupOpen(false);
           }}
           variant="dark"
@@ -187,6 +223,7 @@ export const RenderActionBarControls = ({
             setIsBossModeOpen(false);
             setIsCofounderOpen(false);
             setIsImpactWalletOpen(false);
+            setIsLeetmigoOpen(false);
             // setIsStartupOpen(false);
           }}
           variant="dark"
@@ -230,6 +267,8 @@ export const Startup = ({
   usersEmotionsFromDB,
   isAdaptiveLearningOpen,
   setIsAdaptiveLearningOpen,
+  isLeetmigoOpen,
+  setIsLeetmigoOpen,
   // displayName
 }) => {
   return (
@@ -258,7 +297,7 @@ export const Startup = ({
             setIsStartupOpen(false);
             setIsAdaptiveLearningOpen(false);
           }}
-          title="Menu"
+          title="Feature Menu"
         />
       </Modal.Header>
       <Modal.Body
@@ -276,6 +315,7 @@ export const Startup = ({
           setIsEmotionalIntelligenceOpen={setIsEmotionalIntelligenceOpen}
           setIsImpactWalletOpen={setIsImpactWalletOpen}
           setIsStartupOpen={setIsStartupOpen}
+          setIsLeetmigoOpen={setIsLeetmigoOpen}
         />
         {isImpactWalletOpen ? (
           <ImpactWallet
@@ -324,6 +364,18 @@ export const Startup = ({
           <BossMode
             isBossModeOpen={isBossModeOpen}
             setIsBossModeOpen={setIsBossModeOpen}
+            userStateReference={userStateReference}
+            globalStateReference={globalStateReference}
+            zap={zap}
+            handleZap={handleZap}
+            setIsStartupOpen={setIsStartupOpen}
+          />
+        ) : null}
+
+        {isLeetmigoOpen ? (
+          <Leetmigo
+            isLeetmigoOpen={isLeetmigoOpen}
+            setIsLeetmigoOpen={setIsLeetmigoOpen}
             userStateReference={userStateReference}
             globalStateReference={globalStateReference}
             zap={zap}

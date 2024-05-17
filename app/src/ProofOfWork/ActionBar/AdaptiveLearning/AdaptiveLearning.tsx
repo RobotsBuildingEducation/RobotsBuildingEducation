@@ -187,7 +187,7 @@ export const AdaptiveLearning = ({
             setIsExiting(true);
             setIsAdaptiveLearningOpen(false);
           }}
-          title="Adaptive Learning (Beta)"
+          title="Adaptive Learning (Experimental)"
         />
       </Modal.Header>
       <Modal.Body

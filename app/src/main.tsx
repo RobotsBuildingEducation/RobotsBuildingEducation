@@ -16,10 +16,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
   },
-  {
-    path: "/map",
-    element: <DecisionMap />,
-  },
+  // {
+  //   path: "/map",
+  //   element: <DecisionMap />,
+  // },
   {
     path: "/sudo",
     element: <Dashboard />,

@@ -119,7 +119,7 @@ export const ImpactWallet = ({
             }
             closeFunction={() => {
               setIsImpactWalletOpen(false);
-              setIsStartupOpen(false);
+              // setIsStartupOpen(false);
             }}
           />
           <Modal.Title style={{ fontFamily: "Bungee" }}></Modal.Title>

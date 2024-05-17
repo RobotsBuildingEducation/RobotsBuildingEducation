@@ -75,8 +75,7 @@ export const Engineer = {
         },
         shop: {
           step: "8",
-          knowledge:
-            "The individual gains an understanding of the interdisciplinary nature of computer science and its applications across various fields, such as healthcare, environmental studies, and the arts. They learn the importance of computational thinking, the role of mathematics, and strategies for continuous learning in the rapidly evolving field. Additionally, they receive a study guide outlining stages of learning, a concise definition of the intersectionality of computer science, and a quiz to test their knowledge on its diverse applications.",
+          knowledge: `The individual is challenged to acquire "Cracking the Coding Interview" and work through problems despite being underskilled.`,
           label: "Domain expansion",
           collectorId: "Learning Mindset & Perspective-shop",
         },
@@ -787,6 +786,47 @@ exports.app = functions.https.onRequest(app);
       fileSource:
         "https://res.cloudinary.com/sheilfer/video/upload/v1693470075/CODING_LESSON_1_OOP_COMPRESSED_rnyagi_jalk2h.mov", // may not need
 
+      knowledge: {
+        start: {
+          step: "9",
+          knowledge: "Started to learn about coding and why it matters.",
+          label: "Start journey",
+          collectorId: "Lesson 1 Coding Fundamentals-start",
+        },
+        discover: {
+          step: "10",
+          knowledge:
+            "The individual learns about Cynthia Breazeal's pioneering work with the robot Kismet, highlighting the evolution and impact of machine learning in enhancing human-computer interaction. They are introduced to a practical JavaScript example, demonstrating how to set up a web server using Express and Firebase functions, integrate OpenAI's API, and handle asynchronous requests. Through the detailed code breakdown, they gain an understanding of various programming concepts and how to apply them, making complex topics more approachable and encouraging continuous learning and innovation.",
+          label: "Discover computational literacy",
+          collectorId: "Lesson 1 Coding Fundamentals-discover",
+        },
+        video: {
+          step: "11",
+          knowledge:
+            "The individual learns that coding is accessible to everyone, regardless of their background or initial skill level. They gain insights into overcoming imposter syndrome and building confidence through structured steps: imagining, drawing connections, observing, and practicing. Additionally, they are encouraged to see coding as a versatile tool that can be applied to various fields, fostering a mindset of problem-solving and continuous learning.",
+          label: "Introduction to engineering",
+          collectorId: "Lesson 1 Coding Fundamentals-video",
+        },
+        guide: {
+          step: "12",
+          knowledge:
+            "The individual gains an understanding of the interdisciplinary nature of computer science and its applications across various fields, such as healthcare, environmental studies, and the arts. They learn the importance of computational thinking, the role of mathematics, and strategies for continuous learning in the rapidly evolving field. Additionally, they receive a study guide outlining stages of learning, a concise definition of the intersectionality of computer science, and a quiz to test their knowledge on its diverse applications.",
+          label: "Study guide",
+          collectorId: "Lesson 1 Coding Fundamentals-guide",
+        },
+        practice: {
+          step: "13",
+          knowledge: `In this section, the individual practices defining a class and creating an object in coding. They learn how to write a basic line of code (console.log("Hello world!");) and understand its use in testing logic and communicating data between systems. Additionally, they gain familiarity with using the browser's console to view data and messages, a fundamental skill for developers.`,
+          label: "Practice session",
+          collectorId: "Lesson 1 Coding Fundamentals-practice",
+        },
+        shop: {
+          step: "14",
+          knowledge: `The individual is challenged to acquire "Cracking the Coding Interview" and work through problems despite being underskilled.`,
+          label: "Domain expansion",
+          collectorId: "Lesson 1 Coding Fundamentals-shop",
+        },
+      },
       prompts: {
         welcome: {
           response: (
