@@ -27,7 +27,7 @@ import { ExternalLink } from "../Elements/ExternalLink/ExternalLink";
 import { Typewriter } from "../Elements/Typewriter/Typewriter";
 
 export const Engineer = {
-  "Coding Crash Course Version 3": {
+  "Coding & Startups": {
     "Learning Mindset & Perspective": {
       backgroundImgSrc:
         "https://res.cloudinary.com/dtkeyccga/image/upload/v1691640391/ROBE_assets/Module_Buttons_1_ixnitr_scjfyk.gif",
@@ -43,7 +43,7 @@ export const Engineer = {
         start: {
           step: "3",
           knowledge: "Started to learn about coding and why it matters.",
-          label: "Start journey",
+          label: "Start lecture",
           collectorId: "journey-start",
         },
         discover: {
@@ -789,40 +789,43 @@ exports.app = functions.https.onRequest(app);
       knowledge: {
         start: {
           step: "9",
-          knowledge: "Started to learn about coding and why it matters.",
-          label: "Start journey",
+          knowledge:
+            "Students are invited to explore Object-Oriented Programming, focusing on understanding and implementing concepts such as classes, objects, and inheritance, with encouragement and support for their learning journey.",
+          label: "Start lecture",
           collectorId: "Lesson 1 Coding Fundamentals-start",
         },
         discover: {
           step: "10",
           knowledge:
-            "The individual learns about Cynthia Breazeal's pioneering work with the robot Kismet, highlighting the evolution and impact of machine learning in enhancing human-computer interaction. They are introduced to a practical JavaScript example, demonstrating how to set up a web server using Express and Firebase functions, integrate OpenAI's API, and handle asynchronous requests. Through the detailed code breakdown, they gain an understanding of various programming concepts and how to apply them, making complex topics more approachable and encouraging continuous learning and innovation.",
-          label: "Discover computational literacy",
+            "Introduced to Object-Oriented Programming (OOP) concepts, including classes and objects, and how they model real-world entities. Learned how to set up a simple coding environment and create basic programs.",
+          label: "Discover OOP concepts",
           collectorId: "Lesson 1 Coding Fundamentals-discover",
         },
         video: {
           step: "11",
           knowledge:
-            "The individual learns that coding is accessible to everyone, regardless of their background or initial skill level. They gain insights into overcoming imposter syndrome and building confidence through structured steps: imagining, drawing connections, observing, and practicing. Additionally, they are encouraged to see coding as a versatile tool that can be applied to various fields, fostering a mindset of problem-solving and continuous learning.",
-          label: "Introduction to engineering",
+            "Learned about coding fundamentals, focusing on data and logic, loops, functions, and creating objects. We explored how code models the digital world, emphasizing object-oriented programming and the importance of managing data relationships and functionality. Additionally, we discussed synchronous and asynchronous functions, loops, and the significance of organizing information in coding, concluding with a practical example involving classes and objects.",
+          label: "Introduction to OOP",
           collectorId: "Lesson 1 Coding Fundamentals-video",
         },
         guide: {
           step: "12",
           knowledge:
-            "The individual gains an understanding of the interdisciplinary nature of computer science and its applications across various fields, such as healthcare, environmental studies, and the arts. They learn the importance of computational thinking, the role of mathematics, and strategies for continuous learning in the rapidly evolving field. Additionally, they receive a study guide outlining stages of learning, a concise definition of the intersectionality of computer science, and a quiz to test their knowledge on its diverse applications.",
+            "Students learned the basics of Object-Oriented Programming (OOP), including creating and managing objects, and fundamental concepts like inheritance, encapsulation, and abstraction. They also explored the significance of coding in organizing information and managing data relationships.",
           label: "Study guide",
           collectorId: "Lesson 1 Coding Fundamentals-guide",
         },
         practice: {
           step: "13",
-          knowledge: `In this section, the individual practices defining a class and creating an object in coding. They learn how to write a basic line of code (console.log("Hello world!");) and understand its use in testing logic and communicating data between systems. Additionally, they gain familiarity with using the browser's console to view data and messages, a fundamental skill for developers.`,
+          knowledge:
+            "Practiced writing basic OOP code, including defining classes and creating objects. Learned how to use methods and attributes in coding, and practiced using the browser's console to view data and messages.",
           label: "Practice session",
           collectorId: "Lesson 1 Coding Fundamentals-practice",
         },
         shop: {
           step: "14",
-          knowledge: `The individual is challenged to acquire "Cracking the Coding Interview" and work through problems despite being underskilled.`,
+          knowledge:
+            "Readers learn how to use Python to automate repetitive tasks, making everyday computing more efficient and less time-consuming after reading 'automate the boring stuff'.",
           label: "Domain expansion",
           collectorId: "Lesson 1 Coding Fundamentals-shop",
         },
@@ -1985,6 +1988,51 @@ throw new Error(
       fileSource:
         "https://res.cloudinary.com/dtkeyccga/video/upload/v1691637324/v3/CODING_LESSON_2_FRONTEND_COMPRESSED_lc7u4p.mov", // may not need
 
+      knowledge: {
+        start: {
+          step: "15",
+          knowledge:
+            "Students will learn event-driven programming, which makes software responsive and interactive, and user-centered design, which focuses on creating solutions that meet users' needs and preferences.",
+          label: "Start lecture",
+          collectorId: "Lesson 2 Frontend Programming-start",
+        },
+        discover: {
+          step: "16",
+          knowledge:
+            "Students learned about frontend development using React, focusing on event-driven programming, components, state, and hooks. They explored a Tweet component example to understand React's approach to building user interfaces and the importance of data flow in modern web development. The lesson emphasized the value of learning React for creating intuitive and efficient user experiences.",
+          label: "Discover event-driven programming",
+          collectorId: "Lesson 2 Frontend Programming-discover",
+        },
+        video: {
+          step: "17",
+          knowledge:
+            "Students learned the fundamentals of organizing data with code, focusing on objects, functions, loops, and logic. They explored creating user interface components using React, understanding the importance of hooks, state, and properties to manage dynamic data and user interactions. Additionally, they delved into the principles of event-driven programming and user-centered design, emphasizing the significance of creating responsive and intuitive digital experiences.",
+          label: "Introduction to frontend programming",
+          collectorId: "Lesson 2 Frontend Programming-video",
+        },
+        guide: {
+          step: "18",
+          knowledge:
+            "Students explored frontend development using React, focusing on event-driven programming, components, state, and hooks to build interactive and dynamic user interfaces. They learned about the importance of data flow in React and how these concepts enhance the creation of efficient, maintainable, and user-centered applications.",
+          label: "Study guide",
+          collectorId: "Lesson 2 Frontend Programming-guide",
+        },
+        practice: {
+          step: "19",
+          knowledge:
+            "The practice session guides users through creating a React component that generates a dynamic gradient background, demonstrating the use of React hooks, state management, and animation techniques.",
+          label: "Practice sessions",
+          collectorId: "Lesson 2 Frontend Programming-practice",
+        },
+        shop: {
+          step: "20",
+          knowledge:
+            "The shop promotes a classic frontend development book by Duckett, emphasizing its value in teaching HTML, CSS, and JavaScript fundamentals despite its focus on the older JQuery framework.",
+          label: "Expand your frontend skills",
+          collectorId: "Lesson 2 Frontend Programming-shop",
+        },
+      },
+
       prompts: {
         welcome: {
           response: (
@@ -2194,7 +2242,7 @@ export let ClickButton = () => {
 
   return (
     <div>
-      <button onClick={handleClick}>
+      <button onMouseDown={handleClick}>
         Click
       </button>
 
@@ -2926,6 +2974,50 @@ return <div style={gradientStyle}>
       fileSource:
         "https://res.cloudinary.com/dtkeyccga/video/upload/v1691637319/v3/CODING_LESSON_3_BACKEND_COMPRESSED_qzpnwg.mov", // may not need
 
+      knowledge: {
+        start: {
+          step: "21",
+          knowledge:
+            "Students will explore backend engineering, cloud computing, and big data, understanding their crucial roles in keeping digital systems running smoothly and efficiently.",
+          label: "Start lecture",
+          collectorId: "Lesson 3 Backend Engineering-start",
+        },
+        discover: {
+          step: "22",
+          knowledge:
+            "Students learned about backend engineering, cloud computing, and big data, including the importance of operating systems, databases, and user accounts in software development. They were introduced to how these elements work together to manage tasks, organize data, and facilitate user interactions.",
+          label: "Discover backend engineering",
+          collectorId: "Lesson 3 Backend Engineering-discover",
+        },
+        video: {
+          step: "23",
+          knowledge:
+            "Students will learn the essentials of backend engineering, focusing on how operating systems, databases, and user authentication systems work together to manage and process data efficiently. They will explore the use of command line interfaces to interact with these systems and understand how backend services support frontend applications to create seamless user experiences. The course emphasizes the importance of modeling real-world systems with technology, guiding students through practical examples to grasp complex backend concepts.",
+          label: "Introduction to backend engineering",
+          collectorId: "Lesson 3 Backend Engineering-video",
+        },
+        guide: {
+          step: "24",
+          knowledge:
+            "Students learned the fundamentals of backend engineering, cloud computing, and big data, focusing on how these technologies support and enhance digital applications. They explored the importance of understanding databases, web protocols, and data analysis techniques to build efficient and scalable systems.",
+          label: "Study guide",
+          collectorId: "Lesson 3 Backend Engineering-guide",
+        },
+        practice: {
+          step: "25",
+          knowledge:
+            "The practice session guides users through creating a backend application using Express and OpenAI, demonstrating the setup of APIs, environment variables, and server-side processing.",
+          label: "Practice session",
+          collectorId: "Lesson 3 Backend Engineering-practice",
+        },
+        shop: {
+          step: "26",
+          knowledge:
+            "The shop promotes a book on industry-level standards for building large-scale technology, highlighting its value for understanding complex backend engineering challenges.",
+          label: "Expand your backend skills",
+          collectorId: "Lesson 3 Backend Engineering-shop",
+        },
+      },
       prompts: {
         welcome: {
           response: (
@@ -2943,14 +3035,6 @@ return <div style={gradientStyle}>
               data? It's like the leaves of a forest whispering stories, sharing
               knowledge, and predicting the future. 🌳☁️🍃 .... you following
               me?
-              <br />
-              <br />
-              <ExternalLink
-                textDisplay={"Building AI Apps"}
-                link={
-                  "https://www.patreon.com/posts/building-ai-apps-101818356?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
-                }
-              />
               <br />
               <br />
               So let's embark on this adventure together. Remember, every
@@ -2991,6 +3075,14 @@ return <div style={gradientStyle}>
               data organization and management. The creation of user experiences
               is highlighted, showing how user accounts facilitate interactions
               within software.
+              <br />
+              <br />
+              <ExternalLink
+                textDisplay={"Building AI Apps"}
+                link={
+                  "https://www.patreon.com/posts/building-ai-apps-101818356?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                }
+              />
               <br /> <br />
               This lecture aims to make backend concepts more approachable,
               encouraging exploration and creativity in software development. 👩‍💻
@@ -3947,7 +4039,50 @@ exports.app = functions
       credential: "Full-stack Software Engineering",
       fileSource:
         "https://res.cloudinary.com/dtkeyccga/video/upload/v1691867426/v3/CODING_LESSON_4_BUILD_APPS_COMPRESSED_ewvr2c.mov", // may not need
-
+      knowledge: {
+        start: {
+          step: "27",
+          knowledge:
+            "Students will be introduced to the journey of becoming app developers and startup founders, learning how Backend as a Service (BaaS) platforms can help build scalable and secure apps efficiently.",
+          label: "Start lecture",
+          collectorId: "Lesson 4 Building Apps-start",
+        },
+        discover: {
+          step: "28",
+          knowledge:
+            "Students will set up their development environment with tools like VSCode and Node.js, create a project directory, and start a React project. They will also explore setting up a database with Firebase for user data management and authentication, bridging creative ideas with real digital applications.",
+          label: "Discover app building",
+          collectorId: "Lesson 4 Building Apps-discover",
+        },
+        video: {
+          step: "29",
+          knowledge:
+            "Students will learn to build an application by setting up their development environment, using tools like VSCode, Node.js, and Firebase, and connecting systems to create real user experiences. They will practice creating a folder structure, running commands, and integrating backend services like Firebase for user authentication and data management. Additionally, students will explore resources to understand startup scaling and competition.",
+          label: "Introduction to building apps",
+          collectorId: "Lesson 4 Building Apps-video",
+        },
+        guide: {
+          step: "30",
+          knowledge:
+            "Students will learn the basics of app development, including UI/UX design, database management, user authentication, and connecting apps to the internet. They will also explore the concept of startup funding through SAFE documents, which simplify the fundraising process and provide a foundation for growing their business.",
+          label: "Study guide",
+          collectorId: "Lesson 4 Building Apps-guide",
+        },
+        practice: {
+          step: "31",
+          knowledge:
+            "Students will practice wiring up OpenAI to create a user experience, using React for building the web page, Axios for handling requests, and Firebase for managing data and user authentication.",
+          label: "Practice session",
+          collectorId: "Lesson 4 Building Apps-practice",
+        },
+        shop: {
+          step: "32",
+          knowledge:
+            "Students will be introduced to resources such as 'Power Law Finance' and 'The Innovator's Dilemma' to understand how startups can compete with large firms and scale their businesses.",
+          label: "Expand knowledge",
+          collectorId: "Lesson 4 Building Apps-shop",
+        },
+      },
       prompts: {
         welcome: {
           response: (
@@ -4903,7 +5038,7 @@ const [userId, setUserId] = useState(null);`,
         value={input} 
         onChange={(e) => setInput(e.target.value)} 
       />
-      <button onClick={callOpenAI}>
+      <button onMouseDown={callOpenAI}>
         Generate and Save
       </button>
     </div>
@@ -5010,7 +5145,7 @@ const OpenAIComponent = () => {
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
-      <button onClick={callOpenAI}>
+      <button onMouseDown={callOpenAI}>
         Generate and Save
       </button>
     </div>
@@ -5075,7 +5210,7 @@ type="text"
 value={input}
 onChange={(e) => setInput(e.target.value)}
 />
-<button onClick={callOpenAI}>
+<button onMouseDown={callOpenAI}>
 Generate and Save
 </button>
 </div>
@@ -5096,6 +5231,53 @@ export default OpenAIComponent;`,
       credential: "Data Structures & Algorithms",
       fileSource:
         "https://res.cloudinary.com/sheilfer/video/upload/v1693469552/IMG_6826_ioqdfm_hxzxsl.mov", // may not need
+
+      knowledge: {
+        start: {
+          step: "33",
+          knowledge:
+            "Students will be introduced to the essential topics of data structures and algorithms, learning how to organize and manipulate data efficiently.",
+          label: "Start lecture",
+          collectorId: "Lesson 5 Computer Science-start",
+        },
+        discover: {
+          step: "34",
+          knowledge:
+            "Students will explore the fundamentals of data structures like arrays, linked lists, stacks, and queues, understanding their uses and implementations. They will also learn about algorithms, which are step-by-step instructions for solving problems, and their significance in programming.",
+          label: "Discover data structures and algorithms",
+          collectorId: "Lesson 5 Computer Science-discover",
+        },
+
+        video: {
+          step: "35",
+          knowledge:
+            "The individual addresses the challenges of data structures and algorithms, emphasizing the importance of practice and breaking down complex concepts into understandable steps. It explores how programming languages work, how code is interpreted by computers, and introduces key data structures like linked lists, trees, and graphs, along with their associated algorithms. By understanding and practicing these concepts, students gain foundational skills necessary for advanced computer science and problem-solving.",
+          label: "Introduction to computer science",
+          collectorId: "Lesson 5 Computer Science-video",
+        },
+
+        guide: {
+          step: "36",
+          knowledge:
+            "Students will dive deeper into intermediate data structures such as trees, graphs, and hash tables, and learn about advanced algorithms like dynamic programming and graph traversal. They will also gain insights into real-world applications of these concepts in databases, networking, and cloud computing.",
+          label: "Study guide",
+          collectorId: "Lesson 5 Computer Science-guide",
+        },
+        practice: {
+          step: "37",
+          knowledge:
+            "Students will practice implementing Dijkstra's algorithm in JavaScript, a fundamental graph algorithm for finding the shortest paths between nodes.",
+          label: "Practie session",
+          collectorId: "Lesson 5 Computer Science-practice",
+        },
+        shop: {
+          step: "38",
+          knowledge:
+            "Students are encouraged to acquire books and resources that challenge them to deepen their understanding of data structures and algorithms, such as 'Grokking Algorithms'.",
+          label: "Expand your knowledge",
+          collectorId: "Lesson 5 Computer Science-shop",
+        },
+      },
 
       prompts: {
         welcome: {

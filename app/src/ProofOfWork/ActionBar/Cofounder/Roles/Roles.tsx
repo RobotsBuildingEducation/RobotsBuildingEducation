@@ -230,7 +230,7 @@ export const SoftwareEngineerComponent = ({ code }) => {
 
   return (
     <div>
-      <StyledPromptHeaderButton onClick={toggleOpen}>
+      <StyledPromptHeaderButton onMouseDown={toggleOpen}>
         Software Engineer's Task
       </StyledPromptHeaderButton>
       <br />
@@ -289,7 +289,7 @@ export const ContentCreatorComponent = ({ script }) => {
 
   return (
     <div>
-      <StyledPromptHeaderButton onClick={toggleOpen}>
+      <StyledPromptHeaderButton onMouseDown={toggleOpen}>
         Content Creator's Script
       </StyledPromptHeaderButton>
       {/* {script.map((section, index) => (
@@ -319,7 +319,7 @@ export const ExecutiveAssistantComponent = ({ schedule, business }) => {
   if (business) {
     return (
       <div>
-        <StyledPromptHeaderButton onClick={toggleOpen}>
+        <StyledPromptHeaderButton onMouseDown={toggleOpen}>
           Executive Assistant's Document
         </StyledPromptHeaderButton>
         <br />
@@ -349,7 +349,7 @@ export const ExecutiveAssistantComponent = ({ schedule, business }) => {
   } else {
     return (
       <div>
-        <StyledPromptHeaderButton onClick={toggleOpen}>
+        <StyledPromptHeaderButton onMouseDown={toggleOpen}>
           Executive Assistant's Schedule
         </StyledPromptHeaderButton>
         <br />
@@ -376,7 +376,7 @@ export const InvestorComponent = ({ insight }) => {
   const [isOpen, toggleOpen] = useCollapsible();
   return (
     <div>
-      <StyledPromptHeaderButton onClick={toggleOpen}>
+      <StyledPromptHeaderButton onMouseDown={toggleOpen}>
         Investor Insights
       </StyledPromptHeaderButton>
       <br />

@@ -151,9 +151,12 @@ let App = () => {
    */
   const handleModuleSelection = async (lectureModule, moduleName) => {
     // can redefine this as module object rather than patreon object. low priority
-
+    // handleZap();
     console.log("running valid storage", isLocalStorageValid());
-    if (moduleName === "Focus Investing" && isLocalStorageValid() === false) {
+    if (
+      moduleName !== "Learning Mindset & Perspective" &&
+      isLocalStorageValid() === false
+    ) {
       setIsLocalModalActive(true);
     } else {
       uiStateReference.setPatreonObject(lectureModule);
@@ -170,8 +173,9 @@ let App = () => {
       });
       uiStateReference.setModuleName(moduleName);
       uiStateReference.setCurrentPath("");
+
       if (lectureModule.knowledge.start.step) {
-        await addKnowledgeStep(
+        addKnowledgeStep(
           lectureModule.knowledge.start.step,
           lectureModule.knowledge.start.knowledge,
           lectureModule.knowledge.start.label,
@@ -336,7 +340,7 @@ let App = () => {
     }
 
     if (unlocked) {
-      let current = setOfLectures.indexOf(moduleName);
+      let current = setOfLectures?.indexOf(moduleName);
 
       let next = setOfLectures[current + 1];
 
@@ -345,6 +349,9 @@ let App = () => {
         [next]: true,
       };
 
+      if (moduleName === "Learning Mindset & Perspective") {
+        return;
+      }
       if (moduleName === "Lesson 2 Frontend Programming") {
         unlocks = {
           ...unlocks,
@@ -393,6 +400,7 @@ let App = () => {
           handleModal("Learning Mindset & Perspective-practice");
         }
       } else if (setType === "watches") {
+        handleZap();
         if (moduleName === "Learning Mindset & Perspective") {
           handleModal("Learning Mindset & Perspective-video");
         }
@@ -427,6 +435,8 @@ let App = () => {
           alignItems: "center",
         }}
       >
+        return{" "}
+        <button onClick={() => methodDoesNotExist()}>Break the world</button>;
         <div
           className="App"
           style={{
@@ -469,7 +479,7 @@ let App = () => {
                 >
                   <StyledRoxHeader
                     id="landing"
-                    onClick={() => {
+                    onMouseDown={() => {
                       uiStateReference.setPatreonObject({});
                       uiStateReference.setCurrentPath("");
                     }}
@@ -791,6 +801,31 @@ let App = () => {
                                     }}
                                     variant="dark"
                                   >
+                                    🥋 <b>Super Practice Mode (new)</b>
+                                  </Button>
+                                  &nbsp;
+                                </b>
+                                <br />
+                                <br />
+                                Intelligently generate technical interview
+                                questions and solve them strategically and
+                                effeciently using a decision map with hints and
+                                guidance. After figuring out a solution, request
+                                feedback to see how you can improve.
+                                <br /> <br />
+                                <br />
+                                <b>
+                                  {" "}
+                                  <Button
+                                    disabled
+                                    style={{
+                                      fontFamily: "Bungee",
+                                      opacity: 1,
+                                      textShadow: "1px 1px 1px black",
+                                      borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
+                                    }}
+                                    variant="dark"
+                                  >
                                     💎 <b>AI-Powered Challenges</b>
                                   </Button>
                                   &nbsp;
@@ -1087,7 +1122,6 @@ let App = () => {
             </div>
           </>
         </div>
-
         <ProofOfWorkWrapper
           userStateReference={userStateReference}
           globalStateReference={globalStateReference}
@@ -1107,6 +1141,7 @@ let App = () => {
         isLocalModalActive={isLocalModalActive}
         setIsLocalModalActive={setIsLocalModalActive}
         handleModuleSelection={handleModuleSelection}
+        patreonObject={uiStateReference.patreonObject}
       />
     </>
   );

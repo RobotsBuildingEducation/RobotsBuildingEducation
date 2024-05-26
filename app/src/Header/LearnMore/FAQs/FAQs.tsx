@@ -83,8 +83,8 @@ const FAQSection = () => {
           <br />
           <ol>
             <li>Every student should have access to many good teachers.</li>
-            <li>Online education should be the best education</li>
-            <li>Learning creates scholarships</li>
+            <li>Online education should be the best education.</li>
+            <li>Learning creates scholarships.</li>
           </ol>
           Robots Building Education uses a system called Proof Of Work to
           measure learning. When you use the application, you're putting robots
@@ -574,7 +574,7 @@ const FAQSection = () => {
           cursor: "pointer",
           transition: "0.16s all ease-in-out",
         }}
-        onClick={() => {
+        onMouseDown={() => {
           if (display === "none") {
             setDisplay("block");
           } else {

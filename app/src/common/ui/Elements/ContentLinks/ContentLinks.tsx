@@ -33,7 +33,7 @@ export const ContentLinks = ({ patreonObject, type }) => {
       <Button
         style={{ padding: 12, width: "75%", marginTop: 12 }}
         variant="dark"
-        onClick={() => setIsWikiOpen(true)}
+        onMouseDown={() => setIsWikiOpen(true)}
       >
         <h4>Wiki 🌎</h4>
       </Button>
@@ -73,7 +73,7 @@ export const ContentLinks = ({ patreonObject, type }) => {
           </RiseUpAnimation>
         </Modal.Body>
         {/* <Modal.Footer style={{ backgroundColor: "black" }}>
-          <Button variant="dark" onClick={() => setIsWikiOpen(false)}>
+          <Button variant="dark" onMouseDown={() => setIsWikiOpen(false)}>
             Back to app
           </Button>
         </Modal.Footer> */}

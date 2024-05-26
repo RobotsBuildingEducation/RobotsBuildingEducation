@@ -39,8 +39,8 @@ export const Intro = ({
         textAlign: "left",
         padding: 5,
         // maxWidth: isHome ? "90.5%" : "80.5%",
-        maxWidth: isHome ? "90.5%" : "80.5%",
-        minWidth: isHome ? "90.5%" : "80.5%",
+        maxWidth: "90.5%",
+        minWidth: "90.5%",
 
         borderTopLeftRadius: 50,
         borderTopRightRadius: 50,

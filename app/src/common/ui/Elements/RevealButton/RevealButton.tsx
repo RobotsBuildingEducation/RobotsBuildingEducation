@@ -34,7 +34,7 @@ const SummaryItem = ({ question, answer, index }) => {
       <div index={index}>
         {/* <Button
           style={{ padding: 25, width: "100%", marginTop: 12 }}
-          onClick={() => setOpen(!open)}
+          onMouseDown={() => setOpen(!open)}
           aria-controls="example-collapse-text"
           aria-expanded={open}
           variant="dark"
@@ -44,7 +44,7 @@ const SummaryItem = ({ question, answer, index }) => {
         <button
           aria-controls="example-collapse-text"
           aria-expanded={open}
-          onClick={() => setOpen(!open)}
+          onMouseDown={() => setOpen(!open)}
           style={{
             // backgroundColor: japaneseThemePalette.PhthaloBluePurple,
             ...textBlock(

@@ -95,7 +95,7 @@ export const SelectionQuestion = ({ question, onAnswerSubmit }) => {
         </Droppable>
         <br />
         <br />
-        <button onClick={checkAnswer}>Submit Answer</button>
+        <button onMouseDown={checkAnswer}>Submit Answer</button>
       </DragDropContext>
     </>
   );

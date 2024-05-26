@@ -16,6 +16,7 @@ export let CodeDisplay = ({ code }) => {
         display: "flex",
         flexDirection: "column",
         borderRadius: 15,
+        boxShadow: "4px 4px 5px 0px rgba(0,0,0,0.75)",
       }}
     >
       <pre>

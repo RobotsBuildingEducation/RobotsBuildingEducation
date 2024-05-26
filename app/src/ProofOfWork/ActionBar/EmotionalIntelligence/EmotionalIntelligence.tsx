@@ -207,7 +207,7 @@ export const EmotionalIntelligence = ({
                 <EmotionButton
                   color={item.color}
                   colorHover={item.colorHover}
-                  onClick={() => handleEmotionSelection(item, true)}
+                  onMouseDown={() => handleEmotionSelection(item, true)}
                 >
                   {item?.label}
                   <br />
@@ -224,7 +224,7 @@ export const EmotionalIntelligence = ({
                 <EmotionButton
                   color={item.color}
                   colorHover={item.colorHover}
-                  onClick={() => handleEmotionSelection(item, true)}
+                  onMouseDown={() => handleEmotionSelection(item, true)}
                 >
                   {item?.label}
                   <br />
@@ -249,7 +249,7 @@ export const EmotionalIntelligence = ({
                   }}
                 >
                   the journey &nbsp;
-                  <Button variant="light" onClick={reviewJourney}>
+                  <Button variant="light" onMouseDown={reviewJourney}>
                     💌
                   </Button>
                 </div>
@@ -303,7 +303,7 @@ export const EmotionalIntelligence = ({
                           <EmotionButton
                             color={emotion?.color}
                             colorHover={emotion.colorHover}
-                            onClick={() =>
+                            onMouseDown={() =>
                               handleEmotionSelection(emotion, false)
                             }
                           >
@@ -326,7 +326,7 @@ export const EmotionalIntelligence = ({
         {/* <Modal.Footer style={EmotionalIntelligenceStyles.Footer}>
           <Button
             variant="dark"
-            onClick={() => setIsEmotionalIntelligenceOpen(false)}
+            onMouseDown={() => setIsEmotionalIntelligenceOpen(false)}
           >
             Back to app
           </Button>
@@ -395,7 +395,7 @@ export const EmotionalIntelligence = ({
                 <Button
                   variant="light"
                   style={EmotionalIntelligenceStyles.GenerateInsightButton}
-                  onClick={generateAdviceOrWisdom}
+                  onMouseDown={generateAdviceOrWisdom}
                   disabled={isAiResponseLoading}
                 >
                   generate insight 💌
@@ -465,7 +465,7 @@ export const EmotionalIntelligence = ({
         <Modal.Footer style={EmotionalIntelligenceStyles.EmotionFooter}>
           {/* <Button
             variant="dark"
-            onClick={() => {
+            onMouseDown={() => {
               setIsEmotionModalOpen(false);
               setChatGptResponse("");
               setShouldRenderSaveButton(false);
@@ -476,7 +476,7 @@ export const EmotionalIntelligence = ({
           </Button> */}
 
           {shouldRenderSaveButton ? (
-            <Button variant="dark" onClick={saveEmotionData}>
+            <Button variant="dark" onMouseDown={saveEmotionData}>
               Save
             </Button>
           ) : null}

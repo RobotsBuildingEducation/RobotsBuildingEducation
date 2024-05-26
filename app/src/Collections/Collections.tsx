@@ -40,7 +40,7 @@ export const Collections = ({
   if (!currentPath || !uiCollections || !uiCollections[currentPath])
     return null;
 
-  //although not displayed, this is the first child under a Path. For example, it would be "Coding Crash Course Version 3" under Engineer
+  //although not displayed, this is the first child under a Path. For example, it would be "Coding & Startups" under Engineer
   const collections = Object.keys(uiCollections[currentPath]);
 
   // get the modules for each collection
@@ -50,6 +50,7 @@ export const Collections = ({
     if (modules && modules.length > 0) {
       return (
         <div>
+          <h4 style={{ fontFamily: "Bungee" }}>{collection}</h4>
           <StyledCollectionContainer>
             {modules.map((module, index) => (
               <StyledAnimatedModule index={index} key={module}>
@@ -62,6 +63,8 @@ export const Collections = ({
               </StyledAnimatedModule>
             ))}
           </StyledCollectionContainer>
+          <br />
+          <br />
         </div>
       );
     }

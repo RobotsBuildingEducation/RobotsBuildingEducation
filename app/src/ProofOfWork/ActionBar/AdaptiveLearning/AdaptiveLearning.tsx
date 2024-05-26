@@ -18,6 +18,7 @@ import {
 } from "../../../styles/lazyStyles";
 import { EditIcon } from "../../../common/svgs/EditIcon";
 import { useZap, useZapAnimation } from "../../../App.hooks";
+import Markdown from "react-markdown";
 
 export const AdaptiveLearning = ({
   isAdaptiveLearningOpen,
@@ -34,18 +35,18 @@ export const AdaptiveLearning = ({
   const [isLoading, setIsLoading] = useState(false);
   const [apiResponse, setApiResponse] = useState(null);
   const [instructions, setInstructions] = useState(
-    "The individual has collected this knowledge while learning how to build a startup from scratch. Generally speaking, they're starting with code first and need to learn that. This later includes a number of skills like coding, business, investing, design, philosophy, resume writing, and psychology. The idea is to provide real time feedback and suggestions as an individual learns more skills and gains awareness of the challenge. You have a maximum of 3 sentences. This is the following knowledge they've collected so far:"
+    "The individual has collected this knowledge represented in JSON while learning how to build a business or goal from scratch. In a minimalist markdown, where the biggest headers are ####, recommend the next best possible action to generate revenue, income or success in up to 3 sentences based on what the individual's goals or business is. Then have a section that generates an execution strategy and another section that explains your thought process."
   );
   const [isEditing, setIsEditing] = useState(false);
   const [areInstructionsSaving, setAreInstructionsSaving] = useState(false);
   const userId = localStorage.getItem("uniqueId");
-
+  const [businessGoal, setBusinessGoal] = useState("learning how to code.");
   const [isExiting, setIsExiting] = useState(false);
 
   const fetchUpdate = async (data) => {
     setIsLoading(true);
 
-    let prompt = customInstructions(instructions, data);
+    let prompt = customInstructions(instructions, data, businessGoal);
 
     try {
       const response = await fetch(postInstructions.url, {
@@ -90,6 +91,7 @@ export const AdaptiveLearning = ({
       const userDocRef = doc(database, "users", userId);
       await updateDoc(userDocRef, {
         "learning.instructions": instructions,
+        "learning.business": businessGoal,
       });
 
       setIsEditing(false);
@@ -109,6 +111,9 @@ export const AdaptiveLearning = ({
         const userData = docSnapshot.data();
         if (userData.learning && userData.learning.instructions) {
           setInstructions(userData.learning.instructions);
+        }
+        if (userData.learning && userData.learning.business) {
+          setBusinessGoal(userData.learning.business);
         }
       }
     });
@@ -132,14 +137,14 @@ export const AdaptiveLearning = ({
         setKnowledgeData(data);
 
         if (!isFirstRender.current && !isAdaptiveLearningOpen && !isExiting) {
-          handleZapAnimation();
+          //   handleZapAnimation();
         } else {
           isFirstRender.current = false;
         }
 
         if (
           isAdaptiveLearningOpen
-          //    &&
+          //   &&
           //   window.location.hostname === "robotsbuildingeducation.com"
         ) {
           fetchUpdate(data);
@@ -187,7 +192,7 @@ export const AdaptiveLearning = ({
             setIsExiting(true);
             setIsAdaptiveLearningOpen(false);
           }}
-          title="Adaptive Learning (Experimental)"
+          title="Adaptive Learning"
         />
       </Modal.Header>
       <Modal.Body
@@ -225,8 +230,8 @@ export const AdaptiveLearning = ({
                   borderBottomRightRadius: "50px",
                 }}
               >
-                <strong>Recommendation</strong>
-                <div>{apiResponse}</div>
+                {/* <strong>Recommendation</strong> */}
+                <Markdown>{apiResponse}</Markdown>
               </p>
               <br />
               <br />
@@ -248,9 +253,21 @@ export const AdaptiveLearning = ({
                   onChange={(e) => setInstructions(e.target.value)}
                   style={{ backgroundColor: "black", color: "white" }}
                 />
+
+                <Col sm="10">
+                  <Form.Control
+                    placeholder="Describe your goal or startup idea."
+                    as="textarea"
+                    rows={3}
+                    value={businessGoal}
+                    onChange={(e) => setBusinessGoal(e.target.value)}
+                    style={{ backgroundColor: "black", color: "white" }}
+                  />
+                </Col>
+
                 <Button
                   variant="primary"
-                  onClick={handleSaveInstructions}
+                  onMouseDown={handleSaveInstructions}
                   style={{ marginTop: "10px" }}
                 >
                   {areInstructionsSaving ? (
@@ -261,13 +278,15 @@ export const AdaptiveLearning = ({
                 </Button>
                 <Button
                   variant="secondary"
-                  onClick={() => setIsEditing(false)}
+                  onMouseDown={() => setIsEditing(false)}
                   style={{ marginTop: "10px", marginLeft: "10px" }}
                 >
                   Cancel
                 </Button>
               </Col>
             </Form.Group>
+            <br />
+            <br />
           </Form>
         ) : (
           <div
@@ -280,11 +299,15 @@ export const AdaptiveLearning = ({
               ...responsiveBox,
             }}
           >
+            <strong>Goal/Startup Idea</strong>
+            <p>{businessGoal}</p>
+            <br />
             <strong>Instructions</strong>
             <p>{instructions}</p>
+
             <div
               style={{ cursor: "pointer", padding: 20 }}
-              onClick={() => setIsEditing(true)}
+              onMouseDown={() => setIsEditing(true)}
             >
               <EditIcon /> <b>Edit instructions</b>
             </div>

@@ -248,13 +248,12 @@ export const SchedulerBlock = ({ children, hasTutorial = false }) => {
   return (
     <div
       style={{
-        ...textBlock(
-          japaneseThemePalette.PhthaloBluePurple,
-          0,
-          12,
-          "white",
-          "4px 4px 5px 0px rgba(0,0,0,0.75)"
-        ),
+        width: "100%",
+
+        borderRadius: "50px",
+        backgroundColor: japaneseThemePalette.PhthaloBluePurple,
+        padding: 24,
+        boxShadow: "4px 4px 5px 0px rgba(0,0,0,0.75)",
       }}
     >
       <Button
@@ -273,7 +272,7 @@ export const SchedulerBlock = ({ children, hasTutorial = false }) => {
             ? "2px solid transparent"
             : `2px solid ${japaneseThemePalette.CobaltBlue}`,
         }}
-        onClick={() => {
+        onMouseDown={() => {
           setIsModalOpen(true);
         }}
       >
@@ -344,7 +343,7 @@ export const SchedulerBlock = ({ children, hasTutorial = false }) => {
                 </Form.Group>
 
                 <br />
-                <Button variant="primary" onClick={handleSubmit}>
+                <Button variant="primary" onMouseDown={handleSubmit}>
                   Create
                 </Button>
               </Form>
@@ -369,7 +368,7 @@ export const SchedulerBlock = ({ children, hasTutorial = false }) => {
           )}
         </Modal.Body>
         {/* <Modal.Footer style={EmotionalIntelligenceStyles.EmotionFooter}>
-          <Button variant="dark" onClick={() => setIsModalOpen(false)}>
+          <Button variant="dark" onMouseDown={() => setIsModalOpen(false)}>
             Exit
           </Button>
         </Modal.Footer> */}

@@ -16,7 +16,7 @@ function PasscodeChecker({ setIsGlobalModalActive, userStateReference }) {
     import.meta.env.VITE_BITCOIN_PASSCODE;
 
   // let lecture =
-  //   uiCollections.Entrepeneur["Understanding Business"]["Focus Investing"];
+  //   uiCollections.Entrepeneur["Investing & Business"]["Focus Investing"];
 
   let unlockEverything = async () => {
     await updateDoc(userStateReference.userDocumentReference, {
@@ -121,7 +121,7 @@ export const GlobalModal = ({ userStateReference }) => {
 
   return (
     <>
-      {/* <Button variant="primary" onClick={handleShow}>
+      {/* <Button variant="primary" onMouseDown={handleShow}>
         Launch demo modal
       </Button> */}
 
@@ -143,8 +143,7 @@ export const GlobalModal = ({ userStateReference }) => {
         <Modal.Body style={{ backgroundColor: "black", color: "white" }}>
           <div style={paddingBlock("#500CB5")}>{modalContent.message}</div>
           {/* {JSON.stringify(modalContent)} */}
-          <br />
-          <b> or unlock everything with a subscription passcode</b>
+
           <br />
           <br />
           <ExternalLink

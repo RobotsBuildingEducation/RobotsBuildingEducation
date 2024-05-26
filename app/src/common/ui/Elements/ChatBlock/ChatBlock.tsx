@@ -140,7 +140,7 @@ export const EmotionalIntelligenceStyles = {
     borderBottomRightRadius: 30,
   },
 };
-export let ChatBlock = ({ children, type = "quiz", hasTutorial }) => {
+export let ChatBlock = ({ children, type = "quiz", hasTutorial = false }) => {
   const zapAnimation = useZapAnimation();
   const [isConversationContextWindowOpen, setIsConversationContextWindowOpen] =
     useState(false);
@@ -254,13 +254,19 @@ export let ChatBlock = ({ children, type = "quiz", hasTutorial }) => {
   return (
     <div
       style={{
-        ...textBlock(
-          japaneseThemePalette.PowerPurple,
-          0,
-          12,
-          "white",
-          "4px 4px 5px 0px rgba(0,0,0,0.75)"
-        ),
+        // ...textBlock(
+        //   japaneseThemePalette.PowerPurple,
+        //   100,
+        //   12,
+        //   "white",
+        //   "4px 4px 5px 0px rgba(0,0,0,0.75)"
+        // ),
+        width: "100%",
+
+        borderRadius: "50px",
+        backgroundColor: japaneseThemePalette.PowerPurple,
+        padding: 24,
+        boxShadow: "4px 4px 5px 0px rgba(0,0,0,0.75)",
       }}
     >
       <Button
@@ -279,7 +285,7 @@ export let ChatBlock = ({ children, type = "quiz", hasTutorial }) => {
         onMouseLeave={() => {
           setBoxShadow(false);
         }}
-        onClick={() => {
+        onMouseDown={() => {
           setIsModalOpen(true);
         }}
       >
@@ -323,7 +329,7 @@ export let ChatBlock = ({ children, type = "quiz", hasTutorial }) => {
           &nbsp;&nbsp; &nbsp;
           <Button
             variant="primary"
-            onClick={() => handleConversation(true)}
+            onMouseDown={() => handleConversation(true)}
             disabled={isGrading || isAiResponseLoading}
           >
             Grade
@@ -348,7 +354,7 @@ export let ChatBlock = ({ children, type = "quiz", hasTutorial }) => {
               boxShadow: " -4px -5px 0px 0px rgba(9,0,255,1)",
               padding: 6,
             }}
-            onClick={() => setIsConversationContextWindowOpen(true)}
+            onMouseDown={() => setIsConversationContextWindowOpen(true)}
           >
             View quiz
           </div>
@@ -372,7 +378,7 @@ export let ChatBlock = ({ children, type = "quiz", hasTutorial }) => {
         >
           {/* <Button
             variant="dark"
-            onClick={() => {
+            onMouseDown={() => {
               setIsModalOpen(false);
             }}
             disabled={isGrading || isAiResponseLoading}
@@ -382,7 +388,7 @@ export let ChatBlock = ({ children, type = "quiz", hasTutorial }) => {
 
           <Button
             variant="dark"
-            onClick={() => handleConversation(false)}
+            onMouseDown={() => handleConversation(false)}
             disabled={isGrading || isAiResponseLoading}
           >
             Add to conversation
@@ -416,7 +422,7 @@ export let ChatBlock = ({ children, type = "quiz", hasTutorial }) => {
         <Modal.Footer style={EmotionalIntelligenceStyles.EmotionFooter}>
           <Button
             variant="dark"
-            onClick={() => setIsConversationContextWindowOpen(false)}
+            onMouseDown={() => setIsConversationContextWindowOpen(false)}
           >
             Exit
           </Button>

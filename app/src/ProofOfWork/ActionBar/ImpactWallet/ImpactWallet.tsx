@@ -162,7 +162,7 @@ export const ImpactWallet = ({
               &nbsp; &nbsp;
               <Button
                 variant="dark"
-                onClick={() => {
+                onMouseDown={() => {
                   saveDisplayName();
                 }}
               >
@@ -193,7 +193,7 @@ export const ImpactWallet = ({
                 border: borderStateForCopyButton,
                 transition: "0.25s all ease-in-out",
               }}
-              onClick={async () => {
+              onMouseDown={async () => {
                 copyToClipboard(localStorage.getItem("uniqueId"));
                 setCopyString("Copied!");
                 animateBorderLoading(

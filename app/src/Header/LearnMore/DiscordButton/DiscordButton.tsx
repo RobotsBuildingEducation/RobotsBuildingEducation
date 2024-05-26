@@ -39,7 +39,7 @@ export const DiscordButton = () => {
           maxWidth: 700,
           width: "100%",
         }}
-        onClick={() => {
+        onMouseDown={() => {
           if (display === "none") {
             setDisplay("block");
           } else {
@@ -120,7 +120,7 @@ export const DiscordButton = () => {
               width: 375,
               display: "flex",
             }}
-            onClick={() => {
+            onMouseDown={() => {
               logEvent(analytics, "select_content", {
                 content_type: "button",
                 item_id: "Primal Social Wallet",
@@ -214,7 +214,7 @@ export const DiscordButton = () => {
           onMouseLeave={() => {
             setBackgroundColor("purple");
           }}
-          onClick={() =>
+          onMouseDown={() =>
             logEvent(analytics, "select_promotion", {
               creative_name: `https://www.patreon.com/RobotsBuildingEducation`,
               creative_slot: `About Slot`,

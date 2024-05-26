@@ -22,7 +22,7 @@ const StyledPathItem = styled.div`
   animation-fill-mode: forwards; /* Keep the element visible after the animation */
 `;
 
-// helper function to render
+// helper function to renders
 const createPathElements = (
   handlePathSelection,
   pathSelectionAnimationData,
@@ -34,9 +34,28 @@ const createPathElements = (
   return uiPaths.map((path, index) => {
     let displayText = path !== "Entrepeneur" ? path : "Investing";
     if (path === "Creator") displayText = "Thinking";
-    if (path === "Engineer") displayText = "Coding";
+    if (path === "Engineer") displayText = "Learn";
 
-    if (unlockCreatorKey && unlockDealerKey) {
+    // if (unlockCreatorKey && unlockDealerKey) {
+    //   return (
+    //     <StyledPathItem index={index} key={path}>
+    //       <StyledLink
+    //         active
+    //         to="/"
+    //         pathSelectionAnimationData={pathSelectionAnimationData}
+    //         path={path}
+    //         id={path}
+    //         onMouseDown={handlePathSelection}
+    //         key={path}
+    //         isUnlocked={true}
+    //       >
+    //         {displayText}
+    //       </StyledLink>
+    //     </StyledPathItem>
+    //   );
+    // }
+    // else {
+    if (path === "Engineer") {
       return (
         <StyledPathItem index={index} key={path}>
           <StyledLink
@@ -53,67 +72,51 @@ const createPathElements = (
           </StyledLink>
         </StyledPathItem>
       );
-    } else {
-      if (path === "Engineer") {
-        return (
-          <StyledPathItem index={index} key={path}>
-            <StyledLink
-              active
-              to="/"
-              pathSelectionAnimationData={pathSelectionAnimationData}
-              path={path}
-              id={path}
-              onClick={handlePathSelection}
-              key={path}
-              isUnlocked={true}
-            >
-              {displayText}
-            </StyledLink>
-          </StyledPathItem>
-        );
-      } else if (path === "Creator") {
-        return (
-          <StyledPathItem index={index} key={path}>
-            <StyledLink
-              active
-              to="/"
-              pathSelectionAnimationData={pathSelectionAnimationData}
-              path={path}
-              id={path}
-              key={path}
-              isUnlocked={unlockCreatorKey}
-              onClick={(event) =>
-                unlockCreatorKey
-                  ? handlePathSelection(event)
-                  : handleModal("creator")
-              }
-            >
-              {displayText}
-            </StyledLink>
-          </StyledPathItem>
-        );
-      } else if (path === "Entrepeneur") {
-        return (
-          <StyledPathItem index={index} key={path}>
-            <StyledLink
-              active
-              to="/"
-              pathSelectionAnimationData={pathSelectionAnimationData}
-              path={path}
-              id={path}
-              key={path}
-              isUnlocked={unlockDealerKey}
-              onClick={(event) =>
-                unlockDealerKey
-                  ? handlePathSelection(event)
-                  : handleModal("dealer")
-              }
-            >
-              {displayText}
-            </StyledLink>
-          </StyledPathItem>
-        );
-      }
+      // }
+      // else if (path === "Creator") {
+      //   return (
+      //     <StyledPathItem index={index} key={path}>
+      //       <StyledLink
+      //         active
+      //         to="/"
+      //         pathSelectionAnimationData={pathSelectionAnimationData}
+      //         path={path}
+      //         id={path}
+      //         key={path}
+      //         isUnlocked={unlockCreatorKey}
+      //         onMouseDown={(event) =>
+      //           unlockCreatorKey
+      //             ? handlePathSelection(event)
+      //             : handleModal("creator")
+      //         }
+      //       >
+      //         {displayText}
+      //       </StyledLink>
+      //     </StyledPathItem>
+      //   );
+      // }
+      // else if (path === "Entrepeneur") {
+      //   return (
+      //     <StyledPathItem index={index} key={path}>
+      //       <StyledLink
+      //         active
+      //         to="/"
+      //         pathSelectionAnimationData={pathSelectionAnimationData}
+      //         path={path}
+      //         id={path}
+      //         key={path}
+      //         isUnlocked={unlockDealerKey}
+      //         onMouseDown={(event) =>
+      //           unlockDealerKey
+      //             ? handlePathSelection(event)
+      //             : handleModal("dealer")
+      //         }
+      //       >
+      //         {displayText}
+      //       </StyledLink>
+      //     </StyledPathItem>
+      //   );
+      // }
     }
   });
 };

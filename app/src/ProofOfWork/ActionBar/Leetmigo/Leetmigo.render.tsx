@@ -133,7 +133,7 @@ export const RenderLeetmigo = () => {
       <br />
       <Button
         variant="dark"
-        onClick={handleGenerateProblem}
+        onMouseDown={handleGenerateProblem}
         disabled={isGeneratingProblem}
       >
         Create algorithm problem
@@ -185,7 +185,7 @@ export const RenderLeetmigo = () => {
             <br />
             <Button
               variant="dark"
-              onClick={handleFeedbackSubmit}
+              onMouseDown={handleFeedbackSubmit}
               disabled={isGeneratingFeedback}
             >
               Submit Feedback Request

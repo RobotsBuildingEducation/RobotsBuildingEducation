@@ -1,6 +1,7 @@
 //i did not spell Entrepreneur correctly.
 import { ChatBlock } from "../Elements/ChatBlock/ChatBlock";
 import poorCharlie from "../../media/images/poorCharlie.png";
+import theoryOfGames from "../../media/images/theoryOfGames.jpg";
 import neyra_logo from "../../media/images/neyra_logo.png";
 import { ultimateEffeciencyJutsu } from "../ui";
 import { SchedulerBlock } from "../Elements/SchedulerBlock/SchedulerBlock";
@@ -10,7 +11,7 @@ import { Typewriter } from "../Elements/Typewriter/Typewriter";
 import { ImageZoomer } from "../Elements/ImageZoomer/ImageZoomer";
 
 export const Entrepeneur = {
-  "Understanding Business": {
+  "Investing & Business": {
     "Resume Writing": {
       hasCode: false,
 
@@ -22,7 +23,45 @@ export const Entrepeneur = {
         "https://res.cloudinary.com/sheilfer/image/upload/v1697450736/Module_Buttons_13_sictcc.gif",
       fileSource:
         "https://res.cloudinary.com/dtkeyccga/video/upload/v1697778816/IMG_9248_o1eyss.mov", // may not need
+      //start 57
+      knowledge: {
+        start: {
+          step: "54",
+          knowledge:
+            "Students will be introduced to the essentials of crafting competitive entry-level resumes, emphasizing the importance of communication and showcasing their experiences and passions effectively.",
+          label: "Start lecture",
+          collectorId: "Resume Writing-start",
+        },
+        discover: {
+          step: "55",
+          knowledge:
+            "Students will learn the key aspects of creating a compelling resume, including optimizing LinkedIn profiles, structuring resumes for impact, and emphasizing education, skills, and real-world experience. They will understand how to communicate their value effectively, making a strong impression on potential employers.",
+          label: "Discover resume writing",
+          collectorId: "Resume Writing-discover",
+        },
+        video: {
+          step: "56",
+          knowledge:
+            "Individuals examine a common problem new graduates face is not receiving callbacks from employers despite being qualified, often due to resumes that fail to effectively communicate their value. By focusing on improving communication skills and structuring resumes to highlight key experiences and skills, applicants can make a stronger impression on employers. For example, optimizing LinkedIn profiles, ensuring resumes are impactful within 6-10 seconds, and crafting clear career narratives can lead to significant outcomes, such as receiving calls from competitive companies like Tesla.",
+          label: "Introduction to resume writing",
+          collectorId: "Resume Writing-video",
+        },
+        guide: {
+          step: "57",
+          knowledge:
+            "Students will dive deeper into tailoring resumes to different audiences, mastering storytelling in their career narratives, and handling objections during interviews. They will explore the significance of audience analysis and learn advanced pitching techniques to enhance their professional profiles.",
+          label: "Study guide",
+          collectorId: "Resume Writing-guide",
+        },
 
+        shop: {
+          step: "58",
+          knowledge:
+            "Students are encouraged to acquire resources such as books and courses that provide further insights into resume writing and professional development, like 'What Color Is Your Parachute?' by Richard N. Bolles.",
+          label: "Expand your knowledge",
+          collectorId: "Resume Writing-shop",
+        },
+      },
       prompts: {
         welcome: {
           response: (
@@ -577,6 +616,43 @@ export const Entrepeneur = {
       fileSource:
         "https://res.cloudinary.com/dtkeyccga/video/upload/v1706592608/0118_uxgh72.mov",
       // fileSource: await import("../../markdowns/focusInvesting.md?raw"), // may not need
+      knowledge: {
+        start: {
+          step: "44",
+          knowledge:
+            "Students will be introduced to the principles of focused investing, emphasizing deep understanding, patience, and investing with conviction.",
+          label: "Start lecture",
+          collectorId: "Focus Investing-start",
+        },
+        discover: {
+          step: "45",
+          knowledge:
+            "Focused investing involves making informed decisions, starting with diversified investments to protect against ignorance. As investors gain more knowledge, they can focus on specific industries or companies, understanding that volatility is not the same as risk. Continuous reading, controlling biases, understanding incentives, and studying great investors are key to mastering focused investing.",
+          label: "Discover focused investing",
+          collectorId: "Focus Investing-discover",
+        },
+        video: {
+          step: "46",
+          knowledge:
+            "The essays read by the individual outline an investment philosophy that prioritizes understanding incentives, market positioning, and long-term potential, emphasizing the importance of starting with a diversified portfolio and conducting deep research. Key takeaways include the value of focused investing in technology-driven companies like Reddit, Duolingo, Cloudflare, Meta, Pinterest, and Block, each offering unique strengths and growth opportunities. The author discusses how Reddit's community-driven model, Duolingo's gamified learning approach, Cloudflare's innovative network services, Meta's robust communication platform, Pinterest's intent-focused user base, and Block's financial inclusion initiatives contribute to their market positions. These companies are analyzed for their ability to adapt, innovate, and create lasting value, highlighting the importance of strategic foresight in investing. Overall, the essays provide insights into navigating the complexities of modern investing with a focus on innovation, equity, and understanding the broader market dynamics.",
+          label: "Introduction To Focus Investing",
+          collectorId: "Focus Investing-video",
+        },
+        guide: {
+          step: "47",
+          knowledge:
+            "Students will explore principles such as thorough research, understanding market behavior, and aligning investments with personal values. They will learn about ethical investing, controlling biases, and the importance of continuous learning through the insights of notable investors like Charlie Munger and Warren Buffett.",
+          label: "Study guide",
+          collectorId: "Focus Investing-guide",
+        },
+        shop: {
+          step: "48",
+          knowledge:
+            "Students are encouraged to acquire books and resources that deepen their understanding of focused investing, such as 'Poor Charlie's Almanack' and 'Theory of Games and Economic Behavior'.",
+          label: "Expand your knowledge",
+          collectorId: "Focus Investing-shop",
+        },
+      },
       prompts: {
         welcome: {
           response: (
@@ -1277,9 +1353,10 @@ export const Entrepeneur = {
 
               <br />
 
-              <a href="https://collabs.shop/xgyj7o" target="_blank">
+              <a href="https://collabs.shop/cm8xmi" target="_blank">
                 <img
                   style={{
+                    width: 200,
                     // border: "1px solid cyan",
                     borderRadius: 12,
                     // boxShadow: "1px 1px 3px 2px rgba(0,255,140,1)",
@@ -1287,6 +1364,54 @@ export const Entrepeneur = {
                       "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)",
                   }}
                   src={poorCharlie}
+                />
+              </a>
+
+              <br />
+              <br />
+              <div
+                style={
+                  {
+                    // ...textBlock(
+                    //   japaneseThemePalette.PowerPurple,
+                    //   0,
+                    //   12,
+                    //   "white",
+                    //   "0px 0px 5px 0px rgba(0,0,0,0.75)"
+                    // ),
+                  }
+                }
+              >
+                This is the classic work upon which modern-day game theory is
+                based. What began more than sixty years ago as a modest proposal
+                that a mathematician and an economist write a short paper
+                together blossomed, in 1944, when Princeton University Press
+                published Theory of Games and Economic Behavior. In it, John von
+                Neumann and Oskar Morgenstern conceived a groundbreaking
+                mathematical theory of economic and social organization, based
+                on a theory of games of strategy. Not only would this
+                revolutionize economics, but the entirely new field of
+                scientific inquiry it yielded—game theory—has since been widely
+                used to analyze a host of real-world phenomena from arms races
+                to optimal policy choices of presidential candidates, from
+                vaccination policy to major league baseball salary negotiations.
+                And it is today established throughout both the social sciences
+                and a wide range of other sciences.
+              </div>
+
+              <br />
+
+              <a href="https://collabs.shop/xgyj7o" target="_blank">
+                <img
+                  style={{
+                    width: 200,
+                    // border: "1px solid cyan",
+                    borderRadius: 12,
+                    // boxShadow: "1px 1px 3px 2px rgba(0,255,140,1)",
+                    boxShadow:
+                      "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)",
+                  }}
+                  src={theoryOfGames}
                 />
               </a>
             </div>

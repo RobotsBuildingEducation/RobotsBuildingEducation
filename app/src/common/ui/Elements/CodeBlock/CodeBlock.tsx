@@ -6,7 +6,7 @@ import { japaneseThemePalette } from "../../../../styles/lazyStyles";
 import { postInstructions } from "../../../uiSchema";
 import { customInstructions } from "./CodeBlock.compute";
 import { useZap, useZapAnimation } from "../../../../App.hooks";
-import { completeZapEvent } from "../../../../App.compute";
+import { completeZapEvent, updateImpact } from "../../../../App.compute";
 import { ActivateCofounder } from "./ActivateCofounder/ActivateCofounder";
 import { SoftwareEngineer } from "./SoftwareEngineer/SoftwareEngineer";
 import { HintUI } from "../HintUI/HintUI";
@@ -75,7 +75,12 @@ export const CodeBlock = ({
       body: JSON.stringify({ prompt, isJsonMode: true }),
     })
       .then((response) => {
-        completeZapEvent(zap, userStateReference, globalStateReference);
+        completeZapEvent(
+          zap,
+          updateImpact,
+          userStateReference,
+          globalStateReference
+        );
 
         return response;
       })
@@ -103,6 +108,7 @@ export const CodeBlock = ({
         backgroundColor: japaneseThemePalette.PhthaloBluePurple,
         borderRadius: 30,
         padding: 12,
+        boxShadow: "4px 4px 5px 0px rgba(0,0,0,0.75)",
       }}
     >
       {/* button that opens up the cofounder modal in the demonstrate prompt */}

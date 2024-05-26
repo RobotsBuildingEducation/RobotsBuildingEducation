@@ -290,7 +290,7 @@ export const Experimental = ({
           <Button
             variant="dark"
             size="sm"
-            onClick={handleSaveToFirebaseChange}
+            onMouseDown={handleSaveToFirebaseChange}
             disabled={isSettingLoading}
           >
             {isSettingLoading ? <Spinner size="sm" /> : null} Save settings

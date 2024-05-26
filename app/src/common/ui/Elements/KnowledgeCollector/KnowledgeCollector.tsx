@@ -52,7 +52,7 @@ export const KnowledgeCollector = ({
         }}
         onMouseEnter={() => setBoxShadow(true)}
         onMouseLeave={() => setBoxShadow(false)}
-        onClick={async () => {
+        onMouseDown={async () => {
           if (isDisabled) {
           } else {
             setIsLoading(true);

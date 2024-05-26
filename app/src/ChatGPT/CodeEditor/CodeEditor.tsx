@@ -193,7 +193,7 @@ const CodeEditor = ({
           ))}
 
         <CopyButton
-          onClick={handleAutoComplete}
+          onMouseDown={handleAutoComplete}
           // style={{
           //   width: "fit-content",
           //   marginBottom: 16,
@@ -228,7 +228,7 @@ const CodeEditor = ({
               color: isValid && !isComplete ? "#f5fffc" : "#ffeffd",
               marginTop: 10,
             }}
-            onClick={handleSubmit}
+            onMouseDown={handleSubmit}
           >
             Submit
           </button>

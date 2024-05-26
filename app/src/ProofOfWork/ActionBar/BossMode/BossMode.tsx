@@ -1752,7 +1752,7 @@ export const BossMode = ({
                 <br />
                 <button
                   disabled={discordTag?.length < 2}
-                  onClick={submitDiscordTagInput}
+                  onMouseDown={submitDiscordTagInput}
                 >
                   Submit
                 </button>
@@ -1797,7 +1797,7 @@ export const BossMode = ({
           )}
         </Modal.Body>
         {/* <Modal.Footer style={{ backgroundColor: "black" }}>
-          <Button variant="dark" onClick={() => setIsBossModeOpen(false)}>
+          <Button variant="dark" onMouseDown={() => setIsBossModeOpen(false)}>
             Back to app
           </Button>
         </Modal.Footer> */}

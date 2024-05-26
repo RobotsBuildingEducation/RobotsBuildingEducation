@@ -422,31 +422,6 @@ export const GetLandingPageMessage = ({ unlocks }) => {
       </div>
     );
   }
-  if (!unlocks?.["The Psychology Of Self-esteem"]) {
-    message = (
-      <div>
-        🧠 Boost your confidence and unlock your potential with our 'Psychology
-        Of Self-esteem' lecture. Understand the cognitive biases that shape your
-        self-image.
-        <br />
-        <br />
-        Suggestion: <em>Cognitive Behavioral Techniques</em> to improve personal
-        perception.
-      </div>
-    );
-  }
-  if (!unlocks?.["Lesson 5 Computer Science"]) {
-    message = (
-      <div>
-        💻 Advance your tech career with 'Lesson 5 in Computer Science'. Tackle
-        complex algorithms and data structures that are essential for
-        problem-solving.
-        <br />
-        <br />
-        Suggestion: Implement a <em>Binary Search Tree</em> from scratch.
-      </div>
-    );
-  }
   if (!unlocks?.["Resume Writing"]) {
     message = (
       <div>
@@ -480,6 +455,18 @@ export const GetLandingPageMessage = ({ unlocks }) => {
         <br />
         Suggestion: Use principles of <em>User-Centered Design</em> to improve
         the usability of your projects.
+      </div>
+    );
+  }
+  if (!unlocks?.["Lesson 5 Computer Science"]) {
+    message = (
+      <div>
+        💻 Advance your tech career with 'Lesson 5 in Computer Science'. Tackle
+        complex algorithms and data structures that are essential for
+        problem-solving.
+        <br />
+        <br />
+        Suggestion: Implement a <em>Binary Search Tree</em> from scratch.
       </div>
     );
   }

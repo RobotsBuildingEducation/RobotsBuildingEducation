@@ -51,7 +51,7 @@ export const SoftwareEngineer = ({
             </Form.Group>
 
             <br />
-            <Button variant="primary" onClick={handleSubmit}>
+            <Button variant="primary" onMouseDown={handleSubmit}>
               Create
             </Button>
           </Form>

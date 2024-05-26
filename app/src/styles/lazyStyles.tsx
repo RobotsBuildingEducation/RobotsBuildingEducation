@@ -161,7 +161,7 @@ export const StyledNavigationContainer = styled.div`
   padding: 0;
   max-width: 100%;
   min-width: 100%;
-  opacity: 0.9;
+  opacity: 1;
 
   /* max-width: 100%; */
   transition: 0.2s all ease-in-out;
@@ -408,12 +408,12 @@ export const StyledLink = styled(Link)`
 
   height: 55px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 4px;
+  // padding: 4px;
   // margin: 8px;
-  margin-left: 8px;
-  margin-right: 8px;
+  // margin-left: 8px;
+  // margin-right: 8px;
 
   color: white;
   transition: 0.15s all ease-in-out;
@@ -477,6 +477,7 @@ export const StyledLink = styled(Link)`
       : "";
   }};
   font-family: "Bungee";
+  text-align: center;
 `;
 //
 
