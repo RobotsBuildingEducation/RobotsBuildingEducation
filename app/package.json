@@ -16,6 +16,7 @@
     "@getalby/lightning-tools": "^5.0.0",
     "@mui/material": "^5.11.9",
     "@sentry/react": "^8.4.0",
+    "@sentry/vite-plugin": "^2.17.0",
     "@types/firebase": "^3.2.1",
     "@web5/api": "^0.8.4",
     "axios": "^1.2.2",

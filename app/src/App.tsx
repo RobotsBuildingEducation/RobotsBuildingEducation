@@ -152,10 +152,19 @@ let App = () => {
   const handleModuleSelection = async (lectureModule, moduleName) => {
     // can redefine this as module object rather than patreon object. low priority
     // handleZap();
+
     console.log("running valid storage", isLocalStorageValid());
+    console.log("lectureModule", lectureModule);
+    console.log("moduleName", moduleName);
+
     if (
       moduleName !== "Learning Mindset & Perspective" &&
       isLocalStorageValid() === false
+    ) {
+      setIsLocalModalActive(true);
+    } else if (
+      isLocalStorageValid() === false &&
+      userStateReference.databaseUserDocument.unlocks[moduleName]
     ) {
       setIsLocalModalActive(true);
     } else {
@@ -349,9 +358,9 @@ let App = () => {
         [next]: true,
       };
 
-      if (moduleName === "Learning Mindset & Perspective") {
-        return;
-      }
+      // if (moduleName === "Learning Mindset & Perspective") {
+      //   return;
+      // }
       if (moduleName === "Lesson 2 Frontend Programming") {
         unlocks = {
           ...unlocks,
@@ -435,8 +444,6 @@ let App = () => {
           alignItems: "center",
         }}
       >
-        return{" "}
-        <button onClick={() => methodDoesNotExist()}>Break the world</button>;
         <div
           className="App"
           style={{
