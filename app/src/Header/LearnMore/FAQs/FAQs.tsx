@@ -83,8 +83,8 @@ const FAQSection = () => {
           <br />
           <ol>
             <li>Every student should have access to many good teachers.</li>
-            <li>Online education should be the best education</li>
-            <li>Learning creates scholarships</li>
+            <li>Online education should be the best education.</li>
+            <li>Learning creates scholarships.</li>
           </ol>
           Robots Building Education uses a system called Proof Of Work to
           measure learning. When you use the application, you're putting robots
@@ -154,15 +154,17 @@ const FAQSection = () => {
           <br />
           I've written a user guide that introduces you to a number of networks
           to get started:
+          <br />
+          <br />
           <a
             // style={{ color: "white", textDecoration: "underline" }}
-            href="https://old-fashionedintelligence.info/access"
+            href="https://www.patreon.com/posts/improving-105150205?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
             target="_blank"
           >
             <img
               src={IMPACT_BACKGROUND}
-              width="300px"
-              style={{ borderRadius: "50%", borderBottom: "1px solid gold" }}
+              width="150px"
+              style={{ borderRadius: "50px", border: "1px solid orange" }}
             />
           </a>
         </p>
@@ -574,7 +576,7 @@ const FAQSection = () => {
           cursor: "pointer",
           transition: "0.16s all ease-in-out",
         }}
-        onClick={() => {
+        onMouseDown={() => {
           if (display === "none") {
             setDisplay("block");
           } else {

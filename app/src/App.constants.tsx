@@ -138,7 +138,9 @@ export const modalConfig = {
       </div>
     ),
     disabledModule:
-      "This lecture hasn't been unlocked yet. Complete the video and practice tasks in the lesson before it in order to access.",
+      "Time is money friend. You'll need to subscribe in order to access the following lectures.",
+    disabledLecture:
+      "You'll need to complete the video and practice prompts in order to unlock the next step.",
   },
 };
 

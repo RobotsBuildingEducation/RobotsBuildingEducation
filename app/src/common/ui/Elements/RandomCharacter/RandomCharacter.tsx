@@ -76,7 +76,7 @@ const RandomCharacter = ({
     // Update used indices
     const newUsedIndices = [
       ...usedIndices,
-      characterImages.indexOf(randomImage),
+      characterImages?.indexOf(randomImage),
     ];
     if (newUsedIndices.length === characterImages.length) {
       // Reset if all characters have been used

@@ -1,6 +1,5 @@
 html {
-  overflow: hidden;
-  height: 100%;
+  scrollbar-color: #4003ba black;
 }
 
 body {

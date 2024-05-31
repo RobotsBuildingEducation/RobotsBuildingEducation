@@ -69,7 +69,7 @@ export const RenderActionBarControls = ({
               ? "0px solid transparent"
               : `2px solid ${japaneseThemePalette.CobaltBlue}`,
           }}
-          onClick={() => {
+          onMouseDown={() => {
             logEvent(analytics, "select_content", {
               content_type: "button",
               item_id: "Proof of Work",
@@ -102,7 +102,7 @@ export const RenderActionBarControls = ({
                 ? "0px solid transparent"
                 : `2px solid ${japaneseThemePalette.CobaltBlue}`,
             }}
-            onClick={() => {
+            onMouseDown={() => {
               logEvent(analytics, "select_content", {
                 content_type: "button",
                 item_id: "chatGPT_link",
@@ -133,7 +133,7 @@ export const RenderActionBarControls = ({
               ? "0px solid transparent"
               : `2px solid ${japaneseThemePalette.CobaltBlue}`,
           }}
-          onClick={() => {
+          onMouseDown={() => {
             logEvent(analytics, "select_content", {
               content_type: "button",
               item_id: "Leetmigo",
@@ -160,7 +160,7 @@ export const RenderActionBarControls = ({
               ? "0px solid transparent"
               : `2px solid ${japaneseThemePalette.CobaltBlue}`,
           }}
-          onClick={() => {
+          onMouseDown={() => {
             logEvent(analytics, "select_content", {
               content_type: "button",
               item_id: "Boss Mode",
@@ -187,7 +187,7 @@ export const RenderActionBarControls = ({
               ? "0px solid transparent"
               : `2px solid ${japaneseThemePalette.CobaltBlue}`,
           }}
-          onClick={() => {
+          onMouseDown={() => {
             logEvent(analytics, "select_content", {
               content_type: "button",
               item_id: "Cofounder",
@@ -214,7 +214,7 @@ export const RenderActionBarControls = ({
               ? "0px solid transparent"
               : `2px solid ${japaneseThemePalette.CobaltBlue}`,
           }}
-          onClick={() => {
+          onMouseDown={() => {
             logEvent(analytics, "select_content", {
               content_type: "button",
               item_id: "Therapy Session",

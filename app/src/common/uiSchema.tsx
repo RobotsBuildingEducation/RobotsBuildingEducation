@@ -82,9 +82,13 @@ export const ui = (): IPath => {
   // can branch this further to reduce JSON size computed when invoked.
 
   return {
-    Engineer: Engineer,
-    Creator: Creator,
-    Entrepeneur: Entrepeneur,
+    Engineer: {
+      ...Engineer,
+      ...Creator,
+      ...Entrepeneur,
+    },
+    // Creator: Creator,
+    // Entrepeneur: Entrepeneur,
   };
 };
 export let uiPaths = ["Engineer", "Creator", "Entrepeneur"];

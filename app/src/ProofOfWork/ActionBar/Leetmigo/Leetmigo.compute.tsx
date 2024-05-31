@@ -207,7 +207,7 @@ export const NodeComponent = ({ node, onNodeSelect, isSelected }) => {
 
   return (
     <StyledTreeNode>
-      <TreeNodeButton onClick={() => onNodeSelect(node, isLeafNode)}>
+      <TreeNodeButton onMouseDown={() => onNodeSelect(node, isLeafNode)}>
         {node.name}
       </TreeNodeButton>
       {isSelected && node.children && (
@@ -300,7 +300,7 @@ export const TreeNode = ({ node, onSelect }) => {
         return (
           <button
             key={childKey}
-            onClick={() => onSelect(childKey)}
+            onMouseDown={() => onSelect(childKey)}
             style={{
               margin: 4,
               backgroundColor: colorPalette.chill,
@@ -376,7 +376,7 @@ export const SelectedPath = ({
                   {codeStack[index] && (
                     <div>
                       <button
-                        onClick={() => toggleCollapse(index)}
+                        onMouseDown={() => toggleCollapse(index)}
                         style={{ marginTop: 10 }}
                       >
                         {collapsed[index] ? "Show Code" : "Hide Code"}
@@ -404,9 +404,9 @@ export const SelectedPath = ({
       </ul>
       <br />
       <br />
-      <button onClick={onUndo}>Undo</button>
+      <button onMouseDown={onUndo}>Undo</button>
       &nbsp;&nbsp;
-      <button onClick={onReset}>Reset</button>
+      <button onMouseDown={onReset}>Reset</button>
     </div>
   );
 };
@@ -448,7 +448,7 @@ export const CopyableMarkdown = ({ content }) => {
       >
         <Button
           variant="secondary"
-          onClick={handleCopy}
+          onMouseDown={handleCopy}
           style={{ position: "absolute", top: 0, right: 0 }}
         >
           {copied ? "Copied" : "Copy"}

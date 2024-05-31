@@ -640,7 +640,7 @@ export const Cofounder = ({
               variant="primary"
               type="submit"
               disabled={isCofounderLoading || isContentScriptLoading}
-              onClick={() => {
+              onMouseDown={() => {
                 formData.assistant === "creator"
                   ? handleImageGenerator()
                   : formData.assistant === "business"
@@ -664,7 +664,7 @@ export const Cofounder = ({
             <div className="learning-path">
               {schedule?.length > 0 ? (
                 <Button
-                  onClick={() => handleSaveSchedule()}
+                  onMouseDown={() => handleSaveSchedule()}
                   disabled={isSaveLoading}
                 >
                   Save Schedule
@@ -717,7 +717,7 @@ export const Cofounder = ({
                 {/* {executeComponentString(cofounder)} */}
                 <LivePreview />
                 <br />
-                <Button onClick={handleCodeBreakdown}>
+                <Button onMouseDown={handleCodeBreakdown}>
                   Break this code down
                 </Button>
                 <br />
@@ -800,7 +800,7 @@ export const Cofounder = ({
           ) : null}
         </Modal.Body>
         {/* <Modal.Footer style={{ backgroundColor: "black", color: "white" }}>
-          <Button variant="dark" onClick={() => setIsCofounderOpen(false)}>
+          <Button variant="dark" onMouseDown={() => setIsCofounderOpen(false)}>
             Back to app
           </Button>
         </Modal.Footer> */}

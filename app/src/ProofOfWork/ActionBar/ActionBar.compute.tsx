@@ -129,7 +129,7 @@ export const RenderActionBarControls = ({
             ? "2px solid transparent"
             : `2px solid ${japaneseThemePalette.CobaltBlue}`,
         }}
-        onClick={() => {
+        onMouseDown={() => {
           logEvent(analytics, "select_content", {
             content_type: "button",
             item_id: "Startup",
@@ -155,7 +155,7 @@ export const RenderActionBarControls = ({
             ? "2px solid transparent"
             : `2px solid ${japaneseThemePalette.CobaltBlue}`,
         }}
-        onClick={() => {
+        onMouseDown={() => {
           logEvent(analytics, "select_content", {
             content_type: "button",
             item_id: "Adaptive Learning",

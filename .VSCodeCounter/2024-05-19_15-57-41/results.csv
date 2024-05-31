@@ -1,0 +1,115 @@
+"filename", "language", "TypeScript", "TypeScript JSX", "Markdown", "JSON", "CSS", "comment", "blank", "total"
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/App.compute.tsx", "TypeScript JSX", 0, 944, 0, 0, 0, 79, 73, 1096
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/App.constants.tsx", "TypeScript JSX", 0, 134, 0, 0, 0, 10, 9, 153
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/App.css", "CSS", 0, 0, 0, 0, 68, 5, 14, 87
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/App.hooks.tsx", "TypeScript JSX", 0, 164, 0, 0, 0, 59, 41, 264
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/App.tsx", "TypeScript JSX", 0, 924, 0, 0, 0, 140, 78, 1142
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/App.web5.ts", "TypeScript", 77, 0, 0, 0, 0, 12, 10, 99
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/ChatGPT.compute.ts", "TypeScript", 97, 0, 0, 0, 0, 0, 7, 104
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/ChatGPT.tsx", "TypeScript JSX", 0, 181, 0, 0, 0, 24, 28, 233
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/ChatGptWrapper.tsx", "TypeScript JSX", 0, 51, 0, 0, 0, 3, 6, 60
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/CodeEditor/CodeEditor.tsx", "TypeScript JSX", 0, 224, 0, 0, 0, 20, 23, 267
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/Intro/Intro.tsx", "TypeScript JSX", 0, 75, 0, 0, 0, 6, 7, 88
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/Patreon/Patreon.tsx", "TypeScript JSX", 0, 129, 0, 0, 0, 20, 17, 166
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/PromptCombiner9000/CodeDemo/CodeDemo.tsx", "TypeScript JSX", 0, 98, 0, 0, 0, 11, 5, 114
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/PromptCombiner9000/PromptCombiner9000.tsx", "TypeScript JSX", 0, 240, 0, 0, 0, 6, 23, 269
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/PromptMessage/PromptMessage.tsx", "TypeScript JSX", 0, 39, 0, 0, 0, 8, 7, 54
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/Prompts/Prompts.tsx", "TypeScript JSX", 0, 229, 0, 0, 0, 20, 17, 266
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Collections/Collections.tsx", "TypeScript JSX", 0, 67, 0, 0, 0, 8, 9, 84
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Collections/Module/Module.tsx", "TypeScript JSX", 0, 41, 0, 0, 0, 1, 2, 44
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Dashboard/Dashboard.tsx", "TypeScript JSX", 0, 111, 0, 0, 0, 17, 17, 145
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Header/Header.tsx", "TypeScript JSX", 0, 20, 0, 0, 0, 23, 5, 48
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Header/LearnMore/DiscordButton/DiscordButton.tsx", "TypeScript JSX", 0, 245, 0, 0, 0, 16, 7, 268
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Header/LearnMore/FAQs/FAQItem/FAQItem.tsx", "TypeScript JSX", 0, 44, 0, 0, 0, 16, 5, 65
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Header/LearnMore/FAQs/FAQs.tsx", "TypeScript JSX", 0, 513, 0, 0, 0, 95, 4, 612
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Header/LearnMore/LearnMore.tsx", "TypeScript JSX", 0, 104, 0, 0, 0, 125, 11, 240
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Header/WalletAuth/WalletAuth.tsx", "TypeScript JSX", 0, 34, 0, 0, 0, 30, 3, 67
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/LectureHeader/LectureHeader.tsx", "TypeScript JSX", 0, 22, 0, 0, 0, 9, 5, 36
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/PasscodeModal/PasscodeModal.tsx", "TypeScript JSX", 0, 84, 0, 0, 0, 1, 10, 95
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Paths/Paths.tsx", "TypeScript JSX", 0, 134, 0, 0, 0, 12, 10, 156
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/ActionBar.compute.tsx", "TypeScript JSX", 0, 153, 0, 0, 0, 9, 16, 178
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/ActionBar.tsx", "TypeScript JSX", 0, 159, 0, 0, 0, 61, 23, 243
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/AdaptiveLearning/AdaptiveLearning.compute.tsx", "TypeScript JSX", 0, 3, 0, 0, 0, 1, 2, 6
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/AdaptiveLearning/AdaptiveLearning.tsx", "TypeScript JSX", 0, 297, 0, 0, 0, 4, 23, 324
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/BossMode/BossMode.styles.tsx", "TypeScript JSX", 0, 14, 0, 0, 0, 0, 4, 18
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/BossMode/BossMode.tsx", "TypeScript JSX", 0, 1729, 0, 0, 0, 38, 41, 1808
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/BossMode/Templates/MultipleChoiceQuestion/MultipleChoiceQuestion.tsx", "TypeScript JSX", 0, 78, 0, 0, 0, 0, 8, 86
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/BossMode/Templates/OutputQuestion/OutputQuestion.tsx", "TypeScript JSX", 0, 61, 0, 0, 0, 0, 7, 68
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/BossMode/Templates/SelectionQuestion/SelectionQuestion.tsx", "TypeScript JSX", 0, 86, 0, 0, 0, 6, 11, 103
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/BossMode/Templates/TextInputQuestion/TextInputQuestion.tsx", "TypeScript JSX", 0, 95, 0, 0, 0, 0, 8, 103
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Cofounder/Cofounder.compute.tsx", "TypeScript JSX", 0, 107, 0, 0, 0, 0, 30, 137
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Cofounder/Cofounder.constants.ts", "TypeScript", 111, 0, 0, 0, 0, 1, 54, 166
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Cofounder/Cofounder.tsx", "TypeScript JSX", 0, 672, 0, 0, 0, 51, 88, 811
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Cofounder/Experimental.compute.tsx", "TypeScript JSX", 0, 116, 0, 0, 0, 11, 16, 143
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Cofounder/Experimental.data.tsx", "TypeScript JSX", 0, 59, 0, 0, 0, 0, 11, 70
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Cofounder/Experimental.tsx", "TypeScript JSX", 0, 290, 0, 0, 0, 12, 29, 331
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Cofounder/Roles/Roles.tsx", "TypeScript JSX", 0, 322, 0, 0, 0, 37, 38, 397
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/EmotionalIntelligence/EmotionalIntelligence.compute.tsx", "TypeScript JSX", 0, 192, 0, 0, 0, 7, 28, 227
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/EmotionalIntelligence/EmotionalIntelligence.data.tsx", "TypeScript JSX", 0, 196, 0, 0, 0, 0, 3, 199
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/EmotionalIntelligence/EmotionalIntelligence.styles.tsx", "TypeScript JSX", 0, 133, 0, 0, 0, 1, 18, 152
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/EmotionalIntelligence/EmotionalIntelligence.tsx", "TypeScript JSX", 0, 434, 0, 0, 0, 23, 31, 488
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/EmotionalIntelligence/SunsetCanvas.tsx", "TypeScript JSX", 0, 107, 0, 0, 0, 5, 15, 127
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/ImpactWallet/ImpactWallet.tsx", "TypeScript JSX", 0, 272, 0, 0, 0, 33, 13, 318
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Leetmigo/Leetmigo.compute.tsx", "TypeScript JSX", 0, 342, 0, 0, 0, 83, 39, 464
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Leetmigo/Leetmigo.data.tsx", "TypeScript JSX", 0, 4370, 0, 0, 0, 1, 11, 4382
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Leetmigo/Leetmigo.render.tsx", "TypeScript JSX", 0, 186, 0, 0, 0, 22, 16, 224
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Leetmigo/Leetmigo.styles.tsx", "TypeScript JSX", 0, 84, 0, 0, 0, 4, 7, 95
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Leetmigo/Leetmigo.tsx", "TypeScript JSX", 0, 78, 0, 0, 0, 0, 7, 85
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Startup/Startup.styles.tsx", "TypeScript JSX", 0, 14, 0, 0, 0, 0, 4, 18
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Startup/Startup.tsx", "TypeScript JSX", 0, 359, 0, 0, 0, 18, 13, 390
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ProofOfWork.tsx", "TypeScript JSX", 0, 120, 0, 0, 0, 10, 15, 145
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ProofOfWorkWrapper.tsx", "TypeScript JSX", 0, 74, 0, 0, 0, 7, 10, 91
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/README.md", "Markdown", 0, 0, 28, 0, 0, 0, 15, 43
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Store.ts", "TypeScript", 13, 0, 0, 0, 0, 2, 3, 18
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/anims/arrow_animation.json", "JSON", 0, 0, 0, 349, 0, 0, 1, 350
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/anims/bitcoin_animation.json", "JSON", 0, 0, 0, 934, 0, 0, 1, 935
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/anims/chat_loading_animation.json", "JSON", 0, 0, 0, 311, 0, 0, 1, 312
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/anims/heart_chat_animation.json", "JSON", 0, 0, 0, 911, 0, 0, 1, 912
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/anims/star_animation.json", "JSON", 0, 0, 0, 1099, 0, 0, 1, 1100
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/anims/zap_animation.json", "JSON", 0, 0, 0, 4411, 0, 0, 1, 4412
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/markdowns/focusInvesting.md", "Markdown", 0, 0, 34, 0, 0, 0, 34, 68
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/markdowns/humanComputerInteraction.md", "Markdown", 0, 0, 68, 0, 0, 383, 70, 521
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/markdowns/philosophy.md", "Markdown", 0, 0, 166, 0, 0, 0, 62, 228
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/svgs/EditIcon.tsx", "TypeScript JSX", 0, 19, 0, 0, 0, 0, 1, 20
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/svgs/HamburgerMenu.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 1, 1
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/svgs/LinkIcon.tsx", "TypeScript JSX", 0, 32, 0, 0, 0, 0, 2, 34
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/svgs/Title.tsx", "TypeScript JSX", 0, 37, 0, 0, 0, 1, 4, 42
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Creator/Creator.tsx", "TypeScript JSX", 0, 1592, 0, 0, 0, 9, 35, 1636
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ChatBlock/ChatBlock.compute.tsx", "TypeScript JSX", 0, 16, 0, 0, 0, 1, 7, 24
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ChatBlock/ChatBlock.tsx", "TypeScript JSX", 0, 371, 0, 0, 0, 23, 42, 436
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ChatBlock/ConversationGrader/Chat/Chat.tsx", "TypeScript JSX", 0, 86, 0, 0, 0, 0, 8, 94
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ChatBlock/ConversationGrader/ConversationGrader.tsx", "TypeScript JSX", 0, 22, 0, 0, 0, 1, 3, 26
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/CodeBlock/ActivateCofounder/ActivateCofounder.tsx", "TypeScript JSX", 0, 33, 0, 0, 0, 0, 3, 36
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/CodeBlock/CodeBlock.compute.tsx", "TypeScript JSX", 0, 28, 0, 0, 0, 0, 4, 32
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/CodeBlock/CodeBlock.tsx", "TypeScript JSX", 0, 94, 0, 0, 0, 32, 16, 142
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/CodeBlock/SoftwareEngineer/SoftwareEngineer.styles.tsx", "TypeScript JSX", 0, 26, 0, 0, 0, 0, 3, 29
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/CodeBlock/SoftwareEngineer/SoftwareEngineer.tsx", "TypeScript JSX", 0, 94, 0, 0, 0, 0, 4, 98
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/CodeDisplay/CodeDisplay.tsx", "TypeScript JSX", 0, 36, 0, 0, 0, 1, 3, 40
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ContentLinks/ContentLinks.tsx", "TypeScript JSX", 0, 74, 0, 0, 0, 8, 5, 87
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/CuteGradient/CuteGradient.tsx", "TypeScript JSX", 0, 31, 0, 0, 0, 0, 5, 36
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ExternalLink/ExternalLink.tsx", "TypeScript JSX", 0, 20, 0, 0, 0, 0, 2, 22
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/GlobalModal/GlobalModal.tsx", "TypeScript JSX", 0, 140, 0, 0, 0, 11, 17, 168
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/HintUI/HintUI.tsx", "TypeScript JSX", 0, 33, 0, 0, 0, 0, 3, 36
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ImageZoomer/ImageZoomer.tsx", "TypeScript JSX", 0, 10, 0, 0, 0, 0, 2, 12
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ImageZoomer/react-medium-image-zoom.css", "CSS", 0, 0, 0, 0, 97, 0, 1, 98
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/KnowledgeCollector/KnowledgeCollector.tsx", "TypeScript JSX", 0, 64, 0, 0, 0, 0, 9, 73
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/MarkdownRenderer/MarkdownRenderer.tsx", "TypeScript JSX", 0, 35, 0, 0, 0, 5, 10, 50
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/RandomCharacter/RandomCharacter.tsx", "TypeScript JSX", 0, 92, 0, 0, 0, 4, 12, 108
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/RevealButton/RevealButton.tsx", "TypeScript JSX", 0, 93, 0, 0, 0, 15, 7, 115
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/RobotDialogue/RobotDialogue.tsx", "TypeScript JSX", 0, 21, 0, 0, 0, 0, 5, 26
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/SchedulerBlock/SchedulerBlock.compute.tsx", "TypeScript JSX", 0, 32, 0, 0, 0, 42, 6, 80
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/SchedulerBlock/SchedulerBlock.tsx", "TypeScript JSX", 0, 263, 0, 0, 0, 75, 41, 379
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/Typewriter/Typewriter.tsx", "TypeScript JSX", 0, 39, 0, 0, 0, 1, 7, 47
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Engineer/Engineer.tsx", "TypeScript JSX", 0, 5924, 0, 0, 0, 81, 57, 6062
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Entrepeneur/Entrepeneur.tsx", "TypeScript JSX", 0, 1289, 0, 0, 0, 35, 26, 1350
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/ui.ts", "TypeScript", 73, 0, 0, 0, 0, 18, 8, 99
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/uiSchema.tsx", "TypeScript JSX", 0, 103, 0, 0, 0, 29, 43, 175
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/words/words.ts", "TypeScript", 172, 0, 0, 0, 0, 17, 19, 208
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/database/firebaseResources.tsx", "TypeScript JSX", 0, 30, 0, 0, 0, 5, 6, 41
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/experimental/DecisionMap.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 1034, 34, 1068
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/index.css", "CSS", 0, 0, 0, 0, 67, 0, 9, 76
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/index.d.ts", "TypeScript", 1, 0, 0, 0, 0, 0, 1, 2
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/main.tsx", "TypeScript JSX", 0, 20, 0, 0, 0, 8, 6, 34
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/styles/lazyStyles.tsx", "TypeScript JSX", 0, 669, 0, 0, 0, 17, 31, 717
+"/Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/vite-env.d.ts", "TypeScript", 1, 0, 0, 0, 0, 1, 1, 3
+"Total", "-", 545, 27521, 296, 8015, 232, 3080, 1791, 41480

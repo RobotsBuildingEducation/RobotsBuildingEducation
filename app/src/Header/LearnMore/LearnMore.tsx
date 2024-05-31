@@ -69,7 +69,7 @@ export const LearnMore = ({ languageMode }) => {
                 width: 180,
                 display: "flex",
               }}
-              onClick={() => {
+              onMouseDown={() => {
                 logEvent(analytics, "select_content", {
                   content_type: "button",
                   item_id: "About",
@@ -78,7 +78,8 @@ export const LearnMore = ({ languageMode }) => {
               }}
             >
               <div style={{ height: 24, width: 24 }}>&nbsp;</div>
-              <div>&nbsp; {languageMode.buttons["9"]}</div>
+              {/* <div>&nbsp; {languageMode.buttons["9"]}</div> */}
+              <div>FAQs & Contact</div>
             </Button>
           </RiseUpAnimation>
         )}
@@ -100,7 +101,7 @@ export const LearnMore = ({ languageMode }) => {
                   width: 180,
                   display: "flex",
                 }}
-                onClick={() => {
+                onMouseDown={() => {
                   logEvent(analytics, "select_content", {
                     content_type: "button",
                     item_id: "Primal Social Wallet",

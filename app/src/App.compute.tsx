@@ -422,6 +422,18 @@ export const GetLandingPageMessage = ({ unlocks }) => {
       </div>
     );
   }
+  if (!unlocks?.["Resume Writing"]) {
+    message = (
+      <div>
+        📄 Elevate your career with our Resume Writing lecture. Learn how to
+        present your skills compellingly and professionally.
+        <br />
+        <br />
+        Suggestion: Use action verbs and quantifiable achievements to make your
+        resume stand out!
+      </div>
+    );
+  }
   if (!unlocks?.["The Psychology Of Self-esteem"]) {
     message = (
       <div>
@@ -432,30 +444,6 @@ export const GetLandingPageMessage = ({ unlocks }) => {
         <br />
         Suggestion: <em>Cognitive Behavioral Techniques</em> to improve personal
         perception.
-      </div>
-    );
-  }
-  if (!unlocks?.["Lesson 5 Computer Science"]) {
-    message = (
-      <div>
-        💻 Advance your tech career with 'Lesson 5 in Computer Science'. Tackle
-        complex algorithms and data structures that are essential for
-        problem-solving.
-        <br />
-        <br />
-        Suggestion: Implement a <em>Binary Search Tree</em> from scratch.
-      </div>
-    );
-  }
-  if (!unlocks?.["Resume Writing"]) {
-    message = (
-      <div>
-        📄 Elevate your career with our Resume Writing lecture. Learn how to
-        present your skills compellingly and professionally.
-        <br />
-        <br />
-        Suggestion: Use action verbs and quantifiable achievements to make your
-        resume stand out!
       </div>
     );
   }
@@ -480,6 +468,18 @@ export const GetLandingPageMessage = ({ unlocks }) => {
         <br />
         Suggestion: Use principles of <em>User-Centered Design</em> to improve
         the usability of your projects.
+      </div>
+    );
+  }
+  if (!unlocks?.["Lesson 5 Computer Science"]) {
+    message = (
+      <div>
+        💻 Advance your tech career with 'Lesson 5 in Computer Science'. Tackle
+        complex algorithms and data structures that are essential for
+        problem-solving.
+        <br />
+        <br />
+        Suggestion: Implement a <em>Binary Search Tree</em> from scratch.
       </div>
     );
   }
@@ -983,7 +983,11 @@ export const isLocalStorageValid = () => {
  *
  * used when calling openai or simulating loads
  */
-export let RoxanaLoadingAnimation = ({ nochat = false }) => {
+export let RoxanaLoadingAnimation = ({
+  header = null,
+  nochat = false,
+  intel = false,
+}) => {
   return (
     <FadeInComponent>
       <div>
@@ -996,12 +1000,14 @@ export let RoxanaLoadingAnimation = ({ nochat = false }) => {
             }}
             width={60}
             height={60}
-            style={{ marginLeft: "105px" }}
+            style={{ marginLeft: intel ? "185px" : "105px" }}
           />
         )}
 
         <img width="150px" src={roxanaGif} />
       </div>
+
+      {header ? <h3>{header}</h3> : null}
     </FadeInComponent>
   );
 };
@@ -1093,3 +1099,21 @@ export const addKnowledgeStep = async (step, knowledge, label, collectorId) => {
     console.error("Error writing document and updating user: ", error);
   }
 };
+
+export const ScrollComponent = () => {
+  useEffect(() => {
+    const handleScroll = () => {
+      console.log("Window is scrolling");
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return <div>Scroll to see the effect in action!</div>;
+};
+
+export default ScrollComponent;

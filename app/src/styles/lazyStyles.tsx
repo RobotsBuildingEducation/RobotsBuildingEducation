@@ -154,31 +154,6 @@ export const rectanglePump = keyframes`
 
 `;
 
-export const StyledNavigationContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-  max-width: 100%;
-  min-width: 100%;
-  opacity: 0.9;
-
-  /* max-width: 100%; */
-  transition: 0.2s all ease-in-out;
-
-  border-radius: 2px;
-  /* box-shadow: 0 3px 6px #0b186be2, 0 6px 6px rgba(0, 0, 0, 0.23); */
-  &:hover {
-    /* transform: scale(1.01); */
-    /* box-shadow: 0 19px 38px  #0b186be2, 0 15px 12px rgba(0,0,0,0.22); */
-  }
-
-  position: fixed;
-  background-color: black;
-  z-index: 100;
-  padding-top: 4px;
-`;
-
 export const StyledCollectionContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -296,6 +271,7 @@ export const ComingSoonModule = styled.button`
 `;
 
 export const StyledLink = styled(Link)`
+  border-radius: 12px;
   &:hover {
     cursor: ${(props) => {
       return props.active ? "grab" : "not-allowed";
@@ -406,20 +382,20 @@ export const StyledLink = styled(Link)`
 
   width: 115px;
 
-  height: 55px;
+  height: 35px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 4px;
+  // padding: 4px;
   // margin: 8px;
-  margin-left: 8px;
-  margin-right: 8px;
+  // margin-left: 8px;
+  // margin-right: 8px;
 
   color: white;
   transition: 0.15s all ease-in-out;
   text-shadow: 1px 1px 5px black;
   // color: #f5befa;
-  border-radius: 0px;
+  border-radius: 6px;
   //      " #e216b4"
 
   box-shadow: ${(props) => {
@@ -450,7 +426,7 @@ export const StyledLink = styled(Link)`
     // }
 
     if (isSelectedPath) {
-      backgroundColor = "1px 1px 3px 1px";
+      backgroundColor = "0px 3px 3px -1.5px";
     }
 
     // Adjust color based on path
@@ -471,12 +447,11 @@ export const StyledLink = styled(Link)`
     return props.active ? "grab" : "not-allowed";
   }}; */
 
-  transform: ${(props) => {
-    return props.pathSelectionAnimationData.path === props.path
-      ? "scale(0.95)"
-      : "";
-  }};
   font-family: "Bungee";
+  text-align: center;
+  border-top: 0px solid black;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 `;
 //
 
@@ -485,7 +460,7 @@ export const StyledPath = styled.button`
   background-color: #f5befa;
 
   /* max-width: 200px; */
-  width: 100%;
+  width: fit-content;
   height: 125px;
   display: flex;
   justify-content: center;

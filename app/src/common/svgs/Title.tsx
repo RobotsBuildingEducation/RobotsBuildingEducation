@@ -29,7 +29,7 @@ export const Title = ({ closeFunction, title }) => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         style={isHovered ? styleHovered : styleNormal}
-        onClick={() => closeFunction()}
+        onMouseDown={() => closeFunction()}
       >
         &#8592;
       </div>

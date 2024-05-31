@@ -1,119 +1,128 @@
-import styled, { keyframes } from "styled-components";
-import { StyledNavigationContainer, StyledLink } from "../styles/lazyStyles";
+import styled, { keyframes, css } from "styled-components";
+import { StyledLink, rectanglePump } from "../styles/lazyStyles";
 import { uiPaths } from "../common/uiSchema";
 import { useStore } from "../Store";
 import { useGlobalModal } from "../App.hooks";
 import { modalConfig } from "../App.constants";
+import { useEffect, useState } from "react";
 
 // Helper function to create display elements
 const delayedAnimation = keyframes`
-from {
-  opacity: 0;
-}
-to {
-  opacity: 1;
-} 
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+`;
+
+// Keyframes for fade-out with scale and translate
+const fadeOut = keyframes`
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+`;
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const RotatingEmoji = styled.span`
+  display: inline-block;
+  animation: ${({ isVisible }) =>
+    isVisible
+      ? "none"
+      : css`
+          ${rotate} 1s ease-in-out infinite
+        `};
 `;
 const StyledPathItem = styled.div`
   perspective: 1000px;
-  animation: ${delayedAnimation} 0.3s ease-out;
-  animation-delay: ${(props) => props.index * 0.15}s; /* Delay based on index */
-  opacity: 0; /* Start with opacity 0 to make the animation visible */
-  animation-fill-mode: forwards; /* Keep the element visible after the animation */
+  border-radius: 6px;
 `;
 
-// helper function to render
+export const StyledNavigationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  // max-width: 100%;
+  // min-width: 100%;
+  opacity: 1;
+
+  /* max-width: 100%; */
+  transition: 0.2s all ease-in-out;
+
+  border-radius: 6px;
+  /* box-shadow: 0 3px 6px #0b186be2, 0 6px 6px rgba(0, 0, 0, 0.23); */
+  &:hover {
+    /* transform: scale(1.01); */
+    /* box-shadow: 0 19px 38px  #0b186be2, 0 15px 12px rgba(0,0,0,0.22); */
+  }
+
+  position: fixed;
+  background-color: black;
+  z-index: 100;
+
+  width: min-width;
+  &:hover {
+    animation: ${rectanglePump} 3s infinite ease-in-out;
+  }
+  border-top: 0px solid black;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+`;
+
+// Helper function to render paths
 const createPathElements = (
   handlePathSelection,
   pathSelectionAnimationData,
   unlockCreatorKey,
-  unlockDealerKey
+  unlockDealerKey,
+  isVisible
 ) => {
   let handleModal = useGlobalModal(modalConfig);
 
   return uiPaths.map((path, index) => {
     let displayText = path !== "Entrepeneur" ? path : "Investing";
     if (path === "Creator") displayText = "Thinking";
-    if (path === "Engineer") displayText = "Coding";
+    if (path === "Engineer") displayText = "Learn";
 
-    if (unlockCreatorKey && unlockDealerKey) {
+    if (path === "Engineer") {
       return (
-        <StyledPathItem index={index} key={path}>
-          <StyledLink
-            active
-            to="/"
-            pathSelectionAnimationData={pathSelectionAnimationData}
-            path={path}
-            id={path}
-            onClick={handlePathSelection}
-            key={path}
-            isUnlocked={true}
-          >
-            {displayText}
-          </StyledLink>
-        </StyledPathItem>
+        // <StyledPathItem key={path}>
+        <StyledLink
+          index={index}
+          active
+          to="/"
+          pathSelectionAnimationData={pathSelectionAnimationData}
+          path={path}
+          id={path}
+          onClick={handlePathSelection}
+          key={path}
+          isUnlocked={true}
+        >
+          {isVisible ? (
+            <span onClick={handlePathSelection}>{displayText}</span>
+          ) : (
+            <RotatingEmoji isVisible={isVisible} onClick={handlePathSelection}>
+              🌀
+            </RotatingEmoji>
+          )}
+        </StyledLink>
+        // </StyledPathItem>
       );
-    } else {
-      if (path === "Engineer") {
-        return (
-          <StyledPathItem index={index} key={path}>
-            <StyledLink
-              active
-              to="/"
-              pathSelectionAnimationData={pathSelectionAnimationData}
-              path={path}
-              id={path}
-              onClick={handlePathSelection}
-              key={path}
-              isUnlocked={true}
-            >
-              {displayText}
-            </StyledLink>
-          </StyledPathItem>
-        );
-      } else if (path === "Creator") {
-        return (
-          <StyledPathItem index={index} key={path}>
-            <StyledLink
-              active
-              to="/"
-              pathSelectionAnimationData={pathSelectionAnimationData}
-              path={path}
-              id={path}
-              key={path}
-              isUnlocked={unlockCreatorKey}
-              onClick={(event) =>
-                unlockCreatorKey
-                  ? handlePathSelection(event)
-                  : handleModal("creator")
-              }
-            >
-              {displayText}
-            </StyledLink>
-          </StyledPathItem>
-        );
-      } else if (path === "Entrepeneur") {
-        return (
-          <StyledPathItem index={index} key={path}>
-            <StyledLink
-              active
-              to="/"
-              pathSelectionAnimationData={pathSelectionAnimationData}
-              path={path}
-              id={path}
-              key={path}
-              isUnlocked={unlockDealerKey}
-              onClick={(event) =>
-                unlockDealerKey
-                  ? handlePathSelection(event)
-                  : handleModal("dealer")
-              }
-            >
-              {displayText}
-            </StyledLink>
-          </StyledPathItem>
-        );
-      }
     }
   });
 };
@@ -130,7 +139,26 @@ export const Paths = ({
   pathSelectionAnimationData,
   userStateReference,
 }): JSX.Element => {
-  // checks the user's document to see whether or not they've unlocked the paths
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    let timeoutId;
+    const handleScroll = () => {
+      setIsVisible(false);
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setIsVisible(true);
+      }, 85);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timeoutId);
+    };
+  }, []);
+
   let unlockCreatorKey =
     userStateReference?.databaseUserDocument?.unlocks?.[
       "Lesson 3 Backend Engineering"
@@ -141,14 +169,12 @@ export const Paths = ({
       "Lesson 5 Computer Science"
     ];
 
-  // Define the paths
-
-  // Generate the display elements for the top paths
   const pathElements = createPathElements(
     handlePathSelection,
     pathSelectionAnimationData,
     unlockCreatorKey,
-    unlockDealerKey
+    unlockDealerKey,
+    isVisible
   );
 
   return <StyledNavigationContainer>{pathElements}</StyledNavigationContainer>;

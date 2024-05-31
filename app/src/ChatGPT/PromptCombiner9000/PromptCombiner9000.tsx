@@ -55,7 +55,7 @@ export const MessageContainer = styled.div`
   padding: 20px;
   min-width: 350px;
   // max-width: 600px;
-  max-width: 80.5%;
+  max-width: 90.5%;
   border-radius: 50px;
   margin: 24px 0 12px 0;
 `;
@@ -97,6 +97,7 @@ const renderContent = (
   handleCompletedPractice,
   handleWatch
 ) => {
+  console.log("rendercontnet", type);
   switch (type) {
     case "patreon":
       return (
@@ -153,6 +154,10 @@ const renderContent = (
           {response}
         </div>
       );
+    case "quiz":
+      return <div>{response}</div>;
+    case "study guide":
+      return <div>{response}</div>;
     default:
       return (
         <div style={{ padding: 20 }}>
@@ -213,7 +218,7 @@ export const PromptCombiner9000 = ({
       {loadingMessage.length < 1 && (
         <Heading
           id={type}
-          onClick={handlePromptHeaderVisibility}
+          onMouseDown={handlePromptHeaderVisibility}
           // style={{
           //   border:
           //     promptVisibility === "flex"

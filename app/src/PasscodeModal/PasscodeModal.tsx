@@ -6,7 +6,11 @@ import { paddingBlock } from "../styles/lazyStyles";
 import { uiCollections } from "../common/uiSchema";
 import { ExternalLink } from "../common/ui/Elements/ExternalLink/ExternalLink";
 
-function PasscodeChecker({ setIsLocalModalActive, handleModuleSelection }) {
+function PasscodeChecker({
+  setIsLocalModalActive,
+  handleModuleSelection,
+  patreonObject,
+}) {
   const [input, setInput] = useState("");
   const [isValid, setIsValid] = useState(null);
 
@@ -15,7 +19,9 @@ function PasscodeChecker({ setIsLocalModalActive, handleModuleSelection }) {
     import.meta.env.VITE_BITCOIN_PASSCODE;
 
   let lecture =
-    uiCollections.Entrepeneur["Understanding Business"]["Focus Investing"];
+    uiCollections.Engineer["Coding & Startups"][
+      "Lesson 1 Coding Fundamentals"
+    ] || patreonObject;
 
   useEffect(() => {
     if (input === correctPasscode) {
@@ -46,6 +52,7 @@ export const PasscodeModal = ({
   isLocalModalActive,
   setIsLocalModalActive,
   handleModuleSelection,
+  patreonObject,
 }) => {
   const handleClose = () => setIsLocalModalActive(false);
 
@@ -86,6 +93,7 @@ export const PasscodeModal = ({
           <PasscodeChecker
             setIsLocalModalActive={setIsLocalModalActive}
             handleModuleSelection={handleModuleSelection}
+            patreonObject={patreonObject}
           />
         </Modal.Body>
       </Modal>

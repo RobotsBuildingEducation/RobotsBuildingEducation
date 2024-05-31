@@ -44,7 +44,7 @@ export const FAQItem = ({ question, answer, index }) => {
       <StyledFAQItem index={index}>
         <Button
           style={{ padding: 25, width: "100%", marginTop: 12 }}
-          onClick={() => setOpen(!open)}
+          onMouseDown={() => setOpen(!open)}
           aria-controls="example-collapse-text"
           aria-expanded={open}
           variant="dark"

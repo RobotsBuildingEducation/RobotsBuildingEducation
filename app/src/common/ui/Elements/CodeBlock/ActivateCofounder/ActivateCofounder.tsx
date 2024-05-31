@@ -23,7 +23,7 @@ export const ActivateCofounder = ({ setIsModalOpen }) => {
         onMouseLeave={() => {
           setBoxShadow(false);
         }}
-        onClick={() => {
+        onMouseDown={() => {
           setIsModalOpen(true);
         }}
       >

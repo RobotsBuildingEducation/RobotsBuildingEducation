@@ -30,7 +30,7 @@ const PromptButton = ({
   action,
   type,
   loading,
-  onClick,
+  onMouseDown,
   prompt,
   handleZap,
   zap,
@@ -52,11 +52,11 @@ const PromptButton = ({
         tabindex="0"
         borderHighlight={"#48484a"}
         style={{ display: loading ? "none" : "flex" }}
-        onClick={(e) => {
+        onMouseDown={(e) => {
           zap()
             .then((response) => {
               console.log("response from zap", response);
-              onClick(e);
+              onMouseDown(e);
             })
             .catch((error) => {
               console.log("error", error);
@@ -92,8 +92,8 @@ const PromptButton = ({
       style={{
         display: loading ? "none" : "flex",
       }}
-      onClick={(e) => {
-        onClick(e, prompt, type);
+      onMouseDown={(e) => {
+        onMouseDown(e, prompt, type);
       }}
     >
       <a style={{ color: "white" }}>
@@ -191,7 +191,7 @@ export const Prompts = ({
                     type={type}
                     loading={!!loadingMessage}
                     prompt={prompt}
-                    onClick={(e) =>
+                    onMouseDown={(e) =>
                       !loadingMessage && handleSubmit(e, prompt, type)
                     }
                     handleZap={handleZap}
@@ -210,7 +210,7 @@ export const Prompts = ({
                   type={type}
                   loading={!!loadingMessage}
                   prompt={prompt}
-                  onClick={(e) =>
+                  onMouseDown={(e) =>
                     !loadingMessage && handleSubmit(e, prompt, type)
                   }
                   handleZap={handleZap}
@@ -226,7 +226,7 @@ export const Prompts = ({
       <br />
       {/* <Button
         variant="dark"
-        onClick={() => {
+        onMouseDown={() => {
           logEvent(analytics, "select_content", {
             content_type: "button",
             item_id: "View Roxana",
@@ -255,7 +255,7 @@ export const Prompts = ({
           <ModalContent patreonObject={patreonObject} />
         </Modal.Body>
         <Modal.Footer style={{ color: "white", backgroundColor: "black" }}>
-          <Button variant="dark" onClick={() => setIsModalOpen(false)}>
+          <Button variant="dark" onMouseDown={() => setIsModalOpen(false)}>
             Back to app
           </Button>
         </Modal.Footer>

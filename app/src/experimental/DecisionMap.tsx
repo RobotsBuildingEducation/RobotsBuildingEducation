@@ -795,7 +795,7 @@
 
 //   return (
 //     <TreeNode>
-//       <TreeNodeButton onClick={() => onNodeSelect(node, isLeafNode)}>
+//       <TreeNodeButton onMouseDown={() => onNodeSelect(node, isLeafNode)}>
 //         {node.name}
 //       </TreeNodeButton>
 //       {isSelected && node.children && (
@@ -819,7 +819,7 @@
 // //   return (
 // //     <div style={{}}>
 // //       <button
-// //         onClick={() => onNodeSelect(node, isLeafNode)}
+// //         onMouseDown={() => onNodeSelect(node, isLeafNode)}
 // //         style={{
 // //           marginTop: 12,
 // //           backgroundColor: isSelected ? "#add8e6" : "#f0f0f0",
@@ -979,20 +979,20 @@
 //         isSelected={root.isSelected}
 //       />
 //       {path.length > 1 && (
-//         <button onClick={handleUndo} style={{ margin: "5px" }}>
+//         <button onMouseDown={handleUndo} style={{ margin: "5px" }}>
 //           Undo
 //         </button>
 //       )}
 //       <br />
 //       <br />
-//       <button onClick={handleRestart} style={{ margin: "5px" }}>
+//       <button onMouseDown={handleRestart} style={{ margin: "5px" }}>
 //         Restart
 //       </button>
 
 //       {isDisplayingAI ? (
 //         <>
 //           <button
-//             onClick={handleAI}
+//             onMouseDown={handleAI}
 //             style={{ margin: "5px" }}
 //             disabled={responseIsLoading}
 //           >

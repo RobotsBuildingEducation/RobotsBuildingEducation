@@ -85,7 +85,7 @@ export let words = {
       "32": "Interactions & Design",
       "36": "The Psychology Of Self-esteem",
 
-      // dealer - Understanding Business
+      // dealer - Investing & Business
       "37": "Creating Competitive Entry Level Resumes",
       "38": "Focus Investing",
       "39": "Wealth Management",

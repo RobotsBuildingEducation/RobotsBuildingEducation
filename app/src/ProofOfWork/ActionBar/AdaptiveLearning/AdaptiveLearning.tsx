@@ -5,7 +5,6 @@ import { Title } from "../../../common/svgs/Title";
 import { collection, doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { database } from "../../../database/firebaseResources";
 import { customInstructions } from "./AdaptiveLearning.compute";
-import { postInstructions } from "../../../common/uiSchema";
 import {
   RoxanaLoadingAnimation,
   completeZapEvent,
@@ -18,6 +17,10 @@ import {
 } from "../../../styles/lazyStyles";
 import { EditIcon } from "../../../common/svgs/EditIcon";
 import { useZap, useZapAnimation } from "../../../App.hooks";
+
+import Markdown from "react-markdown";
+import { useChatStream } from "../../../common/ui/Elements/Stream/useChatCompletion";
+import { postInstructions } from "../../../common/uiSchema";
 
 export const AdaptiveLearning = ({
   isAdaptiveLearningOpen,
@@ -32,20 +35,27 @@ export const AdaptiveLearning = ({
   const isFirstRender = useRef(true);
   const [knowledgeData, setKnowledgeData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [apiResponse, setApiResponse] = useState(null);
   const [instructions, setInstructions] = useState(
-    "The individual has collected this knowledge while learning how to build a startup from scratch. Generally speaking, they're starting with code first and need to learn that. This later includes a number of skills like coding, business, investing, design, philosophy, resume writing, and psychology. The idea is to provide real time feedback and suggestions as an individual learns more skills and gains awareness of the challenge. You have a maximum of 3 sentences. This is the following knowledge they've collected so far:"
+    "The individual has collected this knowledge represented in JSON while learning how to build a business or goal from scratch. In a minimalist markdown, where the biggest headers are ####, recommend the next best possible action to generate revenue, income or success in up to 3 sentences based on what the individual's goals or business is. Then have a section that generates an execution strategy and another section that explains your thought process."
   );
   const [isEditing, setIsEditing] = useState(false);
   const [areInstructionsSaving, setAreInstructionsSaving] = useState(false);
   const userId = localStorage.getItem("uniqueId");
-
+  const [businessGoal, setBusinessGoal] = useState("learning how to code.");
   const [isExiting, setIsExiting] = useState(false);
+  const [apiResponse, setApiResponse] = useState(null);
 
+  // Initialize the chat stream
+  const { messages, loading, submitPrompt, resetMessages } = useChatStream({
+    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+    model: "gpt-4o",
+    temperature: 0.9,
+    // response_format: { type: "json_object" },
+  });
   const fetchUpdate = async (data) => {
     setIsLoading(true);
 
-    let prompt = customInstructions(instructions, data);
+    let prompt = customInstructions(instructions, data, businessGoal);
 
     try {
       const response = await fetch(postInstructions.url, {
@@ -76,6 +86,7 @@ export const AdaptiveLearning = ({
       );
 
       const responseData = await response.json();
+      console.log("responseData", responseData);
       setApiResponse(responseData?.bot?.content);
     } catch (error) {
       console.error("Error fetching update: ", error);
@@ -90,14 +101,25 @@ export const AdaptiveLearning = ({
       const userDocRef = doc(database, "users", userId);
       await updateDoc(userDocRef, {
         "learning.instructions": instructions,
+        "learning.business": businessGoal,
       });
 
       setIsEditing(false);
       setAreInstructionsSaving(false);
-      fetchUpdate(knowledgeData);
+      // fetchUpdate(knowledgeData);
+      handleSubmit(knowledgeData);
     } catch (error) {
       console.error("Error saving instructions: ", error);
     }
+  };
+
+  const handleSubmit = async (data) => {
+    setIsLoading(true);
+    resetMessages();
+
+    let prompt = customInstructions(instructions, data, businessGoal);
+
+    submitPrompt([{ role: "user", content: prompt }]);
   };
 
   useEffect(() => {
@@ -109,6 +131,9 @@ export const AdaptiveLearning = ({
         const userData = docSnapshot.data();
         if (userData.learning && userData.learning.instructions) {
           setInstructions(userData.learning.instructions);
+        }
+        if (userData.learning && userData.learning.business) {
+          setBusinessGoal(userData.learning.business);
         }
       }
     });
@@ -132,17 +157,17 @@ export const AdaptiveLearning = ({
         setKnowledgeData(data);
 
         if (!isFirstRender.current && !isAdaptiveLearningOpen && !isExiting) {
-          handleZapAnimation();
+          //   handleZapAnimation();
         } else {
           isFirstRender.current = false;
         }
 
         if (
           isAdaptiveLearningOpen
-          //    &&
+          //   &&
           //   window.location.hostname === "robotsbuildingeducation.com"
         ) {
-          fetchUpdate(data);
+          handleSubmit(data);
         }
       }
     );
@@ -155,12 +180,22 @@ export const AdaptiveLearning = ({
   }, [isAdaptiveLearningOpen, userId]);
 
   useEffect(() => {
-    if (isLoading) {
+    if (loading) {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  }, [isLoading]);
+  }, [loading]);
 
-  console.log("knowledge data", knowledgeData);
+  useEffect(() => {
+    if (messages?.length > 0) {
+      const lastMessage = messages[messages.length - 1];
+      if (!lastMessage.meta.loading) {
+        // const result = JSON.parse(lastMessage.content);
+        setApiResponse(lastMessage.content);
+        setIsLoading(false);
+      }
+    }
+  }, [messages]);
+
   return (
     <Modal
       centered
@@ -187,7 +222,7 @@ export const AdaptiveLearning = ({
             setIsExiting(true);
             setIsAdaptiveLearningOpen(false);
           }}
-          title="Adaptive Learning (Experimental)"
+          title="Adaptive Learning"
         />
       </Modal.Header>
       <Modal.Body
@@ -201,13 +236,41 @@ export const AdaptiveLearning = ({
           individual's learning.
         </p>
         <div>
-          {isLoading ? (
+          {loading ? (
             <>
-              <RoxanaLoadingAnimation />
+              <RoxanaLoadingAnimation header={"Creating and designing 🌀"} />
               <br />
               <br />
+              <div style={{ whiteSpace: "pre-wrap" }}>
+                {messages
+                  ?.map((msg, index) =>
+                    index === 0 ||
+                    index % 2 === 0 ||
+                    index !== messages.length - 1 ? null : (
+                      <p
+                        key={index}
+                        style={{
+                          ...responsiveBox,
+                          textAlign: "left",
+                          color: "white",
+                          padding: "35px",
+                          borderRadius: "10px",
+                          marginBottom: "10px",
+                          alignSelf: "flex-start",
+                          borderBottomLeftRadius: "0px",
+                          borderTopLeftRadius: "50px",
+                          borderTopRightRadius: "50px",
+                          borderBottomRightRadius: "50px",
+                        }}
+                      >
+                        <Markdown>{msg.content}</Markdown>
+                      </p>
+                    )
+                  )
+                  .reverse()}
+              </div>
             </>
-          ) : !isLoading && apiResponse ? (
+          ) : apiResponse ? (
             <div style={{ marginTop: "24px", color: "white" }}>
               <p
                 style={{
@@ -225,8 +288,7 @@ export const AdaptiveLearning = ({
                   borderBottomRightRadius: "50px",
                 }}
               >
-                <strong>Recommendation</strong>
-                <div>{apiResponse}</div>
+                <Markdown>{apiResponse}</Markdown>
               </p>
               <br />
               <br />
@@ -248,9 +310,21 @@ export const AdaptiveLearning = ({
                   onChange={(e) => setInstructions(e.target.value)}
                   style={{ backgroundColor: "black", color: "white" }}
                 />
+
+                <Col sm="10">
+                  <Form.Control
+                    placeholder="Describe your goal or startup idea."
+                    as="textarea"
+                    rows={3}
+                    value={businessGoal}
+                    onChange={(e) => setBusinessGoal(e.target.value)}
+                    style={{ backgroundColor: "black", color: "white" }}
+                  />
+                </Col>
+
                 <Button
                   variant="primary"
-                  onClick={handleSaveInstructions}
+                  onMouseDown={handleSaveInstructions}
                   style={{ marginTop: "10px" }}
                 >
                   {areInstructionsSaving ? (
@@ -261,13 +335,15 @@ export const AdaptiveLearning = ({
                 </Button>
                 <Button
                   variant="secondary"
-                  onClick={() => setIsEditing(false)}
+                  onMouseDown={() => setIsEditing(false)}
                   style={{ marginTop: "10px", marginLeft: "10px" }}
                 >
                   Cancel
                 </Button>
               </Col>
             </Form.Group>
+            <br />
+            <br />
           </Form>
         ) : (
           <div
@@ -280,11 +356,15 @@ export const AdaptiveLearning = ({
               ...responsiveBox,
             }}
           >
+            <strong>Goal/Startup Idea</strong>
+            <p>{businessGoal}</p>
+            <br />
             <strong>Instructions</strong>
             <p>{instructions}</p>
+
             <div
               style={{ cursor: "pointer", padding: 20 }}
-              onClick={() => setIsEditing(true)}
+              onMouseDown={() => setIsEditing(true)}
             >
               <EditIcon /> <b>Edit instructions</b>
             </div>

@@ -10,7 +10,7 @@ import { Typewriter } from "../Elements/Typewriter/Typewriter";
 import { ExternalLink } from "../Elements/ExternalLink/ExternalLink";
 
 export const Creator = {
-  Communications: {
+  "Ideas & Design": {
     Philosophy: {
       creatorBorder: true,
 
@@ -21,6 +21,43 @@ export const Creator = {
       fileSource:
         "https://res.cloudinary.com/sheilfer/video/upload/v1697492158/IMG_9002_sfq8dw.mov", // may not need
 
+      knowledge: {
+        start: {
+          step: "59",
+          knowledge:
+            "Students will be introduced to the intersections of Critical Race Theory, Machine Learning Algorithms, and Macroeconomics, exploring how technology, society, and economy influence each other.",
+          label: "Start lecture",
+          collectorId: "Philosophy-start",
+        },
+        discover: {
+          step: "60",
+          knowledge:
+            "Students will explore the history and impact of systemic racial inequalities, understand their perpetuation through modern technologies, and learn how individual actions and education can drive significant social change. This approach is embedded in Robots Building Education, which aims to empower students by fostering access to quality education and promoting financial equity through learning communities.",
+          label: "Discover intersections of philosophy",
+          collectorId: "Philosophy-discover",
+        },
+        video: {
+          step: "61",
+          knowledge:
+            "The synthesis of these knowledge reveals critical insights into systemic injustices and the transformative power of education, technology, and community action. They highlight the resilience required to overcome personal and societal challenges, emphasizing the importance of equitable practices and inclusive policies in creating a more just and hopeful world. Together, these works underscore the need for continuous learning, critical thinking, and collective efforts to address and dismantle systemic barriers, fostering a future where justice and opportunity are accessible to all.",
+          label: "Introduction to intersectional philosophy",
+          collectorId: "Philosophy-video",
+        },
+        guide: {
+          step: "62",
+          knowledge:
+            "Students will delve into key philosophical concepts such as purpose, duty, and providence, and their applications in ethical decision-making within technology and society. They will examine how philosophical perspectives can critique and reshape practices in data collection, digital privacy, and systemic racism.",
+          label: "Study guide",
+          collectorId: "Philosophy-guide",
+        },
+        shop: {
+          step: "63",
+          knowledge:
+            "Students are encouraged to acquire resources such as books and courses that provide deeper insights into philosophy and its intersections with technology and society.",
+          label: "Expand your knowledge",
+          collectorId: "Philosophy-shop",
+        },
+      },
       prompts: {
         welcome: {
           response: (
@@ -619,6 +656,7 @@ export const Creator = {
       },
     },
     "Interactions & Design": {
+      //39
       creatorBorder: true,
 
       credential: "Human-Computer Interaction",
@@ -629,6 +667,43 @@ export const Creator = {
       fileSource:
         "https://res.cloudinary.com/sheilfer/video/upload/v1697403810/IMG_8966_gt4s4s.mov", // may not need
 
+      knowledge: {
+        start: {
+          step: "39",
+          knowledge:
+            "Students will be introduced to Human-Computer Interaction, Entrepreneurship, and Design, exploring the art of making technology more human and impactful.",
+          label: "Start lecture",
+          collectorId: "Interactions & Design-start",
+        },
+        discover: {
+          step: "40",
+          knowledge:
+            "Students will explore Human-Computer Interaction principles, understanding their impact on SEO and user behavior. They will also learn how to apply these principles to create effective, user-friendly designs.",
+          label: "Discover Human-Computer Interaction",
+          collectorId: "Interactions & Design-discover",
+        },
+        video: {
+          step: "41",
+          knowledge:
+            "Students will be introduced to Human-Computer Interaction (HCI), Entrepreneurship, and Design, understanding how to make technology more human and impactful. They will explore HCI principles, their influence on user behavior, and the integration of psychological principles into design. Practical application includes creating user-friendly interfaces with an empathetic approach and acquiring resources to deepen understanding.",
+          label: "Introduction to Human-Computer Interaction",
+          collectorId: "Interactions & Design-video",
+        },
+        guide: {
+          step: "42",
+          knowledge:
+            "Students will delve into the design of intuitive interfaces, the role of social influence in shaping user interactions, and the importance of personalization in digital experiences. They will also explore privacy concerns and the integration of psychological principles into technology design.",
+          label: "Study guide",
+          collectorId: "Interactions & Design-guide",
+        },
+        shop: {
+          step: "43",
+          knowledge:
+            "Students are encouraged to acquire resources like 'The Design of Everyday Things' to deepen their understanding of HCI and design principles.",
+          label: "Expand your knowledge",
+          collectorId: "Interactions & Design-shop",
+        },
+      },
       prompts: {
         welcome: {
           response: (
@@ -1177,6 +1252,43 @@ export const Creator = {
       header: `The Psychology Of Self-esteem`,
       fileSource:
         "https://res.cloudinary.com/sheilfer/video/upload/v1706607491/Snaptik.app_7307805149592833326_xs7eky.mp4", // may not need
+      knowledge: {
+        start: {
+          step: "49",
+          knowledge:
+            "Students will be introduced to the psychology of self-esteem, learning how their minds shape self-image and self-worth.",
+          label: "Start lecture",
+          collectorId: "The Psychology Of Self-Esteem-start",
+        },
+        discover: {
+          step: "50",
+          knowledge:
+            "Students will explore how self-esteem is influenced by societal expectations, personal experiences, and cultural backgrounds. They will also learn about the significance of positive self-talk and self-compassion in fostering a healthy self-esteem.",
+          label: "Discover the psychology of self-esteem",
+          collectorId: "The Psychology Of Self-Esteem-discover",
+        },
+        video: {
+          step: "51",
+          knowledge:
+            "Students will be introduced to the psychology of self-esteem, learning how their minds shape self-image and self-worth. They will explore the influences of societal expectations, personal experiences, and cultural backgrounds on self-esteem, and learn the importance of positive self-talk and self-compassion. Additionally, students will gain practical techniques like cognitive behavioral therapy (CBT) and self-compassion exercises to enhance their self-esteem.",
+          label: "Introduction to the psychology of self-esteem",
+          collectorId: "The Psychology Of Self-Esteem-discover",
+        },
+        guide: {
+          step: "52",
+          knowledge:
+            "Students will gain insights into key psychological theories related to self-esteem, such as the 'looking-glass self' and the impact of social media on adolescent self-esteem. They will also learn practical techniques, such as cognitive behavioral therapy (CBT) and self-compassion, to improve self-esteem.",
+          label: "Study guide",
+          collectorId: "The Psychology Of Self-Esteem-guide",
+        },
+        shop: {
+          step: "53",
+          knowledge:
+            "Students are encouraged to acquire resources like books and courses that deepen their understanding of self-esteem, such as 'The Six Pillars of Self-Esteem' by Nathaniel Branden.",
+          label: "Expand your knowledge",
+          collectorId: "The Psychology Of Self-Esteem-shop",
+        },
+      },
       prompts: {
         welcome: {
           response: (

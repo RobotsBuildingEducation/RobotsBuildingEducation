@@ -76,7 +76,7 @@ export const MultipleChoiceQuestion = ({
           </OptionContainer>
         ))}
         <br /> <br />
-        <Button onClick={handleSubmit} variant="primary">
+        <Button onMouseDown={handleSubmit} variant="primary">
           Submit
         </Button>
       </StyledQuizForm>
