@@ -10,7 +10,7 @@ import { Typewriter } from "../Elements/Typewriter/Typewriter";
 import { ExternalLink } from "../Elements/ExternalLink/ExternalLink";
 
 export const Creator = {
-  Communications: {
+  "Ideas & Design": {
     Philosophy: {
       creatorBorder: true,
 

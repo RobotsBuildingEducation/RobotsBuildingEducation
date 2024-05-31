@@ -140,7 +140,7 @@ export const useZap = (
   depositMessage = "Robots Building Education Lecture"
 ) => {
   const [invoice, setInvoice] = useState<string | undefined>(undefined);
-
+  console.log("running bitcoin");
   let payInvoice = async () => {
     try {
       if (!window.webln || !window.webln) {
@@ -168,6 +168,7 @@ export const useZap = (
 
   let createZap = async () => {
     try {
+      console.log("running zap");
       const ln = new LightningAddress("tomatochipmunk3@primal.net");
 
       console.log("ln", ln);
@@ -175,7 +176,7 @@ export const useZap = (
 
       let invoiceResult = (
         await ln.requestInvoice({
-          satoshi: 1,
+          satoshi: 1000,
           comment: "Robots Building Education",
         })
       ).paymentRequest;
@@ -183,11 +184,14 @@ export const useZap = (
       console.log("invoice", invoiceResult);
       setInvoice(invoiceResult);
     } catch (error) {
+      console.log("invoice failed", { error });
       console.error(error);
     }
   };
 
   useEffect(() => {
+    console.log("paying invoice");
+
     if (invoice) {
       payInvoice();
     }

@@ -154,15 +154,17 @@ const FAQSection = () => {
           <br />
           I've written a user guide that introduces you to a number of networks
           to get started:
+          <br />
+          <br />
           <a
             // style={{ color: "white", textDecoration: "underline" }}
-            href="https://old-fashionedintelligence.info/access"
+            href="https://www.patreon.com/posts/improving-105150205?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
             target="_blank"
           >
             <img
               src={IMPACT_BACKGROUND}
-              width="300px"
-              style={{ borderRadius: "50%", borderBottom: "1px solid gold" }}
+              width="150px"
+              style={{ borderRadius: "50px", border: "1px solid orange" }}
             />
           </a>
         </p>

@@ -7,6 +7,8 @@ import "./index.css";
 import { Dashboard } from "./Dashboard/Dashboard";
 //...
 import * as Sentry from "@sentry/react";
+// import { WalletProvider } from "./BTC/CashuWalletContext";
+// import WalletComponent from "./BTC/WalletComponent";
 
 Sentry.init({
   dsn: "https://cb2225402203f85d1a82ffeeacd4aa4b@o4507320721080320.ingest.us.sentry.io/4507320724029440",
@@ -44,10 +46,16 @@ const router = createBrowserRouter([
     path: "/sudo",
     element: <Dashboard />,
   },
+  // {
+  //   path: "/wallet",
+  //   element: <WalletComponent />,
+  // },
 ]);
 
 // localStorage.setItem("patreonPasscode", import.meta.env.VITE_PATREON_PASSCODE);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+  // <WalletProvider>
   <RouterProvider router={router} />
+  // </WalletProvider>
 );

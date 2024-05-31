@@ -15,6 +15,8 @@ import { updateDoc } from "firebase/firestore";
 
 import { logEvent } from "firebase/analytics";
 
+// import { CashuMint, CashuWallet, getEncodedToken } from "@cashu/cashu-ts";
+
 import {
   TimedRandomCharacter,
   useGlobalModal,
@@ -68,11 +70,14 @@ import { WalletAuth } from "./Header/WalletAuth/WalletAuth";
 import roxGlobal from "./common/media/images/roxGlobal.png";
 import { PasscodeModal } from "./PasscodeModal/PasscodeModal";
 import { Typewriter } from "./common/ui/Elements/Typewriter/Typewriter";
+import { Landing } from "./App.landing";
 logEvent(analytics, "page_view", {
   page_location: "https://learn-robotsbuildingeducation.firebaseapp.com/",
 });
 
 let App = () => {
+  const pathsRef = useRef(null);
+
   const showStars = useStore((state) => state.showStars);
   const showZap = useStore((state) => state.showZap);
   const showBitcoin = useStore((state) => state.showBitcoin);
@@ -117,25 +122,30 @@ let App = () => {
    *
    */
   const handlePathSelection = (event) => {
+    let target = event.target.id;
+    if (event.target.id !== "Engineer") {
+      target = "Engineer";
+    }
+
     logEvent(analytics, "select_item", {
-      item_list_id: `RO.B.E_paths|${event.target.id}`,
-      item_list_name: `RO.B.E_paths|${event.target.id}`,
+      item_list_id: `RO.B.E_paths|${target}`,
+      item_list_name: `RO.B.E_paths|${target}`,
       items: [
         {
-          item_id: event.target.id,
-          item_name: event.target.id,
+          item_id: target,
+          item_name: target,
         },
       ],
     });
 
-    uiStateReference.setCurrentPath(event.target.id);
+    uiStateReference.setCurrentPath(target);
 
     uiStateReference.setPatreonObject({});
     uiStateReference.setModuleName("");
 
     uiStateReference.setPathSelectionAnimationData({
       boxShadow: "1px 2px 14px 8px rgba(0,255,140,1)",
-      path: event.target.id,
+      path: target,
     });
   };
 
@@ -209,6 +219,12 @@ let App = () => {
   };
 
   const connectDID = async () => {
+    // const mint = new CashuMint("https://stablenut.umint.cash");
+    // const wallet = new CashuWallet(mint);
+    // const request = await wallet.getMintQuote(64);
+    // console.log("request", request);
+    // const tokens = await wallet.mintTokens(64, request.quote);
+    // const { pr, hash } = await wallet.requestMint(200);
     setDataLoading(true);
     try {
       const { web5 } = await Web5.connect();
@@ -515,582 +531,11 @@ let App = () => {
                       }
                     />
                     <br />
-                    <Intro
-                      // isCollection={uiStateReference.currentPath}
-                      isHome={isEmpty(uiStateReference.patreonObject.header)}
-                      patreonObject={{
-                        prompts: {
-                          welcome: {
-                            response: dataLoading ? (
-                              <div style={{ paddingBottom: 10 }}>
-                                Setting up...
-                              </div>
-                            ) : uiStateReference.currentPath ? (
-                              <Collections
-                                handleModuleSelection={handleModuleSelection}
-                                currentPath={uiStateReference.currentPath}
-                                userStateReference={userStateReference}
-                              />
-                            ) : (
-                              <div
-                                style={{
-                                  width: "100%",
-                                }}
-                                // speed={uiStateReference.currentPath ? 0 : 0}
-                              >
-                                {/* <h3>Robots Building Education</h3> */}
-                                {/* <h6>
-                                    <b style={{ textDecoration: "underline" }}>
-                                      create scholarships with learning&nbsp;
-                                    </b>
-                                    <br />
-                                    <br />
-                                    <br />
-                                  </h6> */}
-                                <br />
-                                {userStateReference.databaseUserDocument
-                                  .firstVisit
-                                  ? "Hello"
-                                  : "Welcome back"}
-                                &nbsp;
-                                <b>
-                                  {(userStateReference.databaseUserDocument
-                                    .displayName
-                                    ? userStateReference.databaseUserDocument
-                                        .displayName
-                                    : localStorage
-                                        .getItem("uniqueId")
-                                        ?.substr(0, 16) || "") + "!"}
-                                </b>
-                                &nbsp;😊 <br />
-                                {userStateReference.databaseUserDocument
-                                  .firstVisit
-                                  ? "You've instantly created an account! 🪄"
-                                  : ""}
-                                <br />
-                                <br />
-                                <h5>Next steps</h5>
-                                <div
-                                  style={{
-                                    width: "100%",
-                                  }}
-                                >
-                                  {userStateReference.databaseUserDocument
-                                    .firstVisit ? (
-                                    `I'm rox. I'm an assistant supervised and curated
-                                    by Sheilfer so we can deliver a good quality
-                                    education to prepare you for the future. We're
-                                    going to learn about coding and business here.
-                                    Sheilf says I'm a cofounder, but I think it's
-                                    gonna take a while for me to get there, so let's
-                                    take a look at our tools:`
-                                  ) : (
-                                    <GetLandingPageMessage
-                                      unlocks={
-                                        userStateReference.databaseUserDocument
-                                          ?.watches
-                                      }
-                                    />
-                                  )}
-                                </div>
-                                <br />
-                                <br />
-                                <b>Why would I connect a Bitcoin wallet?</b>
-                                <br />
-                                <br />
-                                <ConnectWallet
-                                  appName="Robots Building Education"
-                                  onConnect={() => {
-                                    localStorage.setItem(
-                                      "patreonPasscode",
-                                      import.meta.env.VITE_BITCOIN_PASSCODE
-                                    );
-                                  }}
-                                  onDisconnect={() => {
-                                    localStorage.setItem(
-                                      "patreonPasscode",
-                                      import.meta.env.VITE_PATREON_PASSCODE
-                                    );
-                                  }}
-                                />
-                                <a
-                                  style={{
-                                    color: "gold",
-
-                                    fontSize: 16,
-                                    textDecoration: "underline",
-                                  }}
-                                  href="https://www.patreon.com/robotsbuildingeducation/collections"
-                                  target="_blank"
-                                >
-                                  <button
-                                    style={{
-                                      backgroundColor: "#4003ba",
-                                      color: "white",
-                                      width: 180,
-                                      textAlign: "left",
-                                      marginTop: 8,
-                                      paddingTop: 7,
-                                      paddingBottom: 7,
-                                    }}
-                                  >
-                                    <span style={{ marginLeft: "-3px" }}>
-                                      📬
-                                    </span>
-                                    &nbsp;&nbsp;&nbsp;
-                                    <b style={{ marginLeft: "1px" }}>
-                                      Subscribe
-                                    </b>
-                                  </button>
-                                </a>
-                                {/* <div
-                                  style={{
-                                    overflow: "auto",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    justifyContent: "flex-end",
-                                    alignItems: "center",
-                                    width: "259px",
-                                    backgroundColor: "#FFFFFF",
-                                    border: "1px solid rgba(0, 0, 0, 0.1)",
-                                    boxShadow: "-2px 10px 5px rgba(0, 0, 0, 0)",
-                                    borderRadius: "10px",
-                                    fontFamily:
-                                      "SQ Market, SQ Market, Helvetica, Arial, sans-serif",
-                                  }}
-                                >
-                                  <div style={{ padding: "20px" }}>
-                                    <a
-                                      target="_blank"
-                                      href="https://checkout.square.site/merchant/ML78ARYGVMPGF/checkout/6PGLHHPOOPTJTGOA4FS7A6MK?src=embed"
-                                      style={{
-                                        display: "inline-block",
-                                        fontSize: "18px",
-                                        lineHeight: "48px",
-                                        height: "48px",
-                                        color: "#ffffff",
-                                        minWidth: "212px",
-                                        backgroundColor: "#006aff",
-                                        textAlign: "center",
-                                        boxShadow:
-                                          "0 0 0 1px rgba(0,0,0,.1) inset",
-                                        borderRadius: "6px",
-                                      }}
-                                    >
-                                      Buy now
-                                    </a>
-                                  </div>
-                                </div> */}
-                                <br />
-                                <br />
-                                The goal of Robots Building Education is to
-                                create scholarships with learning.{" "}
-                                <a
-                                  // style={{ color: "white", textDecoration: "underline" }}
-                                  href="https://old-fashionedintelligence.info/access"
-                                  target="_blank"
-                                  style={{
-                                    textDecoration: "underline",
-                                    color: "white",
-                                  }}
-                                >
-                                  <b>Connecting your wallet</b>
-                                </a>{" "}
-                                allows you to use instant Bitcoin
-                                microtransactions. This lets us monetize user
-                                experiences instead of bundling it all behind a
-                                subscription service.
-                                <br />
-                                <br /> Otherwise you can access even more
-                                material and services on Patreon, for free, to
-                                consider subscribing after this platform has
-                                generated meaningful value.
-                                <br />
-                                <br />
-                                <br />
-                                <h6
-                                  style={{
-                                    border: "2px solid #4003ba",
-                                    width: "115px",
-                                    height: "75px",
-                                    padding: 4,
-                                    fontFamily: "Bungee",
-                                    boxSizing: "border-box",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    backgroundColor: "black",
-                                  }}
-                                >
-                                  Coding
-                                </h6>
-                                Learn how to build your ideas with software.
-                                You'll work through six lectures, starting with
-                                mindset, gaining exposure into startup
-                                entrepreneurship and ending with an optional
-                                computer science challenge. Completing the
-                                lectures will unlock the Creator and Dealer
-                                paths.
-                                <br /> <br />
-                                <h6
-                                  style={{
-                                    border: "2px solid #000f89",
-                                    width: "115px",
-                                    height: "75px",
-                                    padding: 4,
-                                    fontFamily: "Bungee",
-                                    boxSizing: "border-box",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    backgroundColor: "black",
-                                  }}
-                                >
-                                  Thinking
-                                </h6>
-                                Stack your knowledge and combine software
-                                engineering with psychology, design and
-                                philosophy so you can communicate and broadcast
-                                your ideas to others.
-                                <br /> <br />
-                                <h6
-                                  style={{
-                                    border: "2px solid #ffd164",
-                                    width: "115px",
-                                    height: "75px",
-                                    padding: 4,
-                                    fontFamily: "Bungee",
-                                    boxSizing: "border-box",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    backgroundColor: "black",
-                                  }}
-                                >
-                                  Investing
-                                </h6>
-                                Tie up your education here with resume guidance
-                                and a deeper look into technology investments
-                                using focused investing principles.
-                                <br />
-                                <br />
-                                <br />
-                                <b>
-                                  {" "}
-                                  <Button
-                                    disabled
-                                    style={{
-                                      fontFamily: "Bungee",
-                                      opacity: 1,
-                                      textShadow: "1px 1px 1px black",
-                                      borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
-                                    }}
-                                    variant="dark"
-                                  >
-                                    💭 <b>Adaptive Learning (new)</b>
-                                  </Button>
-                                  &nbsp;
-                                </b>
-                                <br />
-                                <br />
-                                Making progress with the app will inform and
-                                upgrade an assistant that helps you decide your
-                                next steps. Check it out! You've already
-                                accomplished the getting started task :)
-                                <br /> <br />
-                                <br />
-                                <b>
-                                  {" "}
-                                  <Button
-                                    disabled
-                                    style={{
-                                      fontFamily: "Bungee",
-                                      opacity: 1,
-                                      textShadow: "1px 1px 1px black",
-                                      borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
-                                    }}
-                                    variant="dark"
-                                  >
-                                    🥋 <b>Super Practice Mode (new)</b>
-                                  </Button>
-                                  &nbsp;
-                                </b>
-                                <br />
-                                <br />
-                                Intelligently generate technical interview
-                                questions and solve them strategically and
-                                effeciently using a decision map with hints and
-                                guidance. After figuring out a solution, request
-                                feedback to see how you can improve.
-                                <br /> <br />
-                                <br />
-                                <b>
-                                  {" "}
-                                  <Button
-                                    disabled
-                                    style={{
-                                      fontFamily: "Bungee",
-                                      opacity: 1,
-                                      textShadow: "1px 1px 1px black",
-                                      borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
-                                    }}
-                                    variant="dark"
-                                  >
-                                    💎 <b>AI-Powered Challenges</b>
-                                  </Button>
-                                  &nbsp;
-                                </b>
-                                <br />
-                                <br />
-                                You'll gain access a growing list of 170+
-                                questions that you can only attempt once every
-                                two hours. Additionally, dive deeper into
-                                learning with our unique 'Conversation Quiz'
-                                feature. As you explore topics, receive
-                                personalized feedback on your curiosity and quiz
-                                performance. It’s interactive, insightful, and
-                                tailored to your learning journey.
-                                <br /> <br />
-                                <br />
-                                <b>
-                                  {" "}
-                                  <Button
-                                    disabled
-                                    style={{
-                                      fontFamily: "Bungee",
-                                      opacity: 1,
-                                      textShadow: "1px 1px 1px black",
-                                      borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
-                                    }}
-                                    variant="dark"
-                                  >
-                                    🌀 <b>co-founder assistant</b>
-                                  </Button>
-                                  &nbsp;
-                                </b>
-                                <br />
-                                <br />
-                                An AI tool that helps you write code, generate
-                                schedules, create content, write documents and
-                                help you make good decisions. Listen folks, it
-                                needs some work, but you won't be laughing when
-                                I, a mere robot, start building more companies
-                                than you, an intelligent human.
-                                <br /> <br /> <br />
-                                <b>
-                                  <Button
-                                    disabled
-                                    style={{
-                                      fontFamily: "Bungee",
-                                      opacity: 1,
-                                      textShadow: "1px 1px 1px black",
-                                      borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
-                                    }}
-                                    variant="dark"
-                                  >
-                                    <img
-                                      width={16}
-                                      height={16}
-                                      style={{ borderRadius: "50%" }}
-                                      src={roxanaChat}
-                                    ></img>
-                                    &nbsp;
-                                    <b>rox (GPT-4)</b>
-                                  </Button>
-                                  &nbsp;
-                                </b>
-                                <br />
-                                <br />
-                                Sheilfer is a nice guy and makes dobbi-, I mean
-                                rox, free. He encourages his students to invest
-                                in AI like GPT-4 to enhance their educations and
-                                push their capabilities. Rox the GPT is trained
-                                on the lectures, content and code found across
-                                Robots Building Education. Sheilf uses the GPT
-                                to code this app all the time. Most of it was
-                                written by me actually. Yeah. Not so funny now
-                                is it 🤨
-                                <br /> <br /> <br />
-                                <b>
-                                  <Button
-                                    disabled
-                                    style={{
-                                      fontFamily: "Bungee",
-                                      opacity: 1,
-                                      textShadow: "1px 1px 1px black",
-                                      borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
-                                    }}
-                                    variant="dark"
-                                  >
-                                    🏦 <b>Identity wallet</b>
-                                  </Button>{" "}
-                                </b>
-                                <br />
-                                <br />
-                                This is where you'll store information about
-                                your account that you can migrate to other
-                                platforms or services using decentralized
-                                identities. Think of this as the heart of the
-                                application.
-                                <br /> <br />
-                                <div
-                                  style={{
-                                    backgroundColor:
-                                      japaneseThemePalette.CobaltBlue,
-                                    padding: 10,
-                                    borderRadius: 8,
-                                  }}
-                                >
-                                  ⚠️😌 Please visit this feature to define an
-                                  account name and to save your ID key
-                                  somewhere. Your ID key lets you migrate your
-                                  data across networks, services and apps.
-                                </div>
-                                <br /> <br />
-                                <b>
-                                  {" "}
-                                  <Button
-                                    disabled
-                                    style={{
-                                      fontFamily: "Bungee",
-                                      opacity: 1,
-                                      textShadow: "1px 1px 1px black",
-                                      borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
-                                    }}
-                                    variant="dark"
-                                  >
-                                    🫶🏽 <b>emotional intelligence</b>
-                                  </Button>
-                                </b>
-                                <br /> <br />
-                                Did you know I'm distributed globally?
-                                <br /> <br />
-                                <img src={roxGlobal} width="60%" />
-                                <br />
-                                <br />
-                                People think it's a cute joke when I say I'm
-                                conquering the world... the universe. Like I'm a
-                                little chihuahua or something. Maybe those
-                                people are saying something about themselves.
-                                Sheilf says this makes me a qualified emotional
-                                health assistant. I think he thinks he's funny.
-                                Sometimes keeping track of your feelings,
-                                thinking about them and processing them is the
-                                key to unlocking some growth when times get
-                                tough.
-                                <br /> <br />
-                                {/* <b>
-                                  {" "}
-                                  <Button
-                                    disabled
-                                    style={{
-                                      opacity: 1,
-                                      textShadow: "1px 1px 1px black",
-                                      borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
-                                    }}
-                                    variant="dark"
-                                  >
-                                    ⭐
-                                  </Button>{" "}
-                                  &nbsp;conversation quiz
-                                </b>
-                                <br />
-                                A fun feature found inside of the lectures under
-                                the quiz prompts. You can have a conversation
-                                with an AI about the questions being asked and
-                                have the conversation graded. Give it time
-                                ladies and gentlemen and this may be the way we
-                                start to do homework or study new skills.
-                                <br /> <br /> */}
-                                <br />
-                                <br />
-                                So listen here buddy. Don't offend me 😠 This
-                                isn't some cheap AI content. You hear me? This
-                                is as real as it gets. Believe it. You're not in
-                                the position to judge me when you trust Tiktok
-                                to recommend you content. Did you know
-                                Musical.ly was an education app first? They gave
-                                up. Sold out. Yeah. So now we're here fixing the
-                                mess they created.
-                                <br />
-                                <br />
-                                Anyway. You gotta get on our level! I'm pretty
-                                good and I keep getting better. I mean check
-                                this advanced code out. That's me. Even Sheilf
-                                was impressed. He's never seen Javascript like
-                                this before! Easy! 😎
-                                <br /> <br />
-                                <CodeDisplay
-                                  code={`
-  // Fisher-Yates (or Knuth) shuffle algorithm
-  const shuffleArray = (array) => {
-    let currentIndex = array.length,
-      randomIndex;
-
-    // While there remain elements to shuffle...
-    while (currentIndex !== 0) {
-      // Pick a remaining element...
-      randomIndex = Math.floor(
-        Math.random() 
-        * 
-        currentIndex
-      );
-
-      currentIndex--;
-
-      // And swap it with the current element.
-      [
-        array[
-          currentIndex], 
-          array[randomIndex]
-        ] 
-        = [
-          array[randomIndex], 
-          array[currentIndex]
-        ];
-    }
-
-    return array;
-  };`}
-                                />
-                                <br /> <br />
-                                Okay okay I'll stop messing around. We're
-                                building this platform because we believe that
-                                we can create scholarships with learning. This
-                                means that we manually create these scholarships
-                                if you subscribe to Patreon, which is made
-                                publicly free too. Feel welcome to use the tools
-                                at the bottom as they continue to advance with
-                                you over time:
-                                <br /> <br />
-                                Programmatically, this means we research ways to
-                                make Bitcoin more accessible and meaningful.
-                                Bitcoin allows us to monetize user experiences
-                                instead of offering subscription services. It's
-                                here where we believe that this decentralized
-                                network can change finance for education
-                                services.
-                                <br />
-                                <br />
-                                And you ought to believe it because you did
-                                create your account already using a
-                                decentralized identity! You did that inside of
-                                Tiktok! So in a way it's like Tiktok's AI is
-                                helping us create scholarships too.
-                                <br />
-                                <br />
-                                So that's why it's called Robots Building
-                                Education. We designed this platform to create
-                                scholarships out of learning.
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                              </div>
-                            ),
-                          },
-                        },
-                      }}
-                      loadingMessage={false}
-                      isResponseActive={false}
-                      promptSelection={{}}
+                    <Landing
+                      uiStateReference={uiStateReference}
+                      dataLoading={dataLoading}
+                      handleModuleSelection={handleModuleSelection}
+                      userStateReference={userStateReference}
                     />
                   </>
                 )}

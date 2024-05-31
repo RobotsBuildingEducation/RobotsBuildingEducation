@@ -77,52 +77,50 @@ export const generatePromptBasedOnSwitches = (
 export const DynamicRoleDisplay = (jsonData) => {
   if (isEmpty(jsonData)) return null;
 
-  const data = JSON.parse(jsonData); // Convert JSON string to object if necessary
+  let data;
+  try {
+    data = typeof jsonData === "string" ? JSON.parse(jsonData) : jsonData;
+  } catch (error) {
+    console.error("Error parsing JSON data:", error);
+    return <div>Error parsing data</div>;
+  }
 
   console.log("data result", data);
   return (
     <div>
-      {(data?.result?.investor || data?.result?.insight) && (
+      {(data?.investor || data?.insight) && (
         <PanLeftComponent>
           <InvestorComponent
-            insight={data?.result?.investor?.insight || data?.result?.insight}
+            insight={data?.investor?.insight || data?.insight}
           />
           <br /> <br />
         </PanLeftComponent>
       )}
 
-      {(data?.result?.schedule ||
-        data?.result?.business ||
-        data?.result?.executiveAssistant?.schedule ||
-        data?.result?.executiveAssistant?.business) && (
+      {(data?.schedule ||
+        data?.business ||
+        data?.executiveAssistant?.schedule ||
+        data?.executiveAssistant?.business) && (
         <PanLeftComponent>
           <ExecutiveAssistantComponent
-            business={
-              data?.result?.business ||
-              data?.result?.executiveAssistant?.business
-            }
-            schedule={
-              data?.result?.schedule ||
-              data.result?.executiveAssistant?.schedule
-            }
+            business={data?.business || data?.executiveAssistant?.business}
+            schedule={data?.schedule || data.executiveAssistant?.schedule}
           />
           <br /> <br />
         </PanLeftComponent>
       )}
 
-      {data?.result?.softwareEngineer && (
+      {data?.softwareEngineer && (
         <PanLeftComponent>
-          <SoftwareEngineerComponent code={data?.result?.softwareEngineer} />
+          <SoftwareEngineerComponent code={data?.softwareEngineer} />
           <br /> <br />
         </PanLeftComponent>
       )}
 
-      {(data?.result?.contentCreator || data?.result?.script) && (
+      {(data?.contentCreator || data?.script) && (
         <PanLeftComponent>
           <ContentCreatorComponent
-            script={
-              data?.result?.contentCreator?.script || data?.result?.script
-            }
+            script={data?.contentCreator?.script || data?.script}
           />
         </PanLeftComponent>
       )}

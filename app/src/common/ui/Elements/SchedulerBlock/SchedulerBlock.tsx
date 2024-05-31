@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Form, Modal, Row, Col } from "react-bootstrap";
 import Lottie from "react-lottie";
-
 import isEmpty from "lodash/isEmpty";
 import styled from "styled-components";
 import {
@@ -10,14 +9,13 @@ import {
   textBlock,
 } from "../../../../styles/lazyStyles";
 import roxanaGif from "../../../media/images/roxanaGif.gif";
-
 import { customInstructions } from "./SchedulerBlock.compute";
-
 import { useZapAnimation } from "../../../../App.hooks";
 import chat_loading_animation from "../../../anims/chat_loading_animation.json";
 import { HintUI } from "../HintUI/HintUI";
 import { RoxanaLoadingAnimation } from "../../../../App.compute";
-// import { customInstructions } from "./SchedulerBlock.compute";
+import { useChatStream } from "../Stream/useChatCompletion"; // Import the useChatStream hook
+import Markdown from "react-markdown";
 
 const postInstructions = {
   url: "https://us-central1-learn-robotsbuildingeducation.cloudfunctions.net/app/prompt",
@@ -36,7 +34,6 @@ export const EmotionalIntelligenceStyles = {
     borderLeft: "5px solid lavender",
     borderTop: "5px solid lavender",
   },
-
   EmotionBody: {
     backgroundColor: "black",
     color: "white",
@@ -45,7 +42,6 @@ export const EmotionalIntelligenceStyles = {
     borderBottom: "5px solid lavender",
     height: 500,
   },
-
   EmotionFooter: {
     backgroundColor: "black",
     color: "white",
@@ -98,6 +94,14 @@ export const SchedulerBlock = ({ children, hasTutorial = false }) => {
   const [apiResponse, setApiResponse] = useState({});
   const [parsedContent, setParsedContent] = useState("");
 
+  // Initialize the chat stream
+  const { messages, loading, submitPrompt, resetMessages } = useChatStream({
+    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+    model: "gpt-4o",
+    temperature: 0.9,
+    response_format: { type: "json_object" },
+  });
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormState((prevState) => ({
@@ -107,115 +111,39 @@ export const SchedulerBlock = ({ children, hasTutorial = false }) => {
   };
 
   const handleSubmit = async (e) => {
-    // setApiResponse({
-    //   explanation: formState.description,
-    //   breakdown: [
-    //     // Your breakdown based on the formState.pace
-    //     // This is where you'd dynamically generate or fetch the data based on the form input
-    //   ],
-    // });
-
-    setIsLoading(true);
     e.preventDefault();
-
     zapAnimation();
-    // Here you would normally submit the form data and fetch the API response
-    // For this example, we're just setting it directly
+    resetMessages();
+    setApiResponse({});
+    setIsLoading(true);
 
     let prompt = customInstructions(parsedContent, formState);
 
-    const response = await fetch(postInstructions.url, {
-      method: postInstructions.method,
-      headers: postInstructions.headers,
-      body: JSON.stringify({ prompt, isJsonMode: true }),
-    })
-      .then((response) => {
-        // if (
-        //   localStorage.getItem("patreonPasscode") ===
-        //   import.meta.env.VITE_BITCOIN_PASSCODE
-        // ) {
-        //   zap().then((lightningResponse) => {
-        //     if (lightningResponse?.preimage) {
-        //       updateImpact(1, userStateReference, globalStateReference);
-        //     }
-        //   });
-        // }
-
-        return response;
-      })
-      .catch(() => {
-        setIsLoading(false);
-      });
-
-    console.log("response", response);
-    if (response) {
-      // let data = await response.json();
-
-      // setIsLoading(false);
-      // setApiResponse(data?.bot?.content || "");
-
-      let data = await response.json();
-      console.log("data", data);
-      let result = JSON.parse(data?.bot?.content);
-      console.log("result", result);
-
-      let outcome = result.result;
-      setApiResponse(outcome);
-
-      setIsLoading(false);
-    }
+    await submitPrompt([{ role: "user", content: prompt }]);
   };
 
-  // // Function to simulate an API call to OpenAI's Chat Completion
-  // const fetchChatCompletion = async () => {
-  //   let prompt = customInstructions(
-  //     "do something with this data",
-  //     parsedContent
-  //   );
-
-  //   const response = await fetch(postInstructions.url, {
-  //     method: postInstructions.method,
-  //     headers: postInstructions.headers,
-  //     body: JSON.stringify({ prompt, isJsonMode: true }),
-  //   })
-  //     .then((response) => {
-  //       // if (
-  //       //   localStorage.getItem("patreonPasscode") ===
-  //       //   import.meta.env.VITE_BITCOIN_PASSCODE
-  //       // ) {
-  //       //   zap().then((lightningResponse) => {
-  //       //     if (lightningResponse?.preimage) {
-  //       //       updateImpact(1, userStateReference, globalStateReference);
-  //       //     }
-  //       //   });
-  //       // }
-
-  //       return response;
-  //     })
-  //     .catch(() => {
-  //       setIsLoading(false);
-  //     });
-
-  //   console.log("response", response);
-  //   if (response) {
-  //     // let data = await response.json();
-
-  //     // setIsLoading(false);
-  //     // setApiResponse(data?.bot?.content || "");
-
-  //     let data = await response.json();
-  //     console.log("data", data);
-  //     let result = JSON.parse(data?.bot?.content);
-  //     console.log("result", result);
-
-  //     let outcome = result.result;
-  //     setApiResponse(outcome);
-  //     setIsLoading(false);
-  //   }
-  // };
+  useEffect(() => {
+    if (messages?.length > 0) {
+      const lastMessage = messages[messages.length - 1];
+      if (!lastMessage.meta.loading) {
+        try {
+          const result = JSON.parse(lastMessage.content);
+          setApiResponse(result.result);
+          setIsLoading(false);
+        } catch (error) {
+          console.error(
+            "Error parsing JSON content:",
+            lastMessage.content,
+            error
+          );
+          // Handle the error or set a fallback value for apiResponse if needed
+          setApiResponse(null);
+        }
+      }
+    }
+  }, [messages]);
 
   const extractText = (children) => {
-    // Ensure the input is always treated as an array
     const childArray = React.Children.toArray(children);
     return childArray
       .map((child) => {
@@ -239,17 +167,26 @@ export const SchedulerBlock = ({ children, hasTutorial = false }) => {
     setParsedContent(textArray);
   }, [children]);
 
-  // useEffect(() => {
-  //   if (isModalOpen) {
-  //     fetchChatCompletion();
-  //   }
-  // }, [isModalOpen]);
+  const messagesTopRef = useRef(null);
+  const messagesEndRef = useRef(null);
+
+  // Scroll to the bottom of the messages container whenever messages change
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+
+  useEffect(() => {
+    if (!isLoading && messages.length > 0 && messagesTopRef.current) {
+      messagesTopRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [isLoading, messages]);
 
   return (
     <div
       style={{
         width: "100%",
-
         borderRadius: "50px",
         backgroundColor: japaneseThemePalette.PhthaloBluePurple,
         padding: 24,
@@ -308,49 +245,64 @@ export const SchedulerBlock = ({ children, hasTutorial = false }) => {
             overflow: "scroll",
           }}
         >
-          {isLoading ? (
-            <RoxanaLoadingAnimation />
-          ) : isEmpty(apiResponse) ? (
+          <div ref={messagesTopRef} /> {/* Reference to the top of messages */}
+          <div>
+            <Form>
+              <Form.Group controlId="paceSelect">
+                <Form.Label>Choose your pace</Form.Label>
+                <Form.Control
+                  as="select"
+                  name="pace"
+                  value={formState.pace}
+                  onChange={handleInputChange}
+                >
+                  <option value="daily">Daily</option>
+                  <option value="weekly">Weekly</option>
+                  <option value="monthly">Monthly</option>
+                  <option value="quarterly">Quarterly</option>
+                </Form.Control>
+              </Form.Group>
+              <br />
+              <Form.Group controlId="descriptionTextarea">
+                <Form.Label>
+                  What else can you tell me about your schedule?
+                </Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={3}
+                  name="description"
+                  placeholder="Enter a description..."
+                  value={formState.description}
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+              <br />
+              <Button variant="primary" onMouseDown={handleSubmit}>
+                Create
+              </Button>
+            </Form>
+          </div>
+          <br />
+          {loading ? (
+            <>
+              <RoxanaLoadingAnimation header="Creating and designing 🌀" />
+              {messages?.length > 0 && isEmpty(apiResponse) && (
+                <div style={{ whiteSpace: "pre-wrap" }}>
+                  {messages
+                    ?.map((msg, index) =>
+                      index === 0 ||
+                      index % 2 === 0 ||
+                      index !== messages.length - 1 ? null : (
+                        <Markdown key={index}>{msg.content}</Markdown>
+                      )
+                    )
+                    .reverse()}
+                  <div ref={messagesEndRef} />
+                </div>
+              )}
+            </>
+          ) : !isEmpty(apiResponse) ? (
             <div>
-              <Form>
-                <Form.Group controlId="paceSelect">
-                  <Form.Label>Choose your pace</Form.Label>
-                  <Form.Control
-                    as="select"
-                    name="pace"
-                    value={formState.pace}
-                    onChange={handleInputChange}
-                  >
-                    <option value="daily">Daily</option>
-                    <option value="weekly">Weekly</option>
-                    <option value="monthly">Monthly</option>
-                    <option value="quarterly">Quarterly</option>
-                  </Form.Control>
-                </Form.Group>
-                <br />
-                <Form.Group controlId="descriptionTextarea">
-                  <Form.Label>
-                    What else can you tell me about your schedule?
-                  </Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={3}
-                    name="description"
-                    placeholder="Enter a description..."
-                    value={formState.description}
-                    onChange={handleInputChange}
-                  />
-                </Form.Group>
-
-                <br />
-                <Button variant="primary" onMouseDown={handleSubmit}>
-                  Create
-                </Button>
-              </Form>
-            </div>
-          ) : (
-            <div>
-              {" "}
               <Container>
                 {apiResponse?.breakdown.map((stage, index) => (
                   <Stage key={index}>
@@ -365,7 +317,7 @@ export const SchedulerBlock = ({ children, hasTutorial = false }) => {
                 ))}
               </Container>
             </div>
-          )}
+          ) : null}
         </Modal.Body>
         {/* <Modal.Footer style={EmotionalIntelligenceStyles.EmotionFooter}>
           <Button variant="dark" onMouseDown={() => setIsModalOpen(false)}>

@@ -139,6 +139,8 @@ export const modalConfig = {
     ),
     disabledModule:
       "Time is money friend. You'll need to subscribe in order to access the following lectures.",
+    disabledLecture:
+      "You'll need to complete the video and practice prompts in order to unlock the next step.",
   },
 };
 

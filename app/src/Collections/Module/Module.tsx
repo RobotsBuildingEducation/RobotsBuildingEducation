@@ -31,7 +31,14 @@ export const Module = ({
       key={currentModule.header}
       onClick={() => {
         if (isDisabled) {
-          handleModal("disabledModule");
+          if (
+            localStorage.getItem("patreonPasscode") !==
+            import.meta.env.VITE_PATREON_PASSCODE
+          ) {
+            handleModal("disabledModule");
+          } else {
+            handleModal("disabledLecture");
+          }
         } else {
           handleModuleSelection(currentModule, module);
         }

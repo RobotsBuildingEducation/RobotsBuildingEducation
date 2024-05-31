@@ -434,6 +434,19 @@ export const GetLandingPageMessage = ({ unlocks }) => {
       </div>
     );
   }
+  if (!unlocks?.["The Psychology Of Self-esteem"]) {
+    message = (
+      <div>
+        🧠 Boost your confidence and unlock your potential with our 'Psychology
+        Of Self-esteem' lecture. Understand the cognitive biases that shape your
+        self-image.
+        <br />
+        <br />
+        Suggestion: <em>Cognitive Behavioral Techniques</em> to improve personal
+        perception.
+      </div>
+    );
+  }
   if (!unlocks?.["Focus Investing"]) {
     message = (
       <div>
@@ -970,7 +983,11 @@ export const isLocalStorageValid = () => {
  *
  * used when calling openai or simulating loads
  */
-export let RoxanaLoadingAnimation = ({ nochat = false }) => {
+export let RoxanaLoadingAnimation = ({
+  header = null,
+  nochat = false,
+  intel = false,
+}) => {
   return (
     <FadeInComponent>
       <div>
@@ -983,12 +1000,14 @@ export let RoxanaLoadingAnimation = ({ nochat = false }) => {
             }}
             width={60}
             height={60}
-            style={{ marginLeft: "105px" }}
+            style={{ marginLeft: intel ? "185px" : "105px" }}
           />
         )}
 
         <img width="150px" src={roxanaGif} />
       </div>
+
+      {header ? <h3>{header}</h3> : null}
     </FadeInComponent>
   );
 };
@@ -1080,3 +1099,21 @@ export const addKnowledgeStep = async (step, knowledge, label, collectorId) => {
     console.error("Error writing document and updating user: ", error);
   }
 };
+
+export const ScrollComponent = () => {
+  useEffect(() => {
+    const handleScroll = () => {
+      console.log("Window is scrolling");
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return <div>Scroll to see the effect in action!</div>;
+};
+
+export default ScrollComponent;

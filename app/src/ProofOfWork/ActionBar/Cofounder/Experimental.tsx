@@ -1,6 +1,5 @@
 import { Modal, Form, Button, Spinner, Alert } from "react-bootstrap";
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import isEmpty from "lodash/isEmpty";
 import {
   DynamicRoleDisplay,
@@ -10,15 +9,7 @@ import {
 } from "./Experimental.compute";
 import { postInstructions } from "../../../common/uiSchema";
 import { RoxanaLoadingAnimation, updateImpact } from "../../../App.compute";
-import {
-  Timestamp,
-  addDoc,
-  collection,
-  deleteField,
-  doc,
-  setDoc,
-  updateDoc,
-} from "firebase/firestore";
+import { Timestamp, addDoc, collection, doc, setDoc } from "firebase/firestore";
 import { database } from "../../../database/firebaseResources";
 import {
   japaneseThemePalette,
@@ -26,6 +17,8 @@ import {
 } from "../../../styles/lazyStyles";
 import { ExternalLink } from "../../../common/ui/Elements/ExternalLink/ExternalLink";
 import { Title } from "../../../common/svgs/Title";
+import Markdown from "react-markdown";
+import { useChatStream } from "../../../common/ui/Elements/Stream/useChatCompletion";
 
 export const Experimental = ({
   isCofounderOpen,
@@ -62,24 +55,28 @@ export const Experimental = ({
   const [isSettingLoading, setIsSettingLoading] = useState(false);
   const [additionalContext, setAdditionalContext] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
   const [isticketLoading, setIsTicketLoading] = useState(false);
-
   const [message, setMessage] = useState("");
   const [contact, setContact] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
+  const [gptResponse, setGptResponse] = useState({});
 
   const handleSwitchChange = (role) => {
     setSwitchStates((prev) => ({ ...prev, [role]: !prev[role] }));
   };
 
-  const [gptResponse, setGptResponse] = useState({});
+  // Initialize the chat stream
+  const { messages, loading, submitPrompt, resetMessages } = useChatStream({
+    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+    model: "gpt-4o",
+    temperature: 0.9,
+    response_format: { type: "json_object" },
+  });
 
   const handleTicketSubmit = async (event) => {
     event.preventDefault();
     setIsTicketLoading(true);
     try {
-      // Add a new document in collection "tickets"
       await addDoc(collection(database, "tickets"), {
         message: message,
         contact: contact,
@@ -91,17 +88,15 @@ export const Experimental = ({
       setMessage("");
       setContact("");
       setIsTicketLoading(false);
-      // setError("");
     } catch (err) {
-      // setError("Failed to submit the ticket. Please try again.");
       console.error("Error adding document: ", err);
     }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    setIsLoading(true); // Start loading
-    // Process the form data here, such as sending it to a backend or logging it
+    setIsLoading(true);
+    resetMessages();
 
     const prompt = generatePromptBasedOnSwitches(
       switchStates,
@@ -109,49 +104,10 @@ export const Experimental = ({
     );
     createPrompt(prompt);
 
-    const response = await fetch(postInstructions.url, {
-      method: postInstructions.method,
-      headers: postInstructions.headers,
-      body: JSON.stringify({
-        prompt,
-        isJsonMode: true,
-      }),
-    })
-      .then((response) => {
-        if (
-          localStorage.getItem("patreonPasscode") ===
-          import.meta.env.VITE_BITCOIN_PASSCODE
-        ) {
-          zap().then((lightningResponse) => {
-            if (lightningResponse?.preimage) {
-              updateImpact(1, userStateReference, globalStateReference);
-            }
-          });
-        }
+    await submitPrompt([{ role: "user", content: prompt }]);
 
-        return response;
-      })
-      .catch((error) => {
-        // setHasError(true);
-        console.log("error", error);
-        console.log("{ERROR}", error);
-      });
-
-    if (response) {
-      let data = await response.json();
-
-      //   let result = JSON.parse(data?.bot?.content);
-
-      //   let outcome = result.schedule;
-      let outcome = data?.bot?.content;
-
-      setGptResponse(outcome);
-
-      handleZap("ai");
-      // setCofounder(outcome);
-    }
-    // setIsCofounderLoading(false);
-    setIsLoading(false); // End loading
+    handleZap("ai");
+    setIsLoading(false);
   };
 
   const handleSaveToFirebaseChange = async (event) => {
@@ -162,13 +118,33 @@ export const Experimental = ({
     const userDocRef = doc(database, "users", userId);
 
     try {
-      // Use setDoc with { merge: true } to update the document without overwriting other fields
       await setDoc(userDocRef, { switchStates: switchStates }, { merge: true });
     } catch (error) {
       console.error(error);
     }
     setIsSettingLoading(false);
   };
+
+  useEffect(() => {
+    if (messages?.length > 0) {
+      const lastMessage = messages[messages.length - 1];
+      if (!lastMessage.meta.loading) {
+        try {
+          const result = JSON.parse(lastMessage.content);
+          console.log("result", result);
+          setGptResponse(result.result);
+        } catch (error) {
+          console.error(
+            "Error parsing JSON content:",
+            lastMessage.content,
+            error
+          );
+          setGptResponse(null); // Fallback to raw content
+        }
+      }
+    }
+  }, [messages]);
+  console.log("gptResponse", gptResponse);
 
   return (
     <Modal
@@ -194,7 +170,6 @@ export const Experimental = ({
           title={"Assistant"}
           closeFunction={() => {
             setIsCofounderOpen(false);
-            // setIsStartupOpen(false);
           }}
         />
       </Modal.Header>
@@ -318,13 +293,27 @@ export const Experimental = ({
           </Button>
         </Form>
         <br /> <br />
-        {isLoading ? <RoxanaLoadingAnimation /> : null}
-        <div style={{ maxWidth: 700, padding: 60, marginBottom: 100 }}>
-          {DynamicRoleDisplay(gptResponse)}
-        </div>
+        {isLoading ? (
+          <>
+            <RoxanaLoadingAnimation header={"Creating and designing 🌀"} />{" "}
+            <div style={{ whiteSpace: "pre-wrap" }}>
+              {messages
+                .map((msg, index) =>
+                  index === 0 ||
+                  index % 2 === 0 ||
+                  index !== messages.length - 1 ? null : (
+                    <Markdown key={index}>{msg.content}</Markdown>
+                  )
+                )
+                .reverse()}
+            </div>
+          </>
+        ) : !isEmpty(gptResponse) && !isLoading ? (
+          <div style={{ maxWidth: 700, padding: 60, marginBottom: 100 }}>
+            {DynamicRoleDisplay(gptResponse)}
+          </div>
+        ) : null}
       </Modal.Body>
     </Modal>
   );
 };
-
-// ("\n    at div\n    at div\n    at form\n    at http://localhost:5173/node_modules/.vite/deps/chunk-C43UL5DL.js?v=2a473af4:747:3\n    at div\n    at http://localhost:5173/node_modules/.vite/deps/chunk-C43UL5DL.js?v=2a473af4:439:5\n    at div\n    at div\n    at http://localhost:5173/node_modules/.vite/deps/react-bootstrap.js?v=2a473af4:6331:3\n    at div\n    at Transition2 (http://localhost:5173/node_modules/.vite/deps/react-bootstrap.js?v=2a473af4:379:30)\n    at http://localhost:5173/node_modules/.vite/deps/react-bootstrap.js?v=2a473af4:966:3\n    at http://localhost:5173/node_modules/.vite/deps/react-bootstrap.js?v=2a473af4:1597:3\n    at DialogTransition\n    at http://localhost:5173/node_modules/.vite/deps/react-bootstrap.js?v=2a473af4:6046:5\n    at http://localhost:5173/node_modules/.vite/deps/react-bootstrap.js?v=2a473af4:6452:3\n    at Experimental (http://localhost:5173/src/ProofOfWork/ImpactWallet/Cofounder/Experimental.tsx?t=1710063288002:23:3)\n    at ImpactWallet (http://localhost:5173/src/ProofOfWork/ImpactWallet/ImpactWallet.tsx?t=1710062487268:121:3)\n    at div\n    at ProofOfWork (http://localhost:5173/src/ProofOfWork/ProofOfWork.tsx?t=1710062487268:20:3)\n    at div\n    at O2 (http://localhost:5173/node_modules/.vite/deps/styled-components.js?v=2a473af4:1176:6)\n    at ProofOfWorkWrapper (http://localhost:5173/src/ProofOfWork/ProofOfWorkWrapper.tsx?t=1710062487268:35:3)\n    at div\n    at App (http://localhost:5173/src/App.tsx?t=1710062487268:43:3)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=2a473af4:3108:5)\n    at RenderErrorBoundary (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=2a473af4:3071:5)\n    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=2a473af4:3476:5)\n    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=2a473af4:3423:15)\n    at RouterProvider (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=2a473af4:3312:5)");

@@ -1,15 +1,9 @@
 //@ts-nocheck
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { isEmpty } from "lodash";
+import { Button, Modal, Form } from "react-bootstrap";
 import Lottie from "react-lottie";
-import { Button, Modal } from "react-bootstrap";
-
-import {
-  EmotionButton,
-  EmotionalIntelligenceStyles,
-} from "./EmotionalIntelligence.styles";
 import { addDoc } from "firebase/firestore";
-import Form from "react-bootstrap/Form";
 import { postInstructions } from "../../../common/uiSchema";
 import {
   highEnergyFeelings,
@@ -22,15 +16,19 @@ import {
   formatEmotionItem,
   formatFriendlyDate,
 } from "./EmotionalIntelligence.compute";
-
 import roxanaFocusing from "../../../common/media/images/roxanaFocusing.png";
 import roxanaKind from "../../../common/media/images/roxanaKind.png";
 import heart_chat_animation from "../../../common/anims/heart_chat_animation.json";
-
 import { useZap } from "../../../App.hooks";
 import { RoxanaLoadingAnimation, updateImpact } from "../../../App.compute";
 import { responsiveBox } from "../../../styles/lazyStyles";
 import { Title } from "../../../common/svgs/Title";
+import { useChatStream } from "../../../common/ui/Elements/Stream/useChatCompletion";
+import {
+  EmotionButton,
+  EmotionalIntelligenceStyles,
+} from "./EmotionalIntelligence.styles";
+import Markdown from "react-markdown";
 
 export const EmotionalIntelligence = ({
   isEmotionalIntelligenceOpen,
@@ -44,17 +42,36 @@ export const EmotionalIntelligence = ({
   handleZap,
   setIsStartupOpen,
 }) => {
-  console.log("running the emotional intelligence bot");
   const [isEmotionModalOpen, setIsEmotionModalOpen] = useState(false);
   const [selectedEmotion, setSelectedEmotion] = useState("");
   const [emotionNote, setEmotionNote] = useState("");
   const [shouldRenderSaveButton, setShouldRenderSaveButton] = useState(false);
-
-  const [isAiResponseLoading, setIsAiResponseLoading] = useState(false);
-  const [isSummarizerLoading, setIsSummarizerLoading] = useState(false);
   const [chatGptResponse, setChatGptResponse] = useState("");
-
   const [summarizerResponse, setSummarizerResponse] = useState("");
+
+  const {
+    messages: chatGptMessages,
+    loading: chatGptLoading,
+    submitPrompt: submitChatGptPrompt,
+    resetMessages: resetChatGptMessages,
+  } = useChatStream({
+    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+    model: "gpt-4o",
+    temperature: 0.9,
+    // response_format: { type: "json_object" },
+  });
+
+  const {
+    messages: summarizerMessages,
+    loading: summarizerLoading,
+    submitPrompt: submitSummarizerPrompt,
+    resetMessages: resetSummarizerMessages,
+  } = useChatStream({
+    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+    model: "gpt-4o",
+    temperature: 0.9,
+    // response_format: { type: "json_object" },
+  });
 
   const handleEmotionSelection = async (item, shouldRunDatabase = true) => {
     let formattedItem = formatEmotionItem(item, Date.now(), "timestamp");
@@ -69,42 +86,16 @@ export const EmotionalIntelligence = ({
   };
 
   const generateAdviceOrWisdom = async () => {
-    setIsAiResponseLoading(true);
+    setChatGptResponse("");
+    resetChatGptMessages();
 
     let prompt = customInstructions({
       emotionNote,
       selectedEmotion,
     });
 
-    const response = await fetch(postInstructions.url, {
-      method: postInstructions.method,
-      headers: postInstructions.headers,
-      body: JSON.stringify({ prompt }),
-    })
-      .then((response) => {
-        if (
-          localStorage.getItem("patreonPasscode") ===
-          import.meta.env.VITE_BITCOIN_PASSCODE
-        ) {
-          zap().then((lightningResponse) => {
-            if (lightningResponse?.preimage) {
-              updateImpact(1, userStateReference, globalStateReference);
-            }
-          });
-        }
-
-        return response;
-      })
-      .catch(() => {
-        setIsAiResponseLoading(false);
-      });
-
-    if (response) {
-      let data = await response.json();
-      setIsAiResponseLoading(false);
-      setChatGptResponse(data?.bot?.content || "");
-      handleZap("ai");
-    }
+    submitChatGptPrompt([{ role: "user", content: prompt }]);
+    handleZap("ai");
   };
 
   const saveEmotionData = async () => {
@@ -119,43 +110,52 @@ export const EmotionalIntelligence = ({
   };
 
   const reviewJourney = async () => {
-    setIsSummarizerLoading(true);
+    setSummarizerResponse("");
+    resetSummarizerMessages();
+
     let prompt = emotionSummarizer(JSON.stringify(usersEmotionsFromDB));
 
-    const response = await fetch(postInstructions.url, {
-      method: postInstructions.method,
-      headers: postInstructions.headers,
-      body: JSON.stringify({ prompt }),
-    })
-      .then((response) => {
-        if (
-          localStorage.getItem("patreonPasscode") ===
-          import.meta.env.VITE_BITCOIN_PASSCODE
-        ) {
-          zap().then((lightningResponse) => {
-            if (lightningResponse?.preimage) {
-              console.log("running zap");
-              console.log("userStateReference", userStateReference);
-              console.log("globalStateReference", globalStateReference);
-              updateImpact(1, userStateReference, globalStateReference);
-            }
-          });
-        }
-
-        return response;
-      })
-      .catch(() => {
-        setIsSummarizerLoading(false);
-      });
-
-    if (response) {
-      let data = await response.json();
-
-      handleZap("ai");
-      setIsSummarizerLoading(false);
-      setSummarizerResponse(data?.bot?.content || "");
-    }
+    submitSummarizerPrompt([{ role: "user", content: prompt }]);
+    handleZap("ai");
   };
+
+  useEffect(() => {
+    if (chatGptMessages?.length > 0) {
+      const lastMessage = chatGptMessages[chatGptMessages.length - 1];
+      if (!lastMessage.meta.loading) {
+        try {
+          // const result = JSON.parse(lastMessage.content);
+          setChatGptResponse(lastMessage.content);
+        } catch (error) {
+          console.error(
+            "Error parsing JSON content:",
+            lastMessage.content,
+            error
+          );
+          setChatGptResponse(null);
+        }
+      }
+    }
+  }, [chatGptMessages]);
+
+  useEffect(() => {
+    if (summarizerMessages?.length > 0) {
+      const lastMessage = summarizerMessages[summarizerMessages.length - 1];
+      if (!lastMessage.meta.loading) {
+        try {
+          // const result = JSON.parse(lastMessage.content);
+          setSummarizerResponse(lastMessage.content);
+        } catch (error) {
+          console.error(
+            "Error parsing JSON content:",
+            lastMessage.content,
+            error
+          );
+          setSummarizerResponse(null);
+        }
+      }
+    }
+  }, [summarizerMessages]);
 
   return (
     <>
@@ -178,7 +178,6 @@ export const EmotionalIntelligence = ({
             title={"Emotional Intelligence"}
             closeFunction={() => {
               setIsEmotionalIntelligenceOpen(false);
-              // setIsStartupOpen(false);
             }}
           />
         </Modal.Header>
@@ -205,9 +204,10 @@ export const EmotionalIntelligence = ({
             <div style={EmotionalIntelligenceStyles.RowWrapCenter}>
               {highEnergyFeelings.map((item) => (
                 <EmotionButton
+                  key={item.label}
                   color={item.color}
                   colorHover={item.colorHover}
-                  onMouseDown={() => handleEmotionSelection(item, true)}
+                  onClick={() => handleEmotionSelection(item, true)}
                 >
                   {item?.label}
                   <br />
@@ -222,9 +222,10 @@ export const EmotionalIntelligence = ({
             <div style={EmotionalIntelligenceStyles.RowWrapCenter}>
               {lowEnergyFeelings.map((item) => (
                 <EmotionButton
+                  key={item.label}
                   color={item.color}
                   colorHover={item.colorHover}
-                  onMouseDown={() => handleEmotionSelection(item, true)}
+                  onClick={() => handleEmotionSelection(item, true)}
                 >
                   {item?.label}
                   <br />
@@ -232,7 +233,7 @@ export const EmotionalIntelligence = ({
                 </EmotionButton>
               ))}
             </div>
-            <br /> <br /> <br />{" "}
+            <br /> <br /> <br />
           </div>
           {!isEmpty(usersEmotionsFromDB) ? (
             <>
@@ -254,16 +255,43 @@ export const EmotionalIntelligence = ({
                   </Button>
                 </div>
               </h1>
-              {isSummarizerLoading ? (
-                <div style={{ textAlign: "center" }}>
+              {summarizerLoading ? (
+                <div
+                  style={{
+                    textAlign: "center",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
                   <div
                     style={{
                       display: "flex",
-
                       justifyContent: "center",
                     }}
                   >
-                    <RoxanaLoadingAnimation nochat={false} />
+                    <RoxanaLoadingAnimation
+                      nochat={false}
+                      header={"Creating and designing 🌀"}
+                      intel={true}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      whiteSpace: "pre-wrap",
+                      maxWidth: 700,
+                      textAlign: "left",
+                    }}
+                  >
+                    {summarizerMessages
+                      .map((msg, index) =>
+                        index === 0 ||
+                        index % 2 === 0 ||
+                        index !== summarizerMessages.length - 1 ? null : (
+                          <Markdown key={index}>{msg.content}</Markdown>
+                        )
+                      )
+                      .reverse()}
                   </div>
                 </div>
               ) : null}
@@ -287,7 +315,7 @@ export const EmotionalIntelligence = ({
               <div style={EmotionalIntelligenceStyles.JourneyContainer}>
                 {Object.keys(usersEmotionsFromDB)?.map((itemDate) => {
                   return (
-                    <div>
+                    <div key={itemDate}>
                       <br />
                       <h3
                         style={{
@@ -301,6 +329,7 @@ export const EmotionalIntelligence = ({
                       {usersEmotionsFromDB[itemDate]
                         .map((emotion) => (
                           <EmotionButton
+                            key={emotion.label}
                             color={emotion?.color}
                             colorHover={emotion.colorHover}
                             onMouseDown={() =>
@@ -323,14 +352,6 @@ export const EmotionalIntelligence = ({
             </>
           ) : null}
         </Modal.Body>
-        {/* <Modal.Footer style={EmotionalIntelligenceStyles.Footer}>
-          <Button
-            variant="dark"
-            onMouseDown={() => setIsEmotionalIntelligenceOpen(false)}
-          >
-            Back to app
-          </Button>
-        </Modal.Footer> */}
       </Modal>
 
       <Modal
@@ -338,7 +359,6 @@ export const EmotionalIntelligence = ({
         centered
         keyboard
         onHide={() => {
-          setIsEmotionModalOpen(false);
           setIsEmotionModalOpen(false);
           setChatGptResponse("");
           setShouldRenderSaveButton(false);
@@ -385,7 +405,7 @@ export const EmotionalIntelligence = ({
                   </div>
                   <br />
                   <div style={{ wordBreak: "break-word" }}>
-                    {selectedEmotion?.note}{" "}
+                    {selectedEmotion?.note}
                   </div>
                 </div>
               ) : null}
@@ -396,54 +416,65 @@ export const EmotionalIntelligence = ({
                   variant="light"
                   style={EmotionalIntelligenceStyles.GenerateInsightButton}
                   onMouseDown={generateAdviceOrWisdom}
-                  disabled={isAiResponseLoading}
+                  disabled={chatGptLoading}
                 >
                   generate insight 💌
                 </Button>
               </div>
             ) : null}
           </div>
-          {isAiResponseLoading ? (
+          {chatGptLoading ? (
             <div
               style={{
                 ...EmotionalIntelligenceStyles.TextAlignCenter,
-
                 height: "400px",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
+                ...EmotionalIntelligenceStyles.AiResponseContainer,
               }}
             >
               <div
                 style={{
                   display: "flex",
-
                   justifyContent: "center",
                 }}
               >
-                <RoxanaLoadingAnimation nochat={false} />
+                <RoxanaLoadingAnimation
+                  nochat={false}
+                  header={"Creating and designing 🌀"}
+                  intel={true}
+                />
+              </div>{" "}
+              <div style={{ whiteSpace: "pre-wrap" }}>
+                {chatGptMessages
+                  .map((msg, index) =>
+                    index === 0 ||
+                    index % 2 === 0 ||
+                    index !== chatGptMessages.length - 1 ? null : (
+                      <Markdown key={index}>{msg.content}</Markdown>
+                    )
+                  )
+                  .reverse()}
               </div>
             </div>
           ) : null}
 
-          {(chatGptResponse || selectedEmotion?.ai) && !isAiResponseLoading ? (
+          {(chatGptResponse || selectedEmotion?.ai) && !chatGptLoading ? (
             <div style={EmotionalIntelligenceStyles.AiResponseContainer}>
               <div style={EmotionalIntelligenceStyles.AiResponseMessage}>
                 {chatGptResponse || selectedEmotion.ai}
               </div>
             </div>
-          ) : !isAiResponseLoading && !selectedEmotion?.note ? (
+          ) : !chatGptLoading && !selectedEmotion?.note ? (
             <div
               style={{
-                // backgroundColor: "rgba(0, 0, 0,1)",'
-
                 height: "400px",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
               }}
             >
-              {/* take a deep breath and think positively :) */}
               <SunsetCanvas />
             </div>
           ) : !shouldRenderSaveButton ? (
@@ -463,18 +494,6 @@ export const EmotionalIntelligence = ({
           ) : null}
         </Modal.Body>
         <Modal.Footer style={EmotionalIntelligenceStyles.EmotionFooter}>
-          {/* <Button
-            variant="dark"
-            onMouseDown={() => {
-              setIsEmotionModalOpen(false);
-              setChatGptResponse("");
-              setShouldRenderSaveButton(false);
-              setEmotionNote("");
-            }}
-          >
-            Exit
-          </Button> */}
-
           {shouldRenderSaveButton ? (
             <Button variant="dark" onMouseDown={saveEmotionData}>
               Save
