@@ -173,13 +173,13 @@ export const SchedulerBlock = ({ children, hasTutorial = false }) => {
   // Scroll to the bottom of the messages container whenever messages change
   useEffect(() => {
     if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+      messagesEndRef.current.scrollIntoView({ behavior: "instant" });
     }
   }, [messages]);
 
   useEffect(() => {
     if (!isLoading && messages.length > 0 && messagesTopRef.current) {
-      messagesTopRef.current.scrollIntoView({ behavior: "smooth" });
+      messagesTopRef.current.scrollIntoView({ behavior: "instant" });
     }
   }, [isLoading, messages]);
 

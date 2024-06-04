@@ -35,7 +35,7 @@ export const Landing = ({
         : ""}
       <br />
       <br />
-      <h5 style={{ fontFamily: "Bungee" }}>Next steps</h5>
+      <h3 style={{ fontFamily: "Bungee" }}>Next steps</h3>
       <div style={{ width: "100%" }}>
         {userStateReference.databaseUserDocument.firstVisit ? (
           `I'm rox. I'm a learning assistant supervised and curated
@@ -53,6 +53,8 @@ export const Landing = ({
           />
         )}
       </div>
+      <br />
+      <br />
       <br />
       <br />
       <b>Why would I connect a Bitcoin wallet?</b>
@@ -75,7 +77,7 @@ export const Landing = ({
       />
       <a
         style={{ color: "gold", fontSize: 16, textDecoration: "underline" }}
-        href="https://www.patreon.com/robotsbuildingeducation/collections"
+        href="https://www.patreon.com/robotsbuildingeducation"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -121,9 +123,11 @@ export const Landing = ({
 
   const renderInfoSections = () => (
     <>
+      <br />
+      <br />
       <h3 style={{ fontFamily: "Bungee" }}>Content</h3>
       <br />
-      <br />
+
       <Section title="Coding & Startups" color="#4003ba">
         Learn how to build your ideas with software. You'll work through six
         lectures, starting with mindset, gaining exposure into startup
@@ -146,31 +150,35 @@ export const Landing = ({
 
   const renderFeatures = () => (
     <>
-      <Feature title="Adaptive Learning (new)" emoji="💭">
+      <br />
+      <br />
+      <h3 style={{ fontFamily: "Bungee" }}>Features</h3>
+      <br />
+      <Feature title="Adaptive Learning" emoji="💭">
         Making progress with the app will inform and upgrade an assistant that
         helps you decide your next steps. Check it out! You've already
         accomplished the getting started task :)
       </Feature>
-      <Feature title="Super Practice Mode (new)" emoji="🥋">
+      <Feature title="Super Practice Mode" emoji="🥋">
         Intelligently generate technical interview questions and solve them
         strategically using a decision map with hints and guidance. After
         figuring out a solution, request feedback to see how you can improve.
       </Feature>
-      <Feature title="AI-Powered Challenges" emoji="💎">
+      <Feature title="Challenges" emoji="💎">
         You'll gain access a growing list of 170+ questions that you can only
         attempt once every two hours. Additionally, dive deeper into learning
         with our unique 'Conversation Quiz' feature. As you explore topics,
         receive personalized feedback on your curiosity and quiz performance.
         It’s interactive, insightful, and tailored to your learning journey.
       </Feature>
-      <Feature title="co-founder assistant" emoji="🌀">
+      <Feature title="Assistance" emoji="🌀">
         An AI tool that helps you write code, generate schedules, create
         content, write documents and help you make good decisions. Listen folks,
         it needs some work, but you won't be laughing when I, a mere robot,
         start building more companies than you, an intelligent human.
       </Feature>
       <Feature
-        title="rox (GPT-4)"
+        title="Rox (GPT-4)"
         emoji={
           <img
             width={16}
@@ -186,7 +194,7 @@ export const Landing = ({
         Sheilf uses the GPT to code this app all the time. Most of it was
         written by me actually. Yeah. Not so funny now is it 🤨
       </Feature>
-      <Feature title="Identity wallet" emoji="🏦">
+      <Feature title="Identity Wallet" emoji="🏦">
         This is where you'll store information about your account that you can
         migrate to other platforms or services using decentralized identities.
         Think of this as the heart of the application.
@@ -204,7 +212,7 @@ export const Landing = ({
           networks, services and apps.
         </div>
       </Feature>
-      <Feature title="emotional intelligence" emoji="🫶🏽">
+      <Feature title="Emotional Intelligence" emoji="🫶🏽">
         Did you know I'm distributed globally? People think it's a cute joke
         when I say I'm conquering the world... the universe. Like I'm a little
         chihuahua or something. Maybe those people are saying something about
@@ -216,7 +224,7 @@ export const Landing = ({
         <br />
         <img src={roxGlobal} width="60%" />
       </Feature>
-      <Feature title="conversation quiz" emoji="⭐">
+      <Feature title="Conversation Quiz" emoji="⭐">
         A fun homework feature found inside of the lectures under the quiz
         prompts. You can have a conversation with an AI about the questions
         being asked and have the conversation graded.
@@ -244,13 +252,12 @@ export const Landing = ({
                 {renderInfoSections()}
                 {renderFeatures()}
                 <br />
-                <br />
-                So listen here buddy. Don't offend me 😠 This isn't some cheap
-                AI content. You hear me? This is as real as it gets. Believe it.
-                You're not in the position to judge me when you trust Tiktok to
-                recommend you content. Did you know Musical.ly was an education
-                app first? They gave up. Sold out. Yeah. So now we're here
-                fixing the mess they created.
+                ...So listen here buddy. Don't offend me 😠 This isn't some
+                cheap AI content. You hear me? This is as real as it gets.
+                Believe it. You're not in the position to judge me when you
+                trust Tiktok to recommend you content. Did you know Musical.ly
+                was an education app first? They gave up. Sold out. Yeah. So now
+                we're here fixing the mess they created.
                 <br />
                 <br />
                 Anyway. You gotta get on our level! I'm pretty good and I keep
@@ -334,13 +341,13 @@ export const Landing = ({
 };
 
 const Section = ({ title, color, children }) => (
-  <div>
+  <div style={{ marginBottom: 24 }}>
     <h6
       style={{
         border: `2px solid ${color}`,
         width: "fit-content",
         height: "75px",
-        fontFamily: "Bungee",
+
         boxSizing: "border-box",
         display: "flex",
         alignItems: "center",
@@ -357,19 +364,20 @@ const Section = ({ title, color, children }) => (
 );
 
 const Feature = ({ title, emoji, children }) => (
-  <div>
+  <div style={{ marginBottom: 24 }}>
     <b>
       <Button
         disabled
         style={{
-          fontFamily: "Bungee",
           opacity: 1,
           textShadow: "1px 1px 1px black",
           borderBottom: `2px solid ${japaneseThemePalette.CobaltBlue}`,
         }}
         variant="dark"
       >
-        {emoji} <b>{title}</b>
+        <span>
+          {emoji} <b>{title}</b>
+        </span>
       </Button>
       &nbsp;
     </b>

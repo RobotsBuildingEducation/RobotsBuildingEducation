@@ -27,6 +27,7 @@ export const PromptMessage = ({
   patreonObject,
   chatGptResponseList = [],
   loadingMessage = false,
+  topRef,
 }) => {
   // Check if patreonObject exists
   if (isEmpty(patreonObject)) return null;

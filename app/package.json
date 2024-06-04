@@ -11,8 +11,6 @@
   "dependencies": {
     "@aleph/openai-streaming-hooks": "^2.0.0",
     "@cashu/cashu-ts": "^1.0.0-rc.5",
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
     "@getalby/bitcoin-connect": "^2.4.3",
     "@getalby/bitcoin-connect-react": "^2.4.3",
     "@getalby/lightning-tools": "^5.0.0",

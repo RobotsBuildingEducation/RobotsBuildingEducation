@@ -221,7 +221,6 @@ export const StyledModule = styled.button`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  font-family: "Bungee";
 `;
 
 export const ComingSoonModule = styled.button`

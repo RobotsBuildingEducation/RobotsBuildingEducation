@@ -111,11 +111,12 @@ export const RenderActionBarControls = ({
             variant="dark"
             onMouseEnter={() => handleHover("chatLink", true)}
             onMouseLeave={() => handleHover("chatLink", false)}
+            style={{ display: "flex", alignItems: "center" }}
           >
             <img
               src={roxanaChat}
               alt="Chat with Ms. Roxana"
-              width="32"
+              width="16"
               style={{
                 borderRadius: "50%",
                 boxShadow: "1px 1px 1px black",
@@ -177,7 +178,7 @@ export const RenderActionBarControls = ({
           onMouseEnter={() => handleHover("bossMode", true)}
           onMouseLeave={() => handleHover("bossMode", false)}
         >
-          💎 Quiz
+          💎 Challenges
         </StyledFeature>
         &nbsp; &nbsp;
         <StyledFeature

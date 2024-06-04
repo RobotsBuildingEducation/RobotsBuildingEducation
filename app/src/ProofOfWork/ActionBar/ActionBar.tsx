@@ -133,7 +133,7 @@ export const ActionBar = ({
         )}
 
         {/* &nbsp; &nbsp; &nbsp;{" "} */}
-        <div>
+        {/* <div>
           <ProgressBar
             style={{
               margin: 6,
@@ -144,7 +144,7 @@ export const ActionBar = ({
             // now={Math.floor(calculatedPercentage * 100)}
             now={(realtimeImpact / 21000000) * 100}
           />
-        </div>
+        </div> */}
       </div>
 
       {/* {isImpactWalletOpen ? (

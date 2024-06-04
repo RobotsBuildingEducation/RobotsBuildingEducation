@@ -7,6 +7,7 @@ import "./index.css";
 import { Dashboard } from "./Dashboard/Dashboard";
 //...
 import * as Sentry from "@sentry/react";
+
 // import { WalletProvider } from "./BTC/CashuWalletContext";
 // import WalletComponent from "./BTC/WalletComponent";
 
@@ -56,6 +57,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   // <WalletProvider>
+
   <RouterProvider router={router} />
+
   // </WalletProvider>
 );

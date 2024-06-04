@@ -181,7 +181,7 @@ export const AdaptiveLearning = ({
 
   useEffect(() => {
     if (loading) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: "instant" });
     }
   }, [loading]);
 

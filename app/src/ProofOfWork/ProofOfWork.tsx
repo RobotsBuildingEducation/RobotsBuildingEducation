@@ -96,9 +96,8 @@ export const ProofOfWork = ({
   return (
     <div
       style={{
-        border: "1px solid #1C1C1E",
+        // border: "1px solid #1C1C1E",
 
-        padding: 6,
         backgroundColor:
           showStars || showZap || showBitcoin ? "black" : "#1C1C1E",
 
@@ -106,7 +105,8 @@ export const ProofOfWork = ({
         minWidth: "300px",
         textAlign: "center",
         width: "100%",
-        borderRadius: 12,
+        borderTopLeftRadius: 12,
+        borderTopRightRadius: 12,
       }}
     >
       <ActionBar

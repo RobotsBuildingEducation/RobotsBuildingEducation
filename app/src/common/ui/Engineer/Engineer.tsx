@@ -345,7 +345,7 @@ export const Engineer = {
           impact: 100,
           action: `guide`,
           icon: `🧚`,
-          request: `rox, can you please create a study guide for ${ultimateEffeciencyJutsu(
+          request: `rox, can you please create a study guide to show ${ultimateEffeciencyJutsu(
             `Learn Coding`
           )}?`,
           response: (

@@ -264,7 +264,7 @@ let App = () => {
 
   useEffect(() => {
     if (topRef.current) {
-      topRef.current.scrollIntoView({ behavior: "smooth" });
+      topRef.current.scrollIntoView({ behavior: "instant" });
     }
   }, [uiStateReference.currentPath]); // Dependency array to control when the scroll happens
 
