@@ -58,7 +58,7 @@ export const Chat = ({ conversation, gradeResult }) => {
 
   useEffect(() => {
     if (bottomRef.current) {
-      bottomRef.current.scrollIntoView({ behavior: "smooth" });
+      bottomRef.current.scrollIntoView({ behavior: "instant" });
     }
   }, [conversation]);
 

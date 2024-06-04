@@ -196,7 +196,7 @@ export const RenderLeetmigo = () => {
       }
     }
     if (problemMessagesRef.current) {
-      problemMessagesRef.current.scrollIntoView({ behavior: "smooth" });
+      problemMessagesRef.current.scrollIntoView({ behavior: "instant" });
     }
   }, [problemMessages]);
 
@@ -206,7 +206,7 @@ export const RenderLeetmigo = () => {
       problemMessages.length > 0 &&
       problemMessagesTopRef.current
     ) {
-      problemMessagesTopRef.current.scrollIntoView({ behavior: "smooth" });
+      problemMessagesTopRef.current.scrollIntoView({ behavior: "instant" });
     }
   }, [isGeneratingProblem, problemMessages]);
 
@@ -233,7 +233,7 @@ export const RenderLeetmigo = () => {
     }
 
     if (feedbackMessagesRef.current) {
-      feedbackMessagesRef.current.scrollIntoView({ behavior: "smooth" });
+      feedbackMessagesRef.current.scrollIntoView({ behavior: "instant" });
     }
   }, [feedbackMessages]);
 
@@ -244,7 +244,7 @@ export const RenderLeetmigo = () => {
       feedbackMessages.length > 0 &&
       feedbackMessagesTopRef.current
     ) {
-      feedbackMessagesTopRef.current.scrollIntoView({ behavior: "smooth" });
+      feedbackMessagesTopRef.current.scrollIntoView({ behavior: "instant" });
     }
   }, [isGeneratingFeedback, feedbackMessages]);
 

@@ -1,4 +1,5 @@
 html {
+  background-color: black !important;
   --bc-color-brand: #4003ba; /* Only 6-digit hex and rgb formats are supported! */
 }
 

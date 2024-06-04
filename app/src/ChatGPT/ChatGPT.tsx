@@ -74,8 +74,8 @@ const ChatGPT = ({
   const topRef = useRef(null);
 
   useEffect(() => {
-    if (topRef.current && promptSelection === "practice") {
-      topRef.current.scrollIntoView();
+    if (topRef.current) {
+      topRef.current.scrollIntoView({ behavior: "instant" });
     }
   }, [loadingMessage]);
 

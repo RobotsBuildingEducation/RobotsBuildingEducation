@@ -59,6 +59,7 @@ const RandomCharacter = ({
   borderRadius = null,
   notSoRandomCharacter = null,
 }) => {
+  console.log("chracter images #######", characterImages);
   const [image, setImage] = useState("");
 
   useEffect(() => {
@@ -76,7 +77,7 @@ const RandomCharacter = ({
     // Update used indices
     const newUsedIndices = [
       ...usedIndices,
-      characterImages?.indexOf(randomImage),
+      characterImages?.indexOf(randomImage) || 1,
     ];
     if (newUsedIndices.length === characterImages.length) {
       // Reset if all characters have been used

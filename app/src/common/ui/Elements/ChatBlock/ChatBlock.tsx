@@ -76,7 +76,7 @@ const Chat = ({ conversation, gradeResult, messages }) => {
     padding: "20px",
     borderRadius: "10px",
     marginBottom: "10px",
-    maxWidth: "70%",
+    maxWidth: "95%",
     alignSelf: "flex-start",
     borderBottomLeftRadius: "0px",
     borderTopLeftRadius: "50px",
@@ -114,14 +114,14 @@ const Chat = ({ conversation, gradeResult, messages }) => {
 
   useEffect(() => {
     if (topRef.current) {
-      topRef.current.scrollIntoView({ behavior: "smooth" });
+      topRef.current.scrollIntoView({ behavior: "instant" });
     }
   }, [conversation]);
 
   // Scroll to the bottom of the messages container whenever messages change
   useEffect(() => {
     if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+      messagesEndRef.current.scrollIntoView({ behavior: "instant" });
     }
   }, [messages]);
 

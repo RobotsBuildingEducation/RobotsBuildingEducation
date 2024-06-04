@@ -12,7 +12,9 @@ const containerStyle = {
   width: "min-width",
   zIndex: 1100,
   transition: "0.33s all ease-in-out",
-  borderRadius: 12,
+  borderTopLeftRadius: 12,
+  borderTopRightRadius: 12,
+  backgroundColor: "#1C1C1E",
 };
 
 /**
@@ -55,7 +57,17 @@ export const ProofOfWorkWrapper = ({
     <RiseUpAnimation
       style={{
         ...containerStyle,
-        border: `1px solid ${
+        borderRight: `1px solid ${
+          showStars || showZap || showBitcoin
+            ? japaneseThemePalette?.OrangeGold
+            : "#33009F"
+        }`,
+        borderLeft: `1px solid ${
+          showStars || showZap || showBitcoin
+            ? japaneseThemePalette?.OrangeGold
+            : "#33009F"
+        }`,
+        borderTop: `1px solid ${
           showStars || showZap || showBitcoin
             ? japaneseThemePalette?.OrangeGold
             : "#33009F"

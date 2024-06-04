@@ -282,7 +282,6 @@ export const Experimental = ({
               style={{ maxWidth: 700 }}
             />
           </Form.Group>
-          <br />
 
           <Button
             variant="primary"
@@ -292,7 +291,6 @@ export const Experimental = ({
             Submit
           </Button>
         </Form>
-        <br /> <br />
         {isLoading ? (
           <>
             <RoxanaLoadingAnimation header={"Creating and designing 🌀"} />{" "}
@@ -313,6 +311,9 @@ export const Experimental = ({
             {DynamicRoleDisplay(gptResponse)}
           </div>
         ) : null}
+        <br /> <br /> <br />
+        <br />
+        <br /> <br /> <br /> <br />
       </Modal.Body>
     </Modal>
   );
