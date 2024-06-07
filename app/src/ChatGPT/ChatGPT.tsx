@@ -20,6 +20,7 @@ import {
 import { useBitcoinAnimation } from "../App.hooks";
 import { LectureHeader } from "../LectureHeader/LectureHeader";
 import { addKnowledgeStep, updateImpact } from "../App.compute";
+import { useSharedNostr } from "../App.web5";
 
 const logAnalyticsEvent = (item_list_id, item_id, item_name) => {
   logEvent(analytics, "select_item", {
@@ -64,6 +65,7 @@ const ChatGPT = ({
   const [chatGptResponseList, setChatGptResponseList] = useState([]);
   const [promptSelection, setPromptSelection] = useState("");
   const [parentVisibility, setParentVisibility] = useState(true);
+  const { connected, error, postContent } = useSharedNostr();
 
   useEffect(() => {
     setIsResponseActive(false);
@@ -112,9 +114,6 @@ const ChatGPT = ({
 
     setLoadingMessage("");
 
-    console.log("promptType", promptType);
-    console.log("prompt", prompt);
-
     const remappedPrompts = {
       patreon: "discover",
       guide: "guide",
@@ -122,17 +121,42 @@ const ChatGPT = ({
       practice: "practice",
     };
 
-    console.log(
-      "knowledge result",
-      patreonObject.knowledge[remappedPrompts[promptType]].step
-    );
-
     if (!(promptType === "practice")) {
       await addKnowledgeStep(
         patreonObject.knowledge[remappedPrompts[promptType]].step,
         patreonObject.knowledge[remappedPrompts[promptType]].knowledge,
         patreonObject.knowledge[remappedPrompts[promptType]].label,
         patreonObject.knowledge[remappedPrompts[promptType]].collectorId
+      );
+
+      postContent(
+        `User ${localStorage.getItem(
+          "uniqueId"
+        )} has completed progress on the ${moduleName} lecture and generated ${
+          result.impact
+        } units of work on Robots Building Education. \n\n 
+        "${patreonObject.knowledge[remappedPrompts[promptType]].label} | ${
+          patreonObject.knowledge[remappedPrompts[promptType]].knowledge
+        }"\n
+        \n
+        The total work generated toward creating scholarship is ${
+          globalStateReference.globalImpactCounter
+        }`
+      );
+    } else {
+      postContent(
+        `User ${localStorage.getItem(
+          "uniqueId"
+        )} has completed progress on the ${moduleName} lecture and generated ${
+          result.impact
+        } units of work on Robots Building Education. \n\n 
+        "${patreonObject.knowledge[promptType].label} | ${
+          patreonObject.knowledge[promptType].knowledge
+        }"\n
+        \n
+        The total work generated toward creating scholarships is ${
+          globalStateReference.globalImpactCounter
+        }`
       );
     }
   };

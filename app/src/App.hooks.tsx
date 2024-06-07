@@ -140,7 +140,7 @@ export const useZap = (
   depositMessage = "Robots Building Education Lecture"
 ) => {
   const [invoice, setInvoice] = useState<string | undefined>(undefined);
-  console.log("running bitcoin");
+
   let payInvoice = async () => {
     try {
       if (!window.webln || !window.webln) {
@@ -190,8 +190,6 @@ export const useZap = (
   };
 
   useEffect(() => {
-    console.log("paying invoice");
-
     if (invoice) {
       payInvoice();
     }
@@ -218,11 +216,9 @@ export const useZapAnimation = () => {
 };
 
 export const useBitcoinAnimation = () => {
-  console.log("bitcoin animation");
   const setShowBitcoin = useStore((state) => state.setShowBitcoin);
 
   let animation = () => {
-    console.log("changing showBitcoin..");
     setShowBitcoin(true);
     setTimeout(() => {
       setShowBitcoin(false);
@@ -234,17 +230,22 @@ export const useBitcoinAnimation = () => {
 
 export const TimedRandomCharacter = () => {
   const [key, setKey] = useState(0);
+  const [isTimed, setIsTimed] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
       // This updates the key state, causing the component to re-render
+      if (isTimed) {
+        setIsTimed(false);
+      }
+
       setKey((prevKey) => prevKey + 1);
     }, 3000); // Set the interval to 1000 ms (1 second)
 
     return () => clearInterval(interval); // Clean up the interval on component unmount
   }, []);
 
-  return <RandomCharacter key={key} borderRadius="50%" />;
+  return <RandomCharacter key={key} borderRadius="25%" isTimed={isTimed} />;
 };
 
 export const useGlobalModal = (config, exception = null) => {

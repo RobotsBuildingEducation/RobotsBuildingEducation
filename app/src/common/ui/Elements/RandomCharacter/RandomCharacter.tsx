@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 
+import { RoxSplashAnimation } from "../../../uiSchema";
 import character1 from "../../../media/images/characters/1.png";
 import character2 from "../../../media/images/characters/2.png";
 import character3 from "../../../media/images/characters/3.png";
@@ -58,49 +59,104 @@ const RandomCharacter = ({
   speed = 1.33,
   borderRadius = null,
   notSoRandomCharacter = null,
+  isTimed = false,
 }) => {
-  console.log("chracter images #######", characterImages);
   const [image, setImage] = useState("");
+  const [showSplash, setShowSplash] = useState(isTimed);
 
   useEffect(() => {
-    const usedIndices = JSON.parse(localStorage.getItem("usedIndices")) || [];
-
-    // Filter out used characters
-    const availableCharacters = characterImages.filter(
-      (_, index) => !usedIndices.includes(index)
-    );
-
-    // Select a random character from the available ones
-    const randomIndex = Math.floor(Math.random() * availableCharacters.length);
-    const randomImage = availableCharacters[randomIndex];
-
-    // Update used indices
-    const newUsedIndices = [
-      ...usedIndices,
-      characterImages?.indexOf(randomImage) || 1,
-    ];
-    if (newUsedIndices.length === characterImages.length) {
-      // Reset if all characters have been used
-      localStorage.setItem("usedIndices", JSON.stringify([]));
+    if (showSplash && isTimed) {
+      const timer = setTimeout(() => setShowSplash(false), 3000); // Adjust the delay as needed
+      return () => clearTimeout(timer);
     } else {
-      localStorage.setItem("usedIndices", JSON.stringify(newUsedIndices));
-    }
+      const usedIndices = JSON.parse(localStorage.getItem("usedIndices")) || [];
 
-    setImage(randomImage);
-  }, []);
+      // Filter out used characters
+      const availableCharacters = characterImages.filter(
+        (_, index) => !usedIndices.includes(index)
+      );
+
+      // Select a random character from the available ones
+      const randomIndex = Math.floor(
+        Math.random() * availableCharacters.length
+      );
+      const randomImage = availableCharacters[randomIndex];
+
+      // Update used indices
+      const newUsedIndices = [
+        ...usedIndices,
+        characterImages?.indexOf(randomImage) || 1,
+      ];
+      if (newUsedIndices.length === characterImages.length) {
+        // Reset if all characters have been used
+        localStorage.setItem("usedIndices", JSON.stringify([]));
+      } else {
+        localStorage.setItem("usedIndices", JSON.stringify(newUsedIndices));
+      }
+
+      setImage(randomImage);
+    }
+  }, [showSplash, isTimed]);
+
+  useEffect(() => {
+    if (!isTimed) {
+      const usedIndices = JSON.parse(localStorage.getItem("usedIndices")) || [];
+
+      // Filter out used characters
+      const availableCharacters = characterImages.filter(
+        (_, index) => !usedIndices.includes(index)
+      );
+
+      // Select a random character from the available ones
+      const randomIndex = Math.floor(
+        Math.random() * availableCharacters.length
+      );
+      const randomImage = availableCharacters[randomIndex];
+
+      // Update used indices
+      const newUsedIndices = [
+        ...usedIndices,
+        characterImages?.indexOf(randomImage) || 1,
+      ];
+      if (newUsedIndices.length === characterImages.length) {
+        // Reset if all characters have been used
+        localStorage.setItem("usedIndices", JSON.stringify([]));
+      } else {
+        localStorage.setItem("usedIndices", JSON.stringify(newUsedIndices));
+      }
+
+      setImage(randomImage);
+    }
+  }, [isTimed]);
 
   return (
     <FadeInComponent speed={speed}>
-      <img
-        src={
-          notSoRandomCharacter
-            ? characterImagesMap[notSoRandomCharacter]
-            : image
-        }
-        alt=""
-        width={width}
-        style={{ borderRadius }}
-      />
+      <div
+        style={{
+          height: 100,
+          display: "flex",
+          flexDirection: "column",
+          alignContent: "center",
+          justifyContent: "center",
+        }}
+      >
+        {showSplash && isTimed ? (
+          <RoxSplashAnimation />
+        ) : (
+          <div>
+            <img
+              src={
+                notSoRandomCharacter
+                  ? characterImagesMap[notSoRandomCharacter]
+                  : image
+              }
+              alt=""
+              width={width}
+              height={width}
+            />
+          </div>
+        )}
+      </div>
     </FadeInComponent>
   );
 };

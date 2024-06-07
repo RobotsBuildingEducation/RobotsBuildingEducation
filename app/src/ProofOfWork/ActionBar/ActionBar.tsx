@@ -1,4 +1,5 @@
 import Lottie from "react-lottie";
+import isEmpty from "lodash/isEmpty";
 import { ProgressBar } from "react-bootstrap";
 import zap_animation from "../../common/anims/zap_animation.json";
 import bitcoin_animation from "../../common/anims/bitcoin_animation.json";
@@ -56,6 +57,8 @@ export const ActionBar = ({
   setIsAdaptiveLearningOpen,
   isLeetmigoOpen,
   setIsLeetmigoOpen,
+  handlePathSelection,
+  pathSelectionAnimationData,
 }) => {
   const showBitcoin = useStore((state) => state.showBitcoin);
   const showZap = useStore((state) => state.showZap);
@@ -72,7 +75,7 @@ export const ActionBar = ({
       (doc) => {
         if (doc.exists()) {
           const data = doc.data();
-          console.log("Data xyz", data);
+
           setRealtimeImpact(data.total || 0);
           // handleBitcoinAnimation();
 
@@ -129,6 +132,9 @@ export const ActionBar = ({
             setIsEmotionalIntelligenceOpen={setIsEmotionalIntelligenceOpen}
             setIsImpactWalletOpen={setIsImpactWalletOpen}
             setIsStartupOpen={setIsStartupOpen}
+            handlePathSelection={handlePathSelection}
+            pathSelectionAnimationData={pathSelectionAnimationData}
+            userStateReference={userStateReference}
           />
         )}
 
@@ -198,14 +204,16 @@ export const ActionBar = ({
         />
       ) : null} */}
 
-      <AdaptiveLearning
-        setIsAdaptiveLearningOpen={setIsAdaptiveLearningOpen}
-        isAdaptiveLearningOpen={isAdaptiveLearningOpen}
-        userStateReference={userStateReference}
-        globalStateReference={globalStateReference}
-        zap={zap}
-        handleZap={handleZap}
-      />
+      {!isEmpty(userStateReference?.databaseUserDocument?.userAuthObj?.uid) ? (
+        <AdaptiveLearning
+          setIsAdaptiveLearningOpen={setIsAdaptiveLearningOpen}
+          isAdaptiveLearningOpen={isAdaptiveLearningOpen}
+          userStateReference={userStateReference}
+          globalStateReference={globalStateReference}
+          zap={zap}
+          handleZap={handleZap}
+        />
+      ) : null}
 
       {isStartupOpen ? (
         <Startup

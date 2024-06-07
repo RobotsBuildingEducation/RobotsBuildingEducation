@@ -86,7 +86,7 @@ export const AdaptiveLearning = ({
       );
 
       const responseData = await response.json();
-      console.log("responseData", responseData);
+
       setApiResponse(responseData?.bot?.content);
     } catch (error) {
       console.error("Error fetching update: ", error);
@@ -222,7 +222,7 @@ export const AdaptiveLearning = ({
             setIsExiting(true);
             setIsAdaptiveLearningOpen(false);
           }}
-          title="Adaptive Learning"
+          title="💭 Adaptive Learning"
         />
       </Modal.Header>
       <Modal.Body

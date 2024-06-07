@@ -53,8 +53,8 @@ const StyledPathItem = styled.div`
 `;
 
 export const StyledNavigationContainer = styled.div`
-  display: flex;
-  justify-content: center;
+  display: ${({ inActionBar }) => (inActionBar ? "flex" : "none")};
+  // justify-content: center;
   margin: 0;
   padding: 0;
   // max-width: 100%;
@@ -71,11 +71,11 @@ export const StyledNavigationContainer = styled.div`
     /* box-shadow: 0 19px 38px  #0b186be2, 0 15px 12px rgba(0,0,0,0.22); */
   }
 
-  position: fixed;
-  background-color: black;
+  position: ${({ inActionBar }) => (inActionBar ? "" : "fixed")};
+  // background-color: black;
   z-index: 100;
 
-  width: min-width;
+  width: fit-content;
   &:hover {
     animation: ${rectanglePump} 3s infinite ease-in-out;
   }
@@ -103,9 +103,10 @@ const createPathElements = (
       return (
         // <StyledPathItem key={path}>
         <StyledLink
+          variant="dark"
           index={index}
-          active
-          to="/"
+          // active
+          // to="/"
           pathSelectionAnimationData={pathSelectionAnimationData}
           path={path}
           id={path}
@@ -138,6 +139,7 @@ export const Paths = ({
   handlePathSelection,
   pathSelectionAnimationData,
   userStateReference,
+  inActionBar = false,
 }): JSX.Element => {
   const [isVisible, setIsVisible] = useState(true);
 
@@ -177,5 +179,9 @@ export const Paths = ({
     isVisible
   );
 
-  return <StyledNavigationContainer>{pathElements}</StyledNavigationContainer>;
+  return (
+    <StyledNavigationContainer inActionBar={inActionBar}>
+      {pathElements}
+    </StyledNavigationContainer>
+  );
 };

@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 let getRandomColor = () => {
   const keys = Object.keys(japaneseThemePalette);
@@ -210,10 +211,6 @@ export const StyledModule = styled.button`
   &:hover {
     transform: scale(1.1);
 
-    background: ${(props) => {
-      return getRandomColor();
-    }};
-
     animation: ${sineWave} 3s infinite ease-in-out;
   }
 
@@ -269,12 +266,9 @@ export const ComingSoonModule = styled.button`
   }
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(Button)`
   border-radius: 12px;
   &:hover {
-    cursor: ${(props) => {
-      return props.active ? "grab" : "not-allowed";
-    }};
     transform: ${(props) => {
       return props.active &&
         props.pathSelectionAnimationData.path === props.path
@@ -333,52 +327,9 @@ export const StyledLink = styled(Link)`
     color: white;
   }
 
-  background: ${(props) => {}};
-
+  background-color: #212529;
   // border: 2px solid hotpink;
-  border: 2px solid
-    ${(props) => {
-      const isUnlocked = props.isUnlocked;
-      const isActive = props.active;
-      const isSelectedPath =
-        props.pathSelectionAnimationData.path === props.path;
-      const currentPath = props.path;
-
-      let backgroundColor = "";
-
-      // Function to convert a hex color to its blue version
-      const toBlueVersion = (color) => {
-        // Implement your logic to convert to blue version
-        // return "#001eff"; // Example
-        return "#000f89";
-      };
-
-      // Function to convert a hex color to its golden version
-      const toGoldenVersion = (color) => {
-        // Implement your logic to convert to golden version
-        return "#ffd164"; // Example
-      };
-
-      if (isActive && isSelectedPath) {
-        backgroundColor = "#4003ba";
-      } else if (isActive && !isSelectedPath) {
-        backgroundColor = "#4003ba";
-      }
-
-      // Adjust color based on path
-      if (!isUnlocked) {
-        backgroundColor = "gray";
-      } else if (currentPath === "Engineer") {
-        // Colors remain the same
-      } else if (currentPath === "Creator") {
-        backgroundColor = toBlueVersion(backgroundColor);
-      } else if (currentPath === "Entrepeneur") {
-        backgroundColor = toGoldenVersion(backgroundColor);
-      }
-
-      return backgroundColor;
-    }};
-
+  border-bottom: 2px solid #0044b0;
   width: 115px;
 
   height: 35px;
@@ -449,14 +400,14 @@ export const StyledLink = styled(Link)`
   font-family: "Bungee";
   text-align: center;
   border-top: 0px solid black;
-  border-top-left-radius: 0px;
+  border-top-hleft-radius: 0px;
   border-top-right-radius: 0px;
 `;
 //
 
 export const StyledPath = styled.button`
   box-sizing: border-box;
-  background-color: #f5befa;
+  background-color: #212529;
 
   /* max-width: 200px; */
   width: fit-content;

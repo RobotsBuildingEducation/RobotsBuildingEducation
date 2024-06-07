@@ -157,7 +157,7 @@ export let RoxSplashAnimation = () => {
         {/* <Spinner animation="grow" variant="info" size="sm">
           <span className="visually-hidden">Loading...</span>
         </Spinner> */}
-        <img width="200px" src={roxSplashAnimation} />
+        <img width="100px" src={roxSplashAnimation} />
         {/* <Spinner animation="grow" variant="primary" size="sm">
           <span className="visually-hidden">Loading...</span>
         </Spinner> */}
