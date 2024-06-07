@@ -24,6 +24,7 @@ import { CodeDisplay } from "./common/ui/Elements/CodeDisplay/CodeDisplay";
 
 import chat_loading_animation from "./common/anims/chat_loading_animation.json";
 import roxanaGif from "./common/media/images/roxanaGif.gif";
+import { useEffect } from "react";
 
 /**
  * Sorts an array of emotion objects by their timestamp property and groups them by month and year.
@@ -1052,17 +1053,9 @@ export const renderTranscriptAwards = (profileData) => {
 };
 
 export const addKnowledgeStep = async (step, knowledge, label, collectorId) => {
-  console.log("step", step);
-  console.log("knowledge", knowledge);
-  console.log("label", label);
-  console.log("collector", collectorId);
-
   try {
     const userDocRef = doc(database, "users", localStorage.getItem("uniqueId"));
     const knowledgeCollectionRef = collection(userDocRef, "knowledge");
-
-    console.log("knowledge step user doc", userDocRef);
-    console.log("knowledge step knowledge doc", knowledgeCollectionRef);
 
     await runTransaction(database, async (transaction) => {
       const userDocSnapshot = await transaction.get(userDocRef);
@@ -1091,8 +1084,6 @@ export const addKnowledgeStep = async (step, knowledge, label, collectorId) => {
       transaction.update(userDocRef, {
         knowledgeKeys: [...knowledgeKeys, collectorId],
       });
-
-      console.log("Document successfully written and user updated!");
     });
   } catch (error) {
     console.log({ error });

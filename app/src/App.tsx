@@ -49,13 +49,13 @@ import {
   japaneseThemePalette,
 } from "./styles/lazyStyles";
 import { useStore } from "./Store";
-import {
-  createWebNodeRecord,
-  deleteWebNodeRecords,
-  queryAndSetWebNodeRecords,
-  testUpdatedWebNodeRecords,
-  updateWebNodeRecord,
-} from "./App.web5";
+// import {
+//   createWebNodeRecord,
+//   deleteWebNodeRecords,
+//   queryAndSetWebNodeRecords,
+//   testUpdatedWebNodeRecords,
+//   updateWebNodeRecord,
+// } from "./App.web5";
 import { Intro } from "./ChatGPT/Intro/Intro";
 import { PromptMessage } from "./ChatGPT/PromptMessage/PromptMessage";
 // import RandomCharacter from "./common/ui/Elements/RandomCharacter/RandomCharacter";
@@ -162,10 +162,6 @@ let App = () => {
   const handleModuleSelection = async (lectureModule, moduleName) => {
     // can redefine this as module object rather than patreon object. low priority
     // handleZap();
-
-    console.log("running valid storage", isLocalStorageValid());
-    console.log("lectureModule", lectureModule);
-    console.log("moduleName", moduleName);
 
     if (
       moduleName !== "Learning Mindset & Perspective" &&
@@ -339,7 +335,6 @@ let App = () => {
     //   "Returning effort",
     //   "returning-effort"
     // );
-    console.log("patreon watch", patreonObject);
 
     await addKnowledgeStep(
       patreonObject.knowledge.video.step,
@@ -433,22 +428,22 @@ let App = () => {
     }
   };
 
-  if (loading) {
-    return (
-      <div
-        style={{
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <RiseUpAnimation>
-          <RoxSplashAnimation />
-        </RiseUpAnimation>
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div
+  //       style={{
+  //         height: "100%",
+  //         display: "flex",
+  //         alignItems: "center",
+  //         justifyContent: "center",
+  //       }}
+  //     >
+  //       <RiseUpAnimation>
+  //         <RoxSplashAnimation />
+  //       </RiseUpAnimation>
+  //     </div>
+  //   );
+  // }
 
   return (
     <>
@@ -483,7 +478,7 @@ let App = () => {
 
             <div
               style={{
-                marginTop: 85,
+                // marginTop: 85,
                 width: "100%",
                 maxWidth: 700,
                 display: "flex",
@@ -585,6 +580,10 @@ let App = () => {
           zap={zap}
           handleZap={handleZap}
           computePercentage={computePercentage}
+          handlePathSelection={handlePathSelection}
+          pathSelectionAnimationData={
+            uiStateReference.pathSelectionAnimationData
+          }
         />
       </div>
 

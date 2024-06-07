@@ -15,6 +15,7 @@ import { Experimental } from "../Cofounder/Experimental";
 import { EmotionalIntelligence } from "../EmotionalIntelligence/EmotionalIntelligence";
 import { ImpactWallet } from "../ImpactWallet/ImpactWallet";
 import { Leetmigo } from "../Leetmigo/Leetmigo";
+import { HamburgerMenu } from "../../../common/svgs/HamburgerMenu";
 
 const StyledFeature = styled(Button)`
   max-width: 700px;
@@ -298,7 +299,12 @@ export const Startup = ({
             setIsStartupOpen(false);
             setIsAdaptiveLearningOpen(false);
           }}
-          title="Feature Menu"
+          title={
+            <div>
+              <HamburgerMenu />
+              &nbsp;&nbsp;Feature Menu
+            </div>
+          }
         />
       </Modal.Header>
       <Modal.Body

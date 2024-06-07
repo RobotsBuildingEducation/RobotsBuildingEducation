@@ -34,6 +34,8 @@ export const ProofOfWorkWrapper = ({
   zap,
   handleZap,
   computePercentage,
+  handlePathSelection,
+  pathSelectionAnimationData,
 }) => {
   const userImpact = userStateReference.databaseUserDocument?.impact;
   const proofOfWork = uiStateReference.proofOfWorkFromModules;
@@ -96,6 +98,8 @@ export const ProofOfWorkWrapper = ({
         handleZap={handleZap}
         showBitcoin={showBitcoin}
         uiStateReference={uiStateReference}
+        handlePathSelection={handlePathSelection}
+        pathSelectionAnimationData={pathSelectionAnimationData}
       />
     </RiseUpAnimation>
   );

@@ -10,6 +10,8 @@ import { FadeInComponent, japaneseThemePalette } from "../../styles/lazyStyles";
 import { analytics } from "../../database/firebaseResources";
 
 import { useState } from "react";
+import { Paths } from "../../Paths/Paths";
+import { HamburgerMenu } from "../../common/svgs/HamburgerMenu";
 
 export const renderTranscriptAwards = (profileData) => {
   if (isEmpty(profileData)) {
@@ -96,6 +98,9 @@ export const RenderActionBarControls = ({
   setIsImpactWalletOpen,
   setIsStartupOpen,
   setIsAdaptiveLearningOpen,
+  handlePathSelection,
+  pathSelectionAnimationData,
+  userStateReference,
 }) => {
   const [isHovered, setIsHovered] = useState({
     bossMode: false,
@@ -121,57 +126,72 @@ export const RenderActionBarControls = ({
             ?.join("")}
         </b>
       </span> */}
-      <Button
-        variant="dark"
+      <div
         style={{
-          textShadow: "1px 1px 1px black",
-          borderBottom: isHovered.startup
-            ? "2px solid transparent"
-            : `2px solid ${japaneseThemePalette.CobaltBlue}`,
+          display: "flex",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+          paddingTop: 8,
+          paddingBottom: 8,
         }}
-        onMouseDown={() => {
-          logEvent(analytics, "select_content", {
-            content_type: "button",
-            item_id: "Startup",
-          });
-          setIsStartupOpen(true);
-          setIsImpactWalletOpen(false);
-          setIsEmotionalIntelligenceOpen(false);
-          setIsBossModeOpen(false);
-          setIsCofounderOpen(false);
-          setIsAdaptiveLearningOpen(false);
-        }}
-        onMouseEnter={() => handleHover("startup", true)}
-        onMouseLeave={() => handleHover("startup", false)}
       >
-        🌀
-      </Button>
-      &nbsp; &nbsp;
-      <Button
-        variant="dark"
-        style={{
-          textShadow: "1px 1px 1px black",
-          borderBottom: isHovered.adaptiveLearning
-            ? "2px solid transparent"
-            : `2px solid ${japaneseThemePalette.CobaltBlue}`,
-        }}
-        onMouseDown={() => {
-          logEvent(analytics, "select_content", {
-            content_type: "button",
-            item_id: "Adaptive Learning",
-          });
-          setIsAdaptiveLearningOpen(true);
-          setIsStartupOpen(false);
-          setIsImpactWalletOpen(false);
-          setIsEmotionalIntelligenceOpen(false);
-          setIsBossModeOpen(false);
-          setIsCofounderOpen(false);
-        }}
-        onMouseEnter={() => handleHover("adaptiveLearning", true)}
-        onMouseLeave={() => handleHover("adaptiveLearning", false)}
-      >
-        💭
-      </Button>
+        <Button
+          variant="dark"
+          style={{
+            textShadow: "1px 1px 1px black",
+            borderBottom: isHovered.startup
+              ? "2px solid transparent"
+              : `2px solid ${japaneseThemePalette.CobaltBlue}`,
+          }}
+          onMouseDown={() => {
+            logEvent(analytics, "select_content", {
+              content_type: "button",
+              item_id: "Startup",
+            });
+            setIsStartupOpen(true);
+            setIsImpactWalletOpen(false);
+            setIsEmotionalIntelligenceOpen(false);
+            setIsBossModeOpen(false);
+            setIsCofounderOpen(false);
+            setIsAdaptiveLearningOpen(false);
+          }}
+          onMouseEnter={() => handleHover("startup", true)}
+          onMouseLeave={() => handleHover("startup", false)}
+        >
+          <HamburgerMenu />
+        </Button>
+        <Paths
+          handlePathSelection={handlePathSelection}
+          pathSelectionAnimationData={pathSelectionAnimationData}
+          userStateReference={userStateReference}
+          inActionBar={true}
+        />
+        <Button
+          variant="dark"
+          style={{
+            textShadow: "1px 1px 1px black",
+            borderBottom: isHovered.adaptiveLearning
+              ? "2px solid transparent"
+              : `2px solid ${japaneseThemePalette.CobaltBlue}`,
+          }}
+          onMouseDown={() => {
+            logEvent(analytics, "select_content", {
+              content_type: "button",
+              item_id: "Adaptive Learning",
+            });
+            setIsAdaptiveLearningOpen(true);
+            setIsStartupOpen(false);
+            setIsImpactWalletOpen(false);
+            setIsEmotionalIntelligenceOpen(false);
+            setIsBossModeOpen(false);
+            setIsCofounderOpen(false);
+          }}
+          onMouseEnter={() => handleHover("adaptiveLearning", true)}
+          onMouseLeave={() => handleHover("adaptiveLearning", false)}
+        >
+          💭
+        </Button>
+      </div>
     </FadeInComponent>
   );
 };

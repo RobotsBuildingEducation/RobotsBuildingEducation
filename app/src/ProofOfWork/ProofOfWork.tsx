@@ -21,6 +21,8 @@ export const ProofOfWork = ({
   zap,
   handleZap,
   uiStateReference,
+  handlePathSelection,
+  pathSelectionAnimationData,
 }) => {
   const [isImpactWalletOpen, setIsImpactWalletOpen] = useState(false);
   const [isEmotionalIntelligenceOpen, setIsEmotionalIntelligenceOpen] =
@@ -138,6 +140,8 @@ export const ProofOfWork = ({
         setIsAdaptiveLearningOpen={setIsAdaptiveLearningOpen}
         isLeetmigoOpen={isLeetmigoOpen}
         setIsLeetmigoOpen={setIsLeetmigoOpen}
+        handlePathSelection={handlePathSelection}
+        pathSelectionAnimationData={pathSelectionAnimationData}
       />
     </div>
   );

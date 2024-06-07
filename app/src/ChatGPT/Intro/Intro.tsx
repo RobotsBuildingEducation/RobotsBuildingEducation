@@ -11,6 +11,7 @@ export const Intro = ({
   promptSelection,
   isHome = false,
   isCollection = false,
+  dataLoading = false,
 }) => {
   // Return null if patreonObject is empty
   if (isEmpty(patreonObject)) return null;
