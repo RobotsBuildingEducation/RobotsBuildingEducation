@@ -65,7 +65,10 @@ const ChatGPT = ({
   const [chatGptResponseList, setChatGptResponseList] = useState([]);
   const [promptSelection, setPromptSelection] = useState("");
   const [parentVisibility, setParentVisibility] = useState(true);
-  const { connected, error, postContent } = useSharedNostr();
+  const { connected, error, postNostrContent } = useSharedNostr(
+    localStorage.getItem("npub"),
+    localStorage.getItem("nsec")
+  );
 
   useEffect(() => {
     setIsResponseActive(false);
@@ -129,7 +132,7 @@ const ChatGPT = ({
         patreonObject.knowledge[remappedPrompts[promptType]].collectorId
       );
 
-      postContent(
+      postNostrContent(
         `User ${localStorage.getItem(
           "uniqueId"
         )} has completed progress on the ${moduleName} lecture and generated ${
@@ -139,12 +142,12 @@ const ChatGPT = ({
           patreonObject.knowledge[remappedPrompts[promptType]].knowledge
         }"\n
         \n
-        The total work generated toward creating scholarship is ${
+        The total work generated toward creating scholarships is ${
           globalStateReference.globalImpactCounter
-        }`
+        }. Learn more at https://robotsbuildingeducation.com or support us at https://patreon.com/robotsbuildingeducation.`
       );
     } else {
-      postContent(
+      postNostrContent(
         `User ${localStorage.getItem(
           "uniqueId"
         )} has completed progress on the ${moduleName} lecture and generated ${
@@ -156,7 +159,7 @@ const ChatGPT = ({
         \n
         The total work generated toward creating scholarships is ${
           globalStateReference.globalImpactCounter
-        }`
+        }. Learn more at https://robotsbuildingeducation.com or support us at https://patreon.com/robotsbuildingeducation.`
       );
     }
   };

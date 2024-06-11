@@ -15,6 +15,8 @@ const containerStyle = {
   borderTopLeftRadius: 12,
   borderTopRightRadius: 12,
   backgroundColor: "#1C1C1E",
+  // paddingBottom: 12,
+  // paddingTop: 12,
 };
 
 /**

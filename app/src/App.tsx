@@ -168,11 +168,6 @@ let App = () => {
       isLocalStorageValid() === false
     ) {
       setIsLocalModalActive(true);
-    } else if (
-      isLocalStorageValid() === false &&
-      userStateReference.databaseUserDocument.unlocks[moduleName]
-    ) {
-      setIsLocalModalActive(true);
     } else {
       uiStateReference.setPatreonObject(lectureModule);
 
