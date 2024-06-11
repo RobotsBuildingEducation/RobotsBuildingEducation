@@ -554,7 +554,7 @@ export let japaneseThemePalette = {
   CobaltBlue: "#0044B0",
   iphoneBlue: "2C2C2E",
   roxPink: "",
-  themePurple: "4003ba",
+  themePurple: "#4003ba",
 };
 
 // opinionated

@@ -106,14 +106,73 @@ export let testUpdatedWebNodeRecords = async (web5, dwnRecords) => {
   console.log("dwn outcome", outcome);
 };
 
-export const useSharedNostr = () => {
-  const [connected, setConnected] = useState(false);
-  const [error, setError] = useState(null);
+export const useSharedNostr = (initialNpub, initialNsec) => {
+  const [isConnected, setIsConnected] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [nostrPubKey, setNostrPubKey] = useState(initialNpub || "");
+  const [nostrPrivKey, setNostrPrivKey] = useState(initialNsec || "");
 
-  const connectNostr = async () => {
-    const nsec = import.meta.env.VITE_GLOBAL_NOSTR_NSEC;
-    const npub =
-      "npub14vskcp90k6gwp6sxjs2jwwqpcmahg6wz3h5vzq0yn6crrsq0utts52axlt";
+  useEffect(() => {
+    // Load keys from local storage if they exist
+    const storedNpub = localStorage.getItem("npub");
+    const storedNsec = localStorage.getItem("nsec");
+
+    if (storedNpub) {
+      setNostrPubKey(storedNpub);
+    }
+
+    if (storedNsec) {
+      setNostrPrivKey(storedNsec);
+    }
+  }, []);
+
+  const generateNostrKeys = async (userDisplayName = null) => {
+    const privateKeySigner = NDKPrivateKeySigner.generate();
+    console.log("privateKeySigner", privateKeySigner);
+    const privateKey = privateKeySigner.privateKey;
+    const user = await privateKeySigner.user();
+    console.log("user...", user);
+    const publicKey = user.npub;
+    console.log("public key..", publicKey);
+
+    const encodedNsec = bech32.encode(
+      "nsec",
+      bech32.toWords(Buffer.from(privateKey, "hex"))
+    );
+    const encodedNpub = bech32.encode(
+      "npub",
+      bech32.toWords(Buffer.from(publicKey, "hex"))
+    );
+
+    setNostrPrivKey(encodedNsec);
+    setNostrPubKey(encodedNpub);
+
+    if (!localStorage.getItem("nsec")) {
+      postNostrContent(
+        JSON.stringify({
+          name: userDisplayName,
+          about: "A student onboarded with Robots Building Education",
+        }),
+        0,
+        publicKey,
+        encodedNsec
+      );
+    }
+
+    localStorage.setItem("nsec", encodedNsec);
+    localStorage.setItem("npub", publicKey);
+
+    return { npub: publicKey, nsec: encodedNsec };
+  };
+
+  const connectToNostr = async (npubRef = null, nsecRef = null) => {
+    console.log("REF PUB 2", npubRef);
+    console.log("NSEC ref 2", nsecRef);
+    const defaultNsec = import.meta.env.VITE_GLOBAL_NOSTR_NSEC;
+    const defaultNpub =
+      "npub1mgt5c7qh6dm9rg57mrp89rqtzn64958nj5w9g2d2h9dng27hmp0sww7u2v";
+    const nsec = nsecRef || nostrPrivKey || defaultNsec;
+    const npub = npubRef || nostrPubKey || defaultNpub;
 
     try {
       // Decode the nsec from Bech32
@@ -125,47 +184,61 @@ export const useSharedNostr = () => {
       const hexNpub = Buffer.from(bech32.fromWords(npubWords)).toString("hex");
 
       // Create a new NDK instance
-      const ndk = new NDK({
+      const ndkInstance = new NDK({
         explicitRelayUrls: ["wss://relay.damus.io", "wss://relay.primal.net"],
       });
 
       // Connect to the relays
-      await ndk.connect();
+      await ndkInstance.connect();
       console.log("NDK connected");
-      setConnected(true);
+      setIsConnected(true);
 
       // Return the connected NDK instance and signer
-      return { ndk, hexNpub, signer: new NDKPrivateKeySigner(hexNsec) };
+      return { ndkInstance, hexNpub, signer: new NDKPrivateKeySigner(hexNsec) };
     } catch (err) {
       console.error("Error connecting to Nostr:", err);
-      setError(err.message);
+      setErrorMessage(err.message);
       return null;
     }
   };
 
-  const postContent = async (content) => {
-    const connection = await connectNostr();
+  const postNostrContent = async (
+    content,
+    kind = NDKKind.Text,
+    npubRef = null,
+    nsecRef = null
+  ) => {
+    console.log("REF PUB", npubRef);
+    console.log("NSEC ref", nsecRef);
+    const connection = await connectToNostr(npubRef, nsecRef);
     if (!connection) return;
 
-    const { ndk, hexNpub, signer } = connection;
+    const { ndkInstance, hexNpub, signer } = connection;
 
     // Create a new note event
-    const note = new NDKEvent(ndk, {
-      kind: NDKKind.Text,
-      tags: [["test_1"]],
+    const noteEvent = new NDKEvent(ndkInstance, {
+      kind,
+      tags: [],
       content: content,
       created_at: Math.floor(Date.now() / 1000),
       pubkey: hexNpub,
     });
 
     // Sign the note event
-    await note.sign(signer);
+    await noteEvent.sign(signer);
 
-    console.log("Signed Note", note.rawEvent());
+    console.log("Signed Note", noteEvent.rawEvent());
 
     // Publish the note event
-    await note.publish();
+    await noteEvent.publish();
   };
 
-  return { connected, error, postContent };
+  return {
+    isConnected,
+    errorMessage,
+    nostrPubKey,
+    nostrPrivKey,
+    generateNostrKeys,
+    postNostrContent,
+  };
 };

@@ -24,7 +24,7 @@ export const ProofOfWork = ({
   handlePathSelection,
   pathSelectionAnimationData,
 }) => {
-  const [isImpactWalletOpen, setIsImpactWalletOpen] = useState(false);
+  const [isIdentityWalletOpen, setIsIdentityWalletOpen] = useState(false);
   const [isEmotionalIntelligenceOpen, setIsEmotionalIntelligenceOpen] =
     useState(false);
 
@@ -39,7 +39,7 @@ export const ProofOfWork = ({
   const [isLeetmigoOpen, setIsLeetmigoOpen] = useState(false);
 
   useEffect(() => {
-    if (isImpactWalletOpen) {
+    if (isIdentityWalletOpen) {
       setIsEmotionalIntelligenceOpen(false);
       setIsCofounderOpen(false);
       setIsBossModeOpen(false);
@@ -47,7 +47,7 @@ export const ProofOfWork = ({
       // setIsStartupOpen(false);
     }
     if (isEmotionalIntelligenceOpen) {
-      setIsImpactWalletOpen(false);
+      setIsIdentityWalletOpen(false);
       setIsCofounderOpen(false);
       setIsBossModeOpen(false);
       setIsLeetmigoOpen(false);
@@ -55,7 +55,7 @@ export const ProofOfWork = ({
     }
     if (isCofounderOpen) {
       setIsEmotionalIntelligenceOpen(false);
-      setIsImpactWalletOpen(false);
+      setIsIdentityWalletOpen(false);
       setIsBossModeOpen(false);
       setIsLeetmigoOpen(false);
       // setIsStartupOpen(false);
@@ -64,7 +64,7 @@ export const ProofOfWork = ({
     if (isBossModeOpen) {
       setIsEmotionalIntelligenceOpen(false);
       setIsCofounderOpen(false);
-      setIsImpactWalletOpen(false);
+      setIsIdentityWalletOpen(false);
       setIsLeetmigoOpen(false);
       // setIsStartupOpen(false);
     }
@@ -72,14 +72,14 @@ export const ProofOfWork = ({
     if (isLeetmigoOpen) {
       setIsEmotionalIntelligenceOpen(false);
       setIsCofounderOpen(false);
-      setIsImpactWalletOpen(false);
+      setIsIdentityWalletOpen(false);
       setIsBossModeOpen(false);
     }
 
     if (isStartupOpen) {
       // setIsEmotionalIntelligenceOpen(false);
       // setIsCofounderOpen(false);
-      // setIsImpactWalletOpen(false);
+      // setIsIdentityWalletOpen(false);
       // setIsBossModeOpen(false);
       setIsAdaptiveLearningOpen(false);
     }
@@ -87,7 +87,7 @@ export const ProofOfWork = ({
       setIsStartupOpen(false);
     }
   }, [
-    isImpactWalletOpen,
+    isIdentityWalletOpen,
     isEmotionalIntelligenceOpen,
     isCofounderOpen,
     isBossModeOpen,
@@ -116,8 +116,8 @@ export const ProofOfWork = ({
         databaseUserDocument={databaseUserDocument}
         calculatedPercentage={calculatedPercentage}
         globalImpactCounter={globalImpactCounter}
-        isImpactWalletOpen={isImpactWalletOpen}
-        setIsImpactWalletOpen={setIsImpactWalletOpen}
+        isIdentityWalletOpen={isIdentityWalletOpen}
+        setIsIdentityWalletOpen={setIsIdentityWalletOpen}
         globalScholarshipCounter={globalScholarshipCounter}
         setIsEmotionalIntelligenceOpen={setIsEmotionalIntelligenceOpen}
         isEmotionalIntelligenceOpen={isEmotionalIntelligenceOpen}

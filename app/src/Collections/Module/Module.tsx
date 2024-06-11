@@ -16,11 +16,12 @@ export const Module = ({
     const lessonRegex = /Lesson \d+/;
     return header?.replace(lessonRegex, "")?.trim();
   };
-  console.log("Module....", currentModule);
+
   // renders a lock emoji if the user doesn't have the lecture unlocked yet
   const isDisabled =
     !userStateReference?.databaseUserDocument?.unlocks?.[module];
   let handleModal = useGlobalModal(modalConfig);
+
   return (
     <StyledModule
       onMouseEnter={() => setIsMouseEntered(true)}
@@ -30,6 +31,10 @@ export const Module = ({
       patreonObject={currentModule}
       key={currentModule.header}
       onClick={() => {
+        console.log(
+          "!userStateReference?.databaseUserDocument?.unlocks?.[module]",
+          !userStateReference?.databaseUserDocument?.unlocks?.[module]
+        );
         if (isDisabled) {
           if (
             localStorage.getItem("patreonPasscode") !==

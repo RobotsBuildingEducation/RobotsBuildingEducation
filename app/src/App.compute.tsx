@@ -87,7 +87,6 @@ export const setupUserDocument = async (
 ) => {
   const res = await getDoc(docRef);
 
-  console.log("setup user document", res?.data());
   if (!res?.data()) {
     // let result = await web5?.dwn?.records?.create({
     //   data: {
@@ -131,6 +130,10 @@ export const setupUserDocument = async (
       });
     }
 
+    if (res?.data()?.nostrPubKey) {
+      localStorage.setItem("npub", res?.data()?.nostrPubKey);
+    }
+
     const response = await getDoc(docRef);
 
     userStateReference.setDatabaseUserDocument(response.data());
@@ -145,7 +148,7 @@ export const setupUserDocument = async (
     addKnowledgeStep(
       "2",
       "Returned to the application learn another time.",
-      "Returning effort",
+      "Returning e  ffort",
       "returning-effort"
     );
   }
@@ -404,7 +407,7 @@ export const completeZapEvent = (
  * This happened because I was writing at like 3 AM and refused to use my brain.
  * It was easier to be stubborn.
  */
-export const GetLandingPageMessage = ({ unlocks }) => {
+export const GetLandingPageMessage = ({ unlocks, dataLoading }) => {
   let message = (
     <div>
       Congratulations! You have completed all lectures. Now it's time to build.
@@ -968,6 +971,9 @@ class Rox {
     );
   }
 
+  if (dataLoading) {
+    message = <div>Checking progress...</div>;
+  }
   return message;
 };
 

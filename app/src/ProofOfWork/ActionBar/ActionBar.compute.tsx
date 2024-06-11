@@ -95,7 +95,7 @@ export const RenderActionBarControls = ({
   setIsBossModeOpen,
   setIsCofounderOpen,
   setIsEmotionalIntelligenceOpen,
-  setIsImpactWalletOpen,
+  setIsIdentityWalletOpen,
   setIsStartupOpen,
   setIsAdaptiveLearningOpen,
   handlePathSelection,
@@ -149,7 +149,7 @@ export const RenderActionBarControls = ({
               item_id: "Startup",
             });
             setIsStartupOpen(true);
-            setIsImpactWalletOpen(false);
+            setIsIdentityWalletOpen(false);
             setIsEmotionalIntelligenceOpen(false);
             setIsBossModeOpen(false);
             setIsCofounderOpen(false);
@@ -181,7 +181,7 @@ export const RenderActionBarControls = ({
             });
             setIsAdaptiveLearningOpen(true);
             setIsStartupOpen(false);
-            setIsImpactWalletOpen(false);
+            setIsIdentityWalletOpen(false);
             setIsEmotionalIntelligenceOpen(false);
             setIsBossModeOpen(false);
             setIsCofounderOpen(false);

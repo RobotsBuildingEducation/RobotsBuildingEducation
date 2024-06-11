@@ -13,7 +13,7 @@ import { analytics } from "../../../database/firebaseResources";
 import { BossMode } from "../BossMode/BossMode";
 import { Experimental } from "../Cofounder/Experimental";
 import { EmotionalIntelligence } from "../EmotionalIntelligence/EmotionalIntelligence";
-import { ImpactWallet } from "../ImpactWallet/ImpactWallet";
+import { IdentityWallet } from "../IdentityWallet/IdentityWallet";
 import { Leetmigo } from "../Leetmigo/Leetmigo";
 import { HamburgerMenu } from "../../../common/svgs/HamburgerMenu";
 
@@ -29,7 +29,7 @@ export const RenderActionBarControls = ({
   setIsBossModeOpen,
   setIsCofounderOpen,
   setIsEmotionalIntelligenceOpen,
-  setIsImpactWalletOpen,
+  setIsIdentityWalletOpen,
   setIsStartupOpen,
   setIsLeetmigoOpen,
 }) => {
@@ -76,7 +76,7 @@ export const RenderActionBarControls = ({
               item_id: "Proof of Work",
             });
 
-            setIsImpactWalletOpen(true);
+            setIsIdentityWalletOpen(true);
             setIsEmotionalIntelligenceOpen(false);
             setIsBossModeOpen(false);
             setIsCofounderOpen(false);
@@ -144,7 +144,7 @@ export const RenderActionBarControls = ({
             setIsEmotionalIntelligenceOpen(false);
             setIsBossModeOpen(false);
             setIsCofounderOpen(false);
-            setIsImpactWalletOpen(false);
+            setIsIdentityWalletOpen(false);
 
             // setIsStartupOpen(false);
           }}
@@ -170,7 +170,7 @@ export const RenderActionBarControls = ({
             setIsBossModeOpen(true);
             setIsCofounderOpen(false);
             setIsEmotionalIntelligenceOpen(false);
-            setIsImpactWalletOpen(false);
+            setIsIdentityWalletOpen(false);
             setIsLeetmigoOpen(false);
 
             // setIsStartupOpen(false);
@@ -197,7 +197,7 @@ export const RenderActionBarControls = ({
             setIsCofounderOpen(true);
             setIsBossModeOpen(false);
             setIsEmotionalIntelligenceOpen(false);
-            setIsImpactWalletOpen(false);
+            setIsIdentityWalletOpen(false);
             setIsLeetmigoOpen(false);
 
             // setIsStartupOpen(false);
@@ -224,7 +224,7 @@ export const RenderActionBarControls = ({
             setIsEmotionalIntelligenceOpen(true);
             setIsBossModeOpen(false);
             setIsCofounderOpen(false);
-            setIsImpactWalletOpen(false);
+            setIsIdentityWalletOpen(false);
             setIsLeetmigoOpen(false);
             // setIsStartupOpen(false);
           }}
@@ -254,8 +254,8 @@ export const Startup = ({
   isBossModeOpen,
   isCofounderOpen,
   isEmotionalIntelligenceOpen,
-  isImpactWalletOpen,
-  setIsImpactWalletOpen,
+  isIdentityWalletOpen,
+  setIsIdentityWalletOpen,
   setIsCofounderOpen,
   setIsBossModeOpen,
   uiStateReference,
@@ -320,14 +320,14 @@ export const Startup = ({
           setIsBossModeOpen={setIsBossModeOpen}
           setIsCofounderOpen={setIsCofounderOpen}
           setIsEmotionalIntelligenceOpen={setIsEmotionalIntelligenceOpen}
-          setIsImpactWalletOpen={setIsImpactWalletOpen}
+          setIsIdentityWalletOpen={setIsIdentityWalletOpen}
           setIsStartupOpen={setIsStartupOpen}
           setIsLeetmigoOpen={setIsLeetmigoOpen}
         />
-        {isImpactWalletOpen ? (
-          <ImpactWallet
-            isImpactWalletOpen={isImpactWalletOpen}
-            setIsImpactWalletOpen={setIsImpactWalletOpen}
+        {isIdentityWalletOpen ? (
+          <IdentityWallet
+            isIdentityWalletOpen={isIdentityWalletOpen}
+            setIsIdentityWalletOpen={setIsIdentityWalletOpen}
             userStateReference={userStateReference}
             globalStateReference={globalStateReference}
             uiStateReference={uiStateReference}

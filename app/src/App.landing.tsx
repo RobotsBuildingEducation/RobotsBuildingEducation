@@ -18,27 +18,30 @@ export const Landing = ({
   userStateReference,
 }) => {
   const renderWelcomeMessage = () => (
-    <div style={{ width: "100%" }}>
-      <br />
-      {userStateReference.databaseUserDocument.firstVisit
-        ? "Hello"
-        : "Welcome back"}
-      &nbsp;
-      <b>
-        {(userStateReference.databaseUserDocument.displayName
-          ? userStateReference.databaseUserDocument.displayName
-          : localStorage.getItem("uniqueId")?.substr(0, 16) || "") + "!"}
-      </b>
-      &nbsp;😊 <br />
-      {userStateReference.databaseUserDocument.firstVisit
-        ? "You've instantly created an account! 🪄"
-        : ""}
-      <br />
-      <br />
-      <h3 style={{ fontFamily: "Bungee" }}>Next steps</h3>
+    <>
       <div style={{ width: "100%" }}>
-        {userStateReference.databaseUserDocument.firstVisit ? (
-          `I'm rox. I'm a learning assistant supervised and curated
+        {!dataLoading ? (
+          <div>
+            <br />
+            {userStateReference.databaseUserDocument.firstVisit
+              ? "Hello"
+              : "Welcome back"}
+            &nbsp;
+            <b>
+              {(userStateReference.databaseUserDocument.displayName
+                ? userStateReference.databaseUserDocument.displayName
+                : localStorage.getItem("uniqueId")?.substr(0, 16) || "") + "!"}
+            </b>
+            &nbsp;😊 <br />
+            {userStateReference.databaseUserDocument.firstVisit
+              ? "You've instantly created an account! 🪄"
+              : ""}
+            <br />
+            <br />
+            <h3 style={{ fontFamily: "Bungee" }}>Next steps</h3>
+            <div style={{ width: "100%" }}>
+              {userStateReference.databaseUserDocument.firstVisit ? (
+                `I'm rox. I'm a learning assistant supervised and curated
                by Robots Building Education. We're here to deliver a good 
                quality education that prepares you for the future. So 
                we're going to learn about coding and business here. They're
@@ -47,78 +50,83 @@ export const Landing = ({
                part is the important part. If you want to learn more about why we're working 
                on this platform, head over the to FAQs section above. Let's learn about
                what's offered.`
+              ) : (
+                <GetLandingPageMessage
+                  dataLoading={dataLoading}
+                  unlocks={userStateReference.databaseUserDocument?.watches}
+                />
+              )}
+            </div>
+          </div>
         ) : (
-          <GetLandingPageMessage
-            unlocks={userStateReference.databaseUserDocument?.watches}
-          />
+          <div>Creating next steps...</div>
         )}
-      </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <b>Why would I connect a Bitcoin wallet?</b>
-      <br />
-      <br />
-      <ConnectWallet
-        appName="Robots Building Education"
-        onConnect={() =>
-          localStorage.setItem(
-            "patreonPasscode",
-            import.meta.env.VITE_BITCOIN_PASSCODE
-          )
-        }
-        onDisconnect={() =>
-          localStorage.setItem(
-            "patreonPasscode",
-            import.meta.env.VITE_PATREON_PASSCODE
-          )
-        }
-      />
-      <a
-        style={{ color: "gold", fontSize: 16, textDecoration: "underline" }}
-        href="https://www.patreon.com/robotsbuildingeducation"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <button
-          style={{
-            backgroundColor: "#4003ba",
-            color: "white",
-            width: 180,
-            textAlign: "left",
-            marginTop: 8,
-            paddingTop: 7,
-            paddingBottom: 7,
-          }}
+        <br />
+        <br />
+        <b>Why would I connect a Bitcoin wallet?</b>
+        <br />
+        <br />
+        <ConnectWallet
+          appName="Robots Building Education"
+          onConnect={() =>
+            localStorage.setItem(
+              "patreonPasscode",
+              import.meta.env.VITE_BITCOIN_PASSCODE
+            )
+          }
+          onDisconnect={() =>
+            localStorage.setItem(
+              "patreonPasscode",
+              import.meta.env.VITE_PATREON_PASSCODE
+            )
+          }
+        />
+        <a
+          style={{ color: "gold", fontSize: 16, textDecoration: "underline" }}
+          href="https://www.patreon.com/robotsbuildingeducation"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <span style={{ marginLeft: "-3px" }}>📬</span>
-          &nbsp;&nbsp;&nbsp;
-          <b style={{ marginLeft: "1px" }}>Subscribe</b>
-        </button>
-      </a>
-      <br />
-      <br />
-      The goal of Robots Building Education is to create scholarships with
-      learning.&nbsp;
-      <a
-        href="https://www.patreon.com/posts/improving-105150205?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ textDecoration: "underline", color: "white" }}
-      >
-        <b>Connecting your wallet</b>
-      </a>{" "}
-      allows you to use instant Bitcoin microtransactions. This lets us monetize
-      user experiences instead of bundling it all behind a subscription service.
-      <br />
-      <br />
-      Otherwise you can access even more free material and services on Patreon,
-      for free. Subscriptions are used to develop this platform and improve its
-      quality of service.
-      <br />
-      <br />
-    </div>
+          <button
+            style={{
+              backgroundColor: "#4003ba",
+              color: "white",
+              width: 180,
+              textAlign: "left",
+              marginTop: 8,
+              paddingTop: 7,
+              paddingBottom: 7,
+            }}
+          >
+            <span style={{ marginLeft: "-3px" }}>📬</span>
+            &nbsp;&nbsp;&nbsp;
+            <b style={{ marginLeft: "1px" }}>Subscribe</b>
+          </button>
+        </a>
+        <br />
+        <br />
+        The goal of Robots Building Education is to create scholarships with
+        learning.&nbsp;
+        <a
+          href="https://www.patreon.com/posts/improving-105150205?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ textDecoration: "underline", color: "white" }}
+        >
+          <b>Connecting your wallet</b>
+        </a>{" "}
+        allows you to use instant Bitcoin microtransactions. This lets us
+        monetize user experiences instead of bundling it all behind a
+        subscription service.
+        <br />
+        <br />
+        Otherwise you can access even more free material and services on
+        Patreon, for free. Subscriptions are used to develop this platform and
+        improve its quality of service.
+        <br />
+        <br />
+      </div>
+    </>
   );
 
   const renderInfoSections = () => (
@@ -238,9 +246,7 @@ export const Landing = ({
       patreonObject={{
         prompts: {
           welcome: {
-            response: dataLoading ? (
-              <div style={{ paddingBottom: 10 }}>Setting up...</div>
-            ) : uiStateReference.currentPath ? (
+            response: uiStateReference.currentPath ? (
               <Collections
                 handleModuleSelection={handleModuleSelection}
                 currentPath={uiStateReference.currentPath}

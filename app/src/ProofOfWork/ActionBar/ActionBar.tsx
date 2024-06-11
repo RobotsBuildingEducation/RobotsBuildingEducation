@@ -12,7 +12,6 @@ import { Experimental } from "./Cofounder/Experimental";
 
 import { useStore } from "../../Store";
 
-import { ImpactWallet } from "./ImpactWallet/ImpactWallet";
 import { RenderActionBarControls } from "./ActionBar.compute";
 import { useEffect, useState } from "react";
 import { doc, onSnapshot } from "firebase/firestore";
@@ -29,8 +28,8 @@ export const ActionBar = ({
   databaseUserDocument,
   calculatedPercentage,
   globalImpactCounter,
-  isImpactWalletOpen,
-  setIsImpactWalletOpen,
+  isIdentityWalletOpen,
+  setIsIdentityWalletOpen,
 
   isEmotionalIntelligenceOpen,
   setIsEmotionalIntelligenceOpen,
@@ -102,9 +101,9 @@ export const ActionBar = ({
 
   return (
     <>
-      <div style={{ padding: 6 }}>
+      <div style={{ padding: 12 }}>
         {showZap || showStars || showBitcoin ? (
-          <div style={{ height: 38 }}>
+          <div style={{ height: 55 }}>
             <FadeInComponent speed={1.5}>
               <Lottie
                 options={{
@@ -130,7 +129,7 @@ export const ActionBar = ({
             setIsBossModeOpen={setIsBossModeOpen}
             setIsCofounderOpen={setIsCofounderOpen}
             setIsEmotionalIntelligenceOpen={setIsEmotionalIntelligenceOpen}
-            setIsImpactWalletOpen={setIsImpactWalletOpen}
+            setIsIdentityWalletOpen={setIsIdentityWalletOpen}
             setIsStartupOpen={setIsStartupOpen}
             handlePathSelection={handlePathSelection}
             pathSelectionAnimationData={pathSelectionAnimationData}
@@ -153,10 +152,10 @@ export const ActionBar = ({
         </div> */}
       </div>
 
-      {/* {isImpactWalletOpen ? (
-        <ImpactWallet
-          isImpactWalletOpen={isImpactWalletOpen}
-          setIsImpactWalletOpen={setIsImpactWalletOpen}
+      {/* {isIdentityWalletOpen ? (
+        IdentityWallet
+          isIdentityWalletOpen={isIdentityWalletOpen}
+          setIsIdentityWalletOpen={setIsIdentityWalletOpen}
           userStateReference={userStateReference}
           globalStateReference={globalStateReference}
           uiStateReference={uiStateReference}
@@ -226,8 +225,8 @@ export const ActionBar = ({
           isBossModeOpen={isBossModeOpen}
           isCofounderOpen={isCofounderOpen}
           isEmotionalIntelligenceOpen={isEmotionalIntelligenceOpen}
-          isImpactWalletOpen={isImpactWalletOpen}
-          setIsImpactWalletOpen={setIsImpactWalletOpen}
+          isIdentityWalletOpen={isIdentityWalletOpen}
+          setIsIdentityWalletOpen={setIsIdentityWalletOpen}
           setIsCofounderOpen={setIsCofounderOpen}
           setIsBossModeOpen={setIsBossModeOpen}
           uiStateReference={uiStateReference}
