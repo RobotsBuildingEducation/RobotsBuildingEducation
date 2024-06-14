@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes, css } from "styled-components";
+import QRCode from "qrcode.react";
+
 import { CopyButtonIcon } from "../../../svgs/CopyButtonIcon";
 import { Button } from "react-bootstrap";
 
@@ -115,8 +117,8 @@ const CardHolder = styled.div`
 
 const CopyButton = styled.button`
   transition: 0.23s all ease-in-out;
-  margin-top: 10px;
-  padding: 10px 20px;
+  margin-top: 5px;
+  padding: 0px 20px;
   border: none;
   border-radius: 5px;
   background-color: transparent;
@@ -268,6 +270,9 @@ export const IdentityCard = ({
               />
             </CopyButton>
           </div>
+          {/* {theme === "BTC" ? (
+            <QRCode value={"lightning:" + number} size={36} />
+          ) : null} */}
           <div
             style={{
               display: "flex",
