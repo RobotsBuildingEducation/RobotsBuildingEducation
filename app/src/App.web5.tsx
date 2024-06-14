@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import NDK, {
   NDKPrivateKeySigner,
   NDKEvent,
@@ -6,6 +7,7 @@ import NDK, {
 } from "@nostr-dev-kit/ndk";
 import { Buffer } from "buffer";
 import { bech32 } from "bech32";
+// import { CashuMint, CashuWallet, getEncodedToken } from "@cashu/cashu-ts";
 
 /**
  * used to test web5 data. should move to app.web5.ts
@@ -242,3 +244,174 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
     postNostrContent,
   };
 };
+
+export const useProofStorage = () => {
+  const [proofs, setProofs] = useState(null);
+  const [balance, setBalance] = useState(0);
+
+  useEffect(() => {
+    const storedProofs = localStorage.getItem("proofs");
+    if (storedProofs) {
+      const parsedProofs = JSON.parse(storedProofs);
+      setProofs(parsedProofs);
+      const initialBalance = parsedProofs.reduce(
+        (total, proof) => total + proof.amount,
+        0
+      );
+      setBalance(initialBalance);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!proofs) return;
+    localStorage.setItem("proofs", JSON.stringify(proofs));
+    const newBalance = proofs.reduce((total, proof) => total + proof.amount, 0);
+    setBalance(newBalance);
+  }, [proofs]);
+
+  const addProofs = (newProofs) => {
+    setProofs((prevProofs) => [...(prevProofs || []), ...newProofs]);
+  };
+
+  const removeProofs = (proofsToRemove) => {
+    if (!proofsToRemove) return;
+    setProofs((prevProofs) =>
+      prevProofs.filter((proof) => !proofsToRemove.includes(proof))
+    );
+  };
+
+  const getProofsByAmount = (amount, keysetId = undefined) => {
+    const result = [];
+    let sum = 0;
+
+    for (const proof of proofs) {
+      if (sum >= amount) break;
+      if (keysetId && proof.id !== keysetId) continue;
+      result.push(proof);
+      sum += proof.amount;
+    }
+
+    return result.length > 0 && sum >= amount ? result : [];
+  };
+
+  return {
+    addProofs,
+    removeProofs,
+    getProofsByAmount,
+    balance,
+  };
+};
+
+// we can automatically generate a token
+// but for now let's have users submit a deposit.
+// const useCashuWallet = () => {
+//   const [formData, setFormData] = useState({
+//     mintUrl: "https://stablenut.umint.cash",
+//     mintAmount: "",
+//     meltInvoice: "",
+//     swapAmount: "",
+//     swapToken: "",
+//   });
+//   const [dataOutput, setDataOutput] = useState(null);
+//   const [wallet, setWallet] = useState(null);
+
+//   const { addProofs, balance, removeProofs, getProofsByAmount } =
+//     useProofStorage();
+
+//   useEffect(() => {
+//     const storedMintData = JSON.parse(localStorage.getItem("mint"));
+//     if (storedMintData) {
+//       const { url, keyset } = storedMintData;
+//       const mint = new CashuMint(url);
+//       const wallet = new CashuWallet(mint, { keys: keyset, unit: "sat" });
+//       setWallet(wallet);
+//       setFormData((prevData) => ({ ...prevData, mintUrl: url }));
+//     } else {
+//       // handleSetMint();
+//       // -> add default values
+//     }
+//   }, []);
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData((prevData) => ({
+//       ...prevData,
+//       [name]: value,
+//     }));
+//   };
+
+//   const handleSetMint = async () => {
+//     const mint = new CashuMint(formData.mintUrl);
+//     try {
+//       const info = await mint.getInfo();
+//       setDataOutput(info);
+//       const { keysets } = await mint.getKeys();
+//       const satKeyset = keysets.find((k) => k.unit === "sat");
+//       setWallet(new CashuWallet(mint));
+//       localStorage.setItem(
+//         "mint",
+//         JSON.stringify({ url: formData.mintUrl, keyset: satKeyset })
+//       );
+//     } catch (error) {
+//       console.error(error);
+//       setDataOutput({ error: "Failed to connect to mint", details: error });
+//     }
+//   };
+
+//   const handleMint = async () => {
+//     const amount = parseInt(formData.mintAmount);
+//     console.log("MINT", wallet);
+//     const quote = await wallet.getMintQuote(amount);
+//     setDataOutput(quote);
+
+//     const intervalId = setInterval(async () => {
+//       try {
+//         const { proofs } = await wallet.mintTokens(amount, quote.quote, {
+//           keysetId: wallet.keys.id,
+//         });
+//         setDataOutput({ "minted proofs": proofs });
+//         setFormData((prevData) => ({ ...prevData, mintAmount: "" }));
+//         addProofs(proofs);
+//         clearInterval(intervalId);
+//       } catch (error) {
+//         console.error("Quote probably not paid: ", quote.request, error);
+//         setDataOutput({ error: "Failed to mint", details: error });
+//       }
+//     }, 5000);
+//   };
+
+//   const handleSwapSend = async () => {
+//     const swapAmount = parseInt(formData.swapAmount);
+//     const proofs = getProofsByAmount(swapAmount);
+
+//     if (proofs.length === 0) {
+//       alert("Insufficient balance");
+//       return;
+//     }
+
+//     try {
+//       const { send, returnChange } = await wallet.send(swapAmount, proofs);
+//       const encodedToken = getEncodedToken({
+//         token: [{ proofs: send, mint: wallet.mint.mintUrl }],
+//       });
+//       removeProofs(proofs);
+//       addProofs(returnChange);
+//       setDataOutput(encodedToken);
+//     } catch (error) {
+//       console.error(error);
+//       setDataOutput({ error: "Failed to swap tokens", details: error });
+//     }
+//   };
+
+//   return {
+//     formData,
+//     dataOutput,
+//     balance,
+//     handleChange,
+//     handleSetMint,
+//     handleMint,
+//     handleSwapSend,
+//   };
+// };
+
+// export default useCashuWallet;

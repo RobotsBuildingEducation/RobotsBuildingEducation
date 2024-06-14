@@ -16,24 +16,24 @@ const EmotionalIntelligenceStyles = {
     backgroundColor: "black",
     color: "white",
     borderBottom: "0px solid transparent",
-    borderRight: "5px solid lavender",
-    borderLeft: "5px solid lavender",
-    borderTop: "5px solid lavender",
+    borderRight: "2px solid lavender",
+    borderLeft: "2px solid lavender",
+    borderTop: "2px solid lavender",
   },
   EmotionBody: {
     backgroundColor: "black",
     color: "white",
-    borderRight: "5px solid lavender",
-    borderLeft: "5px solid lavender",
+    borderRight: "2px solid lavender",
+    borderLeft: "2px solid lavender",
     height: 500,
   },
   EmotionFooter: {
     backgroundColor: "black",
     color: "white",
     borderTop: "1px solid transparent",
-    borderRight: "5px solid lavender",
-    borderLeft: "5px solid lavender",
-    borderBottom: "5px solid lavender",
+    borderRight: "2px solid lavender",
+    borderLeft: "2px solid lavender",
+    borderBottom: "2px solid lavender",
   },
 };
 
@@ -314,9 +314,9 @@ export const ChatBlock = ({ children, type = "quiz", hasTutorial = false }) => {
             display: "flex",
             justifyContent: "space-between",
             width: "100%",
-            borderTop: "5px solid lavender",
-            borderLeft: "5px solid lavender",
-            borderRight: "5px solid lavender",
+            borderTop: "2px solid lavender",
+            borderLeft: "2px solid lavender",
+            borderRight: "2px solid lavender",
             borderBottom: "1px solid black",
           }}
         >
@@ -335,8 +335,8 @@ export const ChatBlock = ({ children, type = "quiz", hasTutorial = false }) => {
             backgroundColor: "black",
             color: "white",
             padding: 24,
-            borderLeft: "5px solid lavender",
-            borderRight: "5px solid lavender",
+            borderLeft: "2px solid lavender",
+            borderRight: "2px solid lavender",
           }}
         >
           <div
@@ -362,9 +362,9 @@ export const ChatBlock = ({ children, type = "quiz", hasTutorial = false }) => {
         <Modal.Footer
           style={{
             backgroundColor: "black",
-            borderBottom: "5px solid lavender",
-            borderLeft: "5px solid lavender",
-            borderRight: "5px solid lavender",
+            borderBottom: "2px solid lavender",
+            borderLeft: "2px solid lavender",
+            borderRight: "2px solid lavender",
             borderTop: "1px solid black",
           }}
         >

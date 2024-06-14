@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   Alert,
   Button,
@@ -11,6 +11,7 @@ import {
   AccordionContext,
   useAccordionButton,
 } from "react-bootstrap";
+import { CashuMint, CashuWallet, getEncodedToken } from "@cashu/cashu-ts";
 
 import IMPACT_BACKGROUND from "../../../common/media/images/IMPACT_BACKGROUND.jpg";
 import {
@@ -26,7 +27,7 @@ import {
 } from "../../../styles/lazyStyles";
 import { getDoc, updateDoc } from "firebase/firestore";
 import { Title } from "../../../common/svgs/Title";
-import { useSharedNostr } from "../../../App.web5";
+import { useProofStorage, useSharedNostr } from "../../../App.web5";
 import { IdentityCard } from "../../../common/ui/Elements/IdentityCard/IdentityCard";
 import { WalletAuth } from "../../../Header/WalletAuth/WalletAuth";
 
@@ -34,7 +35,7 @@ const PINK = "#4003ba";
 const BLUE = "black";
 
 function ContextAwareToggle({ children, eventKey, callback }) {
-  const { activeEventKey } = useContext(AccordionContext);
+  const { activeEventKey, alwaysOpen } = useContext(AccordionContext);
 
   const decoratedOnClick = useAccordionButton(
     eventKey,
@@ -97,6 +98,22 @@ export const IdentityWallet = ({
     postNostrContent,
   } = useSharedNostr(localStorage.getItem("npub"), secretKeyState);
 
+  const [formData, setFormData] = useState({
+    mintUrl: "https://stablenut.umint.cash",
+    mintAmount: "25",
+    meltInvoice: "",
+    swapAmount: "1",
+    swapToken: "",
+  });
+  const [dataOutput, setDataOutput] = useState(null);
+  /**
+   * @type {[CashuWallet|null, React.Dispatch<React.SetStateAction<CashuWallet|null>>]}
+   */
+  const [wallet, setWallet] = useState(null);
+
+  const { addProofs, balance, removeProofs, getProofsByAmount } =
+    useProofStorage();
+
   let impactResult = databaseUserDocument?.impact;
 
   const handleChangeDidKey = (event) => {
@@ -154,10 +171,119 @@ export const IdentityWallet = ({
     setIsDisplayNameUpdating(false);
   };
 
-  console.log(
-    "npub document check",
-    userStateReference.databaseUserDocument.nostrPubKey
-  );
+  useEffect(() => {
+    const storedMintData = JSON.parse(localStorage.getItem("mint"));
+
+    if (storedMintData) {
+      const { url, keyset } = storedMintData;
+
+      const mint = new CashuMint(url);
+
+      // Initialize wallet with stored keyset to avoid fetching again
+      const walletRef = new CashuWallet(mint, { keys: keyset, unit: "sat" });
+      setWallet(walletRef);
+
+      setFormData((prevData) => ({ ...prevData, mintUrl: url }));
+      if (!localStorage.getItem("address")) {
+        handleMint(walletRef);
+      }
+    } else {
+      handleSetMint(); // -> add default values
+    }
+  }, []);
+
+  /**
+   * Sets the mint URL and initializes the wallet.
+   */
+  const handleSetMint = async () => {
+    const mint = new CashuMint(formData.mintUrl);
+
+    try {
+      const info = await mint.getInfo();
+      setDataOutput(info);
+
+      const { keysets } = await mint.getKeys();
+
+      const satKeyset = keysets.find((k) => k.unit === "sat");
+
+      let walletRef = new CashuWallet(mint);
+      setWallet(walletRef);
+
+      localStorage.setItem(
+        "mint",
+        JSON.stringify({ url: formData.mintUrl, keyset: satKeyset })
+      );
+
+      handleMint(walletRef);
+    } catch (error) {
+      console.error(error);
+      setDataOutput({ error: "Failed to connect to mint", details: error });
+    }
+  };
+
+  /**
+   * Mints new tokens.
+   */
+  const handleMint = async (walletRef) => {
+    console.log("FORM DATA...", formData);
+    const amount = parseInt(formData.mintAmount);
+    let w = wallet || walletRef;
+    console.log("W...", w);
+    console.log("w mint", w.mint.mintUrl);
+    // console.log("mint func", w.mint.getMintQuote("25"));
+    const quote = await w.getMintQuote(amount);
+
+    localStorage.setItem("address", quote.request);
+    console.log("QUOTE", quote);
+    setDataOutput(quote);
+
+    const intervalId = setInterval(async () => {
+      console.log("running?");
+      try {
+        const { proofs } = await w.mintTokens(amount, quote.quote, {
+          keysetId: w.keys.id,
+        });
+        console.log("failed");
+        setDataOutput({ "minted proofs": proofs });
+        setFormData((prevData) => ({ ...prevData, mintAmount: "" }));
+        addProofs(proofs);
+        clearInterval(intervalId);
+      } catch (error) {
+        console.error("Quote probably not paid: ", quote.request, error);
+        setDataOutput({ error: "Failed to mint", details: error });
+      }
+    }, 5000);
+  };
+
+  /**
+   * Sends tokens in a swap operation.
+   */
+  const handleSwapSend = async () => {
+    const swapAmount = parseInt(formData.swapAmount);
+    const proofs = getProofsByAmount(swapAmount);
+
+    if (proofs.length === 0) {
+      alert("Insufficient balance");
+      return;
+    }
+
+    try {
+      const { send, returnChange } = await wallet.send(swapAmount, proofs);
+      const encodedToken = getEncodedToken({
+        token: [{ proofs: send, mint: wallet.mint.mintUrl }],
+      });
+
+      removeProofs(proofs);
+      addProofs(returnChange);
+      setDataOutput(encodedToken);
+    } catch (error) {
+      console.error(error);
+      setDataOutput({ error: "Failed to swap tokens", details: error });
+    }
+  };
+  const recharge = async () => {
+    handleSetMint();
+  };
 
   return (
     <>
@@ -215,7 +341,7 @@ export const IdentityWallet = ({
             }}
           >
             <h4>
-              Decentralized Identity <br />
+              <div style={{ marginBottom: 12 }}>Decentralized Identity</div>
               {localStorage.getItem("uniqueId") ? (
                 <IdentityCard
                   theme="web5"
@@ -226,13 +352,15 @@ export const IdentityWallet = ({
                 />
               ) : null}{" "}
             </h4>
-            <Accordion defaultActiveKey="0">
+
+            <Accordion>
               <Card
                 style={{
                   backgroundColor: "transparent",
                   border: "0px solid transparent",
                   textAlign: "left",
                   paddingLeft: 0,
+                  paddingTop: 0,
                 }}
               >
                 <Card.Header>
@@ -242,7 +370,7 @@ export const IdentityWallet = ({
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
                   <Card.Body>
-                    <label> Enter your ID to switch accounts</label>
+                    <label> Enter your DID to switch accounts</label>
                     <InputGroup className="mb-3">
                       <Form.Control
                         type="text"
@@ -296,21 +424,69 @@ export const IdentityWallet = ({
                   : "Invalid DID entered"}
               </Alert>
             )}
+
+            <main>
+              <div className="cashu-operations-container">
+                <div className="section">
+                  <h4>Bitcoin Deposits</h4>
+                  {/* <button className="mint-button" onClick={handleMint}>
+                  Deposit
+                </button> */}
+
+                  <IdentityCard
+                    number={
+                      localStorage.getItem("address")
+                        ? localStorage.getItem("address")?.substr(0, 16) + "..."
+                        : "Generating..."
+                    }
+                    name={"balance: " + balance}
+                    theme={"BTC"}
+                    animateOnChange={true}
+                  />
+                </div>
+                <br />
+                <div className="section">
+                  <button
+                    style={{ marginBottom: 8 }}
+                    className="swap-send-button"
+                    onClick={handleSwapSend}
+                  >
+                    Test cash tap
+                  </button>
+                  <br />
+                  <button className="swap-send-button" onClick={recharge}>
+                    Recharge
+                  </button>
+                </div>
+              </div>
+
+              {/* <div className="data-display-container">
+                <h2>Balance: {balance}</h2>
+                <pre id="data-output" className="data-output">
+                  {JSON.stringify(dataOutput, null, 2)}
+                </pre>
+              </div> */}
+            </main>
             <br />
             <br />
             <h4 style={{ marginBottom: 12 }}>
               NOSTR Identity <br />
             </h4>
-            {localStorage.getItem("npub") ? (
-              <>
-                <IdentityCard
-                  theme="nostr"
-                  number={localStorage.getItem("npub")?.substr(0, 16) + "..."}
-                  name={userStateReference.databaseUserDocument.displayName}
-                />
-                <br />
-              </>
-            ) : null}
+            <IdentityCard
+              theme="nostr"
+              number={
+                (localStorage.getItem("npub")?.substr(0, 16) ||
+                  "npub1mgt5c7qh6dm9rg57mrp89rqtzn64958nj5w9g2d2h9dng27hmp0sww7u2v".substr(
+                    0,
+                    16
+                  )) + "..."
+              }
+              name={
+                userStateReference.databaseUserDocument.displayName || (
+                  <b>rox</b>
+                )
+              }
+            />
             {nostrPubKey && !localStorage.getItem("nsec") ? (
               <>
                 {" "}
@@ -342,6 +518,7 @@ export const IdentityWallet = ({
               </>
             ) : nostrPubKey ? (
               <>
+                <br />
                 <p>
                   Visit your profile with official clients{" "}
                   <a
@@ -433,11 +610,12 @@ export const IdentityWallet = ({
               </>
             ) : (
               <>
+                <br />
                 <label>Create an account name</label>
                 <InputGroup className="mb-3">
                   <Form.Control
                     type="text"
-                    placeholder="queen rox"
+                    placeholder="rox"
                     value={userDisplayName}
                     onChange={handleChangeDisplayName}
                     style={{ maxWidth: 400 }}

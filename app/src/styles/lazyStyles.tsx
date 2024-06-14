@@ -402,6 +402,7 @@ export const StyledLink = styled(Button)`
   border-top: 0px solid black;
   border-top-hleft-radius: 0px;
   border-top-right-radius: 0px;
+  border-radius: 6px;
 `;
 //
 

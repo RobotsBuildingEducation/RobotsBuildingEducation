@@ -20,13 +20,15 @@ const CodeExplanationUI = ({ patreonObject }) => {
         alignItems: "center",
       }}
     >
-      {/* <Button
+      <Button
         onMouseDown={() => setOpen(!open)}
         aria-controls="code-explanation-collapse-text"
         aria-expanded={open}
+        variant="light"
+        style={{ border: "1px solid black" }}
       >
         Explain this code
-      </Button> */}
+      </Button>
       {open &&
         codeExplanations &&
         codeExplanations.map((item, index) => (
@@ -47,7 +49,7 @@ const CodeExplanationUI = ({ patreonObject }) => {
               <div id="code-explanation-collapse-text">
                 <Card
                   style={{
-                    boxShadow: "0px 0px 10px -6px rgba(0,0,0,1)",
+                    boxShadow: "0px 1px 1px -0.5px rgba(0,0,0,1)",
                     width: "95%",
                   }}
                 >
@@ -90,6 +92,7 @@ export const CodeDemo = ({ patreonObject = {}, response }) => {
         boxShadow: "4px 4px 5px 0px rgba(0,0,0,0.75)",
       }}
     >
+      <CodeExplanationUI patreonObject={patreonObject} />
       <pre style={{ whiteSpace: "pre-wrap" }}>
         {/* <CodeExplanationUI patreonObject={patreonObject} /> */}
         <Editor

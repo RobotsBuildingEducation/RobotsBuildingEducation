@@ -103,7 +103,7 @@ export const ActionBar = ({
     <>
       <div style={{ padding: 12 }}>
         {showZap || showStars || showBitcoin ? (
-          <div style={{ height: 55 }}>
+          <div style={{ height: 55, display: "flex", alignItems: "center" }}>
             <FadeInComponent speed={1.5}>
               <Lottie
                 options={{

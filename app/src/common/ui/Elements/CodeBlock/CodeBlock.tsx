@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Form, Offcanvas } from "react-bootstrap";
 import Lottie from "react-lottie";
 import arrow_animation from "../../../anims/arrow_animation.json";
 import { japaneseThemePalette, textBlock } from "../../../../styles/lazyStyles";
@@ -24,33 +24,32 @@ const styling = {
   Header: {
     backgroundColor: "black",
     color: "white",
-    borderBottom: "0px solid transparent",
-    borderRight: "5px solid lavender",
-    borderLeft: "5px solid lavender",
-    borderTop: "5px solid lavender",
+    borderBottom: "0px solid #403aab",
+    borderRight: "0px solid #403aab",
+    borderLeft: "1px solid #403aab",
+    borderTop: "0px solid #403aab",
   },
   Body: {
     backgroundColor: "black",
     color: "white",
-    borderRight: "5px solid lavender",
-    borderLeft: "5px solid lavender",
-    borderBottom: "5px solid lavender",
+    borderRight: "0px solid #403aab",
+    borderLeft: "1px solid #403aab",
+    borderBottom: "0px solid #403aab",
     height: 500,
-    overflowY: "auto", // Ensure overflow is scrollable
   },
   Footer: {
     backgroundColor: "black",
     color: "white",
-    borderTop: "1px solid transparent",
-    borderRight: "5px solid lavender",
-    borderLeft: "5px solid lavender",
-    borderBottom: "5px solid lavender",
+    borderTop: "0px solid #403aab",
+    borderRight: "0px solid #403aab",
+    borderLeft: "1px solid #403aab",
+    borderBottom: "0px solid #403aab",
   },
 };
 
 const SoftwareEngineer = ({
-  isModalOpen,
-  setIsModalOpen,
+  isOffcanvasOpen,
+  setIsOffcanvasOpen,
   isLoading,
   formState,
   apiResponse,
@@ -79,18 +78,20 @@ const SoftwareEngineer = ({
   }, [isLoading, messages]);
 
   return (
-    <Modal
-      show={isModalOpen}
-      centered
-      keyboard
-      onHide={() => setIsModalOpen(false)}
-      style={{ zIndex: 10000 }}
-      size="lg"
+    <Offcanvas
+      show={isOffcanvasOpen}
+      onHide={() => setIsOffcanvasOpen(false)}
+      placement="end"
+      style={{ zIndex: 10000, width: "30%", minWidth: "350px" }}
+      scroll={true}
+      backdrop={false}
     >
-      <Modal.Header closeButton closeVariant="white" style={styling.Header}>
-        <Modal.Title style={{ fontFamily: "Bungee" }}>Assistant</Modal.Title>
-      </Modal.Header>
-      <Modal.Body style={styling.Body}>
+      <Offcanvas.Header closeButton closeVariant="white" style={styling.Header}>
+        <Offcanvas.Title style={{ fontFamily: "Bungee" }}>
+          Assistant
+        </Offcanvas.Title>
+      </Offcanvas.Header>
+      <Offcanvas.Body style={styling.Body}>
         <div ref={messagesTopRef} /> {/* Reference to the top of messages */}
         <div>
           <Form>
@@ -163,8 +164,8 @@ const SoftwareEngineer = ({
             <CodeDisplay code={apiResponse.backend_code.code} />
           </div>
         )}
-      </Modal.Body>
-    </Modal>
+      </Offcanvas.Body>
+    </Offcanvas>
   );
 };
 
@@ -193,7 +194,7 @@ export const CodeBlock = ({
   let zap = useZap();
   const zapAnimation = useZapAnimation();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isOffcanvasOpen, setIsOffcanvasOpen] = useState(false);
   const [formState, setFormState] = useState({ description: "" });
   const [apiResponse, setApiResponse] = useState({});
 
@@ -249,7 +250,7 @@ export const CodeBlock = ({
         boxShadow: "4px 4px 5px 0px rgba(0,0,0,0.75)",
       }}
     >
-      <ActivateCofounder setIsModalOpen={setIsModalOpen} />
+      <ActivateCofounder setIsOffcanvasOpen={setIsOffcanvasOpen} />
       {patreonObject.header === "Learning Mindset & Perspective" && (
         <HintUI
           message={
@@ -261,8 +262,8 @@ export const CodeBlock = ({
       <br />
       {children}
       <SoftwareEngineer
-        isModalOpen={isModalOpen}
-        setIsModalOpen={setIsModalOpen}
+        isOffcanvasOpen={isOffcanvasOpen}
+        setIsOffcanvasOpen={setIsOffcanvasOpen}
         isLoading={loading}
         formState={formState}
         apiResponse={apiResponse}

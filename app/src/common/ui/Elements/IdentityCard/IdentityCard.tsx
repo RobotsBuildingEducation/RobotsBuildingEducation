@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { keyframes, css } from "styled-components";
+import { CopyButtonIcon } from "../../../svgs/CopyButtonIcon";
+import { Button } from "react-bootstrap";
 
-// Define the animation for the web5 theme
+// Define the animation for the subtle swirl
 const subtleSwirl = keyframes`
   0% {
     background-position: 0% 50%;
@@ -14,14 +16,11 @@ const subtleSwirl = keyframes`
   }
 `;
 
-// Define the flip animation
-const flip = keyframes`
-  0% {
-    transform: rotateY(0);
-  }
-  100% {
-    transform: rotateY(180deg);
-  }
+// Define the animation for number change
+const numberChange = keyframes`
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 `;
 
 // Create a CardContainer styled component with conditional styles based on theme
@@ -64,8 +63,17 @@ const CardFace = styled.div`
           font-family: "IBM Plex Mono";
           font-size: 0.8em;
         `
-      : css`
+      : theme === "nostr"
+      ? css`
           background: linear-gradient(135deg, #ff6f91, #d783ff, #c471ed);
+          background-size: 200% 200%;
+          animation: ${subtleSwirl} 6s ease infinite;
+          color: #fff;
+          font-family: "IBM Plex Mono";
+          font-size: 1.2em;
+        `
+      : css`
+          background: linear-gradient(135deg, #f9a825, #ff7043, #ffb300);
           background-size: 200% 200%;
           animation: ${subtleSwirl} 6s ease infinite;
           color: #fff;
@@ -80,6 +88,7 @@ const CardFace = styled.div`
 `;
 
 const CardBack = styled(CardFace)`
+  scrollbar-width: none;
   transform: rotateY(180deg);
   display: flex;
   justify-content: center;
@@ -89,27 +98,98 @@ const CardBack = styled(CardFace)`
 `;
 
 const CardNumber = styled.div`
+  font-size: 
   font-size: 1.2em;
   letter-spacing: 2px;
+  animation: ${({ animate }) =>
+    animate
+      ? css`
+          ${numberChange} 0.5s ease
+        `
+      : "none"};
 `;
 
 const CardHolder = styled.div`
   font-size: 0.8em;
 `;
 
-const Button = styled.button`
+const CopyButton = styled.button`
+  transition: 0.23s all ease-in-out;
   margin-top: 10px;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: ${({ theme }) => (theme === "web5" ? "black" : "#ff42b7")};
-  color: ${({ theme }) => (theme === "web5" ? "cyan" : "white")};
+  background-color: transparent;
+  color: ${({ theme, copied }) =>
+    copied
+      ? "gold"
+      : theme === "web5"
+      ? "cyan"
+      : theme === "nostr"
+      ? "#ff42b7"
+      : "#ffb300"};
   cursor: pointer;
   font-family: "Bungee";
+  animation: ${subtleSwirl} 6s ease infinite;
 `;
 
-export const IdentityCard = ({ number, name, theme = "nostr" }) => {
+export const IdentityCard = ({
+  number,
+  name,
+  theme = "default",
+  animateOnChange = false,
+}) => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [prevNumber, setPrevNumber] = useState(number);
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    if (animateOnChange && number !== prevNumber) {
+      setAnimate(true);
+      setTimeout(() => setAnimate(false), 250); // Duration of the animation
+      setPrevNumber(number);
+    }
+  }, [number, animateOnChange, prevNumber]);
+
+  const handleCopy = (theme) => {
+    let num = number;
+    if (theme === "web5") num = localStorage.getItem("uniqueId");
+    if (theme === "nostr") num = localStorage.getItem("npub");
+    if (theme === "BTC") num = localStorage.getItem("address");
+
+    navigator.clipboard.writeText(num).then(
+      () => {
+        console.log("Copied to clipboard!");
+        setCopied(true); // Change button color to gold
+        setTimeout(() => setCopied(false), 2000); // Revert color after 2 seconds
+      },
+      (err) => {
+        console.error("Could not copy text: ", err);
+      }
+    );
+  };
+
+  const bitcoinContent = (
+    <div
+      className="info_box"
+      style={{
+        textAlign: "left",
+      }}
+    >
+      This code is an address that you can use to send Bitcoin from your Cash
+      App. This is an experimental feature that will have you deposit $0.02
+      worth of Bitcoin. The app is designed to charge you 1 Bitcoin cent called
+      sats. Depositing 2 cents USD of sats grants you about 30 charges of the
+      app. QR codes soon!
+      <a
+        target="_blank"
+        href="https://primal.net/p/npub1mgt5c7qh6dm9rg57mrp89rqtzn64958nj5w9g2d2h9dng27hmp0sww7u2v"
+      >
+        you'll be connected to a shared account with rox.
+      </a>
+    </div>
+  );
 
   const nostrContent = (
     <div
@@ -125,7 +205,7 @@ export const IdentityCard = ({ number, name, theme = "nostr" }) => {
       name,{" "}
       <a
         target="_blank"
-        href="primal.net/p/npub1mgt5c7qh6dm9rg57mrp89rqtzn64958nj5w9g2d2h9dng27hmp0sww7u2v"
+        href="https://primal.net/p/npub1mgt5c7qh6dm9rg57mrp89rqtzn64958nj5w9g2d2h9dng27hmp0sww7u2v"
       >
         you'll be connected to a shared account with rox.
       </a>
@@ -161,7 +241,33 @@ export const IdentityCard = ({ number, name, theme = "nostr" }) => {
     <CardContainer flip={isFlipped}>
       <CardInner flip={isFlipped}>
         <CardFace theme={theme}>
-          <CardNumber>{number}</CardNumber>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <CardNumber animate={animate}>{number}</CardNumber>
+            <CopyButton
+              onClick={() => handleCopy(theme)}
+              theme={theme}
+              copied={copied}
+            >
+              <CopyButtonIcon
+                style={{ transition: "0.23s all ease-in-out" }}
+                color={
+                  copied
+                    ? "gold"
+                    : theme === "web5"
+                    ? "cyan"
+                    : theme === "nostr"
+                    ? "#ffdef3"
+                    : "#ffb300"
+                }
+              />
+            </CopyButton>
+          </div>
           <div
             style={{
               display: "flex",
@@ -170,14 +276,20 @@ export const IdentityCard = ({ number, name, theme = "nostr" }) => {
             }}
           >
             <div>
-              <CardHolder>{name}</CardHolder>
+              <CardHolder>
+                <b>{name}</b>
+              </CardHolder>
             </div>
             <div>
-              <div
+              <button
                 style={{
-                  width: "fit-content",
-                  height: "30px",
-                  backgroundColor: theme === "web5" ? "black" : "#ff42b7",
+                  height: "20px",
+                  backgroundColor:
+                    theme === "web5"
+                      ? "black"
+                      : theme === "nostr"
+                      ? "#ff42b7"
+                      : "#ffb300",
                   borderRadius: "5px",
                   display: "flex",
                   alignItems: "center",
@@ -185,21 +297,25 @@ export const IdentityCard = ({ number, name, theme = "nostr" }) => {
                   textDecoration: "underline",
                   fontFamily: "Bungee",
                   color: theme === "web5" ? "cyan" : "white",
+
+                  padding: 24,
                 }}
+                onClick={() => setIsFlipped(true)}
               >
-                <Button theme={theme} onClick={() => setIsFlipped(true)}>
-                  {theme}
-                </Button>
-              </div>
+                {theme}
+              </button>
             </div>
           </div>
         </CardFace>
         <CardBack theme={theme}>
           <div style={{ height: "100%", padding: 12 }}>
-            {theme === "web5" ? web5Content : nostrContent}
-            <Button theme={theme} onClick={() => setIsFlipped(false)}>
-              Back
-            </Button>
+            {theme === "web5"
+              ? web5Content
+              : theme === "BTC"
+              ? bitcoinContent
+              : nostrContent}
+            <br />
+            <button onClick={() => setIsFlipped(false)}>Back</button>
             <br />
             <br />
           </div>

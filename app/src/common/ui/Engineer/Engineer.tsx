@@ -557,42 +557,58 @@ exports.app = functions.https.onRequest(app);
             {
               code: "const functions = require('firebase-functions');",
               explanation:
-                "Imagine we're summoning our minions 🧙‍♂️. 'firebase-functions' are our loyal followers, ready to carry out our bidding in the cloud. 🌩",
+                "Imports the Firebase Functions module, enabling the creation of serverless functions that can be deployed on Firebase. These functions can be triggered by events such as HTTP requests.",
             },
             {
               code: "const express = require('express');",
               explanation:
-                "This line is like opening portals 🌀 between worlds. 'Express' helps us create pathways for our data to travel across the internet. 🌐",
+                "Imports the Express.js framework, a robust library for building web applications and APIs in Node.js. It offers tools for handling HTTP requests, routing, and middleware management.",
             },
             {
               code: "const { Configuration, OpenAIApi } = require('openai');",
               explanation:
-                "Here, we're crafting a powerful artifact 🔮. By importing 'Configuration' and 'OpenAIApi', we're preparing to harness the almighty power of OpenAI. ⚡",
+                "Brings in the Configuration and OpenAIApi classes from the OpenAI module. These are crucial for setting up and interacting with the OpenAI API, allowing communication with OpenAI's models.",
             },
             {
               code: "const configuration = new Configuration({ apiKey: OPENAI_API_KEY });",
               explanation:
-                "With this spell, we conjure a connection to OpenAI, using a secret key as our incantation. 🗝✨",
+                "Creates a configuration object for the OpenAIApi client using an API key stored in the OPENAI_API_KEY variable. This key is essential for authenticating requests to the OpenAI API.",
             },
             {
               code: "const openai = new OpenAIApi(configuration);",
               explanation:
-                "And now, we awaken our crystal ball—the OpenAIApi—ready to reveal the secrets of the universe (or at least, the answers to our users' queries). 🌌🔮",
+                "Initializes the OpenAIApi client with the specified configuration. This client facilitates interaction with the OpenAI API, enabling us to send requests and handle responses.",
             },
             {
               code: "const app = express();",
               explanation:
-                "Here, we're building our fortress, a stronghold where our app will live and defend against the chaos of the internet. 🏰💻",
+                "Sets up an Express application instance, which will handle incoming HTTP requests and define API routes.",
             },
             {
-              code: `app.post("/task", async (request, response) => { ... });`,
+              code: `app.post("/task", async (request, response) => {
+                try {
+                  const task = request.body.task;
+                  const answer = await openai.createChatCompletion({
+                    model: "gpt-4",
+                    messages: [
+                      { role: "system", content: "You are a helpful assistant teaching beginners as Steve Jobs." },
+                      { role: "user", content: task }
+                    ],
+                  });
+                  response.status(200).send({
+                    bot: answer.data.choices[0].message,
+                  });
+                } catch (error) {
+                  // Handle errors
+                }
+              });`,
               explanation:
-                "This is where the magic happens. We're setting up a ritual to communicate with the digital spirits, asking them to carry messages to and from OpenAI. 📜🔥",
+                "Defines a POST route at '/task' for the Express application. It handles incoming POST requests asynchronously. When a request is received, the 'task' from the request body is extracted and sent to the OpenAI API to generate a chat completion. The response from OpenAI is then sent back to the client. If an error occurs, it is caught and handled appropriately.",
             },
             {
               code: "exports.app = functions.https.onRequest(app);",
               explanation:
-                "Finally, we're opening the gates of our fortress to the world, allowing anyone to summon our powers through the web. 🌍🚪",
+                "Exports the Express application as an HTTP-triggered Firebase Function. This allows the Express app to handle HTTP requests within Firebase's serverless infrastructure.",
             },
           ],
         },
@@ -833,7 +849,7 @@ exports.app = functions.https.onRequest(app);
       prompts: {
         welcome: {
           response: (
-            <Typewriter speed={5}>
+            <Typewriter speed={0}>
               ¡Hola, estudiantes! 🌸
               <br />
               <br />
@@ -1489,42 +1505,62 @@ print(rihanna.perform("at the Grammy Awards"))
             {
               code: "class Rihanna:",
               explanation:
-                "We're crafting a blueprint for a superstar. This class is like the DNA of Rihanna, defining her essence. 🧬✨",
+                "Defines a new class named 'Rihanna'. In Python, classes are used to create user-defined data structures that encapsulate data and behaviors associated with that data.",
             },
             {
-              code: "__init__(self, name, profession, nationality):",
+              code: "def __init__(self, name, profession, nationality):",
               explanation:
-                "Our constructor is the magical spell that brings Rihanna to life, setting her name, profession, and nationality. 🎤🌍",
+                "The __init__ method is a special method in Python, known as a constructor. It is automatically called when an instance of the class is created. The parameters 'name', 'profession', and 'nationality' are attributes of the class.",
             },
             {
               code: "self.name = name",
               explanation:
-                "Here, we're giving Rihanna her identity, a name that echoes across stages worldwide. 📛",
+                "The self.name attribute is being assigned the value of the name parameter. 'self' represents the instance of the class, allowing us to access the class attributes.",
+            },
+            {
+              code: "self.profession = profession",
+              explanation:
+                "Assigns the value of the 'profession' parameter to the self.profession attribute, storing the profession of the Rihanna instance.",
+            },
+            {
+              code: "self.nationality = nationality",
+              explanation:
+                "Assigns the value of the 'nationality' parameter to the self.nationality attribute, storing the nationality of the Rihanna instance.",
             },
             {
               code: "def sing(self, song):",
               explanation:
-                "A method allowing Rihanna to enchant the world with her voice. When she sings, the universe listens. 🎶",
+                "Defines a method named 'sing' within the Rihanna class. This method takes an additional parameter 'song' and will use the self parameter to access class attributes.",
+            },
+            {
+              code: 'return f"{self.name} is singing {song}."',
+              explanation:
+                "Returns a formatted string indicating that the Rihanna instance (self.name) is singing the specified song.",
             },
             {
               code: "def perform(self, performance):",
               explanation:
-                "This is where Rihanna shines, captivating hearts with her performances, from stages to the stars. 🌟",
+                "Defines another method named 'perform' within the Rihanna class. This method takes an additional parameter 'performance' and will use the self parameter to access class attributes.",
+            },
+            {
+              code: 'return f"{self.name} is performing {performance}."',
+              explanation:
+                "Returns a formatted string indicating that the Rihanna instance (self.name) is performing at the specified event or venue.",
             },
             {
               code: 'rihanna = Rihanna("Rihanna", "Singer", "Barbadian")',
               explanation:
-                "Summoning Rihanna into existence, with her name, profession, and nationality. Here, the legend is born. 🔮",
+                "Creates an instance of the Rihanna class with the name 'Rihanna', profession 'Singer', and nationality 'Barbadian'. This instance is stored in the variable 'rihanna'.",
             },
             {
               code: 'print(rihanna.sing("Love On The Brain"))',
               explanation:
-                "Rihanna performs her hit, sharing her art with the world. It's a spellbinding moment. 🎵",
+                "Calls the 'sing' method on the 'rihanna' instance with the argument 'Love On The Brain'. The result, a string indicating that Rihanna is singing 'Love On The Brain', is printed to the console.",
             },
             {
               code: 'print(rihanna.perform("at the Grammy Awards"))',
               explanation:
-                "Showcasing Rihanna's stellar performance, a testament to her talent and charisma on the grand stage. 🏆",
+                "Calls the 'perform' method on the 'rihanna' instance with the argument 'at the Grammy Awards'. The result, a string indicating that Rihanna is performing at the Grammy Awards, is printed to the console.",
             },
           ],
         },
@@ -2036,7 +2072,7 @@ throw new Error(
       prompts: {
         welcome: {
           response: (
-            <Typewriter speed={5}>
+            <Typewriter speed={0}>
               Exceptional students! 🌟
               <br />
               <br />
@@ -2542,44 +2578,84 @@ export default LoginForm;
 
           codeBreakdown: [
             {
-              code: "import firebase from 'firebase/app'; import 'firebase/auth';",
+              code: "import React, { useState } from 'react';",
               explanation:
-                "First, we summon the Firebase spirits into our realm, ensuring we have the power to authenticate users. 🔥🔒",
+                "Imports the React library and the useState hook. React is a JavaScript library for building user interfaces, and useState is a hook that lets you add state to functional components.",
+            },
+            {
+              code: "import firebase from 'firebase/app';",
+              explanation:
+                "Imports the core Firebase module. Firebase is a platform developed by Google for creating mobile and web applications. This import brings in the core functionalities required to use Firebase services.",
+            },
+            {
+              code: "import 'firebase/auth';",
+              explanation:
+                "Imports the Firebase authentication module. This module provides methods for authenticating users, such as logging in with email and password, Google, Facebook, and other providers.",
+            },
+            {
+              code: "const LoginForm = () => {",
+              explanation:
+                "Defines a functional component named LoginForm. In React, functional components are used to create components that render UI and manage state or side effects.",
             },
             {
               code: "const [email, setEmail] = useState('');",
               explanation:
-                "Here, we prepare a mystical container to hold the user's email, ready to morph with every keystroke. 📧✨",
+                "Initializes a state variable named email with an empty string as its initial value. The setEmail function is used to update the email state.",
             },
             {
               code: "const [password, setPassword] = useState('');",
               explanation:
-                "A similar charm is cast for the password, safeguarding the secret keys to our digital kingdom. 🔑💫",
+                "Initializes a state variable named password with an empty string as its initial value. The setPassword function is used to update the password state.",
             },
             {
-              code: "const handleChange = (event) => { ... };",
+              code: "const [error, setError] = useState(null);",
               explanation:
-                "This incantation captures every change, weaving the user's input into our spell with precision. ✍️🌬",
+                "Initializes a state variable named error with null as its initial value. The setError function is used to update the error state.",
             },
             {
-              code: "const handleSubmit = async (event) => { ... };",
+              code: "const handleChange = (event) => {",
               explanation:
-                "With this powerful ritual, we attempt to open the gates of access, calling upon Firebase to authenticate the user. 🚪🌟",
+                "Defines a function named handleChange that handles changes to the input fields. This function updates the state of the email or password based on the input field being changed.",
+            },
+            {
+              code: "const { name, value } = event.target;",
+              explanation:
+                "Extracts the name and value properties from the event.target object. This is part of the handleChange function, which will use these values to determine which state to update.",
+            },
+            {
+              code: "if (name === 'email') { setEmail(value); } else if (name === 'password') { setPassword(value); }",
+              explanation:
+                "Checks if the name of the input field is 'email' or 'password' and updates the corresponding state with the input value.",
+            },
+            {
+              code: "const handleSubmit = async (event) => {",
+              explanation:
+                "Defines an asynchronous function named handleSubmit that handles the form submission. This function prevents the default form submission behavior and attempts to sign in the user using Firebase authentication.",
+            },
+            {
+              code: "event.preventDefault();",
+              explanation:
+                "Prevents the default form submission behavior, which would reload the page. This is necessary to handle the form submission with JavaScript instead.",
             },
             {
               code: "await firebase.auth().signInWithEmailAndPassword(email, password);",
               explanation:
-                "Here, we directly commune with Firebase, using the sacred email and password as our offering. 📬🔥",
+                "Uses Firebase's signInWithEmailAndPassword method to authenticate the user with the provided email and password. If the authentication is successful, the user is logged in.",
             },
             {
-              code: "{error && <p>{error}</p>}",
+              code: "catch (error) { setError(error.message); }",
               explanation:
-                "Should our spell encounter turbulence, this charm reveals the nature of our misstep to the user. 🚫💬",
+                "If an error occurs during the sign-in process, the error message is captured and set in the error state, which can then be displayed to the user.",
             },
             {
-              code: "<button type='submit'>Log in</button>",
+              code: "return ( <form onSubmit={handleSubmit}> <input type='email' name='email' placeholder='Email' value={email} onChange={handleChange} required /> <input type='password' name='password' placeholder='Password' value={password} onChange={handleChange} required /> {error && <p>{error}</p>} <button type='submit'>Log in</button> </form> );",
               explanation:
-                "Finally, we present the user with a portal, inviting them to step through once the incantations are complete. 🚪➡️🌈",
+                "Renders a form with email and password input fields, an error message (if any), and a submit button. The form uses the handleSubmit function to manage form submission, and the handleChange function to manage input changes.",
+            },
+            {
+              code: "export default LoginForm;",
+              explanation:
+                "Exports the LoginForm component as the default export of the module, making it available for import in other parts of the application.",
             },
           ],
         },
@@ -3021,7 +3097,7 @@ return <div style={gradientStyle}>
       prompts: {
         welcome: {
           response: (
-            <Typewriter speed={5}>
+            <Typewriter speed={0}>
               Hello!!!! 😊
               <br />
               <br />
@@ -3556,52 +3632,77 @@ if __name__ == '__main__':
             {
               code: "from flask import Flask, jsonify, request",
               explanation:
-                "Here we gather our mystical Flask ingredients, preparing to brew a spellbinding API potion. 🍵✨",
+                "Imports the Flask class along with jsonify and request functions from the Flask library. Flask is a lightweight web application framework in Python. 'jsonify' is used to convert Python dictionaries to JSON responses, and 'request' is used to handle incoming request data.",
             },
             {
               code: "app = Flask(__name__)",
               explanation:
-                "With this incantation, we summon our Flask application into being, a vessel for our RESTful spells. 📜🔮",
+                "Creates an instance of the Flask class. The '__name__' argument is used to determine the root path for the application.",
             },
             {
-              code: "tasks = [...] # In-memory list of tasks",
+              code: "tasks = [ { 'id': 1, 'title': 'Learn Python', 'done': False }, { 'id': 2, 'title': 'Learn Flask', 'done': False } ]",
               explanation:
-                "We conjure a magical list to hold our tasks, a temporary scroll where our quests are inscribed. 📜✏️",
+                "Defines an in-memory list of tasks. Each task is represented as a dictionary with 'id', 'title', and 'done' keys. This list is used to store and manage tasks for the API.",
+            },
+            {
+              code: "def get_next_task(task_id): return task for task in tasks if task['id'] == task_id",
+              explanation:
+                "Defines a generator function to retrieve a task by its 'id'. It iterates over the list of tasks and yields the task if its 'id' matches the given 'task_id'.",
             },
             {
               code: "@app.route('/tasks', methods=['GET'])",
               explanation:
-                "Creating a gateway to view all tasks, like opening a book to reveal its secrets. 🚪📖",
+                "Defines a route to handle GET requests at the '/tasks' endpoint. This route is used to retrieve all tasks.",
             },
             {
-              code: "def get_tasks():",
+              code: "def get_tasks(): return jsonify({'tasks': tasks})",
               explanation:
-                "This spell reveals the list of tasks, sharing their tales with any who ask. 🔍📚",
+                "Defines a function to handle the '/tasks' endpoint. It returns a JSON response containing the list of all tasks.",
             },
             {
               code: "@app.route('/tasks/<int:task_id>', methods=['GET'])",
               explanation:
-                "A narrower path, this enchantment finds the story of a single task by its unique sigil. 🔎🔖",
+                "Defines a route to handle GET requests at the '/tasks/<task_id>' endpoint. This route is used to retrieve a task by its 'id'. The '<int:task_id>' part indicates that the 'task_id' parameter should be an integer.",
             },
             {
-              code: "def create_task():",
+              code: "def get_task(task_id): task = next(get_next_task(task_id), None) if task is None: return jsonify({'error': 'Task not found'}), 404 return jsonify({'task': task})",
               explanation:
-                "Here, we weave a new task into existence, adding its story to our growing collection. 🌱➕",
+                "Defines a function to handle the '/tasks/<task_id>' endpoint. It retrieves the task by 'id' using the 'get_next_task' function. If the task is not found, it returns a 404 error response. Otherwise, it returns the task as a JSON response.",
+            },
+            {
+              code: "@app.route('/tasks', methods=['POST'])",
+              explanation:
+                "Defines a route to handle POST requests at the '/tasks' endpoint. This route is used to create a new task.",
+            },
+            {
+              code: "def create_task(): new_task = request.get_json() tasks.append(new_task) return jsonify(new_task)",
+              explanation:
+                "Defines a function to handle the '/tasks' POST endpoint. It retrieves the new task data from the request, appends it to the 'tasks' list, and returns the new task as a JSON response.",
             },
             {
               code: "@app.route('/tasks/<int:task_id>', methods=['PUT'])",
               explanation:
-                "An incantation to transform a task, changing its essence or completing its journey. 🔄✨",
+                "Defines a route to handle PUT requests at the '/tasks/<task_id>' endpoint. This route is used to update an existing task by its 'id'.",
+            },
+            {
+              code: "def update_task(task_id): task = next(get_next_task(task_id), None) if task is None: return jsonify({'error': 'Task not found'}) updated_task = request.get_json() task.update(updated_task) return jsonify(task)",
+              explanation:
+                "Defines a function to handle the '/tasks/<task_id>' PUT endpoint. It retrieves the task by 'id' and updates its attributes with the new data from the request. If the task is not found, it returns an error response. Otherwise, it returns the updated task as a JSON response.",
             },
             {
               code: "@app.route('/tasks/<int:task_id>', methods=['DELETE'])",
               explanation:
-                "With a whisper, we erase a task from our scroll, its mission fulfilled or forgotten. 🍃💨",
+                "Defines a route to handle DELETE requests at the '/tasks/<task_id>' endpoint. This route is used to delete a task by its 'id'.",
             },
             {
-              code: "if __name__ == '__main__':",
+              code: "def delete_task(task_id): global tasks tasks = [task for task in tasks if task['id'] != task_id] return jsonify({'result': True})",
               explanation:
-                "Finally, we anchor our spellbook to the mortal realm, ready to share its magic with the world. 🌍🔮",
+                "Defines a function to handle the '/tasks/<task_id>' DELETE endpoint. It removes the task with the specified 'id' from the 'tasks' list and returns a JSON response indicating success.",
+            },
+            {
+              code: "if __name__ == '__main__': app.run(debug=True)",
+              explanation:
+                "Checks if the script is run directly (not imported as a module) and starts the Flask development server in debug mode. Debug mode provides detailed error messages and automatic reloading of the server on code changes.",
             },
           ],
         },
@@ -4087,7 +4188,7 @@ exports.app = functions
         welcome: {
           response: (
             // <ChatBlock type={"quiz"}>
-            <Typewriter speed={5}>
+            <Typewriter speed={0}>
               Brave students! 🌟
               <br /> <br />
               Welcome to your incredible journey as future startup founders and
@@ -4705,39 +4806,84 @@ app.listen(
 
           codeBreakdown: [
             {
+              code: "import React from 'react';",
+              explanation:
+                "Imports the React library, which is used for building user interfaces in a declarative manner. React components are used to construct the UI.",
+            },
+            {
               code: "import { loadStripe } from '@stripe/stripe-js';",
               explanation:
-                "First, we're summoning the Stripe.js magic by loading it with our publishable key. This is like the first step in our digital spellbook. 📜✨",
+                "Imports the loadStripe function from the '@stripe/stripe-js' package. This function is used to initialize Stripe.js with your publishable key.",
+            },
+            {
+              code: "import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';",
+              explanation:
+                "Imports necessary components and hooks from '@stripe/react-stripe-js'. 'Elements' is a provider component for Stripe Elements, 'CardElement' is a pre-built input field for card details, 'useStripe' is a hook to access the Stripe object, and 'useElements' is a hook to access Stripe Elements.",
             },
             {
               code: "const stripePromise = loadStripe('your-publishable-key');",
               explanation:
-                "Here we're creating a promise that will awaken the Stripe powers once it's ready, ensuring our payment gateway is primed. 🔮",
+                "Initializes Stripe.js with your publishable key. This creates a promise that resolves to a Stripe instance.",
             },
             {
-              code: "function CheckoutForm() { ... }",
+              code: "function CheckoutForm() { const stripe = useStripe(); const elements = useElements();",
               explanation:
-                "In this mystical form, we gather the essential card details from our adventurers, preparing to embark on the subscription quest. 🗺️🔑",
+                "Defines a functional component named 'CheckoutForm'. It uses the 'useStripe' and 'useElements' hooks to access the Stripe instance and Elements context, respectively.",
             },
             {
-              code: "const { error, paymentMethod } = await stripe.createPaymentMethod({ type: 'card', card: cardElement });",
+              code: "const handleSubmit = async (event) => { event.preventDefault(); const cardElement = elements.getElement(CardElement); const { error, paymentMethod } = await stripe.createPaymentMethod({ type: 'card', card: cardElement, });",
               explanation:
-                "With a flick of our wand, we attempt to create a new payment method, channeling the card details through Stripe's arcane algorithms. 🪄💳",
+                "Defines an asynchronous function 'handleSubmit' that handles the form submission. It prevents the default form submission behavior, retrieves the 'CardElement' instance, and creates a new Payment Method using the Stripe.js library.",
             },
             {
-              code: "fetch('http://localhost:8000/create-subscription', { ... });",
+              code: "if (!error) { const { id } = paymentMethod; fetch('http://localhost:8000/create-subscription', { method: 'POST', headers: { 'Content-Type': 'application/json', }, body: JSON.stringify({ payment_method: id }), }); }",
               explanation:
-                "Should our spell succeed, we send the payment method's ID to our hidden lair (the backend), where the real magic happens. 🕸️🌐",
+                "If there is no error in creating the payment method, it extracts the payment method ID and sends it to the backend endpoint '/create-subscription' via a POST request. The request includes the payment method ID in the JSON body.",
             },
             {
-              code: "const customer = await stripe.customers.create({ ... });",
+              code: "return ( <form onSubmit={handleSubmit}> <CardElement /> <button type='submit'>Subscribe</button> </form> );",
               explanation:
-                "Deep in our backend cauldron, we either summon a new customer to our realm or reconnect with an old friend, binding the payment method to their soul. 👤💫",
+                "Renders a form that includes the 'CardElement' for card details input and a submit button. The form uses the 'handleSubmit' function to manage the form submission.",
             },
             {
-              code: "const subscription = await stripe.subscriptions.create({ ... });",
+              code: "function App() { return ( <Elements stripe={stripePromise}> <CheckoutForm /> </Elements> ); }",
               explanation:
-                "With everything in place, we conjure the subscription, weaving the customer's fate with our service for the cycles to come. 🔄✨",
+                "Defines the main 'App' component that wraps the 'CheckoutForm' component with the 'Elements' provider. This provider makes the Stripe instance available to the form and its child components.",
+            },
+            {
+              code: "export default App;",
+              explanation:
+                "Exports the 'App' component as the default export of the module, making it available for import in other parts of the application.",
+            },
+            {
+              code: "const express = require('express');",
+              explanation:
+                "Imports the Express.js framework, which is used to create a web server and handle HTTP requests.",
+            },
+            {
+              code: "const stripe = require('stripe')('your-secret-key');",
+              explanation:
+                "Imports the Stripe library and initializes it with your secret key. This allows you to interact with the Stripe API to manage customers, payment methods, and subscriptions.",
+            },
+            {
+              code: "const app = express();",
+              explanation:
+                "Creates an instance of an Express application. This instance will handle routing and middleware.",
+            },
+            {
+              code: "app.use(express.json());",
+              explanation:
+                "Sets up middleware to parse incoming JSON requests. This is necessary for handling JSON payloads in POST requests.",
+            },
+            {
+              code: "app.post('/create-subscription', async (req, res) => { const { payment_method } = req.body; const customer = await stripe.customers.create({ payment_method, email: 'customer@example.com', invoice_settings: { default_payment_method: payment_method, }, }); const subscription = await stripe.subscriptions.create({ customer: customer.id, items: [{ plan: 'your-plan-id' }], expand: ['latest_invoice.payment_intent'], }); res.send(subscription); });",
+              explanation:
+                "Defines a POST route '/create-subscription' that handles subscription creation. It retrieves the payment method from the request body, creates a new customer in Stripe with this payment method, and then creates a subscription for the customer using a specified plan ID. The subscription details are sent back as the response.",
+            },
+            {
+              code: "app.listen(8000, () => console.log('Server running on port 8000'));",
+              explanation:
+                "Starts the Express server on port 8000 and logs a message to the console indicating that the server is running.",
             },
           ],
         },
@@ -5282,7 +5428,7 @@ export default OpenAIComponent;`,
       prompts: {
         welcome: {
           response: (
-            <Typewriter speed={5}>
+            <Typewriter speed={0}>
               🌟 Welcome to today's exciting journey through the world of
               computer Ssience, where we'll dive into the essential topics of
               data structures and algorithms.
@@ -5734,34 +5880,39 @@ if (result !== null) {
 
           codeBreakdown: [
             {
-              code: "class Node { ... }",
+              code: "class Node { constructor(key) { this.left = null; this.right = null; this.val = key; } }",
               explanation:
-                "In the heart of our magical forest, we define a Node, each bearing the essence of the tree itself, ready to connect with others. 🌿",
+                "Defines a Node class to represent each node in the Binary Search Tree (BST). The constructor initializes the node with a value 'key' and sets pointers for the left and right children to null.",
             },
             {
-              code: "function search(root, key) { ... }",
+              code: "function search(root, key) { if (root === null || root.val === key) { return root; } if (root.val < key) { return search(root.right, key); } return search(root.left, key); }",
               explanation:
-                "With a seeker’s spirit, we embark on a quest, delving into the depths of the tree to uncover hidden treasures or discover new paths. 🔍",
+                "Defines a search function to find a specific value (key) in the BST. The function checks if the current node (root) is null or has the value equal to the key. If the key is greater than the root's value, it searches the right subtree. If the key is smaller, it searches the left subtree.",
             },
             {
               code: "const root = new Node(15);",
               explanation:
-                "Our journey begins by planting the first seed, the root of our tree, from which all paths will emerge and grow. 🌱",
+                "Creates the root node of the BST with a value of 15.",
             },
             {
               code: "root.left = new Node(10); root.right = new Node(20);",
               explanation:
-                "As our tree sprouts, we nurture it, guiding its growth to the left and right, embracing the diversity of its branches. 🌲",
+                "Creates the left and right children of the root node with values 10 and 20, respectively.",
+            },
+            {
+              code: "root.left.left = new Node(8); root.left.right = new Node(12); root.right.left = new Node(17); root.right.right = new Node(25);",
+              explanation:
+                "Creates the left and right children for the nodes we've just added. The left child of the node with value 10 has values 8 and 12. The right child of the node with value 20 has values 17 and 25.",
             },
             {
               code: "const result = search(root, 17);",
               explanation:
-                "Our quest leads us on a search for the number 17, a journey through nodes, guided by the wisdom of the tree. 🗺️",
+                "Performs a search in the BST for the value 17 using the search function.",
             },
             {
-              code: "console.log('Value found!');",
+              code: "if (result !== null) { console.log('Value found!'); } else { console.log('Value not found.'); }",
               explanation:
-                "At journey’s end, we find what we seek, a moment of discovery that lights up our forest with joy. 🎉",
+                "Outputs the result of the search. If the search function returns a non-null result, it means the value was found in the BST, and 'Value found!' is logged to the console. Otherwise, 'Value not found.' is logged.",
             },
           ],
         },
