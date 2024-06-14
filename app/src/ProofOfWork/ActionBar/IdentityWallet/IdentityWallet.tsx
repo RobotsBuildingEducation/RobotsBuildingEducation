@@ -424,51 +424,6 @@ export const IdentityWallet = ({
                   : "Invalid DID entered"}
               </Alert>
             )}
-
-            <main>
-              <div className="cashu-operations-container">
-                <div className="section">
-                  <h4>Bitcoin Deposits</h4>
-                  {/* <button className="mint-button" onClick={handleMint}>
-                  Deposit
-                </button> */}
-
-                  <IdentityCard
-                    number={
-                      localStorage.getItem("address")
-                        ? localStorage.getItem("address")?.substr(0, 16) + "..."
-                        : "Generating..."
-                    }
-                    name={"balance: " + balance}
-                    theme={"BTC"}
-                    animateOnChange={true}
-                  />
-                </div>
-                <br />
-                <div className="section">
-                  <button
-                    style={{ marginBottom: 8 }}
-                    className="swap-send-button"
-                    onClick={handleSwapSend}
-                  >
-                    Test cash tap
-                  </button>
-                  <br />
-                  <button className="swap-send-button" onClick={recharge}>
-                    Recharge
-                  </button>
-                </div>
-              </div>
-
-              {/* <div className="data-display-container">
-                <h2>Balance: {balance}</h2>
-                <pre id="data-output" className="data-output">
-                  {JSON.stringify(dataOutput, null, 2)}
-                </pre>
-              </div> */}
-            </main>
-            <br />
-            <br />
             <h4 style={{ marginBottom: 12 }}>
               NOSTR Identity <br />
             </h4>
@@ -490,11 +445,11 @@ export const IdentityWallet = ({
             {nostrPubKey && !localStorage.getItem("nsec") ? (
               <>
                 {" "}
+                <br />
                 <div>
                   This browser is missing a nostr secret key and cannot edit
                   your name.
                 </div>
-                <br />
                 <label>Enter your nsec</label>
                 <InputGroup className="mb-3">
                   <Form.Control
@@ -634,7 +589,53 @@ export const IdentityWallet = ({
             )}
             <br />
             <br />
-            <h4>Bitcoin </h4>
+
+            <main>
+              <div className="cashu-operations-container">
+                <div className="section">
+                  <h4>Bitcoin Deposits</h4>
+                  {/* <button className="mint-button" onClick={handleMint}>
+                  Deposit
+                </button> */}
+
+                  <IdentityCard
+                    number={
+                      localStorage.getItem("address")
+                        ? localStorage.getItem("address")?.substr(0, 16) + "..."
+                        : "Generating..."
+                    }
+                    name={"balance: " + balance}
+                    theme={"BTC"}
+                    animateOnChange={true}
+                  />
+                </div>
+                <br />
+                <div className="section">
+                  <button
+                    style={{ marginBottom: 8 }}
+                    className="swap-send-button"
+                    onClick={handleSwapSend}
+                  >
+                    Test cash tap
+                  </button>
+                  <br />
+                  <button className="swap-send-button" onClick={recharge}>
+                    Recharge
+                  </button>
+                </div>
+              </div>
+
+              {/* <div className="data-display-container">
+                <h2>Balance: {balance}</h2>
+                <pre id="data-output" className="data-output">
+                  {JSON.stringify(dataOutput, null, 2)}
+                </pre>
+              </div> */}
+            </main>
+
+            <br />
+            <br />
+            <h4>Wallet</h4>
             <div
               style={{ ...responsiveBox, textAlign: "left", display: "flex" }}
             >
