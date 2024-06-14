@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { Button, Modal } from "react-bootstrap";
 import { isEmpty } from "lodash";
@@ -130,6 +130,8 @@ export const Prompts = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showPrompts, setShowPrompts] = useState(false);
+  const componentRef = useRef(null);
+
   // console.log("patreonobj", patreonObject);
   // console.log("user ref", userStateReference);
   // console.log("db user doc", userStateReference?.databaseUserDocument);
@@ -156,7 +158,7 @@ export const Prompts = ({
     if (engineerHeaders.includes(patreonObject?.header)) {
       const timer = setTimeout(() => {
         setShowPrompts(true);
-      }, 750); // 5000 milliseconds = 5 seconds
+      }, 0); // 5000 milliseconds = 5 seconds
 
       return () => clearTimeout(timer); // Clear the timeout if the component unmounts
     } else {
@@ -171,6 +173,8 @@ export const Prompts = ({
         alignItems: "flex-end",
         flexDirection: "column",
       }}
+      ref={componentRef}
+      className={`fade-in ${showPrompts ? "show" : ""}`}
     >
       {showPrompts &&
         promptTypes.map((type, index) => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Button, Form, Modal, Row, Col } from "react-bootstrap";
+import { Button, Form, Offcanvas, Row, Col } from "react-bootstrap";
 import Lottie from "react-lottie";
 import isEmpty from "lodash/isEmpty";
 import styled from "styled-components";
@@ -29,26 +29,26 @@ export const EmotionalIntelligenceStyles = {
   EmotionHeader: {
     backgroundColor: "black",
     color: "white",
-    borderBottom: "0px solid transparent",
-    borderRight: "5px solid lavender",
-    borderLeft: "5px solid lavender",
-    borderTop: "5px solid lavender",
+    borderBottom: "0px solid #403aab",
+    borderRight: "0px solid #403aab",
+    borderLeft: "1px solid #403aab",
+    borderTop: "0px solid #403aab",
   },
   EmotionBody: {
     backgroundColor: "black",
     color: "white",
-    borderRight: "5px solid lavender",
-    borderLeft: "5px solid lavender",
-    borderBottom: "5px solid lavender",
+    borderRight: "0px solid #403aab",
+    borderLeft: "1px solid #403aab",
+    borderBottom: "0px solid #403aab",
     height: 500,
   },
   EmotionFooter: {
     backgroundColor: "black",
     color: "white",
-    borderTop: "1px solid transparent",
-    borderRight: "5px solid lavender",
-    borderLeft: "5px solid lavender",
-    borderBottom: "5px solid lavender",
+    borderTop: "0px solid #403aab",
+    borderRight: "0px solid #403aab",
+    borderLeft: "1px solid #403aab",
+    borderBottom: "0px solid #403aab",
   },
 };
 
@@ -83,7 +83,7 @@ const Explanation = styled.p``;
 export const SchedulerBlock = ({ children, hasTutorial = false }) => {
   const zapAnimation = useZapAnimation();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isOffcanvasOpen, setIsOffcanvasOpen] = useState(false);
   let [boxShadow, setBoxShadow] = useState(false);
   const [formState, setFormState] = useState({
     description: "",
@@ -210,7 +210,7 @@ export const SchedulerBlock = ({ children, hasTutorial = false }) => {
             : `2px solid ${japaneseThemePalette.CobaltBlue}`,
         }}
         onMouseDown={() => {
-          setIsModalOpen(true);
+          setIsOffcanvasOpen(true);
         }}
       >
         🌀
@@ -224,22 +224,23 @@ export const SchedulerBlock = ({ children, hasTutorial = false }) => {
       <br />
       <br />
       {children}
-      <Modal
-        show={isModalOpen}
-        centered
-        keyboard
-        onHide={() => setIsModalOpen(false)}
-        style={{ zIndex: 1000000 }}
-        size="lg"
+      <Offcanvas
+        show={isOffcanvasOpen}
+        onHide={() => setIsOffcanvasOpen(false)}
+        placement="end"
+        style={{ zIndex: 10000, width: "30%", minWidth: "350px" }}
+        scroll={true}
+        backdrop={false}
       >
-        <Modal.Header
+        <Offcanvas.Header
           closeButton
-          closeVariant="white"
           style={EmotionalIntelligenceStyles.EmotionHeader}
         >
-          <Modal.Title style={{ fontFamily: "Bungee" }}>Assistant</Modal.Title>
-        </Modal.Header>
-        <Modal.Body
+          <Offcanvas.Title style={{ fontFamily: "Bungee" }}>
+            Assistant
+          </Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body
           style={{
             ...EmotionalIntelligenceStyles.EmotionBody,
             overflow: "scroll",
@@ -318,13 +319,8 @@ export const SchedulerBlock = ({ children, hasTutorial = false }) => {
               </Container>
             </div>
           ) : null}
-        </Modal.Body>
-        {/* <Modal.Footer style={EmotionalIntelligenceStyles.EmotionFooter}>
-          <Button variant="dark" onMouseDown={() => setIsModalOpen(false)}>
-            Exit
-          </Button>
-        </Modal.Footer> */}
-      </Modal>
+        </Offcanvas.Body>
+      </Offcanvas>
     </div>
   );
 };

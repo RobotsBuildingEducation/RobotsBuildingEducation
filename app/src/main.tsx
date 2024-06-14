@@ -7,6 +7,7 @@ import "./index.css";
 import { Dashboard } from "./Dashboard/Dashboard";
 //...
 import * as Sentry from "@sentry/react";
+import { Ecash } from "./experimental/Ecash";
 
 // import { WalletProvider } from "./BTC/CashuWalletContext";
 // import WalletComponent from "./BTC/WalletComponent";
@@ -39,17 +40,13 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
   },
-  // {
-  //   path: "/map",
-  //   element: <DecisionMap />,
-  // },
   {
     path: "/sudo",
     element: <Dashboard />,
   },
   // {
   //   path: "/wallet",
-  //   element: <WalletComponent />,
+  //   element: <Ecash />,
   // },
 ]);
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { japaneseThemePalette } from "../../../../../styles/lazyStyles";
 import { Button } from "react-bootstrap";
 
-export const ActivateCofounder = ({ setIsModalOpen }) => {
+export const ActivateCofounder = ({ setIsOffcanvasOpen }) => {
   let [boxShadow, setBoxShadow] = useState(false);
 
   return (
@@ -24,7 +24,7 @@ export const ActivateCofounder = ({ setIsModalOpen }) => {
           setBoxShadow(false);
         }}
         onMouseDown={() => {
-          setIsModalOpen(true);
+          setIsOffcanvasOpen(true);
         }}
       >
         🌀

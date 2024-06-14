@@ -10,6 +10,7 @@ import { Intro } from "./ChatGPT/Intro/Intro";
 import { CodeDisplay } from "./common/ui/Elements/CodeDisplay/CodeDisplay";
 import { japaneseThemePalette } from "./styles/lazyStyles";
 import { Button } from "react-bootstrap";
+import { ExternalLink } from "./common/ui/Elements/ExternalLink/ExternalLink";
 
 export const Landing = ({
   uiStateReference,
@@ -19,6 +20,12 @@ export const Landing = ({
 }) => {
   const renderWelcomeMessage = () => (
     <>
+      <ExternalLink
+        link="https://www.patreon.com/collection/20666?view=expanded"
+        textDisplay={<b>Getting Started Kit</b>}
+      />
+      <br />
+      <br />
       <div style={{ width: "100%" }}>
         {!dataLoading ? (
           <div>
