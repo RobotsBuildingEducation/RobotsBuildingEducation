@@ -29,11 +29,12 @@ const numberChange = keyframes`
 const CardContainer = styled.div`
   text-shadow: 0px 0.25px 0px black;
   width: 100%;
-  max-width: 400px;
+  max-width: 700px;
   height: ${({ flip }) => (flip ? "525px" : "200px")};
   border-radius: 16px;
   perspective: 1000px;
   transition: 0.65s all ease-in-out;
+  height: 400px;
 `;
 
 const CardInner = styled.div`
@@ -74,6 +75,15 @@ const CardFace = styled.div`
           font-family: "IBM Plex Mono";
           font-size: 1.2em;
         `
+      : theme === "cashu"
+      ? css`
+          background: linear-gradient(135deg, #004e92, #2ec6f0);
+          background-size: 200% 200%;
+          animation: ${subtleSwirl} 6s ease infinite;
+          color: #fff;
+          font-family: "IBM Plex Mono";
+          font-size: 1.2em;
+        `
       : css`
           background: linear-gradient(135deg, #f9a825, #ff7043, #ffb300);
           background-size: 200% 200%;
@@ -100,7 +110,6 @@ const CardBack = styled(CardFace)`
 `;
 
 const CardNumber = styled.div`
-  font-size: 
   font-size: 1.2em;
   letter-spacing: 2px;
   animation: ${({ animate }) =>
@@ -129,6 +138,8 @@ const CopyButton = styled.button`
       ? "cyan"
       : theme === "nostr"
       ? "#ff42b7"
+      : theme === "cashu"
+      ? "#00bfff"
       : "#ffb300"};
   cursor: pointer;
   font-family: "Bungee";
@@ -140,12 +151,14 @@ export const IdentityCard = ({
   name,
   theme = "default",
   animateOnChange = false,
+  realValue = null,
 }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [copied, setCopied] = useState(false);
   const [prevNumber, setPrevNumber] = useState(number);
   const [animate, setAnimate] = useState(false);
 
+  console.log("NUMBER", number);
   useEffect(() => {
     if (animateOnChange && number !== prevNumber) {
       setAnimate(true);
@@ -155,22 +168,39 @@ export const IdentityCard = ({
   }, [number, animateOnChange, prevNumber]);
 
   const handleCopy = (theme) => {
-    let num = number;
-    if (theme === "web5") num = localStorage.getItem("uniqueId");
-    if (theme === "nostr") num = localStorage.getItem("npub");
-    if (theme === "BTC") num = localStorage.getItem("address");
+    let num = realValue || number;
+    if (realValue && theme === "cashu") {
+      window
+        .open(`https://boardwalkcash.com/wallet?token=${realValue}`, "_blank")
+        .focus();
+    } else {
+      if (theme === "web5") num = localStorage.getItem("uniqueId");
+      if (theme === "nostr") num = localStorage.getItem("npub");
+      if (theme === "BTC") num = localStorage.getItem("address");
 
-    navigator.clipboard.writeText(num).then(
-      () => {
-        console.log("Copied to clipboard!");
-        setCopied(true); // Change button color to gold
-        setTimeout(() => setCopied(false), 2000); // Revert color after 2 seconds
-      },
-      (err) => {
-        console.error("Could not copy text: ", err);
-      }
-    );
+      navigator.clipboard.writeText(num).then(
+        () => {
+          console.log("Copied to clipboard!");
+          setCopied(true); // Change button color to gold
+          setTimeout(() => setCopied(false), 2000); // Revert color after 2 seconds
+        },
+        (err) => {
+          console.error("Could not copy text: ", err);
+        }
+      );
+    }
   };
+
+  const cashuContent = (
+    <div
+      className="info_box"
+      style={{
+        textAlign: "left",
+      }}
+    >
+      Redeem these!
+    </div>
+  );
 
   const bitcoinContent = (
     <div
@@ -265,14 +295,16 @@ export const IdentityCard = ({
                     ? "cyan"
                     : theme === "nostr"
                     ? "#ffdef3"
+                    : theme === "cashu"
+                    ? "#00bfff"
                     : "#ffb300"
                 }
               />
             </CopyButton>
           </div>
-          {/* {theme === "BTC" ? (
-            <QRCode value={"lightning:" + number} size={36} />
-          ) : null} */}
+          {theme === "BTC" ? (
+            <QRCode value={realValue} size={128} style={{ zIndex: 1000000 }} />
+          ) : null}
           <div
             style={{
               display: "flex",
@@ -294,6 +326,8 @@ export const IdentityCard = ({
                       ? "black"
                       : theme === "nostr"
                       ? "#ff42b7"
+                      : theme === "cashu"
+                      ? "#004e92"
                       : "#ffb300",
                   borderRadius: "5px",
                   display: "flex",
@@ -302,7 +336,6 @@ export const IdentityCard = ({
                   textDecoration: "underline",
                   fontFamily: "Bungee",
                   color: theme === "web5" ? "cyan" : "white",
-
                   padding: 24,
                 }}
                 onClick={() => setIsFlipped(true)}
@@ -318,6 +351,8 @@ export const IdentityCard = ({
               ? web5Content
               : theme === "BTC"
               ? bitcoinContent
+              : theme === "cashu"
+              ? cashuContent
               : nostrContent}
             <br />
             <button onClick={() => setIsFlipped(false)}>Back</button>

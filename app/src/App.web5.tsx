@@ -258,6 +258,7 @@ export const useProofStorage = () => {
         (total, proof) => total + proof.amount,
         0
       );
+      localStorage.setItem("balance", initialBalance);
       setBalance(initialBalance);
     }
   }, []);
@@ -266,6 +267,7 @@ export const useProofStorage = () => {
     if (!proofs) return;
     localStorage.setItem("proofs", JSON.stringify(proofs));
     const newBalance = proofs.reduce((total, proof) => total + proof.amount, 0);
+    localStorage.setItem("balance", newBalance);
     setBalance(newBalance);
   }, [proofs]);
 
@@ -302,75 +304,96 @@ export const useProofStorage = () => {
   };
 };
 
-const useCashuWallet = () => {
+export const useCashuWallet = (isUnactivated) => {
   const [formData, setFormData] = useState({
     mintUrl: "https://stablenut.umint.cash",
-    mintAmount: "",
+    mintAmount: "25",
     meltInvoice: "",
-    swapAmount: "",
+    swapAmount: "1",
     swapToken: "",
   });
+
   const [dataOutput, setDataOutput] = useState(null);
   const [wallet, setWallet] = useState(null);
-
+  const [cashuToken, setCashuToken] = useState(null);
   const { addProofs, balance, removeProofs, getProofsByAmount } =
     useProofStorage();
 
   useEffect(() => {
-    const storedMintData = JSON.parse(localStorage.getItem("mint"));
-    if (storedMintData) {
-      const { url, keyset } = storedMintData;
-      const mint = new CashuMint(url);
-      const wallet = new CashuWallet(mint, { keys: keyset, unit: "sat" });
-      setWallet(wallet);
-      setFormData((prevData) => ({ ...prevData, mintUrl: url }));
-      handleMint();
+    // alert("sat");
+    if (isUnactivated && !localStorage.getItem("address") && balance < 1) {
     } else {
-      handleSetMint();
+      const storedMintData = JSON.parse(localStorage.getItem("mint"));
+
+      if (storedMintData) {
+        const { url, keyset } = storedMintData;
+
+        const mint = new CashuMint(url);
+
+        // Initialize wallet with stored keyset to avoid fetching again
+        const walletRef = new CashuWallet(mint, { keys: keyset, unit: "sat" });
+        setWallet(walletRef);
+
+        setFormData((prevData) => ({ ...prevData, mintUrl: url }));
+        // if (!localStorage.getItem("address")) {
+        //   handleMint(walletRef);
+        // }
+
+        if (!isUnactivated) {
+          handleMint(walletRef);
+        }
+      } else {
+        handleSetMint(); // -> add default values
+      }
     }
   }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
   const handleSetMint = async () => {
     const mint = new CashuMint(formData.mintUrl);
+
     try {
       const info = await mint.getInfo();
       setDataOutput(info);
+
       const { keysets } = await mint.getKeys();
+
+      console.log("KEYSETS", keysets);
+
       const satKeyset = keysets.find((k) => k.unit === "sat");
-      setWallet(new CashuWallet(mint));
+
+      let walletRef = new CashuWallet(mint, { keys: satKeyset, unit: "sat" });
+      setWallet(walletRef);
+
       localStorage.setItem(
         "mint",
         JSON.stringify({ url: formData.mintUrl, keyset: satKeyset })
       );
 
-      handleMint();
+      await handleMint(walletRef);
     } catch (error) {
       console.error(error);
       setDataOutput({ error: "Failed to connect to mint", details: error });
     }
   };
 
-  const handleMint = async () => {
+  const handleMint = async (walletRef) => {
     const amount = parseInt(formData.mintAmount);
+    let w = wallet || walletRef;
 
-    const quote = await wallet.getMintQuote(amount);
+    const quote = await w.getMintQuote(amount);
+    localStorage.setItem("address", quote.request);
+
+    console.log("w", w);
+
     setDataOutput(quote);
 
     const intervalId = setInterval(async () => {
       try {
-        const { proofs } = await wallet.mintTokens(amount, quote.quote, {
-          keysetId: wallet.keys.id,
+        const { proofs } = await w.mintTokens(amount, quote.quote, {
+          keysetId: w.keys.id,
         });
         setDataOutput({ "minted proofs": proofs });
-        setFormData((prevData) => ({ ...prevData, mintAmount: "" }));
+        setFormData((prevData) => ({ ...prevData }));
         addProofs(proofs);
         clearInterval(intervalId);
       } catch (error) {
@@ -394,24 +417,33 @@ const useCashuWallet = () => {
       const encodedToken = getEncodedToken({
         token: [{ proofs: send, mint: wallet.mint.mintUrl }],
       });
+
+      // console.log("ENCODED TOKEN", encodedToken);
+
       removeProofs(proofs);
       addProofs(returnChange);
       setDataOutput(encodedToken);
+      setCashuToken(encodedToken);
+      return encodedToken;
     } catch (error) {
       console.error(error);
       setDataOutput({ error: "Failed to swap tokens", details: error });
     }
   };
 
+  const recharge = async () => {
+    handleMint(wallet);
+  };
+
   return {
     formData,
+    setFormData,
     dataOutput,
+    wallet,
     balance,
-    handleChange,
     handleSetMint,
     handleMint,
     handleSwapSend,
+    recharge,
   };
 };
-
-export default useCashuWallet;

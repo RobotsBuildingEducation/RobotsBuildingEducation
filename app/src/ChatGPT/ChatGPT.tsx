@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { updateDoc } from "firebase/firestore";
+import { addDoc, collection, doc, setDoc, updateDoc } from "firebase/firestore";
 import { isEmpty } from "lodash";
 import { PromptMessage } from "./PromptMessage/PromptMessage";
 import { Prompts } from "./Prompts/Prompts";
-import { analytics } from "../database/firebaseResources";
+import { analytics, database } from "../database/firebaseResources";
 import { logEvent } from "firebase/analytics";
 import { PromptCombiner9000 } from "./PromptCombiner9000/PromptCombiner9000";
 import {
@@ -20,7 +20,8 @@ import {
 import { useBitcoinAnimation } from "../App.hooks";
 import { LectureHeader } from "../LectureHeader/LectureHeader";
 import { addKnowledgeStep, updateImpact } from "../App.compute";
-import { useSharedNostr } from "../App.web5";
+import { useCashuWallet, useSharedNostr } from "../App.web5";
+import { useStore } from "../Store";
 
 const logAnalyticsEvent = (item_list_id, item_id, item_name) => {
   logEvent(analytics, "select_item", {
@@ -35,7 +36,7 @@ const logAnalyticsEvent = (item_list_id, item_id, item_name) => {
   });
 };
 
-const ChatGPT = ({
+export const ChatGPT = ({
   currentPath,
   patreonObject,
   userDocumentReference,
@@ -65,10 +66,28 @@ const ChatGPT = ({
   const [chatGptResponseList, setChatGptResponseList] = useState([]);
   const [promptSelection, setPromptSelection] = useState("");
   const [parentVisibility, setParentVisibility] = useState(true);
+
   const { connected, error, postNostrContent } = useSharedNostr(
     localStorage.getItem("npub"),
     localStorage.getItem("nsec")
   );
+
+  const {
+    formData,
+    setFormData,
+    dataOutput,
+    wallet,
+    balance,
+    handleSetMint,
+    handleMint,
+    handleSwapSend,
+    recharge,
+  } = useCashuWallet(true);
+
+  const { globalBalance, setGlobalBalance } = useStore((state) => ({
+    globalBalance: state.globalBalance,
+    setGlobalBalance: state.setGlobalBalance,
+  }));
 
   useEffect(() => {
     setIsResponseActive(false);
@@ -92,6 +111,15 @@ const ChatGPT = ({
     setLoadingMessage("...");
   };
 
+  const storeTokenInFirestore = async (token) => {
+    try {
+      await addDoc(collection(database, "tokens"), { cashuToken: token });
+      console.log("Token successfully stored in Firestore!");
+    } catch (error) {
+      console.error("Error storing token in Firestore: ", error);
+    }
+  };
+
   const handleSubmit = async (event, prompt = null, promptType = null) => {
     event.preventDefault();
 
@@ -107,6 +135,20 @@ const ChatGPT = ({
     setIsResponseActive(true);
     setChatGptResponseList(result?.response);
 
+    let cashuToken = null;
+    if (
+      parseInt(localStorage.getItem("balance")) > 0 &&
+      localStorage.getItem("address")
+    ) {
+      cashuToken = await handleSwapSend();
+      await storeTokenInFirestore(cashuToken);
+    }
+
+    console.log("cashuToken", cashuToken);
+
+    // Store the token in Firestore
+
+    // Update the global state with the new balance
     await updateImpact(result.impact, userStateReference, globalStateReference);
 
     logEvent(analytics, "spend_virtual_currency", {
@@ -137,7 +179,11 @@ const ChatGPT = ({
           "uniqueId"
         )} has completed progress on the ${moduleName} lecture and generated ${
           result.impact
-        } units of work on Robots Building Education. \n\n 
+        } units of work on Robots Building Education${
+          cashuToken
+            ? " with cashu token " + cashuToken?.substr(0, 16) + "..."
+            : ""
+        }. \n\n 
         "${patreonObject.knowledge[remappedPrompts[promptType]].label} | ${
           patreonObject.knowledge[remappedPrompts[promptType]].knowledge
         }"\n
@@ -152,7 +198,11 @@ const ChatGPT = ({
           "uniqueId"
         )} has completed progress on the ${moduleName} lecture and generated ${
           result.impact
-        } units of work on Robots Building Education. \n\n 
+        } units of work on Robots Building Education${
+          cashuToken
+            ? "with cashu token " + cashuToken?.substr(0, 16) + "..."
+            : ""
+        }. \n\n 
         "${patreonObject.knowledge[promptType].label} | ${
           patreonObject.knowledge[promptType].knowledge
         }"\n
@@ -171,37 +221,12 @@ const ChatGPT = ({
     };
   };
 
-  // const updateImpact = async (
-  //   impact,
-  //   databaseUserDocument,
-  //   userDocumentReference,
-  //   globalImpactCounter,
-  //   globalDocumentReference
-  // ) => {
-  //   if (!isEmpty(databaseUserDocument) || !isEmpty(userDocumentReference)) {
-  //     await updateDoc(userDocumentReference, {
-  //       impact: databaseUserDocument?.impact + impact,
-  //     });
-  //     await updateDoc(globalDocumentReference, {
-  //       total: globalImpactCounter + impact,
-  //     });
-  //     setDatabaseUserDocument((prevDoc) => ({
-  //       ...prevDoc,
-  //       impact: prevDoc?.impact + impact,
-  //     }));
-  //     setGlobalImpactCounter((prevCounter) => prevCounter + impact);
-  //   } else {
-  //   }
-  // };
-
   return (
     <div
       onSubmit={handleSubmit}
       style={{ transition: "0.3s all ease-in-out", color: "white" }}
       ref={topRef}
-      // key={loadingMessage}
     >
-      {/* <LectureHeader uiStateReference={uiStateReference} topRef={topRef} /> */}
       <FadeInComponent>
         <PromptMessage
           promptMessage={promptMessage}
@@ -255,5 +280,3 @@ const ChatGPT = ({
     </div>
   );
 };
-
-export default ChatGPT;

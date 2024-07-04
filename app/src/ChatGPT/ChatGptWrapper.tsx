@@ -1,4 +1,4 @@
-import ChatGPT from "./ChatGPT";
+import { ChatGPT } from "./ChatGPT";
 import isEmpty from "lodash/isEmpty";
 
 export const ChatGptWrapper = ({

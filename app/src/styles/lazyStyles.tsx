@@ -332,11 +332,11 @@ export const StyledLink = styled(Button)`
   border-bottom: 2px solid #0044b0;
   width: 115px;
 
-  height: 35px;
+  height: 38px;
   display: flex;
   justify-content: center;
   align-items: center;
-  // padding: 4px;
+
   // margin: 8px;
   // margin-left: 8px;
   // margin-right: 8px;
