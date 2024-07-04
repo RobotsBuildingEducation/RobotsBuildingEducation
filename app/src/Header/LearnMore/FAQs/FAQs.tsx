@@ -158,7 +158,7 @@ const FAQSection = () => {
           <br />
           <a
             // style={{ color: "white", textDecoration: "underline" }}
-            href="https://www.patreon.com/posts/improving-105150205?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+            href="https://old-fashionedintelligence.info/access"
             target="_blank"
           >
             <img

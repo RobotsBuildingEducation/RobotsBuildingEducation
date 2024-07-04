@@ -70,24 +70,8 @@ export const Landing = ({
         )}
         <br />
         <br />
-        <b>Why would I connect a Bitcoin wallet?</b>
+        <b>Why would I deposit Bitcoin?</b>
         <br />
-        <br />
-        <ConnectWallet
-          appName="Robots Building Education"
-          onConnect={() =>
-            localStorage.setItem(
-              "patreonPasscode",
-              import.meta.env.VITE_BITCOIN_PASSCODE
-            )
-          }
-          onDisconnect={() =>
-            localStorage.setItem(
-              "patreonPasscode",
-              import.meta.env.VITE_PATREON_PASSCODE
-            )
-          }
-        />
         <a
           style={{ color: "gold", fontSize: 16, textDecoration: "underline" }}
           href="https://www.patreon.com/robotsbuildingeducation"
@@ -115,7 +99,7 @@ export const Landing = ({
         The goal of Robots Building Education is to create scholarships with
         learning.&nbsp;
         <a
-          href="https://www.patreon.com/posts/improving-105150205?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+          href="https://old-fashionedintelligence.info/access"
           target="_blank"
           rel="noopener noreferrer"
           style={{ textDecoration: "underline", color: "white" }}
@@ -124,12 +108,13 @@ export const Landing = ({
         </a>{" "}
         allows you to use instant Bitcoin microtransactions. This lets us
         monetize user experiences instead of bundling it all behind a
-        subscription service.
+        subscription service. For now, you can only deposit the equivalent of
+        $0.02.
         <br />
         <br />
         Otherwise you can access even more free material and services on
-        Patreon, for free. Subscriptions are used to develop this platform and
-        improve its quality of service.
+        Patreon. Subscriptions are used to develop this platform and improve its
+        quality of service.
         <br />
         <br />
       </div>

@@ -176,7 +176,7 @@ export const useZap = (
 
       let invoiceResult = (
         await ln.requestInvoice({
-          satoshi: 1000,
+          satoshi: 1,
           comment: "Robots Building Education",
         })
       ).paymentRequest;

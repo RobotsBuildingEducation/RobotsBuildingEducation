@@ -19,6 +19,7 @@ import { database } from "../../database/firebaseResources";
 import { useBitcoinAnimation } from "../../App.hooks";
 import { Startup } from "./Startup/Startup";
 import { AdaptiveLearning } from "./AdaptiveLearning/AdaptiveLearning";
+import { useCashuWallet, useProofStorage } from "../../App.web5";
 // import { Startup } from "./Startup/Startup";
 
 export const ActionBar = ({
@@ -61,10 +62,20 @@ export const ActionBar = ({
 }) => {
   const showBitcoin = useStore((state) => state.showBitcoin);
   const showZap = useStore((state) => state.showZap);
+  const { globalBalance, setGlobalBalance } = useStore((state) => ({
+    globalBalance: state.globalBalance,
+    setGlobalBalance: state.setGlobalBalance,
+  }));
 
   const [realtimeImpact, setRealtimeImpact] = useState(globalImpactCounter);
   const handleBitcoinAnimation = useBitcoinAnimation();
   const [isImpactMounted, setIsImpactMounted] = useState(false);
+
+  const { balance } = useProofStorage();
+
+  console.log("localStorage balance", localStorage.getItem("balance"));
+  console.log("useProofStorage balance", balance);
+  console.log("globalBalance", globalBalance);
 
   useEffect(() => {
     const impactDocRef = doc(database, "global", "impact");
@@ -103,7 +114,14 @@ export const ActionBar = ({
     <>
       <div style={{ padding: 12 }}>
         {showZap || showStars || showBitcoin ? (
-          <div style={{ height: 55, display: "flex", alignItems: "center" }}>
+          <div
+            style={{
+              height: 55,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <FadeInComponent speed={1.5}>
               <Lottie
                 options={{
@@ -150,6 +168,18 @@ export const ActionBar = ({
             now={(realtimeImpact / 21000000) * 100}
           />
         </div> */}
+        <div>
+          <ProgressBar
+            style={{
+              margin: 6,
+              height: 6,
+              borderRadius: 4,
+              backgroundColor: "skyblue",
+            }}
+            // now={Math.floor(calculatedPercentage * 100)}
+            now={(localStorage.getItem("balance") / 25) * 100}
+          />
+        </div>
       </div>
 
       {/* {isIdentityWalletOpen ? (

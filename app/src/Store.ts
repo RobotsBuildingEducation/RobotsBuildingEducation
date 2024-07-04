@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { useProofStorage } from "./App.web5";
 
 export const useStore = create((set) => ({
   // handles impact wallet animations
@@ -14,4 +15,8 @@ export const useStore = create((set) => ({
   modalContent: {}, // This will hold JSON data defining the UI contents
   setIsGlobalModalActive: (isActive) => set({ isGlobalModalActive: isActive }),
   setModalContent: (content) => set({ modalContent: content }),
+
+  // Balance state
+  globalBalance: localStorage.getItem("balance") || 0,
+  setGlobalBalance: (newBalance) => set({ balance: newBalance }),
 }));

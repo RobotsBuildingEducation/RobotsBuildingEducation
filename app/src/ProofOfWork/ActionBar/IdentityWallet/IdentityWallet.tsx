@@ -27,7 +27,11 @@ import {
 } from "../../../styles/lazyStyles";
 import { getDoc, updateDoc } from "firebase/firestore";
 import { Title } from "../../../common/svgs/Title";
-import { useProofStorage, useSharedNostr } from "../../../App.web5";
+import {
+  useCashuWallet,
+  useProofStorage,
+  useSharedNostr,
+} from "../../../App.web5";
 import { IdentityCard } from "../../../common/ui/Elements/IdentityCard/IdentityCard";
 import { WalletAuth } from "../../../Header/WalletAuth/WalletAuth";
 
@@ -71,6 +75,7 @@ export const IdentityWallet = ({
   globalImpactCounter,
   setIsStartupOpen,
 }) => {
+  const [toggle, setToggle] = useState(false);
   const [localNsec, setLocalNsec] = useState(localStorage.getItem("nsec"));
   const [secretKeyState, setSecretKeyState] = useState(
     localStorage.getItem("nsec")
@@ -98,21 +103,17 @@ export const IdentityWallet = ({
     postNostrContent,
   } = useSharedNostr(localStorage.getItem("npub"), secretKeyState);
 
-  const [formData, setFormData] = useState({
-    mintUrl: "https://stablenut.umint.cash",
-    mintAmount: "25",
-    meltInvoice: "",
-    swapAmount: "1",
-    swapToken: "",
-  });
-  const [dataOutput, setDataOutput] = useState(null);
-  /**
-   * @type {[CashuWallet|null, React.Dispatch<React.SetStateAction<CashuWallet|null>>]}
-   */
-  const [wallet, setWallet] = useState(null);
-
-  const { addProofs, balance, removeProofs, getProofsByAmount } =
-    useProofStorage();
+  const {
+    formData,
+    setFormData,
+    dataOutput,
+    wallet,
+    balance,
+    handleSetMint,
+    handleMint,
+    handleSwapSend,
+    recharge,
+  } = useCashuWallet(false);
 
   let impactResult = databaseUserDocument?.impact;
 
@@ -169,120 +170,6 @@ export const IdentityWallet = ({
     setUserDisplayName("");
 
     setIsDisplayNameUpdating(false);
-  };
-
-  useEffect(() => {
-    const storedMintData = JSON.parse(localStorage.getItem("mint"));
-
-    if (storedMintData) {
-      const { url, keyset } = storedMintData;
-
-      const mint = new CashuMint(url);
-
-      // Initialize wallet with stored keyset to avoid fetching again
-      const walletRef = new CashuWallet(mint, { keys: keyset, unit: "sat" });
-      setWallet(walletRef);
-
-      setFormData((prevData) => ({ ...prevData, mintUrl: url }));
-      if (!localStorage.getItem("address")) {
-        handleMint(walletRef);
-      }
-    } else {
-      handleSetMint(); // -> add default values
-    }
-  }, []);
-
-  /**
-   * Sets the mint URL and initializes the wallet.
-   */
-  const handleSetMint = async () => {
-    const mint = new CashuMint(formData.mintUrl);
-
-    try {
-      const info = await mint.getInfo();
-      setDataOutput(info);
-
-      const { keysets } = await mint.getKeys();
-
-      const satKeyset = keysets.find((k) => k.unit === "sat");
-
-      let walletRef = new CashuWallet(mint);
-      setWallet(walletRef);
-
-      localStorage.setItem(
-        "mint",
-        JSON.stringify({ url: formData.mintUrl, keyset: satKeyset })
-      );
-
-      handleMint(walletRef);
-    } catch (error) {
-      console.error(error);
-      setDataOutput({ error: "Failed to connect to mint", details: error });
-    }
-  };
-
-  /**
-   * Mints new tokens.
-   */
-  const handleMint = async (walletRef) => {
-    console.log("FORM DATA...", formData);
-    const amount = parseInt(formData.mintAmount);
-    let w = wallet || walletRef;
-    console.log("W...", w);
-    console.log("w mint", w.mint.mintUrl);
-    // console.log("mint func", w.mint.getMintQuote("25"));
-    const quote = await w.getMintQuote(amount);
-
-    localStorage.setItem("address", quote.request);
-    console.log("QUOTE", quote);
-    setDataOutput(quote);
-
-    const intervalId = setInterval(async () => {
-      console.log("running?");
-      try {
-        const { proofs } = await w.mintTokens(amount, quote.quote, {
-          keysetId: w.keys.id,
-        });
-        console.log("failed");
-        setDataOutput({ "minted proofs": proofs });
-        setFormData((prevData) => ({ ...prevData, mintAmount: "" }));
-        addProofs(proofs);
-        clearInterval(intervalId);
-      } catch (error) {
-        console.error("Quote probably not paid: ", quote.request, error);
-        setDataOutput({ error: "Failed to mint", details: error });
-      }
-    }, 5000);
-  };
-
-  /**
-   * Sends tokens in a swap operation.
-   */
-  const handleSwapSend = async () => {
-    const swapAmount = parseInt(formData.swapAmount);
-    const proofs = getProofsByAmount(swapAmount);
-
-    if (proofs.length === 0) {
-      alert("Insufficient balance");
-      return;
-    }
-
-    try {
-      const { send, returnChange } = await wallet.send(swapAmount, proofs);
-      const encodedToken = getEncodedToken({
-        token: [{ proofs: send, mint: wallet.mint.mintUrl }],
-      });
-
-      removeProofs(proofs);
-      addProofs(returnChange);
-      setDataOutput(encodedToken);
-    } catch (error) {
-      console.error(error);
-      setDataOutput({ error: "Failed to swap tokens", details: error });
-    }
-  };
-  const recharge = async () => {
-    handleSetMint();
   };
 
   return (
@@ -593,11 +480,7 @@ export const IdentityWallet = ({
             <main>
               <div className="cashu-operations-container">
                 <div className="section">
-                  <h4>Bitcoin Deposits</h4>
-                  {/* <button className="mint-button" onClick={handleMint}>
-                  Deposit
-                </button> */}
-
+                  <h4>Bitcoin Deposit Card</h4>
                   <IdentityCard
                     number={
                       localStorage.getItem("address")
@@ -607,6 +490,11 @@ export const IdentityWallet = ({
                     name={"balance: " + balance}
                     theme={"BTC"}
                     animateOnChange={true}
+                    realValue={
+                      localStorage.getItem("address")
+                        ? localStorage.getItem("address")
+                        : null
+                    }
                   />
                 </div>
                 <br />
@@ -624,15 +512,7 @@ export const IdentityWallet = ({
                   </button>
                 </div>
               </div>
-
-              {/* <div className="data-display-container">
-                <h2>Balance: {balance}</h2>
-                <pre id="data-output" className="data-output">
-                  {JSON.stringify(dataOutput, null, 2)}
-                </pre>
-              </div> */}
             </main>
-
             <br />
             <br />
             <h4>Wallet</h4>
@@ -695,6 +575,16 @@ export const IdentityWallet = ({
             </p>
             <br />
           </div>
+          {/* <IdentityCard
+            number={
+              localStorage.getItem("address")
+                ? localStorage.getItem("address")?.substr(0, 16) + "..."
+                : "Generating..."
+            }
+            name={"balance: " + balance}
+            theme={"BTC"}
+            animateOnChange={true}
+          /> */}
         </Modal.Body>
       </Modal>
     </>
