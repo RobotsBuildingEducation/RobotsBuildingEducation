@@ -145,11 +145,14 @@ export const IdentityWallet = ({
     // Generate Nostr keys if not already present
     if (!nostrPrivKey && !nostrPubKey) {
       setIsFirstTimeUser(true);
-      const { npub } = await generateNostrKeys(userDisplayName);
+      // const { npub } = await generateNostrKeys(userDisplayName);
+      const { npub } = await generateNostrKeys();
       await updateDoc(userStateReference.userDocumentReference, {
         nostrPubKey: npub,
       });
     } else {
+      console.log("nostrPubKey", nostrPubKey);
+      console.log("secretKeyState", secretKeyState);
       await postNostrContent(
         JSON.stringify({
           name: userDisplayName,
@@ -227,7 +230,7 @@ export const IdentityWallet = ({
               width: "100%",
             }}
           >
-            <h4>
+            {/* <h4>
               <div style={{ marginBottom: 12 }}>Decentralized Identity</div>
               {localStorage.getItem("uniqueId") ? (
                 <IdentityCard
@@ -300,7 +303,7 @@ export const IdentityWallet = ({
               </Card>
             </Accordion>
 
-            <br />
+            <br /> */}
             {userDidKey && (
               <Alert
                 variant={isValidDidKey ? "success" : "danger"}

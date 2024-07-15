@@ -5,6 +5,8 @@ import NDK, {
   NDKEvent,
   NDKKind,
 } from "@nostr-dev-kit/ndk";
+import { nip19, getPublicKey } from "nostr-tools";
+
 import { Buffer } from "buffer";
 import { bech32 } from "bech32";
 import { CashuMint, CashuWallet, getEncodedToken } from "@cashu/cashu-ts";
@@ -14,7 +16,6 @@ import { CashuMint, CashuWallet, getEncodedToken } from "@cashu/cashu-ts";
  */
 export const deleteWebNodeRecords = async (recordSet, web5) => {
   for (let i = 0; i < recordSet.length; i++) {
-    console.log(`deleting record set at ${i}`, recordSet[i]);
     let currentId = recordSet[i]?.id;
 
     await web5.dwn.records.delete({
@@ -93,7 +94,6 @@ export let updateWebNodeRecord = async (web5, dwnRecords, unlocks) => {
 };
 
 export let testUpdatedWebNodeRecords = async (web5, dwnRecords) => {
-  // console.log("final result:");
   const { record: testRecord } = await web5.dwn.records.read({
     message: {
       filter: {
@@ -105,7 +105,6 @@ export let testUpdatedWebNodeRecords = async (web5, dwnRecords) => {
     },
   });
   const outcome = await testRecord.data.json();
-  console.log("dwn outcome", outcome);
 };
 
 export const useSharedNostr = (initialNpub, initialNsec) => {
@@ -130,12 +129,11 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
 
   const generateNostrKeys = async (userDisplayName = null) => {
     const privateKeySigner = NDKPrivateKeySigner.generate();
-    console.log("privateKeySigner", privateKeySigner);
+
     const privateKey = privateKeySigner.privateKey;
     const user = await privateKeySigner.user();
-    console.log("user...", user);
+
     const publicKey = user.npub;
-    console.log("public key..", publicKey);
 
     const encodedNsec = bech32.encode(
       "nsec",
@@ -145,6 +143,8 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
       "npub",
       bech32.toWords(Buffer.from(publicKey, "hex"))
     );
+    console.log("encoded npub", encodedNpub);
+    console.log("encodedNsec", encodedNsec);
 
     setNostrPrivKey(encodedNsec);
     setNostrPubKey(encodedNpub);
@@ -152,7 +152,7 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
     if (!localStorage.getItem("nsec")) {
       postNostrContent(
         JSON.stringify({
-          name: userDisplayName,
+          // name: userDisplayName,
           about: "A student onboarded with Robots Building Education",
         }),
         0,
@@ -163,13 +163,12 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
 
     localStorage.setItem("nsec", encodedNsec);
     localStorage.setItem("npub", publicKey);
+    localStorage.setItem("uniqueId", publicKey);
 
     return { npub: publicKey, nsec: encodedNsec };
   };
 
   const connectToNostr = async (npubRef = null, nsecRef = null) => {
-    console.log("REF PUB 2", npubRef);
-    console.log("NSEC ref 2", nsecRef);
     const defaultNsec = import.meta.env.VITE_GLOBAL_NOSTR_NSEC;
     const defaultNpub =
       "npub1mgt5c7qh6dm9rg57mrp89rqtzn64958nj5w9g2d2h9dng27hmp0sww7u2v";
@@ -192,7 +191,7 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
 
       // Connect to the relays
       await ndkInstance.connect();
-      console.log("NDK connected");
+
       setIsConnected(true);
 
       // Return the connected NDK instance and signer
@@ -204,18 +203,44 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
     }
   };
 
+  const auth = async (nsecPassword) => {
+    let testnsec = nsecPassword;
+
+    console.log("im authing", nip19);
+    let decoded = nip19.decode(testnsec);
+    console.log("decoded", decoded);
+    console.log("decoded type..", decoded.type); //nsec
+    const pubkey = getPublicKey(decoded.data);
+    console.log("pk", pubkey);
+
+    const ndk = new NDK({
+      explicitRelayUrls: ["wss://relay.damus.io", "wss://relay.primal.net"],
+    });
+    console.log("ndk");
+    let user = ndk.getUser({ pubkey: pubkey });
+
+    console.log("user?", user.npub);
+
+    setNostrPrivKey(testnsec);
+    setNostrPubKey(user.npub);
+
+    localStorage.setItem("nsec", testnsec);
+    localStorage.setItem("npub", user.npub);
+    localStorage.setItem("uniqueId", user.npub);
+  };
+
   const postNostrContent = async (
     content,
     kind = NDKKind.Text,
     npubRef = null,
     nsecRef = null
   ) => {
-    console.log("REF PUB", npubRef);
-    console.log("NSEC ref", nsecRef);
     const connection = await connectToNostr(npubRef, nsecRef);
     if (!connection) return;
 
     const { ndkInstance, hexNpub, signer } = connection;
+
+    console.log("connection", connection);
 
     // Create a new note event
     const noteEvent = new NDKEvent(ndkInstance, {
@@ -229,8 +254,6 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
     // Sign the note event
     await noteEvent.sign(signer);
 
-    console.log("Signed Note", noteEvent.rawEvent());
-
     // Publish the note event
     await noteEvent.publish();
   };
@@ -242,6 +265,7 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
     nostrPrivKey,
     generateNostrKeys,
     postNostrContent,
+    auth,
   };
 };
 
@@ -350,18 +374,22 @@ export const useCashuWallet = (isUnactivated) => {
 
   const handleSetMint = async () => {
     const mint = new CashuMint(formData.mintUrl);
+    console.log("Mint Object", mint);
 
     try {
       const info = await mint.getInfo();
+      console.log("Mint data", info);
       setDataOutput(info);
 
       const { keysets } = await mint.getKeys();
-
-      console.log("KEYSETS", keysets);
+      console.log("mint keysets", keysets);
 
       const satKeyset = keysets.find((k) => k.unit === "sat");
+      console.log("sat keysets", satKeyset);
 
       let walletRef = new CashuWallet(mint, { keys: satKeyset, unit: "sat" });
+
+      console.log("wallet object", walletRef);
       setWallet(walletRef);
 
       localStorage.setItem(
@@ -381,9 +409,9 @@ export const useCashuWallet = (isUnactivated) => {
     let w = wallet || walletRef;
 
     const quote = await w.getMintQuote(amount);
-    localStorage.setItem("address", quote.request);
+    console.log("mint quote", quote);
 
-    console.log("w", w);
+    localStorage.setItem("address", quote.request);
 
     setDataOutput(quote);
 
@@ -392,6 +420,9 @@ export const useCashuWallet = (isUnactivated) => {
         const { proofs } = await w.mintTokens(amount, quote.quote, {
           keysetId: w.keys.id,
         });
+
+        console.log("Minted token proofs", proofs);
+
         setDataOutput({ "minted proofs": proofs });
         setFormData((prevData) => ({ ...prevData }));
         addProofs(proofs);
@@ -414,11 +445,12 @@ export const useCashuWallet = (isUnactivated) => {
 
     try {
       const { send, returnChange } = await wallet.send(swapAmount, proofs);
+      console.log("Send", send);
       const encodedToken = getEncodedToken({
         token: [{ proofs: send, mint: wallet.mint.mintUrl }],
       });
 
-      // console.log("ENCODED TOKEN", encodedToken);
+      console.log("encoded token", encodedToken);
 
       removeProofs(proofs);
       addProofs(returnChange);

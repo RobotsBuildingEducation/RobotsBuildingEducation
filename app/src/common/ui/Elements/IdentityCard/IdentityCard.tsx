@@ -158,7 +158,6 @@ export const IdentityCard = ({
   const [prevNumber, setPrevNumber] = useState(number);
   const [animate, setAnimate] = useState(false);
 
-  console.log("NUMBER", number);
   useEffect(() => {
     if (animateOnChange && number !== prevNumber) {
       setAnimate(true);
@@ -180,7 +179,6 @@ export const IdentityCard = ({
 
       navigator.clipboard.writeText(num).then(
         () => {
-          console.log("Copied to clipboard!");
           setCopied(true); // Change button color to gold
           setTimeout(() => setCopied(false), 2000); // Revert color after 2 seconds
         },

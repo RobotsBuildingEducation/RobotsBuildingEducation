@@ -293,7 +293,7 @@ export const Experimental = ({
         </Form>
         {isLoading ? (
           <>
-            <RoxanaLoadingAnimation header={"Creating and designing 🌀"} />{" "}
+            <RoxanaLoadingAnimation header={"creating"} />{" "}
             <div style={{ whiteSpace: "pre-wrap" }}>
               {messages
                 .map((msg, index) =>

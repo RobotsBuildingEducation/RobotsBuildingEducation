@@ -234,6 +234,15 @@ export const EmotionalIntelligence = ({
               ))}
             </div>
             <br /> <br /> <br />
+            {!isEmpty(usersEmotionsFromDB) ? null : (
+              <>
+                {" "}
+                <br />
+                <br />
+                <br />
+                <br />
+              </>
+            )}
           </div>
           {!isEmpty(usersEmotionsFromDB) ? (
             <>
@@ -272,7 +281,7 @@ export const EmotionalIntelligence = ({
                   >
                     <RoxanaLoadingAnimation
                       nochat={false}
-                      header={"Creating and designing 🌀"}
+                      header={"creating"}
                       intel={true}
                     />
                   </div>
@@ -442,7 +451,7 @@ export const EmotionalIntelligence = ({
               >
                 <RoxanaLoadingAnimation
                   nochat={false}
-                  header={"Creating and designing 🌀"}
+                  header={"creating"}
                   intel={true}
                 />
               </div>{" "}

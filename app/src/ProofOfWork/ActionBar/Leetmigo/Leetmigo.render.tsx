@@ -271,7 +271,7 @@ export const RenderLeetmigo = () => {
 
       {isGeneratingProblem ? (
         <div style={{ maxWidth: 700, width: "100%" }}>
-          <RoxanaLoadingAnimation header={"Creating and designing 🌀"} />{" "}
+          <RoxanaLoadingAnimation header={"creating"} />{" "}
           <div style={{ whiteSpace: "pre-wrap" }}>
             {problemMessages
               .map((msg, index) =>
@@ -341,7 +341,7 @@ export const RenderLeetmigo = () => {
             <br />
             {isGeneratingFeedback ? (
               <div style={{ maxWidth: 700, width: "100%" }}>
-                <RoxanaLoadingAnimation header={"Creating and designing 🌀"} />{" "}
+                <RoxanaLoadingAnimation header={"creating"} />{" "}
                 <div style={{ whiteSpace: "pre-wrap" }}>
                   {feedbackMessages
                     .map((msg, index) =>

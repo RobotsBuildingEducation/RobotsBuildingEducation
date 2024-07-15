@@ -71,6 +71,8 @@ import roxGlobal from "./common/media/images/roxGlobal.png";
 import { PasscodeModal } from "./PasscodeModal/PasscodeModal";
 import { Typewriter } from "./common/ui/Elements/Typewriter/Typewriter";
 import { Landing } from "./App.landing";
+import { Auth } from "./App.auth";
+import { useSharedNostr } from "./App.web5";
 logEvent(analytics, "page_view", {
   page_location: "https://learn-robotsbuildingeducation.firebaseapp.com/",
 });
@@ -82,6 +84,11 @@ let App = () => {
   const showZap = useStore((state) => state.showZap);
   const showBitcoin = useStore((state) => state.showBitcoin);
   const setShowStars = useStore((state) => state.setShowStars);
+  const [secretKeyState, setSecretKeyState] = useState(
+    localStorage.getItem("nsec")
+  );
+
+  const [isNotAuthed, setIsNotAuthed] = useState(false);
   let handleModal = useGlobalModal(modalConfig);
 
   const topRef = useRef(null); // Create the ref
@@ -111,6 +118,15 @@ let App = () => {
 
   let [isLocalModalActive, setIsLocalModalActive] = useState(false);
 
+  const {
+    isConnected,
+    errorMessage,
+    nostrPubKey,
+    nostrPrivKey,
+    generateNostrKeys,
+    postNostrContent,
+    auth,
+  } = useSharedNostr(localStorage.getItem("npub"), secretKeyState);
   /**
    *
    * @param event click event
@@ -209,44 +225,35 @@ let App = () => {
     userStateReference.setUsersEmotionsFromDB(emotionSet);
   };
 
-  const connectDID = async () => {
-    // const mint = new CashuMint("https://stablenut.umint.cash");
-    // const wallet = new CashuWallet(mint);
-    // const request = await wallet.getMintQuote(64);
-    // console.log("request", request);
-    // const tokens = await wallet.mintTokens(64, request.quote);
-    // const { pr, hash } = await wallet.requestMint(200);
+  const connect = async () => {
     setDataLoading(true);
-    try {
-      const { web5 } = await Web5.connect();
-      if (!localStorage.getItem("uniqueId")) {
-        localStorage.setItem("uniqueId", web5?.did?.agent?.agentDid);
-      }
 
-      // setWeb5Reference(web5);
-      // let set = await queryAndSetWebNodeRecords(web5);
-      // setDwnRecordSet(set);
-      // await createWebNodeRecord(web5, set, userUnlocks);
-
-      // use when testing new data
-      // deleteWebNodeRecords(set, web5);
-
+    // const { web5 } = await Web5.connect();
+    console.log("pk", nostrPrivKey);
+    console.log("pk", nostrPubKey);
+    console.log(isEmpty(nostrPrivKey) && isEmpty(nostrPubKey));
+    console.log(!localStorage.getItem("uniqueId"));
+    if (
+      isEmpty(localStorage.getItem("nsec")) ||
+      isEmpty(localStorage.getItem("npub"))
+    ) {
+      console.log("xx");
+      setIsNotAuthed(true);
+    } else {
       await handleUserAuthentication({
-        web5,
         uiStateReference,
         userStateReference,
         globalStateReference,
         updateUserEmotions,
       });
-    } catch (error) {
-      connectDID();
+      setIsNotAuthed(false);
     }
 
     setDataLoading(false);
   };
 
   useEffect(() => {
-    connectDID();
+    connect();
 
     setTimeout(() => {
       setLoading(false);
@@ -462,6 +469,14 @@ let App = () => {
           }}
           ref={topRef}
         >
+          {/* <button
+            onClick={() => {
+              setIsNotAuthed(true);
+              localStorage.clear();
+            }}
+          >
+            logout
+          </button> */}
           <>
             <Paths
               handlePathSelection={handlePathSelection}
@@ -515,18 +530,37 @@ let App = () => {
                       promptMessage={
                         uiStateReference.currentPath
                           ? "let's learn!"
-                          : !userStateReference.databaseUserDocument.firstVisit
-                          ? "hello again rox!"
-                          : "rox?"
+                          : userStateReference.databaseUserDocument.firstVisit
+                          ? "rox?"
+                          : !localStorage.getItem("npub") &&
+                            !localStorage.getItem("nsec")
+                          ? "let's get started!"
+                          : isEmpty(userStateReference.databaseUserDocument)
+                          ? "launching..."
+                          : "hello again rox!"
                       }
                     />
                     <br />
-                    <Landing
-                      uiStateReference={uiStateReference}
-                      dataLoading={dataLoading}
-                      handleModuleSelection={handleModuleSelection}
-                      userStateReference={userStateReference}
-                    />
+                    {isNotAuthed ? (
+                      <Auth
+                        uiStateReference={uiStateReference}
+                        dataLoading={dataLoading}
+                        handleModuleSelection={handleModuleSelection}
+                        userStateReference={userStateReference}
+                        connect={connect}
+                      />
+                    ) : isEmpty(userStateReference.databaseUserDocument) ? (
+                      <div></div>
+                    ) : (
+                      <Landing
+                        uiStateReference={uiStateReference}
+                        dataLoading={dataLoading}
+                        handleModuleSelection={handleModuleSelection}
+                        userStateReference={userStateReference}
+                      />
+                    )}
+                    <br />
+                    <br />
                   </>
                 )}
                 {/* ) : null} */}
@@ -564,22 +598,24 @@ let App = () => {
             </div>
           </>
         </div>
-        <ProofOfWorkWrapper
-          userStateReference={userStateReference}
-          globalStateReference={globalStateReference}
-          updateUserEmotions={updateUserEmotions}
-          uiStateReference={uiStateReference}
-          showStars={showStars}
-          showZap={showZap}
-          showBitcoin={showBitcoin}
-          zap={zap}
-          handleZap={handleZap}
-          computePercentage={computePercentage}
-          handlePathSelection={handlePathSelection}
-          pathSelectionAnimationData={
-            uiStateReference.pathSelectionAnimationData
-          }
-        />
+        {localStorage.getItem("npub") ? (
+          <ProofOfWorkWrapper
+            userStateReference={userStateReference}
+            globalStateReference={globalStateReference}
+            updateUserEmotions={updateUserEmotions}
+            uiStateReference={uiStateReference}
+            showStars={showStars}
+            showZap={showZap}
+            showBitcoin={showBitcoin}
+            zap={zap}
+            handleZap={handleZap}
+            computePercentage={computePercentage}
+            handlePathSelection={handlePathSelection}
+            pathSelectionAnimationData={
+              uiStateReference.pathSelectionAnimationData
+            }
+          />
+        ) : null}
       </div>
 
       <GlobalModal userStateReference={userStateReference} />

@@ -286,7 +286,7 @@ export const SchedulerBlock = ({ children, hasTutorial = false }) => {
           <br />
           {loading ? (
             <>
-              <RoxanaLoadingAnimation header="Creating and designing 🌀" />
+              <RoxanaLoadingAnimation header="creating" />
               {messages?.length > 0 && isEmpty(apiResponse) && (
                 <div style={{ whiteSpace: "pre-wrap" }}>
                   {messages

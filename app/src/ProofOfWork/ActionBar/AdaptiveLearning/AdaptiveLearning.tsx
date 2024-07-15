@@ -238,7 +238,7 @@ export const AdaptiveLearning = ({
         <div>
           {loading ? (
             <>
-              <RoxanaLoadingAnimation header={"Creating and designing 🌀"} />
+              <RoxanaLoadingAnimation header={"creating"} />
               <br />
               <br />
               <div style={{ whiteSpace: "pre-wrap" }}>

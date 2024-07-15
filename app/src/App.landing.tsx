@@ -41,7 +41,7 @@ export const Landing = ({
             </b>
             &nbsp;😊 <br />
             {userStateReference.databaseUserDocument.firstVisit
-              ? "You've instantly created an account! 🪄"
+              ? "Welcome to Robots Building Education!"
               : ""}
             <br />
             <br />
@@ -171,12 +171,12 @@ export const Landing = ({
         receive personalized feedback on your curiosity and quiz performance.
         It’s interactive, insightful, and tailored to your learning journey.
       </Feature>
-      <Feature title="Assistance" emoji="🌀">
+      {/* <Feature title="Assistance" emoji="🌀">
         An AI tool that helps you write code, generate schedules, create
         content, write documents and help you make good decisions. Listen folks,
         it needs some work, but you won't be laughing when I, a mere robot,
         start building more companies than you, an intelligent human.
-      </Feature>
+      </Feature> */}
       <Feature
         title="Rox (GPT-4)"
         emoji={

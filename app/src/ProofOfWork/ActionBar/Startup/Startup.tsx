@@ -182,7 +182,7 @@ export const RenderActionBarControls = ({
           💎 Challenges
         </StyledFeature>
         &nbsp; &nbsp;
-        <StyledFeature
+        {/* <StyledFeature
           style={{
             textShadow: "1px 1px 1px black",
             borderBottom: isHovered.cofounder
@@ -207,7 +207,7 @@ export const RenderActionBarControls = ({
           onMouseLeave={() => handleHover("cofounder", false)}
         >
           🌀 Assistant
-        </StyledFeature>
+        </StyledFeature> */}
         &nbsp; &nbsp;
         <StyledFeature
           style={{

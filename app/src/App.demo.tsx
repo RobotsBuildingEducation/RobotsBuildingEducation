@@ -1,19 +1,12 @@
-
+import NDK, {
+  NDKPrivateKeySigner,
+  NDKEvent,
+  NDKKind,
+} from "@nostr-dev-kit/ndk";
 import { Buffer } from "buffer";
 
 import { bech32 } from "bech32";
 import { useEffect, useState } from "react";
-
-
-import { NDKPrivateKeySigner } from "@nostr-dev-kit/ndk";
-
-const generateNostrKeys = async () => {
-    const privateKeySigner = NDKPrivateKeySigner.generate();
-    const privateKey = privateKeySigner.privateKey;
-    const user = await privateKeySigner.user();
-
-    return user;
-  }
 
 export const useSharedNostr = (initialNpub, initialNsec) => {
   const [isConnected, setIsConnected] = useState(false);
@@ -40,8 +33,6 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
     const privateKey = privateKeySigner.privateKey;
     const user = await privateKeySigner.user();
 
-    return;
-  }
     console.log("user...", user);
     const publicKey = user.npub;
     console.log("public key..", publicKey);
@@ -77,11 +68,10 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
   };
 
   const connectToNostr = async (npubRef = null, nsecRef = null) => {
-    console.log("REF PUB 2", npubRef);
-    console.log("NSEC ref 2", nsecRef);
     const defaultNsec = import.meta.env.VITE_GLOBAL_NOSTR_NSEC;
     const defaultNpub =
       "npub1mgt5c7qh6dm9rg57mrp89rqtzn64958nj5w9g2d2h9dng27hmp0sww7u2v";
+
     const nsec = nsecRef || nostrPrivKey || defaultNsec;
     const npub = npubRef || nostrPubKey || defaultNpub;
 
@@ -119,8 +109,6 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
     npubRef = null,
     nsecRef = null
   ) => {
-    console.log("REF PUB", npubRef);
-    console.log("NSEC ref", nsecRef);
     const connection = await connectToNostr(npubRef, nsecRef);
     if (!connection) return;
 
@@ -137,8 +125,6 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
 
     // Sign the note event
     await noteEvent.sign(signer);
-
-    console.log("Signed Note", noteEvent.rawEvent());
 
     // Publish the note event
     await noteEvent.publish();
