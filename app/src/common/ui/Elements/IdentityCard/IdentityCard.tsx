@@ -174,7 +174,7 @@ export const IdentityCard = ({
         .focus();
     } else {
       if (theme === "web5") num = localStorage.getItem("uniqueId");
-      if (theme === "nostr") num = localStorage.getItem("npub");
+      if (theme === "nostr") num = localStorage.getItem("local_npub");
       if (theme === "BTC") num = localStorage.getItem("address");
 
       navigator.clipboard.writeText(num).then(

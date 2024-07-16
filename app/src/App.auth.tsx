@@ -28,9 +28,11 @@ export const Auth = ({
   userStateReference,
   connect,
 }) => {
-  const [localNsec, setLocalNsec] = useState(localStorage.getItem("nsec"));
+  const [localNsec, setLocalNsec] = useState(
+    localStorage.getItem("local_nsec")
+  );
   const [secretKeyState, setSecretKeyState] = useState(
-    localStorage.getItem("nsec")
+    localStorage.getItem("local_nsec")
   );
   const [userDisplayName, setUserDisplayName] = useState("");
   const [nsecPassword, setnsecPassword] = useState("");
@@ -49,7 +51,7 @@ export const Auth = ({
     nostrPrivKey,
     generateNostrKeys,
     auth,
-  } = useSharedNostr(localStorage.getItem("npub"), secretKeyState);
+  } = useSharedNostr(localStorage.getItem("local_npub"), secretKeyState);
 
   const inputRef = useRef(null);
   const nsecInputRef = useRef(null);
@@ -76,16 +78,20 @@ export const Auth = ({
       const { npub } = await generateNostrKeys();
       localStorage.setItem("displayName", userDisplayName);
       console.log("posting");
-      console.log("npub log", localStorage.getItem("npub"));
-      console.log("nsec log", localStorage.getItem("nsec"));
+      console.log("npub log", localStorage.getItem("local_npub"));
+      console.log("nsec log", localStorage.getItem("local_nsec"));
       await postNostrContent(
         JSON.stringify({
           name: userDisplayName,
         }),
         0,
-        localStorage.getItem("npub"),
-        localStorage.getItem("nsec")
-      );
+        localStorage.getItem("local_npub"),
+        localStorage.getItem("local_nsec")
+      ).then((response) => {
+        console.log("outcome", response);
+      });
+    } else {
+      alert("nothing");
     }
   };
 
@@ -166,7 +172,6 @@ export const Auth = ({
         style={{ backgroundColor: "#212529", color: "white" }}
         onClick={() =>
           auth(nsecPassword).then(() => {
-            console.log("then");
             connect();
           })
         }
@@ -263,9 +268,9 @@ export const Auth = ({
                                 onMouseDown={async () => {
                                   copyToClipboard(
                                     `***PUBLIC KEY***\n${localStorage.getItem(
-                                      "npub"
+                                      "local_npub"
                                     )}\n\n***SECRET KEY***\n${localStorage.getItem(
-                                      "nsec"
+                                      "local_nsec"
                                     )}`
                                   );
                                   setCopyNostr("Copied!");

@@ -115,8 +115,8 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
 
   useEffect(() => {
     // Load keys from local storage if they exist
-    const storedNpub = localStorage.getItem("npub");
-    const storedNsec = localStorage.getItem("nsec");
+    const storedNpub = localStorage.getItem("local_npub");
+    const storedNsec = localStorage.getItem("local_nsec");
 
     if (storedNpub) {
       setNostrPubKey(storedNpub);
@@ -149,20 +149,20 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
     setNostrPrivKey(encodedNsec);
     setNostrPubKey(encodedNpub);
 
-    if (!localStorage.getItem("nsec")) {
-      postNostrContent(
-        JSON.stringify({
-          // name: userDisplayName,
-          about: "A student onboarded with Robots Building Education",
-        }),
-        0,
-        publicKey,
-        encodedNsec
-      );
-    }
+    // if (!localStorage.getItem("local_nsec")) {
+    //   postNostrContent(
+    //     JSON.stringify({
+    //       // name: userDisplayName,
+    //       about: "A student onboarded with Robots Building Education",
+    //     }),
+    //     0,
+    //     publicKey,
+    //     encodedNsec
+    //   );
+    // }
 
-    localStorage.setItem("nsec", encodedNsec);
-    localStorage.setItem("npub", publicKey);
+    localStorage.setItem("local_nsec", encodedNsec);
+    localStorage.setItem("local_npub", publicKey);
     localStorage.setItem("uniqueId", publicKey);
 
     return { npub: publicKey, nsec: encodedNsec };
@@ -220,12 +220,13 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
     let user = ndk.getUser({ pubkey: pubkey });
 
     console.log("user?", user.npub);
+    console.log("user profile", user.profile);
 
     setNostrPrivKey(testnsec);
     setNostrPubKey(user.npub);
 
-    localStorage.setItem("nsec", testnsec);
-    localStorage.setItem("npub", user.npub);
+    localStorage.setItem("local_nsec", testnsec);
+    localStorage.getItem("local_npub", user.npub);
     localStorage.setItem("uniqueId", user.npub);
   };
 

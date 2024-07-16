@@ -85,7 +85,7 @@ let App = () => {
   const showBitcoin = useStore((state) => state.showBitcoin);
   const setShowStars = useStore((state) => state.setShowStars);
   const [secretKeyState, setSecretKeyState] = useState(
-    localStorage.getItem("nsec")
+    localStorage.getItem("local_nsec")
   );
 
   const [isNotAuthed, setIsNotAuthed] = useState(false);
@@ -126,7 +126,7 @@ let App = () => {
     generateNostrKeys,
     postNostrContent,
     auth,
-  } = useSharedNostr(localStorage.getItem("npub"), secretKeyState);
+  } = useSharedNostr(localStorage.getItem("local_npub"), secretKeyState);
   /**
    *
    * @param event click event
@@ -233,10 +233,7 @@ let App = () => {
     console.log("pk", nostrPubKey);
     console.log(isEmpty(nostrPrivKey) && isEmpty(nostrPubKey));
     console.log(!localStorage.getItem("uniqueId"));
-    if (
-      isEmpty(localStorage.getItem("nsec")) ||
-      isEmpty(localStorage.getItem("npub"))
-    ) {
+    if (isEmpty(localStorage.getItem("local_nsec"))) {
       console.log("xx");
       setIsNotAuthed(true);
     } else {
@@ -532,8 +529,8 @@ let App = () => {
                           ? "let's learn!"
                           : userStateReference.databaseUserDocument.firstVisit
                           ? "rox?"
-                          : !localStorage.getItem("npub") &&
-                            !localStorage.getItem("nsec")
+                          : !localStorage.getItem("local_npub") &&
+                            !localStorage.getItem("local_nsec")
                           ? "let's get started!"
                           : isEmpty(userStateReference.databaseUserDocument)
                           ? "launching..."
@@ -598,7 +595,7 @@ let App = () => {
             </div>
           </>
         </div>
-        {localStorage.getItem("npub") ? (
+        {localStorage.getItem("local_npub") ? (
           <ProofOfWorkWrapper
             userStateReference={userStateReference}
             globalStateReference={globalStateReference}

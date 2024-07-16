@@ -76,9 +76,11 @@ export const IdentityWallet = ({
   setIsStartupOpen,
 }) => {
   const [toggle, setToggle] = useState(false);
-  const [localNsec, setLocalNsec] = useState(localStorage.getItem("nsec"));
+  const [localNsec, setLocalNsec] = useState(
+    localStorage.getItem("local_nsec")
+  );
   const [secretKeyState, setSecretKeyState] = useState(
-    localStorage.getItem("nsec")
+    localStorage.getItem("local_nsec")
   );
   const [copyString, setCopyString] = useState("Press to copy ID");
 
@@ -101,7 +103,7 @@ export const IdentityWallet = ({
     nostrPrivKey,
     generateNostrKeys,
     postNostrContent,
-  } = useSharedNostr(localStorage.getItem("npub"), secretKeyState);
+  } = useSharedNostr(localStorage.getItem("local_npub"), secretKeyState);
 
   const {
     formData,
@@ -142,26 +144,14 @@ export const IdentityWallet = ({
   const saveDisplayName = async () => {
     setIsDisplayNameUpdating(true);
 
-    // Generate Nostr keys if not already present
-    if (!nostrPrivKey && !nostrPubKey) {
-      setIsFirstTimeUser(true);
-      // const { npub } = await generateNostrKeys(userDisplayName);
-      const { npub } = await generateNostrKeys();
-      await updateDoc(userStateReference.userDocumentReference, {
-        nostrPubKey: npub,
-      });
-    } else {
-      console.log("nostrPubKey", nostrPubKey);
-      console.log("secretKeyState", secretKeyState);
-      await postNostrContent(
-        JSON.stringify({
-          name: userDisplayName,
-        }),
-        0,
-        nostrPubKey,
-        secretKeyState
-      );
-    }
+    await postNostrContent(
+      JSON.stringify({
+        name: userDisplayName,
+      }),
+      0,
+      localStorage.getItem("local_npub"),
+      localStorage.getItem("local_nsec")
+    );
 
     // Update display name and Nostr keys in Firestore
     await updateDoc(userStateReference.userDocumentReference, {
@@ -320,7 +310,7 @@ export const IdentityWallet = ({
             <IdentityCard
               theme="nostr"
               number={
-                (localStorage.getItem("npub")?.substr(0, 16) ||
+                (localStorage.getItem("local_npub")?.substr(0, 16) ||
                   "npub1mgt5c7qh6dm9rg57mrp89rqtzn64958nj5w9g2d2h9dng27hmp0sww7u2v".substr(
                     0,
                     16
@@ -332,7 +322,7 @@ export const IdentityWallet = ({
                 )
               }
             />
-            {nostrPubKey && !localStorage.getItem("nsec") ? (
+            {nostrPubKey && !localStorage.getItem("local_nsec") ? (
               <>
                 {" "}
                 <br />
@@ -353,7 +343,7 @@ export const IdentityWallet = ({
                   <Button
                     variant="dark"
                     onMouseDown={() => {
-                      localStorage.setItem("nsec", localNsec);
+                      localStorage.setItem("local_nsec", localNsec);
                       setSecretKeyState(localNsec);
                     }}
                   >
@@ -369,7 +359,7 @@ export const IdentityWallet = ({
                   <a
                     target="_blank"
                     href={`https://primal.net/p/${localStorage.getItem(
-                      "npub"
+                      "local_npub"
                     )}`}
                   >
                     on primal.net
@@ -377,7 +367,9 @@ export const IdentityWallet = ({
                   or{" "}
                   <a
                     target="_blank"
-                    href={`https://iris.to/${localStorage.getItem("npub")}`}
+                    href={`https://iris.to/${localStorage.getItem(
+                      "local_npub"
+                    )}`}
                   >
                     on iris.to
                   </a>
@@ -399,7 +391,7 @@ export const IdentityWallet = ({
                       <br />
                       <input
                         type="password"
-                        value={localStorage.getItem("nsec")}
+                        value={localStorage.getItem("local_nsec")}
                       />
                     </b>
                     <br />
@@ -417,7 +409,7 @@ export const IdentityWallet = ({
                         transition: "0.25s all ease-in-out",
                       }}
                       onMouseDown={async () => {
-                        copyToClipboard(localStorage.getItem("nsec"));
+                        copyToClipboard(localStorage.getItem("local_nsec"));
                         setCopyNostr("Copied!");
                         animateBorderLoading(
                           setBorderStateForNostrCopy,

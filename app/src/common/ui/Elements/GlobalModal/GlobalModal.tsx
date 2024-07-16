@@ -84,10 +84,12 @@ function PasscodeChecker({ setIsGlobalModalActive, userStateReference }) {
   };
 
   useEffect(() => {
+    console.log("Input", input);
     if (input === correctPasscode) {
       localStorage.setItem("patreonPasscode", input);
-      if (localStorage.getItem("uniqueId") === "did:key:shared_global_account")
-        unlockEverything();
+      setIsGlobalModalActive(false);
+
+      // unlockEverything();
 
       // handleModuleSelection(lecture, "Focus Investing");
     }

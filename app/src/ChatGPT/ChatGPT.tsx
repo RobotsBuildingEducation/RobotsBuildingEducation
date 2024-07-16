@@ -68,8 +68,8 @@ export const ChatGPT = ({
   const [parentVisibility, setParentVisibility] = useState(true);
 
   const { connected, error, postNostrContent } = useSharedNostr(
-    localStorage.getItem("npub"),
-    localStorage.getItem("nsec")
+    localStorage.getItem("local_npub"),
+    localStorage.getItem("local_nsec")
   );
 
   const {

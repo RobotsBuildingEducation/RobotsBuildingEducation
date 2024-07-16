@@ -16,8 +16,8 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
 
   useEffect(() => {
     // Load keys from local storage if they exist
-    const storedNpub = localStorage.getItem("npub");
-    const storedNsec = localStorage.getItem("nsec");
+    const storedNpub = localStorage.getItem("local_npub");
+    const storedNsec = localStorage.getItem("local_nsec");
 
     if (storedNpub) {
       setNostrPubKey(storedNpub);
@@ -49,7 +49,7 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
     setNostrPrivKey(encodedNsec);
     setNostrPubKey(encodedNpub);
 
-    if (!localStorage.getItem("nsec")) {
+    if (!localStorage.getItem("local_nsec")) {
       postNostrContent(
         JSON.stringify({
           name: userDisplayName,
@@ -61,8 +61,8 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
       );
     }
 
-    localStorage.setItem("nsec", encodedNsec);
-    localStorage.setItem("npub", publicKey);
+    localStorage.setItem("local_nsec", encodedNsec);
+    localStorage.getItem("local_npub", publicKey);
 
     return { npub: publicKey, nsec: encodedNsec };
   };

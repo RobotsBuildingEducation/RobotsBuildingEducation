@@ -173,7 +173,7 @@ export const setupUserDocument = async (
       watches: userWatches,
       firstVisit: true,
       displayName: localStorage.getItem("displayName"),
-      nostrPubKey: localStorage.getItem("npub"),
+      nostrPubKey: localStorage.getItem("local_npub"),
     });
     const response = await getDoc(docRef);
 
@@ -198,8 +198,13 @@ export const setupUserDocument = async (
     // if (localStorage.getItem("uniqueId") === "did:key:shared_global_account") {
     //   unlockEverything(userStateReference);
     // }
+
+    console.log("res data", res.data());
     if (res?.data()?.nostrPubKey) {
-      localStorage.setItem("npub", res?.data()?.nostrPubKey);
+      localStorage.setItem("local_npub", res?.data()?.nostrPubKey);
+    }
+    if (res?.data()?.displayName) {
+      localStorage.setItem("displayName", res?.data()?.displayName);
     }
 
     const response = await getDoc(docRef);
