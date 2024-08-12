@@ -110,14 +110,17 @@ const createPathElements = (
           pathSelectionAnimationData={pathSelectionAnimationData}
           path={path}
           id={path}
-          onClick={handlePathSelection}
+          onMouseDown={handlePathSelection}
           key={path}
           isUnlocked={true}
         >
           {isVisible ? (
-            <span onClick={handlePathSelection}>{displayText}</span>
+            <span onMouseDown={handlePathSelection}>{displayText}</span>
           ) : (
-            <RotatingEmoji isVisible={isVisible} onClick={handlePathSelection}>
+            <RotatingEmoji
+              isVisible={isVisible}
+              onMouseDown={handlePathSelection}
+            >
               🌀
             </RotatingEmoji>
           )}

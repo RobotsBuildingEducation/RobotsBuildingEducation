@@ -226,7 +226,7 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
     setNostrPubKey(user.npub);
 
     localStorage.setItem("local_nsec", testnsec);
-    localStorage.getItem("local_npub", user.npub);
+    localStorage.setItem("local_npub", user.npub);
     localStorage.setItem("uniqueId", user.npub);
   };
 

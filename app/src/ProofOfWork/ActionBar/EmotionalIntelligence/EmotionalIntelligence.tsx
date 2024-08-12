@@ -207,7 +207,7 @@ export const EmotionalIntelligence = ({
                   key={item.label}
                   color={item.color}
                   colorHover={item.colorHover}
-                  onClick={() => handleEmotionSelection(item, true)}
+                  onMouseDown={() => handleEmotionSelection(item, true)}
                 >
                   {item?.label}
                   <br />
@@ -225,7 +225,7 @@ export const EmotionalIntelligence = ({
                   key={item.label}
                   color={item.color}
                   colorHover={item.colorHover}
-                  onClick={() => handleEmotionSelection(item, true)}
+                  onMouseDown={() => handleEmotionSelection(item, true)}
                 >
                   {item?.label}
                   <br />

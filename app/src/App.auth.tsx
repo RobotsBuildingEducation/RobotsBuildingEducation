@@ -62,6 +62,12 @@ export const Auth = ({
     }
   }, [userDisplayName]);
 
+  useEffect(() => {
+    if (nsecInputRef.current) {
+      nsecInputRef.current.focus();
+    }
+  }, [nsecPassword]);
+
   const handleChangeDisplayName = (event) => {
     setUserDisplayName(event.target.value);
   };
@@ -98,17 +104,24 @@ export const Auth = ({
   const renderButtons = () => (
     <div>
       <h3 style={{ fontFamily: "Bungee", marginBottom: 18 }}>Welcome</h3>
-
+      <div>
+        All we need to create an account is a username and we'll handle the
+        rest!
+      </div>
+      <br />
       <button
-        onClick={() => setView("create")}
+        onMouseDown={() => setView("create")}
         style={{ width: "185px", backgroundColor: "#212529", color: "white" }}
       >
         <div style={{ textAlign: "left" }}>🔑 Create Account</div>
       </button>
       <br />
       <br />
+      or
+      <br />
+      <br />
       <button
-        onClick={() => setView("login")}
+        onMouseDown={() => setView("login")}
         style={{ width: "185px", backgroundColor: "#212529", color: "white" }}
       >
         <div style={{ textAlign: "left" }}>🔐 Sign In</div>
@@ -132,14 +145,14 @@ export const Auth = ({
       </InputGroup>
       <button
         style={{ backgroundColor: "#212529", color: "white" }}
-        onClick={() => setView("")}
+        onMouseDown={() => setView("")}
       >
         Back
       </button>
       &nbsp;
       <button
         style={{ backgroundColor: "#212529", color: "white" }}
-        onClick={createKeys}
+        onMouseDown={createKeys}
         disabled={isDisplayNameUpdating}
       >
         {isDisplayNameUpdating ? "Creating..." : "Create"}
@@ -163,14 +176,14 @@ export const Auth = ({
       </InputGroup>
       <button
         style={{ backgroundColor: "#212529", color: "white" }}
-        onClick={() => setView("")}
+        onMouseDown={() => setView("")}
       >
         Back
       </button>{" "}
       &nbsp;
       <button
         style={{ backgroundColor: "#212529", color: "white" }}
-        onClick={() =>
+        onMouseDown={() =>
           auth(nsecPassword).then(() => {
             connect();
           })
@@ -198,17 +211,8 @@ export const Auth = ({
                       <div>
                         {isFirstTimeUser && (
                           <div>
-                            <h3 style={{ fontFamily: "Bungee" }}>Welcome!</h3>
-                            <div>
-                              You've created an account using nostr! Nostr is an
-                              open cryptographic protocol that enables a truly
-                              censorship-resistant and global social network.
-                              This is where we hang out to learn more from
-                              skilled engineers, designers and activists who
-                              want to make the internet better. It lets you own
-                              data and publish your content, followers and
-                              digital money across networks.
-                            </div>
+                            {/* <h3 style={{ fontFamily: "Bungee" }}>Welcome!</h3> */}
+                            <div>That's all we need!</div>
                             <br />
                             <div>
                               Use your keys to manage your account and networks
@@ -226,13 +230,13 @@ export const Auth = ({
                               or{" "}
                               <a
                                 target="_blank"
-                                href="https://openvibe.social/"
+                                href="https://program-ai.app/"
                                 style={{
                                   color: "white",
                                   textDecoration: "underline",
                                 }}
                               >
-                                Openvibe's multi-platform network.
+                                Program AI App.
                               </a>
                             </div>
                             <br />
@@ -246,11 +250,10 @@ export const Auth = ({
                               }}
                             >
                               <b>
-                                ⚠️ We will only display this secret key once
-                                since it's not stored with us. It is important
-                                that you keep this key somewhere safe. It is
-                                used to verify your identity privately across
-                                networks. Treat it like a password.
+                                ⚠️ I understand that my key allows me to sign
+                                into different apps that may contain important
+                                and private data like Bitcoin. I have safely
+                                stored my keys.
                               </b>
                               <br /> <br />
                               <div
@@ -309,7 +312,7 @@ export const Auth = ({
                                   backgroundColor: "#212529",
                                   color: "white",
                                 }}
-                                onClick={connect}
+                                onMouseDown={connect}
                               >
                                 Launch app
                               </button>

@@ -55,7 +55,7 @@ function ContextAwareToggle({ children, eventKey, callback }) {
         backgroundColor: isCurrentEventKey ? PINK : "#222222",
         color: "white",
       }}
-      onClick={decoratedOnClick}
+      onMouseDown={decoratedOnClick}
     >
       {children}
     </button>
@@ -497,12 +497,12 @@ export const IdentityWallet = ({
                   <button
                     style={{ marginBottom: 8 }}
                     className="swap-send-button"
-                    onClick={handleSwapSend}
+                    onMouseDown={handleSwapSend}
                   >
                     Test cash tap
                   </button>
                   <br />
-                  <button className="swap-send-button" onClick={recharge}>
+                  <button className="swap-send-button" onMouseDown={recharge}>
                     Recharge
                   </button>
                 </div>

@@ -84,7 +84,6 @@ function PasscodeChecker({ setIsGlobalModalActive, userStateReference }) {
   };
 
   useEffect(() => {
-    console.log("Input", input);
     if (input === correctPasscode) {
       localStorage.setItem("patreonPasscode", input);
       setIsGlobalModalActive(false);
@@ -93,7 +92,7 @@ function PasscodeChecker({ setIsGlobalModalActive, userStateReference }) {
 
       // handleModuleSelection(lecture, "Focus Investing");
     }
-  }, [input]);
+  }, []);
 
   return (
     <Form>
@@ -145,7 +144,6 @@ export const GlobalModal = ({ userStateReference }) => {
         <Modal.Body style={{ backgroundColor: "black", color: "white" }}>
           <div style={paddingBlock("#500CB5")}>{modalContent.message}</div>
           {/* {JSON.stringify(modalContent)} */}
-
           <br />
           <br />
           <ExternalLink

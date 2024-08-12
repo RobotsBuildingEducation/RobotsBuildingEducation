@@ -67,7 +67,7 @@ export const DiscordButton = () => {
           maxWidth: "100%",
         }}
       >
-        <div
+        {/* <div
           style={{
             ...responsiveBox,
             ...paddingBlock("#5764F2"),
@@ -90,7 +90,7 @@ export const DiscordButton = () => {
         ></iframe>
         <br />
         <br />
-        <br />
+        <br /> */}
         {/* <RiseUpAnimation speed={0.3}> */}
         <div
           style={{
@@ -243,9 +243,7 @@ export const DiscordButton = () => {
           />
 
           <div style={{ padding: 5, textShadow: "0px 0px 2px black" }}>
-            <b style={{ textDecoration: "underline" }}>
-              Connect on Patreon (100% free)
-            </b>
+            <b style={{ textDecoration: "underline" }}>Connect on Patreon</b>
           </div>
         </a>
 

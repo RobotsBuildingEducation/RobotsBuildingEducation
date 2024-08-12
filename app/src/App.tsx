@@ -595,7 +595,8 @@ let App = () => {
             </div>
           </>
         </div>
-        {localStorage.getItem("local_npub") ? (
+        {localStorage.getItem("local_npub") ||
+        localStorage.getItem("uniqueId") ? (
           <ProofOfWorkWrapper
             userStateReference={userStateReference}
             globalStateReference={globalStateReference}
@@ -614,14 +615,13 @@ let App = () => {
           />
         ) : null}
       </div>
-
-      <GlobalModal userStateReference={userStateReference} />
+      {/* <GlobalModal userStateReference={userStateReference} />
       <PasscodeModal
         isLocalModalActive={isLocalModalActive}
         setIsLocalModalActive={setIsLocalModalActive}
         handleModuleSelection={handleModuleSelection}
         patreonObject={uiStateReference.patreonObject}
-      />
+      /> */}
     </>
   );
 };

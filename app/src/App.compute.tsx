@@ -178,7 +178,6 @@ export const setupUserDocument = async (
     const response = await getDoc(docRef);
 
     userStateReference.setDatabaseUserDocument(response.data());
-
     addKnowledgeStep(
       "1",
       "Launched a decentralized AI assistant that works inside of social media and started their first session with us at robotsbuildingeducation.com.",
@@ -196,7 +195,7 @@ export const setupUserDocument = async (
     }
 
     // if (localStorage.getItem("uniqueId") === "did:key:shared_global_account") {
-    //   unlockEverything(userStateReference);
+    //
     // }
 
     console.log("res data", res.data());

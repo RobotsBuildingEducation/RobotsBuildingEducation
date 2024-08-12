@@ -2106,6 +2106,7 @@ throw new Error(
                 width="150"
                 // borderRadius={"50%"}
               />
+              <br />
             </Typewriter>
           ),
           spanish: ``,

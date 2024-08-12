@@ -164,12 +164,9 @@ export const Landing = ({
         strategically using a decision map with hints and guidance. After
         figuring out a solution, request feedback to see how you can improve.
       </Feature>
-      <Feature title="Challenges" emoji="💎">
-        You'll gain access a growing list of 170+ questions that you can only
-        attempt once every two hours. Additionally, dive deeper into learning
-        with our unique 'Conversation Quiz' feature. As you explore topics,
-        receive personalized feedback on your curiosity and quiz performance.
-        It’s interactive, insightful, and tailored to your learning journey.
+      <Feature title="Program AI App" emoji="💎">
+        Connect to Program AI App with your accounts keys and answer 100+
+        questions based on the material found here!
       </Feature>
       {/* <Feature title="Assistance" emoji="🌀">
         An AI tool that helps you write code, generate schedules, create

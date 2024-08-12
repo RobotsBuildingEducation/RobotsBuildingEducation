@@ -83,6 +83,31 @@ export const LearnMore = ({ languageMode }) => {
             </Button>
           </RiseUpAnimation>
         )}
+        {showSecond && (
+          <RiseUpAnimation speed={0.3}>
+            <Button
+              variant="dark"
+              style={{
+                color: "white",
+                textShadow: "0px 0px 4px black",
+                margin: 6,
+                width: 180,
+                display: "flex",
+              }}
+              onMouseDown={() => {
+                logEvent(analytics, "select_content", {
+                  content_type: "button",
+                  item_id: "About",
+                });
+                localStorage.clear();
+                window.location.reload();
+              }}
+            >
+              {/* <div>&nbsp; {languageMode.buttons["9"]}</div> */}
+              <div style={{ textAlign: "center", width: "100%" }}>Sign Out</div>
+            </Button>
+          </RiseUpAnimation>
+        )}
         {/* {showSecond && (
           <RiseUpAnimation speed={0.3}>
             <a
