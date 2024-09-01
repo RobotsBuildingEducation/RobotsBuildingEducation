@@ -184,7 +184,7 @@ export const CodeBlock = ({
     setMessages,
   } = useChatStream({
     apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-    model: "gpt-4o",
+    model: "gpt-4o-mini",
     temperature: 0.9,
     response_format: { type: "json_object" },
   });

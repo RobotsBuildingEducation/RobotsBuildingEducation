@@ -5,6 +5,7 @@ import { GetLandingPageMessage } from "./App.compute";
 import { Button as ConnectWallet } from "@getalby/bitcoin-connect-react";
 import roxanaChat from "./common/media/images/roxanaChat.png";
 import roxGlobal from "./common/media/images/roxGlobal.png";
+import get_started from "./common/media/images/get_started.png";
 import { Collections } from "./Collections/Collections";
 import { Intro } from "./ChatGPT/Intro/Intro";
 import { CodeDisplay } from "./common/ui/Elements/CodeDisplay/CodeDisplay";
@@ -21,8 +22,10 @@ export const Landing = ({
   const renderWelcomeMessage = () => (
     <>
       <ExternalLink
+        isPremium
         link="https://www.patreon.com/collection/20666?view=expanded"
-        textDisplay={<b>Getting Started Kit</b>}
+        textDisplay={get_started}
+        width="75%"
       />
       <br />
       <br />
@@ -68,54 +71,6 @@ export const Landing = ({
         ) : (
           <div>Creating next steps...</div>
         )}
-        <br />
-        <br />
-        <b>Why would I deposit Bitcoin?</b>
-        <br />
-        <a
-          style={{ color: "gold", fontSize: 16, textDecoration: "underline" }}
-          href="https://www.patreon.com/robotsbuildingeducation"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <button
-            style={{
-              backgroundColor: "#4003ba",
-              color: "white",
-              width: 180,
-              textAlign: "left",
-              marginTop: 8,
-              paddingTop: 7,
-              paddingBottom: 7,
-            }}
-          >
-            <span style={{ marginLeft: "-3px" }}>📬</span>
-            &nbsp;&nbsp;&nbsp;
-            <b style={{ marginLeft: "1px" }}>Subscribe</b>
-          </button>
-        </a>
-        <br />
-        <br />
-        The goal of Robots Building Education is to create scholarships with
-        learning.&nbsp;
-        <a
-          href="https://old-fashionedintelligence.info/access"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ textDecoration: "underline", color: "white" }}
-        >
-          <b>Connecting your wallet</b>
-        </a>{" "}
-        allows you to use instant Bitcoin microtransactions. This lets us
-        monetize user experiences instead of bundling it all behind a
-        subscription service. For now, you can only deposit the equivalent of
-        $0.02.
-        <br />
-        <br />
-        Otherwise you can access even more free material and services on
-        Patreon. Subscriptions are used to develop this platform and improve its
-        quality of service.
-        <br />
         <br />
       </div>
     </>
@@ -296,19 +251,56 @@ export const Landing = ({
                 />
                 <br />
                 <br />
+                <b>Why would I deposit Bitcoin or subscribe?</b>
+                <br />
+                <a
+                  style={{
+                    color: "gold",
+                    fontSize: 16,
+                    textDecoration: "underline",
+                  }}
+                  href="https://www.patreon.com/robotsbuildingeducation"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button
+                    style={{
+                      backgroundColor: "#4003ba",
+                      color: "white",
+                      width: 180,
+                      textAlign: "left",
+                      marginTop: 8,
+                      paddingTop: 7,
+                      paddingBottom: 7,
+                    }}
+                  >
+                    <span style={{ marginLeft: "-3px" }}>📬</span>
+                    &nbsp;&nbsp;&nbsp;
+                    <b style={{ marginLeft: "1px" }}>Subscribe</b>
+                  </button>
+                </a>
+                <br />
+                <br />
                 Okay okay I'll stop messing around. We're building this platform
                 because we believe that we can create scholarships with
                 learning. This means that we manually create these scholarships
-                if you subscribe to Patreon, which is made publicly free too.
-                Feel welcome to use the tools at the bottom as they continue to
-                advance with you over time:
+                if you subscribe to Patreon. Subscriptions are used to develop
+                this platform and improve its quality of service.
+                <br />
+                <br />
+                <b>Connecting your wallet</b>&nbsp;allows you to use instant
+                Bitcoin microtransactions. This lets us monetize user
+                experiences instead of bundling it all behind a subscription
+                service. That means when you put effort into learning, that
+                effort results in the creation of scholarships. Pretty wild
+                concept right? For now, you can only deposit the equivalent of
+                $0.02.
                 <br />
                 <br />
                 Programmatically, this means we research ways to make Bitcoin
-                more accessible and meaningful. Bitcoin allows us to monetize
-                user experiences instead of offering subscription services. It's
-                here where we believe that this decentralized network can change
-                finance for education services.
+                more accessible and meaningful. It's here where we believe that
+                this decentralized network can change finance for education
+                services.
                 <br />
                 <br />
                 And you ought to believe it because you did create your account

@@ -195,7 +195,7 @@ export const ChatBlock = ({ children, type = "quiz", hasTutorial = false }) => {
     setMessages,
   } = useChatStream({
     apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-    model: "gpt-4o",
+    model: "gpt-4o-mini",
     temperature: 0.9,
   });
 

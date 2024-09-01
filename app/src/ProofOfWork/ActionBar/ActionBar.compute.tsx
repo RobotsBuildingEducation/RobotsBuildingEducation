@@ -9,9 +9,10 @@ import { decentralizedEducationTranscript } from "../../App.constants";
 import { FadeInComponent, japaneseThemePalette } from "../../styles/lazyStyles";
 import { analytics } from "../../database/firebaseResources";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Paths } from "../../Paths/Paths";
 import { HamburgerMenu } from "../../common/svgs/HamburgerMenu";
+import { useSharedNostr } from "../../App.web5";
 
 export const renderTranscriptAwards = (profileData) => {
   if (isEmpty(profileData)) {

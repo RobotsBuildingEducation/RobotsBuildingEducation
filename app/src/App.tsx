@@ -126,6 +126,7 @@ let App = () => {
     generateNostrKeys,
     postNostrContent,
     auth,
+    assignExistingBadgeToNpub,
   } = useSharedNostr(localStorage.getItem("local_npub"), secretKeyState);
   /**
    *
@@ -282,6 +283,8 @@ let App = () => {
       ...prevDoc,
       profile,
     }));
+
+    assignExistingBadgeToNpub(uiStateReference.patreonObject?.badgeAddress);
   };
 
   const handleCompletedPractice = async (moduleData = null, patreonObject) => {

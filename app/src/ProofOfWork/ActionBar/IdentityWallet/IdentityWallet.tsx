@@ -95,6 +95,8 @@ export const IdentityWallet = ({
   const [userDisplayName, setUserDisplayName] = useState("");
   const [isDisplayNameUpdating, setIsDisplayNameUpdating] = useState(false);
   const [isFirstTimeUser, setIsFirstTimeUser] = useState(false);
+  const [badges, setBadges] = useState([]);
+  const [areBadgesLoading, setAreBadgesLoading] = useState(true);
 
   const {
     isConnected,
@@ -103,6 +105,7 @@ export const IdentityWallet = ({
     nostrPrivKey,
     generateNostrKeys,
     postNostrContent,
+    getUserBadges,
   } = useSharedNostr(localStorage.getItem("local_npub"), secretKeyState);
 
   const {
@@ -165,6 +168,15 @@ export const IdentityWallet = ({
     setIsDisplayNameUpdating(false);
   };
 
+  useEffect(() => {
+    async function getBadges() {
+      let data = await getUserBadges();
+      setBadges(data);
+      setAreBadgesLoading(false);
+    }
+    getBadges();
+  }, []);
+
   return (
     <>
       <Modal
@@ -220,6 +232,9 @@ export const IdentityWallet = ({
               width: "100%",
             }}
           >
+            <i>Everything here is experimental. Expect no stability.</i>
+            <br />
+            <br />
             {/* <h4>
               <div style={{ marginBottom: 12 }}>Decentralized Identity</div>
               {localStorage.getItem("uniqueId") ? (
@@ -471,7 +486,6 @@ export const IdentityWallet = ({
             )}
             <br />
             <br />
-
             <main>
               <div className="cashu-operations-container">
                 <div className="section">
@@ -547,6 +561,63 @@ export const IdentityWallet = ({
             >
               {renderTranscriptAwards(
                 userStateReference.databaseUserDocument.profile
+              )}
+            </div>
+            <br />
+            <h4>Cross-Platform Awards</h4>
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                flexWrap: "wrap",
+              }}
+            >
+              {areBadgesLoading ? (
+                <div style={{ width: "fit-content" }}>
+                  Loading cross-platform transcript...
+                </div>
+              ) : (
+                <div
+                  style={{
+                    display: "flex",
+                    margin: 2,
+                    flexWrap: "wrap",
+                    width: "fit-content",
+                    height: "min-content",
+                  }}
+                >
+                  {badges?.length > 0
+                    ? badges.map((badge) => (
+                        <div
+                          style={{
+                            margin: 6,
+
+                            width: "250px",
+                            height: "100px",
+                            display: "flex",
+                          }}
+                        >
+                          <a
+                            target="_blank"
+                            href={`https://badges.page/a/${badge.badgeAddress}`}
+                          >
+                            <img
+                              src={badge.image}
+                              width={100}
+                              style={{
+                                borderRadius: "33%",
+                                boxShadow: "0px 1px 1px 2px black",
+                                marginBottom: 4,
+                              }}
+                            />
+                          </a>
+                          <div style={{ fontSize: "12px", padding: 6 }}>
+                            {badge.name}
+                          </div>
+                        </div>
+                      ))
+                    : "No awards found"}
+                </div>
               )}
             </div>
             <br />
