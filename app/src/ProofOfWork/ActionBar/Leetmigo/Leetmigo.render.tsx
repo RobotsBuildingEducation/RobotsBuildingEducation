@@ -43,7 +43,7 @@ export const RenderLeetmigo = () => {
     resetMessages: resetProblemMessages,
   } = useChatStream({
     apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-    model: "gpt-4o",
+    model: "gpt-4o-mini",
     temperature: 0.9,
   });
   const {
@@ -53,7 +53,7 @@ export const RenderLeetmigo = () => {
     resetMessages: resetFeedbackMessages,
   } = useChatStream({
     apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-    model: "gpt-4o",
+    model: "gpt-4o-mini",
     temperature: 0.9,
   });
 
