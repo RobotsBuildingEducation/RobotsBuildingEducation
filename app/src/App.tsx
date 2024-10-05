@@ -73,6 +73,7 @@ import { Typewriter } from "./common/ui/Elements/Typewriter/Typewriter";
 import { Landing } from "./App.landing";
 import { Auth } from "./App.auth";
 import { useSharedNostr } from "./App.web5";
+import RandomCharacter from "./common/ui/Elements/RandomCharacter/RandomCharacter";
 logEvent(analytics, "page_view", {
   page_location: "https://learn-robotsbuildingeducation.firebaseapp.com/",
 });
@@ -447,6 +448,99 @@ let App = () => {
   //   );
   // }
 
+  const [isShutDown, setIsShutDown] = useState(false);
+  const [isBroken, setIsBroken] = useState(true);
+
+  useEffect(() => {
+    if (localStorage.getItem("security") === import.meta.env.VITE_SECURITY) {
+      setIsBroken(false);
+    }
+  }, []);
+
+  if (isBroken) {
+    return (
+      <div
+        style={{
+          padding: 50,
+          maxWidth: "600px",
+          height: "100vh",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "left",
+        }}
+      >
+        The app is currently down taken down due to malicious behavior. The app
+        will not work as intended.
+        <br />
+        <br />
+        If you are the person attacking my small education business, please
+        accept the apology for whatever grievance I have created and allow folks
+        to continue accessing resources they seek.
+        <br />
+        <br />
+        {/* <Input
+          onChange={(event) => {
+            localStorage.setItem("security", event.target.value);
+            if (
+              localStorage.getItem("security") === import.meta.env.VITE_SECURITY
+            ) {
+              setIsBroken(false);
+            }
+          }}
+        /> */}
+        {/* Currently try to contact with OpenAI and my bank in order to handle this
+        😔 */}
+        {/* <Button onMouseDown={() => setIsShutDown(false)}>Enter anyway</Button> */}
+        {/* "Why are AI features disabled?"{" "}
+        <b>
+          There seems to be something seriously wrong with the account owner's
+          billing and I'm being charged thousands of dollars for something that
+          shouldn't cost that much.
+        </b>
+        <br />
+        <br /> */}
+        <a
+          href="https://patreon.com/robotsbuildingeducation"
+          target="_blank"
+          style={{ textDecoration: "underline" }}
+        >
+          Patreon
+        </a>
+        <br />
+        The lecture series and patreon content are still very valuable and will
+        save you time, energy and money when it comes to learning so I encourage
+        you to go through them during this down time!! Thank you for your
+        patience D:
+        <br /> <br />
+        {/* <a
+          href="https://robotsbuildingeducation.com"
+          target="_blank"
+          style={{ textDecoration: "underline" }}
+        >
+          Rox the tutor
+        </a> */}
+        <br />
+        <a
+          href="https://chatgpt.com/g/g-09h5uQiFC-robots-building-education"
+          target="_blank"
+          style={{ textDecoration: "underline" }}
+        >
+          Robots Building Education GPT
+        </a>
+        <div style={{ display: "flex" }}>
+          <RandomCharacter />
+          <RandomCharacter /> <RandomCharacter /> <RandomCharacter />{" "}
+          <RandomCharacter /> <RandomCharacter />
+          <RandomCharacter /> <RandomCharacter /> <RandomCharacter />{" "}
+          <RandomCharacter /> <RandomCharacter />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <div
@@ -516,7 +610,10 @@ let App = () => {
                     ROX
                   </StyledRoxHeader>
                 </RiseUpAnimation>
-
+                {/* <div style={{ fontSize: 12 }}>
+                  AI features are currently disabled due to someone personally
+                  attacking the platform.
+                </div> */}
                 <Header
                   languageMode={languageMode}
                   setLanguageMode={setLanguageMode}

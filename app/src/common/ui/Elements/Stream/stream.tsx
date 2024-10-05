@@ -10,7 +10,7 @@ export const getOpenAiRequestOptions = (
 ) => ({
   headers: {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${apiKey}`,
+    // Authorization: `Bearer ${apiKey}`,
   },
   method: "POST",
   body: JSON.stringify({

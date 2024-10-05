@@ -9,16 +9,24 @@ const { TextDecoder } = require("util"); // Import TextDecoder for decoding stre
 const { pipeline } = require("stream");
 const { promisify } = require("util");
 const pipelineAsync = promisify(pipeline);
+const rateLimit = require("express-rate-limit"); // Import the rate-limit package
 
 dotenv.config();
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
+
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 15 minutes
+  max: 5, // Limit each IP to 100 requests per windowMs
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: true, // Disable the `X-RateLimit-*` headers
+});
+
+// Apply the rate limiter to all requests or a specific route
+app.use(limiter); // You can also use app.use("/prompt", limiter); to limit only the "/prompt" route
 
 app.post("/prompt", async (req, res) => {
   try {
@@ -26,7 +34,7 @@ app.post("/prompt", async (req, res) => {
 
     // Construct the payload for OpenAI API
     const constructor = {
-      model: model || "gpt-4",
+      model: "gpt-4o-mini",
       messages: messages || [],
       stream: true, // Enable streaming
       ...restOfApiParams,

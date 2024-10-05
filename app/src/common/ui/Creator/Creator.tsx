@@ -759,7 +759,7 @@ export const Creator = {
               <MarkdownRenderer
                 file={
                   await import(
-                    "../../markdowns/humanComputerInteraction.md?raw"
+                    "../../markdowns/UIUXhumanComputerInteraction.md?raw"
                   )
                 }
                 patreonObject={null}
