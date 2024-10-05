@@ -73,10 +73,6 @@ export const ActionBar = ({
 
   const { balance } = useProofStorage();
 
-  console.log("localStorage balance", localStorage.getItem("balance"));
-  console.log("useProofStorage balance", balance);
-  console.log("globalBalance", globalBalance);
-
   useEffect(() => {
     const impactDocRef = doc(database, "global", "impact");
 
@@ -183,7 +179,7 @@ export const ActionBar = ({
       </div>
 
       {/* {isIdentityWalletOpen ? (
-        IdentityWallet
+        IdentityWallet 
           isIdentityWalletOpen={isIdentityWalletOpen}
           setIsIdentityWalletOpen={setIsIdentityWalletOpen}
           userStateReference={userStateReference}

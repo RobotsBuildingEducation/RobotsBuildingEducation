@@ -1,19 +1,12 @@
-
+import NDK, {
+  NDKPrivateKeySigner,
+  NDKEvent,
+  NDKKind,
+} from "@nostr-dev-kit/ndk";
 import { Buffer } from "buffer";
 
 import { bech32 } from "bech32";
 import { useEffect, useState } from "react";
-
-
-import { NDKPrivateKeySigner } from "@nostr-dev-kit/ndk";
-
-const generateNostrKeys = async () => {
-    const privateKeySigner = NDKPrivateKeySigner.generate();
-    const privateKey = privateKeySigner.privateKey;
-    const user = await privateKeySigner.user();
-
-    return user;
-  }
 
 export const useSharedNostr = (initialNpub, initialNsec) => {
   const [isConnected, setIsConnected] = useState(false);
@@ -23,8 +16,8 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
 
   useEffect(() => {
     // Load keys from local storage if they exist
-    const storedNpub = localStorage.getItem("npub");
-    const storedNsec = localStorage.getItem("nsec");
+    const storedNpub = localStorage.getItem("local_npub");
+    const storedNsec = localStorage.getItem("local_nsec");
 
     if (storedNpub) {
       setNostrPubKey(storedNpub);
@@ -40,8 +33,6 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
     const privateKey = privateKeySigner.privateKey;
     const user = await privateKeySigner.user();
 
-    return;
-  }
     console.log("user...", user);
     const publicKey = user.npub;
     console.log("public key..", publicKey);
@@ -58,7 +49,7 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
     setNostrPrivKey(encodedNsec);
     setNostrPubKey(encodedNpub);
 
-    if (!localStorage.getItem("nsec")) {
+    if (!localStorage.getItem("local_nsec")) {
       postNostrContent(
         JSON.stringify({
           name: userDisplayName,
@@ -70,18 +61,17 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
       );
     }
 
-    localStorage.setItem("nsec", encodedNsec);
-    localStorage.setItem("npub", publicKey);
+    localStorage.setItem("local_nsec", encodedNsec);
+    localStorage.getItem("local_npub", publicKey);
 
     return { npub: publicKey, nsec: encodedNsec };
   };
 
   const connectToNostr = async (npubRef = null, nsecRef = null) => {
-    console.log("REF PUB 2", npubRef);
-    console.log("NSEC ref 2", nsecRef);
     const defaultNsec = import.meta.env.VITE_GLOBAL_NOSTR_NSEC;
     const defaultNpub =
       "npub1mgt5c7qh6dm9rg57mrp89rqtzn64958nj5w9g2d2h9dng27hmp0sww7u2v";
+
     const nsec = nsecRef || nostrPrivKey || defaultNsec;
     const npub = npubRef || nostrPubKey || defaultNpub;
 
@@ -119,8 +109,6 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
     npubRef = null,
     nsecRef = null
   ) => {
-    console.log("REF PUB", npubRef);
-    console.log("NSEC ref", nsecRef);
     const connection = await connectToNostr(npubRef, nsecRef);
     if (!connection) return;
 
@@ -137,8 +125,6 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
 
     // Sign the note event
     await noteEvent.sign(signer);
-
-    console.log("Signed Note", noteEvent.rawEvent());
 
     // Publish the note event
     await noteEvent.publish();

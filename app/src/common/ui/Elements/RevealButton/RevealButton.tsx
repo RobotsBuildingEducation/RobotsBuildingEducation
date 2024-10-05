@@ -9,7 +9,7 @@ import {
 } from "../../../../styles/lazyStyles";
 import { getRandomColor } from "../../../../App.compute";
 import RandomCharacter from "../RandomCharacter/RandomCharacter";
-
+import gold_bars from "../../../media/images/gold_bars.png";
 const delayedAnimation = keyframes`
 from {
     transform: translateY(100px);
@@ -80,7 +80,11 @@ const SummaryItem = ({ question, answer, index }) => {
 export const RevealButton = ({ content }) => {
   const data = [
     {
-      question: "📜 Learn more",
+      question: (
+        <div>
+          <img src={gold_bars} width="75px" />
+        </div>
+      ),
       answer: (
         <p
           style={{

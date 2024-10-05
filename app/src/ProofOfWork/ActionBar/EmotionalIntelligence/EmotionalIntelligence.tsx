@@ -56,7 +56,7 @@ export const EmotionalIntelligence = ({
     resetMessages: resetChatGptMessages,
   } = useChatStream({
     apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-    model: "gpt-4o",
+    model: "gpt-4o-mini",
     temperature: 0.9,
     // response_format: { type: "json_object" },
   });
@@ -68,7 +68,7 @@ export const EmotionalIntelligence = ({
     resetMessages: resetSummarizerMessages,
   } = useChatStream({
     apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-    model: "gpt-4o",
+    model: "gpt-4o-mini",
     temperature: 0.9,
     // response_format: { type: "json_object" },
   });
@@ -207,7 +207,7 @@ export const EmotionalIntelligence = ({
                   key={item.label}
                   color={item.color}
                   colorHover={item.colorHover}
-                  onClick={() => handleEmotionSelection(item, true)}
+                  onMouseDown={() => handleEmotionSelection(item, true)}
                 >
                   {item?.label}
                   <br />
@@ -225,7 +225,7 @@ export const EmotionalIntelligence = ({
                   key={item.label}
                   color={item.color}
                   colorHover={item.colorHover}
-                  onClick={() => handleEmotionSelection(item, true)}
+                  onMouseDown={() => handleEmotionSelection(item, true)}
                 >
                   {item?.label}
                   <br />
@@ -234,6 +234,15 @@ export const EmotionalIntelligence = ({
               ))}
             </div>
             <br /> <br /> <br />
+            {!isEmpty(usersEmotionsFromDB) ? null : (
+              <>
+                {" "}
+                <br />
+                <br />
+                <br />
+                <br />
+              </>
+            )}
           </div>
           {!isEmpty(usersEmotionsFromDB) ? (
             <>
@@ -272,7 +281,7 @@ export const EmotionalIntelligence = ({
                   >
                     <RoxanaLoadingAnimation
                       nochat={false}
-                      header={"Creating and designing 🌀"}
+                      header={"creating"}
                       intel={true}
                     />
                   </div>
@@ -442,7 +451,7 @@ export const EmotionalIntelligence = ({
               >
                 <RoxanaLoadingAnimation
                   nochat={false}
-                  header={"Creating and designing 🌀"}
+                  header={"creating"}
                   intel={true}
                 />
               </div>{" "}

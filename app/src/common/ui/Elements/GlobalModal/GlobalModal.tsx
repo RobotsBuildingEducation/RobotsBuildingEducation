@@ -19,66 +19,66 @@ function PasscodeChecker({ setIsGlobalModalActive, userStateReference }) {
   //   uiCollections.Entrepeneur["Investing & Business"]["Focus Investing"];
 
   let unlockEverything = async () => {
-    // await updateDoc(userStateReference.userDocumentReference, {
-    //   unlocks: {
-    //     Philosophy: true,
-    //     "Learning Mindset & Perspective": true,
-    //     "Lesson 3 Backend Engineering": true,
-    //     "Lesson 5 Computer Science": true,
-    //     "Resume Writing": true,
-    //     "Lesson 4 Building Apps & Startups": true,
-    //     "Lesson 2 Frontend Programming": true,
-    //     "Focus Investing": true,
-    //     "Interactions & Design": true,
-    //     "Lesson 1 Coding Fundamentals": true,
-    //     "The Psychology Of Self-esteem": true,
-    //   },
-    //   watches: {
-    //     Philosophy: true,
-    //     "Learning Mindset & Perspective": true,
-    //     "Resume Writing": true,
-    //     "Lesson 1 Coding Fundamentals": true,
-    //     "Lesson 3 Backend Engineering": true,
-    //     "Interactions & Design": true,
-    //     "Lesson 5 Computer Science": true,
-    //     "Focus Investing": true,
-    //     "Lesson 4 Building Apps & Startups": true,
-    //     "Lesson 2 Frontend Programming": true,
-    //     "The Psychology Of Self-esteem": true,
-    //   },
-    //   progress: {
-    //     "Lesson 3 Backend Engineering": true,
-    //     "Focus Investing": true,
-    //     "Lesson 2 Frontend Programming": true,
-    //     "Lesson 4 Building Apps & Startups": true,
-    //     "Interactions & Design": true,
-    //     "Resume Writing": true,
-    //     "Lesson 1 Coding Fundamentals": true,
-    //     "The Psychology Of Self-esteem": true,
-    //     "Lesson 5 Computer Science": true,
-    //     "Learning Mindset & Perspective": true,
-    //     Philosophy: true,
-    //   },
-    // });
+    await updateDoc(userStateReference.userDocumentReference, {
+      unlocks: {
+        Philosophy: true,
+        "Learning Mindset & Perspective": true,
+        "Lesson 3 Backend Engineering": true,
+        "Lesson 5 Computer Science": true,
+        "Resume Writing": true,
+        "Lesson 4 Building Apps & Startups": true,
+        "Lesson 2 Frontend Programming": true,
+        "Focus Investing": true,
+        "Interactions & Design": true,
+        "Lesson 1 Coding Fundamentals": true,
+        "The Psychology Of Self-esteem": true,
+      },
+      watches: {
+        Philosophy: true,
+        "Learning Mindset & Perspective": true,
+        "Resume Writing": true,
+        "Lesson 1 Coding Fundamentals": true,
+        "Lesson 3 Backend Engineering": true,
+        "Interactions & Design": true,
+        "Lesson 5 Computer Science": true,
+        "Focus Investing": true,
+        "Lesson 4 Building Apps & Startups": true,
+        "Lesson 2 Frontend Programming": true,
+        "The Psychology Of Self-esteem": true,
+      },
+      progress: {
+        "Lesson 3 Backend Engineering": true,
+        "Focus Investing": true,
+        "Lesson 2 Frontend Programming": true,
+        "Lesson 4 Building Apps & Startups": true,
+        "Interactions & Design": true,
+        "Resume Writing": true,
+        "Lesson 1 Coding Fundamentals": true,
+        "The Psychology Of Self-esteem": true,
+        "Lesson 5 Computer Science": true,
+        "Learning Mindset & Perspective": true,
+        Philosophy: true,
+      },
+    });
 
     // await updateWebNodeRecord(web5Reference, dwnRecordSet, unlocks);
 
-    // userStateReference.setDatabaseUserDocument((prevDoc) => ({
-    //   ...prevDoc,
-    //   unlocks: {
-    //     Philosophy: true,
-    //     "Learning Mindset & Perspective": true,
-    //     "Lesson 3 Backend Engineering": true,
-    //     "Lesson 5 Computer Science": true,
-    //     "Resume Writing": true,
-    //     "Lesson 4 Building Apps & Startups": true,
-    //     "Lesson 2 Frontend Programming": true,
-    //     "Focus Investing": true,
-    //     "Interactions & Design": true,
-    //     "Lesson 1 Coding Fundamentals": true,
-    //     "The Psychology Of Self-esteem": true,
-    //   },
-    // }));
+    userStateReference.setDatabaseUserDocument((prevDoc) => ({
+      ...prevDoc,
+      unlocks: {
+        Philosophy: true,
+        "Learning Mindset & Perspective": true,
+        "Lesson 3 Backend Engineering": true,
+        "Lesson 5 Computer Science": true,
+        "Resume Writing": true,
+        "Lesson 4 Building Apps & Startups": true,
+        "Lesson 2 Frontend Programming": true,
+        "Focus Investing": true,
+        "Interactions & Design": true,
+        "Lesson 1 Coding Fundamentals": true,
+        "The Psychology Of Self-esteem": true,
+      },
+    }));
 
     setIsGlobalModalActive(false);
   };
@@ -86,12 +86,13 @@ function PasscodeChecker({ setIsGlobalModalActive, userStateReference }) {
   useEffect(() => {
     if (input === correctPasscode) {
       localStorage.setItem("patreonPasscode", input);
+      setIsGlobalModalActive(false);
 
-      unlockEverything();
+      // unlockEverything();
 
       // handleModuleSelection(lecture, "Focus Investing");
     }
-  }, [input]);
+  }, []);
 
   return (
     <Form>
@@ -143,7 +144,6 @@ export const GlobalModal = ({ userStateReference }) => {
         <Modal.Body style={{ backgroundColor: "black", color: "white" }}>
           <div style={paddingBlock("#500CB5")}>{modalContent.message}</div>
           {/* {JSON.stringify(modalContent)} */}
-
           <br />
           <br />
           <ExternalLink

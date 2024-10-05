@@ -6,7 +6,12 @@ import styled from "styled-components";
 import { MultipleChoiceQuestion } from "./Templates/MultipleChoiceQuestion/MultipleChoiceQuestion";
 import { TextInputQuestion } from "./Templates/TextInputQuestion/TextInputQuestion";
 import { getDoc, updateDoc } from "firebase/firestore";
-import { updateImpact, updateLevel } from "../../../App.compute";
+import {
+  animateBorderLoading,
+  copyToClipboard,
+  updateImpact,
+  updateLevel,
+} from "../../../App.compute";
 import { OutputQuestion } from "./Templates/OutputQuestion/OutputQuestion";
 import { japaneseThemePalette } from "../../../styles/lazyStyles";
 import { SelectionQuestion } from "./Templates/SelectionQuestion/SelectionQuestion";
@@ -1457,6 +1462,10 @@ export const BossMode = ({
     localStorage.getItem("lastCorrectAnswerTime")
   );
 
+  const [copyNostr, setCopyNostr] = useState("Copy secret key");
+  const [borderStateForNostrCopy, setBorderStateForNostrCopy] =
+    useState("2px solid #793feb");
+
   const currentQuestion = questions[currentQuestionIndex];
 
   const handleAnswerSubmission = (
@@ -1734,28 +1743,60 @@ export const BossMode = ({
                     maxWidth: 700,
                   }}
                 >
-                  rox has created a growing list of 170+ challenging questions
-                  ranging from software engineering to building startups that
-                  you can only attempt once every two hours. Some questions will
-                  be more fair than others. You may see experimental features
-                  implemented if you connect your Bitcoin wallet.
+                  Don't forget your keys!
                 </div>
                 <br />
+
+                <div
+                  style={{
+                    maxWidth: "fit-content",
+                    display: "flex",
+                    padding: 8,
+                    borderRadius: 8,
+                    color: "white",
+                    backgroundColor: "#793feb",
+                    cursor: "pointer",
+                    border: borderStateForNostrCopy,
+                    transition: "0.25s all ease-in-out",
+                  }}
+                  onMouseDown={async () => {
+                    copyToClipboard(`${localStorage.getItem("local_nsec")}`);
+                    setCopyNostr("Copied!");
+                    animateBorderLoading(
+                      setBorderStateForNostrCopy,
+                      "2px solid gold",
+                      "2px solid #793feb",
+                      1500
+                    );
+                    const delay = (ms) =>
+                      new Promise((resolve) => setTimeout(resolve, ms));
+                    await delay(1500);
+                    setCopyNostr("Copy secret key");
+                  }}
+                >
+                  <span>🔐 &nbsp;{copyNostr}</span>
+                </div>
                 <br />
-                <p>Add your Discord Tag</p>
-                <input
-                  type="text"
-                  value={discordTag}
-                  onChange={handleDiscordTagInput}
-                />
-                <br />
+
+                <a
+                  href="https://program-ai.app"
+                  style={{
+                    textShadow: "0px 0px black",
+                    textDecoration: "underline",
+                    color: "white",
+                    fontWeight: "bolder",
+                  }}
+                >
+                  Go to Program AI App
+                </a>
+                {/* <br />
                 <br />
                 <button
                   disabled={discordTag?.length < 2}
                   onMouseDown={submitDiscordTagInput}
                 >
                   Submit
-                </button>
+                </button> */}
               </div>
             )}
           </div>

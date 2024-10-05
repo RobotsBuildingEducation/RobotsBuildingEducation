@@ -21,6 +21,10 @@ export const Creator = {
       fileSource:
         "https://res.cloudinary.com/sheilfer/video/upload/v1697492158/IMG_9002_sfq8dw.mov", // may not need
 
+      badgeImgSrc:
+        "https://image.nostr.build/b13bad12d70560371cde14d2359fd07fe3a628da0a6af3a39365d6fd3f8ee03a.gif",
+      badgeAddress:
+        "naddr1qqk9q6rfd3hhxmmsdpuj6mmx94phy6t5d93kzmpd235x2mmj0ykkzmny942x2cmgdehkcmm80ypzp2epdsz2ld5sur4qd9q4yuuqr3hmw35u9r0gcyq7f84sx8qqlckhqvzqqqr48yd3g0g4",
       knowledge: {
         start: {
           step: "59",
@@ -660,7 +664,10 @@ export const Creator = {
       creatorBorder: true,
 
       credential: "Human-Computer Interaction",
-
+      badgeImgSrc:
+        "https://image.nostr.build/e53c3c3068ff4e83071b62fa6e487ddcb7f36bc68cdf6c762181d98fcc3b931b.gif",
+      badgeAddress:
+        "naddr1qqdysatdv9hz6sm0d4c82ar9wgk5jmn5v4exzcm5d9hkuq3q4vskcp90k6gwp6sxjs2jwwqpcmahg6wz3h5vzq0yn6crrsq0uttsxpqqqp6njcqp0u5",
       header: `Interactions & Design`,
       backgroundImgSrc:
         "https://res.cloudinary.com/sheilfer/image/upload/v1697448652/Module_Buttons_11_fcepaw.gif",
@@ -752,7 +759,7 @@ export const Creator = {
               <MarkdownRenderer
                 file={
                   await import(
-                    "../../markdowns/humanComputerInteraction.md?raw"
+                    "../../markdowns/UIUXhumanComputerInteraction.md?raw"
                   )
                 }
                 patreonObject={null}
@@ -1247,6 +1254,10 @@ export const Creator = {
 
       creatorBorder: true,
 
+      badgeImgSrc:
+        "https://image.nostr.build/d08f79129a5d8a0e93e894d5ffd948d225d88b7bca0a2fcba0b7a968f48b387a.gif",
+      badgeAddress:
+        "naddr1qqv4qumevd5x7mr0vauj6mmx94fk2mrx94jhxar9v4ksyg9ty9kqftakjrsw5p55z5nnsqwxld6xns5darqsrey7kqcuqrlz6upsgqqqw5usfftqla",
       credential: "Psychology of Self-esteem",
 
       header: `The Psychology Of Self-esteem`,

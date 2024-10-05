@@ -158,7 +158,6 @@ export const IdentityCard = ({
   const [prevNumber, setPrevNumber] = useState(number);
   const [animate, setAnimate] = useState(false);
 
-  console.log("NUMBER", number);
   useEffect(() => {
     if (animateOnChange && number !== prevNumber) {
       setAnimate(true);
@@ -175,12 +174,11 @@ export const IdentityCard = ({
         .focus();
     } else {
       if (theme === "web5") num = localStorage.getItem("uniqueId");
-      if (theme === "nostr") num = localStorage.getItem("npub");
+      if (theme === "nostr") num = localStorage.getItem("local_npub");
       if (theme === "BTC") num = localStorage.getItem("address");
 
       navigator.clipboard.writeText(num).then(
         () => {
-          console.log("Copied to clipboard!");
           setCopied(true); // Change button color to gold
           setTimeout(() => setCopied(false), 2000); // Revert color after 2 seconds
         },

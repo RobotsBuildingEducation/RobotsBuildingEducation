@@ -19,6 +19,10 @@ export const Entrepeneur = {
 
       header: `Resume Writing`,
       credential: "Business Writing",
+      badgeImgSrc:
+        "https://image.nostr.build/4e743a84a1c196036b53e749f1ad321c8b7b6a277ab75fda6f15e2aafe2f84bb.gif",
+      badgeAddress:
+        "naddr1qqgyyatnd9hx2umn94thy6t5d9hxwq3q4vskcp90k6gwp6sxjs2jwwqpcmahg6wz3h5vzq0yn6crrsq0uttsxpqqqp6njejgclw",
       backgroundImgSrc:
         "https://res.cloudinary.com/sheilfer/image/upload/v1697450736/Module_Buttons_13_sictcc.gif",
       fileSource:
@@ -612,6 +616,10 @@ export const Entrepeneur = {
       dealerBorder: true,
 
       header: `Focus Investing`,
+      badgeImgSrc:
+        "https://image.nostr.build/18a0f69b4063ea94f389dda781645d21d3055497244c07e780c6d9b72281ec9a.gif",
+      badgeAddress:
+        "naddr1qq85vmmrw4ej6jtwwejhxarfdensyg9ty9kqftakjrsw5p55z5nnsqwxld6xns5darqsrey7kqcuqrlz6upsgqqqw5usf6kek4",
       credential: "Introduction to Finance",
       fileSource:
         "https://res.cloudinary.com/dtkeyccga/video/upload/v1706592608/0118_uxgh72.mov",

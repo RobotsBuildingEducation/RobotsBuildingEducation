@@ -71,6 +71,9 @@ import roxGlobal from "./common/media/images/roxGlobal.png";
 import { PasscodeModal } from "./PasscodeModal/PasscodeModal";
 import { Typewriter } from "./common/ui/Elements/Typewriter/Typewriter";
 import { Landing } from "./App.landing";
+import { Auth } from "./App.auth";
+import { useSharedNostr } from "./App.web5";
+import RandomCharacter from "./common/ui/Elements/RandomCharacter/RandomCharacter";
 logEvent(analytics, "page_view", {
   page_location: "https://learn-robotsbuildingeducation.firebaseapp.com/",
 });
@@ -82,6 +85,11 @@ let App = () => {
   const showZap = useStore((state) => state.showZap);
   const showBitcoin = useStore((state) => state.showBitcoin);
   const setShowStars = useStore((state) => state.setShowStars);
+  const [secretKeyState, setSecretKeyState] = useState(
+    localStorage.getItem("local_nsec")
+  );
+
+  const [isNotAuthed, setIsNotAuthed] = useState(false);
   let handleModal = useGlobalModal(modalConfig);
 
   const topRef = useRef(null); // Create the ref
@@ -111,6 +119,16 @@ let App = () => {
 
   let [isLocalModalActive, setIsLocalModalActive] = useState(false);
 
+  const {
+    isConnected,
+    errorMessage,
+    nostrPubKey,
+    nostrPrivKey,
+    generateNostrKeys,
+    postNostrContent,
+    auth,
+    assignExistingBadgeToNpub,
+  } = useSharedNostr(localStorage.getItem("local_npub"), secretKeyState);
   /**
    *
    * @param event click event
@@ -209,44 +227,32 @@ let App = () => {
     userStateReference.setUsersEmotionsFromDB(emotionSet);
   };
 
-  const connectDID = async () => {
-    // const mint = new CashuMint("https://stablenut.umint.cash");
-    // const wallet = new CashuWallet(mint);
-    // const request = await wallet.getMintQuote(64);
-    // console.log("request", request);
-    // const tokens = await wallet.mintTokens(64, request.quote);
-    // const { pr, hash } = await wallet.requestMint(200);
+  const connect = async () => {
     setDataLoading(true);
-    try {
-      const { web5 } = await Web5.connect();
-      if (!localStorage.getItem("uniqueId")) {
-        localStorage.setItem("uniqueId", web5?.did?.agent?.agentDid);
-      }
 
-      // setWeb5Reference(web5);
-      // let set = await queryAndSetWebNodeRecords(web5);
-      // setDwnRecordSet(set);
-      // await createWebNodeRecord(web5, set, userUnlocks);
-
-      // use when testing new data
-      // deleteWebNodeRecords(set, web5);
-
+    // const { web5 } = await Web5.connect();
+    console.log("pk", nostrPrivKey);
+    console.log("pk", nostrPubKey);
+    console.log(isEmpty(nostrPrivKey) && isEmpty(nostrPubKey));
+    console.log(!localStorage.getItem("uniqueId"));
+    if (isEmpty(localStorage.getItem("local_nsec"))) {
+      console.log("xx");
+      setIsNotAuthed(true);
+    } else {
       await handleUserAuthentication({
-        web5,
         uiStateReference,
         userStateReference,
         globalStateReference,
         updateUserEmotions,
       });
-    } catch (error) {
-      connectDID();
+      setIsNotAuthed(false);
     }
 
     setDataLoading(false);
   };
 
   useEffect(() => {
-    connectDID();
+    connect();
 
     setTimeout(() => {
       setLoading(false);
@@ -278,6 +284,8 @@ let App = () => {
       ...prevDoc,
       profile,
     }));
+
+    assignExistingBadgeToNpub(uiStateReference.patreonObject?.badgeAddress);
   };
 
   const handleCompletedPractice = async (moduleData = null, patreonObject) => {
@@ -440,6 +448,99 @@ let App = () => {
   //   );
   // }
 
+  const [isShutDown, setIsShutDown] = useState(false);
+  const [isBroken, setIsBroken] = useState(true);
+
+  useEffect(() => {
+    if (localStorage.getItem("security") === import.meta.env.VITE_SECURITY) {
+      setIsBroken(false);
+    }
+  }, []);
+
+  if (isBroken) {
+    return (
+      <div
+        style={{
+          padding: 50,
+          maxWidth: "600px",
+          height: "100vh",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "left",
+        }}
+      >
+        The app is currently down taken down due to malicious behavior. The app
+        will not work as intended.
+        <br />
+        <br />
+        If you are the person attacking my small education business, please
+        accept the apology for whatever grievance I have created and allow folks
+        to continue accessing resources they seek.
+        <br />
+        <br />
+        {/* <Input
+          onChange={(event) => {
+            localStorage.setItem("security", event.target.value);
+            if (
+              localStorage.getItem("security") === import.meta.env.VITE_SECURITY
+            ) {
+              setIsBroken(false);
+            }
+          }}
+        /> */}
+        {/* Currently try to contact with OpenAI and my bank in order to handle this
+        😔 */}
+        {/* <Button onMouseDown={() => setIsShutDown(false)}>Enter anyway</Button> */}
+        {/* "Why are AI features disabled?"{" "}
+        <b>
+          There seems to be something seriously wrong with the account owner's
+          billing and I'm being charged thousands of dollars for something that
+          shouldn't cost that much.
+        </b>
+        <br />
+        <br /> */}
+        <a
+          href="https://patreon.com/robotsbuildingeducation"
+          target="_blank"
+          style={{ textDecoration: "underline" }}
+        >
+          Patreon
+        </a>
+        <br />
+        The lecture series and patreon content are still very valuable and will
+        save you time, energy and money when it comes to learning so I encourage
+        you to go through them during this down time!! Thank you for your
+        patience D:
+        <br /> <br />
+        {/* <a
+          href="https://robotsbuildingeducation.com"
+          target="_blank"
+          style={{ textDecoration: "underline" }}
+        >
+          Rox the tutor
+        </a> */}
+        <br />
+        <a
+          href="https://chatgpt.com/g/g-09h5uQiFC-robots-building-education"
+          target="_blank"
+          style={{ textDecoration: "underline" }}
+        >
+          Robots Building Education GPT
+        </a>
+        <div style={{ display: "flex" }}>
+          <RandomCharacter />
+          <RandomCharacter /> <RandomCharacter /> <RandomCharacter />{" "}
+          <RandomCharacter /> <RandomCharacter />
+          <RandomCharacter /> <RandomCharacter /> <RandomCharacter />{" "}
+          <RandomCharacter /> <RandomCharacter />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <div
@@ -462,6 +563,14 @@ let App = () => {
           }}
           ref={topRef}
         >
+          {/* <button
+            onClick={() => {
+              setIsNotAuthed(true);
+              localStorage.clear();
+            }}
+          >
+            logout
+          </button> */}
           <>
             <Paths
               handlePathSelection={handlePathSelection}
@@ -501,7 +610,10 @@ let App = () => {
                     ROX
                   </StyledRoxHeader>
                 </RiseUpAnimation>
-
+                {/* <div style={{ fontSize: 12 }}>
+                  AI features are currently disabled due to someone personally
+                  attacking the platform.
+                </div> */}
                 <Header
                   languageMode={languageMode}
                   setLanguageMode={setLanguageMode}
@@ -515,18 +627,37 @@ let App = () => {
                       promptMessage={
                         uiStateReference.currentPath
                           ? "let's learn!"
-                          : !userStateReference.databaseUserDocument.firstVisit
-                          ? "hello again rox!"
-                          : "rox?"
+                          : userStateReference.databaseUserDocument.firstVisit
+                          ? "rox?"
+                          : !localStorage.getItem("local_npub") &&
+                            !localStorage.getItem("local_nsec")
+                          ? "let's get started!"
+                          : isEmpty(userStateReference.databaseUserDocument)
+                          ? "launching..."
+                          : "hello again rox!"
                       }
                     />
                     <br />
-                    <Landing
-                      uiStateReference={uiStateReference}
-                      dataLoading={dataLoading}
-                      handleModuleSelection={handleModuleSelection}
-                      userStateReference={userStateReference}
-                    />
+                    {isNotAuthed ? (
+                      <Auth
+                        uiStateReference={uiStateReference}
+                        dataLoading={dataLoading}
+                        handleModuleSelection={handleModuleSelection}
+                        userStateReference={userStateReference}
+                        connect={connect}
+                      />
+                    ) : isEmpty(userStateReference.databaseUserDocument) ? (
+                      <div></div>
+                    ) : (
+                      <Landing
+                        uiStateReference={uiStateReference}
+                        dataLoading={dataLoading}
+                        handleModuleSelection={handleModuleSelection}
+                        userStateReference={userStateReference}
+                      />
+                    )}
+                    <br />
+                    <br />
                   </>
                 )}
                 {/* ) : null} */}
@@ -564,31 +695,33 @@ let App = () => {
             </div>
           </>
         </div>
-        <ProofOfWorkWrapper
-          userStateReference={userStateReference}
-          globalStateReference={globalStateReference}
-          updateUserEmotions={updateUserEmotions}
-          uiStateReference={uiStateReference}
-          showStars={showStars}
-          showZap={showZap}
-          showBitcoin={showBitcoin}
-          zap={zap}
-          handleZap={handleZap}
-          computePercentage={computePercentage}
-          handlePathSelection={handlePathSelection}
-          pathSelectionAnimationData={
-            uiStateReference.pathSelectionAnimationData
-          }
-        />
+        {localStorage.getItem("local_npub") ||
+        localStorage.getItem("uniqueId") ? (
+          <ProofOfWorkWrapper
+            userStateReference={userStateReference}
+            globalStateReference={globalStateReference}
+            updateUserEmotions={updateUserEmotions}
+            uiStateReference={uiStateReference}
+            showStars={showStars}
+            showZap={showZap}
+            showBitcoin={showBitcoin}
+            zap={zap}
+            handleZap={handleZap}
+            computePercentage={computePercentage}
+            handlePathSelection={handlePathSelection}
+            pathSelectionAnimationData={
+              uiStateReference.pathSelectionAnimationData
+            }
+          />
+        ) : null}
       </div>
-
-      <GlobalModal userStateReference={userStateReference} />
+      {/* <GlobalModal userStateReference={userStateReference} />
       <PasscodeModal
         isLocalModalActive={isLocalModalActive}
         setIsLocalModalActive={setIsLocalModalActive}
         handleModuleSelection={handleModuleSelection}
         patreonObject={uiStateReference.patreonObject}
-      />
+      /> */}
     </>
   );
 };

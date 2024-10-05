@@ -33,7 +33,12 @@ export const Engineer = {
         "https://res.cloudinary.com/dtkeyccga/image/upload/v1691640391/ROBE_assets/Module_Buttons_1_ixnitr_scjfyk.gif",
       hasCode: true,
 
+      badgeImgSrc:
+        "https://image.nostr.build/a36df6f86d72b93b3ba9f146975ccf05ece4f313c2476b0ec9cb8ece5077a517.gif",
+      badgeAddress:
+        "naddr1qqd5jmn5wfhkgatrw35k7m3dw3hj63twva5kuet9wf5kueczyz4jzmqy47mfpc82q62p2fecq8r0karfc2x73sgpuj0tqvwqpl3dwqcyqqq82wg6gh4ut",
       credential: "Introduction to Engineering",
+
       header: `Learning Mindset & Perspective`,
       fileSource:
         "https://res.cloudinary.com/dqykr1jh0/video/upload/v1711495708/symr6pztmtpkzn5aqq2r.mp4",
@@ -143,7 +148,10 @@ export const Engineer = {
               <br />
               <br />
               <ExternalLink
-                textDisplay={"Lesson 4: Building Apps"}
+                isPremium
+                textDisplay={
+                  "https://c7.patreon.com/https%3A%2F%2Fwww.patreon.com%2F%2Fcard-teaser-image%2Fpost%2F93082226%2Flandscape%3Fc=5377103248202870015/selector/%23post-teaser%2C.png"
+                }
                 link={
                   "https://www.patreon.com/posts/extras-building-93082226?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
                 }
@@ -797,6 +805,10 @@ exports.app = functions.https.onRequest(app);
       hasCode: true,
 
       credential: "Programming Fundamentals",
+      badgeImgSrc:
+        "https://image.nostr.build/5382632756fff26c8581ed053c29950d5a5bf7a3a0984a3db8fc71484f54d8bf.gif",
+      badgeAddress:
+        "naddr1qqv9qun0vaexzmtdd9hxwt2xw4hxgctdv4h8gctvwvqs6amnwvaz7tmwdaejumr0dspzp2epdsz2ld5sur4qd9q4yuuqr3hmw35u9r0gcyq7f84sx8qqlckhqvzqqqr48yvtlh0x",
 
       header: `Lesson 1 Coding Fundamentals`,
       fileSource:
@@ -2018,6 +2030,10 @@ throw new Error(
         "https://res.cloudinary.com/dtkeyccga/image/upload/v1691640338/ROBE_assets/Module_Buttons_4_n2grll_xqtadc.gif",
       hasCode: true,
 
+      badgeImgSrc:
+        "https://image.nostr.build/d31c13982ef101511c45ba9ee49bcdba8ebf50a000f27ce6bee4376682ba51ab.gif",
+      badgeAddress:
+        "naddr1qqw5vun0de6x2mny94fk7en5washyefdg4hxw6twv4jhy6twvuqs6amnwvaz7tmwdaejumr0dspzp2epdsz2ld5sur4qd9q4yuuqr3hmw35u9r0gcyq7f84sx8qqlckhqvzqqqr48ydcq5hu",
       credential: "Frontend Software Engineering",
 
       header: `Lesson 2 Frontend Programming`,
@@ -2106,6 +2122,7 @@ throw new Error(
                 width="150"
                 // borderRadius={"50%"}
               />
+              <br />
             </Typewriter>
           ),
           spanish: ``,
@@ -3045,6 +3062,10 @@ return <div style={gradientStyle}>
       hasCode: true,
 
       credential: "Backend Software Engineering",
+      badgeImgSrc:
+        "https://image.nostr.build/4203b4522c200d03046169d67dafa65b43414ff1a4481e7390ac4bad17d4a267.gif",
+      badgeAddress:
+        "naddr1qqwyyctrddjkuepd2dhkvarhv9ex2t29denkjmn9v4exjmn8qy28wumn8ghj7un9d3shjtnyv9kh2uewd9hsyg9ty9kqftakjrsw5p55z5nnsqwxld6xns5darqsrey7kqcuqrlz6upsgqqqw5usmqzt5r",
 
       header: `Lesson 3 Backend Engineering`,
       fileSource:
@@ -4135,7 +4156,10 @@ exports.app = functions
       backgroundImgSrc:
         "https://res.cloudinary.com/dtkeyccga/image/upload/v1691640340/ROBE_assets/Module_Buttons_7_uonnwt_s4ymov.gif",
       hasCode: true,
-
+      badgeImgSrc:
+        "https://image.nostr.build/b28e1ff7e80344e5d34ab62b2edbc61dcb14cb88e95cdf5e74a7dcfcb8fd7ce4.gif",
+      badgeAddress:
+        "naddr1qq05vatvdskhxarpvd4j65m0ve68wctjv5k52mn8d9hx2etjd9hxwqg5waehxw309aex2mrp0yhxgctdw4eju6t0qgs2kgtvqjhmdy8qagrfg9f88qqud7m5d8pgm6xpq8jfavp3cq8794crqsqqqafelgxgc0",
       header: `Lesson 4 Building Apps`,
       credential: "Full-stack Software Engineering",
       fileSource:
@@ -5373,6 +5397,10 @@ export default OpenAIComponent;`,
         "https://res.cloudinary.com/dtkeyccga/image/upload/v1693290833/Module_Buttons_9_kmpzgb.gif",
       hasCode: true,
 
+      badgeImgSrc:
+        "https://image.nostr.build/71cafe3f065a4be64b6e51a9e8480ecbda8678bb7262637ed7f19dae0b75046d.gif",
+      badgeAddress:
+        "naddr1qq0ygct5vyk4xarjw43hgatjv4ej6ctwvsk5zmr8daexjargd4eszrthwden5te0dehhxtnvdakqyg9ty9kqftakjrsw5p55z5nnsqwxld6xns5darqsrey7kqcuqrlz6upsgqqqw5usezxccx",
       header: `Lesson 5 Computer Science`,
       credential: "Data Structures & Algorithms",
       fileSource:

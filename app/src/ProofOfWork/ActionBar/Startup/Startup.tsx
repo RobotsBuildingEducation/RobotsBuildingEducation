@@ -98,6 +98,8 @@ export const RenderActionBarControls = ({
         >
           <StyledFeature
             style={{
+              display: "flex",
+              alignItems: "center",
               textShadow: "1px 1px 1px black",
               borderBottom: isHovered.chatLink
                 ? "0px solid transparent"
@@ -112,7 +114,6 @@ export const RenderActionBarControls = ({
             variant="dark"
             onMouseEnter={() => handleHover("chatLink", true)}
             onMouseLeave={() => handleHover("chatLink", false)}
-            style={{ display: "flex", alignItems: "center" }}
           >
             <img
               src={roxanaChat}
@@ -127,6 +128,33 @@ export const RenderActionBarControls = ({
             &nbsp;ROX (GPT-4)
           </StyledFeature>
         </a>
+        &nbsp;&nbsp;
+        <StyledFeature
+          style={{
+            textShadow: "1px 1px 1px black",
+            borderBottom: isHovered.bossMode
+              ? "0px solid transparent"
+              : `2px solid ${japaneseThemePalette.CobaltBlue}`,
+          }}
+          onMouseDown={() => {
+            logEvent(analytics, "select_content", {
+              content_type: "button",
+              item_id: "Boss Mode",
+            });
+            setIsBossModeOpen(true);
+            setIsCofounderOpen(false);
+            setIsEmotionalIntelligenceOpen(false);
+            setIsIdentityWalletOpen(false);
+            setIsLeetmigoOpen(false);
+
+            // setIsStartupOpen(false);
+          }}
+          variant="dark"
+          onMouseEnter={() => handleHover("bossMode", true)}
+          onMouseLeave={() => handleHover("bossMode", false)}
+        >
+          💎 Program AI App
+        </StyledFeature>
         &nbsp; &nbsp;
         <StyledFeature
           style={{
@@ -155,34 +183,7 @@ export const RenderActionBarControls = ({
           🥋 Super Practice Mode
         </StyledFeature>
         &nbsp; &nbsp;
-        <StyledFeature
-          style={{
-            textShadow: "1px 1px 1px black",
-            borderBottom: isHovered.bossMode
-              ? "0px solid transparent"
-              : `2px solid ${japaneseThemePalette.CobaltBlue}`,
-          }}
-          onMouseDown={() => {
-            logEvent(analytics, "select_content", {
-              content_type: "button",
-              item_id: "Boss Mode",
-            });
-            setIsBossModeOpen(true);
-            setIsCofounderOpen(false);
-            setIsEmotionalIntelligenceOpen(false);
-            setIsIdentityWalletOpen(false);
-            setIsLeetmigoOpen(false);
-
-            // setIsStartupOpen(false);
-          }}
-          variant="dark"
-          onMouseEnter={() => handleHover("bossMode", true)}
-          onMouseLeave={() => handleHover("bossMode", false)}
-        >
-          💎 Challenges
-        </StyledFeature>
-        &nbsp; &nbsp;
-        <StyledFeature
+        {/* <StyledFeature
           style={{
             textShadow: "1px 1px 1px black",
             borderBottom: isHovered.cofounder
@@ -207,7 +208,7 @@ export const RenderActionBarControls = ({
           onMouseLeave={() => handleHover("cofounder", false)}
         >
           🌀 Assistant
-        </StyledFeature>
+        </StyledFeature> */}
         &nbsp; &nbsp;
         <StyledFeature
           style={{

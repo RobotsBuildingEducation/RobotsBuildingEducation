@@ -10,7 +10,7 @@ export const getOpenAiRequestOptions = (
 ) => ({
   headers: {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${apiKey}`,
+    // Authorization: `Bearer ${apiKey}`,
   },
   method: "POST",
   body: JSON.stringify({
@@ -23,9 +23,14 @@ export const getOpenAiRequestOptions = (
   signal,
 });
 
-const CHAT_COMPLETIONS_URL = "https://api.openai.com/v1/chat/completions";
+// const CHAT_COMPLETIONS_URL = "https://api.openai.com/v1/chat/completions";
+const CHAT_COMPLETIONS_URL =
+  "https://us-central1-learn-robotsbuildingeducation.cloudfunctions.net/app/prompt";
 
 const textDecoder = new TextDecoder("utf-8");
+
+// Utility function to simulate a delay
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // Takes a set of fetch request options and calls the onIncomingChunk and onCloseStream functions
 // as chunks of a chat completion's data are returned to the client, in real-time.
@@ -37,6 +42,7 @@ export const openAiStreamingDataHandler = async (
   const beforeTimestamp = Date.now();
   const response = await fetch(CHAT_COMPLETIONS_URL, requestOpts);
 
+  console.log("AI RESPONSE", response.body);
   if (!response.ok) {
     throw new Error(
       `Network response was not ok: ${response.status} - ${response.statusText}`
@@ -67,10 +73,12 @@ export const openAiStreamingDataHandler = async (
     },
   });
 
+  console.log("STREAM?", stream);
   for await (const newData of stream) {
     const decodedData = textDecoder.decode(newData);
     const lines = decodedData.split(/(\n){2}/);
 
+    console.log("lines", lines);
     const chunks = lines
       .map((line) => line.replace(/(\n)?^data:\s*/, "").trim())
       .filter((line) => line !== "" && line !== "[DONE]")
@@ -84,19 +92,22 @@ export const openAiStreamingDataHandler = async (
       })
       .filter((chunk) => chunk !== null);
 
+    console.log("chunks", chunks);
     for (const chunk of chunks) {
-      const contentChunk = (chunk.choices[0].delta.content ?? "").replace(
-        /^`\s*/,
-        "`"
-      );
-      const roleChunk = chunk.choices[0].delta.role ?? "";
+      const contentChunk = (chunk.content ?? "").replace(/^`\s*/, "`");
+      const roleChunk = chunk.choices?.[0].delta.role ?? "";
 
       content = `${content}${contentChunk}`;
       role = `${role}${roleChunk}`;
 
+      // Simulate streaming by adding a small delay between each chunk (e.g., 50ms per chunk)
+      await delay(1.25); // Adjust the delay to suit the streaming experience
+
       onIncomingChunk(contentChunk, roleChunk);
     }
   }
+
+  console.log("contents", content);
 
   onCloseStream(beforeTimestamp);
 
@@ -159,8 +170,9 @@ export const useChatCompletion = (apiParams) => {
     }
   };
 
-  // When new data comes in, add the incremental chunk of data to the last message.
-  const handleNewData = (chunkContent, chunkRole) => {
+  // When new data comes in, add the incremental chunk of data to the last message with simulated delay
+  const handleNewData = async (chunkContent, chunkRole) => {
+    await delay(50); // Adjust the delay to make streaming feel more realistic
     _setMessages(
       updateLastItem((msg) => ({
         content: `${msg.content}${chunkContent}`,
@@ -183,14 +195,11 @@ export const useChatCompletion = (apiParams) => {
 
   // Handles what happens when the stream of a given completion is finished.
   const closeStream = (beforeTimestamp) => {
-    // Determine the final timestamp, and calculate the number of seconds the full request took.
     const afterTimestamp = Date.now();
     const diffInSeconds =
       (afterTimestamp - beforeTimestamp) / MILLISECONDS_PER_SECOND;
     const formattedDiff = diffInSeconds.toFixed(2) + " sec.";
 
-    // Update the messages list, specifically update the last message entry with the final
-    // details of the full request/response.
     _setMessages(
       updateLastItem((msg) => ({
         ...msg,
@@ -207,19 +216,13 @@ export const useChatCompletion = (apiParams) => {
 
   const submitPrompt = React.useCallback(
     async (newMessages) => {
-      // Don't let two streaming calls occur at the same time. If the last message in the list has
-      // a `loading` state set to true, we know there is a request in progress.
       if (messages[messages.length - 1]?.meta?.loading) return;
-
-      // If the array is empty or there are no new messages submited, do not make a request.
       if (!newMessages || newMessages.length < 1) {
         return;
       }
 
       setLoading(true);
 
-      // Update the messages list with the new message as well as a placeholder for the next message
-      // that will be returned from the API.
       const updatedMessages = [
         ...messages,
         ...newMessages.map(createChatMessage),
@@ -231,34 +234,24 @@ export const useChatCompletion = (apiParams) => {
         }),
       ];
 
-      // Set the updated message list.
       _setMessages(updatedMessages);
 
-      // Create a controller that can abort the entire request.
       const newController = new AbortController();
       const signal = newController.signal;
       setController(newController);
 
-      // Define options that will be a part of the HTTP request.
       const requestOpts = getOpenAiRequestOptions(
         apiParams,
         updatedMessages
-          // Filter out the last message, since technically that is the message that the server will
-          // return from this request, we're just storing a placeholder for it ahead of time to signal
-          // to the UI something is happening.
           .filter((m, i) => updatedMessages.length - 1 !== i)
-          // Map the updated message structure to only what the OpenAI API expects.
           .map(officialOpenAIParams),
         signal
       );
 
       try {
-        // Wait for all the results to be streamed back to the client before proceeding.
         await openAiStreamingDataHandler(
           requestOpts,
-          // The handleNewData function will be called as new data is received.
           handleNewData,
-          // The closeStream function be called when the message stream has been completed.
           closeStream
         );
       } catch (err) {
@@ -268,9 +261,7 @@ export const useChatCompletion = (apiParams) => {
           console.error(`Error during chat response streaming`, err);
         }
       } finally {
-        // Remove the AbortController now the response has completed.
         setController(null);
-        // Set the loading state to false
         setLoading(false);
       }
     },

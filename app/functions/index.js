@@ -4,70 +4,107 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const OpenAI = require("openai");
 const bodyParser = require("body-parser");
+const fetch = require("node-fetch"); // Import node-fetch for use in Node.js
+const { TextDecoder } = require("util"); // Import TextDecoder for decoding streamed chunks
+const { pipeline } = require("stream");
+const { promisify } = require("util");
+const pipelineAsync = promisify(pipeline);
+const rateLimit = require("express-rate-limit"); // Import the rate-limit package
 
 dotenv.config();
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 
-app.post("/prompt", async (req, res) => {
-  try {
-    const prompt = req.body.prompt;
-    let constructor = {
-      model: "gpt-4o",
-      messages: [{ role: "user", content: prompt }],
-    };
-
-    if (req?.body?.isJsonMode) {
-      constructor.response_format = { type: "json_object" };
-      constructor.messages = [
-        {
-          role: "system",
-          content: "You are a helpful assistant designed to output JSON.",
-        },
-        { role: "user", content: prompt },
-      ];
-    }
-
-    const completion = await openai.chat.completions.create(constructor);
-
-    res.status(200).send({
-      bot: completion.choices[0].message,
-    });
-  } catch (error) {
-    res.status(500).send({ error });
-  }
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 15 minutes
+  max: 5, // Limit each IP to 100 requests per windowMs
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: true, // Disable the `X-RateLimit-*` headers
 });
 
-app.post("/create-image", async (req, res) => {
-  try {
-    // Extract the image prompt from the request body
-    const imagePrompt = req.body.imagePrompt;
+// Apply the rate limiter to all requests or a specific route
+app.use(limiter); // You can also use app.use("/prompt", limiter); to limit only the "/prompt" route
 
-    // Set up the request data for DALL-E
-    const imageRequest = {
-      model: "dall-e-2",
-      // prompt: imagePrompt,
-      prompt: "an image of a happy but evil genius robot named rox......",
-      n: 1, // Number of images to generate
-      size: "256x256", // Image resolution
+app.post("/prompt", async (req, res) => {
+  try {
+    const { model, messages, ...restOfApiParams } = req.body;
+
+    // Construct the payload for OpenAI API
+    const constructor = {
+      model: "gpt-4o-mini",
+      messages: messages || [],
+      stream: true, // Enable streaming
+      ...restOfApiParams,
     };
 
-    // Request DALL-E to create the image
-    // const imageResponse = await openai.images.generate(imageRequest);
-    const imageResponse = await openai.createImage(imageRequest);
+    // Make the OpenAI API call using node-fetch
+    const openaiResponse = await fetch(
+      "https://api.openai.com/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`, // Ensure you have the API key
+        },
+        body: JSON.stringify(constructor),
+      }
+    );
 
-    // Send the generated image or image URL in the response
-    res.status(200).send({
-      imageUrl: imageResponse.data, // Assuming the response contains the URL of the generated image
-    });
+    if (!openaiResponse.ok) {
+      throw new Error(`OpenAI API error: ${openaiResponse.statusText}`);
+    }
+
+    // Set headers to keep the connection alive for streaming
+    res.setHeader("Content-Type", "text/event-stream");
+    res.setHeader("Cache-Control", "no-cache");
+    res.setHeader("Connection", "keep-alive");
+
+    // Stream response data
+    await pipelineAsync(
+      openaiResponse.body, // Node.js readable stream from fetch
+      async (source) => {
+        let buffer = "";
+        for await (const chunk of source) {
+          buffer += chunk.toString();
+          const lines = buffer.split("\n").filter((line) => line.trim() !== "");
+
+          for (const line of lines) {
+            const message = line.replace(/^data: /, "").trim();
+
+            if (message === "[DONE]") {
+              res.write("data: [DONE]\n\n");
+              res.end();
+              return;
+            }
+
+            try {
+              const parsed = JSON.parse(message);
+              const content = parsed.choices?.[0]?.delta?.content ?? "";
+
+              if (content) {
+                // Send each chunk of content to the client
+                res.write(`data: ${JSON.stringify({ content })}\n\n`);
+              }
+            } catch (err) {
+              console.error("Could not parse message:", message, err);
+              res.write("data: [ERROR] Invalid message format.\n\n");
+            }
+          }
+
+          // Reset buffer to handle the next chunk
+          buffer = "";
+        }
+      }
+    );
+
+    // Close the response when done
+    res.write("data: [DONE]\n\n");
+    res.end();
   } catch (error) {
-    // Handle errors
+    console.error("Error generating completion:", error);
     res.status(500).send({ error: error.message });
   }
 });

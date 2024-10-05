@@ -1,1 +1,680 @@
-{"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Store.ts":{"language":"TypeScript","code":13,"comment":2,"blank":3},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Header/LearnMore/FAQs/FAQItem/FAQItem.tsx":{"language":"TypeScript JSX","code":44,"comment":16,"blank":5},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Header/Header.tsx":{"language":"TypeScript JSX","code":20,"comment":23,"blank":5},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Header/LearnMore/LearnMore.tsx":{"language":"TypeScript JSX","code":104,"comment":125,"blank":11},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Startup/Startup.styles.tsx":{"language":"TypeScript JSX","code":14,"comment":0,"blank":4},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Header/LearnMore/FAQs/FAQs.tsx":{"language":"TypeScript JSX","code":513,"comment":95,"blank":4},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Header/WalletAuth/WalletAuth.tsx":{"language":"TypeScript JSX","code":34,"comment":30,"blank":3},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Startup/Startup.tsx":{"language":"TypeScript JSX","code":359,"comment":18,"blank":13},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/EmotionalIntelligence/EmotionalIntelligence.compute.tsx":{"language":"TypeScript JSX","code":192,"comment":7,"blank":28},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Header/LearnMore/DiscordButton/DiscordButton.tsx":{"language":"TypeScript JSX","code":245,"comment":16,"blank":7},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/EmotionalIntelligence/EmotionalIntelligence.data.tsx":{"language":"TypeScript JSX","code":196,"comment":0,"blank":3},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/EmotionalIntelligence/SunsetCanvas.tsx":{"language":"TypeScript JSX","code":107,"comment":5,"blank":15},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Cofounder/Experimental.compute.tsx":{"language":"TypeScript JSX","code":116,"comment":11,"blank":16},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/EmotionalIntelligence/EmotionalIntelligence.styles.tsx":{"language":"TypeScript JSX","code":133,"comment":1,"blank":18},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Cofounder/Cofounder.constants.ts":{"language":"TypeScript","code":111,"comment":1,"blank":54},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Cofounder/Experimental.data.tsx":{"language":"TypeScript JSX","code":59,"comment":0,"blank":11},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Cofounder/Cofounder.tsx":{"language":"TypeScript JSX","code":672,"comment":51,"blank":88},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Cofounder/Cofounder.compute.tsx":{"language":"TypeScript JSX","code":107,"comment":0,"blank":30},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/ActionBar.compute.tsx":{"language":"TypeScript JSX","code":153,"comment":9,"blank":16},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/EmotionalIntelligence/EmotionalIntelligence.tsx":{"language":"TypeScript JSX","code":434,"comment":23,"blank":31},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/ActionBar.tsx":{"language":"TypeScript JSX","code":159,"comment":61,"blank":23},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Cofounder/Roles/Roles.tsx":{"language":"TypeScript JSX","code":322,"comment":37,"blank":38},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Cofounder/Experimental.tsx":{"language":"TypeScript JSX","code":290,"comment":12,"blank":29},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/BossMode/Templates/OutputQuestion/OutputQuestion.tsx":{"language":"TypeScript JSX","code":61,"comment":0,"blank":7},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/BossMode/Templates/MultipleChoiceQuestion/MultipleChoiceQuestion.tsx":{"language":"TypeScript JSX","code":78,"comment":0,"blank":8},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/BossMode/Templates/SelectionQuestion/SelectionQuestion.tsx":{"language":"TypeScript JSX","code":86,"comment":6,"blank":11},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/BossMode/Templates/TextInputQuestion/TextInputQuestion.tsx":{"language":"TypeScript JSX","code":95,"comment":0,"blank":8},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/BossMode/BossMode.styles.tsx":{"language":"TypeScript JSX","code":14,"comment":0,"blank":4},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/AdaptiveLearning/AdaptiveLearning.compute.tsx":{"language":"TypeScript JSX","code":3,"comment":1,"blank":2},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/ImpactWallet/ImpactWallet.tsx":{"language":"TypeScript JSX","code":272,"comment":33,"blank":13},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/AdaptiveLearning/AdaptiveLearning.tsx":{"language":"TypeScript JSX","code":297,"comment":4,"blank":23},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/BossMode/BossMode.tsx":{"language":"TypeScript JSX","code":1729,"comment":38,"blank":41},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Leetmigo/Leetmigo.tsx":{"language":"TypeScript JSX","code":78,"comment":0,"blank":7},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Leetmigo/Leetmigo.compute.tsx":{"language":"TypeScript JSX","code":342,"comment":83,"blank":39},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Leetmigo/Leetmigo.styles.tsx":{"language":"TypeScript JSX","code":84,"comment":4,"blank":7},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Leetmigo/Leetmigo.data.tsx":{"language":"TypeScript JSX","code":4370,"comment":1,"blank":11},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Collections/Module/Module.tsx":{"language":"TypeScript JSX","code":41,"comment":1,"blank":2},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ProofOfWork.tsx":{"language":"TypeScript JSX","code":120,"comment":10,"blank":15},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/index.d.ts":{"language":"TypeScript","code":1,"comment":0,"blank":1},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ProofOfWorkWrapper.tsx":{"language":"TypeScript JSX","code":74,"comment":7,"blank":10},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Leetmigo/Leetmigo.render.tsx":{"language":"TypeScript JSX","code":186,"comment":22,"blank":16},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Collections/Collections.tsx":{"language":"TypeScript JSX","code":67,"comment":8,"blank":9},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/ChatGPT.compute.ts":{"language":"TypeScript","code":97,"comment":0,"blank":7},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/ChatGptWrapper.tsx":{"language":"TypeScript JSX","code":51,"comment":3,"blank":6},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/Prompts/Prompts.tsx":{"language":"TypeScript JSX","code":229,"comment":20,"blank":17},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/PromptCombiner9000/PromptCombiner9000.tsx":{"language":"TypeScript JSX","code":240,"comment":6,"blank":23},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/ChatGPT.tsx":{"language":"TypeScript JSX","code":181,"comment":24,"blank":28},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/Patreon/Patreon.tsx":{"language":"TypeScript JSX","code":129,"comment":20,"blank":17},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/PromptCombiner9000/CodeDemo/CodeDemo.tsx":{"language":"TypeScript JSX","code":98,"comment":11,"blank":5},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/Intro/Intro.tsx":{"language":"TypeScript JSX","code":75,"comment":6,"blank":7},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/vite-env.d.ts":{"language":"TypeScript","code":1,"comment":1,"blank":1},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/PromptMessage/PromptMessage.tsx":{"language":"TypeScript JSX","code":39,"comment":8,"blank":7},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/App.constants.tsx":{"language":"TypeScript JSX","code":134,"comment":10,"blank":9},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/App.compute.tsx":{"language":"TypeScript JSX","code":944,"comment":79,"blank":73},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/CodeEditor/CodeEditor.tsx":{"language":"TypeScript JSX","code":224,"comment":20,"blank":23},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/markdowns/philosophy.md":{"language":"Markdown","code":166,"comment":0,"blank":62},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/svgs/HamburgerMenu.tsx":{"language":"TypeScript JSX","code":0,"comment":0,"blank":1},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/svgs/LinkIcon.tsx":{"language":"TypeScript JSX","code":32,"comment":0,"blank":2},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/markdowns/humanComputerInteraction.md":{"language":"Markdown","code":68,"comment":383,"blank":70},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/anims/arrow_animation.json":{"language":"JSON","code":349,"comment":0,"blank":1},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/svgs/Title.tsx":{"language":"TypeScript JSX","code":37,"comment":1,"blank":4},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/anims/heart_chat_animation.json":{"language":"JSON","code":911,"comment":0,"blank":1},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/anims/zap_animation.json":{"language":"JSON","code":4411,"comment":0,"blank":1},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/anims/chat_loading_animation.json":{"language":"JSON","code":311,"comment":0,"blank":1},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/anims/bitcoin_animation.json":{"language":"JSON","code":934,"comment":0,"blank":1},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/anims/star_animation.json":{"language":"JSON","code":1099,"comment":0,"blank":1},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/words/words.ts":{"language":"TypeScript","code":172,"comment":17,"blank":19},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/uiSchema.tsx":{"language":"TypeScript JSX","code":103,"comment":29,"blank":43},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/ui.ts":{"language":"TypeScript","code":73,"comment":18,"blank":8},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/markdowns/focusInvesting.md":{"language":"Markdown","code":34,"comment":0,"blank":34},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Dashboard/Dashboard.tsx":{"language":"TypeScript JSX","code":111,"comment":17,"blank":17},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/svgs/EditIcon.tsx":{"language":"TypeScript JSX","code":19,"comment":0,"blank":1},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/styles/lazyStyles.tsx":{"language":"TypeScript JSX","code":669,"comment":17,"blank":31},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/README.md":{"language":"Markdown","code":28,"comment":0,"blank":15},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/index.css":{"language":"CSS","code":67,"comment":0,"blank":9},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/App.web5.ts":{"language":"TypeScript","code":77,"comment":12,"blank":10},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/main.tsx":{"language":"TypeScript JSX","code":20,"comment":8,"blank":6},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/PasscodeModal/PasscodeModal.tsx":{"language":"TypeScript JSX","code":84,"comment":1,"blank":10},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Engineer/Engineer.tsx":{"language":"TypeScript JSX","code":5924,"comment":81,"blank":57},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/App.css":{"language":"CSS","code":68,"comment":5,"blank":14},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Creator/Creator.tsx":{"language":"TypeScript JSX","code":1592,"comment":9,"blank":35},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/App.hooks.tsx":{"language":"TypeScript JSX","code":164,"comment":59,"blank":41},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/HintUI/HintUI.tsx":{"language":"TypeScript JSX","code":33,"comment":0,"blank":3},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/CuteGradient/CuteGradient.tsx":{"language":"TypeScript JSX","code":31,"comment":0,"blank":5},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/database/firebaseResources.tsx":{"language":"TypeScript JSX","code":30,"comment":5,"blank":6},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ImageZoomer/ImageZoomer.tsx":{"language":"TypeScript JSX","code":10,"comment":0,"blank":2},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/LectureHeader/LectureHeader.tsx":{"language":"TypeScript JSX","code":22,"comment":9,"blank":5},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/CodeBlock/SoftwareEngineer/SoftwareEngineer.styles.tsx":{"language":"TypeScript JSX","code":26,"comment":0,"blank":3},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/App.tsx":{"language":"TypeScript JSX","code":924,"comment":140,"blank":78},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/KnowledgeCollector/KnowledgeCollector.tsx":{"language":"TypeScript JSX","code":64,"comment":0,"blank":9},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/experimental/DecisionMap.tsx":{"language":"TypeScript JSX","code":0,"comment":1034,"blank":34},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/CodeBlock/CodeBlock.tsx":{"language":"TypeScript JSX","code":94,"comment":32,"blank":16},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Paths/Paths.tsx":{"language":"TypeScript JSX","code":134,"comment":12,"blank":10},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ImageZoomer/react-medium-image-zoom.css":{"language":"CSS","code":97,"comment":0,"blank":1},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ExternalLink/ExternalLink.tsx":{"language":"TypeScript JSX","code":20,"comment":0,"blank":2},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/CodeBlock/CodeBlock.compute.tsx":{"language":"TypeScript JSX","code":28,"comment":0,"blank":4},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/CodeDisplay/CodeDisplay.tsx":{"language":"TypeScript JSX","code":36,"comment":1,"blank":3},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/MarkdownRenderer/MarkdownRenderer.tsx":{"language":"TypeScript JSX","code":35,"comment":5,"blank":10},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/CodeBlock/SoftwareEngineer/SoftwareEngineer.tsx":{"language":"TypeScript JSX","code":94,"comment":0,"blank":4},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/GlobalModal/GlobalModal.tsx":{"language":"TypeScript JSX","code":140,"comment":11,"blank":17},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/RandomCharacter/RandomCharacter.tsx":{"language":"TypeScript JSX","code":92,"comment":4,"blank":12},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/SchedulerBlock/SchedulerBlock.compute.tsx":{"language":"TypeScript JSX","code":32,"comment":42,"blank":6},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ContentLinks/ContentLinks.tsx":{"language":"TypeScript JSX","code":74,"comment":8,"blank":5},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/RevealButton/RevealButton.tsx":{"language":"TypeScript JSX","code":93,"comment":15,"blank":7},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ChatBlock/ChatBlock.compute.tsx":{"language":"TypeScript JSX","code":16,"comment":1,"blank":7},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/CodeBlock/ActivateCofounder/ActivateCofounder.tsx":{"language":"TypeScript JSX","code":33,"comment":0,"blank":3},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/Typewriter/Typewriter.tsx":{"language":"TypeScript JSX","code":39,"comment":1,"blank":7},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/RobotDialogue/RobotDialogue.tsx":{"language":"TypeScript JSX","code":21,"comment":0,"blank":5},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ChatBlock/ChatBlock.tsx":{"language":"TypeScript JSX","code":371,"comment":23,"blank":42},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Entrepeneur/Entrepeneur.tsx":{"language":"TypeScript JSX","code":1289,"comment":35,"blank":26},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/SchedulerBlock/SchedulerBlock.tsx":{"language":"TypeScript JSX","code":263,"comment":75,"blank":41},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ChatBlock/ConversationGrader/ConversationGrader.tsx":{"language":"TypeScript JSX","code":22,"comment":1,"blank":3},"file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ChatBlock/ConversationGrader/Chat/Chat.tsx":{"language":"TypeScript JSX","code":86,"comment":0,"blank":8}}
+{
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Store.ts": {
+    "language": "TypeScript",
+    "code": 13,
+    "comment": 2,
+    "blank": 3
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Header/LearnMore/FAQs/FAQItem/FAQItem.tsx": {
+    "language": "TypeScript JSX",
+    "code": 44,
+    "comment": 16,
+    "blank": 5
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Header/Header.tsx": {
+    "language": "TypeScript JSX",
+    "code": 20,
+    "comment": 23,
+    "blank": 5
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Header/LearnMore/LearnMore.tsx": {
+    "language": "TypeScript JSX",
+    "code": 104,
+    "comment": 125,
+    "blank": 11
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Startup/Startup.styles.tsx": {
+    "language": "TypeScript JSX",
+    "code": 14,
+    "comment": 0,
+    "blank": 4
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Header/LearnMore/FAQs/FAQs.tsx": {
+    "language": "TypeScript JSX",
+    "code": 513,
+    "comment": 95,
+    "blank": 4
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Header/WalletAuth/WalletAuth.tsx": {
+    "language": "TypeScript JSX",
+    "code": 34,
+    "comment": 30,
+    "blank": 3
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Startup/Startup.tsx": {
+    "language": "TypeScript JSX",
+    "code": 359,
+    "comment": 18,
+    "blank": 13
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/EmotionalIntelligence/EmotionalIntelligence.compute.tsx": {
+    "language": "TypeScript JSX",
+    "code": 192,
+    "comment": 7,
+    "blank": 28
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Header/LearnMore/DiscordButton/DiscordButton.tsx": {
+    "language": "TypeScript JSX",
+    "code": 245,
+    "comment": 16,
+    "blank": 7
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/EmotionalIntelligence/EmotionalIntelligence.data.tsx": {
+    "language": "TypeScript JSX",
+    "code": 196,
+    "comment": 0,
+    "blank": 3
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/EmotionalIntelligence/SunsetCanvas.tsx": {
+    "language": "TypeScript JSX",
+    "code": 107,
+    "comment": 5,
+    "blank": 15
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Cofounder/Experimental.compute.tsx": {
+    "language": "TypeScript JSX",
+    "code": 116,
+    "comment": 11,
+    "blank": 16
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/EmotionalIntelligence/EmotionalIntelligence.styles.tsx": {
+    "language": "TypeScript JSX",
+    "code": 133,
+    "comment": 1,
+    "blank": 18
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Cofounder/Cofounder.constants.ts": {
+    "language": "TypeScript",
+    "code": 111,
+    "comment": 1,
+    "blank": 54
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Cofounder/Experimental.data.tsx": {
+    "language": "TypeScript JSX",
+    "code": 59,
+    "comment": 0,
+    "blank": 11
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Cofounder/Cofounder.tsx": {
+    "language": "TypeScript JSX",
+    "code": 672,
+    "comment": 51,
+    "blank": 88
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Cofounder/Cofounder.compute.tsx": {
+    "language": "TypeScript JSX",
+    "code": 107,
+    "comment": 0,
+    "blank": 30
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/ActionBar.compute.tsx": {
+    "language": "TypeScript JSX",
+    "code": 153,
+    "comment": 9,
+    "blank": 16
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/EmotionalIntelligence/EmotionalIntelligence.tsx": {
+    "language": "TypeScript JSX",
+    "code": 434,
+    "comment": 23,
+    "blank": 31
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/ActionBar.tsx": {
+    "language": "TypeScript JSX",
+    "code": 159,
+    "comment": 61,
+    "blank": 23
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Cofounder/Roles/Roles.tsx": {
+    "language": "TypeScript JSX",
+    "code": 322,
+    "comment": 37,
+    "blank": 38
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Cofounder/Experimental.tsx": {
+    "language": "TypeScript JSX",
+    "code": 290,
+    "comment": 12,
+    "blank": 29
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/BossMode/Templates/OutputQuestion/OutputQuestion.tsx": {
+    "language": "TypeScript JSX",
+    "code": 61,
+    "comment": 0,
+    "blank": 7
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/BossMode/Templates/MultipleChoiceQuestion/MultipleChoiceQuestion.tsx": {
+    "language": "TypeScript JSX",
+    "code": 78,
+    "comment": 0,
+    "blank": 8
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/BossMode/Templates/SelectionQuestion/SelectionQuestion.tsx": {
+    "language": "TypeScript JSX",
+    "code": 86,
+    "comment": 6,
+    "blank": 11
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/BossMode/Templates/TextInputQuestion/TextInputQuestion.tsx": {
+    "language": "TypeScript JSX",
+    "code": 95,
+    "comment": 0,
+    "blank": 8
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/BossMode/BossMode.styles.tsx": {
+    "language": "TypeScript JSX",
+    "code": 14,
+    "comment": 0,
+    "blank": 4
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/AdaptiveLearning/AdaptiveLearning.compute.tsx": {
+    "language": "TypeScript JSX",
+    "code": 3,
+    "comment": 1,
+    "blank": 2
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/IdentityWallet/IdentityWallet.tsx": {
+    "language": "TypeScript JSX",
+    "code": 272,
+    "comment": 33,
+    "blank": 13
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/AdaptiveLearning/AdaptiveLearning.tsx": {
+    "language": "TypeScript JSX",
+    "code": 297,
+    "comment": 4,
+    "blank": 23
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/BossMode/BossMode.tsx": {
+    "language": "TypeScript JSX",
+    "code": 1729,
+    "comment": 38,
+    "blank": 41
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Leetmigo/Leetmigo.tsx": {
+    "language": "TypeScript JSX",
+    "code": 78,
+    "comment": 0,
+    "blank": 7
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Leetmigo/Leetmigo.compute.tsx": {
+    "language": "TypeScript JSX",
+    "code": 342,
+    "comment": 83,
+    "blank": 39
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Leetmigo/Leetmigo.styles.tsx": {
+    "language": "TypeScript JSX",
+    "code": 84,
+    "comment": 4,
+    "blank": 7
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Leetmigo/Leetmigo.data.tsx": {
+    "language": "TypeScript JSX",
+    "code": 4370,
+    "comment": 1,
+    "blank": 11
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Collections/Module/Module.tsx": {
+    "language": "TypeScript JSX",
+    "code": 41,
+    "comment": 1,
+    "blank": 2
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ProofOfWork.tsx": {
+    "language": "TypeScript JSX",
+    "code": 120,
+    "comment": 10,
+    "blank": 15
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/index.d.ts": {
+    "language": "TypeScript",
+    "code": 1,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ProofOfWorkWrapper.tsx": {
+    "language": "TypeScript JSX",
+    "code": 74,
+    "comment": 7,
+    "blank": 10
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ProofOfWork/ActionBar/Leetmigo/Leetmigo.render.tsx": {
+    "language": "TypeScript JSX",
+    "code": 186,
+    "comment": 22,
+    "blank": 16
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Collections/Collections.tsx": {
+    "language": "TypeScript JSX",
+    "code": 67,
+    "comment": 8,
+    "blank": 9
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/ChatGPT.compute.ts": {
+    "language": "TypeScript",
+    "code": 97,
+    "comment": 0,
+    "blank": 7
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/ChatGptWrapper.tsx": {
+    "language": "TypeScript JSX",
+    "code": 51,
+    "comment": 3,
+    "blank": 6
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/Prompts/Prompts.tsx": {
+    "language": "TypeScript JSX",
+    "code": 229,
+    "comment": 20,
+    "blank": 17
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/PromptCombiner9000/PromptCombiner9000.tsx": {
+    "language": "TypeScript JSX",
+    "code": 240,
+    "comment": 6,
+    "blank": 23
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/ChatGPT.tsx": {
+    "language": "TypeScript JSX",
+    "code": 181,
+    "comment": 24,
+    "blank": 28
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/Patreon/Patreon.tsx": {
+    "language": "TypeScript JSX",
+    "code": 129,
+    "comment": 20,
+    "blank": 17
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/PromptCombiner9000/CodeDemo/CodeDemo.tsx": {
+    "language": "TypeScript JSX",
+    "code": 98,
+    "comment": 11,
+    "blank": 5
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/Intro/Intro.tsx": {
+    "language": "TypeScript JSX",
+    "code": 75,
+    "comment": 6,
+    "blank": 7
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/vite-env.d.ts": {
+    "language": "TypeScript",
+    "code": 1,
+    "comment": 1,
+    "blank": 1
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/PromptMessage/PromptMessage.tsx": {
+    "language": "TypeScript JSX",
+    "code": 39,
+    "comment": 8,
+    "blank": 7
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/App.constants.tsx": {
+    "language": "TypeScript JSX",
+    "code": 134,
+    "comment": 10,
+    "blank": 9
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/App.compute.tsx": {
+    "language": "TypeScript JSX",
+    "code": 944,
+    "comment": 79,
+    "blank": 73
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/ChatGPT/CodeEditor/CodeEditor.tsx": {
+    "language": "TypeScript JSX",
+    "code": 224,
+    "comment": 20,
+    "blank": 23
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/markdowns/philosophy.md": {
+    "language": "Markdown",
+    "code": 166,
+    "comment": 0,
+    "blank": 62
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/svgs/HamburgerMenu.tsx": {
+    "language": "TypeScript JSX",
+    "code": 0,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/svgs/LinkIcon.tsx": {
+    "language": "TypeScript JSX",
+    "code": 32,
+    "comment": 0,
+    "blank": 2
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/markdowns/humanComputerInteraction.md": {
+    "language": "Markdown",
+    "code": 68,
+    "comment": 383,
+    "blank": 70
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/anims/arrow_animation.json": {
+    "language": "JSON",
+    "code": 349,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/svgs/Title.tsx": {
+    "language": "TypeScript JSX",
+    "code": 37,
+    "comment": 1,
+    "blank": 4
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/anims/heart_chat_animation.json": {
+    "language": "JSON",
+    "code": 911,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/anims/zap_animation.json": {
+    "language": "JSON",
+    "code": 4411,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/anims/chat_loading_animation.json": {
+    "language": "JSON",
+    "code": 311,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/anims/bitcoin_animation.json": {
+    "language": "JSON",
+    "code": 934,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/anims/star_animation.json": {
+    "language": "JSON",
+    "code": 1099,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/words/words.ts": {
+    "language": "TypeScript",
+    "code": 172,
+    "comment": 17,
+    "blank": 19
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/uiSchema.tsx": {
+    "language": "TypeScript JSX",
+    "code": 103,
+    "comment": 29,
+    "blank": 43
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/ui.ts": {
+    "language": "TypeScript",
+    "code": 73,
+    "comment": 18,
+    "blank": 8
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/markdowns/focusInvesting.md": {
+    "language": "Markdown",
+    "code": 34,
+    "comment": 0,
+    "blank": 34
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Dashboard/Dashboard.tsx": {
+    "language": "TypeScript JSX",
+    "code": 111,
+    "comment": 17,
+    "blank": 17
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/svgs/EditIcon.tsx": {
+    "language": "TypeScript JSX",
+    "code": 19,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/styles/lazyStyles.tsx": {
+    "language": "TypeScript JSX",
+    "code": 669,
+    "comment": 17,
+    "blank": 31
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/README.md": {
+    "language": "Markdown",
+    "code": 28,
+    "comment": 0,
+    "blank": 15
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/index.css": {
+    "language": "CSS",
+    "code": 67,
+    "comment": 0,
+    "blank": 9
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/App.web5.ts": {
+    "language": "TypeScript",
+    "code": 77,
+    "comment": 12,
+    "blank": 10
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/main.tsx": {
+    "language": "TypeScript JSX",
+    "code": 20,
+    "comment": 8,
+    "blank": 6
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/PasscodeModal/PasscodeModal.tsx": {
+    "language": "TypeScript JSX",
+    "code": 84,
+    "comment": 1,
+    "blank": 10
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Engineer/Engineer.tsx": {
+    "language": "TypeScript JSX",
+    "code": 5924,
+    "comment": 81,
+    "blank": 57
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/App.css": {
+    "language": "CSS",
+    "code": 68,
+    "comment": 5,
+    "blank": 14
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Creator/Creator.tsx": {
+    "language": "TypeScript JSX",
+    "code": 1592,
+    "comment": 9,
+    "blank": 35
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/App.hooks.tsx": {
+    "language": "TypeScript JSX",
+    "code": 164,
+    "comment": 59,
+    "blank": 41
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/HintUI/HintUI.tsx": {
+    "language": "TypeScript JSX",
+    "code": 33,
+    "comment": 0,
+    "blank": 3
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/CuteGradient/CuteGradient.tsx": {
+    "language": "TypeScript JSX",
+    "code": 31,
+    "comment": 0,
+    "blank": 5
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/database/firebaseResources.tsx": {
+    "language": "TypeScript JSX",
+    "code": 30,
+    "comment": 5,
+    "blank": 6
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ImageZoomer/ImageZoomer.tsx": {
+    "language": "TypeScript JSX",
+    "code": 10,
+    "comment": 0,
+    "blank": 2
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/LectureHeader/LectureHeader.tsx": {
+    "language": "TypeScript JSX",
+    "code": 22,
+    "comment": 9,
+    "blank": 5
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/CodeBlock/SoftwareEngineer/SoftwareEngineer.styles.tsx": {
+    "language": "TypeScript JSX",
+    "code": 26,
+    "comment": 0,
+    "blank": 3
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/App.tsx": {
+    "language": "TypeScript JSX",
+    "code": 924,
+    "comment": 140,
+    "blank": 78
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/KnowledgeCollector/KnowledgeCollector.tsx": {
+    "language": "TypeScript JSX",
+    "code": 64,
+    "comment": 0,
+    "blank": 9
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/experimental/DecisionMap.tsx": {
+    "language": "TypeScript JSX",
+    "code": 0,
+    "comment": 1034,
+    "blank": 34
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/CodeBlock/CodeBlock.tsx": {
+    "language": "TypeScript JSX",
+    "code": 94,
+    "comment": 32,
+    "blank": 16
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/Paths/Paths.tsx": {
+    "language": "TypeScript JSX",
+    "code": 134,
+    "comment": 12,
+    "blank": 10
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ImageZoomer/react-medium-image-zoom.css": {
+    "language": "CSS",
+    "code": 97,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ExternalLink/ExternalLink.tsx": {
+    "language": "TypeScript JSX",
+    "code": 20,
+    "comment": 0,
+    "blank": 2
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/CodeBlock/CodeBlock.compute.tsx": {
+    "language": "TypeScript JSX",
+    "code": 28,
+    "comment": 0,
+    "blank": 4
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/CodeDisplay/CodeDisplay.tsx": {
+    "language": "TypeScript JSX",
+    "code": 36,
+    "comment": 1,
+    "blank": 3
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/MarkdownRenderer/MarkdownRenderer.tsx": {
+    "language": "TypeScript JSX",
+    "code": 35,
+    "comment": 5,
+    "blank": 10
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/CodeBlock/SoftwareEngineer/SoftwareEngineer.tsx": {
+    "language": "TypeScript JSX",
+    "code": 94,
+    "comment": 0,
+    "blank": 4
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/GlobalModal/GlobalModal.tsx": {
+    "language": "TypeScript JSX",
+    "code": 140,
+    "comment": 11,
+    "blank": 17
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/RandomCharacter/RandomCharacter.tsx": {
+    "language": "TypeScript JSX",
+    "code": 92,
+    "comment": 4,
+    "blank": 12
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/SchedulerBlock/SchedulerBlock.compute.tsx": {
+    "language": "TypeScript JSX",
+    "code": 32,
+    "comment": 42,
+    "blank": 6
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ContentLinks/ContentLinks.tsx": {
+    "language": "TypeScript JSX",
+    "code": 74,
+    "comment": 8,
+    "blank": 5
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/RevealButton/RevealButton.tsx": {
+    "language": "TypeScript JSX",
+    "code": 93,
+    "comment": 15,
+    "blank": 7
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ChatBlock/ChatBlock.compute.tsx": {
+    "language": "TypeScript JSX",
+    "code": 16,
+    "comment": 1,
+    "blank": 7
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/CodeBlock/ActivateCofounder/ActivateCofounder.tsx": {
+    "language": "TypeScript JSX",
+    "code": 33,
+    "comment": 0,
+    "blank": 3
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/Typewriter/Typewriter.tsx": {
+    "language": "TypeScript JSX",
+    "code": 39,
+    "comment": 1,
+    "blank": 7
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/RobotDialogue/RobotDialogue.tsx": {
+    "language": "TypeScript JSX",
+    "code": 21,
+    "comment": 0,
+    "blank": 5
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ChatBlock/ChatBlock.tsx": {
+    "language": "TypeScript JSX",
+    "code": 371,
+    "comment": 23,
+    "blank": 42
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Entrepeneur/Entrepeneur.tsx": {
+    "language": "TypeScript JSX",
+    "code": 1289,
+    "comment": 35,
+    "blank": 26
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/SchedulerBlock/SchedulerBlock.tsx": {
+    "language": "TypeScript JSX",
+    "code": 263,
+    "comment": 75,
+    "blank": 41
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ChatBlock/ConversationGrader/ConversationGrader.tsx": {
+    "language": "TypeScript JSX",
+    "code": 22,
+    "comment": 1,
+    "blank": 3
+  },
+  "file:///Users/sheilferzepeda/Desktop/robots/RobotsBuildingEducation/app/src/common/ui/Elements/ChatBlock/ConversationGrader/Chat/Chat.tsx": {
+    "language": "TypeScript JSX",
+    "code": 86,
+    "comment": 0,
+    "blank": 8
+  }
+}

@@ -5,6 +5,8 @@ import NDK, {
   NDKEvent,
   NDKKind,
 } from "@nostr-dev-kit/ndk";
+import { nip19, getPublicKey } from "nostr-tools";
+
 import { Buffer } from "buffer";
 import { bech32 } from "bech32";
 import { CashuMint, CashuWallet, getEncodedToken } from "@cashu/cashu-ts";
@@ -14,7 +16,6 @@ import { CashuMint, CashuWallet, getEncodedToken } from "@cashu/cashu-ts";
  */
 export const deleteWebNodeRecords = async (recordSet, web5) => {
   for (let i = 0; i < recordSet.length; i++) {
-    console.log(`deleting record set at ${i}`, recordSet[i]);
     let currentId = recordSet[i]?.id;
 
     await web5.dwn.records.delete({
@@ -93,7 +94,6 @@ export let updateWebNodeRecord = async (web5, dwnRecords, unlocks) => {
 };
 
 export let testUpdatedWebNodeRecords = async (web5, dwnRecords) => {
-  // console.log("final result:");
   const { record: testRecord } = await web5.dwn.records.read({
     message: {
       filter: {
@@ -105,7 +105,6 @@ export let testUpdatedWebNodeRecords = async (web5, dwnRecords) => {
     },
   });
   const outcome = await testRecord.data.json();
-  console.log("dwn outcome", outcome);
 };
 
 export const useSharedNostr = (initialNpub, initialNsec) => {
@@ -116,8 +115,8 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
 
   useEffect(() => {
     // Load keys from local storage if they exist
-    const storedNpub = localStorage.getItem("npub");
-    const storedNsec = localStorage.getItem("nsec");
+    const storedNpub = localStorage.getItem("local_npub");
+    const storedNsec = localStorage.getItem("local_nsec");
 
     if (storedNpub) {
       setNostrPubKey(storedNpub);
@@ -130,12 +129,11 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
 
   const generateNostrKeys = async (userDisplayName = null) => {
     const privateKeySigner = NDKPrivateKeySigner.generate();
-    console.log("privateKeySigner", privateKeySigner);
+
     const privateKey = privateKeySigner.privateKey;
     const user = await privateKeySigner.user();
-    console.log("user...", user);
+
     const publicKey = user.npub;
-    console.log("public key..", publicKey);
 
     const encodedNsec = bech32.encode(
       "nsec",
@@ -145,31 +143,32 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
       "npub",
       bech32.toWords(Buffer.from(publicKey, "hex"))
     );
+    console.log("encoded npub", encodedNpub);
+    console.log("encodedNsec", encodedNsec);
 
     setNostrPrivKey(encodedNsec);
     setNostrPubKey(encodedNpub);
 
-    if (!localStorage.getItem("nsec")) {
-      postNostrContent(
-        JSON.stringify({
-          name: userDisplayName,
-          about: "A student onboarded with Robots Building Education",
-        }),
-        0,
-        publicKey,
-        encodedNsec
-      );
-    }
+    // if (!localStorage.getItem("local_nsec")) {
+    //   postNostrContent(
+    //     JSON.stringify({
+    //       // name: userDisplayName,
+    //       about: "A student onboarded with Robots Building Education",
+    //     }),
+    //     0,
+    //     publicKey,
+    //     encodedNsec
+    //   );
+    // }
 
-    localStorage.setItem("nsec", encodedNsec);
-    localStorage.setItem("npub", publicKey);
+    localStorage.setItem("local_nsec", encodedNsec);
+    localStorage.setItem("local_npub", publicKey);
+    localStorage.setItem("uniqueId", publicKey);
 
     return { npub: publicKey, nsec: encodedNsec };
   };
 
   const connectToNostr = async (npubRef = null, nsecRef = null) => {
-    console.log("REF PUB 2", npubRef);
-    console.log("NSEC ref 2", nsecRef);
     const defaultNsec = import.meta.env.VITE_GLOBAL_NOSTR_NSEC;
     const defaultNpub =
       "npub1mgt5c7qh6dm9rg57mrp89rqtzn64958nj5w9g2d2h9dng27hmp0sww7u2v";
@@ -192,7 +191,7 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
 
       // Connect to the relays
       await ndkInstance.connect();
-      console.log("NDK connected");
+
       setIsConnected(true);
 
       // Return the connected NDK instance and signer
@@ -204,18 +203,45 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
     }
   };
 
+  const auth = async (nsecPassword) => {
+    let testnsec = nsecPassword;
+
+    console.log("im authing", nip19);
+    let decoded = nip19.decode(testnsec);
+    console.log("decoded", decoded);
+    console.log("decoded type..", decoded.type); //nsec
+    const pubkey = getPublicKey(decoded.data);
+    console.log("pk", pubkey);
+
+    const ndk = new NDK({
+      explicitRelayUrls: ["wss://relay.damus.io", "wss://relay.primal.net"],
+    });
+    console.log("ndk");
+    let user = ndk.getUser({ pubkey: pubkey });
+
+    console.log("user?", user.npub);
+    console.log("user profile", user.profile);
+
+    setNostrPrivKey(testnsec);
+    setNostrPubKey(user.npub);
+
+    localStorage.setItem("local_nsec", testnsec);
+    localStorage.setItem("local_npub", user.npub);
+    localStorage.setItem("uniqueId", user.npub);
+  };
+
   const postNostrContent = async (
     content,
     kind = NDKKind.Text,
     npubRef = null,
     nsecRef = null
   ) => {
-    console.log("REF PUB", npubRef);
-    console.log("NSEC ref", nsecRef);
     const connection = await connectToNostr(npubRef, nsecRef);
     if (!connection) return;
 
     const { ndkInstance, hexNpub, signer } = connection;
+
+    console.log("connection", connection);
 
     // Create a new note event
     const noteEvent = new NDKEvent(ndkInstance, {
@@ -229,10 +255,216 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
     // Sign the note event
     await noteEvent.sign(signer);
 
-    console.log("Signed Note", noteEvent.rawEvent());
-
     // Publish the note event
     await noteEvent.publish();
+  };
+
+  const getHexNPub = (npub) => {
+    // Decode the npub from Bech32
+    const { words: npubWords } = bech32.decode(npub);
+    const hexNpub = Buffer.from(bech32.fromWords(npubWords)).toString("hex");
+
+    return hexNpub;
+  };
+
+  const assignExistingBadgeToNpub = async (
+    badgeNaddr,
+    awardeeNpub = localStorage.getItem("local_npub"), // The public key of the user being awarded
+    ownerNsec = import.meta.env.VITE_SECRET_KEY // Your private key to sign the event
+  ) => {
+    if (!awardeeNpub) {
+      console.error("Awardee public key is required to award the badge.");
+      return;
+    }
+
+    if (!ownerNsec) {
+      console.error(
+        "Owner's private key is required to sign the badge award event."
+      );
+      return;
+    }
+
+    // Connect to Nostr as the badge owner
+    const connection = await connectToNostr(
+      "npub14vskcp90k6gwp6sxjs2jwwqpcmahg6wz3h5vzq0yn6crrsq0utts52axlt",
+      ownerNsec
+    );
+    if (!connection) return;
+
+    const { ndkInstance, signer } = connection;
+
+    // Create the event for awarding the badge
+    const badgeAwardEvent = new NDKEvent(ndkInstance, {
+      kind: NDKKind.BadgeAward, // Badge Award event kind
+      tags: [
+        ["a", badgeNaddr], // Reference to the Badge Definition event
+        [
+          "p",
+          //npub14vskcp90k6gwp6sxjs2jwwqpcmahg6wz3h5vzq0yn6crrsq0utts52axlt
+          getHexNPub(localStorage.getItem("local_npub")),
+        ], // Public key of the awardee
+      ],
+      created_at: Math.floor(Date.now() / 1000),
+      //npub14vskcp90k6gwp6sxjs2jwwqpcmahg6wz3h5vzq0yn6crrsq0utts52axlt
+      pubkey: getHexNPub(
+        "npub14vskcp90k6gwp6sxjs2jwwqpcmahg6wz3h5vzq0yn6crrsq0utts52axlt"
+      ),
+      // Your public key as the issuer
+    });
+
+    // Sign the badge event
+    try {
+      await badgeAwardEvent.sign(signer);
+    } catch (error) {
+      console.error("Error signing badge event:", error);
+    }
+
+    // Publish the badge event
+    try {
+      await badgeAwardEvent.publish();
+      console.log("Badge awarded successfully to:", awardeeNpub);
+    } catch (error) {
+      console.error("Error publishing badge event:", error);
+    }
+  };
+
+  const getAddressPointer = (naddr) => {
+    return nip19.decode(naddr).data;
+  };
+
+  const getBadgeData = async (addy) => {
+    try {
+      // Connect to Nostr
+      const connection = await connectToNostr();
+      if (!connection) return [];
+
+      const { ndkInstance, hexNpub } = connection;
+
+      const addressPointer = await getAddressPointer(addy);
+
+      console.log("BDT", addressPointer);
+      // Create a filter for badge events (kind 30008) for the given user
+      const filter = {
+        kinds: [NDKKind.BadgeDefinition], // Use the NDKKind enum for better readability
+        authors: [addressPointer.pubkey], // The user's hex-encoded npub
+        "#d": [addressPointer.identifier],
+        limit: 1,
+      };
+
+      // Create a subscription to fetch the events
+      const subscription = ndkInstance.subscribe(filter, { closeOnEose: true });
+
+      // Array to hold badges
+      const badges = [];
+
+      // Listen for events
+      subscription.on("event", (event) => {
+        const badgeInfo = {
+          content: event.content,
+          createdAt: event.created_at,
+          tags: event.tags,
+          badgeAddress: addy,
+        };
+        badges.push(badgeInfo);
+      });
+
+      // Wait for the subscription to finish
+      await new Promise((resolve) => subscription.on("eose", resolve));
+
+      // Log the retrieved badges
+
+      return badges;
+    } catch (error) {
+      console.error("Error retrieving badges:", error);
+      setErrorMessage(error.message);
+      return [];
+    }
+  };
+  const getUserBadges = async (npub = localStorage.getItem("local_npub")) => {
+    try {
+      const connection = await connectToNostr();
+      if (!connection) return [];
+
+      const { ndkInstance } = connection;
+      const hexNpub = getHexNPub(npub); // Convert npub to hex
+
+      // Create a filter for badge award events (kind 30009) where the user is the recipient
+      const filter = {
+        kinds: [NDKKind.BadgeAward], // Kind 30009 for badge awards
+        "#p": [hexNpub], // Filter by the user's hex-encoded public key as the recipient
+        limit: 100, // Adjust the limit as needed
+      };
+
+      const subscription = ndkInstance.subscribe(filter, { closeOnEose: true });
+
+      const badges = [];
+
+      subscription.on("event", (event) => {
+        const badgeInfo = {
+          content: event.content,
+          createdAt: event.created_at,
+          tags: event.tags,
+        };
+        badges.push(badgeInfo);
+      });
+
+      await new Promise((resolve) => subscription.on("eose", resolve));
+
+      console.log("badges", badges);
+      const uniqueNAddresses = [
+        ...new Set(
+          badges.flatMap(
+            (badge) =>
+              badge.tags
+                .filter((tag) => tag[0] === "a" && tag[1]) // Find tags where the first element is "a"
+                .map((tag) => tag[1]) // Extract the naddress
+          )
+        ),
+      ];
+
+      console.log("uniqueNAddresses", uniqueNAddresses);
+      let badgeData = uniqueNAddresses.map((naddress) =>
+        getBadgeData(naddress)
+      );
+
+      let resolvedBadges = await Promise.all(badgeData);
+
+      const formattedBadges = [];
+
+      // Loop through each outer array in the badgeDataArray
+      resolvedBadges.forEach((badgeArray) => {
+        // For each inner badge object array (which should have one object), extract name and image
+        console.log("badge arr", badgeArray);
+        badgeArray.forEach((badge) => {
+          let name = "";
+          let image = "";
+
+          badge.tags.forEach((tag) => {
+            if (tag[0] === "name") {
+              name = tag[1];
+            }
+            if (tag[0] === "image") {
+              image = tag[1];
+            }
+          });
+
+          // Push the object containing name and image to the badges array
+          if (name && image) {
+            formattedBadges.push({
+              name,
+              image,
+              badgeAddress: badge.badgeAddress,
+            });
+          }
+        });
+      });
+
+      console.log("formattedBadges", formattedBadges);
+      return formattedBadges;
+    } catch (error) {
+      console.error("Error retrieving badges:", error);
+      return [];
+    }
   };
 
   return {
@@ -242,6 +474,9 @@ export const useSharedNostr = (initialNpub, initialNsec) => {
     nostrPrivKey,
     generateNostrKeys,
     postNostrContent,
+    auth,
+    assignExistingBadgeToNpub,
+    getUserBadges,
   };
 };
 
@@ -350,18 +585,22 @@ export const useCashuWallet = (isUnactivated) => {
 
   const handleSetMint = async () => {
     const mint = new CashuMint(formData.mintUrl);
+    console.log("Mint Object", mint);
 
     try {
       const info = await mint.getInfo();
+      console.log("Mint data", info);
       setDataOutput(info);
 
       const { keysets } = await mint.getKeys();
-
-      console.log("KEYSETS", keysets);
+      console.log("mint keysets", keysets);
 
       const satKeyset = keysets.find((k) => k.unit === "sat");
+      console.log("sat keysets", satKeyset);
 
       let walletRef = new CashuWallet(mint, { keys: satKeyset, unit: "sat" });
+
+      console.log("wallet object", walletRef);
       setWallet(walletRef);
 
       localStorage.setItem(
@@ -381,21 +620,30 @@ export const useCashuWallet = (isUnactivated) => {
     let w = wallet || walletRef;
 
     const quote = await w.getMintQuote(amount);
-    localStorage.setItem("address", quote.request);
+    console.log("mint quote", quote);
 
-    console.log("w", w);
+    localStorage.setItem("address", quote.request);
 
     setDataOutput(quote);
 
+    let count = 0;
+
     const intervalId = setInterval(async () => {
       try {
-        const { proofs } = await w.mintTokens(amount, quote.quote, {
-          keysetId: w.keys.id,
-        });
-        setDataOutput({ "minted proofs": proofs });
-        setFormData((prevData) => ({ ...prevData }));
-        addProofs(proofs);
-        clearInterval(intervalId);
+        if (count === 36 || parseInt(localStorage.getItem(balance)) > 0) {
+          clearInterval(intervalId);
+        } else {
+          const { proofs } = await w.mintTokens(amount, quote.quote, {
+            keysetId: w.keys.id,
+          });
+
+          console.log("Minted token proofs", proofs);
+
+          setDataOutput({ "minted proofs": proofs });
+          setFormData((prevData) => ({ ...prevData }));
+          addProofs(proofs);
+          clearInterval(intervalId);
+        }
       } catch (error) {
         console.error("Quote probably not paid: ", quote.request, error);
         setDataOutput({ error: "Failed to mint", details: error });
@@ -414,11 +662,12 @@ export const useCashuWallet = (isUnactivated) => {
 
     try {
       const { send, returnChange } = await wallet.send(swapAmount, proofs);
+      console.log("Send", send);
       const encodedToken = getEncodedToken({
         token: [{ proofs: send, mint: wallet.mint.mintUrl }],
       });
 
-      // console.log("ENCODED TOKEN", encodedToken);
+      console.log("encoded token", encodedToken);
 
       removeProofs(proofs);
       addProofs(returnChange);

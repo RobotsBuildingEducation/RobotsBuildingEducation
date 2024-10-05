@@ -30,7 +30,7 @@ export const Module = ({
       isDisabled={isDisabled}
       patreonObject={currentModule}
       key={currentModule.header}
-      onClick={() => {
+      onMouseDown={() => {
         console.log(
           "!userStateReference?.databaseUserDocument?.unlocks?.[module]",
           !userStateReference?.databaseUserDocument?.unlocks?.[module]
@@ -70,7 +70,7 @@ export const Module = ({
       ) : (
         <span>
           &#9658;
-          <br /> {currentModule.header}
+          <br /> <b>{currentModule.header}</b>
         </span>
       )}
     </StyledModule>

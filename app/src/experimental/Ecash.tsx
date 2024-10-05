@@ -1,342 +1,122 @@
-// // src/App.js
-// import React, { useState, useEffect } from "react";
-// import {
-//   configureStore,
-//   createAsyncThunk,
-//   createSlice,
-//   PayloadAction,
-// } from "@reduxjs/toolkit";
-// import { Provider, useDispatch, useSelector } from "react-redux";
-// import {
-//   CashuMint,
-//   CashuWallet,
-//   MintKeys,
-//   Proof,
-//   SendResponse,
-//   MeltQuoteResponse,
-//   MeltTokensResponse,
-// } from "@cashu/cashu-ts";
+import { useState, useEffect } from "react";
 
-// // Types
-// interface Wallet {
-//   id: string;
-//   keys: MintKeys;
-//   proofs: Proof[];
-//   url: string;
-//   active: boolean;
-// }
+import { CashuMint, CashuWallet, getEncodedToken } from "@cashu/cashu-ts";
 
-// interface WalletState {
-//   balance: { [unit: string]: number };
-//   balanceLocked: boolean;
-//   keysets: { [key: string]: Wallet };
-// }
+export const useProofStorage = () => {
+  const [proofs, setProofs] = useState(null);
+  const [balance, setBalance] = useState(0);
 
-// const updateKeysetLocalStorage = (keysets: { [key: string]: Wallet }) => {
-//   localStorage.setItem("keysets", JSON.stringify(Object.values(keysets)));
-// };
+  useEffect(() => {
+    const storedProofs = localStorage.getItem("proofs");
+    if (storedProofs) {
+      const parsedProofs = JSON.parse(storedProofs);
+      setProofs(parsedProofs);
+      const initialBalance = parsedProofs.reduce(
+        (total, proof) => total + proof.amount,
+        0
+      );
+      localStorage.setItem("balance", initialBalance);
+      setBalance(initialBalance);
+    }
+  }, []);
 
-// // Initial State
-// const initialState: WalletState = {
-//   balance: {},
-//   balanceLocked: false,
-//   keysets: {},
-// };
+  useEffect(() => {
+    if (!proofs) return;
+    localStorage.setItem("proofs", JSON.stringify(proofs));
+    const newBalance = proofs.reduce((total, proof) => total + proof.amount, 0);
+    localStorage.setItem("balance", newBalance);
+    setBalance(newBalance);
+  }, [proofs]);
 
-// // Redux Slice
-// const walletSlice = createSlice({
-//   name: "walletSlice",
-//   initialState,
-//   reducers: {
-//     updateKeysetActiveStatus: (
-//       state,
-//       action: PayloadAction<{ id: string; active: boolean }>
-//     ) => {
-//       const { id, active } = action.payload;
-//       const keyset = state.keysets[id];
-//       if (keyset) {
-//         keyset.active = active;
-//       }
-//     },
-//     setBalance: (state, action: PayloadAction<{ [unit: string]: number }>) => {
-//       if (state.balanceLocked) {
-//         return;
-//       }
-//       state.balance = action.payload;
-//     },
-//     lockBalance: (state) => {
-//       state.balanceLocked = true;
-//     },
-//     unlockBalance: (state) => {
-//       state.balanceLocked = false;
-//     },
-//     addKeyset: (
-//       state,
-//       action: PayloadAction<{ keyset: MintKeys; url: string; active?: boolean }>
-//     ) => {
-//       const { keyset, url } = action.payload;
-//       const toAdd: Wallet = {
-//         id: keyset.id,
-//         keys: keyset,
-//         proofs: [],
-//         url,
-//         active: action.payload.active || false,
-//       };
-//       const newKeysetState = { ...state.keysets, [keyset.id]: toAdd };
-//       state.keysets = newKeysetState;
-//       updateKeysetLocalStorage(newKeysetState);
-//     },
-//   },
-//   extraReducers: (builder) => {
-//     builder
-//       .addCase(initializeKeysets.fulfilled, (state, action) => {
-//         state.keysets = action.payload.keysets.reduce((acc, keyset) => {
-//           acc[keyset.id] = keyset;
-//           return acc;
-//         }, {} as { [key: string]: Wallet });
-//         state.balance = action.payload.balance;
-//       })
-//       .addCase(setMainKeyset.fulfilled, (state, action) => {
-//         if (!action.payload) return;
-//         const { keysetId, active = true } = action.payload;
-//         const keyset = state.keysets[keysetId];
-//         if (keyset) {
-//           keyset.active = active;
-//           Object.values(state.keysets).forEach((k) => {
-//             if (k.id !== keysetId) {
-//               k.active = false;
-//             }
-//           });
-//           updateKeysetLocalStorage(state.keysets);
-//         }
-//       });
-//   },
-// });
+  const addProofs = (newProofs) => {
+    setProofs((prevProofs) => [...(prevProofs || []), ...newProofs]);
+  };
 
-// export const {
-//   setBalance,
-//   lockBalance,
-//   unlockBalance,
-//   addKeyset,
-//   updateKeysetActiveStatus,
-// } = walletSlice.actions;
-// export default walletSlice.reducer;
+  const removeProofs = (proofsToRemove) => {
+    if (!proofsToRemove) return;
+    setProofs((prevProofs) =>
+      prevProofs.filter((proof) => !proofsToRemove.includes(proof))
+    );
+  };
 
-// // Async Thunks
-// const initializeKeysets = createAsyncThunk(
-//   "wallet/initializeKeysets",
-//   async (_, { rejectWithValue }) => {
-//     const keysets = JSON.parse(
-//       localStorage.getItem("keysets") || "[]"
-//     ) as Wallet[];
-//     const proofs = JSON.parse(
-//       localStorage.getItem("proofs") || "[]"
-//     ) as Proof[];
-//     const balance = proofs.reduce(
-//       (acc, proof) => {
-//         acc.usd += proof.amount;
-//         return acc;
-//       },
-//       { usd: 0 }
-//     );
-//     return { keysets, balance };
-//   }
-// );
+  const getProofsByAmount = (amount, keysetId = undefined) => {
+    const result = [];
+    let sum = 0;
 
-// const setMainKeyset = createAsyncThunk(
-//   "wallet/setMainKeyset",
-//   async (keysetId: string, { getState, dispatch }) => {
-//     const state = getState() as RootState;
+    for (const proof of proofs) {
+      if (sum >= amount) break;
+      if (keysetId && proof.id !== keysetId) continue;
+      result.push(proof);
+      sum += proof.amount;
+    }
 
-//     const toSetMain = state.wallet.keysets[keysetId];
+    return result.length > 0 && sum >= amount ? result : [];
+  };
 
-//     if (!toSetMain) {
-//       throw new Error("Keyset not found");
-//     }
+  return {
+    addProofs,
+    removeProofs,
+    getProofsByAmount,
+    balance,
+  };
+};
 
-//     if (toSetMain.active) {
-//       console.log("This keyset is already active.");
-//       return;
-//     }
+export const useCashuProtocol = () => {
+  const url = "https://cash.app";
+  const deposit = 25;
+  const cost = 1;
 
-//     try {
-//       const pubkey = localStorage.getItem("pubkey");
-//       console.log("Posting to /api/users/", pubkey);
-//       await fetch(`/api/users/${pubkey}`, {
-//         method: "PUT",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({ mintUrl: toSetMain.url, pubkey }),
-//       });
-//     } catch (e) {
-//       throw new Error(`Failed to update user: ${e}`);
-//     }
+  const [walletReference, setWalletReference] = useState(null);
 
-//     return { keysetId, active: true };
-//   }
-// );
+  //handle signatures, verification, etc.
+  const { addProofs, removeProofs, getProofsByAmount, balance } =
+    useProofStorage();
 
-// // Store
-// const store = configureStore({
-//   reducer: {
-//     wallet: walletSlice.reducer,
-//   },
-// });
+  useEffect(() => {
+    connectMint();
+  }, []);
 
-// // Custom Hook: useCashu
-// const useCashu = () => {
-//   const dispatch = useDispatch();
-//   const wallet = useSelector((state) => state.wallet);
-//   const wallets = useSelector((state) => state.wallet.keysets);
+  const connectMint = async () => {
+    const mint = new CashuMint(url);
 
-//   const getProofs = (keysetId) => {
-//     const allProofs = JSON.parse(window.localStorage.getItem("proofs") || "[]");
-//     if (!keysetId) return allProofs;
-//     return allProofs.filter((proof) => proof.id === keysetId);
-//   };
+    try {
+      const { keysets } = await mint.getKeys();
+      const satKeyset = keysets.find((k) => k.unit === "sat");
 
-//   useEffect(() => {
-//     dispatch(initializeKeysets());
-//   }, [dispatch]);
+      let wallet = new CashuWallet(mint, { keys: satKeyset, unit: "sat" });
+      setWalletReference(wallet);
 
-//   useEffect(() => {
-//     const localProofs = getProofs();
-//     const balanceState = wallet.balance["usd"];
-//     const newBalance = localProofs.reduce((a, b) => a + b.amount, 0);
-//     if (balanceState !== newBalance) {
-//       dispatch(setBalance({ usd: newBalance }));
-//     }
-//   }, [wallet.balance, dispatch]);
+      await createMoney(wallet);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-//   const requestMintInvoice = async ({ unit, amount }, keyset) => {
-//     const wallet = new CashuWallet(new CashuMint(keyset.url), { ...keyset });
-//     const { quote, request } = await wallet.getMintQuote(amount);
-//     return { quote, request };
-//   };
+  const verifyMoney = async (wallet) => {
+    const quote = await wallet.getMintQuote(deposit);
 
-//   const handlePayInvoice = async (invoice, amount) => {
-//     const activeWallet = Object.values(wallets).find((w) => w.active);
-//     if (!activeWallet) throw new Error("No active wallet found");
+    const interval = setInterval(async () => {
+      const { proofs } = await wallet.mintTokens(deposit, quote.quote, {
+        keysetId: wallet.keys.id,
+      });
 
-//     const wallet = new CashuWallet(new CashuMint(activeWallet.url), {
-//       keys: activeWallet.keys,
-//     });
-//     dispatch(lockBalance());
-//     dispatch(setSending("Sending..."));
+      addProofs(proofs);
+      clearInterval(interval);
+    }, 5000);
+  };
 
-//     try {
-//       const proofs = getProofs(activeWallet.id);
-//       const sendResponse = await wallet.send(amount, proofs);
-//       if (sendResponse && sendResponse.send) {
-//         const invoiceResponse = await wallet.payLnInvoice(
-//           invoice,
-//           sendResponse.send
-//         );
-//         if (!invoiceResponse || !invoiceResponse.isPaid) {
-//           dispatch(setError("Payment failed"));
-//         } else {
-//           dispatch(setSuccess(`Sent $${amount}!`));
-//         }
-//       }
-//     } catch (error) {
-//       console.error(error);
-//     } finally {
-//       dispatch(unlockBalance());
-//     }
-//   };
+  const handleSend = async () => {
+    const proofs = getProofsByAmount(cost);
 
-//   return {
-//     handlePayInvoice,
-//     requestMintInvoice,
-//   };
-// };
+    const { send, returnChange } = await walletReference.send(cost, proofs);
 
-// // Components
-// const Send = () => {
-//   const { handlePayInvoice } = useCashu();
-//   const [invoice, setInvoice] = useState("");
-//   const [amount, setAmount] = useState("");
-//   const [message, setMessage] = useState("");
+    const encodedToken = getEncodedToken({
+      token: [{ proofs: send, mint: walletReference.mint.mintUrl }],
+    });
 
-//   const handleSend = async () => {
-//     try {
-//       await handlePayInvoice(invoice, parseInt(amount));
-//       setMessage(`Successfully sent ${amount} tokens!`);
-//     } catch (error) {
-//       setMessage(`Error: ${error.message}`);
-//     }
-//   };
+    removeProofs(proofs);
+    addProofs(returnChange);
 
-//   return (
-//     <div>
-//       <h2>Send Tokens</h2>
-//       <input
-//         type="text"
-//         placeholder="Invoice"
-//         value={invoice}
-//         onChange={(e) => setInvoice(e.target.value)}
-//       />
-//       <input
-//         type="text"
-//         placeholder="Amount"
-//         value={amount}
-//         onChange={(e) => setAmount(e.target.value)}
-//       />
-//       <button onClick={handleSend}>Send</button>
-//       {message && <p>{message}</p>}
-//     </div>
-//   );
-// };
-
-// const Receive = () => {
-//   const { requestMintInvoice } = useCashu();
-//   const [amount, setAmount] = useState("");
-//   const [message, setMessage] = useState("");
-//   const [mintRequest, setMintRequest] = useState(null);
-
-//   const handleReceive = async () => {
-//     try {
-//       const response = await requestMintInvoice(
-//         { unit: "usd", amount: parseInt(amount) },
-//         wallet
-//       );
-//       setMintRequest(response.request);
-//       setMessage(`Mint request: ${response.request}`);
-//     } catch (error) {
-//       setMessage(`Error: ${error.message}`);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h2>Receive Tokens</h2>
-//       <input
-//         type="text"
-//         placeholder="Amount"
-//         value={amount}
-//         onChange={(e) => setAmount(e.target.value)}
-//       />
-//       <button onClick={handleReceive}>Receive</button>
-//       {message && <p>{message}</p>}
-//       {mintRequest && <p>Mint Request: {mintRequest}</p>}
-//     </div>
-//   );
-// };
-
-// // Main Component
-// export const Ecash = () => {
-//   return (
-//     <Provider store={store}>
-//       <div className="App">
-//         <header className="App-header">
-//           <h1>Cashu Wallet</h1>
-//         </header>
-//         <main>
-//           <Send />
-//           <Receive />
-//         </main>
-//       </div>
-//     </Provider>
-//   );
-// };
+    return encodedToken;
+  };
+};

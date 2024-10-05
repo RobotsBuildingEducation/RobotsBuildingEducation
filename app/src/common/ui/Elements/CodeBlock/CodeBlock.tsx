@@ -113,9 +113,7 @@ const SoftwareEngineer = ({
           </Form>
         </div>
         <br />
-        {isLoading && (
-          <RoxanaLoadingAnimation header={"Creating and designing 🌀"} />
-        )}
+        {isLoading && <RoxanaLoadingAnimation header={"creating"} />}
         {messages?.length > 0 && isEmpty(apiResponse) && (
           <div style={{ whiteSpace: "pre-wrap" }}>
             {messages
@@ -186,7 +184,7 @@ export const CodeBlock = ({
     setMessages,
   } = useChatStream({
     apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-    model: "gpt-4o",
+    model: "gpt-4o-mini",
     temperature: 0.9,
     response_format: { type: "json_object" },
   });

@@ -55,7 +55,7 @@ function ContextAwareToggle({ children, eventKey, callback }) {
         backgroundColor: isCurrentEventKey ? PINK : "#222222",
         color: "white",
       }}
-      onClick={decoratedOnClick}
+      onMouseDown={decoratedOnClick}
     >
       {children}
     </button>
@@ -76,9 +76,11 @@ export const IdentityWallet = ({
   setIsStartupOpen,
 }) => {
   const [toggle, setToggle] = useState(false);
-  const [localNsec, setLocalNsec] = useState(localStorage.getItem("nsec"));
+  const [localNsec, setLocalNsec] = useState(
+    localStorage.getItem("local_nsec")
+  );
   const [secretKeyState, setSecretKeyState] = useState(
-    localStorage.getItem("nsec")
+    localStorage.getItem("local_nsec")
   );
   const [copyString, setCopyString] = useState("Press to copy ID");
 
@@ -93,6 +95,8 @@ export const IdentityWallet = ({
   const [userDisplayName, setUserDisplayName] = useState("");
   const [isDisplayNameUpdating, setIsDisplayNameUpdating] = useState(false);
   const [isFirstTimeUser, setIsFirstTimeUser] = useState(false);
+  const [badges, setBadges] = useState([]);
+  const [areBadgesLoading, setAreBadgesLoading] = useState(true);
 
   const {
     isConnected,
@@ -101,7 +105,8 @@ export const IdentityWallet = ({
     nostrPrivKey,
     generateNostrKeys,
     postNostrContent,
-  } = useSharedNostr(localStorage.getItem("npub"), secretKeyState);
+    getUserBadges,
+  } = useSharedNostr(localStorage.getItem("local_npub"), secretKeyState);
 
   const {
     formData,
@@ -142,23 +147,14 @@ export const IdentityWallet = ({
   const saveDisplayName = async () => {
     setIsDisplayNameUpdating(true);
 
-    // Generate Nostr keys if not already present
-    if (!nostrPrivKey && !nostrPubKey) {
-      setIsFirstTimeUser(true);
-      const { npub } = await generateNostrKeys(userDisplayName);
-      await updateDoc(userStateReference.userDocumentReference, {
-        nostrPubKey: npub,
-      });
-    } else {
-      await postNostrContent(
-        JSON.stringify({
-          name: userDisplayName,
-        }),
-        0,
-        nostrPubKey,
-        secretKeyState
-      );
-    }
+    await postNostrContent(
+      JSON.stringify({
+        name: userDisplayName,
+      }),
+      0,
+      localStorage.getItem("local_npub"),
+      localStorage.getItem("local_nsec")
+    );
 
     // Update display name and Nostr keys in Firestore
     await updateDoc(userStateReference.userDocumentReference, {
@@ -171,6 +167,15 @@ export const IdentityWallet = ({
 
     setIsDisplayNameUpdating(false);
   };
+
+  useEffect(() => {
+    async function getBadges() {
+      let data = await getUserBadges();
+      setBadges(data);
+      setAreBadgesLoading(false);
+    }
+    getBadges();
+  }, []);
 
   return (
     <>
@@ -227,7 +232,10 @@ export const IdentityWallet = ({
               width: "100%",
             }}
           >
-            <h4>
+            <i>Everything here is experimental. Expect no stability.</i>
+            <br />
+            <br />
+            {/* <h4>
               <div style={{ marginBottom: 12 }}>Decentralized Identity</div>
               {localStorage.getItem("uniqueId") ? (
                 <IdentityCard
@@ -300,7 +308,7 @@ export const IdentityWallet = ({
               </Card>
             </Accordion>
 
-            <br />
+            <br /> */}
             {userDidKey && (
               <Alert
                 variant={isValidDidKey ? "success" : "danger"}
@@ -317,7 +325,7 @@ export const IdentityWallet = ({
             <IdentityCard
               theme="nostr"
               number={
-                (localStorage.getItem("npub")?.substr(0, 16) ||
+                (localStorage.getItem("local_npub")?.substr(0, 16) ||
                   "npub1mgt5c7qh6dm9rg57mrp89rqtzn64958nj5w9g2d2h9dng27hmp0sww7u2v".substr(
                     0,
                     16
@@ -329,7 +337,7 @@ export const IdentityWallet = ({
                 )
               }
             />
-            {nostrPubKey && !localStorage.getItem("nsec") ? (
+            {nostrPubKey && !localStorage.getItem("local_nsec") ? (
               <>
                 {" "}
                 <br />
@@ -350,7 +358,7 @@ export const IdentityWallet = ({
                   <Button
                     variant="dark"
                     onMouseDown={() => {
-                      localStorage.setItem("nsec", localNsec);
+                      localStorage.setItem("local_nsec", localNsec);
                       setSecretKeyState(localNsec);
                     }}
                   >
@@ -366,7 +374,7 @@ export const IdentityWallet = ({
                   <a
                     target="_blank"
                     href={`https://primal.net/p/${localStorage.getItem(
-                      "npub"
+                      "local_npub"
                     )}`}
                   >
                     on primal.net
@@ -374,7 +382,9 @@ export const IdentityWallet = ({
                   or{" "}
                   <a
                     target="_blank"
-                    href={`https://iris.to/${localStorage.getItem("npub")}`}
+                    href={`https://iris.to/${localStorage.getItem(
+                      "local_npub"
+                    )}`}
                   >
                     on iris.to
                   </a>
@@ -396,7 +406,7 @@ export const IdentityWallet = ({
                       <br />
                       <input
                         type="password"
-                        value={localStorage.getItem("nsec")}
+                        value={localStorage.getItem("local_nsec")}
                       />
                     </b>
                     <br />
@@ -414,7 +424,7 @@ export const IdentityWallet = ({
                         transition: "0.25s all ease-in-out",
                       }}
                       onMouseDown={async () => {
-                        copyToClipboard(localStorage.getItem("nsec"));
+                        copyToClipboard(localStorage.getItem("local_nsec"));
                         setCopyNostr("Copied!");
                         animateBorderLoading(
                           setBorderStateForNostrCopy,
@@ -476,7 +486,6 @@ export const IdentityWallet = ({
             )}
             <br />
             <br />
-
             <main>
               <div className="cashu-operations-container">
                 <div className="section">
@@ -502,12 +511,12 @@ export const IdentityWallet = ({
                   <button
                     style={{ marginBottom: 8 }}
                     className="swap-send-button"
-                    onClick={handleSwapSend}
+                    onMouseDown={handleSwapSend}
                   >
                     Test cash tap
                   </button>
                   <br />
-                  <button className="swap-send-button" onClick={recharge}>
+                  <button className="swap-send-button" onMouseDown={recharge}>
                     Recharge
                   </button>
                 </div>
@@ -552,6 +561,63 @@ export const IdentityWallet = ({
             >
               {renderTranscriptAwards(
                 userStateReference.databaseUserDocument.profile
+              )}
+            </div>
+            <br />
+            <h4>Cross-Platform Awards</h4>
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                flexWrap: "wrap",
+              }}
+            >
+              {areBadgesLoading ? (
+                <div style={{ width: "fit-content" }}>
+                  Loading cross-platform transcript...
+                </div>
+              ) : (
+                <div
+                  style={{
+                    display: "flex",
+                    margin: 2,
+                    flexWrap: "wrap",
+                    width: "fit-content",
+                    height: "min-content",
+                  }}
+                >
+                  {badges?.length > 0
+                    ? badges.map((badge) => (
+                        <div
+                          style={{
+                            margin: 6,
+
+                            width: "250px",
+                            height: "100px",
+                            display: "flex",
+                          }}
+                        >
+                          <a
+                            target="_blank"
+                            href={`https://badges.page/a/${badge.badgeAddress}`}
+                          >
+                            <img
+                              src={badge.image}
+                              width={100}
+                              style={{
+                                borderRadius: "33%",
+                                boxShadow: "0px 1px 1px 2px black",
+                                marginBottom: 4,
+                              }}
+                            />
+                          </a>
+                          <div style={{ fontSize: "12px", padding: 6 }}>
+                            {badge.name}
+                          </div>
+                        </div>
+                      ))
+                    : "No awards found"}
+                </div>
               )}
             </div>
             <br />

@@ -24,6 +24,8 @@ function PasscodeChecker({
     ] || patreonObject;
 
   useEffect(() => {
+    console.log("patreonpasscode", correctPasscode);
+    console.log("typed", input);
     if (input === correctPasscode) {
       localStorage.setItem("patreonPasscode", input);
 

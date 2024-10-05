@@ -26,6 +26,69 @@ import chat_loading_animation from "./common/anims/chat_loading_animation.json";
 import roxanaGif from "./common/media/images/roxanaGif.gif";
 import { useEffect } from "react";
 
+export let unlockEverything = async (userStateReference) => {
+  await updateDoc(userStateReference.userDocumentReference, {
+    unlocks: {
+      Philosophy: true,
+      "Learning Mindset & Perspective": true,
+      "Lesson 3 Backend Engineering": true,
+      "Lesson 5 Computer Science": true,
+      "Resume Writing": true,
+      "Lesson 4 Building Apps & Startups": true,
+      "Lesson 2 Frontend Programming": true,
+      "Focus Investing": true,
+      "Interactions & Design": true,
+      "Lesson 1 Coding Fundamentals": true,
+      "The Psychology Of Self-esteem": true,
+    },
+    watches: {
+      Philosophy: true,
+      "Learning Mindset & Perspective": true,
+      "Resume Writing": true,
+      "Lesson 1 Coding Fundamentals": true,
+      "Lesson 3 Backend Engineering": true,
+      "Interactions & Design": true,
+      "Lesson 5 Computer Science": true,
+      "Focus Investing": true,
+      "Lesson 4 Building Apps & Startups": true,
+      "Lesson 2 Frontend Programming": true,
+      "The Psychology Of Self-esteem": true,
+    },
+    progress: {
+      "Lesson 3 Backend Engineering": true,
+      "Focus Investing": true,
+      "Lesson 2 Frontend Programming": true,
+      "Lesson 4 Building Apps & Startups": true,
+      "Interactions & Design": true,
+      "Resume Writing": true,
+      "Lesson 1 Coding Fundamentals": true,
+      "The Psychology Of Self-esteem": true,
+      "Lesson 5 Computer Science": true,
+      "Learning Mindset & Perspective": true,
+      Philosophy: true,
+    },
+  });
+
+  // await updateWebNodeRecord(web5Reference, dwnRecordSet, unlocks);
+
+  userStateReference.setDatabaseUserDocument((prevDoc) => ({
+    ...prevDoc,
+    unlocks: {
+      Philosophy: true,
+      "Learning Mindset & Perspective": true,
+      "Lesson 3 Backend Engineering": true,
+      "Lesson 5 Computer Science": true,
+      "Resume Writing": true,
+      "Lesson 4 Building Apps & Startups": true,
+      "Lesson 2 Frontend Programming": true,
+      "Focus Investing": true,
+      "Interactions & Design": true,
+      "Lesson 1 Coding Fundamentals": true,
+      "The Psychology Of Self-esteem": true,
+    },
+  }));
+};
+
 /**
  * Sorts an array of emotion objects by their timestamp property and groups them by month and year.
  * @param {Object[]} usersEmotionsFromDB - The array of emotion objects fetched from the database.
@@ -109,11 +172,12 @@ export const setupUserDocument = async (
       unlocks: userUnlocks,
       watches: userWatches,
       firstVisit: true,
+      displayName: localStorage.getItem("displayName"),
+      nostrPubKey: localStorage.getItem("local_npub"),
     });
     const response = await getDoc(docRef);
 
     userStateReference.setDatabaseUserDocument(response.data());
-
     addKnowledgeStep(
       "1",
       "Launched a decentralized AI assistant that works inside of social media and started their first session with us at robotsbuildingeducation.com.",
@@ -130,8 +194,16 @@ export const setupUserDocument = async (
       });
     }
 
+    // if (localStorage.getItem("uniqueId") === "did:key:shared_global_account") {
+    //
+    // }
+
+    console.log("res data", res.data());
     if (res?.data()?.nostrPubKey) {
-      localStorage.setItem("npub", res?.data()?.nostrPubKey);
+      localStorage.setItem("local_npub", res?.data()?.nostrPubKey);
+    }
+    if (res?.data()?.displayName) {
+      localStorage.setItem("displayName", res?.data()?.displayName);
     }
 
     const response = await getDoc(docRef);
@@ -351,12 +423,13 @@ export let copyToClipboard = (data) => {
 export let animateBorderLoading = async (
   stateAnimator,
   styleObjectAfter,
-  styleObjectBefore
+  styleObjectBefore,
+  pause = 750
 ) => {
   stateAnimator(styleObjectAfter);
 
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-  await delay(750);
+  await delay(pause);
 
   stateAnimator(styleObjectBefore);
 };
