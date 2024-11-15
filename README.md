@@ -115,7 +115,7 @@ let result = myHouse['house_paint']
 ```
 
 
-Finally, we combinet his to work with some code that renders the following screen
+Finally, we combine this to work with some code that renders the following screen
 ```jsx
 const CelebrationMessage = ({ name }) => {
   const styling_data = {
