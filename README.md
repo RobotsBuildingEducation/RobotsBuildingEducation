@@ -29,7 +29,7 @@ my_custom_list.push('new data')
 
 let data_set = {
   introduction: "Welcome",
-  title: "Chapter 1"
+  title: "Chapter 1",
   is_live: true
 }
 data_set.page = 4
