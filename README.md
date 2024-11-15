@@ -98,6 +98,7 @@ function createHouse(paint = null) {
     },
   };
 }
+
 //what is the value of the result by the end of the program?
 const myHouse = createHouse('blue');
 let paint = myHouse.house_paint;
