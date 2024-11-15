@@ -1,41 +1,146 @@
-## Introduction
+### Welcome to Github!
+Github is a platform that let's software developers collaborate with code. Think of it like Google Docs but for software engineers. We'll learn more about using Git and Github another time but for now this serves as a warm welcome to the world of software construction.
 
-This document helps people set up this application on their device. It also servces as educational material for Patreon members learning how to code.
+### Advice
+It's important to remember this as a beginner:
 
-## Contact
+1. Building things with software is mostly about organizing information rather than being good at math. Programming languages use logic and computation to express ideas instead of equations and algebra.
 
-- Please join this Discord community for more casual & information conversation about this app: [Discord](https://discord.com/invite/robotsbuildingeducation)
+2. Like the English language, you can express things in many different ways.
 
-- Subscribe or support more content on Patreon: [Robots Building Education](https://patreon.com/robotsbuildingeducation)
+3. When something challenges you, fail faster and break the problem into more understandable steps.
 
-- Use thew app @ https://robotsbuildingeducation.com
 
-## RO.B.E
+### Exposure
+The idea here is to expose you to concepts before you start to answer questions about it in the app so you aren't intimidated by it later. Don't worry about not understanding everything. In fact, try your best to make sense out of it at a glance or use AI to your advantage to create an understanding.
 
-Robots Building Education is a research project centered around decentralized finance and education.
+### Code
 
-In 2023, it takes the form of an AI cofounder that generates scholarships through "work" created by users interacting with AI. It is strongly recommended to be subscribed to GPT-4 while working with the codebase.
+Let's observe these lists. We can see that:
+- `my_custom_data && my_custom_list` are equivalent.
+- `data_set && data_object` are also fundamentally equivalent.
 
-## Forking RO.B.E
 
-#### Firestore
+```js
+let my_custom_data = [1, 2, 3, 'a', 'b', 'c', null, false]
+const my_custom_list = new Array(1,2,3,'a','b','c', null, false)
+my_custom_data.push('new data')
+my_custom_list.push('new data')
 
-You will need to set up a firebase project. A tutorial [can be found on Patreon](https://www.patreon.com/posts/93082226). Thi project includes the following services:
+let data_set = {
+  introduction: "Welcome",
+  title: "Chapter 1"
+  is_live: true
+}
+data_set.page = 4
+data_set['book'] = 'Coding Basics'
 
-1. Authentication
-2. Firestore
-3. Hosting
-4. Functions
-5. Analytics
+let data_object = new Object()
+data_object.introduction = 'Welcome'
+data_object.title = 'Chapter 1'
+data_object.is_live = true
+data_object.page = 4
+data_object['book'] = 'Coding Basics'
 
-### API Keys
+```
 
-.env files are like secret files that are kept on your computer. [If you take a look at this file](https://github.com/RobotsBuildingEducation/RobotsBuildingEducation/blob/refactor-sessions/app/.gitignore#L26-L27), you'll see that Github ignores sending this file to the shared codebase. This is a security practice to keep keys safely hidden from the public since keys grant access to paid services.
+Additionally, in the example above, we're exposed to variable definitions, data types, arrays, functions and objects. A lot of the software that you likely operates on those concepts under the hood. This is way `[]` and `new Array` can create the same data - it translates the same way when it comes to turning your code into signals that can be sent across the internet.
 
-<img width="577" alt="image" src="https://github.com/RobotsBuildingEducation/Educate/assets/65219666/e73253eb-623d-467e-80dd-e4eac02ddeec">
+Now in the example below, we take a look at creating our own custom objects. We create our own custom object, along with an interface of functions. Generally when it comes to data, you're able to create, retrieve, update or delete it in some form or another.
 
-1. You'll need to create an account with OpenAI's API. The key definition can be found as `OPENAI_API_KEY` in a `.env` file that you have to create under `/app/functions` - [Example](https://github.com/RobotsBuildingEducation/RobotsBuildingEducation/blob/refactor-sessions/app/functions/index.js#L9-L13)
+```js
+class House {
+  house_paint = null
 
-2. You'll need to create an account with Firebase's API. The definition can be found as `VITE_FIREBASE_API_KEY` under `/app`. The `VITE_` is specific to the application's Vite build and requires the `VITE_` header. - [Example](https://github.com/RobotsBuildingEducation/RobotsBuildingEducation/blob/refactor-sessions/app/src/database/firebaseResources.tsx#L12-L22)
+  constructor(paint){
+    this.house_paint = paint
+  }
 
-3. There is a `VITE_PATREON_PASSCODE` definition in the codebase. They're mostly feature passcodes that get stored to local storage. Use whatever passcode you want or remove it. - [Example](https://github.com/RobotsBuildingEducation/RobotsBuildingEducation/blob/refactor-sessions/app/src/App.tsx#L132)
+  getPaint(){
+    return this.house_paint
+  }
+
+  setPaint(paint) = (paint) => {
+    this.house_paint = paint
+  }
+
+  deletePaint = () => {
+    this.house_paint = null
+  }
+}
+
+let first_home = new House("pink")
+let next_home = new House("blue")
+
+let first_paint = first_house.getPaint() // returns the value "pink"
+let next_paint = new_home.house_paint // returns the value "blue"
+next_paint = new_home['house_paint'] // still returns the value 'blue'
+
+```
+
+So that's creating data and working with data. You'll find that you can usually combine ideas depending on what you need to create. For example, the above component can also be written the following way:
+
+```js
+function createHouse(paint = null) {
+  return {
+    house_paint: paint,
+
+    getPaint() {
+      return this.house_paint;
+    },
+
+    setPaint(paint) {
+      this.house_paint = paint;
+    },
+
+    deletePaint() {
+      this.house_paint = null;
+    },
+  };
+}
+//what is the value of the result by the end of the program?
+const myHouse = createHouse('blue');
+let paint = myHouse.house_paint;
+
+myHouse.house_paint = 'red'; 
+paint = myHouse.getPaint()
+
+myHouse.setPaint('green'); 
+paint = myHouse.house_paint
+
+myHouse.deletePaint(); 
+
+let result = myHouse['house_paint']
+```
+
+
+Finally, we combinet his to work with some code that renders the following screen
+```jsx
+const CelebrationMessage = ({ name }) => {
+  const styling_data = {
+    textAlign: 'center'
+  }
+  
+  return <div style={styling_data}>{name}</div>
+}
+
+const App = () => {
+  return (
+    <section style={{ border: '3px solid black' }}>
+      <header>
+        <h2>Good job!</h2>
+      </header>
+      
+      <CelebrationMessage name="You created a small app!" />
+     </section>
+  )
+}
+```
+<img width="890" alt="image" src="https://github.com/user-attachments/assets/20705076-4b92-4539-8172-a6908a1c2088">
+
+And that's all! In the last example, we've used a library called React, which gives us access to special functions that are specialized for rendering elements on a screen. But it follows the same thought process as the stuff before it.
+
+### Conclusion
+Remember that failing faster is in your best interest when learning new skills with software. This one pager document will be available inside of the app. There are also many other features to help your journey along the way, but I'll leave that to your exploration of the platform and everything it has to offer.
+
+Stay focused and best of luck with the rest!
