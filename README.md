@@ -6,7 +6,7 @@ It's important to remember this as a beginner:
 
 1. Building things with software is mostly about organizing information rather than being good at math. Programming languages use logic and computation to express ideas instead of equations and algebra.
 
-2. Like the English language, you can express things in many different ways.
+2. Like the English language, you can express the same things in many different ways.
 
 3. When something challenges you, fail faster and break the problem into more understandable steps.
 
@@ -22,29 +22,33 @@ Let's observe these lists. We can see that:
 
 
 ```js
-let my_custom_data = [1, 2, 3, 'a', 'b', 'c', null, false]
-const my_custom_list = new Array(1,2,3,'a','b','c', null, false)
+let my_custom_data = [
+  1, 2, 3, 'a', 'b', 'c', null, false
+]
+const my_custom_list = new Array(
+  1,2,3,'a','b','c', null, false
+)
 my_custom_data.push('new data')
 my_custom_list.push('new data')
 
 let data_set = {
-  introduction: "Welcome",
+  intro: "Welcome",
   title: "Chapter 1",
   is_live: true
 }
 data_set.page = 4
-data_set['book'] = 'Coding Basics'
+data_set['book'] = 'Coding'
 
 let data_object = new Object()
-data_object.introduction = 'Welcome'
+data_object.intro = 'Welcome'
 data_object.title = 'Chapter 1'
 data_object.is_live = true
 data_object.page = 4
-data_object['book'] = 'Coding Basics'
+data_object['book'] = 'Coding'
 
 ```
 
-Additionally, in the example above, we're exposed to variable definitions, data types, arrays, functions and objects. A lot of the software that you likely operates on those concepts under the hood. This is way `[]` and `new Array` can create the same data - it translates the same way when it comes to turning your code into signals that can be sent across the internet.
+Additionally, in the example above, we're exposed to variable definitions, data types, arrays, functions and objects. A lot of the software that you write likely operates on those concepts under the hood. This is the way `[]` and `new Array` can create the same data - it translates the same way when it comes to turning your code into signals that can be sent across the internet.
 
 Now in the example below, we take a look at creating our own custom objects. We create our own custom object, along with an interface of functions. Generally when it comes to data, you're able to create, retrieve, update or delete it in some form or another.
 
@@ -69,12 +73,25 @@ class House {
   }
 }
 
-let first_home = new House("pink")
-let next_home = new House("blue")
+let first_home = new House(
+  "pink"
+)
 
-let first_paint = first_house.getPaint() // returns the value "pink"
-let next_paint = new_home.house_paint // returns the value "blue"
-next_paint = new_home['house_paint'] // still returns the value 'blue'
+let next_home = new House(
+  "blue"
+)
+
+// returns the value "pink"
+let first_paint =
+  first_house.getPaint()
+
+// returns the value "blue"
+let next_paint =
+  next_home.house_paint
+
+// still returns the value 'blue'
+next_paint =
+  next_home['house_paint'] 
 
 ```
 
@@ -99,7 +116,7 @@ function createHouse(paint = null) {
   };
 }
 
-//what is the value of the result by the end of the program?
+//what is the value of the result?
 const myHouse = createHouse('blue');
 let paint = myHouse.house_paint;
 
@@ -117,22 +134,38 @@ let result = myHouse['house_paint']
 
 Finally, we combine this to work with some code that renders the following screen
 ```jsx
-const CelebrationMessage = ({ name }) => {
+const CelebrationMessage = ({
+  name
+}) => {
   const styling_data = {
     textAlign: 'center'
   }
   
-  return <div style={styling_data}>{name}</div>
+  return (
+    <div
+      style={
+        styling_data
+      }
+    >
+      {name}
+    </div>
+  )
 }
 
 const App = () => {
   return (
-    <section style={{ border: '3px solid black' }}>
+    <section
+      style={{
+        border: '3px solid black'
+      }}
+    >
       <header>
         <h2>Good job!</h2>
       </header>
       
-      <CelebrationMessage name="You created a small app!" />
+      <CelebrationMessage
+        name="You created a small app!"
+      />
      </section>
   )
 }
