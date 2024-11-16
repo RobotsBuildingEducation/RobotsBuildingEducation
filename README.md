@@ -23,7 +23,7 @@ Let's observe these lists. We can see that:
 
 ```js
 let my_custom_data = [
-  1, 2, 3, 'a', 'b', 'c', null, false
+  1,2,3,'a','b','c',null,false
 ]
 const my_custom_list = new Array(
   1,2,3,'a','b','c', null, false
