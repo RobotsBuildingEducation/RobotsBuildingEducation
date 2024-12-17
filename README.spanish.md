@@ -166,6 +166,9 @@ const Aplicacion = () => {
   )
 }
 ```
+<img width="1337" alt="image" src="https://github.com/user-attachments/assets/e73f102a-0a03-470e-b5a6-fcb54fb2b660" />
+
+
 
 ---
 
