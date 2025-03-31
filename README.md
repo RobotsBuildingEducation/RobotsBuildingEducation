@@ -1,5 +1,5 @@
 ### Welcome to Github!
-Github is a platform that let's software developers collaborate with code. Think of it like Google Docs but for software engineers. We'll learn more about using Git and Github another time but for now this serves as a warm welcome to the world of software construction.
+Github is a platform that lets software developers collaborate with code. Think of it like Google Docs but for software engineers. We'll learn more about using Git and Github another time but for now this serves as a warm welcome to the world of software construction.
 
 ### Advice
 It's important to remember this as a beginner:
