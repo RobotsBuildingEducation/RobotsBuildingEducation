@@ -40,7 +40,7 @@ data_set.page = 4
 data_set['book'] = 'Coding'
 
 let data_object = new Object()
-data_object.intro = 'Welcome'
+data_object["intro"] = 'Welcome'
 data_object.title = 'Chapter 1'
 data_object.is_live = true
 data_object.page = 4
@@ -48,7 +48,7 @@ data_object['book'] = 'Coding'
 
 ```
 
-Additionally, in the example above, we're exposed to variable definitions, data types, arrays, functions and objects. A lot of the software that you write likely operates on those concepts under the hood. This is the way `[]` and `new Array` can create the same data - it translates the same way when it comes to turning your code into signals that can be sent across the internet.
+Additionally, in the example above, we're exposed to variable definitions, data types, arrays, functions and objects. A lot of the software that you write will operate on those concepts under the hood. This is why `[]` and `new Array` can create the same data - it translates to be the same thing when it comes to breaking down your code for computers and turning your code into signals that can be sent across the internet.
 
 Now in the example below, we take a look at creating our own custom objects. We create our own custom object, along with an interface of functions. Generally when it comes to data, you're able to create, retrieve, update or delete it in some form or another.
 
