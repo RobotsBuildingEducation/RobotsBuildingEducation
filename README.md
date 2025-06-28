@@ -1,1 +1,1 @@
-The best aAI coding tutor and other stuff
+The best AI coding tutor and other stuff
