@@ -1,7 +1,7 @@
 Hello.
 
 I'm a self-employed developer that works on decentralized education technology. 
-I'm currently exploring Bitcoin related protocols the nostr and lightning networks to do so.
+ I'm currently exploring Bitcoin related protocols the nostr and lightning networks to do so.
 I believes porotocols can transform online education by connecting classrooms and learning in meaningful ways. 
 
 
