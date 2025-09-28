@@ -1,4 +1,4 @@
-Hello.
+Hello. My name is Sheilfer.
 
 I'm a self-employed developer that works on decentralized education technology. <br/>
 I'm currently exploring Bitcoin related protocols the nostr and lightning networks to do so. <br/>
