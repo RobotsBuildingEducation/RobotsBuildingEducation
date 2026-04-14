@@ -7,8 +7,8 @@ I believes porotocols can transform online education by connecting classrooms an
 
 Here are some links to explore more of my:
 
-- No Sabos (learn languages): https://nosabos.app
+- learn languages: https://nosabos.
 
-- Robots Building Education (learn hownto code): https://robotsbuildingeducation.com
+- learn how to code: https://robotsbuildingeducation.com
 
- - Patreon: https://patreon.com/NotesAndOtherStuff
+- Patreon: https://patreon.com/NotesAndOtherStuff
